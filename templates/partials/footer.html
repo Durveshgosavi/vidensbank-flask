@@ -1,0 +1,42 @@
+<footer class="footer" role="contentinfo">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vidensbank</h3>
+                    <p>Din kilde til viden om bæredygtighed, klimadata og fødevareinnovation</p>
+                    <p><strong>Cheval Blanc Kantiner A/S</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hurtige Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Hjem</a></li>
+                        <li><a href="{{ url_for('emissions_sustainability') }}">Emissioner & Bæredygtighed</a></li>
+                        <li><a href="{{ url_for('calculator') }}">CO2 Beregner</a></li>
+                        <li><a href="{{ url_for('climate_data') }}">Klimadata</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ressourcer</h4>
+                    <ul>
+                        <li><a href="{{ url_for('market_analysis') }}">Markedsanalyse</a></li>
+                        <li><a href="{{ url_for('political_landscape') }}">Politisk Landskab</a></li>
+                        <li><a href="{{ url_for('data_driven_approach') }}">Datadreven Tilgang</a></li>
+                        <li><a href="{{ url_for('food_emissions') }}">Fødevareemissioner</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>Email: info@chevalblanc.dk</p>
+                    <p>Telefon: +45 XX XX XX XX</p>
+                    <p><a href="{{ url_for('contact') }}">Kontaktformular</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; {{ current_year }} Cheval Blanc Kantiner A/S. Alle rettigheder forbeholdes.</p>
+        </div>
+    </div>
+</footer>
