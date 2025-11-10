@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Kontakt - Vidensbank{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width: 700px;">
+    <h1 class="section-title">Kontakt Os</h1>
+    <div class="wavy-underline"></div>
+    
+    <p style="text-align: center; margin-bottom: 3rem;">
+      Har du spørgsmål eller feedback? Vi vil elske at høre fra dig!
+    </p>
+    
+    <div class="kpi-card">
+      <form method="POST">
+        <div class="form-group">
+          <label for="name">Dit Navn</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Din Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Emne</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Besked</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <button type="submit" class="cta-button primary" style="width: 100%;">Send Besked</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

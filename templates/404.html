@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container" style="text-align: center;">
+    <h1 style="font-size: 6rem; color: var(--cheval-gron);">404</h1>
+    <h2>Side ikke fundet</h2>
+    <p style="margin: 2rem 0;">Siden du leder efter eksisterer ikke.</p>
+    <a href="{{ url_for('index') }}" class="cta-button primary">Gå til forsiden</a>
+  </div>
+</section>
+{% endblock %}

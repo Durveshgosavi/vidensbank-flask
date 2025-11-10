@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container" style="text-align: center;">
+    <h1 style="font-size: 6rem; color: #e74c3c;">500</h1>
+    <h2>Server Fejl</h2>
+    <p style="margin: 2rem 0;">Der opstod en fejl. Prøv venligst igen senere.</p>
+    <a href="{{ url_for('index') }}" class="cta-button primary">Gå til forsiden</a>
+  </div>
+</section>
+{% endblock %}

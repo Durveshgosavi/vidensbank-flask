@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}CO2 Beregner - Vidensbank{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">CO2 Beregner</h1>
+    <div class="wavy-underline"></div>
+    
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem;">
+      Beregn klimaaftrykket for forskellige fødevarer og se, hvordan dine valg påvirker miljøet
+    </p>
+    
+    <div class="grid-layout grid-2-col">
+      <div class="kpi-card">
+        <h3 class="card-title">Beregn CO2 Aftryk</h3>
+        
+        <form id="co2-calculator-form">
+          <div class="form-group">
+            <label for="food_type">Vælg Fødevare</label>
+            <select id="food_type" name="food_type" required>
+              <option value="">-- Vælg fødevare --</option>
+              <option value="beef">Oksekød</option>
+              <option value="pork">Svinekød</option>
+              <option value="chicken">Kylling</option>
+              <option value="fish">Fisk</option>
+              <option value="vegetables">Grøntsager</option>
+              <option value="dairy">Mejeriprodukter</option>
+              <option value="grains">Kornprodukter</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="quantity">Mængde (kg)</label>
+            <input type="number" id="quantity" name="quantity" min="0.1" step="0.1" value="1.0" required>
+          </div>
+          
+          <button type="submit" class="cta-button primary" style="width: 100%;">Beregn CO2</button>
+        </form>
+        
+        <div id="result" style="margin-top: 2rem; display: none;">
+          <div class="kpi-card" style="background-color: var(--cheval-gul-light); border: 2px solid var(--cheval-gul);">
+            <h4 style="margin-bottom: 1rem;">Resultat</h4>
+            <div class="kpi-number" id="co2-result" style="font-size: 2.5rem;">0</div>
+            <p id="result-details"></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="kpi-card">
+        <h3 class="card-title">Om Beregningen</h3>
+        <p style="margin-bottom: 1.5rem;">
+          Denne beregner bruger emissionsfaktorer baseret på data fra CONCITO's klimadatabase og andre verificerede kilder.
+        </p>
+        
+        <h4 style="margin-bottom: 1rem;">CO2 pr. kg:</h4>
+        <ul style="list-style-position: inside;">
+          <li><strong>Oksekød:</strong> 27.0 kg CO2e</li>
+          <li><strong>Svinekød:</strong> 12.1 kg CO2e</li>
+          <li><strong>Kylling:</strong> 6.9 kg CO2e</li>
+          <li><strong>Fisk:</strong> 5.0 kg CO2e</li>
+          <li><strong>Grøntsager:</strong> 2.0 kg CO2e</li>
+          <li><strong>Mejeriprodukter:</strong> 8.0 kg CO2e</li>
+          <li><strong>Kornprodukter:</strong> 1.5 kg CO2e</li>
+        </ul>
+        
+        <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--bg-light); border-radius: 8px;">
+          <strong>💡 Tip:</strong> Ved at erstatte 1 kg oksekød med 1 kg grøntsager kan du spare op til 25 kg CO2e!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('co2-calculator-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const foodType = document.getElementById('food_type').value;
+    const quantity = parseFloat(document.getElementById('quantity').value);
+    
+    try {
+        const response = await fetch('/api/calculate-co2', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                food_type: foodType,
+                quantity: quantity
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('co2-result').textContent = data.co2_emissions;
+            document.getElementById('result-details').textContent = 
+                `${data.quantity} kg ${data.food_type} producerer ${data.co2_emissions} ${data.unit}`;
+            
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Der opstod en fejl. Prøv venligst igen.');
+    }
+});
+</script>
+{% endblock %}
