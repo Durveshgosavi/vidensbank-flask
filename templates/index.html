@@ -1,87 +1,100 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header class="hero-video-container" style="position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; background: linear-gradient(135deg, #a0d7a5 0%, #8bc48f 100%);">
-  <div class="hero-content" style="position: relative; z-index: 1; padding: 2rem;">
-    <h1 class="hero-title" style="font-family: 'Georgia', serif; font-size: 4rem; font-weight: normal; line-height: 1.1; margin-bottom: 1.5rem;">Velkommen til Vidensbanken</h1>
-    <p style="font-size: 1.5rem; margin-bottom: 2rem; max-width: 800px; margin-inline: auto;">Din centrale kilde til viden om bæredygtighed, emissioner og klimadata</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="{{ url_for('emissions_sustainability') }}" class="cta-button primary" style="background-color: white; color: var(--cheval-gron);">Udforsk Emner</a>
-      <a href="{{ url_for('calculator') }}" class="cta-button secondary" style="background-color: transparent; border: 2px solid white; color: white;">Prøv CO2 Beregner</a>
-    </div>
-  </div>
-</header>
+<!-- Floating decorative elements -->
+<div class="floating-elements">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+</div>
 
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">Hvorfor Vidensbank?</h2>
-    <div class="wavy-underline"></div>
-    
-    <div class="grid-layout grid-4-col" style="margin-top: 3rem;">
-      <div class="kpi-card" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-        <h3 style="margin-bottom: 1rem;">Datadrevet</h3>
-        <p>Baseret på verificerede data fra CONCITO og andre pålidelige kilder</p>
-      </div>
-      
-      <div class="kpi-card" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
-        <h3 style="margin-bottom: 1rem;">Bæredygtig</h3>
-        <p>Fokus på praktiske løsninger for en grønnere fremtid</p>
-      </div>
-      
-      <div class="kpi-card" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
-        <h3 style="margin-bottom: 1rem;">Handlingsrettet</h3>
-        <p>Konkrete værktøjer og guides til at gøre en forskel</p>
-      </div>
-      
-      <div class="kpi-card" style="text-align: center;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-        <h3 style="margin-bottom: 1rem;">Transparent</h3>
-        <p>Åben adgang til data og metoder bag vores analyser</p>
-      </div>
+<!-- Hero Section -->
+<section class="section-landing hero-gradient">
+    <div class="container">
+        <h1 class="section-landing-heading">Velkommen til Vidensbanken</h1>
+        <p class="section-landing-sub-heading">Din centrale kilde til viden om bæredygtighed, emissioner og klimadata</p>
+        <div class="flex-center mt-3">
+            <a href="{{ url_for('emissions_sustainability') }}" class="cta-button primary">Udforsk Emner</a>
+            <a href="{{ url_for('calculator') }}" class="cta-button secondary">Prøv CO2 Beregner</a>
+        </div>
     </div>
-  </div>
 </section>
 
+<!-- Why Vidensbank Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Hvorfor Vidensbank?</h2>
+        <div class="wavy-underline"></div>
+        
+        <div class="grid-4-col card-grid">
+            <div class="kpi-card reveal">
+                <div class="icon">📊</div>
+                <h3>Datadrevet</h3>
+                <p>Baseret på verificerede data fra CONCITO og andre pålidelige kilder</p>
+            </div>
+            
+            <div class="kpi-card reveal">
+                <div class="icon">🌱</div>
+                <h3>Bæredygtig</h3>
+                <p>Fokus på praktiske løsninger for en grønnere fremtid</p>
+            </div>
+            
+            <div class="kpi-card reveal">
+                <div class="icon">🎯</div>
+                <h3>Handlingsrettet</h3>
+                <p>Konkrete værktøjer og guides til at gøre en forskel</p>
+            </div>
+            
+            <div class="kpi-card reveal">
+                <div class="icon">🔍</div>
+                <h3>Transparent</h3>
+                <p>Åben adgang til data og metoder bag vores analyser</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Topics Section -->
 <section class="section bg-light">
-  <div class="container">
-    <h2 class="section-title">Populære Emner</h2>
-    <div class="wavy-underline"></div>
-    
-    <div class="grid-layout grid-2-col" style="margin-top: 3rem;">
-      <a href="{{ url_for('emissions_sustainability') }}" class="section-block" style="text-decoration: none; color: inherit;">
-        <div>
-          <h3>Emissioner & Bæredygtighed</h3>
-          <p>Udforsk fødevarers klimaaftryk og hvordan du kan reducere emissioner</p>
+    <div class="container">
+        <h2 class="section-title">Populære Emner</h2>
+        <div class="wavy-underline"></div>
+        
+        <div class="grid-2-col">
+            <a href="{{ url_for('emissions_sustainability') }}" class="card reveal no-decoration">
+                <h3 class="card-title">
+                    <div class="icon">🌍</div>
+                    Emissioner & Bæredygtighed
+                </h3>
+                <p>Udforsk fødevarers klimaaftryk og hvordan du kan reducere emissioner</p>
+            </a>
+            
+            <a href="{{ url_for('calculator') }}" class="card reveal no-decoration">
+                <h3 class="card-title">
+                    <div class="icon">🧮</div>
+                    CO2 Beregner
+                </h3>
+                <p>Beregn klimaaftrykket af forskellige fødevarer og måltider</p>
+            </a>
         </div>
-      </a>
-      
-      <a href="{{ url_for('calculator') }}" class="section-block" style="text-decoration: none; color: inherit;">
-        <div>
-          <h3>CO2 Beregner</h3>
-          <p>Beregn klimaaftrykket af forskellige fødevarer og måltider</p>
-        </div>
-      </a>
     </div>
-  </div>
 </section>
 
+<!-- CTA Section -->
 <section class="section">
-  <div class="container">
-    <div class="cta-block">
-      <h2>Kom i Gang</h2>
-      <p>Opret en konto for at få adgang til alle funktioner, gemme dine beregninger og meget mere</p>
-      <div style="margin-top: 2rem;">
-        {% if current_user.is_authenticated %}
-          <a href="{{ url_for('dashboard') }}" class="cta-button">Gå til Dashboard</a>
-        {% else %}
-          <a href="{{ url_for('register') }}" class="cta-button">Opret Konto</a>
-          <a href="{{ url_for('login') }}" class="cta-button secondary" style="background-color: transparent; border: 2px solid white; color: white; margin-left: 1rem;">Log Ind</a>
-        {% endif %}
-      </div>
+    <div class="container">
+        <div class="cta-block">
+            <h2>Kom i Gang</h2>
+            <p>Opret en konto for at få adgang til alle funktioner, gemme dine beregninger og meget mere</p>
+            <div class="mt-3">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="cta-button secondary">Gå til Dashboard</a>
+                {% else %}
+                    <a href="{{ url_for('register') }}" class="cta-button secondary">Opret Konto</a>
+                    <a href="{{ url_for('login') }}" class="cta-button secondary ml-2">Log Ind</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 {% endblock %}
