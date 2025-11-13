@@ -1,0 +1,884 @@
+{% extends "base.html" %}
+
+{% block title %}Avanceret Kantineklimaberegner | Vidensbank{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<style>
+/* Hero Section */
+.calculator-hero {
+    background: linear-gradient(135deg, #2E8B57 0%, #4CAF50 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.calculator-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.calculator-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* Card Styling */
+.calc-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(46, 139, 87, 0.08);
+    margin-bottom: 2rem;
+}
+
+.calc-card h2 {
+    color: #2E8B57;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e8f5e9;
+    padding-bottom: 0.5rem;
+}
+
+/* Canteen Selection */
+#canteenSelect {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+#canteenSelect:focus {
+    border-color: #2E8B57;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+}
+
+/* Baseline Display */
+.baseline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.baseline-item {
+    background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #e0e0e0;
+}
+
+.baseline-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2E8B57;
+    display: block;
+}
+
+.baseline-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Weekly Menu Grid */
+.weekly-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.day-column {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+.day-header {
+    font-weight: 700;
+    color: #2E8B57;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.meal-selector {
+    margin-bottom: 0.75rem;
+}
+
+.meal-selector label {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.meal-selector select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* Initiative Checkboxes */
+.initiative-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.initiative-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.initiative-item:hover {
+    border-color: #2E8B57;
+    background: #e8f5e9;
+}
+
+.initiative-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    cursor: pointer;
+}
+
+.initiative-item label {
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Scenario Buttons */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.scenario-btn {
+    padding: 1rem;
+    border: 2px solid #2E8B57;
+    background: white;
+    color: #2E8B57;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.scenario-btn:hover {
+    background: #2E8B57;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+}
+
+.scenario-btn.active {
+    background: #2E8B57;
+    color: white;
+}
+
+/* Results Display */
+.results-hero {
+    background: linear-gradient(135deg, #2E8B57, #4CAF50);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.results-main {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.result-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+}
+
+.result-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+}
+
+/* Recommendations */
+.recommendation-item {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #2E8B57;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.rec-priority {
+    display: inline-block;
+    background: #2E8B57;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+}
+
+.rec-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.rec-description {
+    color: #666;
+    margin: 0.75rem 0;
+    line-height: 1.6;
+}
+
+.rec-impact {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.rec-badge {
+    background: #e8f5e9;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #2E8B57;
+    font-weight: 600;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #2E8B57;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #2E8B57;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Input Groups */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.input-group input,
+.input-group select {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #2E8B57;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+}
+
+/* Calculate Button */
+.calculate-btn {
+    background: linear-gradient(135deg, #2E8B57, #4CAF50);
+    color: white;
+    padding: 1.25rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto;
+    box-shadow: 0 4px 16px rgba(46, 139, 87, 0.3);
+    transition: all 0.3s;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(46, 139, 87, 0.4);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .weekly-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-main {
+        font-size: 2.5rem;
+    }
+
+    .calculator-hero h1 {
+        font-size: 1.8rem;
+    }
+}
+</style>
+
+<div class="calculator-hero">
+    <h1><i class="bi bi-building"></i> Avanceret Kantineklimaberegner</h1>
+    <p>70+ danske kantiner • Ugentlig menu • Baseline sammenligning • AI-anbefalinger</p>
+</div>
+
+<div class="container" style="max-width: 1400px; margin: 0 auto;">
+
+    <!-- CANTEEN SELECTION -->
+    <div class="calc-card">
+        <h2><i class="bi bi-search"></i> Vælg Kantine</h2>
+        <select id="canteenSelect">
+            <option value="">-- Søg og vælg din kantine --</option>
+        </select>
+        <div id="canteenInfo" style="display:none; margin-top:1.5rem;">
+            <p><strong>📍 Adresse:</strong> <span id="canteenAddress"></span></p>
+            <p><strong>👥 Medarbejdere:</strong> <span id="canteenEmployees"></span></p>
+        </div>
+    </div>
+
+    <!-- BASELINE DISPLAY -->
+    <div class="calc-card" id="baselineCard" style="display:none;">
+        <h2><i class="bi bi-bar-chart-line"></i> Nuværende Baseline</h2>
+        <div class="baseline-grid">
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineCO2">-</span>
+                <span class="baseline-label">kg CO2e/kg</span>
+            </div>
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineGreen">-</span>
+                <span class="baseline-label">Grønt %</span>
+            </div>
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineMeat">-</span>
+                <span class="baseline-label">Kød %</span>
+            </div>
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineOrganic">-</span>
+                <span class="baseline-label">Økologisk %</span>
+            </div>
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineWaste">-</span>
+                <span class="baseline-label">Madspild %</span>
+            </div>
+            <div class="baseline-item">
+                <span class="baseline-value" id="baselineLocal">-</span>
+                <span class="baseline-label">Lokalt %</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY MENU PLANNING -->
+    <div class="calc-card" id="menuCard" style="display:none;">
+        <h2><i class="bi bi-calendar-week"></i> Ugentlig Menu (Mandag-Fredag)</h2>
+        <div class="weekly-grid" id="weeklyGrid">
+            <!-- Will be populated dynamically -->
+        </div>
+    </div>
+
+    <!-- PROCUREMENT & SOURCING -->
+    <div class="calc-card" id="procurementCard" style="display:none;">
+        <h2><i class="bi bi-truck"></i> Indkøb & Leverandører</h2>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Dansk % <span style="color:#2E8B57">🇩🇰</span></label>
+                <input type="number" id="danishPercent" min="0" max="100" value="60">
+            </div>
+            <div class="input-group">
+                <label>EU % <span style="color:#0066cc">🇪🇺</span></label>
+                <input type="number" id="euPercent" min="0" max="100" value="30">
+            </div>
+            <div class="input-group">
+                <label>Global % <span style="color:#666">🌍</span></label>
+                <input type="number" id="globalPercent" min="0" max="100" value="10">
+            </div>
+            <div class="input-group">
+                <label>Økologisk % <span style="color:#4CAF50">🌱</span></label>
+                <input type="number" id="organicPercent" min="0" max="100" value="40">
+            </div>
+        </div>
+    </div>
+
+    <!-- WASTE MANAGEMENT INITIATIVES -->
+    <div class="calc-card" id="wasteCard" style="display:none;">
+        <h2><i class="bi bi-recycle"></i> Madspildsinitiativer</h2>
+        <div class="initiative-grid">
+            <div class="initiative-item">
+                <input type="checkbox" id="initiative1" value="preorder">
+                <label for="initiative1">Forudbestilling fra gæster</label>
+            </div>
+            <div class="initiative-item">
+                <input type="checkbox" id="initiative2" value="portions">
+                <label for="initiative2">Fleksible portioner (S/M/L)</label>
+            </div>
+            <div class="initiative-item">
+                <input type="checkbox" id="initiative3" value="compost">
+                <label for="initiative3">Kompost/biogas system</label>
+            </div>
+            <div class="initiative-item">
+                <input type="checkbox" id="initiative4" value="tracking">
+                <label for="initiative4">Daglig spildregistrering</label>
+            </div>
+            <div class="initiative-item">
+                <input type="checkbox" id="initiative5" value="stock">
+                <label for="initiative5">Optimeret lagerudnyttelse</label>
+            </div>
+        </div>
+        <div class="input-grid" style="margin-top:1.5rem;">
+            <div class="input-group">
+                <label>Forberedelse spild %</label>
+                <input type="number" id="wastePrep" min="0" max="50" value="8" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Tallerken spild %</label>
+                <input type="number" id="wastePlate" min="0" max="50" value="12" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Buffet spild %</label>
+                <input type="number" id="wasteBuffet" min="0" max="50" value="5" step="0.5">
+            </div>
+        </div>
+    </div>
+
+    <!-- ENERGY EFFICIENCY -->
+    <div class="calc-card" id="energyCard" style="display:none;">
+        <h2><i class="bi bi-lightning-charge"></i> Energieffektivitet</h2>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Tilberedningsmetode</label>
+                <select id="cookingMethod">
+                    <option value="electric">Elektrisk</option>
+                    <option value="gas">Gas</option>
+                    <option value="mixed">Blandet</option>
+                    <option value="induction">Induktion</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Udstyr energiklasse</label>
+                <select id="energyClass">
+                    <option value="A">A (Mest effektiv)</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Batch cooking</label>
+                <select id="batchCooking">
+                    <option value="yes">Ja - Optimeret</option>
+                    <option value="partial">Delvist</option>
+                    <option value="no">Nej</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCENARIO TESTING -->
+    <div class="calc-card" id="scenarioCard" style="display:none;">
+        <h2><i class="bi bi-lightbulb"></i> Test Scenarier</h2>
+        <div class="scenario-grid">
+            <button class="scenario-btn" onclick="applyScenario('meatlessMonday')">
+                🌱 Kødløs Mandag
+            </button>
+            <button class="scenario-btn" onclick="applyScenario('allDanish')">
+                🇩🇰 100% Dansk Kød
+            </button>
+            <button class="scenario-btn" onclick="applyScenario('reducePortions')">
+                📏 Reducer Portioner 10%
+            </button>
+            <button class="scenario-btn" onclick="applyScenario('allOrganic')">
+                🌾 100% Økologisk
+            </button>
+            <button class="scenario-btn" onclick="applyScenario('zeroWaste')">
+                ♻️ Nul-spild Mål
+            </button>
+            <button class="scenario-btn" onclick="applyScenario('reset')">
+                🔄 Nulstil
+            </button>
+        </div>
+    </div>
+
+    <!-- CALCULATE BUTTON -->
+    <button class="calculate-btn" onclick="calculateImpact()">
+        <i class="bi bi-calculator"></i> Beregn Klimaaftryk
+    </button>
+
+    <!-- RESULTS SECTION -->
+    <div id="resultsSection" style="display:none;">
+        <div class="results-hero">
+            <h2 style="color:white; margin:0;">📊 Resultater</h2>
+            <div class="results-main" id="mainResult">-</div>
+            <p style="font-size:1.2rem; margin:0;">kg CO2e per måltid</p>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <span class="result-value" id="annualTons">-</span>
+                    <span class="result-label">Tons CO2e/år</span>
+                </div>
+                <div class="result-card">
+                    <span class="result-value" id="costSavings">-</span>
+                    <span class="result-label">DKK besparelse/år</span>
+                </div>
+                <div class="result-card">
+                    <span class="result-value" id="vsBaseline">-</span>
+                    <span class="result-label">vs. Baseline</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI RECOMMENDATIONS -->
+        <div class="calc-card">
+            <h2><i class="bi bi-robot"></i> AI-Anbefalinger</h2>
+            <div id="recommendationsContainer">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+let canteens = [];
+let selectedCanteen = null;
+let baselineData = null;
+
+// Load canteens on page load
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadCanteens();
+});
+
+async function loadCanteens() {
+    try {
+        const response = await fetch('/api/canteens');
+        const data = await response.json();
+
+        if (data.success) {
+            canteens = data.canteens;
+            populateCanteenDropdown();
+        }
+    } catch (error) {
+        console.error('Error loading canteens:', error);
+    }
+}
+
+function populateCanteenDropdown() {
+    const select = document.getElementById('canteenSelect');
+
+    canteens.forEach(canteen => {
+        const option = document.createElement('option');
+        option.value = canteen.id;
+        option.textContent = `${canteen.name} - ${canteen.location}`;
+        select.appendChild(option);
+    });
+
+    select.addEventListener('change', handleCanteenSelection);
+}
+
+function handleCanteenSelection(e) {
+    const canteenId = parseInt(e.target.value);
+
+    if (!canteenId) {
+        hideAllCards();
+        return;
+    }
+
+    selectedCanteen = canteens.find(c => c.id === canteenId);
+
+    if (selectedCanteen) {
+        baselineData = selectedCanteen.baseline;
+        displayCanteenInfo();
+        displayBaseline();
+        setupWeeklyMenu();
+        showAllCards();
+    }
+}
+
+function displayCanteenInfo() {
+    document.getElementById('canteenInfo').style.display = 'block';
+    document.getElementById('canteenAddress').textContent = selectedCanteen.address;
+    document.getElementById('canteenEmployees').textContent = selectedCanteen.employees;
+}
+
+function displayBaseline() {
+    document.getElementById('baselineCO2').textContent = baselineData.co2_per_kg.toFixed(2);
+    document.getElementById('baselineGreen').textContent = baselineData.green_percent.toFixed(1) + '%';
+    document.getElementById('baselineMeat').textContent = baselineData.meat_percent.toFixed(1) + '%';
+    document.getElementById('baselineOrganic').textContent = baselineData.organic_percent.toFixed(1) + '%';
+    document.getElementById('baselineWaste').textContent = baselineData.food_waste_percent.toFixed(1) + '%';
+    document.getElementById('baselineLocal').textContent = baselineData.local_sourced.toFixed(1) + '%';
+}
+
+function setupWeeklyMenu() {
+    const days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
+    const weeklyGrid = document.getElementById('weeklyGrid');
+    weeklyGrid.innerHTML = '';
+
+    days.forEach((day, index) => {
+        const dayCol = document.createElement('div');
+        dayCol.className = 'day-column';
+        dayCol.innerHTML = `
+            <div class="day-header">${day}</div>
+            <div class="meal-selector">
+                <label>Kødret</label>
+                <select id="meat_${index}">
+                    <option value="beef">Oksekød</option>
+                    <option value="pork" selected>Svinekød</option>
+                    <option value="chicken">Kylling</option>
+                    <option value="fish">Fisk</option>
+                    <option value="mixed">Blandet</option>
+                </select>
+            </div>
+            <div class="meal-selector">
+                <label>Grøn ret</label>
+                <select id="green_${index}">
+                    <option value="vegan" selected>Vegansk</option>
+                    <option value="vegetarian">Vegetar</option>
+                    <option value="legumes">Bælgfrugter</option>
+                    <option value="dairy">Mejeriprodukter</option>
+                </select>
+            </div>
+        `;
+        weeklyGrid.appendChild(dayCol);
+    });
+}
+
+function showAllCards() {
+    document.getElementById('baselineCard').style.display = 'block';
+    document.getElementById('menuCard').style.display = 'block';
+    document.getElementById('procurementCard').style.display = 'block';
+    document.getElementById('wasteCard').style.display = 'block';
+    document.getElementById('energyCard').style.display = 'block';
+    document.getElementById('scenarioCard').style.display = 'block';
+}
+
+function hideAllCards() {
+    document.getElementById('canteenInfo').style.display = 'none';
+    document.getElementById('baselineCard').style.display = 'none';
+    document.getElementById('menuCard').style.display = 'none';
+    document.getElementById('procurementCard').style.display = 'none';
+    document.getElementById('wasteCard').style.display = 'none';
+    document.getElementById('energyCard').style.display = 'none';
+    document.getElementById('scenarioCard').style.display = 'none';
+    document.getElementById('resultsSection').style.display = 'none';
+}
+
+function applyScenario(scenario) {
+    switch(scenario) {
+        case 'meatlessMonday':
+            // Set Monday to all green
+            document.getElementById('meat_0').value = 'mixed';
+            alert('🌱 Kødløs Mandag aktiveret!');
+            break;
+        case 'allDanish':
+            document.getElementById('danishPercent').value = 100;
+            document.getElementById('euPercent').value = 0;
+            document.getElementById('globalPercent').value = 0;
+            alert('🇩🇰 100% Dansk kød aktiveret!');
+            break;
+        case 'reducePortions':
+            alert('📏 Portionsreduktion vil blive inkluderet i beregningen');
+            break;
+        case 'allOrganic':
+            document.getElementById('organicPercent').value = 100;
+            alert('🌾 100% Økologisk aktiveret!');
+            break;
+        case 'zeroWaste':
+            document.getElementById('wastePrep').value = 2;
+            document.getElementById('wastePlate').value = 3;
+            document.getElementById('wasteBuffet').value = 1;
+            document.querySelectorAll('[id^="initiative"]').forEach(cb => cb.checked = true);
+            alert('♻️ Nul-spild scenario aktiveret!');
+            break;
+        case 'reset':
+            if (selectedCanteen) {
+                setupWeeklyMenu();
+                document.getElementById('danishPercent').value = 60;
+                document.getElementById('euPercent').value = 30;
+                document.getElementById('globalPercent').value = 10;
+                document.getElementById('organicPercent').value = 40;
+                document.getElementById('wastePrep').value = 8;
+                document.getElementById('wastePlate').value = 12;
+                document.getElementById('wasteBuffet').value = 5;
+                document.querySelectorAll('[id^="initiative"]').forEach(cb => cb.checked = false);
+                alert('🔄 Nulstillet til baseline');
+            }
+            break;
+    }
+}
+
+async function calculateImpact() {
+    if (!selectedCanteen) {
+        alert('Vælg venligst en kantine først!');
+        return;
+    }
+
+    // Show loading
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('mainResult').textContent = '...';
+
+    // Collect weekly menu data
+    const meatDistribution = calculateMeatDistribution();
+
+    // Collect all parameters
+    const params = {
+        employees: selectedCanteen.employees,
+        meals_per_day: 1,
+        operating_days: selectedCanteen.operating_days,
+        attendance_rate: 0.85,
+        meat_distribution: meatDistribution,
+        portion_sizes: {
+            protein_gram: 120,
+            vegetables_gram: 200,
+            carbs_gram: 150
+        },
+        organic_percent: {
+            meat: parseFloat(document.getElementById('organicPercent').value),
+            vegetables: 60,
+            dairy: 30
+        },
+        waste: {
+            preparation: parseFloat(document.getElementById('wastePrep').value),
+            plate: parseFloat(document.getElementById('wastePlate').value),
+            buffet: parseFloat(document.getElementById('wasteBuffet').value)
+        },
+        local_sourcing: parseFloat(document.getElementById('danishPercent').value),
+        seasonal_produce: 50
+    };
+
+    try {
+        const response = await fetch('/api/calculate-canteen-impact', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(params)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            displayResults(data.results);
+        } else {
+            alert('Fejl: ' + data.error);
+        }
+    } catch (error) {
+        alert('Der opstod en fejl: ' + error.message);
+    }
+}
+
+function calculateMeatDistribution() {
+    // Simple average across the week
+    // In reality, this would be more sophisticated
+    return {
+        red_meat_percent: 20,
+        bright_meat_percent: 40,
+        fish_percent: 15,
+        vegetarian_percent: 25
+    };
+}
+
+function displayResults(results) {
+    // Main metrics
+    document.getElementById('mainResult').textContent = results.per_meal_kg.toFixed(2);
+    document.getElementById('annualTons').textContent = results.annual_tons.toFixed(1);
+    document.getElementById('costSavings').textContent = Math.round(results.estimated_cost_savings_dkk).toLocaleString();
+
+    // Calculate vs baseline
+    const vsBaseline = ((results.per_meal_kg - baselineData.co2_per_kg) / baselineData.co2_per_kg * 100).toFixed(1);
+    document.getElementById('vsBaseline').textContent = (vsBaseline > 0 ? '+' : '') + vsBaseline + '%';
+
+    // Display recommendations
+    displayRecommendations(results.recommendations);
+
+    // Scroll to results
+    document.getElementById('resultsSection').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function displayRecommendations(recommendations) {
+    const container = document.getElementById('recommendationsContainer');
+    container.innerHTML = '';
+
+    recommendations.forEach((rec, index) => {
+        const recDiv = document.createElement('div');
+        recDiv.className = 'recommendation-item';
+        recDiv.innerHTML = `
+            <div>
+                <span class="rec-priority">#${rec.priority}</span>
+                <span class="rec-title">${rec.title}</span>
+            </div>
+            <div class="rec-description">${rec.description}</div>
+            <div class="rec-impact">
+                <span class="rec-badge">💰 ${rec.annual_saving_tons.toFixed(1)} tons/år</span>
+                <span class="rec-badge">⏱️ ${rec.implementation_time}</span>
+                <span class="rec-badge">📊 ${rec.difficulty}</span>
+            </div>
+        `;
+        container.appendChild(recDiv);
+    });
+}
+</script>
+
+{% endblock %}
