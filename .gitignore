@@ -70,3 +70,8 @@ htmlcov/
 # Editors
 *.sublime-project
 *.sublime-workspace
+
+.claude/
+nul
+powerpages-migration-1/
+powerpages-migration/
