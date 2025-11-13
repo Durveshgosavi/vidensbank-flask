@@ -4,6 +4,11 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
+import sys
+
+# Import advanced climate calculator
+sys.path.append(os.path.join(os.path.dirname(__file__), 'climate_data'))
+from calculator_engine import ClimateCalculatorEngine
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
@@ -132,43 +137,253 @@ def okologi_nuanceret():
 # Add more routes for your other pages here
 
 # ============================================================================
-# CO2 CALCULATOR
+# ADVANCED CO2 CALCULATOR
 # ============================================================================
+
+# Initialize calculator engine
+calculator_engine = ClimateCalculatorEngine()
 
 @app.route('/calculator')
 def calculator():
+    """Basic climate calculator page"""
     return render_template('calculator.html')
 
-@app.route('/api/calculate-co2', methods=['POST'])
-def calculate_co2():
-    """API endpoint for CO2 calculations"""
-    data = request.json
-    
-    # Example calculation logic - customize based on your needs
-    food_type = data.get('food_type', '')
-    quantity = float(data.get('quantity', 0))
-    
-    # CO2 emissions per kg (example values)
-    emission_factors = {
-        'beef': 27.0,
-        'pork': 12.1,
-        'chicken': 6.9,
-        'fish': 5.0,
-        'vegetables': 2.0,
-        'dairy': 8.0,
-        'grains': 1.5
-    }
-    
-    co2_per_kg = emission_factors.get(food_type.lower(), 5.0)
-    total_co2 = quantity * co2_per_kg
-    
-    return jsonify({
-        'success': True,
-        'co2_emissions': round(total_co2, 2),
-        'food_type': food_type,
-        'quantity': quantity,
-        'unit': 'kg CO2e'
-    })
+@app.route('/calculator-advanced')
+def calculator_advanced():
+    """Advanced canteen climate analysis tool with 70+ canteens"""
+    return render_template('calculator_advanced.html')
+
+@app.route('/api/calculate-canteen-impact', methods=['POST'])
+def calculate_canteen_impact():
+    """
+    Advanced API endpoint for complete canteen climate impact calculation
+    Expects JSON payload with canteen parameters
+    """
+    try:
+        data = request.json
+
+        # Validate required fields
+        required_fields = ['employees', 'meat_distribution', 'portion_sizes']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    'success': False,
+                    'error': f'Missing required field: {field}'
+                }), 400
+
+        # Set defaults for optional fields
+        params = {
+            'employees': int(data['employees']),
+            'meals_per_day': float(data.get('meals_per_day', 1.0)),
+            'operating_days': int(data.get('operating_days', 240)),
+            'attendance_rate': float(data.get('attendance_rate', 0.85)),
+            'meat_distribution': data['meat_distribution'],
+            'organic_percent': data.get('organic_percent', {
+                'meat': 40,
+                'vegetables': 60,
+                'dairy': 30
+            }),
+            'waste': data.get('waste', {
+                'preparation': 8,
+                'plate': 12,
+                'buffet': 5
+            }),
+            'portion_sizes': data['portion_sizes'],
+            'local_sourcing': float(data.get('local_sourcing', 60)),
+            'seasonal_produce': float(data.get('seasonal_produce', 50))
+        }
+
+        # Calculate impact
+        result = calculator_engine.calculate_canteen_impact(params)
+
+        # Format response
+        return jsonify({
+            'success': True,
+            'results': {
+                'per_meal_kg': round(result.per_meal_kg, 2),
+                'annual_tons': round(result.annual_tons, 1),
+                'breakdown': {k: round(v, 2) for k, v in result.breakdown.items()},
+                'recommendations': result.recommendations,
+                'organic_impact': {
+                    'net_effect_kg': round(result.organic_impact['net_effect'], 2),
+                    'recommendation': result.organic_impact['recommendation']
+                },
+                'waste_impact': {
+                    'total_added_kg': round(result.waste_impact['total_added'], 2),
+                    'potential_reduction_kg': round(result.waste_impact['potential_reduction'], 2)
+                },
+                'seasonal_benefit_kg': round(result.seasonal_benefit, 2),
+                'estimated_cost_savings_dkk': round(result.cost_savings, 0)
+            }
+        })
+
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/plant-alternatives/<meat_type>', methods=['GET'])
+def get_plant_alternatives(meat_type):
+    """Get plant-based alternatives for specific meat type"""
+    try:
+        alternatives = calculator_engine.get_plant_alternatives(meat_type)
+        return jsonify({
+            'success': True,
+            'meat_type': meat_type,
+            'alternatives': alternatives
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/waste-reduction-tips', methods=['GET'])
+def get_waste_tips():
+    """Get waste reduction tips"""
+    try:
+        category = request.args.get('category', None)
+        tips = calculator_engine.get_waste_reduction_tips(category)
+        return jsonify({
+            'success': True,
+            'tips': tips
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/organic-comparison/<food_item>', methods=['GET'])
+def get_organic_comparison(food_item):
+    """Get organic vs conventional comparison"""
+    try:
+        comparison = calculator_engine.get_organic_comparison(food_item)
+        if comparison:
+            return jsonify({
+                'success': True,
+                'comparison': comparison
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'No comparison data found for {food_item}'
+            }), 404
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+# ============================================================================
+# CANTEEN DATABASE ENDPOINTS
+# ============================================================================
+
+@app.route('/api/canteens', methods=['GET'])
+def get_all_canteens():
+    """Get all canteens from database"""
+    try:
+        import sqlite3
+        db_path = os.path.join(os.path.dirname(__file__), 'climate_data', 'climate_data.db')
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            SELECT id, name, location, address, co2_per_kg, green_percent,
+                   meat_percent, organic_percent, food_waste_percent, local_sourced,
+                   employees, meals_per_day, operating_days
+            FROM canteens
+            ORDER BY name
+        ''')
+
+        canteens = []
+        for row in cursor.fetchall():
+            canteens.append({
+                'id': row[0],
+                'name': row[1],
+                'location': row[2],
+                'address': row[3],
+                'baseline': {
+                    'co2_per_kg': row[4],
+                    'green_percent': row[5],
+                    'meat_percent': row[6],
+                    'organic_percent': row[7],
+                    'food_waste_percent': row[8],
+                    'local_sourced': row[9]
+                },
+                'employees': row[10],
+                'meals_per_day': row[11],
+                'operating_days': row[12]
+            })
+
+        conn.close()
+
+        return jsonify({
+            'success': True,
+            'count': len(canteens),
+            'canteens': canteens
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/canteens/<int:canteen_id>', methods=['GET'])
+def get_canteen(canteen_id):
+    """Get specific canteen by ID"""
+    try:
+        import sqlite3
+        db_path = os.path.join(os.path.dirname(__file__), 'climate_data', 'climate_data.db')
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+
+        cursor.execute('''
+            SELECT id, name, location, address, co2_per_kg, green_percent,
+                   meat_percent, organic_percent, food_waste_percent, local_sourced,
+                   employees, meals_per_day, operating_days
+            FROM canteens
+            WHERE id = ?
+        ''', (canteen_id,))
+
+        row = cursor.fetchone()
+        conn.close()
+
+        if row:
+            canteen = {
+                'id': row[0],
+                'name': row[1],
+                'location': row[2],
+                'address': row[3],
+                'baseline': {
+                    'co2_per_kg': row[4],
+                    'green_percent': row[5],
+                    'meat_percent': row[6],
+                    'organic_percent': row[7],
+                    'food_waste_percent': row[8],
+                    'local_sourced': row[9]
+                },
+                'employees': row[10],
+                'meals_per_day': row[11],
+                'operating_days': row[12]
+            }
+
+            return jsonify({
+                'success': True,
+                'canteen': canteen
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'Canteen not found'
+            }), 404
+
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 # ============================================================================
 # SEARCH FUNCTIONALITY
