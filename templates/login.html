@@ -4,11 +4,11 @@
 
 {% block content %}
 <section class="section">
-  <div class="container" style="max-width: 500px;">
+  <div class="container max-w-500">
     <h1 class="section-title">Log Ind</h1>
     <div class="wavy-underline"></div>
-    
-    <div class="kpi-card" style="margin-top: 3rem;">
+
+    <div class="kpi-card mt-3">
       <form method="POST">
         <div class="form-group">
           <label for="username">Brugernavn</label>
@@ -20,10 +20,10 @@
           <input type="password" id="password" name="password" required>
         </div>
         
-        <button type="submit" class="cta-button primary" style="width: 100%;">Log Ind</button>
+        <button type="submit" class="cta-button primary w-full">Log Ind</button>
       </form>
-      
-      <p style="text-align: center; margin-top: 1.5rem;">
+
+      <p class="text-center mt-2">
         Har du ikke en konto? <a href="{{ url_for('register') }}" style="color: var(--cheval-gron); font-weight: 600;">Registrer dig</a>
       </p>
     </div>

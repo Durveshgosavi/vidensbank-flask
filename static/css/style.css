@@ -4,6 +4,7 @@
 :root {
   /* Brand Colors */
   --cheval-gul: #ffdc96;
+  --cheval-gul-light: #fff5dc;
   --cheval-orange: #ffb793;
   --cheval-bla: #d2e1f0;
   --cheval-gron: #d0ebd2;
@@ -68,7 +69,7 @@ body {
   color: var(--text-dark);
   background-color: var(--white);
   min-height: 100vh;
-  padding-top: 70px; /* Account for fixed header */
+  padding-top: 80px; /* Account for fixed Bootstrap navbar */
 }
 
 .container {
@@ -137,138 +138,80 @@ a:hover, a:focus {
 }
 
 /* ============================================================================
-   NAVIGATION - Premium Header Style
+   NAVIGATION - Bootstrap Enhanced
    ============================================================================ */
-.premium-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1030;
-  background: rgba(255, 255, 255, 0.98);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.98) !important;
   transition: all 0.3s ease;
-  min-height: 70px;
 }
 
-.premium-header.scrolled {
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+.navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.premium-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 70px;
-  padding: 0 1.5rem;
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
 }
 
-.premium-header .navbar-brand {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #333;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  margin: 0;
-  padding: 8px;
+.navbar-brand:hover {
+  transform: scale(1.05);
 }
 
-.premium-header .navbar-brand:hover {
-  color: #007bff;
-}
-
-.premium-header .navbar-nav {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  gap: 0.5rem;
-}
-
-.premium-header .nav-item {
-  margin: 0;
-}
-
-.premium-header .nav-link {
-  color: #555 !important;
+.navbar-nav .nav-link {
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 0.75rem 1rem !important;
-  border-radius: 6px;
+  padding: 0.6rem 1rem !important;
   transition: all 0.3s ease;
-  text-decoration: none;
-  display: block;
-  white-space: nowrap;
+  border-radius: 6px;
+  margin: 0 0.2rem;
 }
 
-.premium-header .nav-link:hover {
-  color: #302ce1 !important;
-  background: rgba(48, 44, 225, 0.1);
-}
-
-.premium-header .nav-link.active {
-  color: #302ce1 !important;
-  background: rgba(48, 44, 225, 0.15);
-}
-
-.premium-header .divider-vertical {
-  height: 2rem;
-  width: 1px;
-  background: #ddd;
-  margin: 0 0.5rem;
-}
-
-.premium-header .navbar-brand img {
-  height: 50px;
-  max-width: 100%;
-}
-
-/* Old navbar styles for compatibility */
-.navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo h1 {
-  font-family: var(--ff-display);
-  font-size: 1.8rem;
+.navbar-nav .nav-link:hover {
+  background-color: rgba(25, 135, 84, 0.1);
   color: var(--dark-gron);
-  text-decoration: none;
 }
 
-.logo a {
-  text-decoration: none;
+.navbar-nav .nav-link.active {
+  background-color: rgba(25, 135, 84, 0.15);
+  color: var(--dark-gron);
+  font-weight: 600;
 }
 
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  align-items: center;
+.dropdown-menu {
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  animation: slideDown 0.3s ease;
 }
 
-.nav-menu a {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 500;
-  transition: color 0.3s ease;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.nav-menu a:hover {
-  color: #302ce1;
+.dropdown-item {
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--light-gron);
+  padding-left: 1.5rem;
+}
+
+.dropdown-item:active {
+  background-color: var(--cheval-gron);
 }
 
 /* Skip to content accessibility */
@@ -785,6 +728,95 @@ a:hover, a:focus {
   background: linear-gradient(135deg, #a0d7a5 0%, #8bc48f 100%);
 }
 
+/* Additional Utility Classes */
+.max-w-500 { max-width: 500px; margin-left: auto; margin-right: auto; }
+.max-w-700 { max-width: 700px; margin-left: auto; margin-right: auto; }
+.max-w-1000 { max-width: 1000px; margin-left: auto; margin-right: auto; }
+
+.w-full { width: 100%; }
+.h-auto { height: auto; }
+
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-size-1-1 { font-size: 1.1rem; }
+.font-size-1-3 { font-size: 1.3rem; }
+
+.border-radius-8 { border-radius: 8px; }
+.border-radius-12 { border-radius: 12px; }
+.border-radius-20 { border-radius: 20px; }
+
+.opacity-50 { opacity: 0.5; }
+.opacity-70 { opacity: 0.7; }
+
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.bg-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-video-container {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-family: 'Georgia', serif;
+  font-size: 3.5rem;
+  font-weight: normal;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0;
+  color: white;
+}
+
+.padding-y-4 { padding-top: 4rem; padding-bottom: 4rem; }
+.padding-y-3 { padding-top: 3rem; padding-bottom: 3rem; }
+.padding-right-20 { padding-right: 20px; }
+
+.flex-1 { flex: 1; }
+.flex-basis-40 { flex-basis: 40%; min-width: 250px; }
+
+.list-style-none { list-style-type: none; padding-left: 0; }
+.list-inside { list-style-position: inside; }
+
+.bg-light-info {
+  background-color: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.margin-top-30 { margin-top: 30px; }
+
+.img-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* ============================================================================
    FLIP CARDS
    ============================================================================ */
@@ -1246,8 +1278,14 @@ a:hover, a:focus {
 @media (max-width: 1199px) {
   .premium-header .navbar-nav {
     flex-wrap: wrap;
+    gap: 0.3rem;
   }
-  
+
+  .premium-header .nav-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem !important;
+  }
+
   .grid-2-col, .grid-3-col {
     grid-template-columns: 1fr;
   }
@@ -1293,30 +1331,65 @@ a:hover, a:focus {
   body {
     padding-top: 60px;
   }
-  
+
   .premium-header {
     min-height: 60px;
   }
-  
+
   .premium-header .container {
-    flex-wrap: wrap;
     min-height: 60px;
+    position: relative;
   }
-  
-  .premium-header .navbar-nav {
-    width: 100%;
-    margin-top: 1rem;
-    flex-direction: column;
-    align-items: flex-start;
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .premium-header nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1031;
   }
-  
+
+  .premium-header nav.show {
+    max-height: 600px;
+    opacity: 1;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .premium-header .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .premium-header .nav-item {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .premium-header .nav-item:last-child {
+    border-bottom: none;
+  }
+
   .premium-header .nav-link {
     width: 100%;
     text-align: left;
+    padding: 1rem 1.5rem !important;
+    border-radius: 0;
+  }
+
+  .premium-header .divider-vertical {
+    display: none;
   }
   
   .nav-menu {

@@ -1,9 +1,141 @@
 {% extends "base.html" %}
+
+{% block title %}Søgeresultater{% if query %} - {{ query }}{% endif %} - Vidensbank{% endblock %}
+
 {% block content %}
-<section class="section">
-  <div class="container">
-    <h1 class="section-title">Side under opbygning</h1>
-    <p style="text-align: center;">Denne side er under udvikling. Kom snart tilbage!</p>
-  </div>
-</section>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Search Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 mb-3">
+                    <i class="bi bi-search text-success"></i>
+                    Søgeresultater
+                </h1>
+                {% if query %}
+                <p class="lead text-muted">Søgte efter: <strong>"{{ query }}"</strong></p>
+                {% endif %}
+            </div>
+
+            <!-- Search Bar -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-4">
+                    <form action="{{ url_for('search') }}" method="get">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-white">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="search" name="q" class="form-control" placeholder="Søg i vidensbank..."
+                                   value="{{ query }}" autofocus>
+                            <button class="btn btn-success px-4" type="submit">
+                                Søg
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            {% if query %}
+                {% if results %}
+                    <div class="mb-4">
+                        <p class="text-muted">
+                            Fundet <strong>{{ results|length }}</strong> resultat{% if results|length != 1 %}er{% endif %}
+                        </p>
+                    </div>
+
+                    <div class="row g-4">
+                        {% for page in results %}
+                        <div class="col-12">
+                            <div class="card h-100 shadow-sm hover-lift">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="bg-success bg-opacity-10 rounded-circle p-3">
+                                                <i class="bi bi-file-text text-success fs-4"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h3 class="h5 mb-2">
+                                                <a href="#" class="text-decoration-none text-dark stretched-link">
+                                                    {{ page.title }}
+                                                </a>
+                                            </h3>
+                                            <div class="text-muted small mb-2">
+                                                <span class="badge bg-success bg-opacity-10 text-success">
+                                                    {{ page.topic }}
+                                                </span>
+                                                <span class="ms-2">
+                                                    <i class="bi bi-calendar3"></i>
+                                                    {{ page.created_at.strftime('%d. %b %Y') }}
+                                                </span>
+                                            </div>
+                                            <p class="text-muted mb-0">
+                                                {{ page.content[:200]|safe }}{% if page.content|length > 200 %}...{% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <i class="bi bi-search display-1 text-muted"></i>
+                        </div>
+                        <h3 class="mb-3">Ingen resultater fundet</h3>
+                        <p class="text-muted mb-4">
+                            Din søgning efter "<strong>{{ query }}</strong>" gave ingen resultater.
+                        </p>
+                        <div class="alert alert-info d-inline-block text-start">
+                            <h6 class="alert-heading">Søgetips:</h6>
+                            <ul class="mb-0 ps-3">
+                                <li>Tjek stavningen af søgeordene</li>
+                                <li>Prøv andre søgeord eller synonymer</li>
+                                <li>Brug mere generelle søgeord</li>
+                                <li>Prøv med færre søgeord</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="text-center py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-search display-1 text-success"></i>
+                    </div>
+                    <h3 class="mb-3">Hvad leder du efter?</h3>
+                    <p class="text-muted">
+                        Indtast søgeord i feltet ovenfor for at søge i vidensbanken
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.input-group-lg .input-group-text {
+    border-right: none;
+}
+
+.input-group-lg .form-control {
+    border-left: none;
+}
+
+.input-group-lg .form-control:focus {
+    border-left: none;
+    box-shadow: none;
+}
+</style>
 {% endblock %}

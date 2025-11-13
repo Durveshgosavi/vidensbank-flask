@@ -1,100 +1,150 @@
 {% extends "base.html" %}
 
+{% block title %}Vidensbank | Bæredygtighed & Klimaindsigt{% endblock %}
+
 {% block content %}
-<!-- Floating decorative elements -->
-<div class="floating-elements">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
+<!-- Hero Section -->
+<div style="position: relative; background-image: url('https://i.imgur.com/KyuSPXy.jpeg'), linear-gradient(135deg, #4a7c59 0%, #5f9ea0 100%); background-size: cover; background-position: center; color: #FFFFFF; text-align: center; padding: 160px 40px;">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4);"></div>
+  <div style="position: relative; max-width: 900px; margin: 0 auto;">
+    <h1 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 4.5rem; color: #FFFFFF; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin: 0 0 1rem 0; letter-spacing: 1px;">Vidensbank</h1>
+    <p style="font-size: 1.4rem; line-height: 1.7; color: #FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">Dataindsigt for en Bæredygtig Fremtid</p>
+  </div>
 </div>
 
-<!-- Hero Section -->
-<section class="section-landing hero-gradient">
-    <div class="container">
-        <h1 class="section-landing-heading">Velkommen til Vidensbanken</h1>
-        <p class="section-landing-sub-heading">Din centrale kilde til viden om bæredygtighed, emissioner og klimadata</p>
-        <div class="flex-center mt-3">
-            <a href="{{ url_for('emissions_sustainability') }}" class="cta-button primary">Udforsk Emner</a>
-            <a href="{{ url_for('calculator') }}" class="cta-button secondary">Prøv CO2 Beregner</a>
-        </div>
-    </div>
-</section>
+<!-- Intro Section -->
+<div style="padding: 120px 40px; text-align: center; background-color: #FFFFFF;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px;">Viden er den vigtigste råvare i det grønne køkken.</h2>
+    <p style="line-height: 1.7; font-size: 1.1rem; color: #555; max-width: 70ch; margin-left: auto; margin-right: auto;">I vores Vidensbank samler vi data og analyser, der gør det muligt at træffe informerede valg. Vi dykker ned i alt fra råvarers klimaaftryk til gastronomisk innovation, der skaber en mere bæredygtig madkultur.</p>
+  </div>
+</div>
 
-<!-- Why Vidensbank Section -->
-<section class="section">
-    <div class="container">
-        <h2 class="section-title">Hvorfor Vidensbank?</h2>
-        <div class="wavy-underline"></div>
-        
-        <div class="grid-4-col card-grid">
-            <div class="kpi-card reveal">
-                <div class="icon">📊</div>
-                <h3>Datadrevet</h3>
-                <p>Baseret på verificerede data fra CONCITO og andre pålidelige kilder</p>
-            </div>
-            
-            <div class="kpi-card reveal">
-                <div class="icon">🌱</div>
-                <h3>Bæredygtig</h3>
-                <p>Fokus på praktiske løsninger for en grønnere fremtid</p>
-            </div>
-            
-            <div class="kpi-card reveal">
-                <div class="icon">🎯</div>
-                <h3>Handlingsrettet</h3>
-                <p>Konkrete værktøjer og guides til at gøre en forskel</p>
-            </div>
-            
-            <div class="kpi-card reveal">
-                <div class="icon">🔍</div>
-                <h3>Transparent</h3>
-                <p>Åben adgang til data og metoder bag vores analyser</p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Philosophy Section (Full Width Image) -->
+<div style="position: relative; background-image: url('https://images.pexels.com/photos/323682/pexels-photo-323682.jpeg'), linear-gradient(135deg, #2c3e50 0%, #34495e 100%); background-size: cover; background-position: center; padding: 120px 40px;">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+  <div style="position: relative; max-width: 600px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); padding: 50px; text-align: center; border-radius: 8px;">
+    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.5rem; color: #333333; margin-top: 0;">Vores Filosofi</h2>
+    <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Bæredygtighed er ikke et valg, men en forudsætning for kvalitet. Vi tror på, at ansvarlighed fra jord til bord skaber bedre smagsoplevelser, stærkere lokalsamfund og en sundere planet.</p>
+  </div>
+</div>
 
-<!-- Popular Topics Section -->
-<section class="section bg-light">
-    <div class="container">
-        <h2 class="section-title">Populære Emner</h2>
-        <div class="wavy-underline"></div>
-        
-        <div class="grid-2-col">
-            <a href="{{ url_for('emissions_sustainability') }}" class="card reveal no-decoration">
-                <h3 class="card-title">
-                    <div class="icon">🌍</div>
-                    Emissioner & Bæredygtighed
-                </h3>
-                <p>Udforsk fødevarers klimaaftryk og hvordan du kan reducere emissioner</p>
-            </a>
-            
-            <a href="{{ url_for('calculator') }}" class="card reveal no-decoration">
-                <h3 class="card-title">
-                    <div class="icon">🧮</div>
-                    CO2 Beregner
-                </h3>
-                <p>Beregn klimaaftrykket af forskellige fødevarer og måltider</p>
-            </a>
+<!-- Featured Pillars Section -->
+<div style="padding: 120px 40px; background-color: #F4F2F1;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="display: table; width: 100%; border-spacing: 40px 0; table-layout: fixed;">
+      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
+        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
+          <img src="https://i.imgur.com/GiNlKtZ.jpeg" alt="Mark med afgrøder" style="width: 100%; height: 246px; object-fit: cover; display: block; background: linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%)'; this.alt='Bæredygtighed';" />
+          <div style="padding: 30px;">
+            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; text-align: left; font-size: 1.8rem; color: #333333;">Bæredygtigheds-data</h3>
+            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Dybdegående LCA-analyser for at kvantificere fødevarers reelle klimapåvirkning.</p>
+          </div>
         </div>
+      </div>
+      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
+        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
+          <img src="https://i.imgur.com/oWMrmSc.jpeg" alt="Lastbil på en vej" style="width: 100%; height: 250px; object-fit: cover; display: block; background: linear-gradient(135deg, #ffdc96 0%, #ffb793 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #ffdc96 0%, #ffb793 100%)'; this.alt='Transport';" />
+          <div style="padding: 30px;">
+            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 1.8rem; margin: 0 0 1rem 0; color: #333333;">Forsyningskæde Transparens</h3>
+            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Indsigt i råvarernes oprindelse og de skjulte omkostninger i den globale fødevarekæde.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
+        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
+          <img src="https://i.imgur.com/wWDzfmf.jpeg" alt="Anrettet mad" style="width: 100%; height: 250px; object-fit: cover; display: block; background: linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%)'; this.alt='Gastronomi';" />
+          <div style="padding: 30px;">
+            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 1.8rem; margin: 0 0 1rem 0; color: #333333;">Gastronomisk Innovation</h3>
+            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Metoder til at udvikle menuer, der er både klimavenlige, velsmagende og innovative.</p>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </div>
+</div>
+
+<!-- Data in Focus Section -->
+<div style="padding: 120px 40px; background-color: #FFFFFF;">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px; margin-bottom: 80px;">Bæredygtighed i Tal</h2>
+    <div style="display: table; width: 100%; border-spacing: 0; border-collapse: collapse;">
+      <!-- Column 1 -->
+      <div style="display: table-cell; vertical-align: top; padding: 0 40px; border-right: 1px solid #eeeeee;">
+        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">12%</div>
+        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Økologiandel i Detail</h3>
+        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">Danmark har verdens højeste markedsandel, hvilket viser en stærk efterspørgsel efter ansvarlige fødevarer.</p>
+      </div>
+      <!-- Column 2 -->
+      <div style="display: table-cell; vertical-align: top; padding: 0 40px; border-right: 1px solid #eeeeee;">
+        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">197t</div>
+        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Madspild Dagligt</h3>
+        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">En ressourceudfordring i servicesektoren alene, der kræver datadrevne løsninger i professionelle køkkener.</p>
+      </div>
+      <!-- Column 3 -->
+      <div style="display: table-cell; vertical-align: top; padding: 0 40px;">
+        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">-63%</div>
+        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Fra Ambition til Virkelighed</h3>
+        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">Det gennemsnitlige kødindtag (~950g/uge) er langt fra kostrådenes mål (350g). Et gab kantiner kan hjælpe med at lukke.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Data Deep Dive & Chart Section -->
+<div style="padding: 120px 40px; background-color: #F4F2F1;">
+  <div style="max-width: 1100px; margin: 0 auto; display: table; width: 100%; border-spacing: 80px 0;">
+    <div style="display: table-cell; vertical-align: middle; width: 50%;">
+      <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; margin: 0 0 1.5rem 0; color: #333333; text-align: left;">Fra Råvare til Regnskab</h2>
+      <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Ikke alle råvarer er skabt lige. Klimaaftrykket varierer dramatisk, og et bevidst valg i køkkenet kan have en markant effekt. Ved at skifte fokus fra de mest klimabelastende proteiner til plantebaserede alternativer, kan vi reducere en rets klimaaftryk med over 90%.</p>
+      <a href="{{ url_for('emissions_sustainability') }}" style="display: inline-block; margin-top: 2rem; padding: 12px 30px; background-color: #A0D7A5; color: #333333; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;">Udforsk Data →</a>
+    </div>
+    <div style="display: table-cell; vertical-align: middle; width: 50%; text-align: center;">
+      <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <img src="https://i.imgur.com/6x9YYGx.png" alt="CO2 emissions chart" style="max-width: 100%; height: auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 40px; background: linear-gradient(135deg, #e3f3e4 0%, #d0ebd2 100%); border-radius: 12px; min-height: 300px; display: flex; align-items: center; justify-content: center;\'><div style=\'text-align: center;\'><div style=\'font-size: 4rem; margin-bottom: 1rem;\'>📊</div><h3 style=\'color: #333; margin: 0;\'>Data Visualization</h3></div></div>';" />
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- CTA Section -->
-<section class="section">
-    <div class="container">
-        <div class="cta-block">
-            <h2>Kom i Gang</h2>
-            <p>Opret en konto for at få adgang til alle funktioner, gemme dine beregninger og meget mere</p>
-            <div class="mt-3">
-                {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('dashboard') }}" class="cta-button secondary">Gå til Dashboard</a>
-                {% else %}
-                    <a href="{{ url_for('register') }}" class="cta-button secondary">Opret Konto</a>
-                    <a href="{{ url_for('login') }}" class="cta-button secondary ml-2">Log Ind</a>
-                {% endif %}
-            </div>
-        </div>
+<div style="padding: 120px 40px; background-color: #333333; color: #FFFFFF; text-align: center;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; color: #FFFFFF; font-size: 2.8rem; letter-spacing: 1px;">Dyk ned i dataen</h2>
+    <p style="color: #FFFFFF; opacity: 0.9; margin: 1rem auto 2.5rem auto; line-height: 1.7; font-size: 1.1rem; max-width: 70ch;">Udforsk vores database og find de indsigter, du har brug for til at træffe informerede, bæredygtige valg.</p>
+    <div>
+      <a href="{{ url_for('calculator') }}" style="display: inline-block; margin: 10px; padding: 14px 40px; background-color: #A0D7A5; color: #333333; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;">CO2 Beregner</a>
+      <a href="{{ url_for('climate_data') }}" style="display: inline-block; margin: 10px; padding: 14px 40px; background-color: transparent; color: #FFFFFF; text-decoration: none; border-radius: 4px; border: 2px solid #FFFFFF; font-weight: bold; transition: all 0.3s ease;">Klimadata</a>
     </div>
-</section>
+  </div>
+</div>
+
+<style>
+/* Responsive adjustments for home page */
+@media (max-width: 992px) {
+  div[style*="display: table"] {
+    display: block !important;
+  }
+  div[style*="display: table-cell"] {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 40px;
+  }
+  h1[style*="4.5rem"] {
+    font-size: 3rem !important;
+  }
+  h2[style*="2.8rem"] {
+    font-size: 2.2rem !important;
+  }
+  div[style*="font-size: 4.5rem"] {
+    font-size: 3.5rem !important;
+  }
+  div[style*="padding: 120px"] {
+    padding: 60px 20px !important;
+  }
+  div[style*="padding: 160px"] {
+    padding: 80px 20px !important;
+  }
+}
+</style>
 {% endblock %}

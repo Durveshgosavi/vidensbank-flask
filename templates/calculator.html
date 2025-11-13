@@ -7,8 +7,8 @@
   <div class="container">
     <h1 class="section-title">CO2 Beregner</h1>
     <div class="wavy-underline"></div>
-    
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem;">
+
+    <p class="text-center max-w-700 mb-3 font-size-1-1">
       Beregn klimaaftrykket for forskellige fødevarer og se, hvordan dine valg påvirker miljøet
     </p>
     
@@ -36,12 +36,12 @@
             <input type="number" id="quantity" name="quantity" min="0.1" step="0.1" value="1.0" required>
           </div>
           
-          <button type="submit" class="cta-button primary" style="width: 100%;">Beregn CO2</button>
+          <button type="submit" class="cta-button primary w-full">Beregn CO2</button>
         </form>
-        
-        <div id="result" style="margin-top: 2rem; display: none;">
+
+        <div id="result" class="mt-3" style="display: none;">
           <div class="kpi-card" style="background-color: var(--cheval-gul-light); border: 2px solid var(--cheval-gul);">
-            <h4 style="margin-bottom: 1rem;">Resultat</h4>
+            <h4 class="mb-1">Resultat</h4>
             <div class="kpi-number" id="co2-result" style="font-size: 2.5rem;">0</div>
             <p id="result-details"></p>
           </div>
@@ -50,12 +50,12 @@
       
       <div class="kpi-card">
         <h3 class="card-title">Om Beregningen</h3>
-        <p style="margin-bottom: 1.5rem;">
+        <p class="mb-2">
           Denne beregner bruger emissionsfaktorer baseret på data fra CONCITO's klimadatabase og andre verificerede kilder.
         </p>
-        
-        <h4 style="margin-bottom: 1rem;">CO2 pr. kg:</h4>
-        <ul style="list-style-position: inside;">
+
+        <h4 class="mb-1">CO2 pr. kg:</h4>
+        <ul class="list-inside">
           <li><strong>Oksekød:</strong> 27.0 kg CO2e</li>
           <li><strong>Svinekød:</strong> 12.1 kg CO2e</li>
           <li><strong>Kylling:</strong> 6.9 kg CO2e</li>
@@ -64,8 +64,8 @@
           <li><strong>Mejeriprodukter:</strong> 8.0 kg CO2e</li>
           <li><strong>Kornprodukter:</strong> 1.5 kg CO2e</li>
         </ul>
-        
-        <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--bg-light); border-radius: 8px;">
+
+        <div class="mt-3 bg-light-info">
           <strong>💡 Tip:</strong> Ved at erstatte 1 kg oksekød med 1 kg grøntsager kan du spare op til 25 kg CO2e!
         </div>
       </div>

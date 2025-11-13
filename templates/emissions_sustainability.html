@@ -3,14 +3,14 @@
 {% block title %}Emissioner og Bæredygtighed - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce'); background-size: cover; background-position: center;">
-  <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.35);"></div>
-  <div class="hero-content" style="position: relative; z-index: 1; padding: 2rem;">
-    <h1 class="hero-title" style="font-family: 'Georgia', serif; font-size: 3.5rem; font-weight: normal; line-height: 1.1; text-transform: uppercase; margin: 0;">Emissioner og Bæredygtighed</h1>
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Emissioner og Bæredygtighed</h1>
   </div>
 </header>
 
-<section id="key-topics" class="section" style="padding: 4rem 0 3rem;">
+<section id="key-topics" class="section padding-y-4">
   <div class="container">
     <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
     <div class="wavy-underline"></div>
@@ -18,7 +18,7 @@
       <a href="{{ url_for('food_emissions') }}" class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');">
-            <h3 style="color: white;">Fra Jord til Bord</h3>
+            <h3>Fra Jord til Bord</h3>
           </div>
           <div class="flip-card-back" style="background-color: #a0d7a5;">
             <h3>Fra Jord til Bord</h3>
@@ -27,11 +27,11 @@
           </div>
         </div>
       </a>
-      
+
       <a href="{{ url_for('data_driven_approach') }}" class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1632372254856-43c6e0d63e87');">
-            <h3 style="color: white;">En Datadrevet Tilgang</h3>
+            <h3>En Datadrevet Tilgang</h3>
           </div>
           <div class="flip-card-back" style="background-color: #f4d03f;">
             <h3>En Datadrevet Tilgang</h3>
@@ -40,11 +40,11 @@
           </div>
         </div>
       </a>
-      
+
       <a href="{{ url_for('market_analysis') }}" class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1691643158804-d3f02eb456a3');">
-            <h3 style="color: white;">Branchepræstation</h3>
+            <h3>Branchepræstation</h3>
           </div>
           <div class="flip-card-back" style="background-color: #ff9f43;">
             <h3>Branchepræstation</h3>
@@ -89,7 +89,7 @@
       <div class="kpi-card">
         <h3 class="card-title">Teknologiske Muligheder</h3>
         <p>CONCITO's Klimadatabase er en central ressource for datadrevne beslutninger.</p>
-        <ul style="list-style-type: none; padding: 0; margin: 0;">
+        <ul class="list-style-none">
           <li><strong>540</strong> Fødevarer i Databasen</li>
           <li><strong>180.000</strong> Brugere (2021-2023)</li>
           <li><strong>6 Kommuner & 2 Regioner</strong> Bruger Dataen Aktivt</li>
@@ -99,39 +99,39 @@
   </div>
 </section>
 
-<section id="data-insights" class="section" style="padding: 4rem 0 3rem; background-color: #f5f8fa;">
+<section id="data-insights" class="section padding-y-4 bg-light">
   <div class="container">
     <h2 class="section-title">Data Insights fra CONCITO's Database</h2>
-    
+
     <div class="section-block">
-      <div style="flex: 1; padding-right: 20px;">
+      <div class="flex-1 padding-right-20">
         <h3>Kødforbrug 🥩</h3>
-        <ul style="list-style-type: none; padding-left: 0;">
+        <ul class="list-style-none">
           <li>Gennemsnitligt kødforbrug i Danmark: <strong>950g pr. uge</strong> – næsten 3 gange det anbefalede.</li>
           <li>Kødforbruget har en stor klimaaftryk, som påvirker Danmarks klimamål.</li>
           <li>Der er et behov for at reducere kødforbruget for at opnå bæredygtige mål.</li>
         </ul>
         <a href="{{ url_for('political_landscape') }}" class="cta-button primary">Læs Mere</a>
       </div>
-      <div style="flex-basis: 40%; min-width: 250px; position: relative;">
-        <img src="https://images.unsplash.com/photo-1651478636948-83c82f44220f" alt="Meat Consumption" style="width: 100%; height: auto; border-radius: 8px; opacity: 0.5;" />
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); border-radius: 8px;"></div>
+      <div class="flex-basis-40 position-relative">
+        <img src="https://images.unsplash.com/photo-1651478636948-83c82f44220f" alt="Meat Consumption" class="img-cover opacity-50" />
+        <div class="bg-overlay"></div>
       </div>
     </div>
-    
+
     <div class="section-block">
-      <div style="flex: 1; padding-right: 20px;">
+      <div class="flex-1 padding-right-20">
         <h3>Klimapolitik og Fødevarer 🌱</h3>
-        <ul style="list-style-type: none; padding-left: 0;">
+        <ul class="list-style-none">
           <li>I 2021 blev klimahensyn integreret i de officielle kostråd for Danmark.</li>
           <li>En plantebaseret kost er nu anbefalet for at støtte den grønne omstilling.</li>
           <li>Klimapolitikken former fremtidens fødevarepolitik og kostråd.</li>
         </ul>
         <a href="{{ url_for('climate_data') }}" class="cta-button primary">Læs Mere</a>
       </div>
-      <div style="flex-basis: 40%; min-width: 250px; position: relative;">
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09" alt="Climate Policy" style="width: 100%; height: auto; border-radius: 8px; opacity: 0.5;" />
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.2); border-radius: 8px;"></div>
+      <div class="flex-basis-40 position-relative">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09" alt="Climate Policy" class="img-cover opacity-50" />
+        <div class="bg-overlay"></div>
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@
     <div class="cta-block">
       <h2>Klar til at Gøre en Forskel?</h2>
       <p>Vores data og analyser giver et solidt fundament for at træffe bæredygtige beslutninger i din organisation. Udforsk vores ressourcer og se, hvordan I kan bidrage til den grønne omstilling.</p>
-      <div style="margin-top: 30px;">
+      <div class="margin-top-30">
         <a href="{{ url_for('calculator') }}" class="cta-button primary">Se Ressourcer & Guides</a>
       </div>
     </div>

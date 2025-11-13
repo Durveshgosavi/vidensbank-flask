@@ -1,15 +1,21 @@
 // ============================================================================
 // VIDENSBANK - Main JavaScript
-// Enhanced with Power Pages interactions
+// Professional Bootstrap-Based Implementation
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     initFlashMessages();
     initScrollAnimations();
-    initHeaderScroll();
+    initNavbarScroll();
     initProgressBars();
     initStatCounters();
     initTimelineHighlight();
+    addLoadingState();
+    initSearchEnhancement();
+    initCopyButtons();
+    initLazyLoad();
+    initKeyboardNav();
+    initTooltips();
 });
 
 // ============================================================================
@@ -74,23 +80,29 @@ function initScrollAnimations() {
 }
 
 // ============================================================================
-// HEADER SCROLL EFFECT
+// NAVBAR SCROLL EFFECT
 // ============================================================================
-function initHeaderScroll() {
-    const header = document.querySelector('.premium-header');
-    if (!header) return;
+function initNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
 
-    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.classList.add('scrolled');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
         } else {
-            header.classList.remove('scrolled');
+            navbar.classList.remove('scrolled');
         }
-        
-        lastScroll = currentScroll;
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            const dropdowns = document.querySelectorAll('.dropdown-menu.show');
+            dropdowns.forEach(dropdown => {
+                const bsDropdown = bootstrap.Dropdown.getInstance(dropdown.previousElementSibling);
+                if (bsDropdown) bsDropdown.hide();
+            });
+        }
     });
 }
 
@@ -260,21 +272,205 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 // ============================================================================
-// MOBILE MENU TOGGLE
+// BOOTSTRAP NAVBAR ENHANCEMENTS
 // ============================================================================
-function initMobileMenu() {
-    const toggleButton = document.querySelector('.navbar-toggler');
-    const navMenu = document.querySelector('.navbar-nav');
-    
-    if (toggleButton && navMenu) {
-        toggleButton.addEventListener('click', function() {
-            navMenu.classList.toggle('show');
-            this.classList.toggle('active');
+function enhanceBootstrapNavbar() {
+    // Auto-close mobile menu when clicking a link
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) bsCollapse.hide();
+            }
         });
-    }
+    });
 }
 
-// Initialize mobile menu
-initMobileMenu();
+// Initialize navbar enhancements
+enhanceBootstrapNavbar();
 
-console.log('Vidensbank JavaScript initialized successfully!');
+// ============================================================================
+// LOADING STATES FOR FORMS
+// ============================================================================
+function addLoadingState() {
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn && !submitBtn.disabled) {
+                submitBtn.disabled = true;
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Behandler...';
+                submitBtn.style.opacity = '0.7';
+
+                // Re-enable after 5 seconds as fallback
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.opacity = '1';
+                }, 5000);
+            }
+        });
+    });
+}
+
+// ============================================================================
+// SEARCH ENHANCEMENT WITH DEBOUNCE
+// ============================================================================
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function initSearchEnhancement() {
+    const searchInputs = document.querySelectorAll('input[type="search"], input[name="q"]');
+
+    searchInputs.forEach(input => {
+        input.addEventListener('input', debounce(function(e) {
+            const value = e.target.value;
+            if (value.length >= 2) {
+                // Visual feedback
+                input.style.borderColor = 'var(--cheval-gron)';
+                input.style.boxShadow = '0 0 0 2px rgba(160, 215, 165, 0.2)';
+            } else {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            }
+        }, 300));
+    });
+}
+
+// ============================================================================
+// COPY TO CLIPBOARD FUNCTIONALITY
+// ============================================================================
+function initCopyButtons() {
+    document.querySelectorAll('[data-copy]').forEach(button => {
+        button.addEventListener('click', async function() {
+            const textToCopy = this.getAttribute('data-copy');
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                const originalText = this.textContent;
+                this.textContent = '✓ Kopieret!';
+                this.style.background = 'var(--cheval-gron)';
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        });
+    });
+}
+
+// ============================================================================
+// LAZY LOAD IMAGES
+// ============================================================================
+function initLazyLoad() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ============================================================================
+// KEYBOARD NAVIGATION ENHANCEMENT
+// ============================================================================
+function initKeyboardNav() {
+    // Focus trap for modal-like elements
+    document.addEventListener('keydown', (e) => {
+        // Tab navigation hints
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-nav-active');
+        }
+    });
+
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-nav-active');
+    });
+}
+
+// ============================================================================
+// ANIMATE ON SCROLL (Enhanced)
+// ============================================================================
+function initEnhancedScrollAnimations() {
+    const elements = document.querySelectorAll('.kpi-card, .card, .section-block');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// ============================================================================
+// TOOLTIP SYSTEM
+// ============================================================================
+function initTooltips() {
+    document.querySelectorAll('[data-tooltip]').forEach(element => {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = element.getAttribute('data-tooltip');
+        tooltip.style.cssText = `
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10000;
+            white-space: nowrap;
+        `;
+        document.body.appendChild(tooltip);
+
+        element.addEventListener('mouseenter', (e) => {
+            const rect = element.getBoundingClientRect();
+            tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
+            tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + window.scrollY + 'px';
+            tooltip.style.opacity = '1';
+        });
+
+        element.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+        });
+    });
+}
+
+console.log('✓ Vidensbank JavaScript loaded successfully!');
