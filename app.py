@@ -9,6 +9,7 @@ import sys
 # Import advanced climate calculator
 sys.path.append(os.path.join(os.path.dirname(__file__), 'climate_data'))
 from calculator_engine import ClimateCalculatorEngine
+import sqlite3
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
@@ -142,6 +143,12 @@ def okologi_nuanceret():
 
 # Initialize calculator engine
 calculator_engine = ClimateCalculatorEngine()
+
+# Helper function for climate database access
+def get_climate_db():
+    """Get connection to climate database"""
+    db_path = os.path.join(os.path.dirname(__file__), 'climate_data', 'climate_data.db')
+    return sqlite3.connect(db_path)
 
 @app.route('/calculator')
 def calculator():
@@ -284,9 +291,7 @@ def get_organic_comparison(food_item):
 def get_all_canteens():
     """Get all canteens from database"""
     try:
-        import sqlite3
-        db_path = os.path.join(os.path.dirname(__file__), 'climate_data', 'climate_data.db')
-        conn = sqlite3.connect(db_path)
+        conn = get_climate_db()
         cursor = conn.cursor()
 
         cursor.execute('''
@@ -334,9 +339,7 @@ def get_all_canteens():
 def get_canteen(canteen_id):
     """Get specific canteen by ID"""
     try:
-        import sqlite3
-        db_path = os.path.join(os.path.dirname(__file__), 'climate_data', 'climate_data.db')
-        conn = sqlite3.connect(db_path)
+        conn = get_climate_db()
         cursor = conn.cursor()
 
         cursor.execute('''

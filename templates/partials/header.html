@@ -70,11 +70,31 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item" style="margin: 0 0.25rem;">
-                        <a class="nav-link {% if request.endpoint == 'calculator' %}active{% endif %}" href="{{ url_for('calculator') }}"
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint in ['calculator', 'calculator_advanced'] %}active{% endif %}"
+                           href="#" id="calculatorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                            style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
-                            CO2 Beregner
+                            Klimaberegnere
                         </a>
+                        <ul class="dropdown-menu" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 0.5rem 0; margin-top: 0.25rem; min-width: 260px;">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('calculator') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">
+                                    <i class="bi bi-calculator me-2" style="color: #2E8B57;"></i>Basis Beregner
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('calculator_advanced') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">
+                                    <i class="bi bi-building me-2" style="color: #2E8B57;"></i>Avanceret Kantineberegner
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li class="px-3 py-2" style="font-size: 0.8rem; color: #6c757d;">
+                                <small><strong>Basis:</strong> Hurtigt CO2-aftryk<br>
+                                <strong>Avanceret:</strong> 70+ kantiner med detaljeret analyse</small>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nav-item" style="margin: 0 0.25rem;">
