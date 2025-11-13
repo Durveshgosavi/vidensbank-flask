@@ -67,9 +67,6 @@ htmlcov/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# pyenv
-.python-version
-
 # Editors
 *.sublime-project
 *.sublime-workspace
