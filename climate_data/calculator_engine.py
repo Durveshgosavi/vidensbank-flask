@@ -31,7 +31,27 @@ class ClimateCalculatorEngine:
             db_path = os.path.join(os.path.dirname(__file__), 'climate_data.db')
         self.db_path = db_path
         self.emission_cache = {}
+        self._ensure_database_exists()
         self._load_emission_factors()
+
+    def _ensure_database_exists(self):
+        """Ensure climate database exists, create it if not"""
+        if not os.path.exists(self.db_path):
+            print(f"Climate database not found at {self.db_path}, creating...")
+            from init_climate_db import init_climate_database
+            init_climate_database()
+        else:
+            # Check if tables exist
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='emission_factors'")
+            if not cursor.fetchone():
+                print("Climate database exists but tables are missing, recreating...")
+                conn.close()
+                from init_climate_db import init_climate_database
+                init_climate_database()
+            else:
+                conn.close()
 
     def _load_emission_factors(self):
         """Load emission factors from database into memory for fast access"""
