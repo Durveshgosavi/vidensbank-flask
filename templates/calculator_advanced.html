@@ -1,303 +1,402 @@
 {% extends "base.html" %}
 
-{% block title %}Avanceret Kantineklimaberegner | Vidensbank{% endblock %}
+{% block title %}Kantineklimaberegner | Vidensbank{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
 <style>
+:root {
+    --primary-green: #2E7D32;
+    --light-green: #E8F5E9;
+    --dark-green: #1B5E20;
+    --text-dark: #212529;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+body {
+    background: #f8f9fa;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 /* Hero Section */
-.calculator-hero {
-    background: linear-gradient(135deg, #2E8B57 0%, #4CAF50 100%);
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
     color: white;
-    padding: 3rem 2rem;
+    padding: 4rem 0 3rem;
+    margin-bottom: 3rem;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-.calculator-hero h1 {
+.hero-content h1 {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
-.calculator-hero p {
+.hero-content p {
     font-size: 1.1rem;
     opacity: 0.95;
-}
-
-/* Card Styling */
-.calc-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 16px rgba(46, 139, 87, 0.08);
+    line-height: 1.6;
     margin-bottom: 2rem;
 }
 
-.calc-card h2 {
-    color: #2E8B57;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #e8f5e9;
-    padding-bottom: 0.5rem;
+.feature-pills {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Canteen Selection */
-#canteenSelect {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
+.pill {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Container */
+.calc-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+}
+
+/* Progress Steps */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: var(--border-color);
+    z-index: 1;
+}
+
+.step:last-child::before {
+    display: none;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 2;
     transition: all 0.3s;
 }
 
-#canteenSelect:focus {
-    border-color: #2E8B57;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+.step.active .step-number {
+    background: var(--primary-green);
+    border-color: var(--primary-green);
+    color: white;
 }
 
-/* Baseline Display */
-.baseline-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+.step.completed .step-number {
+    background: var(--primary-green);
+    border-color: var(--primary-green);
+    color: white;
 }
 
-.baseline-item {
-    background: linear-gradient(135deg, #f8f9fa, #e8f5e9);
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid #e0e0e0;
-}
-
-.baseline-value {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2E8B57;
-    display: block;
-}
-
-.baseline-label {
+.step-label {
+    margin-top: 0.75rem;
     font-size: 0.85rem;
-    color: #666;
-    margin-top: 0.25rem;
+    font-weight: 500;
+    color: var(--text-muted);
 }
 
-/* Weekly Menu Grid */
-.weekly-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
+.step.active .step-label {
+    color: var(--primary-green);
+    font-weight: 600;
 }
 
-.day-column {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 2px solid #e0e0e0;
+/* Card */
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    overflow: hidden;
 }
 
-.day-header {
-    font-weight: 700;
-    color: #2E8B57;
-    margin-bottom: 0.75rem;
-    text-align: center;
+.card-header {
+    background: var(--light-green);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-header p {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted);
     font-size: 0.95rem;
 }
 
-.meal-selector {
-    margin-bottom: 0.75rem;
+.card-body {
+    padding: 2rem;
 }
 
-.meal-selector label {
-    font-size: 0.8rem;
-    color: #666;
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
     display: block;
-    margin-bottom: 0.25rem;
-}
-
-.meal-selector select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 0.85rem;
-}
-
-/* Initiative Checkboxes */
-.initiative-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.initiative-item {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-    transition: all 0.3s;
-}
-
-.initiative-item:hover {
-    border-color: #2E8B57;
-    background: #e8f5e9;
-}
-
-.initiative-item input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 0.75rem;
-    cursor: pointer;
-}
-
-.initiative-item label {
-    cursor: pointer;
     font-weight: 600;
-    color: #333;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
-/* Scenario Buttons */
-.scenario-grid {
+.form-control, .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: white;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-green);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Baseline Grid */
+.baseline-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
+    margin: 1.5rem 0;
 }
 
-.scenario-btn {
-    padding: 1rem;
-    border: 2px solid #2E8B57;
-    background: white;
-    color: #2E8B57;
+.baseline-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
     border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.baseline-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.baseline-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Info Box */
+.info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.info-box p {
+    margin: 0;
+    color: #1565c0;
+    font-size: 0.95rem;
+}
+
+/* Button */
+.btn-calculate {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+    display: block;
+    margin: 2rem auto;
 }
 
-.scenario-btn:hover {
-    background: #2E8B57;
-    color: white;
+.btn-calculate:hover {
+    background: var(--dark-green);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
 }
 
-.scenario-btn.active {
-    background: #2E8B57;
-    color: white;
+.btn-calculate:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
-/* Results Display */
-.results-hero {
-    background: linear-gradient(135deg, #2E8B57, #4CAF50);
+/* Results */
+.results-section {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
     color: white;
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 3rem 2rem;
+    border-radius: 12px;
     text-align: center;
-    margin: 2rem 0;
+    margin: 3rem 0;
 }
 
 .results-main {
     font-size: 4rem;
     font-weight: 700;
     margin: 1rem 0;
+    line-height: 1;
 }
 
 .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .result-card {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 10px;
     backdrop-filter: blur(10px);
 }
 
 .result-value {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     display: block;
+    margin-bottom: 0.5rem;
 }
 
 .result-label {
     font-size: 0.9rem;
     opacity: 0.9;
-    margin-top: 0.5rem;
 }
 
 /* Recommendations */
-.recommendation-item {
-    background: linear-gradient(135deg, #f8f9fa, #fff);
+.recommendation {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-green);
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 8px;
     margin-bottom: 1rem;
-    border-left: 4px solid #2E8B57;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
 }
 
-.rec-priority {
-    display: inline-block;
-    background: #2E8B57;
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    margin-right: 0.5rem;
+.recommendation:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.rec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
 }
 
 .rec-title {
     font-size: 1.1rem;
-    font-weight: 700;
-    color: #333;
-    margin: 0.5rem 0;
+    font-weight: 600;
+    color: var(--text-dark);
 }
 
-.rec-description {
-    color: #666;
-    margin: 0.75rem 0;
-    line-height: 1.6;
-}
-
-.rec-impact {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.rec-badge {
-    background: #e8f5e9;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    color: #2E8B57;
+.rec-priority {
+    background: var(--primary-green);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
     font-weight: 600;
 }
 
-/* Loading State */
+.rec-description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.rec-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.rec-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.rec-stat i {
+    color: var(--primary-green);
+}
+
+/* Loading */
 .loading {
     text-align: center;
-    padding: 2rem;
-    color: #2E8B57;
+    padding: 3rem;
 }
 
 .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #2E8B57;
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-green);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
     animation: spin 1s linear infinite;
     margin: 0 auto 1rem;
 }
@@ -307,278 +406,195 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Input Groups */
-.input-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.input-group input,
-.input-group select {
-    padding: 0.75rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #2E8B57;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
-}
-
-/* Calculate Button */
-.calculate-btn {
-    background: linear-gradient(135deg, #2E8B57, #4CAF50);
-    color: white;
-    padding: 1.25rem 3rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: block;
-    margin: 2rem auto;
-    box-shadow: 0 4px 16px rgba(46, 139, 87, 0.3);
-    transition: all 0.3s;
-}
-
-.calculate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(46, 139, 87, 0.4);
-}
-
-.calculate-btn:active {
-    transform: translateY(0);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-    .weekly-grid {
-        grid-template-columns: 1fr;
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .progress-steps {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .step::before {
+        display: none;
     }
 
     .results-main {
         font-size: 2.5rem;
     }
-
-    .calculator-hero h1 {
-        font-size: 1.8rem;
-    }
 }
 </style>
 
-<div class="calculator-hero">
-    <h1><i class="bi bi-building"></i> Avanceret Kantineklimaberegner</h1>
-    <p>70+ danske kantiner • Ugentlig menu • Baseline sammenligning • AI-anbefalinger</p>
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Kantineklimaberegner</h1>
+        <p>Beregn din kantines klimaaftryk baseret på real data fra 70+ danske kantiner.
+        Få konkrete anbefalinger til at reducere CO2-udledningen med op til 40%.</p>
+        <div class="feature-pills">
+            <span class="pill">70+ Kantiner</span>
+            <span class="pill">CONCITO 2021 Data</span>
+            <span class="pill">AI-Anbefalinger</span>
+            <span class="pill">Real-time Beregning</span>
+        </div>
+    </div>
 </div>
 
-<div class="container" style="max-width: 1400px; margin: 0 auto;">
-
-    <!-- CANTEEN SELECTION -->
-    <div class="calc-card">
-        <h2><i class="bi bi-search"></i> Vælg Kantine</h2>
-        <select id="canteenSelect">
-            <option value="">-- Søg og vælg din kantine --</option>
-        </select>
-        <div id="canteenInfo" style="display:none; margin-top:1.5rem;">
-            <p><strong>📍 Adresse:</strong> <span id="canteenAddress"></span></p>
-            <p><strong>👥 Medarbejdere:</strong> <span id="canteenEmployees"></span></p>
+<!-- Progress Steps -->
+<div class="calc-container">
+    <div class="progress-steps">
+        <div class="step active" id="step1">
+            <div class="step-number">1</div>
+            <div class="step-label">Vælg Kantine</div>
+        </div>
+        <div class="step" id="step2">
+            <div class="step-number">2</div>
+            <div class="step-label">Se Baseline</div>
+        </div>
+        <div class="step" id="step3">
+            <div class="step-number">3</div>
+            <div class="step-label">Juster Parametre</div>
+        </div>
+        <div class="step" id="step4">
+            <div class="step-number">4</div>
+            <div class="step-label">Se Resultater</div>
         </div>
     </div>
 
-    <!-- BASELINE DISPLAY -->
-    <div class="calc-card" id="baselineCard" style="display:none;">
-        <h2><i class="bi bi-bar-chart-line"></i> Nuværende Baseline</h2>
-        <div class="baseline-grid">
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineCO2">-</span>
-                <span class="baseline-label">kg CO2e/kg</span>
-            </div>
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineGreen">-</span>
-                <span class="baseline-label">Grønt %</span>
-            </div>
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineMeat">-</span>
-                <span class="baseline-label">Kød %</span>
-            </div>
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineOrganic">-</span>
-                <span class="baseline-label">Økologisk %</span>
-            </div>
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineWaste">-</span>
-                <span class="baseline-label">Madspild %</span>
-            </div>
-            <div class="baseline-item">
-                <span class="baseline-value" id="baselineLocal">-</span>
-                <span class="baseline-label">Lokalt %</span>
-            </div>
+    <!-- Step 1: Canteen Selection -->
+    <div class="card" id="canteenCard">
+        <div class="card-header">
+            <h2><i class="bi bi-building"></i> Vælg Din Kantine</h2>
+            <p>Start med at vælge din virksomheds kantine fra listen nedenfor. Vi har baseline data fra 70+ danske kantiner.</p>
         </div>
-    </div>
-
-    <!-- WEEKLY MENU PLANNING -->
-    <div class="calc-card" id="menuCard" style="display:none;">
-        <h2><i class="bi bi-calendar-week"></i> Ugentlig Menu (Mandag-Fredag)</h2>
-        <div class="weekly-grid" id="weeklyGrid">
-            <!-- Will be populated dynamically -->
-        </div>
-    </div>
-
-    <!-- PROCUREMENT & SOURCING -->
-    <div class="calc-card" id="procurementCard" style="display:none;">
-        <h2><i class="bi bi-truck"></i> Indkøb & Leverandører</h2>
-        <div class="input-grid">
-            <div class="input-group">
-                <label>Dansk % <span style="color:#2E8B57">🇩🇰</span></label>
-                <input type="number" id="danishPercent" min="0" max="100" value="60">
-            </div>
-            <div class="input-group">
-                <label>EU % <span style="color:#0066cc">🇪🇺</span></label>
-                <input type="number" id="euPercent" min="0" max="100" value="30">
-            </div>
-            <div class="input-group">
-                <label>Global % <span style="color:#666">🌍</span></label>
-                <input type="number" id="globalPercent" min="0" max="100" value="10">
-            </div>
-            <div class="input-group">
-                <label>Økologisk % <span style="color:#4CAF50">🌱</span></label>
-                <input type="number" id="organicPercent" min="0" max="100" value="40">
-            </div>
-        </div>
-    </div>
-
-    <!-- WASTE MANAGEMENT INITIATIVES -->
-    <div class="calc-card" id="wasteCard" style="display:none;">
-        <h2><i class="bi bi-recycle"></i> Madspildsinitiativer</h2>
-        <div class="initiative-grid">
-            <div class="initiative-item">
-                <input type="checkbox" id="initiative1" value="preorder">
-                <label for="initiative1">Forudbestilling fra gæster</label>
-            </div>
-            <div class="initiative-item">
-                <input type="checkbox" id="initiative2" value="portions">
-                <label for="initiative2">Fleksible portioner (S/M/L)</label>
-            </div>
-            <div class="initiative-item">
-                <input type="checkbox" id="initiative3" value="compost">
-                <label for="initiative3">Kompost/biogas system</label>
-            </div>
-            <div class="initiative-item">
-                <input type="checkbox" id="initiative4" value="tracking">
-                <label for="initiative4">Daglig spildregistrering</label>
-            </div>
-            <div class="initiative-item">
-                <input type="checkbox" id="initiative5" value="stock">
-                <label for="initiative5">Optimeret lagerudnyttelse</label>
-            </div>
-        </div>
-        <div class="input-grid" style="margin-top:1.5rem;">
-            <div class="input-group">
-                <label>Forberedelse spild %</label>
-                <input type="number" id="wastePrep" min="0" max="50" value="8" step="0.5">
-            </div>
-            <div class="input-group">
-                <label>Tallerken spild %</label>
-                <input type="number" id="wastePlate" min="0" max="50" value="12" step="0.5">
-            </div>
-            <div class="input-group">
-                <label>Buffet spild %</label>
-                <input type="number" id="wasteBuffet" min="0" max="50" value="5" step="0.5">
-            </div>
-        </div>
-    </div>
-
-    <!-- ENERGY EFFICIENCY -->
-    <div class="calc-card" id="energyCard" style="display:none;">
-        <h2><i class="bi bi-lightning-charge"></i> Energieffektivitet</h2>
-        <div class="input-grid">
-            <div class="input-group">
-                <label>Tilberedningsmetode</label>
-                <select id="cookingMethod">
-                    <option value="electric">Elektrisk</option>
-                    <option value="gas">Gas</option>
-                    <option value="mixed">Blandet</option>
-                    <option value="induction">Induktion</option>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="form-label">Kantine</label>
+                <select id="canteenSelect" class="form-select">
+                    <option value="">-- Vælg kantine --</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label>Udstyr energiklasse</label>
-                <select id="energyClass">
-                    <option value="A">A (Mest effektiv)</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Batch cooking</label>
-                <select id="batchCooking">
-                    <option value="yes">Ja - Optimeret</option>
-                    <option value="partial">Delvist</option>
-                    <option value="no">Nej</option>
-                </select>
+
+            <div id="canteenInfo" style="display:none; margin-top: 1.5rem;">
+                <div class="info-box">
+                    <p><strong><i class="bi bi-geo-alt-fill"></i> Adresse:</strong> <span id="canteenAddress"></span></p>
+                    <p style="margin-top: 0.5rem;"><strong><i class="bi bi-people-fill"></i> Medarbejdere:</strong> <span id="canteenEmployees"></span></p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- SCENARIO TESTING -->
-    <div class="calc-card" id="scenarioCard" style="display:none;">
-        <h2><i class="bi bi-lightbulb"></i> Test Scenarier</h2>
-        <div class="scenario-grid">
-            <button class="scenario-btn" onclick="applyScenario('meatlessMonday')">
-                🌱 Kødløs Mandag
-            </button>
-            <button class="scenario-btn" onclick="applyScenario('allDanish')">
-                🇩🇰 100% Dansk Kød
-            </button>
-            <button class="scenario-btn" onclick="applyScenario('reducePortions')">
-                📏 Reducer Portioner 10%
-            </button>
-            <button class="scenario-btn" onclick="applyScenario('allOrganic')">
-                🌾 100% Økologisk
-            </button>
-            <button class="scenario-btn" onclick="applyScenario('zeroWaste')">
-                ♻️ Nul-spild Mål
-            </button>
-            <button class="scenario-btn" onclick="applyScenario('reset')">
-                🔄 Nulstil
-            </button>
+    <!-- Step 2: Baseline Data -->
+    <div class="card" id="baselineCard" style="display:none;">
+        <div class="card-header">
+            <h2><i class="bi bi-graph-up"></i> Nuværende Baseline</h2>
+            <p>Her er din kantines nuværende klimapræstation. Dette er udgangspunktet for vores beregninger.</p>
+        </div>
+        <div class="card-body">
+            <div class="baseline-grid">
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineCO2">-</span>
+                    <span class="baseline-label">kg CO2e/kg mad</span>
+                </div>
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineGreen">-</span>
+                    <span class="baseline-label">Grønt indhold</span>
+                </div>
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineMeat">-</span>
+                    <span class="baseline-label">Kød andel</span>
+                </div>
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineOrganic">-</span>
+                    <span class="baseline-label">Økologisk</span>
+                </div>
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineWaste">-</span>
+                    <span class="baseline-label">Madspild</span>
+                </div>
+                <div class="baseline-card">
+                    <span class="baseline-value" id="baselineLocal">-</span>
+                    <span class="baseline-label">Lokalt produceret</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p><i class="bi bi-info-circle-fill"></i> <strong>Hvad betyder dette?</strong>
+                Tallene ovenfor viser din kantines nuværende præstation sammenlignet med danske gennemsnit.
+                Lavere CO2-tal er bedre for klimaet.</p>
+            </div>
         </div>
     </div>
 
-    <!-- CALCULATE BUTTON -->
-    <button class="calculate-btn" onclick="calculateImpact()">
+    <!-- Step 3: Parameters -->
+    <div class="card" id="parametersCard" style="display:none;">
+        <div class="card-header">
+            <h2><i class="bi bi-sliders"></i> Juster Parametre</h2>
+            <p>Tilpas parametrene nedenfor for at se hvordan forskellige ændringer påvirker klimaaftrykket.</p>
+        </div>
+        <div class="card-body">
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Indkøb & Leverandører</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div class="form-group">
+                    <label class="form-label">Dansk produceret (%)</label>
+                    <input type="number" id="danishPercent" class="form-control" min="0" max="100" value="60">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">EU produceret (%)</label>
+                    <input type="number" id="euPercent" class="form-control" min="0" max="100" value="30">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Global (%)</label>
+                    <input type="number" id="globalPercent" class="form-control" min="0" max="100" value="10">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Økologisk (%)</label>
+                    <input type="number" id="organicPercent" class="form-control" min="0" max="100" value="40">
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Madspild</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div class="form-group">
+                    <label class="form-label">Forberedelse spild (%)</label>
+                    <input type="number" id="wastePrep" class="form-control" min="0" max="50" value="8" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tallerken spild (%)</label>
+                    <input type="number" id="wastePlate" class="form-control" min="0" max="50" value="12" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Buffet spild (%)</label>
+                    <input type="number" id="wasteBuffet" class="form-control" min="0" max="50" value="5" step="0.5">
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 1.5rem;">
+                <p><i class="bi bi-lightbulb-fill"></i> <strong>Tips:</strong>
+                Reducer madspild ved at tilbyde fleksible portioner, implementere forudbestilling,
+                og optimere lagerudnyttelse. Dette kan reducere dit klimaaftryk med op til 25%.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculate Button -->
+    <button class="btn-calculate" onclick="calculateImpact()" id="calcButton">
         <i class="bi bi-calculator"></i> Beregn Klimaaftryk
     </button>
 
-    <!-- RESULTS SECTION -->
+    <!-- Step 4: Results -->
     <div id="resultsSection" style="display:none;">
-        <div class="results-hero">
-            <h2 style="color:white; margin:0;">📊 Resultater</h2>
+        <div class="results-section">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Dine Resultater</h2>
             <div class="results-main" id="mainResult">-</div>
-            <p style="font-size:1.2rem; margin:0;">kg CO2e per måltid</p>
+            <p style="font-size: 1.2rem; margin-bottom: 0;">kg CO2e per måltid</p>
 
             <div class="results-grid">
                 <div class="result-card">
                     <span class="result-value" id="annualTons">-</span>
-                    <span class="result-label">Tons CO2e/år</span>
+                    <span class="result-label">Tons CO2e årligt</span>
                 </div>
                 <div class="result-card">
                     <span class="result-value" id="costSavings">-</span>
@@ -586,20 +602,45 @@
                 </div>
                 <div class="result-card">
                     <span class="result-value" id="vsBaseline">-</span>
-                    <span class="result-label">vs. Baseline</span>
+                    <span class="result-label">vs. baseline</span>
                 </div>
             </div>
         </div>
 
-        <!-- AI RECOMMENDATIONS -->
-        <div class="calc-card">
-            <h2><i class="bi bi-robot"></i> AI-Anbefalinger</h2>
-            <div id="recommendationsContainer">
-                <!-- Populated dynamically -->
+        <!-- Recommendations -->
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="bi bi-lightbulb"></i> Anbefalinger til Reduktion</h2>
+                <p>Baseret på dine data har vi identificeret de mest effektive tiltag til at reducere klimaaftrykket.</p>
+            </div>
+            <div class="card-body" id="recommendationsContainer">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="bi bi-compass"></i> Næste Skridt</h2>
+            </div>
+            <div class="card-body">
+                <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem;">Sådan kommer du i gang</h3>
+                <ol style="line-height: 1.8;">
+                    <li><strong>Prioriter lavt hængende frugter:</strong> Start med de tiltag der har størst effekt og lavest implementeringstid</li>
+                    <li><strong>Involver køkkenet:</strong> Del resultaterne med køkkenchefen og personalet</li>
+                    <li><strong>Sæt mål:</strong> Definer konkrete reduktionsmål for de næste 6-12 måneder</li>
+                    <li><strong>Mål løbende:</strong> Kom tilbage regelmæssigt for at tracke fremskridt</li>
+                    <li><strong>Kommuniker succeser:</strong> Del resultaterne med medarbejdere og gæster</li>
+                </ol>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <p><i class="bi bi-trophy-fill"></i> <strong>Best Practice:</strong>
+                    Kantiner der har implementeret disse anbefalinger har i gennemsnit reduceret deres
+                    CO2-aftryk med 30-40% inden for det første år.</p>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -643,7 +684,7 @@ function handleCanteenSelection(e) {
     const canteenId = parseInt(e.target.value);
 
     if (!canteenId) {
-        hideAllCards();
+        hideAllSections();
         return;
     }
 
@@ -653,18 +694,19 @@ function handleCanteenSelection(e) {
         baselineData = selectedCanteen.baseline;
         displayCanteenInfo();
         displayBaseline();
-        setupWeeklyMenu();
-        showAllCards();
+        showParametersSection();
+        updateProgressSteps(2);
     }
 }
 
 function displayCanteenInfo() {
     document.getElementById('canteenInfo').style.display = 'block';
     document.getElementById('canteenAddress').textContent = selectedCanteen.address;
-    document.getElementById('canteenEmployees').textContent = selectedCanteen.employees;
+    document.getElementById('canteenEmployees').textContent = selectedCanteen.employees.toLocaleString();
 }
 
 function displayBaseline() {
+    document.getElementById('baselineCard').style.display = 'block';
     document.getElementById('baselineCO2').textContent = baselineData.co2_per_kg.toFixed(2);
     document.getElementById('baselineGreen').textContent = baselineData.green_percent.toFixed(1) + '%';
     document.getElementById('baselineMeat').textContent = baselineData.meat_percent.toFixed(1) + '%';
@@ -673,101 +715,29 @@ function displayBaseline() {
     document.getElementById('baselineLocal').textContent = baselineData.local_sourced.toFixed(1) + '%';
 }
 
-function setupWeeklyMenu() {
-    const days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
-    const weeklyGrid = document.getElementById('weeklyGrid');
-    weeklyGrid.innerHTML = '';
-
-    days.forEach((day, index) => {
-        const dayCol = document.createElement('div');
-        dayCol.className = 'day-column';
-        dayCol.innerHTML = `
-            <div class="day-header">${day}</div>
-            <div class="meal-selector">
-                <label>Kødret</label>
-                <select id="meat_${index}">
-                    <option value="beef">Oksekød</option>
-                    <option value="pork" selected>Svinekød</option>
-                    <option value="chicken">Kylling</option>
-                    <option value="fish">Fisk</option>
-                    <option value="mixed">Blandet</option>
-                </select>
-            </div>
-            <div class="meal-selector">
-                <label>Grøn ret</label>
-                <select id="green_${index}">
-                    <option value="vegan" selected>Vegansk</option>
-                    <option value="vegetarian">Vegetar</option>
-                    <option value="legumes">Bælgfrugter</option>
-                    <option value="dairy">Mejeriprodukter</option>
-                </select>
-            </div>
-        `;
-        weeklyGrid.appendChild(dayCol);
-    });
+function showParametersSection() {
+    document.getElementById('parametersCard').style.display = 'block';
+    updateProgressSteps(3);
 }
 
-function showAllCards() {
-    document.getElementById('baselineCard').style.display = 'block';
-    document.getElementById('menuCard').style.display = 'block';
-    document.getElementById('procurementCard').style.display = 'block';
-    document.getElementById('wasteCard').style.display = 'block';
-    document.getElementById('energyCard').style.display = 'block';
-    document.getElementById('scenarioCard').style.display = 'block';
-}
-
-function hideAllCards() {
+function hideAllSections() {
     document.getElementById('canteenInfo').style.display = 'none';
     document.getElementById('baselineCard').style.display = 'none';
-    document.getElementById('menuCard').style.display = 'none';
-    document.getElementById('procurementCard').style.display = 'none';
-    document.getElementById('wasteCard').style.display = 'none';
-    document.getElementById('energyCard').style.display = 'none';
-    document.getElementById('scenarioCard').style.display = 'none';
+    document.getElementById('parametersCard').style.display = 'none';
     document.getElementById('resultsSection').style.display = 'none';
+    updateProgressSteps(1);
 }
 
-function applyScenario(scenario) {
-    switch(scenario) {
-        case 'meatlessMonday':
-            // Set Monday to all green
-            document.getElementById('meat_0').value = 'mixed';
-            alert('🌱 Kødløs Mandag aktiveret!');
-            break;
-        case 'allDanish':
-            document.getElementById('danishPercent').value = 100;
-            document.getElementById('euPercent').value = 0;
-            document.getElementById('globalPercent').value = 0;
-            alert('🇩🇰 100% Dansk kød aktiveret!');
-            break;
-        case 'reducePortions':
-            alert('📏 Portionsreduktion vil blive inkluderet i beregningen');
-            break;
-        case 'allOrganic':
-            document.getElementById('organicPercent').value = 100;
-            alert('🌾 100% Økologisk aktiveret!');
-            break;
-        case 'zeroWaste':
-            document.getElementById('wastePrep').value = 2;
-            document.getElementById('wastePlate').value = 3;
-            document.getElementById('wasteBuffet').value = 1;
-            document.querySelectorAll('[id^="initiative"]').forEach(cb => cb.checked = true);
-            alert('♻️ Nul-spild scenario aktiveret!');
-            break;
-        case 'reset':
-            if (selectedCanteen) {
-                setupWeeklyMenu();
-                document.getElementById('danishPercent').value = 60;
-                document.getElementById('euPercent').value = 30;
-                document.getElementById('globalPercent').value = 10;
-                document.getElementById('organicPercent').value = 40;
-                document.getElementById('wastePrep').value = 8;
-                document.getElementById('wastePlate').value = 12;
-                document.getElementById('wasteBuffet').value = 5;
-                document.querySelectorAll('[id^="initiative"]').forEach(cb => cb.checked = false);
-                alert('🔄 Nulstillet til baseline');
-            }
-            break;
+function updateProgressSteps(activeStep) {
+    for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById(`step${i}`);
+        step.classList.remove('active', 'completed');
+
+        if (i < activeStep) {
+            step.classList.add('completed');
+        } else if (i === activeStep) {
+            step.classList.add('active');
+        }
     }
 }
 
@@ -778,19 +748,22 @@ async function calculateImpact() {
     }
 
     // Show loading
-    document.getElementById('resultsSection').style.display = 'block';
-    document.getElementById('mainResult').textContent = '...';
+    const button = document.getElementById('calcButton');
+    button.disabled = true;
+    button.innerHTML = '<i class="bi bi-hourglass-split"></i> Beregner...';
 
-    // Collect weekly menu data
-    const meatDistribution = calculateMeatDistribution();
-
-    // Collect all parameters
+    // Collect parameters
     const params = {
         employees: selectedCanteen.employees,
         meals_per_day: 1,
         operating_days: selectedCanteen.operating_days,
         attendance_rate: 0.85,
-        meat_distribution: meatDistribution,
+        meat_distribution: {
+            red_meat_percent: baselineData.meat_percent * 0.3,
+            bright_meat_percent: baselineData.meat_percent * 0.5,
+            fish_percent: baselineData.meat_percent * 0.2,
+            vegetarian_percent: baselineData.green_percent
+        },
         portion_sizes: {
             protein_gram: 120,
             vegetables_gram: 200,
@@ -821,26 +794,22 @@ async function calculateImpact() {
 
         if (data.success) {
             displayResults(data.results);
+            updateProgressSteps(4);
         } else {
             alert('Fejl: ' + data.error);
         }
     } catch (error) {
         alert('Der opstod en fejl: ' + error.message);
+    } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="bi bi-calculator"></i> Beregn Klimaaftryk';
     }
 }
 
-function calculateMeatDistribution() {
-    // Simple average across the week
-    // In reality, this would be more sophisticated
-    return {
-        red_meat_percent: 20,
-        bright_meat_percent: 40,
-        fish_percent: 15,
-        vegetarian_percent: 25
-    };
-}
-
 function displayResults(results) {
+    // Show results section
+    document.getElementById('resultsSection').style.display = 'block';
+
     // Main metrics
     document.getElementById('mainResult').textContent = results.per_meal_kg.toFixed(2);
     document.getElementById('annualTons').textContent = results.annual_tons.toFixed(1);
@@ -848,7 +817,9 @@ function displayResults(results) {
 
     // Calculate vs baseline
     const vsBaseline = ((results.per_meal_kg - baselineData.co2_per_kg) / baselineData.co2_per_kg * 100).toFixed(1);
-    document.getElementById('vsBaseline').textContent = (vsBaseline > 0 ? '+' : '') + vsBaseline + '%';
+    const vsText = vsBaseline > 0 ? `+${vsBaseline}%` : `${vsBaseline}%`;
+    document.getElementById('vsBaseline').textContent = vsText;
+    document.getElementById('vsBaseline').style.color = vsBaseline > 0 ? '#ef5350' : '#66bb6a';
 
     // Display recommendations
     displayRecommendations(results.recommendations);
@@ -861,19 +832,28 @@ function displayRecommendations(recommendations) {
     const container = document.getElementById('recommendationsContainer');
     container.innerHTML = '';
 
-    recommendations.forEach((rec, index) => {
+    recommendations.forEach(rec => {
         const recDiv = document.createElement('div');
-        recDiv.className = 'recommendation-item';
+        recDiv.className = 'recommendation';
         recDiv.innerHTML = `
-            <div>
-                <span class="rec-priority">#${rec.priority}</span>
-                <span class="rec-title">${rec.title}</span>
+            <div class="rec-header">
+                <div class="rec-title">${rec.title}</div>
+                <div class="rec-priority">#${rec.priority}</div>
             </div>
             <div class="rec-description">${rec.description}</div>
-            <div class="rec-impact">
-                <span class="rec-badge">💰 ${rec.annual_saving_tons.toFixed(1)} tons/år</span>
-                <span class="rec-badge">⏱️ ${rec.implementation_time}</span>
-                <span class="rec-badge">📊 ${rec.difficulty}</span>
+            <div class="rec-stats">
+                <div class="rec-stat">
+                    <i class="bi bi-graph-down"></i>
+                    <strong>${rec.annual_saving_tons.toFixed(1)} tons/år</strong>
+                </div>
+                <div class="rec-stat">
+                    <i class="bi bi-clock"></i>
+                    ${rec.implementation_time}
+                </div>
+                <div class="rec-stat">
+                    <i class="bi bi-speedometer2"></i>
+                    ${rec.difficulty}
+                </div>
             </div>
         `;
         container.appendChild(recDiv);
