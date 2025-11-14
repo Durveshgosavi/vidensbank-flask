@@ -29,37 +29,68 @@
   </div>
 </div>
 
-<!-- Featured Pillars Section -->
+<!-- Featured Pillars Section with Awwwards-Inspired Cards -->
 <div style="padding: 120px 40px; background-color: #F4F2F1;">
   <div style="max-width: 1100px; margin: 0 auto;">
-    <div style="display: table; width: 100%; border-spacing: 40px 0; table-layout: fixed;">
-      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
-        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
-          <img src="https://i.imgur.com/GiNlKtZ.jpeg" alt="Mark med afgrøder" style="width: 100%; height: 246px; object-fit: cover; display: block; background: linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%)'; this.alt='Bæredygtighed';" />
-          <div style="padding: 30px;">
-            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; text-align: left; font-size: 1.8rem; color: #333333;">Bæredygtigheds-data</h3>
-            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Dybdegående LCA-analyser for at kvantificere fødevarers reelle klimapåvirkning.</p>
+    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px; text-align: center; margin-bottom: 60px;">Vores Videnspiller</h2>
+
+    <div class="premium-card-grid">
+      <!-- Card 1: Bæredygtighedsdata -->
+      <a href="{{ url_for('emissions_sustainability') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1200" alt="Bæredygtig landbrug" loading="lazy">
+          <span class="card-category-tag">Data</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Bæredygtighedsdata</h3>
+          <p class="card-teaser">Dybdegående LCA-analyser for at kvantificere fødevarers reelle klimapåvirkning gennem hele livscyklusen.</p>
+          <div class="card-metadata">
+            <span>Analyse</span>
+            <span>•</span>
+            <span>LCA</span>
+            <span>•</span>
+            <span>CONCITO 2021</span>
           </div>
         </div>
-      </div>
-      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
-        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
-          <img src="https://i.imgur.com/oWMrmSc.jpeg" alt="Lastbil på en vej" style="width: 100%; height: 250px; object-fit: cover; display: block; background: linear-gradient(135deg, #ffdc96 0%, #ffb793 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #ffdc96 0%, #ffb793 100%)'; this.alt='Transport';" />
-          <div style="padding: 30px;">
-            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 1.8rem; margin: 0 0 1rem 0; color: #333333;">Forsyningskæde Transparens</h3>
-            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Indsigt i råvarernes oprindelse og de skjulte omkostninger i den globale fødevarekæde.</p>
+      </a>
+
+      <!-- Card 2: Forsyningskæde -->
+      <a href="{{ url_for('emissions_sustainability') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" alt="Forsyningskæde og transport" loading="lazy">
+          <span class="card-category-tag">Logistik</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Forsyningskæde Transparens</h3>
+          <p class="card-teaser">Indsigt i råvarernes oprindelse og de skjulte omkostninger i den globale fødevarekæde fra jord til bord.</p>
+          <div class="card-metadata">
+            <span>Supply Chain</span>
+            <span>•</span>
+            <span>Transport</span>
+            <span>•</span>
+            <span>Sporbarhed</span>
           </div>
         </div>
-      </div>
-      <div style="display: table-cell; width: 33.3%; vertical-align: top;">
-        <div style="background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
-          <img src="https://i.imgur.com/wWDzfmf.jpeg" alt="Anrettet mad" style="width: 100%; height: 250px; object-fit: cover; display: block; background: linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%);" onerror="this.style.backgroundImage='linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%)'; this.alt='Gastronomi';" />
-          <div style="padding: 30px;">
-            <h3 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 1.8rem; margin: 0 0 1rem 0; color: #333333;">Gastronomisk Innovation</h3>
-            <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Metoder til at udvikle menuer, der er både klimavenlige, velsmagende og innovative.</p>
+      </a>
+
+      <!-- Card 3: Gastronomisk Innovation -->
+      <a href="{{ url_for('calculator') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200" alt="Moderne gastronomi" loading="lazy">
+          <span class="card-category-tag">Innovation</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Gastronomisk Innovation</h3>
+          <p class="card-teaser">Metoder til at udvikle menuer, der er både klimavenlige, velsmagende og innovative for fremtidens køkken.</p>
+          <div class="card-metadata">
+            <span>Menuudvikling</span>
+            <span>•</span>
+            <span>Innovation</span>
+            <span>•</span>
+            <span>Gastronomi</span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

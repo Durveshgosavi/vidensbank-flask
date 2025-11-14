@@ -14,45 +14,94 @@
   <div class="container">
     <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
     <div class="wavy-underline"></div>
-    <div class="grid-layout grid-4-col card-grid">
-      <a href="{{ url_for('food_emissions') }}" class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');">
-            <h3>Fra Jord til Bord</h3>
-          </div>
-          <div class="flip-card-back" style="background-color: #a0d7a5;">
-            <h3>Fra Jord til Bord</h3>
-            <p>En dybdegående dekonstruktion af, hvor emissioner opstår i fødevarernes livscyklus.</p>
-            <span class="cta-button secondary">Læs Mere</span>
+
+    <!-- Awwwards-Style Filter Navigation -->
+    <div class="filter-nav">
+      <span class="filter-nav-label">Filtrer efter:</span>
+      <a href="{{ url_for('food_emissions') }}" class="filter-pill">Fødevarerelaterede Emissioner</a>
+      <a href="{{ url_for('climate_data') }}" class="filter-pill">Klimadata</a>
+      <a href="{{ url_for('market_analysis') }}" class="filter-pill">Brancheanalyse</a>
+    </div>
+
+    <!-- Awwwards-Inspired Premium Card Grid -->
+    <div class="premium-card-grid">
+
+      <!-- Card 1: Fra Jord til Bord -->
+      <a href="{{ url_for('food_emissions') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Bæredygtig fødevareproduktion" loading="lazy">
+          <span class="card-category-tag">Emissioner</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Fødevarerelaterede Emissioner</h3>
+          <p class="card-teaser">Dyk ned i data om CO2e, fra produktion til tallerken. En dybdegående dekonstruktion af fødevarernes livscyklus.</p>
+          <div class="card-metadata">
+            <span>Rapport</span>
+            <span>•</span>
+            <span>Data</span>
+            <span>•</span>
+            <span>15 min læsning</span>
           </div>
         </div>
       </a>
 
-      <a href="{{ url_for('data_driven_approach') }}" class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1632372254856-43c6e0d63e87');">
-            <h3>En Datadrevet Tilgang</h3>
-          </div>
-          <div class="flip-card-back" style="background-color: #f4d03f;">
-            <h3>En Datadrevet Tilgang</h3>
-            <p>Forståelse af fødevarers klimaaftryk gennem data, strategisk indkøb og menuudvikling.</p>
-            <span class="cta-button secondary">Læs Mere</span>
+      <!-- Card 2: Datadrevet Tilgang -->
+      <a href="{{ url_for('data_driven_approach') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200" alt="Data og analyse" loading="lazy">
+          <span class="card-category-tag">Strategi</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">En Datadrevet Tilgang</h3>
+          <p class="card-teaser">Forståelse af fødevarers klimaaftryk gennem data, strategisk indkøb og menuudvikling baseret på evidens.</p>
+          <div class="card-metadata">
+            <span>Guide</span>
+            <span>•</span>
+            <span>Strategi</span>
+            <span>•</span>
+            <span>12 min læsning</span>
           </div>
         </div>
       </a>
 
-      <a href="{{ url_for('market_analysis') }}" class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-image: url('https://images.unsplash.com/photo-1691643158804-d3f02eb456a3');">
-            <h3>Branchepræstation</h3>
-          </div>
-          <div class="flip-card-back" style="background-color: #ff9f43;">
-            <h3>Branchepræstation</h3>
-            <p>Nøgletal og case studies fra førende virksomheder som ISS og Compass Group i Danmark.</p>
-            <span class="cta-button secondary">Læs Mere</span>
+      <!-- Card 3: Branchepræstation -->
+      <a href="{{ url_for('market_analysis') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200" alt="Erhverv og bæredygtighed" loading="lazy">
+          <span class="card-category-tag">Analyse</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Branchepræstation</h3>
+          <p class="card-teaser">Nøgletal og case studies fra førende virksomheder som ISS og Compass Group i Danmark med konkrete resultater.</p>
+          <div class="card-metadata">
+            <span>Case Study</span>
+            <span>•</span>
+            <span>Benchmarking</span>
+            <span>•</span>
+            <span>18 min læsning</span>
           </div>
         </div>
       </a>
+
+      <!-- Card 4: Politisk Landskab -->
+      <a href="{{ url_for('political_landscape') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200" alt="Politik og regulering" loading="lazy">
+          <span class="card-category-tag">Politik</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Politisk Landskab</h3>
+          <p class="card-teaser">Forstå de regulatoriske rammer og politiske initiativer der former fremtidens fødevarepolitik og kostråd.</p>
+          <div class="card-metadata">
+            <span>Oversigt</span>
+            <span>•</span>
+            <span>Regulering</span>
+            <span>•</span>
+            <span>10 min læsning</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>

@@ -822,6 +822,184 @@ a:hover, a:focus {
    ============================================================================ */
 
 /* ============================================================================
+   AWWWARDS-INSPIRED CONTENT CARDS
+   ============================================================================ */
+
+.aww-card {
+  display: block;
+  text-decoration: none;
+  color: var(--text-dark);
+  background-color: var(--white);
+  border: 1px solid var(--cheval-taube);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aww-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 66%; /* 3:2 aspect ratio */
+  overflow: hidden;
+}
+
+.card-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.aww-card:hover .card-image-container img {
+  transform: scale(1.05);
+}
+
+/* Category Tag (Awwwards-style metadata) */
+.card-category-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--cheval-gron);
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.card-content-body {
+  padding: 1.5rem;
+}
+
+/* Card Title (Display font, ALL CAPS) */
+.aww-card .card-title {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+/* Card Teaser */
+.card-teaser {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  opacity: 0.8;
+  color: #555;
+}
+
+/* Card Metadata (Awwwards-style) */
+.card-metadata {
+  font-family: var(--ff-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-metadata span {
+  display: inline-block;
+}
+
+/* Filtering Navigation Bar (Awwwards-style) */
+.filter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0 3rem;
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--cheval-taube);
+  flex-wrap: wrap;
+}
+
+.filter-nav-label {
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-pill {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background-color: var(--cheval-taube);
+  color: var(--text-dark);
+}
+
+.filter-pill:hover {
+  background-color: var(--cheval-gron);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: var(--text-dark);
+}
+
+.filter-pill.active {
+  background-color: var(--dark-gron);
+  color: white;
+  border-color: var(--dark-gron);
+}
+
+/* Premium Content Grid */
+.premium-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+@media (max-width: 768px) {
+  .premium-card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .filter-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filter-pill {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================================================
    SECTION BLOCKS
    ============================================================================ */
 .section-block {
