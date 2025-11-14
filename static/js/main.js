@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initLazyLoad();
     initKeyboardNav();
     initTooltips();
+    initAwwCardsAnimation();
+    initParallaxEffect();
 });
 
 // ============================================================================
@@ -473,4 +475,112 @@ function initTooltips() {
     });
 }
 
-console.log('✓ Vidensbank JavaScript loaded successfully!');
+// ============================================================================
+// AWW-CARDS PREMIUM ANIMATION
+// ============================================================================
+function initAwwCardsAnimation() {
+    const cards = document.querySelectorAll('.aww-card, .image-overlay-card');
+
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100); // Stagger animation
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        cardObserver.observe(card);
+    });
+
+    // Add 3D tilt effect on mouse move (premium Awwwards-style)
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+}
+
+// ============================================================================
+// SUBTLE PARALLAX EFFECT FOR HERO SECTIONS
+// ============================================================================
+function initParallaxEffect() {
+    const heroSections = document.querySelectorAll('.hero-video-container, .section-landing');
+
+    window.addEventListener('scroll', () => {
+        heroSections.forEach(section => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            section.style.transform = `translate3d(0, ${rate}px, 0)`;
+        });
+    });
+}
+
+// ============================================================================
+// PREMIUM BUTTON RIPPLE EFFECT
+// ============================================================================
+document.querySelectorAll('.cta-button, .filter-pill, .btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.left = (e.clientX - rect.left) + 'px';
+        ripple.style.top = (e.clientY - rect.top) + 'px';
+
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+    });
+});
+
+// Add ripple styles dynamically
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        width: 20px;
+        height: 20px;
+        animation: ripple-animation 0.6s ease-out;
+        pointer-events: none;
+    }
+
+    @keyframes ripple-animation {
+        to {
+            transform: scale(20);
+            opacity: 0;
+        }
+    }
+
+    .cta-button, .filter-pill, .btn {
+        position: relative;
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+console.log('✓ Vidensbank JavaScript loaded successfully with premium animations!');

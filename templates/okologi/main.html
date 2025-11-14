@@ -3,195 +3,321 @@
 {% block title %}Økologi i Danmark | Vidensbank{% endblock %}
 
 {% block content %}
-<header style="position: relative; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; background-image: url('https://images.pexels.com/photos/1656663/pexels-photo-1656663.jpeg'), linear-gradient(135deg, #4a7c59 0%, #5f9ea0 100%); background-size: cover; background-position: center;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3); opacity: 0.7;"></div>
-    <div style="position: relative; z-index: 1; padding: 2rem; animation: fadeIn 1s ease-out;">
-        <h1 style="font-family: 'AWConqueror Std Inline', serif; font-size: 3.5rem; font-weight: normal; line-height: 1.1; text-transform: uppercase; color: #ffffff; letter-spacing: 2px;">FORSTÅELSE AF ØKOLOGI</h1>
-        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; max-width: 600px; margin: 1rem auto 0; line-height: 1.4; color: #ffffff;">En guide til økologiske mærker, fordele og strategier for fremtidens kantiner i Danmark.</p>
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.pexels.com/photos/1656663/pexels-photo-1656663.jpeg');">
+    <div class="bg-overlay-dark"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">FORSTÅELSE AF ØKOLOGI</h1>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto 0;">En guide til økologiske mærker, fordele og strategier for fremtidens kantiner i Danmark.</p>
     </div>
 </header>
 
 <main>
-    <section id="okologi-emner" style="padding: 5rem 1rem;">
-        <div style="max-width: 1200px; margin: auto;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-align: center; text-transform: uppercase; color: #000000; letter-spacing: 1px;">CENTRALE ØKOLOGI-EMNER</h2>
-            <div style="width: 80px; height: 8px; background-image: url('data:image/svg+xml;utf8,<svg width=\'80\' height=\'8\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 4 Q 20 0, 40 4 T 80 4\' stroke=\'%23a0d7a5\' stroke-width=\'3\' fill=\'none\'/></svg>'); margin: 1rem auto 3rem;"></div>
+    <!-- Central Topics Section with Awwwards-Style Cards -->
+    <section class="section padding-y-4" style="background-color: #F4F2F1;">
+        <div class="container" style="max-width: 1200px;">
+            <h2 class="section-title">CENTRALE ØKOLOGI-EMNER</h2>
+            <div class="wavy-underline"></div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
-                <a href="{{ url_for('okologi_hvad_er') }}" class="premium-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; display: block; flex: 1; min-width: 300px; max-width: 350px; text-decoration: none; color: inherit; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                    <img src="https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg" alt="Friske økologiske grøntsager" style="width: 100%; height: 220px; object-fit: cover;" onerror="this.style.backgroundImage='linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%)'; this.alt='Økologi';" />
-                    <div style="padding: 1.5rem; text-align: left;">
-                        <h3 style="font-family: 'AWConqueror Std Inline', serif; font-size: 1.5rem; font-weight: normal; text-transform: uppercase; margin: 0 0 0.5rem 0;">Hvad er Økologi?</h3>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.4; margin: 0;">Udforsk grundprincipperne og betydningen for miljø og dyrevelfærd.</p>
+            <!-- Premium Card Grid -->
+            <div class="premium-card-grid">
+                <a href="{{ url_for('okologi_hvad_er') }}" class="aww-card">
+                    <div class="card-image-container">
+                        <img src="https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg" alt="Friske økologiske grøntsager" loading="lazy">
+                        <span class="card-category-tag">Grundlæggende</span>
+                    </div>
+                    <div class="card-content-body">
+                        <h3 class="card-title">Hvad er Økologi?</h3>
+                        <p class="card-teaser">Udforsk grundprincipperne bag økologisk landbrug og dets betydning for miljø og dyrevelfærd.</p>
+                        <div class="card-metadata">
+                            <span>Guide</span>
+                            <span>•</span>
+                            <span>8 min læsning</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="{{ url_for('okologi_regulering') }}" class="premium-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; display: block; flex: 1; min-width: 300px; max-width: 350px; text-decoration: none; color: inherit; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                    <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Appetitlig tallerken med mad" style="width: 100%; height: 220px; object-fit: cover;" onerror="this.style.backgroundImage='linear-gradient(135deg, #ffdc96 0%, #ffb793 100%)'; this.alt='Regulering';" />
-                    <div style="padding: 1.5rem; text-align: left;">
-                        <h3 style="font-family: 'AWConqueror Std Inline', serif; font-size: 1.5rem; font-weight: normal; text-transform: uppercase; margin: 0 0 0.5rem 0;">Regulering & Mærker</h3>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.4; margin: 0;">Forstå det røde Ø-mærke, EU-logoet og det danske kontrolsystem.</p>
+                <a href="{{ url_for('okologi_regulering') }}" class="aww-card">
+                    <div class="card-image-container">
+                        <img src="https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg" alt="Økologisk certificering" loading="lazy">
+                        <span class="card-category-tag">Regulering</span>
+                    </div>
+                    <div class="card-content-body">
+                        <h3 class="card-title">Regulering & Mærker</h3>
+                        <p class="card-teaser">Forstå det røde Ø-mærke, EU-logoet og det danske økologi-kontrolsystem bag certificeringen.</p>
+                        <div class="card-metadata">
+                            <span>Certificering</span>
+                            <span>•</span>
+                            <span>10 min læsning</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="{{ url_for('okologi_fordele') }}" class="premium-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; display: block; flex: 1; min-width: 300px; max-width: 350px; text-decoration: none; color: inherit; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                    <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Personer der spiser et sundt måltid" style="width: 100%; height: 220px; object-fit: cover;" onerror="this.style.backgroundImage='linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%)'; this.alt='Fordele';" />
-                    <div style="padding: 1.5rem; text-align: left;">
-                        <h3 style="font-family: 'AWConqueror Std Inline', serif; font-size: 1.5rem; text-align: left; text-transform: uppercase; margin: 0 0 0.5rem 0;">Fordele & Overvejelser</h3>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.4; margin: 0;">Dyk ned i fordelene for miljø, sundhed, dyrevelfærd og klima.</p>
+                <a href="{{ url_for('okologi_fordele') }}" class="aww-card">
+                    <div class="card-image-container">
+                        <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" alt="Sunde økologiske fødevarer" loading="lazy">
+                        <span class="card-category-tag">Impact</span>
+                    </div>
+                    <div class="card-content-body">
+                        <h3 class="card-title">Fordele & Overvejelser</h3>
+                        <p class="card-teaser">Dyk ned i de dokumenterede fordele for miljø, sundhed, dyrevelfærd og klimaet som helhed.</p>
+                        <div class="card-metadata">
+                            <span>Analyse</span>
+                            <span>•</span>
+                            <span>12 min læsning</span>
+                        </div>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <section style="padding: 5rem 1rem; background-color: #ffffff;">
-        <div style="max-width: 1200px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">NØGLEPRINCIPPER FOR ØKOLOGI</h2>
-            <div style="width: 80px; height: 8px; background-image: url('data:image/svg+xml;utf8,<svg width=\'80\' height=\'8\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 4 Q 20 0, 40 4 T 80 4\' stroke=\'%23a0d7a5\' stroke-width=\'3\' fill=\'none\'/></svg>'); margin: 1rem auto 4rem;"></div>
+    <!-- Key Principles Section -->
+    <section class="section padding-y-4" style="background-color: #FFFFFF;">
+        <div class="container" style="max-width: 1200px; text-align: center;">
+            <h2 class="section-title">NØGLEPRINCIPPER FOR ØKOLOGI</h2>
+            <div class="wavy-underline"></div>
 
-            <div style="display: flex; flex-wrap: wrap; background-color: #eceae8; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.07);">
-                <div style="flex: 1; min-width: 250px; border-right: 2px solid #ffffff;">
-                    <img src="https://images.pexels.com/photos/29282018/pexels-photo-29282018.jpeg" alt="Grønne blade med vanddråber" style="width: 100%; height: 200px; object-fit: cover; display: block;" onerror="this.style.backgroundImage='linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%)'; this.alt='Pesticid-fri';" />
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0; background-color: #eceae8; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.07); margin-top: 2rem;">
+                <div style="border-right: 2px solid #ffffff;">
+                    <img src="https://images.pexels.com/photos/29282018/pexels-photo-29282018.jpeg" alt="Grønne blade med vanddråber" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                     <div style="padding: 2rem;">
-                        <h4 style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Ingen Pesticider</h4>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; font-size: 1rem; margin: 0;">Forbud mod syntetiske sprøjtemidler sikrer renere mad og beskytter vores grundvand og natur.</p>
+                        <h4 style="font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Ingen Pesticider</h4>
+                        <p style="line-height: 1.6; font-size: 1rem; margin: 0;">Forbud mod syntetiske sprøjtemidler sikrer renere mad og beskytter vores grundvand og natur.</p>
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 250px; border-right: 2px solid #ffffff;">
-                    <img src="https://images.pexels.com/photos/5915741/pexels-photo-5915741.jpeg" alt="Nærbillede af kornaks" style="width: 100%; height: 200px; object-fit: cover; display: block;" onerror="this.style.backgroundImage='linear-gradient(135deg, #ffdc96 0%, #ffb793 100%)'; this.alt='GMO-fri';" />
+                <div style="border-right: 2px solid #ffffff;">
+                    <img src="https://images.pexels.com/photos/5915741/pexels-photo-5915741.jpeg" alt="Nærbillede af kornaks" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                     <div style="padding: 2rem;">
-                        <h4 style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">GMO-fri</h4>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; font-size: 1rem; margin: 0;">Økologiske landmænd må ikke anvende gensplejsede afgrøder eller foder, hvilket garanterer et GMO-frit produkt.</p>
+                        <h4 style="font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">GMO-fri</h4>
+                        <p style="line-height: 1.6; font-size: 1rem; margin: 0;">Økologiske landmænd må ikke anvende gensplejsede afgrøder eller foder, hvilket garanterer et GMO-frit produkt.</p>
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 250px; border-right: 2px solid #ffffff;">
-                    <img src="https://images.pexels.com/photos/33172985/pexels-photo-33172985.jpeg" alt="Køer på en grøn mark" style="width: 100%; height: 200px; object-fit: cover; display: block;" onerror="this.style.backgroundImage='linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%)'; this.alt='Dyrevelfærd';" />
+                <div style="border-right: 2px solid #ffffff;">
+                    <img src="https://images.pexels.com/photos/33172985/pexels-photo-33172985.jpeg" alt="Køer på en grøn mark" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                     <div style="padding: 2rem;">
-                        <h4 style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Høj Dyrevelfærd</h4>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; font-size: 1rem; margin: 0;">Dyrene sikres mere plads, adgang til det fri og mulighed for at udleve deres naturlige instinkter.</p>
+                        <h4 style="font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Høj Dyrevelfærd</h4>
+                        <p style="line-height: 1.6; font-size: 1rem; margin: 0;">Dyrene sikres mere plads, adgang til det fri og mulighed for at udleve deres naturlige instinkter.</p>
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 250px;">
-                    <img src="https://images.pexels.com/photos/5110953/pexels-photo-5110953.jpeg" alt="Bi på en blomst" style="width: 100%; height: 200px; object-fit: cover; display: block;" onerror="this.style.backgroundImage='linear-gradient(135deg, #a0d7a5 0%, #d0ebd2 100%)'; this.alt='Biodiversitet';" />
+                <div>
+                    <img src="https://images.pexels.com/photos/5110953/pexels-photo-5110953.jpeg" alt="Bi på en blomst" style="width: 100%; height: 200px; object-fit: cover; display: block;">
                     <div style="padding: 2rem;">
-                        <h4 style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Mere Biodiversitet</h4>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; font-size: 1rem; margin: 0;">Økologiske marker skaber bedre levevilkår for bier, sommerfugle og vilde planter, hvilket styrker økosystemet.</p>
+                        <h4 style="font-weight: bold; font-size: 1.2rem; margin: 0 0 0.5rem 0;">Mere Biodiversitet</h4>
+                        <p style="line-height: 1.6; font-size: 1rem; margin: 0;">Økologiske marker skaber bedre levevilkår for bier, sommerfugle og vilde planter, hvilket styrker økosystemet.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 5rem 1rem; background-color: #f4f2f1;">
-        <div style="max-width: 1100px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">OPSUMMERING: DERFOR ØKOLOGI</h2>
-            <div style="width: 80px; height: 8px; background-image: url('data:image/svg+xml;utf8,<svg width=\'80\' height=\'8\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 4 Q 20 0, 40 4 T 80 4\' stroke=\'%23a0d7a5\' stroke-width=\'3\' fill=\'none\'/></svg>'); margin: 1rem auto 4rem;"></div>
+    <!-- Why Organic Section with Premium Image Cards -->
+    <section class="section padding-y-4" style="background-color: #f4f2f1;">
+        <div class="container" style="max-width: 1100px; text-align: center;">
+            <h2 class="section-title">DERFOR ØKOLOGI</h2>
+            <div class="wavy-underline"></div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 2rem;">
-                <div style="flex: 1; min-width: 300px; max-width: 350px; height: 400px; position: relative; border-radius: 12px; overflow: hidden; background-image: url('https://images.pexels.com/photos/33176686/pexels-photo-33176686.jpeg'), linear-gradient(135deg, #d0ebd2 0%, #a0d7a5 100%); background-size: cover; background-position: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);"></div>
-                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; box-sizing: border-box; color: #ffffff; text-align: left;">
-                        <h3 style="text-align: left; color: #ffffff;">Renere Fødevarer</h3>
-                        <p class="smallText" style="text-align: left; color: #ffffff;">Du undgår rester af syntetiske sprøjtemidler og får mad med færre tilsætningsstoffer.</p>
+            <div class="premium-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="image-overlay-card">
+                    <img src="https://images.pexels.com/photos/33176686/pexels-photo-33176686.jpeg" alt="Renere fødevarer">
+                    <div class="overlay-content">
+                        <h3>Renere Fødevarer</h3>
+                        <p>Du undgår rester af syntetiske sprøjtemidler og får mad med færre tilsætningsstoffer.</p>
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 300px; max-width: 350px; height: 400px; position: relative; border-radius: 12px; overflow: hidden; background-image: url('https://images.pexels.com/photos/458976/pexels-photo-458976.jpeg'), linear-gradient(135deg, #a0d7a5 0%, #d0ebd2 100%); background-size: cover; background-position: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);"></div>
-                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; box-sizing: border-box; color: #ffffff; text-align: left;">
-                        <h3 style="text-align: left; color: #ffffff;">Rigere Natur</h3>
-                        <p class="smallText" style="text-align: left; color: #ffffff;">Økologisk landbrug beskytter grundvandet, fremmer biodiversitet og skaber mere liv på markerne.</p>
+                <div class="image-overlay-card">
+                    <img src="https://images.pexels.com/photos/458976/pexels-photo-458976.jpeg" alt="Rigere natur">
+                    <div class="overlay-content">
+                        <h3>Rigere Natur</h3>
+                        <p>Økologisk landbrug beskytter grundvandet, fremmer biodiversitet og skaber mere liv på markerne.</p>
                     </div>
                 </div>
 
-                <div style="flex: 1; min-width: 300px; max-width: 350px; height: 400px; position: relative; border-radius: 12px; overflow: hidden; background-image: url('https://images.pexels.com/photos/3656870/pexels-photo-3656870.jpeg'), linear-gradient(135deg, #d2e1f0 0%, #a0d7a5 100%); background-size: cover; background-position: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);"></div>
-                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; box-sizing: border-box; color: #ffffff; text-align: left;">
-                        <h3 style="text-align: left; color: #ffffff;">Bedre Dyrevelfærd</h3>
-                        <p class="smallText" style="text-align: left; color: #ffffff;">Økologiske dyr har mere plads, adgang til det fri og bedre mulighed for at udleve deres naturlige adfærd.</p>
+                <div class="image-overlay-card">
+                    <img src="https://images.pexels.com/photos/3656870/pexels-photo-3656870.jpeg" alt="Bedre dyrevelfærd">
+                    <div class="overlay-content">
+                        <h3>Bedre Dyrevelfærd</h3>
+                        <p>Økologiske dyr har mere plads, adgang til det fri og bedre mulighed for at udleve deres naturlige adfærd.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 5rem 1rem; background-color: #ffffff;">
-        <div style="max-width: 1200px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">ØKOLOGI I KANTINEN</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.5; color: #000000; font-size: 1.1rem; max-width: 800px; margin: 1rem auto 4rem;">Det Økologiske Spisemærke er en statskontrolleret mærkning, der gør det let at se, hvor stor en andel af en kantines råvarer der er økologiske. Mærket er vores måde at vise et troværdigt og transparent engagement i økologi.</p>
-            <a href="{{ url_for('okologi_kantinen') }}" class="btn button1" style="box-shadow: 0px 0px 2px #000000; border-radius: 12px 12px 12px 12px; padding: 14px 32px; border: 1px solid rgb(160, 215, 165); display: inline-block; background-color: #a0d7a5; color: #000; text-decoration: none; font-weight: bold;">Læs mere</a>
+    <!-- Canteen Section -->
+    <section class="section padding-y-4" style="background-color: #FFFFFF;">
+        <div class="container" style="max-width: 1200px; text-align: center;">
+            <h2 class="section-title">ØKOLOGI I KANTINEN</h2>
+            <div class="wavy-underline"></div>
+            <p style="line-height: 1.5; font-size: 1.1rem; max-width: 800px; margin: 0 auto 3rem;">Det Økologiske Spisemærke er en statskontrolleret mærkning, der gør det let at se, hvor stor en andel af en kantines råvarer der er økologiske. Mærket er vores måde at vise et troværdigt og transparent engagement i økologi.</p>
+            <a href="{{ url_for('okologi_kantinen') }}" class="cta-button primary">Læs mere om økologi i kantiner</a>
 
             <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 3rem; margin-top: 3rem;">
-                <div class="canteen-infographic-item" style="opacity: 1; flex: 1; min-width: 220px; max-width: 280px;">
-                    <div style="width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #cd7f32 0%, #e6a766 100%); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <span style="font-size: 4rem; color: #fff;">🥉</span>
+                <div class="canteen-badge">
+                    <div class="badge-circle bronze">
+                        <span style="font-size: 4rem;">🥉</span>
                     </div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; margin: 1rem 0 0 0;">30-60% økologi</p>
+                    <p class="badge-label">30-60% økologi</p>
                 </div>
 
-                <div class="canteen-infographic-item" style="opacity: 1; flex: 1; min-width: 220px; max-width: 280px;">
-                    <div style="width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <span style="font-size: 4rem; color: #666;">🥈</span>
+                <div class="canteen-badge">
+                    <div class="badge-circle silver">
+                        <span style="font-size: 4rem;">🥈</span>
                     </div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; margin: 1rem 0 0 0;">60-90% økologi</p>
+                    <p class="badge-label">60-90% økologi</p>
                 </div>
 
-                <div class="canteen-infographic-item" style="opacity: 1; flex: 1; min-width: 220px; max-width: 280px;">
-                    <div style="width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                        <span style="font-size: 4rem; color: #fff;">🥇</span>
+                <div class="canteen-badge">
+                    <div class="badge-circle gold">
+                        <span style="font-size: 4rem;">🥇</span>
                     </div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; margin: 1rem 0 0 0;">90-100% økologi</p>
+                    <p class="badge-label">90-100% økologi</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 5rem 1rem; background-color: #f4f2f1;">
-        <div style="max-width: 1100px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">DANMARK SOM ØKOLOGISK FOREGANGSLAND</h2>
+    <!-- Denmark as Pioneer Section -->
+    <section class="section padding-y-4" style="background-color: #f4f2f1;">
+        <div class="container" style="max-width: 1100px; text-align: center;">
+            <h2 class="section-title">DANMARK SOM ØKOLOGISK FOREGANGSLAND</h2>
+            <div class="wavy-underline"></div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 2rem; margin-top: 3rem;">
-                <div style="flex: 1; min-width: 250px; background-color: #ffffff; padding: 2rem; border-radius: 8px;">
-                    <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4rem; font-weight: bold; color: #000000;">1.</div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.1rem; line-height: 1.5; margin-top: 0.5rem;">Danmark var det første land i verden til at indføre en statskontrolleret økologilov i 1987.</p>
+            <div class="interactive-stats">
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #a0d7a5;">1.</div>
+                    <p class="stat-label">Danmark var det første land i verden til at indføre en statskontrolleret økologilov i 1987.</p>
                 </div>
 
-                <div style="flex: 1; min-width: 250px; background-color: #ffffff; padding: 2rem; border-radius: 8px;">
-                    <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4rem; font-weight: bold; color: #000000;">13%</div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.1rem; line-height: 1.5; margin-top: 0.5rem;">Verdens højeste økologiske markedsandel, hvilket viser en enorm forbrugeropbakning.</p>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #a0d7a5;">13%</div>
+                    <p class="stat-label">Verdens højeste økologiske markedsandel, hvilket viser en enorm forbrugeropbakning.</p>
                 </div>
 
-                <div style="flex: 1; min-width: 250px; background-color: #ffffff; padding: 2rem; border-radius: 8px;">
-                    <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4rem; font-weight: bold; color: #000000;">90%</div>
-                    <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.1rem; line-height: 1.5; margin-top: 0.5rem;">Det ambitiøse mål for økologi i alle offentlige måltider i Københavns Kommune.</p>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #a0d7a5;">90%</div>
+                    <p class="stat-label">Det ambitiøse mål for økologi i alle offentlige måltider i Københavns Kommune.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="background-color: #a0d7a5; padding: 5rem 1rem;">
-        <div style="max-width: 800px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">ER I KLAR TIL EN GRØNNERE FREMTID?</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; color: #000000; font-size: 1.1rem; max-width: 600px; margin: 1rem auto 2rem;">At implementere økologi i kantinen er en rejse, der skaber værdi for både jeres medarbejdere, jeres virksomhed og for verden omkring jer.</p>
-            <a href="{{ url_for('contact') }}" style="display: inline-block; margin-top: 1rem; padding: 14px 32px; background-color: #000000; color: #ffffff; font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; text-decoration: none; border-radius: 4px; transition: opacity 0.3s ease;">KONTAKT OS FOR EN BÆREDYGTIG LØSNING</a>
+    <!-- CTA Section -->
+    <section class="cta-block" style="margin: 4rem 2rem;">
+        <div style="max-width: 800px; margin: auto;">
+            <h2>ER I KLAR TIL EN GRØNNERE FREMTID?</h2>
+            <p>At implementere økologi i kantinen er en rejse, der skaber værdi for både jeres medarbejdere, jeres virksomhed og for verden omkring jer.</p>
+            <a href="{{ url_for('contact') }}" class="cta-button" style="background-color: #000000; color: #ffffff;">KONTAKT OS FOR EN BÆREDYGTIG LØSNING</a>
         </div>
     </section>
 </main>
 
 <style>
-@media (max-width: 992px) {
-    header h1 {
-        font-size: 2.5rem !important;
+/* Image Overlay Cards */
+.image-overlay-card {
+    position: relative;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-overlay-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.image-overlay-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-overlay-card:hover img {
+    transform: scale(1.1);
+}
+
+.overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
+    color: #ffffff;
+    text-align: left;
+}
+
+.overlay-content h3 {
+    font-family: var(--ff-display);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+    color: #ffffff;
+}
+
+.overlay-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Canteen Badges */
+.canteen-badge {
+    flex: 1;
+    min-width: 220px;
+    max-width: 280px;
+}
+
+.badge-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.canteen-badge:hover .badge-circle {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.badge-circle.bronze {
+    background: linear-gradient(135deg, #cd7f32 0%, #e6a766 100%);
+}
+
+.badge-circle.silver {
+    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+}
+
+.badge-circle.gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.badge-label {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 1rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+    .image-overlay-card {
+        height: 300px;
     }
-    section h2 {
-        font-size: 2rem !important;
-    }
-    .premium-card:hover {
-        transform: scale(1.02);
+
+    .overlay-content h3 {
+        font-size: 1.4rem;
     }
 }
 </style>
