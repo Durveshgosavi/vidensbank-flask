@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Fødevarerelaterede Emissioner og Bæredygtighed - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Fødevarerelaterede Emissioner og Bæredygtighed</h1>
+    <p class="hero-subtitle">Et samlet overblik over, hvordan madens klimaaftryk opstår fra jord til tallerken</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <h2 class="section-title">Udforsk Emnet</h2>
+    <div class="wavy-underline"></div>
+    <p class="section-lead">
+      Et samlet overblik over, hvordan madens klimaaftryk opstår fra jord til tallerken,
+      og hvordan danske kantiner kan arbejde strategisk med reduktion.
+    </p>
+  </header>
+
+  <!-- Filter Navigation -->
+  <nav class="filter-nav" aria-label="Underemner om emissioner">
+    <a href="{{ url_for('topic_emissions_what') }}" class="filter-pill">Hvad er det?</a>
+    <a href="{{ url_for('topic_emissions_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
+    <a href="{{ url_for('topic_emissions_goal') }}" class="filter-pill">Mål & ambition</a>
+    <a href="{{ url_for('topic_emissions_impact') }}" class="filter-pill">Mit aftryk</a>
+    <a href="{{ url_for('topic_emissions_tips') }}" class="filter-pill">Tips & tricks</a>
+  </nav>
+
+  <!-- Card Grid -->
+  <div class="card-grid">
+    <!-- Card 1: Hvad er det? -->
+    <a href="{{ url_for('topic_emissions_what') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200"
+             alt="Illustration af madens vej fra jord til tallerken i en dansk kantine" loading="lazy">
+        <span class="card-category-tag">Overblik</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER FØDEVARERELATEREDE EMISSIONER?</h3>
+        <p class="card-teaser">
+          En introduktion til CO₂e, livscyklus-tænkning og de vigtigste udledningskilder i fødevaresystemet.
+        </p>
+        <div class="card-metadata">
+          <span>Grundlæggende viden</span>
+          <span>•</span>
+          <span>5–7 min læsning</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2: Hvorfor er det vigtigt? -->
+    <a href="{{ url_for('topic_emissions_why') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1200"
+             alt="Grafik over danske klimamål og politiske aftaler" loading="lazy">
+        <span class="card-category-tag">Danmark</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVORFOR ER DET VIGTIGT?</h3>
+        <p class="card-teaser">
+          Emissioner fra mad udgør en stor del af danskernes klimaaftryk og er centralt i nationale klimamål.
+        </p>
+        <div class="card-metadata">
+          <span>Politisk kontekst</span>
+          <span>•</span>
+          <span>5–8 min læsning</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3: Mål & ambition -->
+    <a href="{{ url_for('topic_emissions_goal') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200"
+             alt="Køkkenpersonale der planlægger bæredygtige menuer i kantinen" loading="lazy">
+        <span class="card-category-tag">Strategi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">MÅL & AMBITION</h3>
+        <p class="card-teaser">
+          Hvordan Vidensbanken og kantiner sammen kan bidrage til at nå Danmarks klimamål gennem data og handling.
+        </p>
+        <div class="card-metadata">
+          <span>Ambition</span>
+          <span>•</span>
+          <span>4–6 min læsning</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4: Mit aftryk -->
+    <a href="{{ url_for('topic_emissions_impact') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200"
+             alt="Tallerken i kantine med plantebaseret måltid og klimadata" loading="lazy">
+        <span class="card-category-tag">Mit aftryk</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER MIT AFTRYK?</h3>
+        <p class="card-teaser">
+          Hvilken rolle spiller kantiner, køkkenledere og gæster i den samlede klimabelastning – og hvad kan ændres?
+        </p>
+        <div class="card-metadata">
+          <span>Praksisnært</span>
+          <span>•</span>
+          <span>5–7 min læsning</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 5: Tips & tricks -->
+    <a href="{{ url_for('topic_emissions_tips') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1200"
+             alt="Kantine der arbejder med madspildsreduktion og menuplanlægning" loading="lazy">
+        <span class="card-category-tag">Handling</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">TIPS & TRICKS</h3>
+        <p class="card-teaser">
+          Konkrete greb til menuudvikling, indkøb og drift, der reducerer CO₂e i danske kantiner.
+        </p>
+        <div class="card-metadata">
+          <span>Værktøjer</span>
+          <span>•</span>
+          <span>3–6 min læsning</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Klar til at reducere jeres klimaaftryk?</h2>
+    <p class="section-lead">
+      Brug vores CO₂ beregner til at få indsigt i jeres kantines klimaaftryk.
+    </p>
+    <a href="{{ url_for('calculator') }}" class="btn-primary" style="margin-top: 1.5rem;">CO₂ Beregner</a>
+  </div>
+</section>
+
+{% endblock %}

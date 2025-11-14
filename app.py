@@ -104,6 +104,40 @@ def climate_data():
     return render_template('climate_data.html')
 
 # ============================================================================
+# EMISSIONS TOPIC ROUTES (New Structure)
+# ============================================================================
+
+@app.route('/vidensbank/emissioner')
+def topic_emissions_landing():
+    """Emissions topic landing page"""
+    return render_template('topics/emissions/landing.html')
+
+@app.route('/vidensbank/emissioner/hvad-er-det')
+def topic_emissions_what():
+    """What are food-related emissions?"""
+    return render_template('topics/emissions/what.html')
+
+@app.route('/vidensbank/emissioner/hvorfor-vigtigt')
+def topic_emissions_why():
+    """Why are emissions important?"""
+    return render_template('topics/emissions/why.html')
+
+@app.route('/vidensbank/emissioner/maal-og-ambition')
+def topic_emissions_goal():
+    """Goals and ambitions"""
+    return render_template('topics/emissions/goal.html')
+
+@app.route('/vidensbank/emissioner/mit-aftryk')
+def topic_emissions_impact():
+    """What is my impact?"""
+    return render_template('topics/emissions/impact.html')
+
+@app.route('/vidensbank/emissioner/tips-og-tricks')
+def topic_emissions_tips():
+    """Tips and tricks"""
+    return render_template('topics/emissions/tips.html')
+
+# ============================================================================
 # ØKOLOGI ROUTES
 # ============================================================================
 
