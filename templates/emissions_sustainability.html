@@ -12,19 +12,23 @@
 
 <section id="key-topics" class="section padding-y-4">
   <div class="container">
-    <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
-    <div class="wavy-underline"></div>
+    <header class="section-header">
+      <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
+      <div class="wavy-underline"></div>
+      <p class="section-lead">
+        Få overblik over nøgletemaer som fødevarerelaterede emissioner, klimadata og brancheindsigter.
+      </p>
+    </header>
 
-    <!-- Awwwards-Style Filter Navigation -->
-    <div class="filter-nav">
-      <span class="filter-nav-label">Filtrer efter:</span>
-      <a href="{{ url_for('food_emissions') }}" class="filter-pill">Fødevarerelaterede Emissioner</a>
+    <!-- Filter Navigation -->
+    <nav class="filter-nav" aria-label="Filtrer emner">
+      <a href="{{ url_for('food_emissions') }}" class="filter-pill is-active">Fødevarerelaterede Emissioner</a>
       <a href="{{ url_for('climate_data') }}" class="filter-pill">Klimadata</a>
       <a href="{{ url_for('market_analysis') }}" class="filter-pill">Brancheanalyse</a>
-    </div>
+    </nav>
 
-    <!-- Awwwards-Inspired Premium Card Grid -->
-    <div class="premium-card-grid">
+    <!-- Premium Card Grid -->
+    <div class="card-grid">
 
       <!-- Card 1: Fra Jord til Bord -->
       <a href="{{ url_for('food_emissions') }}" class="aww-card">

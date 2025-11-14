@@ -4,37 +4,33 @@
 
 {% block content %}
 <!-- Hero Section -->
-<div style="position: relative; background-image: url('https://i.imgur.com/KyuSPXy.jpeg'), linear-gradient(135deg, #4a7c59 0%, #5f9ea0 100%); background-size: cover; background-position: center; color: #FFFFFF; text-align: center; padding: 160px 40px;">
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4);"></div>
-  <div style="position: relative; max-width: 900px; margin: 0 auto;">
-    <h1 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 4.5rem; color: #FFFFFF; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin: 0 0 1rem 0; letter-spacing: 1px;">Vidensbank</h1>
-    <p style="font-size: 1.4rem; line-height: 1.7; color: #FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">Dataindsigt for en Bæredygtig Fremtid</p>
+<section class="page-section home-hero">
+  <div class="hero-content">
+    <p class="hero-kicker">BÆREDYGTIGHED & KLIMA</p>
+    <h1 class="hero-headline">VIDENSBANK</h1>
+    <p class="hero-body">
+      Viden er den vigtigste råvare i det grønne køkken. I vores Vidensbank samler vi data og analyser, der gør det muligt at træffe informerede valg om alt fra råvarers klimaaftryk til gastronomisk innovation.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ url_for('emissions_sustainability') }}" class="btn-primary">Udforsk Emissioner</a>
+      <a href="{{ url_for('calculator') }}" class="btn-secondary">CO₂ Beregner</a>
+    </div>
   </div>
-</div>
-
-<!-- Intro Section -->
-<div style="padding: 120px 40px; text-align: center; background-color: #FFFFFF;">
-  <div style="max-width: 900px; margin: 0 auto;">
-    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px;">Viden er den vigtigste råvare i det grønne køkken.</h2>
-    <p style="line-height: 1.7; font-size: 1.1rem; color: #555; max-width: 70ch; margin-left: auto; margin-right: auto;">I vores Vidensbank samler vi data og analyser, der gør det muligt at træffe informerede valg. Vi dykker ned i alt fra råvarers klimaaftryk til gastronomisk innovation, der skaber en mere bæredygtig madkultur.</p>
+  <div class="hero-visual">
+    <img src="https://i.imgur.com/KyuSPXy.jpeg" alt="Bæredygtig madproduktion og dataindsigt">
   </div>
-</div>
-
-<!-- Philosophy Section (Full Width Image) -->
-<div style="position: relative; background-image: url('https://images.pexels.com/photos/323682/pexels-photo-323682.jpeg'), linear-gradient(135deg, #2c3e50 0%, #34495e 100%); background-size: cover; background-position: center; padding: 120px 40px;">
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
-  <div style="position: relative; max-width: 600px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); padding: 50px; text-align: center; border-radius: 8px;">
-    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.5rem; color: #333333; margin-top: 0;">Vores Filosofi</h2>
-    <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Bæredygtighed er ikke et valg, men en forudsætning for kvalitet. Vi tror på, at ansvarlighed fra jord til bord skaber bedre smagsoplevelser, stærkere lokalsamfund og en sundere planet.</p>
-  </div>
-</div>
+</section>
 
 <!-- Featured Pillars Section with Awwwards-Inspired Cards -->
-<div style="padding: 120px 40px; background-color: #F4F2F1;">
-  <div style="max-width: 1100px; margin: 0 auto;">
-    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px; text-align: center; margin-bottom: 60px;">Vores Videnspiller</h2>
+<section class="page-section" style="background-color: #F4F2F1;">
+  <header class="section-header">
+    <h2 class="hero-headline">Vores Videnspiller</h2>
+    <p class="section-lead">
+      Udforsk vores centrale vidensområder for at træffe informerede, klimabevidste beslutninger i det professionelle køkken.
+    </p>
+  </header>
 
-    <div class="premium-card-grid">
+  <div class="card-grid">
       <!-- Card 1: Bæredygtighedsdata -->
       <a href="{{ url_for('emissions_sustainability') }}" class="aww-card">
         <div class="card-image-container">
@@ -91,36 +87,36 @@
           </div>
         </div>
       </a>
-    </div>
   </div>
-</div>
+</section>
 
 <!-- Data in Focus Section -->
-<div style="padding: 120px 40px; background-color: #FFFFFF;">
-  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; color: #333333; letter-spacing: 1px; margin-bottom: 80px;">Bæredygtighed i Tal</h2>
-    <div style="display: table; width: 100%; border-spacing: 0; border-collapse: collapse;">
-      <!-- Column 1 -->
-      <div style="display: table-cell; vertical-align: top; padding: 0 40px; border-right: 1px solid #eeeeee;">
-        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">12%</div>
-        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Økologiandel i Detail</h3>
-        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">Danmark har verdens højeste markedsandel, hvilket viser en stærk efterspørgsel efter ansvarlige fødevarer.</p>
-      </div>
-      <!-- Column 2 -->
-      <div style="display: table-cell; vertical-align: top; padding: 0 40px; border-right: 1px solid #eeeeee;">
-        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">197t</div>
-        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Madspild Dagligt</h3>
-        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">En ressourceudfordring i servicesektoren alene, der kræver datadrevne løsninger i professionelle køkkener.</p>
-      </div>
-      <!-- Column 3 -->
-      <div style="display: table-cell; vertical-align: top; padding: 0 40px;">
-        <div style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 4.5rem; font-weight: bold; color: #A0D7A5; margin-bottom: 1rem;">-63%</div>
-        <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; color: #333333; margin: 0 0 1rem 0; letter-spacing: 0.5px;">Fra Ambition til Virkelighed</h3>
-        <p style="line-height: 1.6; font-size: 1rem; color: #555; max-width: 30ch; margin: 0 auto;">Det gennemsnitlige kødindtag (~950g/uge) er langt fra kostrådenes mål (350g). Et gab kantiner kan hjælpe med at lukke.</p>
-      </div>
-    </div>
+<section class="page-section" style="background-color: #FFFFFF;">
+  <header class="section-header">
+    <h2 class="hero-headline">Bæredygtighed i Tal</h2>
+    <p class="section-lead">Nøgledata der viser hvorfor bæredygtige valg i kantinen gør en forskel.</p>
+  </header>
+
+  <div class="metrics-grid">
+    <article class="metric-tile">
+      <div class="metric-value">12%</div>
+      <h3 class="metric-label">Økologiandel i Detail</h3>
+      <p class="metric-text">Danmark har verdens højeste markedsandel, hvilket viser en stærk efterspørgsel efter ansvarlige fødevarer.</p>
+    </article>
+
+    <article class="metric-tile">
+      <div class="metric-value">197t</div>
+      <h3 class="metric-label">Madspild Dagligt</h3>
+      <p class="metric-text">En ressourceudfordring i servicesektoren alene, der kræver datadrevne løsninger i professionelle køkkener.</p>
+    </article>
+
+    <article class="metric-tile">
+      <div class="metric-value">-63%</div>
+      <h3 class="metric-label">Fra Ambition til Virkelighed</h3>
+      <p class="metric-text">Det gennemsnitlige kødindtag (~950g/uge) er langt fra kostrådenes mål (350g). Et gab kantiner kan hjælpe med at lukke.</p>
+    </article>
   </div>
-</div>
+</section>
 
 <!-- Data Deep Dive & Chart Section -->
 <div style="padding: 120px 40px; background-color: #F4F2F1;">

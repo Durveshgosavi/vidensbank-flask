@@ -1707,12 +1707,305 @@ a:hover, a:focus {
   .cta-button {
     display: none;
   }
-  
+
   body {
     padding-top: 0;
   }
-  
+
   .container {
     max-width: 100%;
+  }
+}
+
+/* ============================================================================
+   AWWWARDS-STYLE ENHANCEMENTS
+   ============================================================================ */
+
+/* 1. Reusable Page Section Container
+   ============================================================================ */
+.page-section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1.5rem;
+}
+
+/* 2. Responsive Card Grid
+   ============================================================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* 3. Pill-shaped Navigation Filters
+   ============================================================================ */
+.filter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-pill {
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: var(--text-dark);
+  background-color: var(--cheval-taube);
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.filter-pill:hover {
+  transform: translateY(-3px);
+  background-color: var(--cheval-gron-light);
+  color: var(--text-dark);
+}
+
+.filter-pill.is-active {
+  background-color: var(--cheval-gron);
+  color: var(--text-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. Metrics Grid
+   ============================================================================ */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* 5. Metric Tile
+   ============================================================================ */
+.metric-tile {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--cheval-taube);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.metric-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  border-color: var(--cheval-gron);
+}
+
+.metric-tile .metric-value {
+  font-family: var(--ff-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.metric-tile .metric-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 0.75rem 0;
+}
+
+.metric-tile .metric-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 6. Home Hero Section
+   ============================================================================ */
+.home-hero {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  gap: 3rem;
+  min-height: 70vh;
+}
+
+.home-hero .hero-content {
+  text-align: left;
+}
+
+.home-hero .hero-visual {
+  border-radius: 24px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.home-hero .hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  border-radius: 16px;
+}
+
+
+/* 7. Premium Button Styles
+   ============================================================================ */
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--cheval-gron);
+  color: var(--text-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--text-dark);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-dark);
+  border-color: var(--cheval-taube);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-dark);
+  color: var(--text-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 8. Hero Text Styles
+   ============================================================================ */
+.hero-kicker {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.hero-headline {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.hero-body {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  max-width: 70ch;
+  margin: 1rem auto 0;
+}
+
+/* ============================================================================
+   RESPONSIVE BREAKPOINTS FOR NEW COMPONENTS
+   ============================================================================ */
+
+/* Tablet */
+@media (max-width: 991px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .home-hero .hero-content {
+    order: 2;
+  }
+
+  .home-hero .hero-visual {
+    order: 1;
+    height: 300px;
+  }
+
+  .hero-body {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .page-section {
+    padding: 2rem 1rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-headline {
+    font-size: 2.2rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
   }
 }
