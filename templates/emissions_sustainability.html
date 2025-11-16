@@ -3,202 +3,184 @@
 {% block title %}Emissioner og Bæredygtighed - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Emissioner og Bæredygtighed</h1>
-  </div>
-</header>
-
-<section id="key-topics" class="section padding-y-4">
-  <div class="container">
-    <header class="section-header">
-      <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
-      <div class="wavy-underline"></div>
-      <p class="section-lead">
-        Få overblik over nøgletemaer som fødevarerelaterede emissioner, klimadata og brancheindsigter.
-      </p>
-    </header>
-
-    <!-- Filter Navigation -->
+<header class="page-header has-cover" style="background-image: url('https://images.unsplash.com/photo-1611273426858-450d8e3c9fce');">
+  <div class="page-header__content">
+    <p class="eyebrow">VIDENSBANK</p>
+    <h1>Emissioner og Bæredygtighed</h1>
+    <p>Få overblik over nøgletemaer som fødevarerelaterede emissioner, klimadata og brancheindsigter. Alt er samlet for at hjælpe danske kantiner med at træffe modige, databaserede beslutninger.</p>
     <nav class="filter-nav" aria-label="Filtrer emner">
       <a href="{{ url_for('food_emissions') }}" class="filter-pill is-active">Fødevarerelaterede Emissioner</a>
       <a href="{{ url_for('climate_data') }}" class="filter-pill">Klimadata</a>
       <a href="{{ url_for('market_analysis') }}" class="filter-pill">Brancheanalyse</a>
     </nav>
+  </div>
+</header>
 
-    <!-- Premium Card Grid -->
-    <div class="card-grid">
+<section class="page-section">
+  <header class="section-header">
+    <h2 class="section-title">Centrale Bæredygtighedsemner</h2>
+    <p class="section-lead">Navigér blandt vores vigtigste fokuspunkter – fra livscyklusdata til strategisk indkøb og politiske rammevilkår.</p>
+  </header>
 
-      <!-- Card 1: Fra Jord til Bord -->
-      <a href="{{ url_for('food_emissions') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Bæredygtig fødevareproduktion" loading="lazy">
-          <span class="card-category-tag">Emissioner</span>
+  <div class="card-grid">
+    <a href="{{ url_for('food_emissions') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Bæredygtig fødevareproduktion" loading="lazy">
+        <span class="card-category-tag">Emissioner</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Fødevarerelaterede Emissioner</h3>
+        <p class="card-teaser">Dyk ned i CO₂e-tallene fra jord til tallerken og se, hvor de største aftryk opstår.</p>
+        <div class="card-metadata">
+          <span>Rapport</span>
+          <span>•</span>
+          <span>Data</span>
+          <span>•</span>
+          <span>15 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Fødevarerelaterede Emissioner</h3>
-          <p class="card-teaser">Dyk ned i data om CO2e, fra produktion til tallerken. En dybdegående dekonstruktion af fødevarernes livscyklus.</p>
-          <div class="card-metadata">
-            <span>Rapport</span>
-            <span>•</span>
-            <span>Data</span>
-            <span>•</span>
-            <span>15 min læsning</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
 
-      <!-- Card 2: Datadrevet Tilgang -->
-      <a href="{{ url_for('data_driven_approach') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200" alt="Data og analyse" loading="lazy">
-          <span class="card-category-tag">Strategi</span>
+    <a href="{{ url_for('data_driven_approach') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200" alt="Data og analyse" loading="lazy">
+        <span class="card-category-tag">Strategi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">En Datadrevet Tilgang</h3>
+        <p class="card-teaser">Bliv klog på, hvordan analyser, dashboards og menuplanlægning kan sænke klimaaftrykket markant.</p>
+        <div class="card-metadata">
+          <span>Guide</span>
+          <span>•</span>
+          <span>Strategi</span>
+          <span>•</span>
+          <span>12 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">En Datadrevet Tilgang</h3>
-          <p class="card-teaser">Forståelse af fødevarers klimaaftryk gennem data, strategisk indkøb og menuudvikling baseret på evidens.</p>
-          <div class="card-metadata">
-            <span>Guide</span>
-            <span>•</span>
-            <span>Strategi</span>
-            <span>•</span>
-            <span>12 min læsning</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
 
-      <!-- Card 3: Branchepræstation -->
-      <a href="{{ url_for('market_analysis') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200" alt="Erhverv og bæredygtighed" loading="lazy">
-          <span class="card-category-tag">Analyse</span>
+    <a href="{{ url_for('market_analysis') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200" alt="Erhverv og bæredygtighed" loading="lazy">
+        <span class="card-category-tag">Analyse</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Branchepræstation</h3>
+        <p class="card-teaser">Benchmark mod førende driftsaktører og find de initiativer, der faktisk virker i praksis.</p>
+        <div class="card-metadata">
+          <span>Case</span>
+          <span>•</span>
+          <span>Benchmarking</span>
+          <span>•</span>
+          <span>18 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Branchepræstation</h3>
-          <p class="card-teaser">Nøgletal og case studies fra førende virksomheder som ISS og Compass Group i Danmark med konkrete resultater.</p>
-          <div class="card-metadata">
-            <span>Case Study</span>
-            <span>•</span>
-            <span>Benchmarking</span>
-            <span>•</span>
-            <span>18 min læsning</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
 
-      <!-- Card 4: Politisk Landskab -->
-      <a href="{{ url_for('political_landscape') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200" alt="Politik og regulering" loading="lazy">
-          <span class="card-category-tag">Politik</span>
+    <a href="{{ url_for('political_landscape') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200" alt="Politik og regulering" loading="lazy">
+        <span class="card-category-tag">Politik</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Politisk Landskab</h3>
+        <p class="card-teaser">Hold styr på reguleringer, klimaaftaler og kostråd, så kantinen arbejder i tråd med nationale mål.</p>
+        <div class="card-metadata">
+          <span>Oversigt</span>
+          <span>•</span>
+          <span>Regulering</span>
+          <span>•</span>
+          <span>10 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Politisk Landskab</h3>
-          <p class="card-teaser">Forstå de regulatoriske rammer og politiske initiativer der former fremtidens fødevarepolitik og kostråd.</p>
-          <div class="card-metadata">
-            <span>Oversigt</span>
-            <span>•</span>
-            <span>Regulering</span>
-            <span>•</span>
-            <span>10 min læsning</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
+  </div>
+</section>
 
+<section class="page-section is-muted">
+  <header class="section-header">
+    <h2 class="section-title">Data-højdepunkter</h2>
+    <p class="section-lead">Tal og indikatorer der sætter scenen for Danmarks klimaambitioner.</p>
+  </header>
+  <div class="grid-layout grid-2-col">
+    <div class="kpi-dashboard">
+      <div class="grid-layout" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Dansk Klimaaftryk</div>
+          <div class="kpi-number">11t</div>
+          <p>CO₂e pr. indbygger.</p>
+        </div>
+        <div class="kpi-card" style="background-color: #fff9e6; border: 1px solid #f4d03f;">
+          <div class="kpi-label">Fødevarers andel</div>
+          <div class="kpi-number">≈30%</div>
+          <p>af den samlede belastning.</p>
+        </div>
+        <div class="kpi-card" style="background-color: #ffe8d6; border: 1px solid #ff9f43;">
+          <div class="kpi-label">Gns. kødforbrug</div>
+          <div class="kpi-number">950g</div>
+          <p>næsten 3× kostrådenes anbefaling.</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Markedsvækst</div>
+          <div class="kpi-number">2,4%</div>
+          <p>årlig vækst i grønne indkøb.</p>
+        </div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <h3 class="card-title">Teknologiske Muligheder</h3>
+      <p>CONCITOs klimadatabase er fundamentet for datadrevne beslutninger.</p>
+      <ul class="list-style-none">
+        <li><strong>540</strong> fødevarer i databasen</li>
+        <li><strong>180.000</strong> brugere (2021-2023)</li>
+        <li><strong>6 kommuner & 2 regioner</strong> bruger dataen aktivt</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section id="data-highlights" class="section bg-light">
-  <div class="container">
-    <h2 class="section-title">Data-Højdepunkter</h2>
-    <div class="wavy-underline"></div>
-    <div class="grid-layout grid-2-col">
-      <div class="kpi-dashboard">
-        <div class="grid-layout" style="grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div class="kpi-card">
-            <div class="kpi-label">Dansk Klimaaftryk</div>
-            <div class="kpi-number">11t</div>
-            <p>CO₂e pr. indbygger.</p>
-          </div>
-          <div class="kpi-card" style="background-color: #fff9e6; border: 1px solid #f4d03f;">
-            <div class="kpi-label">Fødevarers Andel</div>
-            <div class="kpi-number">~30%</div>
-            <p>af de nationale emissioner.</p>
-          </div>
-          <div class="kpi-card" style="background-color: #ffe8d6; border: 1px solid #ff9f43;">
-            <div class="kpi-label">Gns. Kødforbrug</div>
-            <div class="kpi-number">950g</div>
-            <p>Næsten 3× anbefalet.</p>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-label">Markedsvækst</div>
-            <div class="kpi-number">2,4%</div>
-            <p>Årlig vækst.</p>
-          </div>
-        </div>
-      </div>
-      <div class="kpi-card">
-        <h3 class="card-title">Teknologiske Muligheder</h3>
-        <p>CONCITO's Klimadatabase er en central ressource for datadrevne beslutninger.</p>
-        <ul class="list-style-none">
-          <li><strong>540</strong> Fødevarer i Databasen</li>
-          <li><strong>180.000</strong> Brugere (2021-2023)</li>
-          <li><strong>6 Kommuner & 2 Regioner</strong> Bruger Dataen Aktivt</li>
-        </ul>
-      </div>
+<section class="page-section">
+  <header class="section-header">
+    <h2 class="section-title">Data insights fra CONCITO's database</h2>
+  </header>
+
+  <div class="split-panel">
+    <div class="split-panel__text">
+      <h3>Kødforbrug 🥩</h3>
+      <ul class="list-style-none">
+        <li>Gennemsnitligt kødforbrug i Danmark: <strong>950g pr. uge</strong>.</li>
+        <li>Kød udgør den største del af fødevaresektorens klimaaftryk.</li>
+        <li>Halvering af oksekød kan reducere en ret med >90% CO₂e.</li>
+      </ul>
+      <a href="{{ url_for('political_landscape') }}" class="btn-secondary">Læs mere</a>
+    </div>
+    <div class="split-panel__visual">
+      <img src="https://images.unsplash.com/photo-1651478636948-83c82f44220f" alt="Kødforbrug i Danmark" loading="lazy">
+    </div>
+  </div>
+
+  <div class="split-panel" style="margin-top: 3rem;">
+    <div class="split-panel__text">
+      <h3>Klimapolitik & Kostråd 🌱</h3>
+      <ul class="list-style-none">
+        <li>Kostrådene fra 2021 indfører klimahensyn og plantebaserede mål.</li>
+        <li>2030-målet kræver 70% emissionsreduktion – fødevarer er nøglen.</li>
+        <li>Offentlige køkkener er udpeget som løftestang i flere aftaler.</li>
+      </ul>
+      <a href="{{ url_for('climate_data') }}" class="btn-secondary">Læs mere</a>
+    </div>
+    <div class="split-panel__visual">
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09" alt="Klimapolitik og fødevarer" loading="lazy">
     </div>
   </div>
 </section>
 
-<section id="data-insights" class="section padding-y-4 bg-light">
-  <div class="container">
-    <h2 class="section-title">Data Insights fra CONCITO's Database</h2>
-
-    <div class="section-block">
-      <div class="flex-1 padding-right-20">
-        <h3>Kødforbrug 🥩</h3>
-        <ul class="list-style-none">
-          <li>Gennemsnitligt kødforbrug i Danmark: <strong>950g pr. uge</strong> – næsten 3 gange det anbefalede.</li>
-          <li>Kødforbruget har en stor klimaaftryk, som påvirker Danmarks klimamål.</li>
-          <li>Der er et behov for at reducere kødforbruget for at opnå bæredygtige mål.</li>
-        </ul>
-        <a href="{{ url_for('political_landscape') }}" class="cta-button primary">Læs Mere</a>
-      </div>
-      <div class="flex-basis-40 position-relative">
-        <img src="https://images.unsplash.com/photo-1651478636948-83c82f44220f" alt="Meat Consumption" class="img-cover opacity-50" />
-        <div class="bg-overlay"></div>
-      </div>
-    </div>
-
-    <div class="section-block">
-      <div class="flex-1 padding-right-20">
-        <h3>Klimapolitik og Fødevarer 🌱</h3>
-        <ul class="list-style-none">
-          <li>I 2021 blev klimahensyn integreret i de officielle kostråd for Danmark.</li>
-          <li>En plantebaseret kost er nu anbefalet for at støtte den grønne omstilling.</li>
-          <li>Klimapolitikken former fremtidens fødevarepolitik og kostråd.</li>
-        </ul>
-        <a href="{{ url_for('climate_data') }}" class="cta-button primary">Læs Mere</a>
-      </div>
-      <div class="flex-basis-40 position-relative">
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09" alt="Climate Policy" class="img-cover opacity-50" />
-        <div class="bg-overlay"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="cta-block">
-      <h2>Klar til at Gøre en Forskel?</h2>
-      <p>Vores data og analyser giver et solidt fundament for at træffe bæredygtige beslutninger i din organisation. Udforsk vores ressourcer og se, hvordan I kan bidrage til den grønne omstilling.</p>
-      <div class="margin-top-30">
-        <a href="{{ url_for('calculator') }}" class="cta-button primary">Se Ressourcer & Guides</a>
-      </div>
-    </div>
+<section class="page-section callout-dark">
+  <h2>Klar til at gøre en forskel?</h2>
+  <p class="section-lead">Vores data og analyser giver et solidt fundament for at træffe bæredygtige beslutninger i din organisation.</p>
+  <div class="cta-row">
+    <a href="{{ url_for('calculator') }}" class="btn-primary">CO₂ Beregner</a>
+    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Klimadata</a>
   </div>
 </section>
 {% endblock %}

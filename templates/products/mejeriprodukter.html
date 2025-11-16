@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}Mejeriprodukter - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Mejeriprodukter</h1>
+    <p class="hero-subtitle">Mælk, ost, smør og yoghurt – klima og kvalitet</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Mejeriprodukter spænder fra lavemissions-mælk til højemissions-ost og smør. Dansk mejeriproduktion
+      har høje standarder for dyrevelfærd og kvalitet, og økologiske mejeriprodukter er blandt de mest
+      populære økologiske varer i Danmark.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk – stærkt varierende</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">~1.5</div>
+        <h3 class="metric-label">kg CO₂e per liter mælk</h3>
+        <p class="metric-text">
+          Mælk har relativt lavt klimaaftryk og er en god kilde til protein og calcium.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-gul);">~13</div>
+        <h3 class="metric-label">kg CO₂e per kg ost</h3>
+        <p class="metric-text">
+          Hård ost kræver meget mælk (10-12 liter per kg ost), hvilket giver højere klimaaftryk.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-rod);">~24</div>
+        <h3 class="metric-label">kg CO₂e per kg smør</h3>
+        <p class="metric-text">
+          Smør har højt klimaaftryk fordi det kræver stor mængde fløde og dermed mælk.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Mejeriprodukter kommer fra malkekøer, som producerer methan under fordøjelsen. Klimaaftrykket stiger
+      med hvor koncentreret produktet er – smør og hård ost kræver meget mælk og har derfor højere aftryk
+      end mælk og yoghurt.
+    </p>
+
+    <!-- Environmental Impacts -->
+    <h2>Miljøpåvirkning</h2>
+    <p>
+      Ud over klima har mejeriproduktion andre miljøkonsekvenser:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Methan fra køer:</strong> Drøvtyggere producerer methan – en kraftig drivhusgas.</li>
+      <li><strong>Foderimport:</strong> Soja til kofoder kan være forbundet med afskovning i Sydamerika, selvom dansk mejeri øger brugen af europæisk protein.</li>
+      <li><strong>Vandforbrug:</strong> Mejeriproduktion kræver betydeligt vandforbrug primært til kofoder.</li>
+      <li><strong>Gødningshåndtering:</strong> Kogødning kan føre til kvælstofudledning og ammoniakfordampning.</li>
+      <li><strong>Arealforbrug:</strong> Græsning og foderafgrøder kræver store arealer.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Vælg dansk mejeri:</strong> Dansk produktion har høje standarder for dyrevelfærd og sporbarhed.<br>
+      2. <strong>Prioriter økologi:</strong> Økologisk mælk og mejeriprodukter har bedre dyrevelfærd og lavere kemisk belastning.<br>
+      3. <strong>Reducer ost og smør:</strong> Brug mindre mængder ost som topping i stedet for hovedingrediens. Byt smør ud med planteolier hvor muligt.<br>
+      4. <strong>Kombiner med plantemælk:</strong> Tilbyd havredrik eller sojamælk som alternativer for at reducere samlet klimaaftryk.
+    </p>
+
+    <!-- Product Breakdown -->
+    <h2>Forskellige mejeriprodukter</h2>
+
+    <h3 style="margin-top: 1.5rem;">Mælk (~1.5 kg CO₂e/liter)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Relativt lavt for animalsk protein.</li>
+      <li><strong>Ernæring:</strong> God kilde til protein, calcium, D-vitamin, B12.</li>
+      <li><strong>Anbefaling:</strong> Vælg økologisk dansk mælk. Tilbyd både sødmælk og skummetmælk.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Yoghurt (~2 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Lidt højere end mælk, men stadig lavt.</li>
+      <li><strong>Ernæring:</strong> Probiotika, protein, calcium.</li>
+      <li><strong>Anbefaling:</strong> Vælg naturel yoghurt fremfor sukrede varianter for sundhed.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Ost (~13 kg CO₂e/kg hård ost)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Højt – kræver 10-12 liter mælk per kg ost.</li>
+      <li><strong>Typer:</strong> Hård ost (parmesan, cheddar) har højest aftryk. Blødere oste har lavere.</li>
+      <li><strong>Anbefaling:</strong> Reducer mængden – brug ost som topping eller smagsforstærker, ikke hovedingrediens. Vælg dansk økologisk hvor muligt.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Smør (~24 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Meget højt – blandt de højeste mejeriprodukter.</li>
+      <li><strong>Anbefaling:</strong> Brug sparsomt. Overvej plantebaserede alternativer (rapsolie, olivenolier) til madlavning. Reservér smør til bagværk og specielle retter.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Fløde og crème fraiche (~8-10 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Højt – koncentreret fedtprodukt.</li>
+      <li><strong>Anbefaling:</strong> Brug mindre mængder. Overvej at blande med mælk eller plantebaserede alternativer.</li>
+    </ul>
+
+    <!-- Organic vs Conventional -->
+    <h2>Økologisk vs. konventionel</h2>
+    <p>
+      Økologisk mejeri har <strong>lignende eller lidt højere klimaaftryk</strong> end konventionel (5-10% højere)
+      på grund af lavere produktivitet og længere levetid for køerne. Men økologi byder på væsentlige fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Dyrevelfærd:</strong> Mere plads, adgang til udendørs græsning, længere levetid for køerne.</li>
+      <li><strong>Foder:</strong> 100% økologisk foder uden GMO og syntetiske pesticider.</li>
+      <li><strong>Antibiotika:</strong> Kun behandling af syge dyr – ingen forebyggende brug.</li>
+      <li><strong>Biodiversitet:</strong> Økologiske græsarealer har typisk højere biodiversitet.</li>
+      <li><strong>Ingen syntetiske pesticider:</strong> Reducerer kemisk belastning af grundvand og jord.</li>
+    </ul>
+    <p>
+      For kantiner anbefales økologisk mejeri som en del af en samlet bæredygtighedsstrategi, især for
+      mælk og yoghurt som er billigere end økologisk ost og smør.
+    </p>
+
+    <!-- Certifications and Labeling -->
+    <h2>Certificeringer og mærker</h2>
+    <p>
+      Når du køber mejeriprodukter, kan følgende mærkninger hjælpe:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ø-mærket (Danmark):</strong> Økologisk produktion med bedre dyrevelfærd.</li>
+      <li><strong>Bedre Dyrevelfærd (Hjertemærket):</strong> Certificering med fokus på velfærd – findes i 1-3 stjerner.</li>
+      <li><strong>Dansk Mejeri:</strong> Mærkning der garanterer dansk oprindelse og høje kvalitetsstandarder.</li>
+      <li><strong>Arla Øko:</strong> Arlas økologiske mærke – udbredt i Danmark.</li>
+    </ul>
+
+    <!-- Quality and Sourcing -->
+    <h2>Kvalitet og oprindelse</h2>
+    <p>
+      Danmark har verdens højeste økologiandel for mælk – omkring 25-30% af mælken er økologisk. Dansk
+      mejeriproduktion har høje standarder for hygiejne, sporbarhed og dyrevelfærd.
+    </p>
+    <p>
+      Vælg dansk mejeri hvor muligt. Importeret mejeri kan have lavere velfærdsstandarder og mindre sporbarhed.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Vælg økologisk mælk og yoghurt som standard – det er relativt prisvenligt og populært blandt gæster</li>
+        <li>Reducer ostmængden i retter ved at bruge ost som topping eller smagsforstærker snarere end hovedingrediens</li>
+        <li>Brug kraftigere oste (parmesan, cheddar) så der skal mindre til for at få smag</li>
+        <li>Erstat smør med rapsolie eller olivenolier i madlavning hvor muligt</li>
+        <li>Tilbyd plantemælk (havredrik, sojamælk) som alternativer til komælk for at reducere samlet klimaaftryk</li>
+        <li>Kombiner økologisk og konventionel mejeri strategisk baseret på budget – prioriter økologi for mælk og yoghurt</li>
+        <li>Kommunicér til gæsterne om økologisk mejeri og dansk oprindelse – skab stolthed omkring kvalitet</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Økologisk mejeri koster typisk 20-40% mere end konventionel. Økologisk mælk er relativt prisvenlig,
+      mens økologisk ost og smør kan være betydeligt dyrere.
+    </p>
+    <p>
+      Ved at reducere mængden af ost og smør – og kombinere økologiske og konventionelle produkter strategisk –
+      kan kantiner balancere økonomi og bæredygtighed.
+    </p>
+
+    <!-- Health and Nutrition -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Mejeriprodukter er vigtige kilder til:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Protein:</strong> Mælk: ~3.5 g per 100 ml, ost: ~25 g per 100 g.</li>
+      <li><strong>Calcium:</strong> Vigtig for knogler og tænder – især mælk, yoghurt og ost.</li>
+      <li><strong>D-vitamin:</strong> Tilsat i mælk i Danmark.</li>
+      <li><strong>B12:</strong> Vigtig for blodproduktion – findes i alle mejeriprodukter.</li>
+      <li><strong>Jod:</strong> Vigtig for skjoldbruskkirtlen.</li>
+    </ul>
+    <p>
+      Sundhedsstyrelsen anbefaler dagligt indtag af mejeriprodukter som en del af en balanceret kost.
+    </p>
+
+    <!-- Plant Alternatives -->
+    <h2>Plantebaserede alternativer</h2>
+    <p>
+      Plantemælk (havredrik, sojamælk, mandelmælk) har lavere klimaaftryk end komælk:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Havredrik:</strong> Lavest klimaaftryk (~0.9 kg CO₂e/liter), dansk produktion mulig.</li>
+      <li><strong>Sojamælk:</strong> Lavt klimaaftryk (~1.0 kg CO₂e/liter), højt proteinindhold.</li>
+      <li><strong>Mandelmælk:</strong> Lavt klimaaftryk, men højt vandforbrug i produktionen.</li>
+    </ul>
+    <p>
+      For kantiner kan en kombination af komælk og plantemælk reducere det samlede klimaaftryk og imødekomme
+      forskellige præferencer blandt gæster.
+    </p>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre proteiner</h2>
+    <p class="section-lead">Kombiner mejeri med æg, fisk og plantebaserede proteiner for en varieret menu.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_eggs') }}" class="btn-primary">Æg →</a>
+      <a href="{{ url_for('product_fisk') }}" class="btn-primary">Fisk & Skaldyr →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

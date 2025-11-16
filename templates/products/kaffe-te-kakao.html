@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}Kaffe, Te & Kakao - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Kaffe, Te & Kakao</h1>
+    <p class="hero-subtitle">Fairtrade og økologi – fokus på afskovning og arbejdsforhold</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Kaffe, te og kakao er globale råvarer med betydelige etiske og miljømæssige udfordringer. Fairtrade
+      og økologisk certificering er afgørende for at sikre bedre arbejdsforhold og reducere afskovning.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk og miljøpåvirkning</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-gul);">~5-10</div>
+        <h3 class="metric-label">kg CO₂e per kg kaffe (ristede bønner)</h3>
+        <p class="metric-text">
+          Kaffe har moderat klimaaftryk, men høj påvirkning gennem afskovning og vandforbrug.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Afskovning</h3>
+        <p class="metric-text">
+          Kaffe-, te- og kakaoproduktion er ofte forbundet med rydning af regnskov, især i Latinamerika, Afrika og Asien.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Arbejdsforhold</h3>
+        <p class="metric-text">
+          Mange kaffebønder og kakaoarbejdere lever under fattigdomsgrænsen. Fairtrade sikrer bedre løn og vilkår.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Kaffe, te og kakao produceres primært i udviklingslande med høj risiko for afskovning, udnyttelse
+      af arbejdskraft og brug af pesticider. <strong>Certificeringer som Fairtrade, Rainforest Alliance
+      og økologi er afgørende</strong> for at sikre bæredygtig og etisk produktion.
+    </p>
+
+    <!-- Coffee -->
+    <h2>Kaffe</h2>
+
+    <h3 style="margin-top: 1.5rem;">Miljøpåvirkning</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Afskovning:</strong> Kaffeplantager erstatter ofte regnskov, især i Brasilien, Etiopien og Sydøstasien.</li>
+      <li><strong>Vandforbrug:</strong> Kaffe kræver meget vand – omkring 140 liter per kop kaffe.</li>
+      <li><strong>Pesticider:</strong> Konventionel kaffe behandles ofte med syntetiske pesticider som skader biodiversitet.</li>
+      <li><strong>Klimaaftryk:</strong> 5-10 kg CO₂e per kg ristede bønner – primært fra fældning, forarbejdning og transport.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Sociale forhold</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Lav løn:</strong> Mange kaffebønder lever under fattigdomsgrænsen.</li>
+      <li><strong>Børnearbejde:</strong> Udbredt i nogle kaffeproducerende lande.</li>
+      <li><strong>Usikre arbejdsvilkår:</strong> Manglende sikkerhed og sundhedsforhold.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Anbefalinger</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fairtrade:</strong> Garanterer mindsteløn, forbud mod børnearbejde og fællesskabsinvesteringer.</li>
+      <li><strong>Økologisk:</strong> Ingen syntetiske pesticider, bedre biodiversitet.</li>
+      <li><strong>Rainforest Alliance:</strong> Fokus på skovbevaring og bæredygtighed.</li>
+      <li><strong>Shade-grown kaffe:</strong> Dyrket i skyggen af træer – beskytter biodiversitet og reducerer afskovning.</li>
+    </ul>
+
+    <!-- Tea -->
+    <h2>Te</h2>
+
+    <h3 style="margin-top: 1.5rem;">Miljøpåvirkning</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Afskovning:</strong> Teplantager kan erstatte skov, især i Indien, Kina og Kenya.</li>
+      <li><strong>Pesticider:</strong> Konventionel te behandles ofte med pesticider.</li>
+      <li><strong>Vandforbrug:</strong> Lavere end kaffe – omkring 30 liter per kop te.</li>
+      <li><strong>Klimaaftryk:</strong> 3-5 kg CO₂e per kg tørret te – lavere end kaffe.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Sociale forhold</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Lav løn:</strong> Især kvindelige teplantagearbejdere modtager ofte meget lav løn.</li>
+      <li><strong>Farlige arbejdsforhold:</strong> Eksponering for pesticider uden beskyttelse.</li>
+      <li><strong>Manglende rettigheder:</strong> Begrænsede fagforeningsrettigheder i nogle lande.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Anbefalinger</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fairtrade:</strong> Sikrer bedre løn og arbejdsforhold.</li>
+      <li><strong>Økologisk:</strong> Ingen syntetiske pesticider, bedre for arbejdere og miljø.</li>
+      <li><strong>Rainforest Alliance:</strong> Fokus på bæredygtig produktion.</li>
+    </ul>
+
+    <!-- Cocoa -->
+    <h2>Kakao</h2>
+
+    <h3 style="margin-top: 1.5rem;">Miljøpåvirkning</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Afskovning:</strong> Kakao er en af de største årsager til afskovning i Vestafrika (Elfenbenskysten, Ghana).</li>
+      <li><strong>Biodiversitet:</strong> Erstatning af regnskov med kakaoplantager reducerer biodiversitet.</li>
+      <li><strong>Pesticider:</strong> Brug af syntetiske pesticider skader miljø og arbejdere.</li>
+      <li><strong>Klimaaftryk:</strong> 3-8 kg CO₂e per kg kakaobønner – primært fra afskovning.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Sociale forhold</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Børnearbejde:</strong> Udbredt i Vestafrika – estimeret 1.5 millioner børn arbejder på kakaoplantager.</li>
+      <li><strong>Fattigdom:</strong> Kakaobønder lever ofte under fattigdomsgrænsen.</li>
+      <li><strong>Manglende uddannelse:</strong> Børn går ikke i skole på grund af arbejde.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Anbefalinger</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fairtrade:</strong> Garanterer mindsteløn, forbud mod børnearbejde, investeringer i skoler.</li>
+      <li><strong>Økologisk:</strong> Ingen syntetiske pesticider, bedre for arbejdere.</li>
+      <li><strong>Rainforest Alliance:</strong> Fokus på skovbevaring og sociale forhold.</li>
+      <li><strong>UTZ Certified:</strong> Bæredygtig kakao med fokus på bedre landbrugsmetoder.</li>
+    </ul>
+
+    <!-- Certifications - Critical -->
+    <h2>Certificeringer – kritisk vigtige</h2>
+    <p>
+      For kaffe, te og kakao er <strong>certificeringer absolut nødvendige</strong> for at sikre bæredygtighed og etik:
+    </p>
+
+    <h3 style="margin-top: 1.5rem;">Fairtrade 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Mindsteløn:</strong> Garanterer minimum betaling til bønder.</li>
+      <li><strong>Fairtrade-præmie:</strong> Ekstra penge til fællesskabsinvesteringer (skoler, sundhed).</li>
+      <li><strong>Forbud mod børnearbejde:</strong> Strenge regler mod udnyttelse.</li>
+      <li><strong>Demokrati:</strong> Bønder organiserer sig i kooperativer med demokratisk beslutning.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Økologisk (Ø-mærket / EU Organic) 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ingen syntetiske pesticider:</strong> Beskytter arbejdere og biodiversitet.</li>
+      <li><strong>Skovvenlig:</strong> Økologisk produktion prioriterer ofte agroforestry (dyrkning under træer).</li>
+      <li><strong>Jordsundhed:</strong> Naturlig gødning og kompost.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Rainforest Alliance 🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Skovbevaring:</strong> Fokus på at stoppe afskovning.</li>
+      <li><strong>Biodiversitet:</strong> Beskyttelse af truede arter og økosystemer.</li>
+      <li><strong>Sociale standarder:</strong> Bedre arbejdsforhold og løn.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">UTZ Certified 🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Bedre landbrugsmetoder:</strong> Fokus på effektivitet og kvalitet.</li>
+      <li><strong>Sporbarhed:</strong> God sporbarhed fra mark til kop.</li>
+      <li><strong>Sociale forhold:</strong> Forbedring af arbejdsforhold.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Kræv Fairtrade og økologi:</strong> Vælg ALTID Fairtrade for kaffe og kakao. Kombiner med økologi hvis muligt.<br>
+      2. <strong>Undgå ikke-certificeret:</strong> Ikke-certificeret kaffe, te og kakao har høj risiko for afskovning og børnearbejde.<br>
+      3. <strong>Kommunicér til gæsterne:</strong> Fortæl om Fairtrade og økologi – skab stolthed omkring etiske valg.<br>
+      4. <strong>Prioriter shade-grown kaffe:</strong> Beskytter biodiversitet og reducerer afskovning.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Vælg Fairtrade og økologisk kaffe som standard – det er en lille ekstra omkostning per kop</li>
+        <li>Kombiner Fairtrade med økologi for maksimal bæredygtighed og etik</li>
+        <li>Undgå kapsler og pods – de skaber enorm affaldsbelastning. Brug hele bønner eller malet kaffe</li>
+        <li>Kommunicér til gæsterne om Fairtrade – vis logoet og forklar betydningen</li>
+        <li>Vælg shade-grown kaffe hvis muligt – beskytter biodiversitet</li>
+        <li>Reducer kaffeaffaldet – optimer maskiner for at minimere spild</li>
+        <li>Tilbyd både kaffe og te i Fairtrade-udgave</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Fairtrade og økologisk kaffe koster typisk 20-40% mere end ikke-certificeret. Men da råvareomkostningen
+      er en lille del af en kop kaffe (primært maskiner, arbejdskraft og energi), er den ekstra omkostning
+      per kop kaffe kun omkring 0.5-1 kr.
+    </p>
+    <p>
+      For kantiner er dette en meget lille investering for stor positiv påvirkning på arbejderes liv og miljø.
+    </p>
+
+    <!-- Health Considerations -->
+    <h2>Sundhed</h2>
+    <p>
+      Kaffe, te og kakao har sundhedsmæssige fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Antioxidanter:</strong> Kaffe og te indeholder antioxidanter der beskytter mod sygdomme.</li>
+      <li><strong>Koffein:</strong> Forbedrer opmærksomhed og præstation (i moderate mængder).</li>
+      <li><strong>Polyfhenoler:</strong> Kakao indeholder flavonoider der er godt for hjertet.</li>
+      <li><strong>Moderat indtag:</strong> 3-4 kopper kaffe/te dagligt er sikkert for de fleste mennesker.</li>
+    </ul>
+
+    <!-- Chocolate Specifically -->
+    <h2>Chokolade – særlige hensyn</h2>
+    <p>
+      Chokolade fremstilles af kakao, men indeholder også sukker og ofte mælk. Vælg chokolade med:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fairtrade-certificering:</strong> Sikrer bedre forhold for kakaobønder.</li>
+      <li><strong>Højt kakaoindhold:</strong> 70%+ kakao har mindre sukker og højere næringsværdi.</li>
+      <li><strong>Økologisk:</strong> Ingen syntetiske pesticider i kakao eller sukker.</li>
+      <li><strong>Undgå palmeolie:</strong> Vælg chokolade uden palmeolie (se olier & fedt side).</li>
+    </ul>
+
+    <!-- Danish Context -->
+    <h2>Dansk kontekst</h2>
+    <p>
+      Danmark har høj forbrugsrate af kaffe – gennemsnitligt 4-5 kopper dagligt per voksen. Fairtrade
+      har vundet stor udbredelse i Danmark, og mange danskere er villige til at betale lidt mere for
+      etisk produceret kaffe.
+    </p>
+    <p>
+      Kantiner kan spille en stor rolle i at normalisere Fairtrade og økologi ved at gøre det til standard.
+    </p>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre råvarer</h2>
+    <p class="section-lead">Kombiner certificeret kaffe, te og kakao med bæredygtige olier og andre råvarer.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_oils') }}" class="btn-primary">Olier & Fedt →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

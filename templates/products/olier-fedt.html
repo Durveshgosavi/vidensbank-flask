@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Olier & Fedt - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Olier & Fedt</h1>
+    <p class="hero-subtitle">Palmeolie-problematikken og bæredygtige alternativer</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Olier og fedt er essentielle i madlavning, men palmeolie er en af de største årsager til afskovning globalt.
+      RSPO-certificering er kritisk vigtig, og alternativer som rapsolie og olivenolier anbefales.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk og miljøpåvirkning</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">~2-3</div>
+        <h3 class="metric-label">kg CO₂e per kg olie</h3>
+        <p class="metric-text">
+          De fleste planteolier har lavt til moderat klimaaftryk – betydeligt lavere end smør (~24 kg CO₂e/kg).
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Palmeolie = Afskovning</h3>
+        <p class="metric-text">
+          Palmeolie er den største årsag til regnskovsrydning i Sydøstasien – trussel mod orangutanger, tigre og tusindvis af andre arter.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">RSPO Certificering</h3>
+        <p class="metric-text">
+          RSPO (Roundtable on Sustainable Palm Oil) sikrer at palmeolie produceres uden afskovning – MEN kun hvis certificeret.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Planteolier har generelt lavt klimaaftryk, men <strong>palmeolie har enorm miljøpåvirkning gennem afskovning,
+      tab af biodiversitet og trusler mod truede arter</strong>. RSPO-certificering er absolut nødvendig hvis palmeolie
+      bruges, men bedre alternativer findes.
+    </p>
+
+    <!-- Palm Oil - The Problem -->
+    <h2>Palmeolie – problemet</h2>
+
+    <h3 style="margin-top: 1.5rem;">Hvorfor er palmeolie så udbredt?</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Høj udbytte:</strong> Palmeolie giver 4-10 gange mere olie per hektar end andre olieafgrøder (soja, rapsolie).</li>
+      <li><strong>Billig:</strong> Meget lav produktionspris gør den attraktiv for fødevareindustrien.</li>
+      <li><strong>Alsidig:</strong> Kan bruges til madlavning, bagværk, margarine, kosmetik, biofuel.</li>
+      <li><strong>Findes i 50% af alle forarbejdede fødevarer</strong> – fra chips til chokolade til brød.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Miljøpåvirkning af palmeolie</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Afskovning:</strong> Palmeolieplantager erstatter regnskov i Indonesien, Malaysia og stigende i Afrika og Latinamerika.</li>
+      <li><strong>Biodiversitetstab:</strong> Trussel mod orangutanger, sumatratigre, asiatiske elefanter, næsehorn og tusindvis af plantearter.</li>
+      <li><strong>Tørvebrandsemissioner:</strong> Rydning af tørveskove frigør enorme mængder CO₂ lagret i jorden.</li>
+      <li><strong>Vandforurening:</strong> Gødning og pesticider fra plantager forurener floder og grundvand.</li>
+      <li><strong>Sociale konflikter:</strong> Landkonflikter med oprindelige folk, dårlige arbejdsforhold.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Hvad kan gøres?</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>1. Undgå palmeolie helt</strong> – vælg produkter uden palmeolie hvor muligt.</li>
+      <li><strong>2. Kræv RSPO-certificering</strong> – hvis palmeolie er nødvendig, SKAL det være RSPO-certificeret.</li>
+      <li><strong>3. Brug alternativer</strong> – rapsolie, solsikkeolie, olivenolier til madlavning.</li>
+    </ul>
+
+    <!-- RSPO Certification -->
+    <h2>RSPO-certificering – kritisk vigtig</h2>
+    <p>
+      RSPO (Roundtable on Sustainable Palm Oil) er en certificering der sikrer:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ingen afskovning:</strong> Palmeolie må ikke produceres på nyligt ryddet skovareal.</li>
+      <li><strong>Beskyttelse af biodiversitet:</strong> Trusede arter og naturområder skal beskyttes.</li>
+      <li><strong>Respekt for oprindelige folk:</strong> Landrettigheder og konsensus kræves.</li>
+      <li><strong>Bedre arbejdsforhold:</strong> Sikkerhed, løn og forbud mod børnearbejde.</li>
+      <li><strong>Mindre pesticider:</strong> Reduceret brug af farlige kemikalier.</li>
+    </ul>
+
+    <p>
+      <strong>MEN:</strong> RSPO er ikke perfekt – nogle kritikere mener standarderne er for lave. Derfor anbefales
+      det stadig at <em>undgå palmeolie helt</em> hvor muligt.
+    </p>
+
+    <!-- Alternative Oils -->
+    <h2>Alternative olier – bedre valg</h2>
+
+    <h3 style="margin-top: 1.5rem;">Rapsolie (Canola Oil) 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> ~2.5 kg CO₂e/kg – lavt.</li>
+      <li><strong>Sundhed:</strong> Lavt mættet fedt, højt indhold af omega-3 fedtsyrer.</li>
+      <li><strong>Oprindelse:</strong> Kan dyrkes i Danmark og Europa – kort transport.</li>
+      <li><strong>Anvendelse:</strong> Fremragende til madlavning, stegning, bagværk.</li>
+      <li><strong>Anbefaling:</strong> Perfekt alternativ til palmeolie. Vælg dansk eller europæisk rapsolie.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Solsikkeolie 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> ~2.5 kg CO₂e/kg – lavt.</li>
+      <li><strong>Sundhed:</strong> Lavt mættet fedt, højt indhold af E-vitamin.</li>
+      <li><strong>Oprindelse:</strong> Dyrkes i Europa (Ukraine, Rusland, Spanien).</li>
+      <li><strong>Anvendelse:</strong> God til stegning og madlavning.</li>
+      <li><strong>Anbefaling:</strong> Godt alternativ til palmeolie.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Olivenolier 🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> ~3-4 kg CO₂e/kg – moderat.</li>
+      <li><strong>Sundhed:</strong> Meget sundt – højt indhold af omega-9 fedtsyrer og antioxidanter.</li>
+      <li><strong>Oprindelse:</strong> Primært Sydeuropa (Spanien, Italien, Grækenland).</li>
+      <li><strong>Anvendelse:</strong> Bedst til dressinger, marinader, lavtemperatur stegning.</li>
+      <li><strong>Anbefaling:</strong> Fantastisk til dressinger, men dyrere end rapsolie.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Kokosolie ⚠️</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> ~3-4 kg CO₂e/kg – moderat.</li>
+      <li><strong>Miljøpåvirkning:</strong> Kan være forbundet med afskovning (især i Sydøstasien). Vælg certificeret.</li>
+      <li><strong>Sundhed:</strong> Højt mættet fedt – ikke sundere end smør.</li>
+      <li><strong>Anbefaling:</strong> Brug sparsomt. Vælg økologisk og certificeret hvis brugt.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Smør ⛔</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> ~24 kg CO₂e/kg – meget højt!</li>
+      <li><strong>Sundhed:</strong> Højt mættet fedt.</li>
+      <li><strong>Anbefaling:</strong> Brug meget sparsomt. Erstat med rapsolie eller olivenolier hvor muligt.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Undgå palmeolie:</strong> Vælg produkter uden palmeolie hvor muligt – check ingredienslister på forarbejdede varer.<br>
+      2. <strong>Kræv RSPO:</strong> Hvis palmeolie er i produkter (margarine, bagværk), kræv RSPO-certificering fra leverandøren.<br>
+      3. <strong>Brug rapsolie:</strong> Vælg dansk eller europæisk rapsolie til madlavning – lavt klimaaftryk og sundt.<br>
+      4. <strong>Reducer smør:</strong> Erstat smør med rapsolie eller olivenolier i madlavning hvor muligt.
+    </p>
+
+    <!-- Hidden Palm Oil -->
+    <h2>Skjult palmeolie – check produkter</h2>
+    <p>
+      Palmeolie findes i utroligt mange forarbejdede produkter, ofte under forskellige navne:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Palmeolie</strong> (Palm Oil)</li>
+      <li><strong>Palmekerneolier</strong> (Palm Kernel Oil)</li>
+      <li><strong>Vegetabilsk olie</strong> (kan være palmeolie)</li>
+      <li><strong>Palmate</strong>, <strong>Palmitat</strong>, <strong>Glyceryl</strong> (derivater af palmeolie)</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Produkter der ofte indeholder palmeolie:</h3>
+    <ul style="line-height: 1.8;">
+      <li>Margarine og smørbare produkter</li>
+      <li>Bagværk (kager, småkager, croissanter)</li>
+      <li>Chokolade og nougat</li>
+      <li>Chips og snacks</li>
+      <li>Instant nudler og supper</li>
+      <li>Færdigretter</li>
+      <li>Is</li>
+      <li>Peanutbutter</li>
+    </ul>
+
+    <p>
+      <strong>For kantiner:</strong> Spørg leverandøren om palmeolie i alle forarbejdede produkter. Kræv RSPO-certificering
+      eller vælg produkter helt uden palmeolie.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Vælg dansk rapsolie som standard til madlavning og stegning</li>
+        <li>Brug olivenolier til dressinger, marinader og lavtemperatur stegning</li>
+        <li>Erstat smør med rapsolie hvor muligt i madlavning (ikke bagværk)</li>
+        <li>Check ingredienslister på alle forarbejdede produkter for palmeolie</li>
+        <li>Spørg leverandøren om RSPO-certificering hvis palmeolie findes i produkter</li>
+        <li>Vælg margarine uden palmeolie eller med RSPO-certificeret palmeolie</li>
+        <li>Kommunicér til gæsterne om palmeolieproblematikken – skab forståelse</li>
+      </ul>
+    </div>
+
+    <!-- Health Considerations -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Forskellige olier har forskellige sundhedsprofiler:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Rapsolie:</strong> Lavt mættet fedt (7%), højt omega-3. Meget sundt.</li>
+      <li><strong>Olivenolier:</strong> Højt omega-9, antioxidanter. Meget sundt.</li>
+      <li><strong>Solsikkeolie:</strong> Lavt mættet fedt, højt E-vitamin. Sundt.</li>
+      <li><strong>Kokosolie:</strong> Meget højt mættet fedt (90%) – ikke sundere end smør.</li>
+      <li><strong>Palmeolie:</strong> Højt mættet fedt (50%) – ikke særligt sundt.</li>
+      <li><strong>Smør:</strong> Højt mættet fedt (63%) – brug sparsomt.</li>
+    </ul>
+
+    <p>
+      <strong>Sundhedsanbefalinger:</strong> Vælg olier med lavt mættet fedt og højt indhold af omega-3 og omega-9.
+      Rapsolie og olivenolier er de sundeste valg.
+    </p>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Rapsolie og solsikkeolie er prisvenlige alternativer til palmeolie. Olivenolier er dyrere, men kan bruges
+      strategisk til dressinger og lavtemperatur madlavning.
+    </p>
+    <p>
+      Økologiske olier koster typisk 20-40% mere end konventionelle, men giver bedre miljøstandarder.
+    </p>
+
+    <!-- Danish Context -->
+    <h2>Dansk kontekst</h2>
+    <p>
+      Danmark producerer rapsolie af høj kvalitet. Ved at vælge dansk rapsolie støtter kantiner lokale landmænd
+      og reducerer transportemissioner.
+    </p>
+    <p>
+      Danmark har høj bevidsthed om palmeolie-problematikken, og mange forbrugere er villige til at betale lidt
+      mere for produkter uden palmeolie.
+    </p>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre råvarer</h2>
+    <p class="section-lead">Kombiner bæredygtige olier med certificeret kaffe, økologiske grøntsager og lokale produkter.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_beverages') }}" class="btn-primary">Kaffe, Te & Kakao →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -138,6 +138,275 @@ def topic_emissions_tips():
     return render_template('topics/emissions/tips.html')
 
 # ============================================================================
+# ERNÆRING TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/ernaering')
+def topic_ernaering_landing():
+    """Ernæring topic landing page"""
+    return render_template('topics/ernaering/landing.html')
+
+@app.route('/vidensbank/ernaering/hvad-er-det')
+def topic_ernaering_what():
+    """What is Ernæring?"""
+    return render_template('topics/ernaering/what.html')
+
+@app.route('/vidensbank/ernaering/hvorfor-vigtigt')
+def topic_ernaering_why():
+    """Why Ernæring matters"""
+    return render_template('topics/ernaering/why.html')
+
+@app.route('/vidensbank/ernaering/maal-og-ambition')
+def topic_ernaering_goal():
+    """Goals and ambitions for Ernæring"""
+    return render_template('topics/ernaering/goal.html')
+
+@app.route('/vidensbank/ernaering/mit-aftryk')
+def topic_ernaering_impact():
+    """Impact for Ernæring"""
+    return render_template('topics/ernaering/impact.html')
+
+@app.route('/vidensbank/ernaering/tips-og-tricks')
+def topic_ernaering_tips():
+    """Tips and tricks for Ernæring"""
+    return render_template('topics/ernaering/tips.html')
+
+# ============================================================================
+# ØKOLOGI TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/okologi')
+def topic_okologi_landing():
+    """Økologi topic landing page"""
+    return render_template('topics/okologi/landing.html')
+
+@app.route('/vidensbank/okologi/hvad-er-det')
+def topic_okologi_what():
+    """What is Økologi?"""
+    return render_template('topics/okologi/what.html')
+
+@app.route('/vidensbank/okologi/hvorfor-vigtigt')
+def topic_okologi_why():
+    """Why Økologi matters"""
+    return render_template('topics/okologi/why.html')
+
+@app.route('/vidensbank/okologi/maal-og-ambition')
+def topic_okologi_goal():
+    """Goals and ambitions for Økologi"""
+    return render_template('topics/okologi/goal.html')
+
+@app.route('/vidensbank/okologi/mit-aftryk')
+def topic_okologi_impact():
+    """Impact for Økologi"""
+    return render_template('topics/okologi/impact.html')
+
+@app.route('/vidensbank/okologi/tips-og-tricks')
+def topic_okologi_tips():
+    """Tips and tricks for Økologi"""
+    return render_template('topics/okologi/tips.html')
+
+# ============================================================================
+# VANDFORBRUG TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/vandforbrug')
+def topic_vandforbrug_landing():
+    """Vandforbrug topic landing page"""
+    return render_template('topics/vandforbrug/landing.html')
+
+@app.route('/vidensbank/vandforbrug/hvad-er-det')
+def topic_vandforbrug_what():
+    """What is Vandforbrug?"""
+    return render_template('topics/vandforbrug/what.html')
+
+@app.route('/vidensbank/vandforbrug/hvorfor-vigtigt')
+def topic_vandforbrug_why():
+    """Why Vandforbrug matters"""
+    return render_template('topics/vandforbrug/why.html')
+
+@app.route('/vidensbank/vandforbrug/maal-og-ambition')
+def topic_vandforbrug_goal():
+    """Goals and ambitions for Vandforbrug"""
+    return render_template('topics/vandforbrug/goal.html')
+
+@app.route('/vidensbank/vandforbrug/mit-aftryk')
+def topic_vandforbrug_impact():
+    """Impact for Vandforbrug"""
+    return render_template('topics/vandforbrug/impact.html')
+
+@app.route('/vidensbank/vandforbrug/tips-og-tricks')
+def topic_vandforbrug_tips():
+    """Tips and tricks for Vandforbrug"""
+    return render_template('topics/vandforbrug/tips.html')
+
+# ============================================================================
+# MADSPILD TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/madspild')
+def topic_madspild_landing():
+    """Madspild topic landing page"""
+    return render_template('topics/madspild/landing.html')
+
+@app.route('/vidensbank/madspild/hvad-er-det')
+def topic_madspild_what():
+    """What is Madspild?"""
+    return render_template('topics/madspild/what.html')
+
+@app.route('/vidensbank/madspild/hvorfor-vigtigt')
+def topic_madspild_why():
+    """Why Madspild matters"""
+    return render_template('topics/madspild/why.html')
+
+@app.route('/vidensbank/madspild/maal-og-ambition')
+def topic_madspild_goal():
+    """Goals and ambitions for Madspild"""
+    return render_template('topics/madspild/goal.html')
+
+@app.route('/vidensbank/madspild/mit-aftryk')
+def topic_madspild_impact():
+    """Impact for Madspild"""
+    return render_template('topics/madspild/impact.html')
+
+@app.route('/vidensbank/madspild/tips-og-tricks')
+def topic_madspild_tips():
+    """Tips and tricks for Madspild"""
+    return render_template('topics/madspild/tips.html')
+
+# ============================================================================
+# TOOLS & CASES ROUTES (All Topics)
+# ============================================================================
+
+# Emissioner Tools & Cases
+@app.route('/vidensbank/emissioner/tools')
+def topic_emissions_tools():
+    """Tools for Emissions topic"""
+    return render_template('topics/emissions/tools.html')
+
+@app.route('/vidensbank/emissioner/cases')
+def topic_emissions_cases():
+    """Cases for Emissions topic"""
+    return render_template('topics/emissions/cases.html')
+
+# Ernæring Tools & Cases
+@app.route('/vidensbank/ernaering/tools')
+def topic_ernaering_tools():
+    """Tools for Ernæring topic"""
+    return render_template('topics/ernaering/tools.html')
+
+@app.route('/vidensbank/ernaering/cases')
+def topic_ernaering_cases():
+    """Cases for Ernæring topic"""
+    return render_template('topics/ernaering/cases.html')
+
+# Økologi Tools & Cases
+@app.route('/vidensbank/okologi/tools')
+def topic_okologi_tools():
+    """Tools for Økologi topic"""
+    return render_template('topics/okologi/tools.html')
+
+@app.route('/vidensbank/okologi/cases')
+def topic_okologi_cases():
+    """Cases for Økologi topic"""
+    return render_template('topics/okologi/cases.html')
+
+# Vandforbrug Tools & Cases
+@app.route('/vidensbank/vandforbrug/tools')
+def topic_vandforbrug_tools():
+    """Tools for Vandforbrug topic"""
+    return render_template('topics/vandforbrug/tools.html')
+
+@app.route('/vidensbank/vandforbrug/cases')
+def topic_vandforbrug_cases():
+    """Cases for Vandforbrug topic"""
+    return render_template('topics/vandforbrug/cases.html')
+
+# Madspild Tools & Cases
+@app.route('/vidensbank/madspild/tools')
+def topic_madspild_tools():
+    """Tools for Madspild topic"""
+    return render_template('topics/madspild/tools.html')
+
+@app.route('/vidensbank/madspild/cases')
+def topic_madspild_cases():
+    """Cases for Madspild topic"""
+    return render_template('topics/madspild/cases.html')
+
+# ============================================================================
+# RÅVARER (PRODUCTS) SECTION ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/raavarer')
+def products_overview():
+    """Products database overview"""
+    return render_template('products/overview.html')
+
+# Meat Products
+@app.route('/vidensbank/raavarer/oksekoed')
+def product_oksekoed():
+    """Beef product page"""
+    return render_template('products/oksekoed.html')
+
+@app.route('/vidensbank/raavarer/svinekoed')
+def product_svinekoed():
+    """Pork product page"""
+    return render_template('products/svinekoed.html')
+
+@app.route('/vidensbank/raavarer/fjerkreae')
+def product_fjerkreae():
+    """Poultry product page"""
+    return render_template('products/fjerkreae.html')
+
+@app.route('/vidensbank/raavarer/lam')
+def product_lam():
+    """Lamb product page"""
+    return render_template('products/lam.html')
+
+# Fish and Seafood
+@app.route('/vidensbank/raavarer/fisk-skalddyr')
+def product_fisk():
+    """Fish and seafood overview"""
+    return render_template('products/fisk-skalddyr.html')
+
+# Dairy and Eggs
+@app.route('/vidensbank/raavarer/mejeriprodukter')
+def product_dairy():
+    """Dairy products page"""
+    return render_template('products/mejeriprodukter.html')
+
+@app.route('/vidensbank/raavarer/aeg')
+def product_eggs():
+    """Eggs product page"""
+    return render_template('products/aeg.html')
+
+# Plant-Based
+@app.route('/vidensbank/raavarer/korn-pasta')
+def product_grains():
+    """Grains and pasta page"""
+    return render_template('products/korn-pasta.html')
+
+@app.route('/vidensbank/raavarer/groentstager')
+def product_vegetables():
+    """Vegetables page"""
+    return render_template('products/groentstager.html')
+
+@app.route('/vidensbank/raavarer/frugt-baer')
+def product_fruits():
+    """Fruits and berries page"""
+    return render_template('products/frugt-baer.html')
+
+# Commodities
+@app.route('/vidensbank/raavarer/kaffe-te-kakao')
+def product_beverages():
+    """Coffee, tea, cocoa page"""
+    return render_template('products/kaffe-te-kakao.html')
+
+@app.route('/vidensbank/raavarer/olier-fedt')
+def product_oils():
+    """Oils and fats page"""
+    return render_template('products/olier-fedt.html')
+
+# ============================================================================
 # ØKOLOGI ROUTES
 # ============================================================================
 

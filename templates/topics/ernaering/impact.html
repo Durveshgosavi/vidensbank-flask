@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Mit Aftryk - Ernæring | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1556910633-5faa8e7d12ca');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Mit Aftryk - Ernæring</h1>
+    <p class="hero-subtitle">Dine beslutninger former gæsternes sundhed</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Som køkkenchef eller ansvarlig for kantinens menu påvirker du direkte hundredvis af menneskers
+      ernæring hver dag. Dit aftryk handler om, hvilke råvarer du vælger, hvordan du sammensætter menuen,
+      og hvordan retterne præsenteres.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">← Mål & ambition</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_tips') }}" class="filter-pill">Tips & tricks →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>De vigtigste håndtag</h2>
+    <p>Der er tre centrale områder, hvor dine beslutninger har størst indflydelse:</p>
+
+    <div class="card-grid" style="margin: 2rem 0;">
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🥗</div>
+        <h3 class="metric-label">1. Menuens sammensætning</h3>
+        <p class="metric-text">Hvor stor en andel af menuen består af grøntsager, fuldkorn og sunde proteinkilder?</p>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🎯</div>
+        <h3 class="metric-label">2. Portionsstørrelser og balance</h3>
+        <p class="metric-text">Følger tallerkenmodellen med ½ grøntsager, ¼ protein og ¼ kulhydrater?</p>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">👁️</div>
+        <h3 class="metric-label">3. Synlighed og nudging</h3>
+        <p class="metric-text">Er de sundeste valg også de mest synlige og tilgængelige i buffeten?</p>
+      </div>
+    </div>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Husk:</strong> Dit ernæringsaftryk måles ikke kun i gram og kalorier, men også i gæsternes trivsel,
+      energiniveau og langsigtede sundhed. Små ændringer, gentaget hver dag, kan gøre en enorm forskel.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Tips & Tricks</h2>
+    <p class="section-lead">Få konkrete værktøjer til at forbedre ernæringen i din kantine.</p>
+    <a href="{{ url_for('topic_ernaering_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

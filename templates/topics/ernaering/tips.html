@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Tips & Tricks - Ernæring | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Tips og Tricks til Bedre Ernæring</h1>
+    <p class="hero-subtitle">Praktiske greb til din kantine</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Her finder du konkrete, praksistestede metoder til at forbedre ernæringen i kantinen –
+      uden at miste madglæde eller gæstetilfredshed.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">← Mit aftryk</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Menuudvikling og opskrifter</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        <strong>Følg tallerkenmodellen:</strong><br>½ grøntsager, ¼ protein og ¼ kulhydrater som udgangspunkt.
+      </li>
+      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        <strong>Skift til fuldkorn:</strong><br>Brug fuldkornsris, -pasta, -brød og -mel hvor det giver mening.
+      </li>
+      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        <strong>Byg smag uden salt:</strong><br>Brug urter, krydderier, fermentering og syrlighed til at skabe dybde.
+      </li>
+    </ul>
+
+    <h2>Buffet og præsentation</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 1.25rem; background-color: var(--cheval-taube); margin-bottom: 1rem; border-radius: 8px;">
+        <strong>Placer de sunde valg først:</strong><br>Start buffeten med grøntsager og salater.
+      </li>
+      <li style="padding: 1.25rem; background-color: var(--cheval-taube); margin-bottom: 1rem; border-radius: 8px;">
+        <strong>Kommuniker positivt:</strong><br>Fremhæv smag, farver og friskhed.
+      </li>
+    </ul>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
+      "Små forbedringer hver dag skaber store resultater over tid."
+    </p>
+  </article>
+</section>
+
+{% endblock %}

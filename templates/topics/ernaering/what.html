@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er ernæring? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er ernæring?</h1>
+    <p class="hero-subtitle">Sundhed, næringsværdi og balance i kantinen</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Ernæring handler om de næringsstoffer, vi får gennem maden – og hvordan de påvirker vores sundhed,
+      velvære og arbejdsevne. For kantiner er det et centralt ansvarsområde, fordi mange gæster spiser
+      hovedparten af deres daglige måltider på arbejdspladsen.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav" aria-label="Tilbage til emne" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">Hvorfor vigtigt? →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>De centrale næringsstoffer</h2>
+    <p>
+      Når vi taler om ernæring, fokuserer vi på de makro- og mikronæringsstoffer, kroppen har brug for
+      til at fungere optimalt. Disse fordeles typisk i tre hovedgrupper:
+    </p>
+
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🍞</div>
+        <h3 class="metric-label">Kulhydrater</h3>
+        <p class="metric-text">
+          Kroppens primære energikilde. Fås fra fuldkorn, kartofler, ris, pasta, brød og grøntsager.
+          Vælg hele, uraffinerede kulhydrater for længere mæthed og stabil blodsukker.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🥩</div>
+        <h3 class="metric-label">Protein</h3>
+        <p class="metric-text">
+          Opbygger muskler, væv og enzymer. Findes i både animalske kilder (kød, fisk, æg, mejeriprodukter)
+          og plantebaserede kilder (bælgfrugter, tofu, nødder).
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🥑</div>
+        <h3 class="metric-label">Fedt</h3>
+        <p class="metric-text">
+          Essentielt for hormonbalance og cellefunktion. Fokuser på sunde fedtstoffer fra fisk, nødder,
+          frø og planteolier frem for mættede fedtstoffer.
+        </p>
+      </article>
+    </div>
+
+    <h2>De officielle kostråd</h2>
+    <p>
+      Fødevarestyrelsen og Sundhedsstyrelsen udgiver løbende opdaterede kostråd, som er baseret på
+      den nyeste forskning. De centrale budskaber er:
+    </p>
+
+    <div style="background-color: var(--light-gron); padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+      <ul style="margin: 0; padding-left: 1.5rem;">
+        <li style="margin-bottom: 1rem;"><strong>Spis varieret</strong> – en bred palette af fødevarer sikrer alle nødvendige næringsstoffer.</li>
+        <li style="margin-bottom: 1rem;"><strong>Flere grøntsager, fuldkorn og fisk</strong> – og færre animalske produkter, især rødt kød.</li>
+        <li style="margin-bottom: 1rem;"><strong>Begrænset indtag af sukker, salt og mættet fedt</strong> – dette reducerer risikoen for livsstilssygdomme.</li>
+        <li style="margin-bottom: 0;"><strong>Nye kostråd integrerer klima</strong> – sundhed og bæredygtighed går i stigende grad hånd i hånd.</li>
+      </ul>
+    </div>
+
+    <h2>Ernæring i kantinen</h2>
+    <p>
+      For professionelle køkkener betyder ernæring, at menuen skal:
+    </p>
+
+    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Tilbyde næringsrige retter, der dækker gæsternes energi- og næringsbehov.
+      </li>
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Balance mellem protein, kulhydrater og grøntsager på tallerken.
+      </li>
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Tage hensyn til forskellige ernæringsbehov (vegetarer, allergier, intoleranser).
+      </li>
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Gøre det sunde valg til det nemme valg – f.eks. gennem tallerkenmodellen og visuel præsentation.
+      </li>
+    </ul>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner betyder det:</strong> En veldrevet kantine har både et sundhedsmæssigt og socialt ansvar.
+      Gæster, der spiser i kantinen, bør kunne stole på, at maden er næringsrig, velsmagende og understøtter deres trivsel.
+    </p>
+  </article>
+</section>
+
+<!-- Navigation to next topic -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Hvorfor er ernæring vigtigt?</h2>
+    <p class="section-lead">
+      Forstå hvorfor ernæring er afgørende for folkesundheden og kantinegæsternes trivsel.
+    </p>
+    <a href="{{ url_for('topic_ernaering_why') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

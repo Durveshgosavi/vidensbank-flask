@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Fjerkræ - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Fjerkræ</h1>
+    <p class="hero-subtitle">Kylling, kalkun og anden fjerkræ – lavere klimaaftryk</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Fjerkræ (primært kylling og kalkun) har det laveste klimaaftryk blandt alle kødtyper. Det er en god
+      substitut for rødt kød i kantiner, der ønsker at reducere emissioner uden at give afkald på animalsk protein.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">~3-4</div>
+        <h3 class="metric-label">kg CO₂e per kg kylling</h3>
+        <p class="metric-text">
+          Kylling har cirka 15 gange lavere klimaaftryk end oksekød og er den mest klimavenlige kødtype.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Effektiv foderudnyttelse</h3>
+        <p class="metric-text">
+          Kyllinger omdanner foder til kød meget effektivt, hvilket reducerer både klimaaftryk og ressourceforbrug.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Hurtig produktion</h3>
+        <p class="metric-text">
+          Kyllinger vokser hurtigt (6-8 uger), hvilket giver lavere kumulativt ressourceforbrug sammenlignet med større dyr.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Fjerkræ har lavt klimaaftryk fordi fuglene er meget effektive til at omdanne foder til kød, og de producerer
+      ikke methan fra fordøjelsen som drøvtyggere gør. Kylling er derfor et oplagt valg for kantiner, der ønsker
+      at reducere klimaaftrykket.
+    </p>
+
+    <!-- Environmental Impacts -->
+    <h2>Miljøpåvirkning ud over klima</h2>
+    <p>
+      Selvom fjerkræ har lavere klimaaftryk, er der andre miljø- og velfærdshensyn:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Dyrevelfærd:</strong> Konventionel kyllingeproduktion indebærer ofte høj bestandstæthed, hurtig vækst og begrænset bevægelsesfrihed.</li>
+      <li><strong>Antibiotika:</strong> Fjerkræproduktion har historisk brugt meget antibiotika – dog er dette blevet reduceret i Danmark og EU.</li>
+      <li><strong>Foder:</strong> Kyllingefoder indeholder ofte soja, hvilket kan være forbundet med afskovning i Sydamerika.</li>
+      <li><strong>Vandforbrug:</strong> Lavere end rødt kød – omkring 4.000 liter per kg produceret kød.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Substitut for rødt kød:</strong> Brug kylling i stedet for oksekød og svinekød hvor det giver mening – f.eks. i wokretter, salater, wraps.<br>
+      2. <strong>Vælg bedre dyrevelfærd:</strong> Prioriter økologisk, frilands eller certificeret bedre dyrevelfærd for at mindske velfærdsproblemer.<br>
+      3. <strong>Hele fuglen:</strong> Brug forskellige udskæringer (bryst, lår, vinger) for at reducere spild og omkostninger.<br>
+      4. <strong>Kombiner med grøntsager:</strong> Reducer proteinmængden ved at tilføje flere grøntsager i kyllingeretter.
+    </p>
+
+    <!-- Organic vs Conventional -->
+    <h2>Økologisk vs. konventionel</h2>
+    <p>
+      Økologisk kylling har <strong>lidt højere klimaaftryk</strong> end konventionel (op til 20% højere) på grund af
+      længere opdrættstid og lavere foderefektivitet. Men økologi byder på væsentlige fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Dyrevelfærd:</strong> Mere plads per fugl, adgang til udendørs arealer, langsommere vækst (mindre stress).</li>
+      <li><strong>Foder:</strong> 100% økologisk foder uden GMO og syntetiske tilsætningsstoffer.</li>
+      <li><strong>Antibiotika:</strong> Kun behandling af syge dyr – ingen forebyggende brug.</li>
+      <li><strong>Levetid:</strong> Længere levetid (70-80 dage vs. 35-42 dage i konventionel produktion) giver bedre kødfylde og smag.</li>
+    </ul>
+    <p>
+      For kantiner kan valget mellem økologisk og konventionel afhænge af budget og prioriteter. En kombination kunne
+      være: <em>Økologisk kylling nogle dage, konventionel med bedre dyrevelfærd andre dage, og plantebaserede retter
+      resten af ugen.</em>
+    </p>
+
+    <!-- Certifications and Labeling -->
+    <h2>Certificeringer og mærker</h2>
+    <p>
+      Når du køber fjerkræ, kan følgende certificeringer hjælpe med at sikre kvalitet og dyrevelfærd:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ø-mærket (Danmark):</strong> Økologisk produktion med bedre dyrevelfærd og økologisk foder.</li>
+      <li><strong>Bedre Dyrevelfærd (Hjertemærket):</strong> Certificering med 1-3 stjerner baseret på plads, strøelse og udendørs adgang.</li>
+      <li><strong>Frilandskylling:</strong> Fugle med adgang til udendørs arealer – højere velfærd end konventionel produktion.</li>
+      <li><strong>Dansk Fjerkræ:</strong> Mærkning der garanterer dansk oprindelse og sporbarhed.</li>
+    </ul>
+
+    <!-- Quality and Sourcing -->
+    <h2>Kvalitet og oprindelse</h2>
+    <p>
+      Dansk fjerkræproduktion har høje standarder for hygiejne, sporbarhed og dyrevelfærd. Vælg dansk kylling hvor muligt.
+      Importeret fjerkræ – især fra lande uden for EU – kan have lavere velfærdsstandarder og mindre sporbarhed.
+    </p>
+    <p>
+      <strong>Sæsonalitet:</strong> Kylling har ingen decideret sæson, da produktionen foregår indendørs hele året.
+      Dog kan økologiske og frilands-kyllinger have mere variation i tilgængelighed afhængig af vejr og sæson.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Brug kylling som substitut for oksekød i kendte retter – f.eks. kylling-lasagne i stedet for oksekød-lasagne</li>
+        <li>Kombiner kyllingebryst og kyllingelår for at få både mager og smagfuld protein til forskellige retter</li>
+        <li>Skær kylling i mindre stykker og bland med grøntsager for at strække proteinen uden at miste mæthedsfølelse</li>
+        <li>Udnyt hele kyllingen – bryst til hovedretter, lår til gryderetter, vinger til snacks, og karkasser til bouillon</li>
+        <li>Kommunikér til gæsterne at kylling er et klimavenligt valg – skab stolthed omkring bæredygtige valg</li>
+        <li>Vælg certificeret kylling med bedre dyrevelfærd for at balancere klima med etiske hensyn</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Kylling er ofte billigere end rødt kød, hvilket gør det til en omkostningseffektiv proteinløsning. Økologisk
+      og frilandskylling koster 50-100% mere end konventionel, men giver bedre dyrevelfærd og kvalitet.
+    </p>
+    <p>
+      Ved at kombinere konventionel og certificeret kylling – og reducere den samlede kødmængde – kan kantiner
+      balancere økonomi, klima og dyrevelfærd.
+    </p>
+
+    <!-- Health Considerations -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Kylling er mager protein med lavt fedtindhold (især bryst), hvilket gør det til et sundt valg. Det indeholder:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Højt proteinindhold:</strong> Omkring 20-25 g protein per 100 g kød.</li>
+      <li><strong>Lavt mættet fedt:</strong> Især kyllingebryst har meget lavt fedtindhold.</li>
+      <li><strong>B-vitaminer:</strong> God kilde til B6, B12, niacin.</li>
+      <li><strong>Mineraler:</strong> Indeholder selen, fosfor og zink.</li>
+    </ul>
+    <p>
+      Kylling kan være en god del af en sund og balanceret kost, især når det kombineres med grøntsager og fuldkorn.
+    </p>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre proteiner</h2>
+    <p class="section-lead">Se hvordan fisk, bælgfrugter og andre alternativer kan supplere kylling i menuen.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_fisk') }}" class="btn-primary">Fisk & Skaldyr →</a>
+      <a href="{{ url_for('product_eggs') }}" class="btn-primary">Æg →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

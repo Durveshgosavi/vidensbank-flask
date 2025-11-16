@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Råvarer & Produkter</h1>
+    <p class="hero-subtitle">Din guide til bæredygtige indkøb i kantinen</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Få et komplet overblik over klimaaftryk, bæredygtighed og kvalitet for alle centrale råvarer i kantinen.
+      Hver produktside indeholder konkrete anbefalinger, certificeringer og praktiske tips til indkøb.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('index') }}" class="filter-pill">← Tilbage til forsiden</a>
+  </nav>
+
+  <!-- Meat Products Section -->
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Kød & Protein</h2>
+    <div class="card-grid">
+      <a href="{{ url_for('product_oksekoed') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1588347818036-4c0c2c4f0d94" alt="Oksekød" loading="lazy">
+          <span class="card-category-tag">~60 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Oksekød</h3>
+          <p class="card-teaser">Højeste klimaaftryk blandt protein. Strategi for reduktion og bedre valg.</p>
+          <div class="card-metadata">
+            <span>Kød</span>
+            <span>•</span>
+            <span>Højt klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_svinekoed') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1602470520998-f4a52199a3d6" alt="Svinekød" loading="lazy">
+          <span class="card-category-tag">~5 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Svinekød</h3>
+          <p class="card-teaser">Mellemklimaaftryk. Fokus på dansk produktion og dyrevelfærd.</p>
+          <div class="card-metadata">
+            <span>Kød</span>
+            <span>•</span>
+            <span>Medium klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_fjerkreae') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1587593810167-a84920ea0781" alt="Fjerkræ" loading="lazy">
+          <span class="card-category-tag">~3-4 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Fjerkræ</h3>
+          <p class="card-teaser">Lavere klimaaftryk end rødt kød. Overvej økologi og bedre husdyrhold.</p>
+          <div class="card-metadata">
+            <span>Kød</span>
+            <span>•</span>
+            <span>Lavere klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_lam') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba" alt="Lammekød" loading="lazy">
+          <span class="card-category-tag">~25-30 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Lam</h3>
+          <p class="card-teaser">Højt klimaaftryk. Brug sparsomt eller vælg græssende lam fra ekstensivt landbrug.</p>
+          <div class="card-metadata">
+            <span>Kød</span>
+            <span>•</span>
+            <span>Højt klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Fish & Seafood Section -->
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Fisk & Skaldyr</h2>
+    <div class="card-grid">
+      <a href="{{ url_for('product_fisk') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369" alt="Fisk og skaldyr" loading="lazy">
+          <span class="card-category-tag">Variabelt aftryk</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Fisk & Skaldyr</h3>
+          <p class="card-teaser">MSC, ASC certificering prioriteres. Undgå truede arter og destruktive fangstmetoder.</p>
+          <div class="card-metadata">
+            <span>Protein</span>
+            <span>•</span>
+            <span>Certificering vigtig</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Dairy & Eggs Section -->
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Mejeriprodukter & Æg</h2>
+    <div class="card-grid">
+      <a href="{{ url_for('product_dairy') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da" alt="Mejeriprodukter" loading="lazy">
+          <span class="card-category-tag">~1.5-13 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Mejeriprodukter</h3>
+          <p class="card-teaser">Mælk, ost, smør. Økologi og dansk produktion anbefales.</p>
+          <div class="card-metadata">
+            <span>Mejeri</span>
+            <span>•</span>
+            <span>Variabelt aftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_eggs') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f" alt="Æg" loading="lazy">
+          <span class="card-category-tag">~2 kg CO₂e/kg</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Æg</h3>
+          <p class="card-teaser">Højere dyrevelfærd prioriteres. Økologi eller frilands anbefales.</p>
+          <div class="card-metadata">
+            <span>Protein</span>
+            <span>•</span>
+            <span>Lavt klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Plant-Based Section -->
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Plantebaserede Råvarer</h2>
+    <div class="card-grid">
+      <a href="{{ url_for('product_grains') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c" alt="Korn og pasta" loading="lazy">
+          <span class="card-category-tag">Lavt aftryk</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Korn, Pasta & Ris</h3>
+          <p class="card-teaser">Basisvarer med lavt klimaaftryk. Økologi og fuldkorn anbefales.</p>
+          <div class="card-metadata">
+            <span>Kulhydrat</span>
+            <span>•</span>
+            <span>Lavt klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_vegetables') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999" alt="Grøntsager" loading="lazy">
+          <span class="card-category-tag">Meget lavt aftryk</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Grøntsager</h3>
+          <p class="card-teaser">Laveste klimaaftryk. Prioriter sæson, lokalt og økologi.</p>
+          <div class="card-metadata">
+            <span>Plantebaseret</span>
+            <span>•</span>
+            <span>Meget lavt aftryk</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_fruits') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf" alt="Frugt og bær" loading="lazy">
+          <span class="card-category-tag">Lavt aftryk</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Frugt & Bær</h3>
+          <p class="card-teaser">Sæsonvarer prioriteres. Undgå langtransporterede eksotiske frugter.</p>
+          <div class="card-metadata">
+            <span>Plantebaseret</span>
+            <span>•</span>
+            <span>Lavt klimaaftryk</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Commodities Section -->
+    <h2 style="margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-dark);">Råvarer & Ingredienser</h2>
+    <div class="card-grid">
+      <a href="{{ url_for('product_beverages') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e" alt="Kaffe, te, kakao" loading="lazy">
+          <span class="card-category-tag">Certificering vigtig</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Kaffe, Te & Kakao</h3>
+          <p class="card-teaser">Fairtrade og økologi anbefales. Fokus på afskovning og arbejdsforhold.</p>
+          <div class="card-metadata">
+            <span>Råvarer</span>
+            <span>•</span>
+            <span>Etiske hensyn</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('product_oils') }}" class="aww-card">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5" alt="Olier og fedt" loading="lazy">
+          <span class="card-category-tag">RSPO vigtig</span>
+        </div>
+        <div class="card-content-body">
+          <h3 class="card-title">Olier & Fedt</h3>
+          <p class="card-teaser">Palmeolie kræver RSPO-certificering. Rapsolie og solsikkeolie som alternativer.</p>
+          <div class="card-metadata">
+            <span>Råvarer</span>
+            <span>•</span>
+            <span>Afskovning risiko</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Brug viden i praksis</h2>
+    <p class="section-lead">Disse råvareguides er baseret på den nyeste forskning og danske anbefalinger for bæredygtig indkøb.</p>
+    <a href="{{ url_for('index') }}" class="btn-primary" style="margin-top: 1.5rem;">Tilbage til forsiden</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{%extends "base.html" %}
+
+{%block title %}Mit Aftryk - Vandforbrug - Vidensbank{%endblock %}
+
+{%block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1523301343968-6a6ebf63c672');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Mit Aftryk - Vandforbrug</h1>
+    <p class="hero-subtitle">Råvarevalg og vand</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">Dit valg af protein og grøntsager påvirker indirekte vandforbruget.</p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">← Forrige</a>
+    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="filter-pill">Næste →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Vand-intensive fødevarer</h2>
+    <p>Oksekød, lam, nødder og ris har højt vandforbrug. Kylling, bælgfrugter og de fleste grøntsager har lavere aftryk.</p>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner:</strong> Små justeringer i menusammensætning kan reducere vandaftrykket betydeligt.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Tips & Tricks</h2>
+    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{%endblock %}

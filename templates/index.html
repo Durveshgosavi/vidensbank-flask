@@ -3,97 +3,124 @@
 {% block title %}Vidensbank | Bæredygtighed & Klimaindsigt{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="page-section home-hero">
-  <div class="hero-content">
-    <p class="hero-kicker">BÆREDYGTIGHED & KLIMA</p>
-    <h1 class="hero-headline">VIDENSBANK</h1>
-    <p class="hero-body">
-      Viden er den vigtigste råvare i det grønne køkken. I vores Vidensbank samler vi data og analyser, der gør det muligt at træffe informerede valg om alt fra råvarers klimaaftryk til gastronomisk innovation.
-    </p>
-    <div class="hero-actions">
-      <a href="{{ url_for('emissions_sustainability') }}" class="btn-primary">Udforsk Emissioner</a>
-      <a href="{{ url_for('calculator') }}" class="btn-secondary">CO₂ Beregner</a>
+<header class="page-header home-hero">
+  <div class="home-hero-grid">
+    <div class="hero-content">
+      <p class="hero-kicker">BÆREDYGTIGHED & KLIMA</p>
+      <h1 class="hero-headline">VIDENSBANK</h1>
+      <p class="hero-body">
+        Viden er den vigtigste råvare i det grønne køkken. I vores Vidensbank samler vi data og analyser, der gør det muligt at træffe informerede valg om alt fra råvarers klimaaftryk til gastronomisk innovation.
+      </p>
+      <div class="hero-actions">
+        <a href="#topics" class="btn-primary">Gå til Emner</a>
+        <a href="{{ url_for('calculator') }}" class="btn-secondary">CO₂ Beregner</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://i.imgur.com/KyuSPXy.jpeg" alt="Bæredygtig madproduktion og dataindsigt">
     </div>
   </div>
-  <div class="hero-visual">
-    <img src="https://i.imgur.com/KyuSPXy.jpeg" alt="Bæredygtig madproduktion og dataindsigt">
-  </div>
-</section>
+</header>
 
-<!-- Featured Pillars Section with Awwwards-Inspired Cards -->
-<section class="page-section" style="background-color: #F4F2F1;">
+<section id="topics" class="page-section is-muted">
   <header class="section-header">
-    <h2 class="hero-headline">Vores Videnspiller</h2>
+    <h2 class="section-title">Vores Videns emner</h2>
     <p class="section-lead">
       Udforsk vores centrale vidensområder for at træffe informerede, klimabevidste beslutninger i det professionelle køkken.
     </p>
   </header>
 
   <div class="card-grid">
-      <!-- Card 1: Bæredygtighedsdata -->
-      <a href="{{ url_for('emissions_sustainability') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1200" alt="Bæredygtig landbrug" loading="lazy">
-          <span class="card-category-tag">Data</span>
+    <!-- Emissioner & Bæredygtighed -->
+    <a href="{{ url_for('topic_emissions_landing') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1200" alt="Fødevarerelaterede emissioner og bæredygtighed" loading="lazy">
+        <span class="card-category-tag">Klima</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Emissioner & Bæredygtighed</h3>
+        <p class="card-teaser">Forstå fødevarers klimaaftryk fra jord til tallerken, og hvordan danske kantiner kan reducere CO₂e gennem strategiske valg.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>5–7 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Bæredygtighedsdata</h3>
-          <p class="card-teaser">Dybdegående LCA-analyser for at kvantificere fødevarers reelle klimapåvirkning gennem hele livscyklusen.</p>
-          <div class="card-metadata">
-            <span>Analyse</span>
-            <span>•</span>
-            <span>LCA</span>
-            <span>•</span>
-            <span>CONCITO 2021</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
 
-      <!-- Card 2: Forsyningskæde -->
-      <a href="{{ url_for('emissions_sustainability') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" alt="Forsyningskæde og transport" loading="lazy">
-          <span class="card-category-tag">Logistik</span>
+    <!-- Ernæring -->
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200" alt="Sund og bæredygtig ernæring i kantiner" loading="lazy">
+        <span class="card-category-tag">Sundhed</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Ernæring</h3>
+        <p class="card-teaser">Kostrådene, næringsværdi og den gyldfine balance mellem sundhed, smag og bæredygtighed i professionelle køkkener.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Forsyningskæde Transparens</h3>
-          <p class="card-teaser">Indsigt i råvarernes oprindelse og de skjulte omkostninger i den globale fødevarekæde fra jord til bord.</p>
-          <div class="card-metadata">
-            <span>Supply Chain</span>
-            <span>•</span>
-            <span>Transport</span>
-            <span>•</span>
-            <span>Sporbarhed</span>
-          </div>
-        </div>
-      </a>
+      </div>
+    </a>
 
-      <!-- Card 3: Gastronomisk Innovation -->
-      <a href="{{ url_for('calculator') }}" class="aww-card">
-        <div class="card-image-container">
-          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200" alt="Moderne gastronomi" loading="lazy">
-          <span class="card-category-tag">Innovation</span>
+    <!-- Økologi -->
+    <a href="{{ url_for('topic_okologi_landing') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Økologisk landbrug og fødevarer" loading="lazy">
+        <span class="card-category-tag">Økologi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Økologi</h3>
+        <p class="card-teaser">Certificering, fordele og udfordringer ved økologiske fødevarer, og hvordan de spiller ind i kantinedriften.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
         </div>
-        <div class="card-content-body">
-          <h3 class="card-title">Gastronomisk Innovation</h3>
-          <p class="card-teaser">Metoder til at udvikle menuer, der er både klimavenlige, velsmagende og innovative for fremtidens køkken.</p>
-          <div class="card-metadata">
-            <span>Menuudvikling</span>
-            <span>•</span>
-            <span>Innovation</span>
-            <span>•</span>
-            <span>Gastronomi</span>
-          </div>
+      </div>
+    </a>
+
+    <!-- Vandforbrug -->
+    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" alt="Vandforbrug i fødevareproduktion" loading="lazy">
+        <span class="card-category-tag">Ressourcer</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Vandforbrug</h3>
+        <p class="card-teaser">Den skjulte vandkrise i fødevareproduktion, og hvordan kantiner kan vælge råvarer med lavere vandaftryk.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
         </div>
-      </a>
+      </div>
+    </a>
+
+    <!-- Madspild -->
+    <a href="{{ url_for('topic_madspild_landing') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1200" alt="Madspildsreduktion i storkøkkener" loading="lazy">
+        <span class="card-category-tag">Ressourcer</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Madspild</h3>
+        <p class="card-teaser">Databaseret tilgang til at reducere madspild i kantinen gennem bedre planlægning, portionering og gæstekommunikation.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- Data in Focus Section -->
-<section class="page-section" style="background-color: #FFFFFF;">
+<section class="page-section">
   <header class="section-header">
-    <h2 class="hero-headline">Bæredygtighed i Tal</h2>
+    <h2 class="section-title">Bæredygtighed i Tal</h2>
     <p class="section-lead">Nøgledata der viser hvorfor bæredygtige valg i kantinen gør en forskel.</p>
   </header>
 
@@ -118,60 +145,55 @@
   </div>
 </section>
 
-<!-- Data Deep Dive & Chart Section -->
-<div style="padding: 120px 40px; background-color: #F4F2F1;">
-  <div style="max-width: 1100px; margin: 0 auto; display: table; width: 100%; border-spacing: 80px 0;">
-    <div style="display: table-cell; vertical-align: middle; width: 50%;">
-      <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; font-size: 2.8rem; margin: 0 0 1.5rem 0; color: #333333; text-align: left;">Fra Råvare til Regnskab</h2>
-      <p style="line-height: 1.7; font-size: 1.1rem; color: #555;">Ikke alle råvarer er skabt lige. Klimaaftrykket varierer dramatisk, og et bevidst valg i køkkenet kan have en markant effekt. Ved at skifte fokus fra de mest klimabelastende proteiner til plantebaserede alternativer, kan vi reducere en rets klimaaftryk med over 90%.</p>
-      <a href="{{ url_for('emissions_sustainability') }}" style="display: inline-block; margin-top: 2rem; padding: 12px 30px; background-color: #A0D7A5; color: #333333; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;">Udforsk Data →</a>
-    </div>
-    <div style="display: table-cell; vertical-align: middle; width: 50%; text-align: center;">
-      <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <img src="https://i.imgur.com/6x9YYGx.png" alt="CO2 emissions chart" style="max-width: 100%; height: auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 40px; background: linear-gradient(135deg, #e3f3e4 0%, #d0ebd2 100%); border-radius: 12px; min-height: 300px; display: flex; align-items: center; justify-content: center;\'><div style=\'text-align: center;\'><div style=\'font-size: 4rem; margin-bottom: 1rem;\'>📊</div><h3 style=\'color: #333; margin: 0;\'>Data Visualization</h3></div></div>';" />
+<section class="page-section split-panel">
+  <div class="split-panel__text">
+    <p class="eyebrow">DATA DEEP DIVE</p>
+    <h2>Fra Råvare til Regnskab</h2>
+    <p>Ikke alle råvarer er skabt lige. Klimaaftrykket varierer dramatisk, og et bevidst valg i køkkenet kan have en markant effekt. Ved at skifte fokus fra de mest klimabelastende proteiner til plantebaserede alternativer kan vi reducere en rets klimaaftryk med over 90%.</p>
+    <a href="{{ url_for('emissions_sustainability') }}" class="btn-primary">Udforsk Data →</a>
+  </div>
+  <div class="split-panel__visual">
+    <img src="https://i.imgur.com/6x9YYGx.png"
+         alt="Visualisering af CO₂e pr. råvarekategori"
+         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;split-panel__placeholder&quot;><span>📊</span><p>Data Visualisering</p></div>';">
+  </div>
+</section>
+
+<section class="page-section" style="background-color: var(--light-gron);">
+  <header class="section-header">
+    <p class="eyebrow">RÅVARE DATABASE</p>
+    <h2 class="section-title">Din guide til bæredygtige indkøb</h2>
+    <p class="section-lead">
+      Få et komplet overblik over klimaaftryk, bæredygtighed og kvalitet for alle centrale råvarer i kantinen.
+      Hver produktside indeholder konkrete anbefalinger, certificeringer og praktiske tips til indkøb.
+    </p>
+  </header>
+
+  <div class="card-grid" style="margin-top: 2rem;">
+    <a href="{{ url_for('products_overview') }}" class="aww-card">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9" alt="Råvarer" loading="lazy">
+        <span class="card-category-tag">Komplet Guide</span>
       </div>
-    </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Udforsk Råvarer & Produkter</h3>
+        <p class="card-teaser">Kød, fisk, mejeri, grøntsager, korn, kaffe og meget mere – alt du skal vide om bæredygtige indkøb.</p>
+        <div class="card-metadata">
+          <span>13 Produktkategorier</span>
+          <span>•</span>
+          <span>Praktiske anbefalinger</span>
+        </div>
+      </div>
+    </a>
   </div>
-</div>
+</section>
 
-<!-- CTA Section -->
-<div style="padding: 120px 40px; background-color: #333333; color: #FFFFFF; text-align: center;">
-  <div style="max-width: 1100px; margin: 0 auto;">
-    <h2 style="font-family: 'AWConqueror Std Inline', 'Times New Roman', serif; font-weight: normal; color: #FFFFFF; font-size: 2.8rem; letter-spacing: 1px;">Dyk ned i dataen</h2>
-    <p style="color: #FFFFFF; opacity: 0.9; margin: 1rem auto 2.5rem auto; line-height: 1.7; font-size: 1.1rem; max-width: 70ch;">Udforsk vores database og find de indsigter, du har brug for til at træffe informerede, bæredygtige valg.</p>
-    <div>
-      <a href="{{ url_for('calculator') }}" style="display: inline-block; margin: 10px; padding: 14px 40px; background-color: #A0D7A5; color: #333333; text-decoration: none; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;">CO2 Beregner</a>
-      <a href="{{ url_for('climate_data') }}" style="display: inline-block; margin: 10px; padding: 14px 40px; background-color: transparent; color: #FFFFFF; text-decoration: none; border-radius: 4px; border: 2px solid #FFFFFF; font-weight: bold; transition: all 0.3s ease;">Klimadata</a>
-    </div>
+<section class="page-section callout-dark">
+  <h2>Dyk ned i dataen</h2>
+  <p class="section-lead">Udforsk vores database og find de indsigter, du har brug for til at træffe informerede, bæredygtige valg.</p>
+  <div class="cta-row">
+    <a href="{{ url_for('calculator') }}" class="btn-primary">CO₂ Beregner</a>
+    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Klimadata</a>
   </div>
-</div>
-
-<style>
-/* Responsive adjustments for home page */
-@media (max-width: 992px) {
-  div[style*="display: table"] {
-    display: block !important;
-  }
-  div[style*="display: table-cell"] {
-    display: block !important;
-    width: 100% !important;
-    margin-bottom: 40px;
-  }
-  h1[style*="4.5rem"] {
-    font-size: 3rem !important;
-  }
-  h2[style*="2.8rem"] {
-    font-size: 2.2rem !important;
-  }
-  div[style*="font-size: 4.5rem"] {
-    font-size: 3.5rem !important;
-  }
-  div[style*="padding: 120px"] {
-    padding: 60px 20px !important;
-  }
-  div[style*="padding: 160px"] {
-    padding: 80px 20px !important;
-  }
-}
-</style>
+</section>
 {% endblock %}

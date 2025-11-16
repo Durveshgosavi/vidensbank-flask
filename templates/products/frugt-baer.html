@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Frugt & Bær - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Frugt & Bær</h1>
+    <p class="hero-subtitle">Lavt klimaaftryk – prioriter sæson og dansk produktion</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Frugt og bær har lavt klimaaftryk, især når man vælger sæson og lokale producenter. Undgå lufttransporterede
+      eksotiske frugter og vælg dansk eller europæisk produktion hvor muligt.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk – lavt til moderat</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">~0.3-0.7</div>
+        <h3 class="metric-label">kg CO₂e per kg frugt</h3>
+        <p class="metric-text">
+          De fleste frugter har lavt klimaaftryk – især sæsonfrugter og lokalt producerede.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Danske frugter lavest</h3>
+        <p class="metric-text">
+          Æbler, pærer, kirsebær og jordbær fra Danmark har klimaaftryk ned til 0.3-0.5 kg CO₂e/kg.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Lufttransport dramatisk højere</h3>
+        <p class="metric-text">
+          Eksotiske frugter fragtet med fly kan have klimaaftryk op til 10-15 kg CO₂e/kg. Undgå!
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Frugt har generelt lavt klimaaftryk, men transport kan øge det dramatisk. Lufttransporterede frugter
+      (mango, papaya, ananas om vinteren) har ekstremt højt aftryk. Vælg sæson, lokalt og skibsfragtet frugt.
+    </p>
+
+    <!-- Environmental Impacts -->
+    <h2>Miljøpåvirkning</h2>
+    <p>
+      Ud over klima er der andre miljøhensyn ved frugtproduktion:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Vandforbrug:</strong> Nogle frugter (avocado, nødder, eksotiske frugter) kræver meget vand, især i tørre områder.</li>
+      <li><strong>Pesticider:</strong> Konventionel frugtproduktion bruger syntetiske pesticider. Økologi undgår dette.</li>
+      <li><strong>Biodiversitet:</strong> Monokultur og pesticider kan skade bestøvere. Økologisk produktion understøtter biodiversitet.</li>
+      <li><strong>Transport:</strong> Lufttransport har ekstremt højt klimaaftryk – 50-100 gange højere end skibstransport.</li>
+      <li><strong>Deforestation:</strong> Nogle eksotiske frugter (ananas, kakao) kan være forbundet med afskovning.</li>
+    </ul>
+
+    <!-- Seasonality is Key -->
+    <h2>Sæson er nøglen</h2>
+    <p>
+      <strong>Sæsonfrugter har betydeligt lavere klimaaftryk</strong> end frugter importeret fra fjerne lande
+      eller dyrket i opvarmede væksthuse.
+    </p>
+
+    <h3 style="margin-top: 1.5rem;">Forår (marts-maj)</h3>
+    <ul style="line-height: 1.8;">
+      <li>Rabarber (marts-juni)</li>
+      <li>Jordbær (maj-august) – bedst i højsæson juni-juli</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Sommer (juni-august)</h3>
+    <ul style="line-height: 1.8;">
+      <li>Jordbær, hindbær, blåbær, solbær, ribs, kirsebær, blomme, fersken (importeret fra Sydeuropa)</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Efterår (september-november)</h3>
+    <ul style="line-height: 1.8;">
+      <li>Æbler, pærer, blommer, vindruer, brombær</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Vinter (december-februar)</h3>
+    <ul style="line-height: 1.8;">
+      <li>Lageræbler, lagerpærer, citrusfrugter (importeret fra Sydeuropa), tørret frugt</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Vælg sæson:</strong> Planlæg frugtudbuddet efter hvilke frugter der er i sæson – lavest klimaaftryk og bedst smag.<br>
+      2. <strong>Prioriter dansk og europæisk:</strong> Æbler, pærer og bær fra Danmark eller Nordeuropa. Citrus og bananer fra Sydeuropa.<br>
+      3. <strong>Undgå lufttransport:</strong> Mango, papaya, ananas om vinteren har ekstremt højt klimaaftryk – vælg sæsonfrugter i stedet.<br>
+      4. <strong>Vælg økologi:</strong> Økologiske frugter undgår syntetiske pesticider – især vigtig for frugt med skræl (æbler, pærer, blåbær).
+    </p>
+
+    <!-- Specific Fruits -->
+    <h2>Specifikke frugter</h2>
+
+    <h3 style="margin-top: 1.5rem;">Æbler (0.3-0.4 kg CO₂e/kg) 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Meget lavt – især danske æbler i sæson (september-november).</li>
+      <li><strong>Anbefaling:</strong> Perfekt hele året – lageræbler kan holde til foråret. Vælg dansk hvor muligt.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Pærer (0.3-0.4 kg CO₂e/kg) 🌟🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Meget lavt – især danske eller europæiske pærer i sæson.</li>
+      <li><strong>Anbefaling:</strong> Sæson september-november. Lagerpærer kan holde til vinter.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Bær (0.5-1.5 kg CO₂e/kg) 🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Jordbær, hindbær, blåbær, solbær:</strong> Lavt klimaaftryk i sæson (juni-august).</li>
+      <li><strong>UNDGÅ om vinteren:</strong> Importerede bær om vinteren kan have højt aftryk. Brug frosne bær i stedet.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Bananer (0.5-0.7 kg CO₂e/kg) 🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Relativt lavt på grund af skibstransport (ikke fly).</li>
+      <li><strong>Anbefaling:</strong> Vælg Fairtrade og økologisk for bedre arbejdsforhold og miljøstandarder.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Citrusfrugter (0.4-0.6 kg CO₂e/kg) 🌟🌟</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Appelsiner, citroner, mandariner:</strong> Lavt klimaaftryk hvis skibsfragtet fra Sydeuropa.</li>
+      <li><strong>Anbefaling:</strong> Vælg europæiske (Spanien, Italien, Grækenland) frem for oversøiske. Sæson november-marts.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Eksotiske frugter (1-15 kg CO₂e/kg) ⚠️</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Mango, papaya, ananas, passion fruit:</strong> Meget variabelt aftryk afhængig af transport.</li>
+      <li><strong>UNDGÅ lufttransport:</strong> Hvis fragtet med fly kan klimaaftrykket være 10-15 kg CO₂e/kg.</li>
+      <li><strong>Anbefaling:</strong> Brug sparsomt og kun hvis skibsfragtet. Prioriter sæsonfrugter i stedet.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Avocado (1.0-2.5 kg CO₂e/kg) ⚠️</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Moderat, men <strong>meget højt vandforbrug</strong> (omkring 1.000 liter per avocado).</li>
+      <li><strong>Anbefaling:</strong> Brug sparsomt på grund af vandpåvirkning. Vælg europæisk (Spanien) frem for oversøisk.</li>
+    </ul>
+
+    <!-- Organic vs Conventional -->
+    <h2>Økologisk vs. konventionel</h2>
+    <p>
+      Økologisk frugt har <strong>lignende klimaaftryk</strong> som konventionel (ofte 5-10% lavere på grund af
+      mindre brug af kunstgødning). Men økologi byder på væsentlige fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ingen syntetiske pesticider:</strong> Reducerer kemisk belastning af grundvand, jord og bestøvere.</li>
+      <li><strong>Biodiversitet:</strong> Økologiske frugtplantager har typisk flere vilde planter, insekter og fugle.</li>
+      <li><strong>Jordsundhed:</strong> Naturlig gødning og kompost forbedrer jordfrugtbarhed.</li>
+      <li><strong>Ingen GMO:</strong> Økologisk frugt er fri for genetisk modificerede organismer.</li>
+    </ul>
+    <p>
+      For kantiner anbefales økologisk frugt hvor budgettet tillader det – især for frugt med skræl
+      (æbler, pærer, blåbær) hvor pesticidrester kan være et problem.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Planlæg frugtudbuddet efter sæson – danske æbler, pærer og bær om sommeren/efteråret</li>
+        <li>Brug frosne bær om vinteren i stedet for friske importerede – lavere klimaaftryk og pris</li>
+        <li>Undgå eksotiske frugter fragtet med fly – check leverandøren om transportmetode</li>
+        <li>Prioriter økologi for frugt med skræl (æbler, pærer, blåbær, jordbær)</li>
+        <li>Brug "grimme" frugter til smoothies, kompot eller bagværk – reducerer spild</li>
+        <li>Kommunicér til gæsterne om sæson og danske frugter – skab forståelse for bæredygtighed</li>
+        <li>Server hele frugter frem for juice – bedre for sundhed og reducerer spild</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Frugt er generelt prisvenlig, især sæsonfrugter. Økologisk frugt koster typisk 20-50% mere end konventionel.
+      Eksotiske frugter er dyrere, især om vinteren.
+    </p>
+    <p>
+      Sæsonfrugter er betydeligt billigere end frugt uden for sæson – en dobbelt gevinst for både økonomi og klima.
+    </p>
+
+    <!-- Health and Nutrition -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Frugt er næringsrig og indeholder:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fiber:</strong> Vigtig for fordøjelse og mæthedsfølelse – især i bær og æbler med skræl.</li>
+      <li><strong>Vitaminer:</strong> C (citrus, bær), A (melon, mango), K (kiwi).</li>
+      <li><strong>Mineraler:</strong> Kalium (bananer), magnesium, folat.</li>
+      <li><strong>Antioxidanter:</strong> Beskytter mod sygdomme – især i bær og æbler.</li>
+      <li><strong>Naturligt sukker:</strong> Frugtose – energi uden raffineret sukker.</li>
+    </ul>
+    <p>
+      Sundhedsstyrelsen anbefaler mindst 600 g frugt og grønt dagligt (heraf 300 g frugt). Kantiner
+      kan bidrage ved at servere hele frugter i salatbarer og desserter.
+    </p>
+
+    <!-- Official Recommendations -->
+    <h2>Officielle anbefalinger</h2>
+    <p>
+      De officielle kostråd anbefaler:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li>Spis 6 stykker frugt og grønt om dagen (300 g frugt + 300 g grøntsager)</li>
+      <li>Variér mellem forskellige frugter for bredere næringsindtag</li>
+      <li>Vælg økologisk hvor muligt</li>
+      <li>Prioriter sæson og lokale frugter</li>
+      <li>Server hele frugter frem for juice for bedre mæthed og fiber</li>
+    </ul>
+
+    <!-- Avoid Food Waste -->
+    <h2>Undgå madspild</h2>
+    <p>
+      Frugt er ofte en spildkilde i kantiner. Tips til at reducere madspild:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li>Køb modne og klar-til-servering frugter i mindre mængder oftere</li>
+      <li>Brug overmodne frugter til smoothies, kompot eller bagværk</li>
+      <li>Frys overskydende bær for senere brug</li>
+      <li>Server frugt skåret op for at reducere spild (mindre intimiderende for gæster)</li>
+      <li>Kommunicér til gæsterne om vigtigheden af at tage frugt de spiser</li>
+    </ul>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre plantebaserede råvarer</h2>
+    <p class="section-lead">Kombiner frugt med grøntsager og korn for en sund og bæredygtig menu.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_vegetables') }}" class="btn-primary">Grøntsager →</a>
+      <a href="{{ url_for('product_grains') }}" class="btn-primary">Korn & Pasta →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

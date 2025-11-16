@@ -49,6 +49,9 @@ instance/
 *.swo
 *~
 .DS_Store
+.gitconfig
+.claude/
+.claude.json*
 
 # Logs
 *.log

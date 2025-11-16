@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Mål & Ambition - Ernæring | Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Mål & Ambition for Ernæring</h1>
+    <p class="hero-subtitle">Sundere kost i danske kantiner</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Målet er at gøre ernæringsrigtig mad til standarden i danske kantiner – uden at gå på kompromis
+      med smag, madglæde eller gæstetilfredshed.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">Mit aftryk →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Vision for ernæring i Vidensbanken</h2>
+    <p>
+      Vores ambition er at samle viden om ernæring, så den er:
+    </p>
+
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">📚</div>
+        <h3 class="metric-label">Praktisk anvendelig</h3>
+        <p class="metric-text">
+          Direkte brugbar i menuudvikling, indkøb og gæstedialogen.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🔬</div>
+        <h3 class="metric-label">Evidensbaseret</h3>
+        <p class="metric-text">
+          Baseret på de officielle kostråd og ny forskningsviden.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🍽️</div>
+        <h3 class="metric-label">Madglæde først</h3>
+        <p class="metric-text">
+          Sundhed skal ikke opleves som afsavn, men som en naturlig del af god mad.
+        </p>
+      </div>
+    </div>
+
+    <h2>Konkrete mål for kantiner</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Øge andelen af grøntsager, fuldkorn og bælgfrugter i menuen.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Reducere salt, tilsat sukker og mættede fedtstoffer uden at miste smag.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Synliggøre næringsindhold og gøre det nemt at vælge sundt.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Tilbyde retter, der både er sunde, klimavenlige og velsmagende.
+      </li>
+    </ul>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
+      "Ernæring handler ikke om perfektion – men om at gøre det bedre, måltid for måltid."
+    </p>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Mit Aftryk</h2>
+    <p class="section-lead">
+      Forstå hvordan dine beslutninger påvirker gæsternes ernæring.
+    </p>
+    <a href="{{ url_for('topic_ernaering_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

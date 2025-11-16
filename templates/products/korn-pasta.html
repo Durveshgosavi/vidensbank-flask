@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Korn, Pasta & Ris - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Korn, Pasta & Ris</h1>
+    <p class="hero-subtitle">Basisvarer med lavt klimaaftryk – fokus på fuldkorn og økologi</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Korn, pasta og ris er basisvarer med lavt klimaaftryk og højt næringsindhold – især når man vælger fuldkorns
+      varianter. Økologi og dansk eller europæisk produktion sikrer bedre miljøstandarder.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk – meget lavt</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">~0.5-1</div>
+        <h3 class="metric-label">kg CO₂e per kg korn/pasta</h3>
+        <p class="metric-text">
+          Korn og pasta har meget lavt klimaaftryk – blandt de laveste af alle fødevarer.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Effektiv produktion</h3>
+        <p class="metric-text">
+          Kornafgrøder som hvede, rug og havre kræver meget lidt input per kalorie produceret.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-gul);">🍚</div>
+        <h3 class="metric-label">Ris – lidt højere</h3>
+        <p class="metric-text">
+          Ris har højere klimaaftryk (~2-3 kg CO₂e/kg) på grund af methanemissioner fra vanddækkede marker.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Korn, pasta og brød har meget lavt klimaaftryk fordi plantebaseret produktion generelt er effektiv.
+      Fuldkornsprodukter har lignende klimaaftryk som raffinerede varianter, men betydeligt højere næringsværdi.
+    </p>
+
+    <!-- Environmental Impacts -->
+    <h2>Miljøpåvirkning</h2>
+    <p>
+      Ud over klima er der andre miljøhensyn ved kornproduktion:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Pesticider:</strong> Konventionelt korn behandles ofte med syntetiske pesticider og herbicider. Økologisk produktion undgår dette.</li>
+      <li><strong>Biodiversitet:</strong> Monokultur kan reducere biodiversitet. Økologisk og sædskifte forbedrer jordsundhed.</li>
+      <li><strong>Vandforbrug:</strong> Lavere end animalsk produktion, men ris kræver meget vand (op til 2.500 liter per kg).</li>
+      <li><strong>Jordsundhed:</strong> Økologisk dyrkning med sædskifte og kompost forbedrer jordfrugtbarhed.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Vælg fuldkorn:</strong> Fuldkornsprodukter har højere fiber, vitaminer og mineraler. Sundhedsstyrelsen anbefaler mindst 75 g fuldkorn dagligt.<br>
+      2. <strong>Prioriter økologi:</strong> Økologisk korn undgår syntetiske pesticider og støtter bedre jordsundhed.<br>
+      3. <strong>Dansk eller europæisk:</strong> Vælg dansk hvede, rug og havre hvor muligt for lavere transportemissioner.<br>
+      4. <strong>Reducer ris:</strong> Ris har højere klimaaftryk – kombiner med quinoa, bulgur, couscous eller kartofler for variation.
+    </p>
+
+    <!-- Product Breakdown -->
+    <h2>Forskellige kornprodukter</h2>
+
+    <h3 style="margin-top: 1.5rem;">Brød (~0.6-0.8 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Meget lavt – især rugbrød og fuldkornsbrød.</li>
+      <li><strong>Ernæring:</strong> Fuldkornsbrød har højt fiberindhold, B-vitaminer, mineraler.</li>
+      <li><strong>Anbefaling:</strong> Vælg fuldkornsbrød frem for hvidt brød. Økologisk dansk rugbrød er et fremragende valg.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Pasta (~0.9-1.2 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Lavt – især hvis lavet af dansk eller europæisk hvede.</li>
+      <li><strong>Ernæring:</strong> Fuldkornspasta har højere fiber og langsommere kulhydrater end hvid pasta.</li>
+      <li><strong>Anbefaling:</strong> Kombiner hvid og fuldkornspasta for at gøre overgangen lettere for gæster.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Ris (~2-3 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Højere end andre kornprodukter på grund af methanemissioner fra vanddækkede marker.</li>
+      <li><strong>Ernæring:</strong> Fuldkornsris (brune ris) har højere fiber og mineraler end hvid ris.</li>
+      <li><strong>Anbefaling:</strong> Reducer rismængden og kombiner med bulgur, quinoa eller kartofler. Vælg basmati eller jasminris med lavere klimaaftryk hvis ris er nødvendig.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Havregryn (~0.5-0.7 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Meget lavt – blandt de laveste kornprodukter.</li>
+      <li><strong>Ernæring:</strong> Højt fiberindhold, især beta-glucan som sænker kolesterol.</li>
+      <li><strong>Anbefaling:</strong> Perfekt til morgenmad, bagværk og som base til veganske burgere.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Bulgur, couscous, quinoa (~0.8-1.5 kg CO₂e/kg)</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Klimaaftryk:</strong> Lavt – bulgur og couscous laves af hvede. Quinoa importeres typisk fra Sydamerika.</li>
+      <li><strong>Ernæring:</strong> Quinoa er komplet protein med alle essentielle aminosyrer. Bulgur har højt fiberindhold.</li>
+      <li><strong>Anbefaling:</strong> Brug bulgur og couscous som alternativer til ris. Quinoa sparsomt på grund af import og vandpåvirkning.</li>
+    </ul>
+
+    <!-- Organic vs Conventional -->
+    <h2>Økologisk vs. konventionel</h2>
+    <p>
+      Økologisk korn har <strong>lignende klimaaftryk</strong> som konventionel (ofte 5-10% lavere på grund af
+      mindre brug af kunstgødning). Men økologi byder på væsentlige fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ingen syntetiske pesticider:</strong> Reducerer kemisk belastning af grundvand og jord.</li>
+      <li><strong>Biodiversitet:</strong> Økologiske marker har typisk flere vilde planter, insekter og fugle.</li>
+      <li><strong>Jordsundhed:</strong> Sædskifte, kompost og naturlig gødning forbedrer jordfrugtbarhed.</li>
+      <li><strong>Ingen GMO:</strong> Økologisk korn er fri for genetisk modificerede organismer.</li>
+    </ul>
+    <p>
+      For kantiner anbefales økologisk korn og pasta som standard – det er ofte en lille ekstra omkostning
+      og understøtter bedre miljøstandarder.
+    </p>
+
+    <!-- Certifications and Labeling -->
+    <h2>Certificeringer og mærker</h2>
+    <p>
+      Når du køber korn og pasta, kan følgende mærkninger hjælpe:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ø-mærket (Danmark):</strong> Økologisk produktion uden syntetiske pesticider.</li>
+      <li><strong>Fuldkornsmærket (Danmark):</strong> Garanterer mindst 50% fuldkorn i produktet – god til brød og pasta.</li>
+      <li><strong>Nøglehulsmærket:</strong> Sundere valg med mindre salt, sukker og fedt – og ofte højere fuldkornsindhold.</li>
+      <li><strong>Fairtrade:</strong> Relevant for importerede produkter som quinoa og ris – sikrer bedre arbejdsforhold.</li>
+    </ul>
+
+    <!-- Quality and Sourcing -->
+    <h2>Kvalitet og oprindelse</h2>
+    <p>
+      Vælg dansk eller europæisk korn hvor muligt. Danmark producerer høj kvalitet hvede, rug, havre og byg
+      med god sporbarhed og miljøstandarder.
+    </p>
+    <p>
+      Importeret korn – især fra oversøiske lande – har højere transportemissioner. Quinoa fra Sydamerika
+      og basmatiris fra Asien bør bruges sparsomt.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Vælg fuldkornspasta og fuldkornsbrød som standard – blend eventuelt med raffinerede varianter i begyndelsen</li>
+        <li>Byt ris ud med bulgur, couscous eller kartofler i nogle retter for at reducere klimaaftrykket</li>
+        <li>Brug havregryn til morgenmad, bagværk og som base til vegetariske burgere eller frikadeller</li>
+        <li>Kommunicér til gæsterne om fuldkorn og økologi – skab forståelse for sundhed og bæredygtighed</li>
+        <li>Eksperimenter med forskellige korntyper – spelt, durumhvede, emmer – for variation</li>
+        <li>Køb i bulk for at reducere emballage og omkostninger</li>
+        <li>Opbevar korn tørt og køligt for at undgå skadedyr og forlænge holdbarhed</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Korn og pasta er blandt de billigste fødevarer per kalorie. Økologisk korn koster typisk 20-40% mere
+      end konventionel, men da råvaren er billig, er den samlede ekstra omkostning lav per portion.
+    </p>
+    <p>
+      Fuldkornsprodukter koster ofte det samme eller lidt mere end raffinerede varianter – en meget lille
+      investering for betydelig sundhedsgevinst.
+    </p>
+
+    <!-- Health and Nutrition -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Fuldkornsprodukter er næringsrige og indeholder:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Fiber:</strong> 6-12 g per 100 g fuldkorn – vigtig for fordøjelse og mæthedsfølelse.</li>
+      <li><strong>B-vitaminer:</strong> Thiamin, riboflavin, niacin, folat.</li>
+      <li><strong>Mineraler:</strong> Jern, magnesium, selen, zink.</li>
+      <li><strong>Antioxidanter:</strong> Fytokemikalier der beskytter mod sygdomme.</li>
+      <li><strong>Langsomme kulhydrater:</strong> Lavere glykæmisk indeks end raffinerede kornprodukter.</li>
+    </ul>
+    <p>
+      Sundhedsstyrelsen anbefaler mindst 75 g fuldkorn dagligt. En portion fuldkornsbrød (100 g) eller
+      fuldkornspasta (80 g tørvægt) kan dække dette.
+    </p>
+
+    <!-- Danish Dietary Guidelines -->
+    <h2>Officielle anbefalinger</h2>
+    <p>
+      De officielle kostråd anbefaler:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li>Vælg fuldkorn – mindst 75 g om dagen</li>
+      <li>Spis groft brød og fuldkornsprodukter</li>
+      <li>Vælg økologisk hvor muligt</li>
+      <li>Variér mellem forskellige korntyper for bredere næringsindtag</li>
+    </ul>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk andre plantebaserede råvarer</h2>
+    <p class="section-lead">Kombiner korn med grøntsager, bælgfrugter og frugt for en sund og bæredygtig menu.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_vegetables') }}" class="btn-primary">Grøntsager →</a>
+      <a href="{{ url_for('product_fruits') }}" class="btn-primary">Frugt & Bær →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

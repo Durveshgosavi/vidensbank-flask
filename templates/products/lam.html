@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Lammekød - Råvarer | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=1920&q=85&fit=crop&crop=entropy');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Lammekød</h1>
+    <p class="hero-subtitle">Højt klimaaftryk – brug strategisk</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Lammekød har et højt klimaaftryk – kun overgået af oksekød. Dog kan græssende lam fra ekstensivt landbrug
+      have biodiversitetsfordele. Kantiner bør bruge lam sparsomt og med omtanke.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <!-- Climate Footprint Section -->
+    <h2>Klimaaftryk</h2>
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-rod);">~25-30</div>
+        <h3 class="metric-label">kg CO₂e per kg lammekød</h3>
+        <p class="metric-text">
+          Lammekød har det næsthøjeste klimaaftryk efter oksekød – omkring 7-10 gange højere end kylling.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Methan fra drøvtyggere</h3>
+        <p class="metric-text">
+          Ligesom køer producerer lam methan under fordøjelsen, hvilket bidrager væsentligt til klimaaftrykket.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-gul);">🌿</div>
+        <h3 class="metric-label">Græsning og biodiversitet</h3>
+        <p class="metric-text">
+          Lam græsser ofte på marginale arealer som overdrev, hvilket kan understøtte biodiversitet og naturbevaring.
+        </p>
+      </article>
+    </div>
+
+    <p>
+      Lammekød har højt klimaaftryk primært på grund af metanemissioner fra fordøjelsen samt relativt lav foderudnyttelse.
+      Dog kan lam i ekstensivt fårehold på overdrev, heder og marginale arealer have positive bidrag til biodiversitet
+      og landskabspleje.
+    </p>
+
+    <!-- Environmental Impacts -->
+    <h2>Miljøpåvirkning – nuanceret billede</h2>
+    <p>
+      Lammekød har både negative og positive miljøpåvirkninger:
+    </p>
+    <h3 style="margin-top: 1.5rem;">Negative påvirkninger:</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Højt klimaaftryk:</strong> Methanudledning og lavere foderefektivitet giver højt CO₂e-aftryk.</li>
+      <li><strong>Arealforbrug:</strong> Kræver store græsningsarealer per produceret kilo kød.</li>
+      <li><strong>Overbefolkning kan skade:</strong> Overgræsning kan føre til jorderosion og tab af planteliv.</li>
+    </ul>
+
+    <h3 style="margin-top: 1.5rem;">Positive påvirkninger:</h3>
+    <ul style="line-height: 1.8;">
+      <li><strong>Biodiversitet:</strong> Græsning på overdrev, enge og heder kan fremme planterigdom og insektliv.</li>
+      <li><strong>Landskabspleje:</strong> Får holder naturarealer åbne og forhindrer tilgroning – vigtig for mange truede arter.</li>
+      <li><strong>Marginale arealer:</strong> Får kan græsse på jord uegnet til planteavl, hvilket gør dem til producenter på arealer der ellers ikke ville give fødevarer.</li>
+      <li><strong>Kulstofbinding:</strong> Velmanageleret græsning på permanente græsarealer kan bidrage til kulstofbinding i jorden.</li>
+    </ul>
+
+    <!-- Recommendations for Canteens -->
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Anbefalinger til kantiner:</strong><br>
+      1. <strong>Brug sparsomt:</strong> Lam bør serveres sjældent – måske 1-2 gange om året som sæsonspeciale.<br>
+      2. <strong>Vælg græssende lam:</strong> Prioriter lam fra ekstensivt landbrug på overdrev eller naturarealer – dette understøter biodiversitet.<br>
+      3. <strong>Små portioner:</strong> Server lam i mindre portioner og kombiner med mange grøntsager.<br>
+      4. <strong>Dansk eller europæisk:</strong> Vælg lam fra Danmark, Island eller Storbritannien for bedre sporbarhed og miljøstandarder.
+    </p>
+
+    <!-- Organic vs Conventional -->
+    <h2>Økologisk vs. konventionel</h2>
+    <p>
+      Økologisk lammekød har typisk <strong>lignende eller lidt højere klimaaftryk</strong> end konventionel
+      på grund af længere opdrættstid. Dog byder økologi på fordele:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Dyrevelfærd:</strong> Mere plads, adgang til udendørs arealer, fokus på naturlig adfærd.</li>
+      <li><strong>Ingen syntetiske pesticider:</strong> Græsningsarealer uden kemisk behandling.</li>
+      <li><strong>Biodiversitet:</strong> Økologiske fårefold understøtter ofte højere biodiversitet.</li>
+    </ul>
+    <p>
+      Valget mellem økologisk og konventionel lam afhænger af kantinens prioriteter. Men uanset valg bør lam
+      bruges sparsomt på grund af det høje klimaaftryk.
+    </p>
+
+    <!-- Certifications and Labeling -->
+    <h2>Certificeringer og mærker</h2>
+    <p>
+      Når du køber lammekød, kan følgende certificeringer hjælpe:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Ø-mærket (Danmark):</strong> Økologisk lammekød med bedre dyrevelfærd.</li>
+      <li><strong>Dansk Lam:</strong> Garanterer dansk oprindelse og sporbarhed.</li>
+      <li><strong>Naturarealgræsning:</strong> Se efter lam fra overdrev, heder eller naturområder – understøtter biodiversitet.</li>
+      <li><strong>Islandsk lam:</strong> Importeret men med meget høje standarder og græsning på uberørte naturarealer.</li>
+    </ul>
+
+    <!-- Quality and Sourcing -->
+    <h2>Kvalitet og oprindelse</h2>
+    <p>
+      Vælg lam fra Danmark eller Island hvor muligt. Disse lande har høje standarder for dyrevelfærd og sporbarhed.
+      Importeret lammekød fra Australien eller New Zealand har højt klimaaftryk fra transport, selvom produktionen
+      kan være ekstensiv.
+    </p>
+    <p>
+      <strong>Sæsonalitet:</strong> Lam har sæson – danske lam slagtes typisk i efterår (september-november) efter
+      en sommer på græs. Vælg lam i sæsonen for lavest klimaaftryk og bedst kvalitet.
+    </p>
+
+    <!-- Practical Tips -->
+    <h2>Praktiske tips til indkøb</h2>
+    <div class="metric-tile" style="margin: 2rem 0;">
+      <h3 class="metric-label">Strategier for kantinen</h3>
+      <ul style="line-height: 1.8; text-align: left;">
+        <li>Server lam som særlig sæsonret i september-november når danske lam er på deres bedste</li>
+        <li>Kombiner lammekød med mange grøntsager og bælgfrugter for at reducere mængden af kød per portion</li>
+        <li>Brug forskellige udskæringer – ikke kun koteletter, men også skulder, bryst og hals til gryderetter</li>
+        <li>Kommunicér til gæsterne at lammet kommer fra biodiversitetsgræsning hvis det er tilfældet – skab forståelse for den positive landskabspleje</li>
+        <li>Undgå regelmæssig servering – lam bør være en sjælden behandling, ikke en fast del af menurotationen</li>
+        <li>Overvej alternativer som kylling eller fisk i stedet for lam for de fleste måltider</li>
+      </ul>
+    </div>
+
+    <!-- Price Considerations -->
+    <h2>Prisovervejelser</h2>
+    <p>
+      Lammekød er typisk dyrere end de fleste andre kødtyper. Økologisk og græsningslam kan koste 30-50% mere
+      end konventionel. På grund af både pris og klimaaftryk anbefales lam som en lejlighedsret snarere end
+      en regelmæssig del af menuen.
+    </p>
+
+    <!-- Health Considerations -->
+    <h2>Sundhed og ernæring</h2>
+    <p>
+      Lammekød er næringsrigt protein med godt fedtindhold. Det indeholder:
+    </p>
+    <ul style="line-height: 1.8;">
+      <li><strong>Protein:</strong> Omkring 20-25 g per 100 g kød.</li>
+      <li><strong>B-vitaminer:</strong> Særligt B12, som er vigtig for blodproduktion.</li>
+      <li><strong>Jern:</strong> Godt indhold af hæmjern, der let optages i kroppen.</li>
+      <li><strong>Zink og selen:</strong> Vigtige mineraler for immunforsvar.</li>
+      <li><strong>Fedt:</strong> Højere fedtindhold end kylling og svinekød – vælg magre udskæringer hvis muligt.</li>
+    </ul>
+
+    <!-- The Nuanced Choice -->
+    <h2>Den nuancerede beslutning</h2>
+    <p>
+      Lammekød er et eksempel på hvordan bæredygtighed er kompleks. Selvom klimaaftrykket er højt, kan
+      græssende lam på naturarealer understøtte biodiversitet og landskabspleje – noget som er vigtigt
+      for Danmarks natur.
+    </p>
+    <p>
+      For kantiner betyder dette at lam kan have sin plads som en <em>sjælden specialret</em>, især hvis
+      det kommer fra certificeret naturgræsning. Men det bør ikke være en fast del af den ugentlige menu.
+    </p>
+  </article>
+</section>
+
+<!-- Call to Action -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Udforsk alternativer til lam</h2>
+    <p class="section-lead">Se hvordan andre proteiner kan reducere klimaaftrykket betydeligt.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('product_fjerkreae') }}" class="btn-primary">Fjerkræ →</a>
+      <a href="{{ url_for('product_fisk') }}" class="btn-primary">Fisk & Skaldyr →</a>
+      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
