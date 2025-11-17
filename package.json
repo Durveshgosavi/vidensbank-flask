@@ -1,0 +1,15 @@
+{
+  "name": "vidensbank-flask",
+  "version": "1.0.0",
+  "description": "En Flask webapplikation for bæredygtighed og klimadata, migreret fra Microsoft Power Pages.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
