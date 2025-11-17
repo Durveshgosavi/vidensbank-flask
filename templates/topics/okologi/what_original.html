@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er økologi? - Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er økologi?</h1>
+    <p class="hero-subtitle">Certificering, produktion og principper</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Økologi er en produktionsmetode, hvor fødevarer dyrkes og forarbejdes uden brug af kunstige pesticider,
+      kunstgødning eller GMO. Det er en certificeret standard med klare krav til dyrevelfærd, biodiversitet og bæredygtighed.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_okologi_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_okologi_why') }}" class="filter-pill">Hvorfor vigtigt? →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>De centrale principper</h2>
+    <p>Økologisk produktion bygger på fire grundprincipper: sundhed, økologi, retfærdighed og omhu.
+    I Danmark reguleres økologi af EU-lovgivning og det danske Ø-mærke.</p>
+
+    <h2>Hvad betyder det i praksis?</h2>
+    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Ingen syntetiske pesticider eller kunstgødning
+      </li>
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Højere krav til dyrevelfærd og udendørs adgang
+      </li>
+      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
+        ▸ Fokus på sædskifte og jordfrugtbarhed
+      </li>
+    </ul>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner:</strong> Økologi kan være en vigtig del af bæredygtighedsprofilen, men kræver ofte
+      strategisk planlægning af indkøb og menu for at holde budgettet.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Hvorfor er økologi vigtigt?</h2>
+    <a href="{{ url_for('topic_okologi_why') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

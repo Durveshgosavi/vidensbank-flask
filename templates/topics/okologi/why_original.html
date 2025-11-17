@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er økologi vigtigt? - Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvorfor er økologi vigtigt?</h1>
+    <p class="hero-subtitle">Miljø, dyrevelfærd og marked</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Økologi har betydning for miljø, dyrevelfærd og forbrugertillid. Danmark har verdens højeste markedsandel
+      af økologi, og kantiner spiller en central rolle i at drive denne udvikling fremad.
+    </p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_okologi_what') }}" class="filter-pill">← Hvad er det?</a>
+    <a href="{{ url_for('topic_okologi_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_okologi_goal') }}" class="filter-pill">Mål & ambition →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Miljømæssige fordele</h2>
+    <p>
+      Økologisk landbrug har dokumenterede fordele for biodiversitet, grundvand og jordsundhed.
+      Ved at undgå syntetiske pesticider og kunstgødning reduceres belastningen på naturlige økosystemer.
+      Økologiske produktionsmetoder fremmer sædskifte, jordrotation og naturlige gødningsmetoder,
+      som alle bidrager til større modstandsdygtighed i landbruget.
+    </p>
+
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Biodiversitet</h3>
+        <p class="metric-text">
+          Økologiske marker har typisk 30% flere arter af bestøvere og fugle sammenlignet med konventionelle marker.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Rent grundvand</h3>
+        <p class="metric-text">
+          Økologi beskytter drikkevandet ved at undgå syntetiske pesticider, som ellers kan sive ned i grundvandet.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Jordsundhed</h3>
+        <p class="metric-text">
+          Fokus på kompost og naturlig gødning styrker jordens frugtbarhed og kulstofbinding.
+        </p>
+      </article>
+    </div>
+
+    <h2>Dyrevelfærd</h2>
+    <p>
+      Økologiske husdyr har højere velfærdsstandarder end konventionelle. Det betyder mere plads,
+      adgang til udendørs områder, og begrænsninger på brug af antibiotika. For mange forbrugere
+      er dyrevelfærd en afgørende årsag til at vælge økologi.
+    </p>
+
+    <h2>Danmarks markedsposition</h2>
+    <p>
+      Danmark har verdens højeste markedsandel for økologi – omkring 12-13% af det samlede fødevaresalg.
+      Dette skyldes både forbrugerefterspørgsel og politiske mål. Offentlige køkkener har ofte mål om
+      60-90% økologi, hvilket skaber et stort marked og driver innovation i økologisk produktion.
+    </p>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner betyder det:</strong> Økologi er ofte en del af virksomheders ESG-mål og
+      bæredygtighedsstrategier. Ved at øge økologiandelen kan kantiner understøtte både miljø, dyrevelfærd
+      og virksomhedens image.
+    </p>
+
+    <h2>Forbrugerforventninger</h2>
+    <p>
+      Danske forbrugere har høje forventninger til økologi, og især yngre generationer prioriterer
+      bæredygtighed i deres madvalg. Kantiner, der kan dokumentere en høj økologiandel, styrker deres
+      troværdighed og tiltrækningskraft.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Mål & Ambition</h2>
+    <p class="section-lead">Hvordan Vidensbanken og kantiner kan arbejde strategisk med økologi.</p>
+    <a href="{{ url_for('topic_okologi_goal') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}
