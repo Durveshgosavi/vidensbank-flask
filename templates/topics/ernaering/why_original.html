@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er ernæring vigtigt? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvorfor er ernæring vigtigt?</h1>
+    <p class="hero-subtitle">Sundhed, produktivitet og livskvalitet</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Ernæring har direkte indflydelse på både fysisk og mental sundhed, arbejdsevne og livskvalitet.
+      For kantiner betyder det et ansvar for at understøtte gæsternes sundhed gennem madvalg hver eneste dag.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_what') }}" class="filter-pill">← Hvad er det?</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">Mål & ambition →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Folkesundhed og livsstilssygdomme</h2>
+    <p>
+      Danmark står over for stigende udfordringer med livsstilssygdomme som type 2-diabetes, hjerte-kar-sygdomme
+      og fedme. Disse sygdomme er tæt forbundet med kostvaner, og forskning viser, at en sundere kost
+      kan forebygge op mod 80% af type 2-diabetes og hjertesygdomme.
+    </p>
+
+    <p>
+      Kantiner spiller en central rolle i denne forebyggelse, fordi de når tusindvis af mennesker hver dag
+      og kan gøre det sunde valg til det nemme valg.
+    </p>
+
+    <h2>Ernæring og arbejdsevne</h2>
+    <p>
+      Hvad vi spiser påvirker direkte vores energiniveau, koncentration og produktivitet:
+    </p>
+
+    <div class="card-grid" style="margin: 2rem 0;">
+      <div class="metric-tile">
+        <div class="metric-value"><img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+        <h3 class="metric-label">Stabil energi</h3>
+        <p class="metric-text">
+          Fuldkorn og grøntsager giver langsom frigivelse af energi, mens hurtige kulhydrater (hvidt brød, sukker)
+          giver energidyk efter få timer.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🧠</div>
+        <h3 class="metric-label">Mental skarphed</h3>
+        <p class="metric-text">
+          Omega-3-fedtsyrer fra fisk, nødder og frø understøtter hjernefunktion og koncentration.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">💪</div>
+        <h3 class="metric-label">Fysisk velvære</h3>
+        <p class="metric-text">
+          Tilstrækkeligt protein, vitaminer og mineraler holder immunforsvaret stærkt og reducerer sygdomsfravær.
+        </p>
+      </div>
+    </div>
+
+    <h2>Kantiner som sundhedsfremmende miljøer</h2>
+    <p>
+      En kantine er ikke bare et sted, hvor man spiser – det er et socialt og kulturelt samlingspunkt.
+      Derfor har kantiner mulighed for at:
+    </p>
+
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Nudge gæster mod sundere valg gennem præsentation og tilgængelighed.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Synliggøre næringsværdi og ingredienser, så gæster kan træffe oplyste valg.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ Tilbyde varieret kost, der både smager godt og understøtter sundhed.
+      </li>
+    </ul>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner betyder det:</strong> Når kantiner prioriterer ernæring, bidrager de ikke kun til bedre sundhed,
+      men også til højere medarbejdertrivsel, lavere sygefravær og øget produktivitet.
+    </p>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Mål & Ambition</h2>
+    <p class="section-lead">
+      Hvad er målene for ernæring i Vidensbanken og danske kantiner?
+    </p>
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}
