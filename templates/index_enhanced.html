@@ -1,0 +1,756 @@
+{% extends "base.html" %}
+
+{% block title %}Vidensbank | Bæredygtighed & Klimaindsigt{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Enhanced Homepage Specific Styles */
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.hero-stat-item {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hero-stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-gron);
+    margin-bottom: 0.5rem;
+}
+
+.hero-stat-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.chart-container canvas {
+    max-height: 100%;
+}
+
+.infographic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.infographic-card {
+    background: linear-gradient(135deg, var(--cheval-taube), var(--light-gron));
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.infographic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+}
+
+.infographic-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.infographic-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.infographic-stat {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.infographic-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.infographic-description {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.impact-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.impact-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.impact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.impact-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.impact-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.impact-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.impact-badge.high {
+    background: rgba(231, 76, 60, 0.2);
+    color: #c0392b;
+}
+
+.impact-badge.medium {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f39c12;
+}
+
+.impact-badge.low {
+    background: rgba(160, 215, 165, 0.2);
+    color: #27ae60;
+}
+
+.impact-visual {
+    margin: 1.5rem 0;
+}
+
+.impact-bar {
+    height: 12px;
+    background: var(--cheval-taube);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.impact-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cheval-gron), var(--dark-gron));
+    border-radius: 6px;
+    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: 0%;
+}
+
+.impact-stat {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-gron);
+    margin-top: 1rem;
+}
+
+.animated-background {
+    background: linear-gradient(-45deg, #e3f3e4, #d0ebd2, #a0d7a5, #84d189);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.scroll-prompt {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    font-size: 2rem;
+    color: var(--text-light);
+    opacity: 0.6;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin: 3rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 2px solid transparent;
+}
+
+.feature-card:hover {
+    border-color: var(--cheval-gron);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.feature-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--cheval-gron), var(--light-gron));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.feature-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+.data-insight-section {
+    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    color: white;
+    padding: 5rem 2rem;
+    border-radius: 40px;
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.data-insight-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(160,215,165,0.05)" d="M0,0 C300,100 900,20 1200,80 L1200,120 L0,120 Z"/></svg>');
+    background-size: cover;
+    background-position: bottom;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.data-insight-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.insight-number {
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--cheval-gron), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.insight-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.insight-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.interactive-toggle {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 0.5rem;
+    margin: 2rem 0;
+}
+
+.toggle-option {
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+.toggle-option.active {
+    background: var(--cheval-gron);
+    color: var(--text-dark);
+}
+
+.toggle-option:hover:not(.active) {
+    background: rgba(160, 215, 165, 0.3);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Enhanced Hero Section with Animated Background -->
+<header class="page-header home-hero animated-background" style="position: relative; min-height: 600px;">
+  <div class="home-hero-grid" style="max-width: 1180px; margin: 0 auto; padding: 0 2rem;">
+    <div class="hero-content animate-on-scroll">
+      <p class="hero-kicker">BÆREDYGTIGHED & KLIMA</p>
+      <h1 class="hero-headline">VIDENSBANK</h1>
+      <p class="hero-body">
+        Viden er den vigtigste råvare i det grønne køkken. I vores Vidensbank samler vi data og analyser,
+        der gør det muligt at træffe informerede valg om alt fra råvarers klimaaftryk til gastronomisk innovation.
+      </p>
+      <div class="hero-actions">
+        <a href="#topics" class="btn-primary">Udforsk Viden</a>
+        <a href="{{ url_for('calculator') }}" class="btn-secondary">CO₂ Beregner</a>
+      </div>
+    </div>
+    <div class="hero-visual animate-on-scroll">
+      <img src="https://i.imgur.com/KyuSPXy.jpeg" alt="Bæredygtig madproduktion og dataindsigt" loading="eager">
+    </div>
+  </div>
+  <div class="scroll-prompt">↓</div>
+</header>
+
+<!-- Real-time Statistics Hero Banner -->
+<section class="page-section" style="padding-top: 5rem;">
+  <div class="hero-stats animate-on-scroll">
+    <div class="hero-stat-item">
+      <div class="hero-stat-value" data-counter="12" data-suffix="%">0%</div>
+      <div class="hero-stat-label">Økologi i DK</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-value" data-counter="197" data-suffix="t">0t</div>
+      <div class="hero-stat-label">Madspild/Dag</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-value" data-counter="63" data-prefix="-" data-suffix="%">0%</div>
+      <div class="hero-stat-label">Gap til mål</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-value" data-counter="90" data-suffix="%">0%</div>
+      <div class="hero-stat-label">CO₂ reduktion</div>
+    </div>
+  </div>
+</section>
+
+<!-- Infographic Section: Key Insights -->
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="eyebrow">DATA & INDSIGT</p>
+    <h2 class="section-title">Nøgletal for Bæredygtighed</h2>
+    <p class="section-lead">
+      Fakta og data der underbygger behovet for bæredygtige valg i professionelle køkkener
+    </p>
+  </header>
+
+  <div class="infographic-grid">
+    <div class="infographic-card animate-on-scroll">
+      <div class="infographic-icon">🌱</div>
+      <div class="infographic-stat" data-counter="27">0</div>
+      <h3 class="infographic-title">kg CO₂e pr. kg Oksekød</h3>
+      <p class="infographic-description">
+        Oksekød har det højeste klimaaftryk blandt alle fødevarer.
+        Et skift til plantebaserede alternativer kan reducere emissioner med op til 90%.
+      </p>
+    </div>
+
+    <div class="infographic-card animate-on-scroll">
+      <div class="infographic-icon">💧</div>
+      <div class="infographic-stat" data-counter="15400">0</div>
+      <h3 class="infographic-title">L vand pr. kg Oksekød</h3>
+      <p class="infographic-description">
+        Vandforbruget i kødfremstilling er astronomisk højt.
+        Bælgfrugter bruger 95% mindre vand end oksekød.
+      </p>
+    </div>
+
+    <div class="infographic-card animate-on-scroll">
+      <div class="infographic-icon">🍽️</div>
+      <div class="infographic-stat" data-counter="350">0</div>
+      <h3 class="infographic-title">g kød/uge (anbefaling)</h3>
+      <p class="infographic-description">
+        Danske kostråd anbefaler max 350g kød pr. uge,
+        men gennemsnittet ligger på 950g – en forskel på 171%.
+      </p>
+    </div>
+
+    <div class="infographic-card animate-on-scroll">
+      <div class="infographic-icon">♻️</div>
+      <div class="infographic-stat" data-counter="30">0</div>
+      <h3 class="infographic-title">% Madspild i Kantiner</h3>
+      <p class="infographic-description">
+        Op til 30% af maden i kantiner kasseres.
+        Bedre planlægning og portionering kan halvere dette.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Chart Section -->
+<section class="page-section is-muted">
+  <header class="section-header animate-on-scroll">
+    <p class="eyebrow">VISUALISERING</p>
+    <h2 class="section-title">CO₂-udslip fra Fødevarer</h2>
+    <p class="section-lead">
+      Sammenlign klimaaftrykket fra forskellige fødevarekategorier og forstå forskellen
+    </p>
+  </header>
+
+  <div class="interactive-toggle animate-on-scroll">
+    <button class="toggle-option active" data-chart="emissions">CO₂-udslip</button>
+    <button class="toggle-option" data-chart="trend">Udvikling</button>
+    <button class="toggle-option" data-chart="comparison">Sammenligning</button>
+  </div>
+
+  <div class="chart-container animate-on-scroll">
+    <canvas id="emissionsChart"></canvas>
+  </div>
+
+  <div class="chart-container animate-on-scroll" style="display: none;">
+    <canvas id="trendChart"></canvas>
+  </div>
+
+  <div class="chart-container animate-on-scroll" style="display: none;">
+    <canvas id="comparisonChart"></canvas>
+  </div>
+</section>
+
+<!-- Environmental Impact Comparison -->
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="eyebrow">PÅVIRKNING</p>
+    <h2 class="section-title">Miljøpåvirkning: Fra Jord til Tallerken</h2>
+    <p class="section-lead">
+      Se den dokumenterede effekt af forskellige fødevarevalg på miljøet
+    </p>
+  </header>
+
+  <div class="impact-comparison">
+    <div class="impact-item animate-on-scroll">
+      <div class="impact-header">
+        <h3 class="impact-title">Kødbaseret Måltid</h3>
+        <span class="impact-badge high">Høj Påvirkning</span>
+      </div>
+      <div class="impact-visual">
+        <div class="impact-bar">
+          <div class="impact-bar-fill" data-progress="85"></div>
+        </div>
+      </div>
+      <div class="impact-stat">7.2 kg CO₂e</div>
+      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+        Gennemsnitligt klimaaftryk pr. portion
+      </p>
+    </div>
+
+    <div class="impact-item animate-on-scroll">
+      <div class="impact-header">
+        <h3 class="impact-title">Fisk & Skaldyr</h3>
+        <span class="impact-badge medium">Moderat Påvirkning</span>
+      </div>
+      <div class="impact-visual">
+        <div class="impact-bar">
+          <div class="impact-bar-fill" data-progress="45"></div>
+        </div>
+      </div>
+      <div class="impact-stat">3.8 kg CO₂e</div>
+      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+        Afhænger af fangstmetode og art
+      </p>
+    </div>
+
+    <div class="impact-item animate-on-scroll">
+      <div class="impact-header">
+        <h3 class="impact-title">Plantebaseret Måltid</h3>
+        <span class="impact-badge low">Lav Påvirkning</span>
+      </div>
+      <div class="impact-visual">
+        <div class="impact-bar">
+          <div class="impact-bar-fill" data-progress="12"></div>
+        </div>
+      </div>
+      <div class="impact-stat">0.9 kg CO₂e</div>
+      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+        Op til 88% lavere end kød
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Topics Grid -->
+<section id="topics" class="page-section is-muted">
+  <header class="section-header animate-on-scroll">
+    <h2 class="section-title">Vores Videns emner</h2>
+    <p class="section-lead">
+      Udforsk vores centrale vidensområder for at træffe informerede, klimabevidste beslutninger i det professionelle køkken.
+    </p>
+  </header>
+
+  <div class="card-grid">
+    <a href="{{ url_for('topic_emissions_landing') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1200" alt="Fødevarerelaterede emissioner og bæredygtighed" loading="lazy">
+        <span class="card-category-tag">Klima</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Emissioner & Bæredygtighed</h3>
+        <p class="card-teaser">Forstå fødevarers klimaaftryk fra jord til tallerken, og hvordan danske kantiner kan reducere CO₂e gennem strategiske valg.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>5–7 min</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200" alt="Sund og bæredygtig ernæring i kantiner" loading="lazy">
+        <span class="card-category-tag">Sundhed</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Ernæring</h3>
+        <p class="card-teaser">Kostrådene, næringsværdi og den gyldfine balance mellem sundhed, smag og bæredygtighed i professionelle køkkener.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_okologi_landing') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Økologisk landbrug og fødevarer" loading="lazy">
+        <span class="card-category-tag">Økologi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Økologi</h3>
+        <p class="card-teaser">Certificering, fordele og udfordringer ved økologiske fødevarer, og hvordan de spiller ind i kantinedriften.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200" alt="Vandforbrug i fødevareproduktion" loading="lazy">
+        <span class="card-category-tag">Ressourcer</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Vandforbrug</h3>
+        <p class="card-teaser">Den skjulte vandkrise i fødevareproduktion, og hvordan kantiner kan vælge råvarer med lavere vandaftryk.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_madspild_landing') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1200" alt="Madspildsreduktion i storkøkkener" loading="lazy">
+        <span class="card-category-tag">Ressourcer</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">Madspild</h3>
+        <p class="card-teaser">Databaseret tilgang til at reducere madspild i kantinen gennem bedre planlægning, portionering og gæstekommunikation.</p>
+        <div class="card-metadata">
+          <span>Vidensartikel</span>
+          <span>•</span>
+          <span>4–6 min</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Data-Driven Insight Section -->
+<div class="data-insight-section animate-on-scroll">
+  <div class="data-insight-content">
+    <div class="insight-number" data-counter="90" data-suffix="%">0%</div>
+    <h2 class="insight-title">Reducer Klimaaftrykket Med Intelligente Valg</h2>
+    <p class="insight-description">
+      Ved at skifte fra de mest klimabelastende proteiner til plantebaserede alternativer kan en gennemsnitlig kantineservering
+      reducere sit CO₂e-aftryk med op til 90%. Det svarer til at spare 6.3 kg CO₂e pr. portion –
+      eller at fjerne 1.400 biler fra vejene i et helt år, for hver 1.000 serveringer.
+    </p>
+    <a href="{{ url_for('emissions_sustainability') }}" class="btn-primary">Se Dataene →</a>
+  </div>
+</div>
+
+<!-- Feature Cards -->
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="eyebrow">VÆRKTØJER</p>
+    <h2 class="section-title">Dine Bæredygtighedsværktøjer</h2>
+    <p class="section-lead">
+      Praktiske værktøjer og ressourcer til at implementere bæredygtige løsninger i din kantine
+    </p>
+  </header>
+
+  <div class="feature-grid">
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-icon-wrapper">🧮</div>
+      <h3 class="feature-title">CO₂ Beregner</h3>
+      <p class="feature-description">
+        Beregn klimaaftrykket for dine råvarer og måltider.
+        Sammenlign alternativer og optimer din menu for lavere emissioner.
+      </p>
+      <a href="{{ url_for('calculator') }}" class="btn-secondary" style="margin-top: 1.5rem;">Prøv Beregneren</a>
+    </div>
+
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-icon-wrapper">📊</div>
+      <h3 class="feature-title">Klimadata</h3>
+      <p class="feature-description">
+        Udforsk vores omfattende database med klimadata for 100+ fødevarer.
+        Baseret på peer-reviewed forskning og officielle kilder.
+      </p>
+      <a href="{{ url_for('climate_data') }}" class="btn-secondary" style="margin-top: 1.5rem;">Se Dataene</a>
+    </div>
+
+    <div class="feature-card animate-on-scroll">
+      <div class="feature-icon-wrapper">🌿</div>
+      <h3 class="feature-title">Råvare Database</h3>
+      <p class="feature-description">
+        Komplet guide til bæredygtige indkøb med praktiske anbefalinger,
+        certificeringer og tips til 13+ produktkategorier.
+      </p>
+      <a href="{{ url_for('products_overview') }}" class="btn-secondary" style="margin-top: 1.5rem;">Udforsk Råvarer</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Klar til at Tage Datadrevne Beslutninger?</h2>
+  <p class="section-lead">Udforsk vores database og find de indsigter, du har brug for til at træffe informerede, bæredygtige valg.</p>
+  <div class="cta-row">
+    <a href="{{ url_for('calculator') }}" class="btn-primary">CO₂ Beregner</a>
+    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Klimadata</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- Custom Charts Script -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+<script>
+// Interactive Chart Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.toggle-option');
+    const chartContainers = document.querySelectorAll('.chart-container');
+
+    toggleButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            toggleButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Hide all charts
+            chartContainers.forEach(container => container.style.display = 'none');
+
+            // Show selected chart
+            chartContainers[index].style.display = 'block';
+        });
+    });
+
+    // Animate progress bars when they come into view
+    const progressBars = document.querySelectorAll('[data-progress]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                const progress = entry.target.getAttribute('data-progress');
+                setTimeout(() => {
+                    entry.target.style.width = progress + '%';
+                    entry.target.classList.add('animated');
+                }, 200);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => observer.observe(bar));
+});
+</script>
+{% endblock %}
