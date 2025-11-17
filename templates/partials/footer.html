@@ -97,18 +97,9 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="footer-container">
-            <div class="footer-bottom-content">
-                <p class="footer-copyright">
-                    © {{ current_year }} Cheval Blanc Kantiner A/S. Alle rettigheder forbeholdes.
-                </p>
-                <div class="footer-legal">
-                    <a href="#" class="legal-link">Privatlivspolitik</a>
-                    <span class="legal-divider">•</span>
-                    <a href="#" class="legal-link">Cookiepolitik</a>
-                    <span class="legal-divider">•</span>
-                    <a href="#" class="legal-link">Vilkår & Betingelser</a>
-                </div>
-            </div>
+            <p class="footer-copyright">
+                © {{ current_year }} Cheval Blanc Kantiner A/S. Alle rettigheder forbeholdes.
+            </p>
         </div>
     </div>
 </footer>
@@ -272,40 +263,11 @@ a.contact-link:hover {
     background: rgba(0, 0, 0, 0.3);
 }
 
-.footer-bottom-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
 .footer-copyright {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
-}
-
-.footer-legal {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.legal-link {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.legal-link:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.legal-divider {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.75rem;
+    text-align: center;
 }
 
 /* Responsive */
@@ -341,25 +303,5 @@ a.contact-link:hover {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .footer-bottom-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .footer-legal {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-legal {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .legal-divider {
-        display: none;
-    }
 }
 </style>
