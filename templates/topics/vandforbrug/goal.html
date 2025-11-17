@@ -1,42 +1,597 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
-{%block title %}Mål & Ambition - Vandforbrug - Vidensbank{%endblock %}
+{% block title %}Mål & Ambition - Vandforbrug - Vidensbank{% endblock %}
 
-{%block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1559825481-12a05cc00344');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
+{% block extra_css %}
+<style>
+/* Water Goals Styles */
+.goal-hero {
+    position: relative;
+    min-height: 450px;
+    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.goal-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1559825481-12a05cc00344');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.goal-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.progress-banner {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin: -3rem auto 4rem;
+    max-width: 1000px;
+    position: relative;
+    z-index: 10;
+}
+
+.progress-tracker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.progress-item {
+    text-align: center;
+}
+
+.progress-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+    position: relative;
+}
+
+.progress-circle svg {
+    transform: rotate(-90deg);
+}
+
+.progress-circle-fill {
+    fill: none;
+    stroke: #0077b6;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s ease;
+}
+
+.progress-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0077b6;
+}
+
+.progress-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.roadmap-section {
+    background: var(--cheval-taube);
+    border-radius: 32px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+}
+
+.roadmap-timeline {
+    max-width: 900px;
+    margin: 3rem auto;
+    position: relative;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #0077b6 0%, #48cae4 100%);
+    transform: translateX(-50%);
+}
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+.roadmap-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.roadmap-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.roadmap-item:nth-child(even) .roadmap-content:first-child {
+    grid-column: 3;
+}
+
+.roadmap-item:nth-child(even) .roadmap-content:last-child {
+    grid-column: 1;
+}
+
+.roadmap-marker {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #0077b6, #023e8a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+}
+
+.roadmap-phase {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0077b6;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.roadmap-description {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.ambition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.ambition-item {
+    background: linear-gradient(135deg, #48cae4 0%, #f0f8ff 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    border-left: 5px solid #0077b6;
+    transition: all 0.3s ease;
+}
+
+.ambition-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.ambition-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.ambition-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.ambition-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.goal-box {
+    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    margin: 3rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.goal-statement {
+    font-size: 2rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.goal-author {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .roadmap-timeline::before {
+        left: 20px;
+    }
+
+    .roadmap-item {
+        grid-template-columns: 60px 1fr;
+        gap: 1.5rem;
+    }
+
+    .roadmap-marker {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    .roadmap-content {
+        grid-column: 2 !important;
+    }
+
+    .roadmap-item:nth-child(even) .roadmap-content:first-child,
+    .roadmap-item:nth-child(even) .roadmap-content:last-child {
+        grid-column: 2 !important;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Enhanced Hero Section -->
+<header class="goal-hero animate-on-scroll">
+  <div class="goal-hero-content">
     <h1 class="hero-title">Mål & Ambition - Vandforbrug</h1>
-    <p class="hero-subtitle">Vandbevidste valg</p>
+    <p class="hero-subtitle">Fra viden til handling – reduktion af vandforbrug i danske kantiner</p>
   </div>
 </header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">Målet er at integrere vandbevidsthed i indkøbsbeslutninger.</p>
-  </header>
+<!-- Progress Banner -->
+<div class="progress-banner animate-on-scroll" style="padding: 0 2rem;">
+  <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Vores ambition mod 2030</h2>
+  <div class="progress-tracker">
+    <div class="progress-item">
+      <div class="progress-circle">
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#e0e0e0" stroke-width="6"></circle>
+          <circle class="progress-circle-fill" cx="50" cy="50" r="46"
+                  data-progress="30"
+                  style="stroke-dasharray: 288.88; stroke-dashoffset: 200;"></circle>
+        </svg>
+        <div class="progress-number" data-counter="30" data-suffix="%">0%</div>
+      </div>
+      <div class="progress-label">Reduktionsmål nået</div>
+    </div>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_vandforbrug_why') }}" class="filter-pill">← Forrige</a>
+    <div class="progress-item">
+      <div class="progress-circle">
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#e0e0e0" stroke-width="6"></circle>
+          <circle class="progress-circle-fill" cx="50" cy="50" r="46"
+                  data-progress="50"
+                  style="stroke-dasharray: 288.88; stroke-dashoffset: 144;"></circle>
+        </svg>
+        <div class="progress-number" data-counter="50" data-suffix="%">0%</div>
+      </div>
+      <div class="progress-label">Kantiner engageret</div>
+    </div>
+
+    <div class="progress-item">
+      <div class="progress-circle">
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#e0e0e0" stroke-width="6"></circle>
+          <circle class="progress-circle-fill" cx="50" cy="50" r="46"
+                  data-progress="75"
+                  style="stroke-dasharray: 288.88; stroke-dashoffset: 72;"></circle>
+        </svg>
+        <div class="progress-number" data-counter="75" data-suffix="%">0%</div>
+      </div>
+      <div class="progress-label">Data tilgængelighed</div>
+    </div>
+
+    <div class="progress-item">
+      <div class="progress-circle">
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#e0e0e0" stroke-width="6"></circle>
+          <circle class="progress-circle-fill" cx="50" cy="50" r="46"
+                  data-progress="40"
+                  style="stroke-dasharray: 288.88; stroke-dashoffset: 173;"></circle>
+        </svg>
+        <div class="progress-number" data-counter="40" data-suffix="%">0%</div>
+      </div>
+      <div class="progress-label">Gæst tilfredshed</div>
+    </div>
+  </div>
+</div>
+
+<section class="page-section">
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_vandforbrug_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
     <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="filter-pill">Næste →</a>
+    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="filter-pill">Mit aftryk →</a>
   </nav>
 
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>Vision</h2>
-    <p>Kantiner skal kunne vælge råvarer med lavere vandaftryk hvor det er relevant.</p>
+  <article style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll">
+      <h2 class="section-title">Fra viden til handling</h2>
+      <p class="section-lead">
+        Vores ambition er at reducere vandforbrug i danske kantiner markant. Målet er at integrere vandbevidsthed
+        i alle indkøbsbeslutninger, så kantiner kan træffe kvalificerede valg baseret på solid data.
+      </p>
+    </header>
 
-    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>For kantiner:</strong> Kombiner vandbevidsthed med klimahensyn for en helhedsorienteret tilgang.
+    <!-- Ambition Section -->
+    <div class="animate-on-scroll" style="margin: 4rem 0;">
+      <h2 style="font-size: 2rem; text-align: center; margin-bottom: 3rem;">Vores målsætning for 2030</h2>
+
+      <div class="ambition-grid">
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">💧</div>
+          <h3 class="ambition-title">Reducere vandaftrykket</h3>
+          <p class="ambition-description">
+            Reducere vandaftryk pr. gæst med 30% gennem intelligent menuplanering og råvarevalg.
+          </p>
+        </div>
+
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">🌱</div>
+          <h3 class="ambition-title">Øge plantebaseret andel</h3>
+          <p class="ambition-description">
+            Gøre plantebaserede retter til standard. 60% af menuen skal være plantebaseret eller med lavt vandaftryk.
+          </p>
+        </div>
+
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">📊</div>
+          <h3 class="ambition-title">Data-drevet drift</h3>
+          <p class="ambition-description">
+            Implementere vandbevidsthed i menuplanering, indkøb og driftsbeslutninger baseret på konkrete tal.
+          </p>
+        </div>
+
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">🎯</div>
+          <h3 class="ambition-title">Dokumentere resultater</h3>
+          <p class="ambition-description">
+            Måle, rapportere og kommunikere vandreduktioner. At kunne vise konkrete resultater til interessenter.
+          </p>
+        </div>
+
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">🤝</div>
+          <h3 class="ambition-title">Bygge partnerskaber</h3>
+          <p class="ambition-description">
+            Samarbejde med leverandører, certificeringsorganer og andre kantiner for at skabe fælles løsninger.
+          </p>
+        </div>
+
+        <div class="ambition-item animate-on-scroll">
+          <div class="ambition-icon">🚀</div>
+          <h3 class="ambition-title">Drive innovation</h3>
+          <p class="ambition-description">
+            Være ledende inden for vandbevidst madproduktion og innovative gæstekommunikationsmetoder.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</section>
+
+<!-- Roadmap Timeline -->
+<section class="roadmap-section animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <p class="eyebrow">VORES VEJE</p>
+      <h2 class="section-title">Fra 2024 til 2030 - Vandforbrug</h2>
+      <p class="section-lead">
+        Vores strategiske plan for at gøre danske kantiner til vandpionerer
+      </p>
+    </header>
+
+    <div class="roadmap-timeline">
+      <!-- Phase 1 -->
+      <div class="roadmap-item animate-on-scroll">
+        <div class="roadmap-content">
+          <div class="roadmap-phase">FASE 1: 2024</div>
+          <h3 class="roadmap-title">Opbygning af Viden</h3>
+          <p class="roadmap-description">
+            Lancering af komplet viden om vandforbrug. Integration af vandaftryk-data i Vidensbanken.
+            Etablering af baseline-målinger for deltakende kantiner.
+          </p>
+        </div>
+        <div class="roadmap-marker">2024</div>
+        <div></div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="roadmap-item animate-on-scroll">
+        <div></div>
+        <div class="roadmap-marker">2025</div>
+        <div class="roadmap-content">
+          <div class="roadmap-phase">FASE 2: 2025</div>
+          <h3 class="roadmap-title">Pilot & Partnerskaber</h3>
+          <p class="roadmap-description">
+            15 pilotkantiner implementerer vandbevidst menuplanering. Partnerskaber med leverandører
+            af plantebaserede produkter. Udvikling af vandbevidst gæstekommunikation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="roadmap-item animate-on-scroll">
+        <div class="roadmap-content">
+          <div class="roadmap-phase">FASE 3: 2026-2027</div>
+          <h3 class="roadmap-title">Skalering & Certificering</h3>
+          <p class="roadmap-description">
+            Udrulning til 50+ kantiner. Udvikling af dansk vandsertifikerings-standard.
+            Træningsprogrammer for køkkenpersonale på vandbevidsthed.
+          </p>
+        </div>
+        <div class="roadmap-marker">2026</div>
+        <div></div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="roadmap-item animate-on-scroll">
+        <div></div>
+        <div class="roadmap-marker">2028</div>
+        <div class="roadmap-content">
+          <div class="roadmap-phase">FASE 4: 2028-2029</div>
+          <h3 class="roadmap-title">Standardisering & Ekspansion</h3>
+          <p class="roadmap-description">
+            Vandbevidsthed bliver branchestandard i Danmark. Internationalt samarbejde om
+            deling af best practices til nordiske og europæiske kantiner.
+          </p>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="roadmap-item animate-on-scroll">
+        <div class="roadmap-content">
+          <div class="roadmap-phase">MÅLSÆTNING: 2030</div>
+          <h3 class="roadmap-title">30% Reduktion Opnået</h3>
+          <p class="roadmap-description">
+            Danske kantiner har i gennemsnit reduceret vandaftryk med 30% siden 2024.
+            Plantebaserede måltider er blevet normen, ikke undtagelsen.
+          </p>
+        </div>
+        <div class="roadmap-marker">2030</div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision Statement -->
+<section class="page-section">
+  <div class="goal-box animate-on-scroll">
+    <p class="goal-statement">
+      "Hjælper denne side en kunde eller medarbejder med at tage det næste skridt mod vandbevidst kantinedrift?"
+    </p>
+    <p class="goal-author">Vores ledestjerne for alt indhold om vandforbrug</p>
+  </div>
+
+  <article style="max-width: 900px; margin: 3rem auto;">
+    <h2 class="animate-on-scroll">Vidensbanken som fundament for vandbevidsthed</h2>
+    <p class="animate-on-scroll">
+      <strong>Internt</strong> skal Vidensbanken fungere som et fælles fundament for vandbevidsthed:
+      Alle medarbejdere skal kunne slå op, finde forklaringer og hente tal eller eksempler til kundedialoger
+      og menubeslutninger.
+    </p>
+    <p class="animate-on-scroll">
+      <strong>Eksternt</strong> skal viden om vandforbrug være udgangspunktet for materialer som kundespecifikke
+      analyser, præsentationer og rapporter. Vi bygger en troværdig stemme i vansdiskussionen.
+    </p>
+    <p class="animate-on-scroll">
+      I praksis betyder det, at vi hele tiden spørger os selv om vores indhold lever op til dette mål.
+      Hver side, hvert tal og hvert eksempel skal kunne bruges aktivt til at skabe forandring i retning
+      af mindre vandforbrug.
     </p>
   </article>
 </section>
 
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Mit Aftryk</h2>
-    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
-  </div>
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Mit Aftryk</h2>
+  <p class="section-lead">
+    Forstå hvordan dine beslutninger påvirker vandaftrykket. Beregn og sammenlign forskellige scenarier.
+  </p>
+  <a href="{{ url_for('topic_vandforbrug_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
 </section>
 
-{%endblock %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Animate progress circles on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const progressCircles = document.querySelectorAll('.progress-circle-fill');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const circle = entry.target;
+                const progress = parseInt(circle.getAttribute('data-progress'));
+                const circumference = 2 * Math.PI * 46; // radius = 46
+                const offset = circumference - (progress / 100) * circumference;
+
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = offset;
+                }, 200);
+
+                observer.unobserve(circle);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    progressCircles.forEach(circle => observer.observe(circle));
+
+    // Animate counters
+    const counters = document.querySelectorAll('[data-counter]');
+    counters.forEach(counter => {
+        const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const target = entry.target;
+                    const endValue = parseInt(target.getAttribute('data-counter'));
+                    const suffix = target.getAttribute('data-suffix') || '';
+                    const duration = 1500;
+
+                    let currentValue = 0;
+                    const increment = endValue / (duration / 16);
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= endValue) {
+                            currentValue = endValue;
+                            clearInterval(timer);
+                            target.classList.add('animated');
+                        }
+                        target.textContent = Math.round(currentValue) + suffix;
+                    }, 16);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer2.observe(counter);
+    });
+});
+</script>
+{% endblock %}

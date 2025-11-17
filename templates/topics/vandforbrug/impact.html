@@ -1,42 +1,649 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
-{%block title %}Mit Aftryk - Vandforbrug - Vidensbank{%endblock %}
+{% block title %}Mit Aftryk - Vandforbrug - Vidensbank{% endblock %}
 
-{%block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1523301343968-6a6ebf63c672');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Mit Aftryk - Vandforbrug</h1>
-    <p class="hero-subtitle">Råvarevalg og vand</p>
+{% block extra_css %}
+<style>
+/* Water Impact Styles */
+.impact-hero {
+    position: relative;
+    min-height: 450px;
+    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.impact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1523301343968-6a6ebf63c672');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.impact-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.calculator-section {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin: -3rem auto 4rem;
+    max-width: 900px;
+    position: relative;
+    z-index: 10;
+}
+
+.calculator-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.calculator-input-group {
+    background: var(--cheval-taube);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.calculator-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.calculator-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.calculator-input:focus {
+    outline: none;
+    border-color: #0077b6;
+}
+
+.calculator-result {
+    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.result-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.result-comparison {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.impact-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.breakdown-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.breakdown-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.breakdown-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.breakdown-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.breakdown-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0077b6;
+    margin-bottom: 0.5rem;
+}
+
+.breakdown-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.breakdown-bar-fill {
+    height: 100%;
+    background: #0077b6;
+    border-radius: 4px;
+    transition: width 1s ease;
+    width: 0;
+}
+
+.scenario-comparison {
+    background: var(--cheval-taube);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin: 4rem 0;
+}
+
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.scenario-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #0077b6, #48cae4);
+}
+
+.scenario-card.high::before {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+.scenario-card.medium::before {
+    background: linear-gradient(90deg, #e67e22, #f39c12);
+}
+
+.scenario-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.scenario-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.scenario-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.scenario-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #0077b6;
+}
+
+.scenario-value.high {
+    color: #e74c3c;
+}
+
+.scenario-value.medium {
+    color: #f39c12;
+}
+
+.scenario-value.low {
+    color: #27ae60;
+}
+
+.scenario-details {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.scenario-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.scenario-details li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.scenario-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #0077b6;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-value {
+        font-size: 2.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Enhanced Hero Section -->
+<header class="impact-hero animate-on-scroll">
+  <div class="impact-hero-content">
+    <h1 class="hero-title">Mit Vandaftryk</h1>
+    <p class="hero-subtitle">Se hvordan dine menuvalg påvirker vandforbrug – og find muligheder for reduktion</p>
   </div>
 </header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">Dit valg af protein og grøntsager påvirker indirekte vandforbruget.</p>
-  </header>
+<!-- Water Footprint Calculator -->
+<div class="calculator-section animate-on-scroll">
+  <h2 class="calculator-title">Beregn Din Kantines Uge-Vandaftryk</h2>
+  <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+    Indtast typiske værdier for at få et estimat af jeres vandforbrug gennem fødevarevalg
+  </p>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">← Forrige</a>
+  <div class="calculator-grid">
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="mealsPerWeek">Antal måltider pr. uge</label>
+      <input type="number" id="mealsPerWeek" class="calculator-input" value="500" min="0" step="10">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="meatPercentage">Andel kødbaserede retter (%)</label>
+      <input type="number" id="meatPercentage" class="calculator-input" value="60" min="0" max="100" step="5">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="beefPercentage">Heraf oksebaserede (%)</label>
+      <input type="number" id="beefPercentage" class="calculator-input" value="30" min="0" max="100" step="5">
+    </div>
+  </div>
+
+  <div class="calculator-result" id="calculatorResult">
+    <div class="result-value" id="resultValue">0</div>
+    <div class="result-label">L vandaftryk pr. uge</div>
+    <div class="result-comparison" id="resultComparison">
+      Dette svarer til cirka <strong>0 L pr. år</strong>
+    </div>
+  </div>
+
+  <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; font-style: italic;">
+    * Beregningen er et estimat baseret på gennemsnitlige vandaftryk-data for danske kantiner
+  </p>
+</div>
+
+<section class="page-section">
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">← Mål & ambition</a>
     <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="filter-pill">Næste →</a>
+    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="filter-pill">Tips & tricks →</a>
   </nav>
 
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>Vand-intensive fødevarer</h2>
-    <p>Oksekød, lam, nødder og ris har højt vandforbrug. Kylling, bælgfrugter og de fleste grøntsager har lavere aftryk.</p>
+  <article style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll">
+      <h2 class="section-title">Hvor kommer vandaftrykket fra?</h2>
+      <p class="section-lead">
+        Som kantineansvarlig eller køkkenchef former du hundredvis af måltider hver uge.
+        Dit vandaftryk handler om valg i menuplanlægning, indkøb og drift.
+      </p>
+    </header>
 
-    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>For kantiner:</strong> Små justeringer i menusammensætning kan reducere vandaftrykket betydeligt.
-    </p>
+    <!-- Impact Breakdown -->
+    <div class="impact-breakdown animate-on-scroll">
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🍽️</div>
+        <h3 class="breakdown-title">Menuens sammensætning</h3>
+        <div class="breakdown-percentage" data-counter="70" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="70"></div>
+        </div>
+        <p style="color: var(--text-light); line-height: 1.6; font-size: 0.95rem;">
+          Andelen af kødbaserede retter – især okse – vs. grøntsager og bælgfrugter har størst betydning.
+          En ret oksekød bruger 15 gange mere vand end en vegetarret.
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🛒</div>
+        <h3 class="breakdown-title">Indkøb & råvarevalg</h3>
+        <div class="breakdown-percentage" data-counter="20" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="20"></div>
+        </div>
+        <p style="color: var(--text-light); line-height: 1.6; font-size: 0.95rem;">
+          Valg af varer med højt vs. lavt vandaftryk, oprindelsesland og produktionsmetode.
+          Europæisk kylling er mere vandeffektivt end importeret nødder.
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">💧</div>
+        <h3 class="breakdown-title">Madspild</h3>
+        <div class="breakdown-percentage" data-counter="10" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="10"></div>
+        </div>
+        <p style="color: var(--text-light); line-height: 1.6; font-size: 0.95rem;">
+          Mad der ender i skraldespanden betyder spildt vand. En 10% reduktion i madspild
+          har væsentlig effekt på vandaftrykket.
+        </p>
+      </div>
+    </div>
   </article>
 </section>
 
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Tips & Tricks</h2>
-    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+<!-- Scenario Comparison -->
+<section class="scenario-comparison animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <p class="eyebrow">SAMMENLIGN SCENARIER</p>
+      <h2 class="section-title">Tre Typiske Kantiner - Vandaftryk</h2>
+      <p class="section-lead">
+        Se hvordan forskellige menubeslutninger påvirker vandaftrykket for en kantine med 500 måltider om ugen
+      </p>
+    </header>
+
+    <div class="scenario-grid">
+      <!-- High Impact Scenario -->
+      <div class="scenario-card high animate-on-scroll">
+        <div class="scenario-label">Højt vandaftryk</div>
+        <h3 class="scenario-title">Traditionel Kantine</h3>
+        <div class="scenario-value high" data-counter="3500000">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">L vandaftryk / uge</p>
+        <div class="scenario-details">
+          <ul>
+            <li>70% kødbaserede retter</li>
+            <li>Oksebaseret 3-4 gange om ugen</li>
+            <li>Importerede nødder og frø</li>
+            <li>15% madspild</li>
+            <li>Ingen vandbevidsthed i drift</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Medium Impact Scenario -->
+      <div class="scenario-card medium animate-on-scroll">
+        <div class="scenario-label">Medio vandaftryk</div>
+        <h3 class="scenario-title">Bevidst Kantine</h3>
+        <div class="scenario-value medium" data-counter="1800000">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">L vandaftryk / uge</p>
+        <div class="scenario-details">
+          <ul>
+            <li>50% kødbaserede retter</li>
+            <li>Oksebaseret 1-2 gange om ugen</li>
+            <li>Mere europæiske råvarer</li>
+            <li>10% madspild</li>
+            <li>Delvis fokus på vandbevidsthed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Low Impact Scenario -->
+      <div class="scenario-card animate-on-scroll">
+        <div class="scenario-label">Lavt vandaftryk</div>
+        <h3 class="scenario-title">Vandbevidst Kantine</h3>
+        <div class="scenario-value low" data-counter="800000">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">L vandaftryk / uge</p>
+        <div class="scenario-details">
+          <ul>
+            <li>70% plantebaserede eller fjerkræ</li>
+            <li>Oksebaseret max 1 gang/måned</li>
+            <li>Primært europæiske råvarer</li>
+            <li>5% madspild</li>
+            <li>Strategisk vandbevidst drift</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem; font-weight: 600; font-size: 1.1rem;">
+      Potentiel reduktion fra høj til lav: <span style="color: #0077b6; font-size: 1.3rem;">77% vandaftryk-reduktion</span>
+    </p>
   </div>
 </section>
 
-{%endblock %}
+<!-- Action Points -->
+<section class="page-section">
+  <article style="max-width: 1000px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll" style="text-align: center;">
+      <h2 class="section-title">Fra tal til praksis</h2>
+      <p class="section-lead">Konkrete handlinger der reducerer vandforbrug</p>
+    </header>
+
+    <div style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin: 3rem 0;">
+      <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 2rem;">Hvor kan du påvirke?</h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Menusammensætning</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Reducering af oksekødbaserede retter fra 4 til 2 gang om ugen kan spare <strong>1 million liter vand pr. år</strong> for en kantine på 500 gæster.
+          </p>
+        </div>
+
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Proteinvalg</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Skift fra 100% oksebaseret til 50% kylling, 50% fisk kan reducere vandaftrykket med <strong>60%</strong> på proteindelen.
+          </p>
+        </div>
+
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Madspild</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Reduktion af madspild fra 15% til 5% har samme effekt som at skifte proteinkilder på nogle måltider.
+          </p>
+        </div>
+
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Sæsonalitet</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Europæisk sæsonkost har væsentligt lavere vandaftryk end eksotiske importvarer året rundt.
+          </p>
+        </div>
+
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Leverandørpartner</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Valg af leverandører med lav-vand-fokus sikrer at hele værdikæden bliver vandbevidst.
+          </p>
+        </div>
+
+        <div style="padding: 1.5rem; background: #f0f8ff; border-left: 4px solid #0077b6; border-radius: 8px;">
+          <h4 style="margin-top: 0;">Gæsteinformation</h4>
+          <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+            Kommunikation om vandbevidste valg kan påvirke gæsternes valg og mindset omkring vand.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="impact-highlight animate-on-scroll" style="background: linear-gradient(135deg, #48cae4 0%, #0077b6 100%); color: white; padding: 2rem; border-left: none; border-radius: 12px; margin: 3rem 0;">
+      <h3 style="font-size: 1.3rem; margin-top: 0;">💡 Vigtig indsigt:</h3>
+      <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
+        Dit vandaftryk er ikke noget abstrakt – det er summen af konkrete menuvalg hver dag.
+        En velvidende kantine kan reducere vandaftrykket med <strong>77% uden at gå på kompromis med kvalitet eller gæsttilfredshed</strong>.
+      </p>
+    </div>
+
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Tips & Tricks</h2>
+  <p class="section-lead">
+    Få konkrete værktøjer og strategier til at reducere vandforbrug i praksis dag for dag.
+  </p>
+  <a href="{{ url_for('topic_vandforbrug_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Water Footprint Calculator
+    const mealsInput = document.getElementById('mealsPerWeek');
+    const meatInput = document.getElementById('meatPercentage');
+    const beefInput = document.getElementById('beefPercentage');
+    const resultValue = document.getElementById('resultValue');
+    const resultComparison = document.getElementById('resultComparison');
+
+    function calculateFootprint() {
+        const meals = parseInt(mealsInput.value) || 0;
+        const meatPercent = parseInt(meatInput.value) || 0;
+        const beefPercent = parseInt(beefInput.value) || 0;
+
+        // Base calculation - average meal ~1.5L base water
+        const baseWater = 1.5;
+
+        // Meat multipliers
+        const beefMultiplier = (meatPercent / 100) * (beefPercent / 100) * 10; // Beef is water intensive
+        const otherMeatMultiplier = (meatPercent / 100) * ((100 - beefPercent) / 100) * 3; // Chicken, pork
+        const vegMultiplier = ((100 - meatPercent) / 100) * 0.2; // Vegetables low water
+
+        const waterPerMeal = baseWater + beefMultiplier + otherMeatMultiplier + vegMultiplier;
+        const weeklyTotal = Math.round(meals * waterPerMeal * 1000); // Convert to liters
+        const yearlyTotal = Math.round(weeklyTotal * 52);
+
+        // Display result with animation
+        animateValue(resultValue, 0, weeklyTotal, 1000, '');
+        resultComparison.innerHTML = `Dette svarer til cirka <strong>${(yearlyTotal / 1000000).toFixed(1)} millioner liter pr. år</strong>`;
+    }
+
+    function animateValue(element, start, end, duration, suffix) {
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current).toLocaleString('da-DK') + suffix;
+        }, 16);
+    }
+
+    // Event listeners
+    [mealsInput, meatInput, beefInput].forEach(input => {
+        input.addEventListener('input', calculateFootprint);
+    });
+
+    // Initial calculation
+    calculateFootprint();
+
+    // Animate breakdown bars on scroll
+    const breakdownBars = document.querySelectorAll('.breakdown-bar-fill');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = parseInt(bar.getAttribute('data-progress'));
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 200);
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    breakdownBars.forEach(bar => observer.observe(bar));
+
+    // Animate scenario counters
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                const target = entry.target;
+                const endValue = parseInt(target.getAttribute('data-counter'));
+                const duration = 2000;
+                let currentValue = 0;
+                const increment = endValue / (duration / 16);
+
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= endValue) {
+                        currentValue = endValue;
+                        clearInterval(timer);
+                        target.classList.add('animated');
+                    }
+                    target.textContent = Math.round(currentValue).toLocaleString('da-DK');
+                }, 16);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+});
+</script>
+{% endblock %}
