@@ -50,7 +50,8 @@ function createEmissionsChart(canvas) {
         labels: ['Oksekød', 'Lam', 'Svinekød', 'Kylling', 'Fisk', 'Mejeriprodukter', 'Grøntsager', 'Bælgfrugter'],
         datasets: [{
             label: 'CO₂e pr. kg (kg)',
-            data: [27, 39.2, 12.1, 6.9, 6, 21, 2, 0.9],
+            // Source: Our World in Data, Poore & Nemecek (2018) Science
+            data: [60, 24, 12, 6.9, 6, 21, 2, 2],
             backgroundColor: [
                 'rgba(231, 76, 60, 0.8)',
                 'rgba(192, 57, 43, 0.8)',
