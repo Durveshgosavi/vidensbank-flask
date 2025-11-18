@@ -7,26 +7,14 @@
 /* Nutrition Topic Landing Page Styles */
 .topic-hero {
     position: relative;
-    min-height: 500px;
-    background: linear-gradient(135deg, #2d6a4f, #1f4332);
+    min-height: 400px;
+    background: #2d6a4f;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 5rem 2rem;
-    overflow: hidden;
-}
-
-.topic-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1600');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: 0;
+    padding: 4rem 2rem;
 }
 
 .topic-hero-content {
@@ -62,29 +50,30 @@
 }
 
 .topic-stat-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s ease;
 }
 
 .topic-stat-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .topic-stat-value {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
 .topic-stat-label {
-    font-size: 0.95rem;
-    color: var(--text-light);
+    font-size: 0.9rem;
+    color: #333333;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -103,16 +92,16 @@
 }
 
 .topic-intro-section p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--text-light);
+    color: #333333;
 }
 
 .data-viz-section {
-    background: var(--cheval-taube);
-    padding: 5rem 2rem;
-    margin: 4rem 0;
-    border-radius: 40px;
+    background: #f5f5f5;
+    padding: 4rem 2rem;
+    margin: 3rem 0;
+    border-radius: 16px;
 }
 
 .nutrition-grid-visual {
@@ -123,17 +112,18 @@
 }
 
 .nutrition-item-visual {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .nutrition-item-visual:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nutrition-icon {
@@ -142,31 +132,32 @@
 }
 
 .nutrition-value {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--dark-gron);
+    color: #1a1a1a;
 }
 
 .nutrition-label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
 .nutrition-description {
     font-size: 0.95rem;
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
 }
 
 .chart-showcase {
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    margin: 3rem 0;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    margin: 2rem 0;
 }
 
 .chart-showcase canvas {

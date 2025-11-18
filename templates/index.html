@@ -15,27 +15,28 @@
 .hero-stat-item {
     text-align: center;
     padding: 1.5rem 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    transition: all 0.3s ease;
 }
 
 .hero-stat-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .hero-stat-value {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
 .hero-stat-label {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: #333333;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -63,30 +64,18 @@
 }
 
 .infographic-card {
-    background: linear-gradient(135deg, var(--cheval-taube), var(--light-gron));
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.infographic-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
-    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
 .infographic-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .infographic-icon {
@@ -96,22 +85,22 @@
 }
 
 .infographic-stat {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1a1a1a;
     margin-bottom: 1rem;
 }
 
 .infographic-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: var(--text-dark);
+    color: #1a1a1a;
 }
 
 .infographic-description {
     font-size: 1rem;
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
 }
 
@@ -123,16 +112,17 @@
 }
 
 .impact-item {
-    background: white;
+    background: #ffffff;
     padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
     transition: all 0.3s ease;
 }
 
 .impact-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .impact-header {
@@ -145,7 +135,7 @@
 .impact-title {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1a1a1a;
 }
 
 .impact-badge {
@@ -194,20 +184,12 @@
 .impact-stat {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-top: 1rem;
 }
 
 .animated-background {
-    background: linear-gradient(-45deg, #e3f3e4, #d0ebd2, #a0d7a5, #84d189);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    background: #2c5f2d;
 }
 
 .scroll-prompt {
@@ -215,16 +197,9 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    animation: bounce 2s infinite;
     font-size: 2rem;
-    color: var(--text-light);
-    opacity: 0.6;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-10px); }
-    60% { transform: translateX(-50%) translateY(-5px); }
+    color: #ffffff;
+    opacity: 0.8;
 }
 
 .feature-grid {
@@ -235,67 +210,50 @@
 }
 
 .feature-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 2px solid transparent;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    transition: all 0.3s ease;
 }
 
 .feature-card:hover {
-    border-color: var(--cheval-gron);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .feature-icon-wrapper {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--cheval-gron), var(--light-gron));
+    width: 70px;
+    height: 70px;
+    background: #e3f3e4;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .feature-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: #1a1a1a;
 }
 
 .feature-description {
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--text-light);
+    color: #333333;
 }
 
 .data-insight-section {
-    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    background: #1f1f1f;
     color: white;
-    padding: 5rem 2rem;
-    border-radius: 40px;
+    padding: 4rem 2rem;
+    border-radius: 24px;
     margin: 4rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.data-insight-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="rgba(160,215,165,0.05)" d="M0,0 C300,100 900,20 1200,80 L1200,120 L0,120 Z"/></svg>');
-    background-size: cover;
-    background-position: bottom;
-    opacity: 0.3;
-    pointer-events: none;
 }
 
 .data-insight-content {
@@ -307,12 +265,9 @@
 }
 
 .insight-number {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--cheval-gron), #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff;
     margin-bottom: 1rem;
 }
 
@@ -345,16 +300,16 @@
     transition: all 0.3s ease;
     border: none;
     background: transparent;
-    color: var(--text-dark);
+    color: #333333;
 }
 
 .toggle-option.active {
-    background: var(--cheval-gron);
-    color: var(--text-dark);
+    background: #2c5f2d;
+    color: #ffffff;
 }
 
 .toggle-option:hover:not(.active) {
-    background: rgba(160, 215, 165, 0.3);
+    background: #e3f3e4;
 }
 </style>
 {% endblock %}
@@ -511,7 +466,7 @@
         </div>
       </div>
       <div class="impact-stat">7.2 kg CO₂e</div>
-      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+      <p style="color: #333333; font-size: 0.95rem; margin-top: 0.5rem;">
         Gennemsnitligt klimaaftryk pr. portion
       </p>
     </div>
@@ -527,7 +482,7 @@
         </div>
       </div>
       <div class="impact-stat">3.8 kg CO₂e</div>
-      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+      <p style="color: #333333; font-size: 0.95rem; margin-top: 0.5rem;">
         Afhænger af fangstmetode og art
       </p>
     </div>
@@ -543,7 +498,7 @@
         </div>
       </div>
       <div class="impact-stat">0.9 kg CO₂e</div>
-      <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">
+      <p style="color: #333333; font-size: 0.95rem; margin-top: 0.5rem;">
         Op til 88% lavere end kød
       </p>
     </div>

@@ -13,49 +13,39 @@
 }
 
 .impact-stat-card {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    border-top: 4px solid #2c5f2d;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.impact-stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--cheval-gron), var(--dark-gron));
+    transition: all 0.3s ease;
 }
 
 .impact-stat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .impact-stat-number {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-bottom: 1rem;
     line-height: 1;
 }
 
 .impact-stat-label {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: #1a1a1a;
     margin-bottom: 1rem;
 }
 
 .impact-stat-desc {
     font-size: 1rem;
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
 }
 
@@ -71,8 +61,8 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--cheval-gron), var(--dark-gron));
+    width: 3px;
+    background: #2c5f2d;
     transform: translateX(-50%);
 }
 
@@ -86,43 +76,43 @@
 }
 
 .timeline-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
     transition: all 0.3s ease;
 }
 
 .timeline-content:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .timeline-year {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--cheval-gron), var(--dark-gron));
+    width: 60px;
+    height: 60px;
+    background: #2c5f2d;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: white;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
     z-index: 2;
 }
 
 .timeline-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1a1a1a;
     margin-bottom: 0.75rem;
 }
 
 .timeline-desc {
     font-size: 0.95rem;
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
 }
 
@@ -132,10 +122,10 @@
 
 /* Sector Comparison */
 .sector-comparison {
-    background: linear-gradient(135deg, var(--cheval-taube), var(--light-gron));
-    padding: 4rem 2rem;
-    border-radius: 32px;
-    margin: 4rem 0;
+    background: #f5f5f5;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin: 3rem 0;
 }
 
 .sector-bars {
@@ -146,10 +136,11 @@
 }
 
 .sector-bar-item {
-    background: white;
+    background: #ffffff;
     padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
 }
 
 .sector-header {
@@ -160,15 +151,15 @@
 }
 
 .sector-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1a1a1a;
 }
 
 .sector-value {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
 }
 
 .sector-bar-track {
@@ -180,9 +171,9 @@
 
 .sector-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--cheval-gron), var(--dark-gron));
+    background: #2c5f2d;
     border-radius: 10px;
-    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: width 1s ease;
     width: 0%;
 }
 
@@ -195,17 +186,18 @@
 }
 
 .canteen-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+    border-top: 4px solid #2c5f2d;
     transition: all 0.3s ease;
-    border-top: 4px solid var(--cheval-gron);
 }
 
 .canteen-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .canteen-icon {
@@ -215,16 +207,16 @@
 }
 
 .canteen-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: #1a1a1a;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .canteen-desc {
     font-size: 1rem;
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.7;
     text-align: center;
 }
@@ -245,13 +237,13 @@
 }
 
 .risk-card {
-    background: linear-gradient(135deg, #fdecea, #f8d7da);
-    border-left: 5px solid #c0392b;
+    background: #fef5f5;
+    border-left: 4px solid #c0392b;
 }
 
 .opportunity-card {
-    background: linear-gradient(135deg, var(--light-gron), var(--cheval-gron));
-    border-left: 5px solid var(--dark-gron);
+    background: #f0f9f0;
+    border-left: 4px solid #2c5f2d;
 }
 
 .risk-card h3, .opportunity-card h3 {
@@ -297,18 +289,18 @@
 
 /* Chart Section */
 .chart-section-dark {
-    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
-    padding: 5rem 2rem;
-    border-radius: 40px;
-    margin: 4rem 0;
+    background: #1f1f1f;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin: 3rem 0;
     color: white;
 }
 
 .chart-container-white {
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    margin: 3rem 0;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
 }
 
 /* Mobile Responsive */
