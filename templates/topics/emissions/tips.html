@@ -8,25 +8,14 @@
 .tips-hero {
     position: relative;
     min-height: 450px;
-    background: linear-gradient(135deg, #40916c 0%, #1b4332 100%);
-    color: white;
+    background: #2c5f2d;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem;
     overflow: hidden;
-}
-
-.tips-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1466637574441-749b8f19452f');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: 0;
 }
 
 .quick-wins-banner {
@@ -50,7 +39,7 @@
 .quick-win-card {
     text-align: center;
     padding: 1.5rem;
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     border-radius: 12px;
     transition: all 0.3s ease;
 }
@@ -68,18 +57,18 @@
 .quick-win-value {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-bottom: 0.25rem;
 }
 
 .quick-win-label {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: #333333;
     font-weight: 600;
 }
 
 .comparison-tool {
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     border-radius: 24px;
     padding: 3rem 2rem;
     margin: 4rem 0;
@@ -140,7 +129,7 @@
     margin-top: 0.75rem;
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
 }
 
 .before-after-comparison {
@@ -212,7 +201,7 @@
 }
 
 .comparison-details {
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.8;
     margin-top: 1.5rem;
 }
@@ -257,7 +246,7 @@
     display: inline-block;
     padding: 0.4rem 0.9rem;
     background: var(--light-gron);
-    color: var(--dark-gron);
+    color: #1a1a1a;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
@@ -279,7 +268,7 @@
 }
 
 .tip-description {
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
@@ -288,7 +277,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     border-radius: 8px;
     margin-top: 1rem;
 }
@@ -306,7 +295,7 @@
 
 .tip-impact-value {
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     font-size: 1.1rem;
 }
 
@@ -327,17 +316,17 @@
 }
 
 .strategy-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .strategy-card:hover {
-    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .strategy-number {
@@ -357,6 +346,7 @@
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #1a1a1a;
 }
 
 .strategy-list {
@@ -370,13 +360,14 @@
     margin-bottom: 0.75rem;
     position: relative;
     line-height: 1.6;
+    color: #333333;
 }
 
 .strategy-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     font-weight: 700;
 }
 
@@ -409,7 +400,7 @@
 <!-- Quick Wins Banner -->
 <div class="quick-wins-banner animate-on-scroll">
   <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem;">Hurtige Gevinster</h2>
-  <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+  <p style="text-align: center; color: #666; margin-bottom: 2rem;">
     De mest effektive ændringer du kan implementere i morgen
   </p>
 
@@ -503,7 +494,7 @@
         <div class="comparison-side before">
           <span class="comparison-badge">Før</span>
           <div class="comparison-value" data-counter="5400">0</div>
-          <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+          <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
           <ul class="comparison-details">
             <li>60% kødbaserede retter</li>
             <li>Oksekød 4 gange/uge</li>
@@ -516,7 +507,7 @@
         <div class="comparison-side after">
           <span class="comparison-badge">Efter</span>
           <div class="comparison-value" data-counter="2200">0</div>
-          <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+          <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
           <ul class="comparison-details">
             <li>70% plantebaserede retter</li>
             <li>Oksekød 1 gang/måned</li>

@@ -8,25 +8,14 @@
 .tips-hero {
     position: relative;
     min-height: 450px;
-    background: linear-gradient(135deg, #2d6a4f 0%, #1f4332 100%);
-    color: white;
+    background: #2d6a4f;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem;
     overflow: hidden;
-}
-
-.tips-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1495521821757-a1efb6729352');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: 0;
 }
 
 .quick-wins-banner {
@@ -68,13 +57,13 @@
 .quick-win-value {
     font-size: 2rem;
     font-weight: 700;
-    color: #2d6a4f;
+    color: #1a1a1a;
     margin-bottom: 0.25rem;
 }
 
 .quick-win-label {
     font-size: 0.9rem;
-    color: #666;
+    color: #333333;
     font-weight: 600;
 }
 
@@ -212,7 +201,7 @@
 }
 
 .comparison-details {
-    color: #666;
+    color: #333333;
     line-height: 1.8;
     margin-top: 1.5rem;
 }
@@ -279,7 +268,7 @@
 }
 
 .tip-description {
-    color: #666;
+    color: #333333;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
@@ -327,17 +316,17 @@
 }
 
 .strategy-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
     border-radius: 16px;
     padding: 2rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .strategy-card:hover {
-    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .strategy-number {
@@ -357,6 +346,7 @@
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #1a1a1a;
 }
 
 .strategy-list {
@@ -370,6 +360,7 @@
     margin-bottom: 0.75rem;
     position: relative;
     line-height: 1.6;
+    color: #333333;
 }
 
 .strategy-list li::before {

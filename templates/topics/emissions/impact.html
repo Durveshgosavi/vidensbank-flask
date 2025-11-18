@@ -8,25 +8,14 @@
 .impact-hero {
     position: relative;
     min-height: 450px;
-    background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
-    color: white;
+    background: #2c5f2d;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem;
     overflow: hidden;
-}
-
-.impact-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: 0;
 }
 
 .calculator-section {
@@ -55,7 +44,7 @@
 }
 
 .calculator-input-group {
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     padding: 1.5rem;
     border-radius: 12px;
 }
@@ -79,7 +68,7 @@
 
 .calculator-input:focus {
     outline: none;
-    border-color: var(--dark-gron);
+    border-color: #1a1a1a;
 }
 
 .calculator-result {
@@ -145,7 +134,7 @@
 .breakdown-percentage {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--dark-gron);
+    color: #1a1a1a;
     margin-bottom: 0.5rem;
 }
 
@@ -166,13 +155,13 @@
 }
 
 .breakdown-description {
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
 }
 
 .scenario-comparison {
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     border-radius: 24px;
     padding: 3rem 2rem;
     margin: 4rem 0;
@@ -223,7 +212,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    color: var(--text-light);
+    color: #333333;
     margin-bottom: 0.75rem;
 }
 
@@ -253,7 +242,7 @@
 }
 
 .scenario-details {
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -271,7 +260,7 @@
     align-items: flex-start;
     padding: 1.25rem;
     margin-bottom: 1rem;
-    background: var(--cheval-taube);
+    background: #f5f5f5;
     border-radius: 12px;
     border-left: 4px solid var(--dark-gron);
     transition: all 0.3s ease;
@@ -299,7 +288,7 @@
 }
 
 .checklist-description {
-    color: var(--text-light);
+    color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -385,7 +374,7 @@
 <!-- Personal Footprint Calculator -->
 <div class="calculator-section animate-on-scroll">
   <h2 class="calculator-title">Beregn Din Kantines Uge-Aftryk</h2>
-  <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+  <p style="text-align: center; color: #666; margin-bottom: 2rem;">
     Indtast typiske værdier for at få et estimat af jeres klimapåvirkning
   </p>
 
@@ -414,7 +403,7 @@
     </div>
   </div>
 
-  <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; font-style: italic;">
+  <p style="text-align: center; color: #666; font-size: 0.9rem; font-style: italic;">
     * Beregningen er et estimat baseret på gennemsnitlige klimadata for danske kantiner
   </p>
 </div>
@@ -494,7 +483,7 @@
         <div class="scenario-label">Høj udledning</div>
         <h3 class="scenario-title">Traditionel Kantine</h3>
         <div class="scenario-value high" data-counter="4500">0</div>
-        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
         <ul class="scenario-details">
           <li>70% kødbaserede retter</li>
           <li>Oksekød 3-4 gange om ugen</li>
@@ -508,7 +497,7 @@
         <div class="scenario-label">Mellem udledning</div>
         <h3 class="scenario-title">Bevidst Kantine</h3>
         <div class="scenario-value medium" data-counter="2800">0</div>
-        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
         <ul class="scenario-details">
           <li>50% kødbaserede retter</li>
           <li>Oksekød 1-2 gange om ugen</li>
@@ -522,7 +511,7 @@
         <div class="scenario-label">Lav udledning</div>
         <h3 class="scenario-title">Klimavenlig Kantine</h3>
         <div class="scenario-value low" data-counter="1400">0</div>
-        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
         <ul class="scenario-details">
           <li>70% plantebaserede retter</li>
           <li>Oksekød max 1 gang/måned</li>
@@ -533,7 +522,7 @@
     </div>
 
     <p style="text-align: center; margin-top: 2rem; font-weight: 600; font-size: 1.1rem;">
-      Potentiel reduktion fra høj til lav udledning: <span style="color: var(--dark-gron); font-size: 1.3rem;">69%</span>
+      Potentiel reduktion fra høj til lav udledning: <span style="color: #1a1a1a; font-size: 1.3rem;">69%</span>
     </p>
   </div>
 </section>
@@ -602,7 +591,7 @@
     <div class="impact-visualizer animate-on-scroll">
       <div class="visualizer-header">
         <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Mit Aftryk som Dialogværktøj</h3>
-        <p style="color: var(--text-light);">
+        <p style="color: #333333;">
           Ved at koble egne tal med viden fra Vidensbanken kan du:
         </p>
       </div>
@@ -611,7 +600,7 @@
         <div class="comparison-bar-item">
           <div class="comparison-bar-label">
             <span>Forklare menubeslutninger</span>
-            <span style="color: var(--dark-gron); font-weight: 700;">90%</span>
+            <span style="color: #1a1a1a; font-weight: 700;">90%</span>
           </div>
           <div class="comparison-bar-track">
             <div class="comparison-bar-value" data-progress="90">Meget vigtigt</div>
@@ -621,7 +610,7 @@
         <div class="comparison-bar-item">
           <div class="comparison-bar-label">
             <span>Dokumentere effekt af ændringer</span>
-            <span style="color: var(--dark-gron); font-weight: 700;">85%</span>
+            <span style="color: #1a1a1a; font-weight: 700;">85%</span>
           </div>
           <div class="comparison-bar-track">
             <div class="comparison-bar-value" data-progress="85">Vigtigt</div>
@@ -631,7 +620,7 @@
         <div class="comparison-bar-item">
           <div class="comparison-bar-label">
             <span>Prioritere indsatser</span>
-            <span style="color: var(--dark-gron); font-weight: 700;">95%</span>
+            <span style="color: #1a1a1a; font-weight: 700;">95%</span>
           </div>
           <div class="comparison-bar-track">
             <div class="comparison-bar-value" data-progress="95">Essentielt</div>
