@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Tips til Økologi - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/sustainable_canteen_hero_1763550140162.png') }}"
+            alt="Sustainable Canteen" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Tips &<br>Tricks
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            Hvordan øger man økologiprocenten uden at sprænge budgettet? Her er de mest effektive greb fra danske
+            storkøkkener.
+        </p>
+    </div>
+</div>
+
+<!-- Quick Wins List -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-3xl px-6">
+        <div class="mb-16 text-center">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">De Lave Hængende
+                Frugter</h2>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Item 1 -->
+            <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+                <span class="font-display text-5xl font-bold text-cb-green-dark">01</span>
+                <div>
+                    <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Brug Sæsonen</h3>
+                    <p class="font-sans text-stone-600 leading-relaxed">
+                        Økologiske grøntsager i sæson er ofte billigere end konventionelle uden for sæson. Planlæg
+                        menuen efter udbuddet.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+                <span class="font-display text-5xl font-bold text-cb-green-dark">02</span>
+                <div>
+                    <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">De Tunge Varer</h3>
+                    <p class="font-sans text-stone-600 leading-relaxed">
+                        Skift de tunge basisvarer som mel, gryn, mælk og kartofler til økologi først. Det rykker mest i
+                        regnskabet, hvis I måler i kg.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+                <span class="font-display text-5xl font-bold text-cb-green-dark">03</span>
+                <div>
+                    <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Mindre Kød</h3>
+                    <p class="font-sans text-stone-600 leading-relaxed">
+                        Økologisk kød er dyrt. Ved at skære ned på kødforbruget frigøres budget til at købe økologisk
+                        frugt og grønt.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="flex items-start gap-6">
+                <span class="font-display text-5xl font-bold text-cb-green-dark">04</span>
+                <div>
+                    <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Bag Selv</h3>
+                    <p class="font-sans text-stone-600 leading-relaxed">
+                        Hjemmebagt brød af økologisk mel er langt billigere end indkøbt konventionelt brød – og
+                        kvaliteten er højere.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategy -->
+<section class="bg-stone-900 py-32 text-white">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="mb-16 text-center">
+            <span
+                class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Strategi</span>
+            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide text-white">Vejen til Guld</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+            <!-- Step 1 -->
+            <div>
+                <div class="mb-6 font-display text-8xl font-bold text-cb-green-medium">1</div>
+                <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Analyse</h3>
+                <p class="font-sans text-stone-400 leading-relaxed">
+                    Gennemgå jeres indkøb. Hvor bruger I flest penge/kg? Identificer hvor det er nemmest at skifte.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div>
+                <div class="mb-6 font-display text-8xl font-bold text-cb-green-medium">2</div>
+                <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Omlægning</h3>
+                <p class="font-sans text-stone-400 leading-relaxed">
+                    Start med basisvarerne. Implementer "mindre men bedre kød". Begynd at bage selv.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div>
+                <div class="mb-6 font-display text-8xl font-bold text-cb-green-medium">3</div>
+                <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Dokumentation</h3>
+                <p class="font-sans text-stone-400 leading-relaxed">
+                    Sørg for at få dokumentation fra leverandørerne. Ansøg om spisemærket hos Fødevarestyrelsen.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="bg-white py-24 text-center">
+    <div class="mx-auto max-w-3xl px-6">
+        <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Kom godt i gang
+        </h2>
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="{{ url_for('topic_organic_impact') }}"
+                class="rounded-none bg-cb-green-dark px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-900 transition-transform hover:-translate-y-1 hover:bg-cb-green-medium">
+                Beregn Potentiale
+            </a>
+            <a href="{{ url_for('topic_organic_landing') }}"
+                class="rounded-none border border-stone-300 px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900">
+                Tilbage til Oversigt
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

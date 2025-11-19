@@ -1,634 +1,100 @@
 {% extends "base.html" %}
 
-{% block title %}Mål & Ambition - Ernæring | Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Goals Page Specific Styles */
-.goal-hero {
-    position: relative;
-    min-height: 450px;
-    background: #2d6a4f;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    overflow: hidden;
-}
-
-.goal-hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-}
-
-.progress-banner {
-    background: white;
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: -3rem auto 4rem;
-    max-width: 1000px;
-    position: relative;
-    z-index: 10;
-}
-
-.progress-tracker {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.progress-item {
-    text-align: center;
-}
-
-.progress-circle {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 1rem;
-    position: relative;
-}
-
-.progress-circle svg {
-    transform: rotate(-90deg);
-}
-
-.progress-circle-bg {
-    fill: none;
-    stroke: #e0e0e0;
-    stroke-width: 8;
-}
-
-.progress-circle-fill {
-    fill: none;
-    stroke: #2d6a4f;
-    stroke-width: 8;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1.5s ease;
-}
-
-.progress-number {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2d6a4f;
-}
-
-.progress-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.roadmap-section {
-    background: #f0f8f0;
-    border-radius: 32px;
-    padding: 4rem 2rem;
-    margin: 4rem 0;
-}
-
-.roadmap-timeline {
-    max-width: 900px;
-    margin: 3rem auto;
-    position: relative;
-}
-
-.roadmap-timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #2d6a4f 0%, #52b788 100%);
-    transform: translateX(-50%);
-}
-
-.roadmap-item {
-    display: grid;
-    grid-template-columns: 1fr 80px 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    align-items: center;
-}
-
-.roadmap-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.roadmap-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.roadmap-item:nth-child(even) .roadmap-content:first-child {
-    grid-column: 3;
-}
-
-.roadmap-item:nth-child(even) .roadmap-content:last-child {
-    grid-column: 1;
-}
-
-.roadmap-marker {
-    width: 80px;
-    height: 80px;
-    background: #2d6a4f;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 1.2rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    position: relative;
-}
-
-.roadmap-phase {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #2d6a4f;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.roadmap-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: #1f1f1f;
-}
-
-.roadmap-description {
-    color: #333333;
-    line-height: 1.6;
-}
-
-.impact-metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.impact-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: all 0.3s ease;
-    border-top: 4px solid #2d6a4f;
-}
-
-.impact-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.impact-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-}
-
-.impact-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.impact-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1f1f1f;
-    margin-bottom: 0.75rem;
-}
-
-.impact-text {
-    font-size: 0.95rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-.ambition-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.ambition-item {
-    background: linear-gradient(135deg, #e8f5e9 0%, #f0f8f0 100%);
-    padding: 2rem;
-    border-radius: 16px;
-    border-left: 5px solid #2d6a4f;
-    transition: all 0.3s ease;
-}
-
-.ambition-item:hover {
-    transform: translateX(8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.ambition-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.ambition-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1f1f1f;
-    margin-bottom: 0.75rem;
-}
-
-.ambition-description {
-    color: #333333;
-    line-height: 1.6;
-}
-
-.vision-statement {
-    background: linear-gradient(135deg, #2d6a4f 0%, #1f4332 100%);
-    color: white;
-    padding: 3rem 2rem;
-    border-radius: 24px;
-    text-align: center;
-    margin: 4rem 0;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-}
-
-.vision-quote {
-    font-size: 1.6rem;
-    font-style: italic;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-}
-
-.vision-author {
-    font-size: 1rem;
-    opacity: 0.9;
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .roadmap-timeline::before {
-        left: 20px;
-    }
-
-    .roadmap-item {
-        grid-template-columns: 60px 1fr;
-        gap: 1.5rem;
-    }
-
-    .roadmap-marker {
-        width: 60px;
-        height: 60px;
-        font-size: 1rem;
-    }
-
-    .roadmap-content {
-        grid-column: 2 !important;
-    }
-
-    .roadmap-item:nth-child(even) .roadmap-content:first-child,
-    .roadmap-item:nth-child(even) .roadmap-content:last-child {
-        grid-column: 2 !important;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Mål for Ernæring - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Hero Section -->
-<header class="goal-hero animate-on-scroll">
-  <div class="goal-hero-content">
-    <h1 class="hero-title">Hvad er målet og vores ambition for ernæring?</h1>
-    <p class="hero-subtitle">Fra viden til handling – sundere kost i danske kantiner</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_breakfast.jpg') }}" alt="Nutrition Goals"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Progress Banner -->
-<div class="progress-banner animate-on-scroll" style="padding: 0 2rem;">
-  <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Vores Fremdrift Mod 2030</h2>
-  <div class="progress-tracker">
-    <div class="progress-item">
-      <div class="progress-circle">
-        <svg width="120" height="120">
-          <circle class="progress-circle-bg" cx="60" cy="60" r="52"></circle>
-          <circle class="progress-circle-fill" cx="60" cy="60" r="52"
-                  data-progress="42"
-                  style="stroke-dasharray: 326.7; stroke-dashoffset: 189.5;"></circle>
-        </svg>
-        <div class="progress-number" data-counter="42" data-suffix="%">0%</div>
-      </div>
-      <div class="progress-label">Sundhedsmål nået</div>
-    </div>
-
-    <div class="progress-item">
-      <div class="progress-circle">
-        <svg width="120" height="120">
-          <circle class="progress-circle-bg" cx="60" cy="60" r="52"></circle>
-          <circle class="progress-circle-fill" cx="60" cy="60" r="52"
-                  data-progress="68"
-                  style="stroke-dasharray: 326.7; stroke-dashoffset: 104.1;"></circle>
-        </svg>
-        <div class="progress-number" data-counter="68" data-suffix="%">0%</div>
-      </div>
-      <div class="progress-label">Kantiner engageret</div>
-    </div>
-
-    <div class="progress-item">
-      <div class="progress-circle">
-        <svg width="120" height="120">
-          <circle class="progress-circle-bg" cx="60" cy="60" r="52"></circle>
-          <circle class="progress-circle-fill" cx="60" cy="60" r="52"
-                  data-progress="85"
-                  style="stroke-dasharray: 326.7; stroke-dashoffset: 49.0;"></circle>
-        </svg>
-        <div class="progress-number" data-counter="85" data-suffix="%">0%</div>
-      </div>
-      <div class="progress-label">Ernæringsdata tilgængelig</div>
-    </div>
-
-    <div class="progress-item">
-      <div class="progress-circle">
-        <svg width="120" height="120">
-          <circle class="progress-circle-bg" cx="60" cy="60" r="52"></circle>
-          <circle class="progress-circle-fill" cx="60" cy="60" r="52"
-                  data-progress="56"
-                  style="stroke-dasharray: 326.7; stroke-dashoffset: 143.3;"></circle>
-        </svg>
-        <div class="progress-number" data-counter="56" data-suffix="%">0%</div>
-      </div>
-      <div class="progress-label">Gæst tilfredshed</div>
-    </div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Mål &<br>Ambitioner
+    </h1>
   </div>
 </div>
 
-<section class="page-section">
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">Mit aftryk →</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header animate-on-scroll">
-      <h2 class="section-title">Fra viden til handling</h2>
-      <p class="section-lead">
-        Vores ambition med Vidensbanken er at samle den vigtigste viden om ernæring
-        ét sted, så den er let at finde, forstå og bruge i praksis.
-      </p>
-    </header>
-
-    <!-- Impact Metrics -->
-    <div class="impact-metrics animate-on-scroll">
-      <div class="impact-card">
-        <div class="impact-icon">🔍</div>
-        <h3 class="impact-label">Let at finde</h3>
-        <p class="impact-text">
-          Emnerne er organiseret efter spørgsmål, som kantineansvarlige faktisk stiller. Intuitivt og logisk.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-icon">📖</div>
-        <h3 class="impact-label">Let at forstå</h3>
-        <p class="impact-text">
-          Ingen unødig fagjargon, men stadig fagligt korrekt. Ernæringsdata visualiseret klart.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-icon">⚡</div>
-        <h3 class="impact-label">Let at bruge</h3>
-        <p class="impact-text">
-          Direkte anvendelig i menuudvikling, indkøb og gæstekommunikation.
-        </p>
-      </div>
-    </div>
-
-    <!-- Ambition Section -->
-    <div class="animate-on-scroll" style="margin: 5rem 0;">
-      <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Ambition for danske kantiner</h2>
-
-      <div class="ambition-grid">
-        <div class="ambition-item">
-          <div class="ambition-icon">🌱</div>
-          <h3 class="ambition-title">Øge grøntsager og fuldkorn</h3>
-          <p class="ambition-description">
-            Gøre plantebaserede og fiberrige komponenter til standard uden at miste smag eller sæthed.
-          </p>
-        </div>
-
-        <div class="ambition-item">
-          <div class="ambition-icon">🥗</div>
-          <h3 class="ambition-title">Reducere salt og sukker</h3>
-          <p class="ambition-description">
-            Bygge smag med urter, krydderier og teknik – ikke med sødt og salt.
-          </p>
-        </div>
-
-        <div class="ambition-item">
-          <div class="ambition-icon">📊</div>
-          <h3 class="ambition-title">Bruge ernæringsdata aktivt</h3>
-          <p class="ambition-description">
-            Implementere næringsberegner og menu-analyser i menuplanlægningen.
-          </p>
-        </div>
-
-        <div class="ambition-item">
-          <div class="ambition-icon">🎯</div>
-          <h3 class="ambition-title">Understøtte sundhedsmål</h3>
-          <p class="ambition-description">
-            Hjælpe kunder med at opfylde ernæringsstandarder og dokumenterede sundhedsresultater.
-          </p>
-        </div>
-
-        <div class="ambition-item">
-          <div class="ambition-icon">🤝</div>
-          <h3 class="ambition-title">Skabe fælles forståelse</h3>
-          <p class="ambition-description">
-            Give alle medarbejdere adgang til samme vidensbase og fælles ernæringssprog.
-          </p>
-        </div>
-
-        <div class="ambition-item">
-          <div class="ambition-icon">🚀</div>
-          <h3 class="ambition-title">Drive innovation</h3>
-          <p class="ambition-description">
-            Være førende inden for ernæringsoptimeret madproduktion og gæstkommunikation.
-          </p>
-        </div>
-      </div>
-    </div>
-  </article>
+<!-- The Manifesto -->
+<section class="bg-cb-taupe-light py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Vores
+      Løfte</span>
+    <h2 class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+      "Det sunde valg."
+    </h2>
+    <div class="mx-auto mt-12 h-1 w-24 bg-cb-orange-dark"></div>
+    <p class="mx-auto mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+      Vi arbejder for, at det sundeste valg også altid er det mest fristende. Gennem smag, anretning og variation.
+    </p>
+  </div>
 </section>
 
-<!-- Roadmap Timeline -->
-<section class="roadmap-section animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <p class="eyebrow" style="color: #2d6a4f;">ROADMAP</p>
-      <h2 class="section-title">Vejen Til 2030</h2>
-      <p class="section-lead">
-        Vores strategiske plan for at gøre danske kantiner til ernæringspionerer
-      </p>
-    </header>
-
-    <div class="roadmap-timeline">
-      <!-- Phase 1 -->
-      <div class="roadmap-item">
-        <div class="roadmap-content">
-          <div class="roadmap-phase">FASE 1: 2024</div>
-          <h3 class="roadmap-title">Opbygning af Vidensbank</h3>
-          <p class="roadmap-description">
-            Lancering af komplet knowledge base med ernæringsdata, opskrifter og vejledninger.
-            Integration af næringsberegner og analyseværktøjer.
-          </p>
-        </div>
-        <div class="roadmap-marker">2024</div>
-        <div></div>
+<!-- The Roadmap -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="relative border-l border-stone-200 pl-12 md:pl-20">
+      <!-- Item 1 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cb-orange-dark ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-cb-orange-dark">Nu</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase">Officielle Kostråd</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-600">
+          Vi følger Fødevarestyrelsens officielle kostråd som rettesnor for vores menuplanlægning.
+        </p>
       </div>
 
-      <!-- Phase 2 -->
-      <div class="roadmap-item">
-        <div></div>
-        <div class="roadmap-marker">2025</div>
-        <div class="roadmap-content">
-          <div class="roadmap-phase">FASE 2: 2025</div>
-          <h3 class="roadmap-title">Pilot & Partnerskaber</h3>
-          <p class="roadmap-description">
-            20 pilotkantinier implementerer data-drevet menuplanlægning.
-            Partnerskaber med ernæringskonsulenter og sund madleverandører.
-          </p>
-        </div>
+      <!-- Item 2 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Mål</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Mere Fuldkorn</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          Vi vil øge andelen af fuldkorn i vores brød og varme retter, uden at gå på kompromis med smagsoplevelsen.
+        </p>
       </div>
 
-      <!-- Phase 3 -->
-      <div class="roadmap-item">
-        <div class="roadmap-content">
-          <div class="roadmap-phase">FASE 3: 2026-2027</div>
-          <h3 class="roadmap-title">Skalering & Certificering</h3>
-          <p class="roadmap-description">
-            Udrulning til 100+ kantiner. Udvikling af dansk ernæringsstandard
-            for sundt kantinekøkken. Uddannelsesprogrammer for køkkenpersonale.
-          </p>
-        </div>
-        <div class="roadmap-marker">2026</div>
-        <div></div>
-      </div>
-
-      <!-- Phase 4 -->
-      <div class="roadmap-item">
-        <div></div>
-        <div class="roadmap-marker">2028</div>
-        <div class="roadmap-content">
-          <div class="roadmap-phase">FASE 4: 2028-2029</div>
-          <h3 class="roadmap-title">Standardisering & Export</h3>
-          <p class="roadmap-description">
-            Vidensbanken bliver branchestandard i Danmark.
-            International vidensdeling og eksport af model til nordiske lande.
-          </p>
-        </div>
-      </div>
-
-      <!-- Phase 5 -->
-      <div class="roadmap-item">
-        <div class="roadmap-content">
-          <div class="roadmap-phase">MÅLSÆTNING: 2030</div>
-          <h3 class="roadmap-title">Sundhed Som Standard</h3>
-          <p class="roadmap-description">
-            Danske kantiner har i gennemsnit øget ernæringskvaliteten markant siden 2020.
-            Sundere valg er blevet normen, ikke undtagelsen.
-          </p>
-        </div>
-        <div class="roadmap-marker">2030</div>
-        <div></div>
+      <!-- Item 3 -->
+      <div class="relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Vision</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Ernæring i Balance</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          En kantine hvor alle måltider automatisk sikrer den rette ernæringsmæssige balance for gæsten.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Vision Statement -->
-<section class="page-section">
-  <div class="vision-statement animate-on-scroll">
-    <p class="vision-quote">
-      "Hjælper denne side en kantineansvarlig eller medarbejder med at tage det næste skridt mod sundere mad?"
-    </p>
-    <p class="vision-author">Vores ledestjerne for alt indhold</p>
+<!-- Vision Image Stack -->
+<section class="w-full">
+  <div class="grid w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-[500px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Nutrition Vision"
+        class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+    </div>
+    <div class="flex flex-col justify-center bg-stone-900 px-8 py-20 text-white md:px-24">
+      <h2 class="mb-6 font-display text-4xl font-bold uppercase tracking-brand-wide text-cb-orange-light">Perspektivet
+      </h2>
+      <p class="font-sans text-lg leading-relaxed text-stone-300">
+        Ved at fokusere på ernæring løfter vi kvaliteten af vores mad og bidrager aktivt til vores gæsters sundhed og
+        arbejdsglæde.
+      </p>
+      <div class="mt-12">
+        <a href="{{ url_for('topic_ernaering_tips') }}"
+          class="inline-block border-b border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+          Få tips til sund mad →
+        </a>
+      </div>
+    </div>
   </div>
-
-  <article style="max-width: 900px; margin: 3rem auto;">
-    <h2 class="animate-on-scroll">Vidensbanken som fundament for handling</h2>
-    <p class="animate-on-scroll">
-      <strong>Internt</strong> skal Vidensbanken fungere som et fælles fundament:
-      Alle medarbejdere skal kunne slå op, finde forklaringer og hente tal eller ideer til menuplanlægning.
-    </p>
-    <p class="animate-on-scroll">
-      <strong>Eksternt</strong> skal den være udgangspunktet for materialer som opskrifter, ernæringsguides
-      og kundespecifikke analyser. Vi bygger en troværdig stemme inden for sundt kantinekøkken.
-    </p>
-    <p class="animate-on-scroll">
-      I praksis betyder det, at vi hele tiden spørger os selv om vores indhold lever op til dette mål.
-      Hver side, hver opskrift og hver ernæringsdata skal kunne bruges aktivt til at skabe sundere mad.
-    </p>
-  </article>
 </section>
-
-<!-- Next Section CTA -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Næste: Mit Aftryk</h2>
-  <p class="section-lead">
-    Forstå hvordan dine beslutninger som kantineansvarlig påvirker gæsternes sundhed.
-  </p>
-  <a href="{{ url_for('topic_ernaering_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
-</section>
-
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// Animate progress circles on scroll
-document.addEventListener('DOMContentLoaded', function() {
-    const progressCircles = document.querySelectorAll('.progress-circle-fill');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const circle = entry.target;
-                const progress = parseInt(circle.getAttribute('data-progress'));
-                const circumference = 2 * Math.PI * 52; // radius = 52
-                const offset = circumference - (progress / 100) * circumference;
-
-                setTimeout(() => {
-                    circle.style.strokeDashoffset = offset;
-                }, 200);
-
-                observer.unobserve(circle);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    progressCircles.forEach(circle => observer.observe(circle));
-});
-</script>
 {% endblock %}

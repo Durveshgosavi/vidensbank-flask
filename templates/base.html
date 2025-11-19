@@ -1,51 +1,115 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vidensbank - Din kilde til viden om bæredygtighed, klimadata og fødevareinnovation">
+    <meta name="description"
+        content="Vidensbank - Din kilde til viden om bæredygtighed, klimadata og fødevareinnovation">
     <title>{% block title %}Vidensbank - Bæredygtighed & Klima{% endblock %}</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            900: '#064e3b',
+                            800: '#065f46',
+                        },
+                        stone: {
+                            50: '#fafaf9',
+                        },
+                        teal: {
+                            100: '#ccfbf1',
+                            600: '#0d9488',
+                        },
+                        cb: {
+                            yellow: {
+                                light: '#ffeac0',
+                                medium: '#ffdc96',
+                                dark: '#ffb92d',
+                            },
+                            orange: {
+                                light: '#ffd4be',
+                                medium: '#ffb793',
+                                dark: '#ff6e28',
+                            },
+                            blue: {
+                                light: '#e4edf6',
+                                medium: '#d2e1f0',
+                                dark: '#a5c3e1',
+                            },
+                            green: {
+                                light: '#e3f3e4',
+                                medium: '#d0ebd2',
+                                dark: '#a0d7a5',
+                            },
+                            taupe: {
+                                light: '#f4f2f1',
+                                medium: '#eceae8',
+                                dark: '#c8c5bd',
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Big Shoulders Inline Text"', 'cursive'],
+                        sans: ['"Work Sans"', 'sans-serif'],
+                        system: ['Arial', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'brand-wide': '0.05em', // Approx 50 tracking
+                        'brand-wider': '0.075em', // Approx 75 tracking
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/output.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.1">
 
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+
+<body class="bg-stone-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
     <!-- Header/Navigation -->
     {% include 'partials/header.html' %}
 
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        {% for category, message in messages %}
+        <div
+            class="p-4 mb-4 rounded-lg {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-emerald-100 text-emerald-700{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% endwith %}
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" class="flex-grow">
         {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
     {% include 'partials/footer.html' %}
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Custom JavaScript -->
-    <script src="{{ url_for('static', filename='js/main.js') }}?v=2.0"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=2.1"></script>
     {% block extra_js %}{% endblock %}
 </body>
+
 </html>

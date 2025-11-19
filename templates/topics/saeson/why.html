@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor Sæson? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/sustainable_canteen_hero_1763550140162.png') }}"
+            alt="Why Seasonality Matters" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Hvorfor er det<br>Vigtigt?
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Smag, sundhed og fornuft."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Der er mange gode grunde til at følge sæsonerne. Det handler ikke kun om klima, men i lige så høj grad om
+            kvalitet, økonomi og madglæde.
+        </p>
+    </div>
+</section>
+
+<!-- Split Section: Taste & Quality -->
+<section class="w-full border-t border-stone-200">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="flex flex-col justify-center bg-cb-taupe-light px-8 py-20 lg:px-24">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Kvalitet</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Smagen af Sol
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                Råvarer, der får lov at modne færdigt på planten, udvikler langt flere smags- og duftstoffer end dem,
+                der høstes umodne for at kunne klare lang transport.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                Når du bruger råvarer i deres naturlige sæson, får du den optimale spisekvalitet. Det betyder, at du
+                behøver at gøre mindre ved råvaren for at få den til at smage godt.
+            </p>
+        </div>
+        <div class="flex items-center justify-center bg-stone-900 px-8 py-20 text-white lg:px-24">
+            <div class="space-y-12 w-full max-w-md">
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-green-dark">Vitaminer</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Højere Indhold</div>
+                    <div class="text-stone-400 font-sans">Friskhøstede varer bevarer næringen bedre</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-yellow-dark">Pris</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Lavere</div>
+                    <div class="text-stone-400 font-sans">Når udbuddet er størst, er prisen lavest</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Split Section: Climate & Environment -->
+<section class="w-full">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="order-2 flex items-center justify-center bg-white px-8 py-20 lg:order-1 lg:px-24">
+            <ul class="w-full max-w-md space-y-8">
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">01</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Energi</h4>
+                        <p class="text-stone-500 font-sans">Opvarmning af drivhuse kræver store mængder energi.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">02</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Transport
+                        </h4>
+                        <p class="text-stone-500 font-sans">Lokale sæsonvarer har kort vej fra jord til bord.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">03</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Opbevaring
+                        </h4>
+                        <p class="text-stone-500 font-sans">Langtidslagring på køl koster energi.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order-1 flex flex-col justify-center bg-cb-green-light px-8 py-20 lg:order-2 lg:px-24">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Klima</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Det Grønne
+                Valg
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                At vælge frilandsgrønt i sæson er en af de mest effektive måder at reducere klimaaftrykket fra frugt og
+                grønt.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                <strong>Eksempel:</strong> En dansk tomat fra et opvarmet drivhus kan udlede op til 7 gange mere CO₂ end
+                en spansk frilandstomat - men en dansk frilandstomat i sæson er bedst.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Key Takeaway -->
+<section class="bg-stone-900 py-32 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+            "Det giver mening"
+        </h2>
+        <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+            For kokken, for gæsten, for bundlinjen og for kloden.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_saeson_goal') }}"
+                class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+                Næste: Mål & Ambition →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

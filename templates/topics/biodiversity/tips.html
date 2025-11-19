@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Tips til Biodiversitet - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
+            alt="Biodiversity Tips" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+            Handlinger i<br>Køkkenet
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Små valg med stor effekt."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Som indkøbere og kokke har I stor indflydelse på, hvilke produktionsformer der støttes. Her er konkrete råd
+            til at fremme biodiversitet gennem jeres daglige arbejde.
+        </p>
+    </div>
+</section>
+
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Tip 1 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">01</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Vælg Økologi
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Økologisk landbrug bruger ikke sprøjtegifte, hvilket giver bedre vilkår for vilde planter og
+                    insekter. Det er den mest direkte måde at støtte naturen på.
+                </p>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">02</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Spis i Sæson
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Råvarer i sæson dyrkes ofte på friland, hvor de indgår i det naturlige kredsløb, modsat
+                    drivhusproduktion.
+                </p>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">03</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Brug Hele Dyret
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Når vi udnytter ressourcerne fuldt ud, skal der produceres mindre, hvilket letter presset på
+                    arealerne.
+                </p>
+            </div>
+
+            <!-- Tip 4 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">04</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Variér Kosten
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Brug mange forskellige kornsorter, bønner og grøntsager. Det skaber efterspørgsel på diversitet i
+                    landbruget.
+                </p>
+            </div>
+
+            <!-- Tip 5 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">05</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Vilde Råvarer
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Brug vilde urter, bær og svampe når muligt. Det sætter fokus på naturens egen rigdom og smag.
+                </p>
+            </div>
+
+            <!-- Tip 6 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">06</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Støt
+                    Regenerativt</h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Hold øje med producenter, der arbejder aktivt med at opbygge jordens frugtbarhed og biodiversitet.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-orange-dark">
+            "Start i dag"
+        </h2>
+        <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+            Vælg én ting at fokusere på i denne uge. Måske en ny kornsort eller en økologisk udskiftning?
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_biodiversity_impact') }}"
+                class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+                Se Aftrykket →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

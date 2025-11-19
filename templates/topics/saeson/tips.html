@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Tips til Sæson - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/kitchen_chef.jpg') }}" alt="Seasonal Tips"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+            Sæson i<br>Køkkenet
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Planlægning er nøglen."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            At arbejde med sæsonvarer kræver, at man er på forkant. Her er vores bedste råd til at få mest muligt ud af
+            årets gang.
+        </p>
+    </div>
+</section>
+
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Tip 1 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">01</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Kend din Sæson
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Brug et sæsonhjul eller en kalender. Vid, hvornår de danske bær kommer, og hvornår rodfrugterne
+                    tager over.
+                </p>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">02</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Konservering
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Sylt, fermentér eller frys, når råvarerne er på deres højeste og billigste. Så har du smagen af
+                    sommer hele vinteren.
+                </p>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">03</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Fleksibilitet
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Vær klar til at ændre menuen, hvis sæsonen skifter hurtigt. Naturen følger ikke altid en fast
+                    kalender.
+                </p>
+            </div>
+
+            <!-- Tip 4 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">04</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Brug Hele
+                    Råvaren</h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Nye gulerødder med top? Brug toppen til pesto. Blomkålsstokke? Brug dem i suppe eller puré.
+                </p>
+            </div>
+
+            <!-- Tip 5 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">05</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Snak med
+                    Leverandøren</h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Din grøntleverandør ved præcis, hvad der er godt lige nu. Spørg dem til råds.
+                </p>
+            </div>
+
+            <!-- Tip 6 -->
+            <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+                <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">06</span>
+                <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Fortæl Historien
+                </h3>
+                <p class="font-sans text-stone-600 leading-relaxed">
+                    Gæsterne elsker at vide, at aspargesene er danske og netop ankommet. Skilt med det!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-orange-dark">
+            "Sæson er kvalitet"
+        </h2>
+        <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+            At følge sæsonen er den sikreste vej til glade gæster og god økonomi.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_saeson_impact') }}"
+                class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+                Se Aftrykket →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

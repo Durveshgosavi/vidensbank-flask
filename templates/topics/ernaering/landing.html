@@ -1,489 +1,146 @@
 {% extends "base.html" %}
 
-{% block title %}Ernæring og Bæredygtighed - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Nutrition Topic Landing Page Styles */
-.topic-hero {
-    position: relative;
-    min-height: 400px;
-    background: #2d6a4f;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-}
-
-.topic-hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-}
-
-.topic-hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-family: var(--ff-display);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-}
-
-.topic-hero-subtitle {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.topic-stats-banner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: -4rem auto 4rem;
-    max-width: 1100px;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 10;
-}
-
-.topic-stat-card {
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.topic-stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.topic-stat-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.topic-stat-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.topic-intro-section {
-    max-width: 800px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    text-align: center;
-}
-
-.topic-intro-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.topic-intro-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #333333;
-}
-
-.data-viz-section {
-    background: #f5f5f5;
-    padding: 4rem 2rem;
-    margin: 3rem 0;
-    border-radius: 16px;
-}
-
-.nutrition-grid-visual {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.nutrition-item-visual {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.nutrition-item-visual:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.nutrition-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-}
-
-.nutrition-value {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
-}
-
-.nutrition-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.nutrition-description {
-    font-size: 0.95rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-.chart-showcase {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    margin: 2rem 0;
-}
-
-.chart-showcase canvas {
-    max-height: 500px;
-}
-</style>
-{% endblock %}
+{% block title %}Ernæring - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Topic Hero -->
-<header class="topic-hero animate-on-scroll">
-  <div class="topic-hero-content">
-    <h1>Ernæring og Bæredygtighed</h1>
-    <p class="topic-hero-subtitle">
-      Opbyg stærke menuer med fokus på sundhed, klima og gastronomi –
-      hvor ernæring, bæredygtighed og madglæde mødes.
-    </p>
-    <div class="hero-actions">
-      <a href="#explore" class="btn-primary">Udforsk Emnet</a>
-      <a href="{{ url_for('calculator') }}" class="btn-secondary is-light">Ernæringsberegner</a>
-    </div>
+<!-- Hero Section -->
+<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_breakfast.jpg') }}" alt="Healthy Nutrition"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Topic Statistics Banner -->
-<div class="topic-stats-banner">
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="600">0</div>
-    <div class="topic-stat-label">g grøntsager / dag anbefalet</div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+      Ernæring &<br>Sundhed
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+      Mad der giver energi, velvære og smagsoplevelser. Fordi sund mad skal smage godt.
+    </p>
   </div>
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="70" data-suffix="%">0%</div>
-    <div class="topic-stat-label">Plantebaseret anbefaling</div>
-  </div>
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="350">0</div>
-    <div class="topic-stat-label">g kød / uge max</div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-green-light">
+    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+      </path>
+    </svg>
   </div>
 </div>
 
-<!-- Introduction Section -->
-<section class="topic-intro-section animate-on-scroll">
-  <h2>Hvorfor Fokusere på Ernæring?</h2>
-  <p>
-    Ernæring er fundamentet for en sund og bæredygtig kantine. De officielle kostråd peger i samme retning som klimavidenskaben:
-    mere plantebaseret, mindre kød, og fokus på fuldkorn og grøntsager. For danske kantiner betyder det en mulighed
-    for at understøtte både folkesundhed og klimamål samtidig.
-  </p>
-</section>
-
-<!-- Data Visualization Section -->
-<section class="data-viz-section animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header">
-      <p class="eyebrow">DATA & ANBEFALINGER</p>
-      <h2 class="section-title">Officielle Kostråd for Danskere</h2>
-      <p class="section-lead">
-        Baseret på Sundhedsstyrelsens anbefalinger og Fødevarestyrelsens kostråd
-      </p>
-    </header>
-
-    <div class="nutrition-grid-visual">
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🥬</div>
-        <div class="nutrition-value" data-counter="600">0</div>
-        <h3 class="nutrition-label">g grøntsager og frugt / dag</h3>
-        <p class="nutrition-description">
-          Mindst 600g fordelt på grøntsager og frugt, gerne varieret og i sæson for bedre smag og næringsindhold.
-        </p>
-      </div>
-
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🌾</div>
-        <div class="nutrition-value" data-counter="75">0</div>
-        <h3 class="nutrition-label">g fuldkorn / dag</h3>
-        <p class="nutrition-description">
-          Mindst 75g fuldkornsprodukter dagligt. Fuldkorn mætter længere og har højere næringsværdi end raffinerede korn.
-        </p>
-      </div>
-
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🥩</div>
-        <div class="nutrition-value" data-counter="350">0</div>
-        <h3 class="nutrition-label">g kød / uge (max)</h3>
-        <p class="nutrition-description">
-          Max 350g kød om ugen, heraf højst 350g rødt kød. Begræns især forarbejdet kød som pølser og bacon.
-        </p>
-      </div>
-
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🐟</div>
-        <div class="nutrition-value" data-counter="350">0</div>
-        <h3 class="nutrition-label">g fisk / uge</h3>
-        <p class="nutrition-description">
-          350g fisk om ugen, heraf 200g fed fisk. Fisk indeholder omega-3 og har lavere klimaaftryk end kød.
-        </p>
-      </div>
-
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🥜</div>
-        <div class="nutrition-value" data-counter="100">0</div>
-        <h3 class="nutrition-label">g bælgfrugter / dag</h3>
-        <p class="nutrition-description">
-          Mindst 100g bælgfrugter dagligt. Linser, bønner og ærter er proteinrige og har ekstremt lavt klimaaftryk.
-        </p>
-      </div>
-
-      <div class="nutrition-item-visual">
-        <div class="nutrition-icon">🧂</div>
-        <div class="nutrition-value" data-counter="5">0</div>
-        <h3 class="nutrition-label">g salt / dag (max)</h3>
-        <p class="nutrition-description">
-          Max 5g salt dagligt. Brug urter, krydderier og syrlige smagsnoter til at mindske saltbehovet.
-        </p>
-      </div>
-    </div>
-
-    <!-- Chart Showcase -->
-    <div class="chart-showcase">
-      <canvas id="nutritionBalanceChart"></canvas>
-    </div>
-  </div>
-</section>
-
-<!-- Main Content Section -->
-<section id="explore" class="page-section">
-  <header class="section-header animate-on-scroll">
-    <h2 class="section-title">Udforsk Emnet i Dybden</h2>
-    <p class="section-lead">
-      Vælg et område nedenfor for at dykke ned i specifik viden om ernæring, kostråd og kantinepraksis.
+<!-- Introduction -->
+<section class="bg-cb-taupe-light py-24 md:py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-green-dark md:text-5xl uppercase">
+      Det Grønne Valg
+    </h2>
+    <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
+      De officielle kostråd og klimavenlig mad peger i samme retning: Mere grønt, flere bælgfrugter og mindre kød. Det
+      er godt for både kroppen og kloden.
     </p>
-  </header>
-
-  <!-- Filter Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Underemner om ernæring">
-    <a href="{{ url_for('topic_ernaering_what') }}" class="filter-pill">Hvad er det?</a>
-    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
-    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">Mål & ambition</a>
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">Mit aftryk</a>
-    <a href="{{ url_for('topic_ernaering_tips') }}" class="filter-pill">Tips & tricks</a>
-  </nav>
-
-  <!-- Card Grid -->
-  <div class="card-grid">
-    <!-- Card 1: Hvad er det? -->
-    <a href="{{ url_for('topic_ernaering_what') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200"
-             alt="Illustration af sund og bæredygtig ernæring i danske kantiner" loading="lazy">
-        <span class="card-category-tag">Overblik</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVAD ER BÆREDYGTIG ERNÆRING?</h3>
-        <p class="card-teaser">
-          En introduktion til ernæringsprincipper, kostråd og hvordan sundhed og klima hænger sammen.
-        </p>
-        <div class="card-metadata">
-          <span>Grundlæggende viden</span>
-          <span>•</span>
-          <span>5–7 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 2: Hvorfor er det vigtigt? -->
-    <a href="{{ url_for('topic_ernaering_why') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200"
-             alt="Grafik over danske ernæringsudfordringer og kostråd" loading="lazy">
-        <span class="card-category-tag">Danmark</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVORFOR ER DET VIGTIGT?</h3>
-        <p class="card-teaser">
-          Ernæring er afgørende for folkesundheden og en del af løsningen på både fedme og klimakrise.
-        </p>
-        <div class="card-metadata">
-          <span>National kontekst</span>
-          <span>•</span>
-          <span>5–8 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 3: Mål & ambition -->
-    <a href="{{ url_for('topic_ernaering_goal') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200"
-             alt="Køkkenpersonale der planlægger ernæringsrigtige menuer" loading="lazy">
-        <span class="card-category-tag">Strategi</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">MÅL & AMBITION</h3>
-        <p class="card-teaser">
-          Hvordan Vidensbanken og kantiner kan arbejde strategisk med ernæring gennem målsætninger og KPI'er.
-        </p>
-        <div class="card-metadata">
-          <span>Ambition</span>
-          <span>•</span>
-          <span>4–6 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 4: Mit aftryk -->
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200"
-             alt="Balanceret tallerken med grøntsager, protein og fuldkorn" loading="lazy">
-        <span class="card-category-tag">Mit aftryk</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVAD ER MIT AFTRYK?</h3>
-        <p class="card-teaser">
-          Hvilken rolle spiller kantiner i at forme ernæringsvaner – og hvordan kan menuen påvirke sundhed?
-        </p>
-        <div class="card-metadata">
-          <span>Praksisnært</span>
-          <span>•</span>
-          <span>5–7 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 5: Tips & tricks -->
-    <a href="{{ url_for('topic_ernaering_tips') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200"
-             alt="Kantine der arbejder med ernæringsoptimering og menuplanlægning" loading="lazy">
-        <span class="card-category-tag">Handling</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">TIPS & TRICKS</h3>
-        <p class="card-teaser">
-          Konkrete greb til menuudvikling, portionsstørrelser og næringsoptimering i danske kantiner.
-        </p>
-        <div class="card-metadata">
-          <span>Værktøjer</span>
-          <span>•</span>
-          <span>3–6 min læsning</span>
-        </div>
-      </div>
-    </a>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Klar til at Optimere Jeres Ernæring?</h2>
-  <p class="section-lead">
-    Brug vores værktøjer til at analysere ernæringssammensætning og sikre at jeres menu lever op til de officielle kostråd.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('calculator') }}" class="btn-primary">Ernæringsberegner</a>
-    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Data</a>
+<!-- Content Stacks -->
+<section class="w-full bg-white">
+  <!-- Stack 1: What is it? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Green Salad"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
+    <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Fundamentet</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+        Kostrådene</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Vi følger Fødevarestyrelsens officielle kostråd. Det betyder masser af grøntsager, fuldkorn og variation i
+        hverdagen.
+      </p>
+      <a href="{{ url_for('topic_ernaering_what') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-green-dark hover:text-cb-green-medium transition-colors">
+        Læs om Principperne
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Stack 2: Why is it important? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="flex flex-col justify-center bg-cb-taupe-medium px-8 py-16 md:order-1 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Nydelse</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+        Smagen Først</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Sund mad skal ikke være en pligt, men en fornøjelse. Vi bruger krydderier, urter og tilberedningsmetoder, der
+        fremhæver råvarernes naturlige smag.
+      </p>
+      <a href="{{ url_for('topic_ernaering_why') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-yellow-dark hover:text-cb-yellow-medium transition-colors">
+        Hvorfor er det vigtigt?
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden md:order-2">
+      <img src="{{ url_for('static', filename='images/nutrition_snacks.jpg') }}" alt="Healthy Snacks"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
   </div>
 </section>
-{% endblock %}
 
-{% block extra_js %}
-<!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Data Highlight -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-green-dark">600g</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Grønt & Frugt</p>
+        <p class="mt-4 text-stone-400">Anbefalet dagligt indtag</p>
+      </div>
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-yellow-dark">100g</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Bælgfrugter</p>
+        <p class="mt-4 text-stone-400">Gode proteiner hver dag</p>
+      </div>
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-orange-dark">350g</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Kød</p>
+        <p class="mt-4 text-stone-400">Maksimalt pr. uge</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Custom Charts Script -->
-<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
-
-<script>
-// Create nutrition balance chart
-document.addEventListener('DOMContentLoaded', function() {
-    const chartCanvas = document.getElementById('nutritionBalanceChart');
-    if (chartCanvas && window.VidenbankCharts) {
-        // Create a nutrition-specific chart
-        const ctx = chartCanvas.getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Grøntsager & Frugt', 'Fuldkorn', 'Protein (bælgfrugter, fisk)', 'Mejeriprodukter', 'Fedt & Sukker'],
-                datasets: [{
-                    label: 'Anbefalet fordeling (%)',
-                    data: [40, 25, 20, 10, 5],
-                    backgroundColor: [
-                        '#52b788',
-                        '#d4a574',
-                        '#6a994e',
-                        '#a7c957',
-                        '#f4a261'
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                size: 14,
-                                family: "'Source Sans Pro', sans-serif"
-                            }
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Anbefalet Fordeling af Kostens Hovedgrupper',
-                        font: {
-                            size: 18,
-                            weight: 'bold',
-                            family: "'Source Sans Pro', sans-serif"
-                        },
-                        padding: 20
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.label + ': ' + context.parsed + '%';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
-});
-</script>
+<!-- Navigation Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-16 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+      Værktøjer & Viden</h2>
+    <div class="grid grid-cols-1 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="{{ url_for('topic_ernaering_impact') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-green-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Kostråd</h3>
+        <p class="text-stone-600 font-sans">Dyk ned i de officielle anbefalinger.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-green-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="{{ url_for('topic_ernaering_tips') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-yellow-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Tips & Tricks</h3>
+        <p class="text-stone-600 font-sans">Sådan laver du sund mad, der smager.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-yellow-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="{{ url_for('topic_ernaering_goal') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-orange-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Mål</h3>
+        <p class="text-stone-600 font-sans">Vores ambitioner for sundhed.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-orange-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

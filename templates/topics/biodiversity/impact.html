@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Biodiversitetsaftryk - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/waste_reduction_aesthetic_1763550161182.png') }}"
+            alt="Biodiversity Impact" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Dit<br>Aftryk
+        </h1>
+    </div>
+</div>
+
+<!-- Explanation -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Hvordan måler man natur?"
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Det er komplekst at måle biodiversitet præcist. Men vi ved, at arealforbrug er en nøglefaktor. Jo mere plads
+            vi bruger til landbrug, jo mindre er der til vild natur.
+        </p>
+    </div>
+</section>
+
+<!-- Impact Visualization (Placeholder) -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="bg-white p-12 shadow-xl">
+            <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">
+                Arealforbrug
+                pr. 1000 kcal</h3>
+
+            <!-- Chart Placeholder -->
+            <div class="space-y-8">
+                <!-- Item 1 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Oksekød</span>
+                        <span class="font-sans text-stone-500">119 m²</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-orange-dark" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Svinekød</span>
+                        <span class="font-sans text-stone-500">17 m²</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-yellow-dark" style="width: 14%"></div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Fjerkræ</span>
+                        <span class="font-sans text-stone-500">13 m²</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-yellow-medium" style="width: 11%"></div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Bælgfrugter</span>
+                        <span class="font-sans text-stone-500">4 m²</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-green-dark" style="width: 3%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-12 text-center font-sans text-sm text-stone-500">
+                Kilde: Our World in Data. Viser landareal nødvendigt for at producere 1000 kilokalorier.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Conclusion -->
+<section class="bg-stone-900 py-32 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+            "Plads til naturen"
+        </h2>
+        <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+            Ved at spise mere plantebaseret kan vi frigøre enorme arealer til naturgenopretning. Det er en af de mest
+            effektive måder at hjælpe biodiversiteten på.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_biodiversity_landing') }}"
+                class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+                Tilbage til Oversigten →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

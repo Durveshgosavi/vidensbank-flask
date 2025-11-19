@@ -1,609 +1,113 @@
 {% extends "base.html" %}
 
-{% block title %}Tips & Tricks - Vandforbrug - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Water Tips Styles */
-.tips-hero {
-    position: relative;
-    min-height: 450px;
-    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    overflow: hidden;
-}
-
-.tips-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1551836022-aadb801c60ae');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
-    z-index: 0;
-}
-
-.tips-hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-}
-
-.quick-wins-banner {
-    background: white;
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: -3rem auto 4rem;
-    max-width: 1100px;
-    position: relative;
-    z-index: 10;
-}
-
-.quick-wins-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.quick-win-card {
-    text-align: center;
-    padding: 1.5rem;
-    background: #f5f5f5;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.quick-win-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.quick-win-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.quick-win-value {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #0077b6;
-    margin-bottom: 0.25rem;
-}
-
-.quick-win-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-}
-
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.tip-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-top: 5px solid #0077b6;
-}
-
-.tip-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.tip-category {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
-    background: #e8f4f8;
-    color: #0077b6;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.tip-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.tip-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.tip-description {
-    color: #333333;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-}
-
-.tip-impact {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.tip-impact-icon {
-    font-size: 1.5rem;
-    margin-right: 0.75rem;
-}
-
-.tip-impact-text {
-    font-size: 0.95rem;
-    color: #333333;
-}
-
-.implementation-timeline {
-    background: #f5f5f5;
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    margin: 4rem 0;
-}
-
-.timeline-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.timeline-step {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    position: relative;
-}
-
-.step-number {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #0077b6, #023e8a);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0 auto 1rem;
-}
-
-.step-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.75rem;
-}
-
-.step-description {
-    font-size: 0.95rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-.quick-reference {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin: 3rem 0;
-}
-
-.reference-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.reference-item {
-    padding: 1.5rem;
-    background: #f0f8ff;
-    border-left: 4px solid #0077b6;
-    border-radius: 8px;
-}
-
-.reference-item h4 {
-    margin-top: 0;
-    color: #0077b6;
-}
-
-.reference-item p {
-    margin: 0.5rem 0 0;
-    color: #333333;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .quick-wins-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .timeline-steps {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Tips til Vandbesparelse - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Hero Section -->
-<header class="tips-hero animate-on-scroll">
-  <div class="tips-hero-content">
-    <h1 class="hero-title">Tips & Tricks - Vandforbrug</h1>
-    <p class="hero-subtitle">Praktiske greb til at reducere vandaftryk i din kantine</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/water_kitchen.jpg') }}" alt="Water Saving Tips"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Quick Wins Banner -->
-<div class="quick-wins-banner animate-on-scroll">
-  <h2 style="text-align: center; margin-bottom: 1rem; font-size: 1.8rem;">5 Hurtige Gevinster</h2>
-  <p style="text-align: center; color: #333333; margin-bottom: 2rem;">
-    Disse ændringer kan implementeres med det samme
-  </p>
-
-  <div class="quick-wins-grid">
-    <div class="quick-win-card animate-on-scroll">
-      <div class="quick-win-icon">🥩</div>
-      <div class="quick-win-value">-30%</div>
-      <div class="quick-win-label">Reduktion: Skift oksebaseret til kylling 2 dage/uge</div>
-    </div>
-
-    <div class="quick-win-card animate-on-scroll">
-      <div class="quick-win-icon">🌱</div>
-      <div class="quick-win-value">-40%</div>
-      <div class="quick-win-label">Reduktion: Tilføj 1 plantebaseret dag/uge</div>
-    </div>
-
-    <div class="quick-win-card animate-on-scroll">
-      <div class="quick-win-icon">♻️</div>
-      <div class="quick-win-value">-15%</div>
-      <div class="quick-win-label">Reduktion: Reducér madspild fra 15% til 10%</div>
-    </div>
-
-    <div class="quick-win-card animate-on-scroll">
-      <div class="quick-win-icon">🍽️</div>
-      <div class="quick-win-value">-20%</div>
-      <div class="quick-win-label">Reduktion: Fokus på lokale/europæiske råvarer</div>
-    </div>
-
-    <div class="quick-win-card animate-on-scroll">
-      <div class="quick-win-icon">📊</div>
-      <div class="quick-win-value">-10%</div>
-      <div class="quick-win-label">Reduktion: Kommunikér vandbevidst til gæster</div>
-    </div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-blue-light">
+      Spar på<br>Dråberne
+    </h1>
   </div>
 </div>
 
-<section class="page-section">
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="filter-pill">← Mit aftryk</a>
-    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">Tilbage til emnet</a>
-  </nav>
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Mange bække små."
+    </p>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Små ændringer i hverdagens rutiner kan give store besparelser på vandregningen og klimakontoen.
+    </p>
+  </div>
+</section>
 
-  <article style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header animate-on-scroll">
-      <h2 class="section-title">Konkrete tips til vandbevidst kantinedrift</h2>
-      <p class="section-lead">
-        Enhver ændring har betydning. Start med én ting, og udbyg fra der.
-      </p>
-    </header>
-
-    <!-- Detailed Tips -->
-    <div class="tips-grid animate-on-scroll">
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
       <!-- Tip 1 -->
-      <div class="tip-card">
-        <span class="tip-category">Menu</span>
-        <div class="tip-icon">🥩</div>
-        <h3 class="tip-title">Reducer oksekød gradvist</h3>
-        <p class="tip-description">
-          Gå fra 4 dage oksebaseret til 2 dage. Erstat med kylling, fisk eller plantebaserede proteiner.
-          Gæster vænner sig hurtigt, og kvaliteten kan holdes høj.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">01</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Fyld Maskinen</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Kør kun opvaskemaskinen, når den er helt fyldt. Det sparer både vand, strøm og sæbe.
         </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> 2-3 millioner liter mindre vandaftryk pr. år</span>
-        </div>
       </div>
 
       <!-- Tip 2 -->
-      <div class="tip-card">
-        <span class="tip-category">Menu</span>
-        <div class="tip-icon">🌱</div>
-        <h3 class="tip-title">Plantebaseret dag inden for 3 mdr</h3>
-        <p class="tip-description">
-          Indleder med 1 dag plantebaseret måltider pr. uge. Lav kulinarisk kvalitet med speciale og inspiration.
-          Dette diktere også køkkenpersonalets udvikling.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">02</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Skyl Ikke Af</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Moderne opvaskemaskiner klarer fint madrester. Skrab tallerkenerne i stedet for at skylle dem under hanen.
         </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Vandaftryk ned til under 500L per kantine-dag</span>
-        </div>
       </div>
 
       <!-- Tip 3 -->
-      <div class="tip-card">
-        <span class="tip-category">Drift</span>
-        <div class="tip-icon">📊</div>
-        <h3 class="tip-title">Mål og monitorér madspild</h3>
-        <p class="tip-description">
-          Etabler baseline for madspild. Implementer løbende måling. Sæt reduktionsmål. Dette viser også
-          køkkenpersonalet hvad der betyder noget.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">03</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Tø Op i Køl</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug aldrig rindende vand til optøning. Planlæg i stedet og tø op i køleskabet natten over.
         </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> 10-20% reduktion i vandaftryk gennem mindre spild</span>
-        </div>
       </div>
 
       <!-- Tip 4 -->
-      <div class="tip-card">
-        <span class="tip-category">Indkøb</span>
-        <div class="tip-icon">🌍</div>
-        <h3 class="tip-title">Fokus på lokale & sæsonale råvarer</h3>
-        <p class="tip-description">
-          Skift fra importerede nødder og eksotiske råvarer til europæiske og danske varer når muligt.
-          Sæson betyder ofte mindre vandintensiv produktion.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">04</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Kog med Låg</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug låg og mindst muligt vand, når du koger grøntsager. Det går hurtigere og bevarer flere vitaminer.
         </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> 15-25% vandaftryk-reduktion på råvarer</span>
-        </div>
       </div>
 
       <!-- Tip 5 -->
-      <div class="tip-card">
-        <span class="tip-category">Partner</span>
-        <div class="tip-icon">🤝</div>
-        <h3 class="tip-title">Snak med dine leverandører</h3>
-        <p class="tip-description">
-          Spørg leverandørerne om deres vandbevidsthed. Hvilke produkter har lavt vandaftryk?
-          Partnerskaber styrker hele værdikæden.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">05</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Luk Hanen</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Lad ikke vandet løbe, mens du vasker hænder eller renser grøntsager. Brug en balje til grønt.
         </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Langfristig transformation af indkøbspaletten</span>
-        </div>
       </div>
 
       <!-- Tip 6 -->
-      <div class="tip-card">
-        <span class="tip-category">Gæster</span>
-        <div class="tip-icon">💬</div>
-        <h3 class="tip-title">Kommunikér vandbevidsthed</h3>
-        <p class="tip-description">
-          Vis gæsterne hvilke retter der har lavt vandaftryk. Educér gennem menusprogs og infografik.
-          Nudging virker bedre end påbud.
-        </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Gæster vælger selv mindre vand-intensive muligheder</span>
-        </div>
-      </div>
-
-      <!-- Tip 7 -->
-      <div class="tip-card">
-        <span class="tip-category">Træning</span>
-        <div class="tip-icon">👨‍🍳</div>
-        <h3 class="tip-title">Træn køkkenpersonalet</h3>
-        <p class="tip-description">
-          En informeret køkkenbrigade er vigtig. Forklarer hvorfor vandbevidsthed betyder noget.
-          Deres engagement steer sukces eller fiasko.
-        </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Køkkenpersonalet bliver ambassadører for vandbevidsthed</span>
-        </div>
-      </div>
-
-      <!-- Tip 8 -->
-      <div class="tip-card">
-        <span class="tip-category">Kultur</span>
-        <div class="tip-icon">🎯</div>
-        <h3 class="tip-title">Gør det til en kulturændring</h3>
-        <p class="tip-description">
-          Vandbevidsthed skal blive del af kantinens DNA. Sæt mål, fejr succeser, og del resultaterne.
-          Kultur ændres gennem handling og kommunikation.
-        </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Bæredygtig reduktion på længere sigt</span>
-        </div>
-      </div>
-
-      <!-- Tip 9 -->
-      <div class="tip-card">
-        <span class="tip-category">Måling</span>
-        <div class="tip-icon">📈</div>
-        <h3 class="tip-title">Dokumenter og rapportér fremskridt</h3>
-        <p class="tip-description">
-          Sæt baseline, mål regelmæssigt, og dokumenter reduktioner. Data motiverer og giver troværdighed
-          i kommunikation med interessenter.
-        </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Synliggør resultater og øg accountability</span>
-        </div>
-      </div>
-
-      <!-- Tip 10 -->
-      <div class="tip-card">
-        <span class="tip-category">Offentlig</span>
-        <div class="tip-icon">📢</div>
-        <h3 class="tip-title">Del dine succeser offentligt</h3>
-        <p class="tip-description">
-          Kommunikér ud om jeres vandbevidste arbejde. Det styrker brandingand og tiltrækker talenter.
-          Bæredygtighed er en konkurrencefordel.
-        </p>
-        <div class="tip-impact">
-          <span class="tip-impact-icon">💧</span>
-          <span class="tip-impact-text"><strong>Effekt:</strong> Øget attraktivitet og troværdighed på markedet</span>
-        </div>
-      </div>
-    </div>
-
-  </article>
-</section>
-
-<!-- Implementation Timeline -->
-<section class="implementation-timeline animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-      <p class="eyebrow">IMPLEMENTERING</p>
-      <h2 class="section-title">Din 90-dags Vandbevidst Plan</h2>
-      <p class="section-lead">Start her og byg udefter</p>
-    </header>
-
-    <div class="timeline-steps">
-      <div class="timeline-step animate-on-scroll">
-        <div class="step-number">1</div>
-        <h3 class="step-title">Måling (dag 1-7)</h3>
-        <p class="step-description">
-          Etabler baseline for nuværende vandaftryk og madspild. Dokumentér menuen
-          og råvarevalg for en typisk uge.
-        </p>
-      </div>
-
-      <div class="timeline-step animate-on-scroll">
-        <div class="step-number">2</div>
-        <h3 class="step-title">Uddannelse (dag 8-21)</h3>
-        <p class="step-description">
-          Træn køkkenpersonalet på vandbevidsthed. Præsenter findings fra baseline-målingen.
-          Sæt ambitioner sammen.
-        </p>
-      </div>
-
-      <div class="timeline-step animate-on-scroll">
-        <div class="step-number">3</div>
-        <h3 class="step-title">Første ændringer (dag 22-60)</h3>
-        <p class="step-description">
-          Implementer 1-2 konkrete ændringer. F.eks. fokus på madspild-reduktion
-          eller introducer plantebaseret dag.
-        </p>
-      </div>
-
-      <div class="timeline-step animate-on-scroll">
-        <div class="step-number">4</div>
-        <h3 class="step-title">Måling & Justering (dag 61-90)</h3>
-        <p class="step-description">
-          Mål effekten af ændringerne. Juster strategien baseret på resultater.
-          Planlæg næste fase af forbedringer.
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-blue-dark">06</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Genbrug Vand</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Vandet fra grøntsagsskylning kan bruges til at vande planter eller vaske gulv (hvis det er rent nok).
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Quick Reference -->
-<section class="page-section">
-  <div class="quick-reference animate-on-scroll">
-    <h2 style="text-align: center; margin-top: 0;">Vandaftryk-Referenceværdier</h2>
-    <p style="text-align: center; color: #333333; margin-bottom: 2rem;">
-      Brug disse værdier i menuplanlægning og gæstekommunikation
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-blue-dark">
+      "Vandvittig god stil"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      At spare på vandet er sund fornuft og god økonomi.
     </p>
-
-    <div class="reference-grid">
-      <div class="reference-item">
-        <h4>Høj Vandintensitet</h4>
-        <p>Oksekød: 15.000 L/kg</p>
-        <p>Lam: 10.400 L/kg</p>
-        <p>Nødder: 9.100 L/kg</p>
-      </div>
-
-      <div class="reference-item">
-        <h4>Medio Vandintensitet</h4>
-        <p>Svinekød: 6.000 L/kg</p>
-        <p>Kylling: 4.300 L/kg</p>
-        <p>Ris: 2.500 L/kg</p>
-      </div>
-
-      <div class="reference-item">
-        <h4>Lav Vandintensitet</h4>
-        <p>Bælgfrugter: 4.000 L/kg</p>
-        <p>Grøntsager: 300-500 L/kg</p>
-        <p>Europæisk fisk: 3000-4000 L/kg</p>
-      </div>
-    </div>
-
-    <!-- Key Insight -->
-    <div class="impact-highlight animate-on-scroll" style="background: linear-gradient(135deg, #48cae4 0%, #0077b6 100%); color: white; padding: 2rem; border-left: none; border-radius: 12px; margin-top: 2rem;">
-      <h3 style="font-size: 1.3rem; margin-top: 0;">Start nu - ikke senere</h3>
-      <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-        Det vigtigste er at starte. Selv små ændringer har betydning når de skaleres til kantiner.
-        En kantine med 500 daglige gæster kan påvirke vandaftrykket for tusinder af mennesker årligt.
-      </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_vandforbrug_impact') }}"
+        class="inline-block border-b-2 border-cb-blue-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-blue-dark">
+        Se Aftrykket →
+      </a>
     </div>
   </div>
 </section>
-
-<!-- Next Section CTA -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Tilbage til emnet</h2>
-  <p class="section-lead">
-    Du har nu gennemgået alt omkring vandforbrug i fødevareproduktion. Tid til at handle!
-  </p>
-  <a href="{{ url_for('topic_vandforbrug_landing') }}" class="btn-primary" style="margin-top: 1.5rem;">← Tilbage til Vandforbrug</a>
-</section>
-
-{% endblock %}
-
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Animate quick win values on scroll
-    const quickWins = document.querySelectorAll('.quick-win-value');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                const target = entry.target;
-                const text = target.textContent;
-                const match = text.match(/(\d+)/);
-                if (match) {
-                    const endValue = parseInt(match[1]);
-                    let currentValue = 0;
-                    const increment = endValue / 30;
-
-                    const timer = setInterval(() => {
-                        currentValue += increment;
-                        if (currentValue >= endValue) {
-                            currentValue = endValue;
-                            clearInterval(timer);
-                            target.classList.add('animated');
-                        }
-                        target.textContent = '-' + Math.round(currentValue) + '%';
-                    }, 16);
-                }
-            }
-        });
-    }, { threshold: 0.5 });
-
-    quickWins.forEach(win => observer.observe(win));
-});
-</script>
 {% endblock %}

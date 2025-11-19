@@ -1,457 +1,104 @@
 {% extends "base.html" %}
 
-{% block title %}Hvad er madspild? - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Madspild Specific Color Theme */
-:root {
-    --madspild-primary: #bc4b51;
-    --madspild-dark: #8b2635;
-    --madspild-light: #e8d4d6;
-}
-
-/* Waste Categories Visualization */
-.waste-category-container {
-    background: linear-gradient(135deg, #f5f5f5, var(--madspild-light));
-    padding: 4rem 2rem;
-    border-radius: 32px;
-    margin: 3rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.waste-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.waste-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-left: 5px solid var(--madspild-primary);
-}
-
-.waste-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
-
-.waste-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.waste-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.waste-description {
-    color: #333333;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.waste-percentage {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
-
-.waste-percentage-label {
-    font-size: 0.9rem;
-    color: #333333;
-    text-align: center;
-    font-weight: 600;
-}
-
-.waste-impact-bar {
-    height: 12px;
-    background: #e0e0e0;
-    border-radius: 6px;
-    overflow: hidden;
-    margin: 1.5rem 0;
-}
-
-.waste-impact-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--madspild-primary), var(--madspild-dark));
-    border-radius: 6px;
-    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    width: 0%;
-}
-
-/* Statistics Section */
-.waste-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 4rem 0;
-}
-
-.waste-stat-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    border-top: 4px solid var(--madspild-primary);
-    transition: all 0.3s ease;
-}
-
-.waste-stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-}
-
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333333;
-}
-
-/* Definition Box */
-.definition-section {
-    background: linear-gradient(135deg, var(--madspild-light) 0%, #f5e6e7 100%);
-    padding: 3rem;
-    border-radius: 24px;
-    border-left: 6px solid var(--madspild-dark);
-    margin: 3rem 0;
-}
-
-.definition-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--madspild-dark);
-    margin-bottom: 1.5rem;
-}
-
-.definition-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-dark);
-}
-
-/* Scope and Scale */
-.scope-section {
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    margin: 3rem 0;
-}
-
-.scope-item {
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    background: #f5f5f5;
-    border-radius: 16px;
-    border-left: 4px solid var(--madspild-primary);
-    transition: all 0.3s ease;
-}
-
-.scope-item:last-child {
-    margin-bottom: 0;
-}
-
-.scope-item:hover {
-    transform: translateX(8px);
-}
-
-.scope-icon {
-    font-size: 2rem;
-    margin-right: 1rem;
-    display: inline-block;
-}
-
-.scope-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-}
-
-.scope-description {
-    color: #333333;
-    line-height: 1.6;
-}
-
-/* Key Insight Box */
-.insight-highlight {
-    background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);
-    color: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    margin: 3rem 0;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.insight-highlight strong {
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.insight-highlight p {
-    line-height: 1.8;
-    font-size: 1.05rem;
-    opacity: 0.95;
-}
-
-@media (max-width: 768px) {
-    .waste-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .definition-section {
-        padding: 2rem;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Hvad er Madspild? - Vidensbank{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Hvad er madspild?</h1>
-    <p class="hero-subtitle">Definition, omfang og de tre hovedkategorier</p>
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/waste_kitchen.jpg') }}" alt="Food Waste Definition"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Madspild er den mad, der kunne have været spist af mennesker, men som i stedet smides væk eller går til andet formål.
-      Det er et komplekst fænomen, der omfatter hele fødevaresystemet – fra produktion til gæstens tallerken.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Hvad er<br>Madspild?
+    </h1>
+  </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Spiseligt eller ej?"
     </p>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_madspild_landing') }}" class="filter-pill">← Tilbage til emnet</a>
-    <a href="{{ url_for('topic_madspild_why') }}" class="filter-pill">Næste →</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-
-    <!-- Definition Section -->
-    <div class="definition-section animate-on-scroll">
-      <h2 class="definition-title">Præcis Definition</h2>
-      <p class="definition-text">
-        Madspild er fysisk mad, der under normale omstændigheder er egnet til konsum, men som ikke blive spist.
-        Det omfatter både spild fra produktion, distribution, detailhandel og ved slutbrugeren.
-        For kantiner omfatter det også det spild, der opstår i køkkenet før service, overskud fra buffeten og mad fra gæsternes tallerkener.
-      </p>
-    </div>
-
-    <!-- Key Statistics -->
-    <div class="waste-stats-grid animate-on-scroll">
-      <div class="waste-stat-card">
-        <div class="stat-number">20-30%</div>
-        <div class="stat-label">af madens vægt smides væk i danske kantiner</div>
-      </div>
-
-      <div class="waste-stat-card">
-        <div class="stat-number">1/3</div>
-        <div class="stat-label">af al produceret mad globalt bliver til spild</div>
-      </div>
-
-      <div class="waste-stat-card">
-        <div class="stat-number">90 kg</div>
-        <div class="stat-label">madspild pr. dansker årligt i gennemsnit</div>
-      </div>
-    </div>
-
-    <!-- The Three Categories -->
-    <div class="waste-category-container animate-on-scroll">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title" style="color: var(--text-dark);">De Tre Typer Madspild</h2>
-        <p class="section-lead" style="color: #333333;">
-          Madspild kan opdeles i tre helt forskellige kategorier, der kræver forskellige løsninger
-        </p>
-      </header>
-
-      <div class="waste-grid">
-        <!-- Production Waste -->
-        <div class="waste-card animate-on-scroll">
-          <div class="waste-icon">🏭</div>
-          <h3 class="waste-title">Produktionsspild</h3>
-          <p class="waste-description">
-            Mad der smides væk i køkkenet før den når gæsterne. Dette omfatter afskæringer, fejlslagne retter,
-            overprodution og rester fra tilberedningen.
-          </p>
-          <div class="waste-percentage">30-40%</div>
-          <p class="waste-percentage-label">typisk af kantin-spildet</p>
-          <div class="waste-impact-bar">
-            <div class="waste-impact-fill" data-progress="35"></div>
-          </div>
-          <p style="color: #333333; font-size: 0.95rem; margin-top: 1rem;">
-            <strong>Løsning:</strong> Bedre planlægning, portionskontrol, tidsoptimering og restestyring
-          </p>
-        </div>
-
-        <!-- Buffet Waste -->
-        <div class="waste-card animate-on-scroll">
-          <div class="waste-icon">🍽️</div>
-          <h3 class="waste-title">Buffetspild</h3>
-          <p class="waste-description">
-            Mad der er tilberedt og stillet ud på buffeten, men som ikke sælges eller serveres før lukning.
-            Herunder retter der ikke blev populære eller blev overvurderet i mængde.
-          </p>
-          <div class="waste-percentage">40-50%</div>
-          <p class="waste-percentage-label">typisk af kantin-spildet</p>
-          <div class="waste-impact-bar">
-            <div class="waste-impact-fill" data-progress="45"></div>
-          </div>
-          <p style="color: #333333; font-size: 0.95rem; margin-top: 1rem;">
-            <strong>Løsning:</strong> Datadrevet menuplanlægning, responsiv buffet-justering og gæst-feedback
-          </p>
-        </div>
-
-        <!-- Plate Waste -->
-        <div class="waste-card animate-on-scroll">
-          <div class="waste-icon">🥘</div>
-          <h3 class="waste-title">Tallerkesnspild</h3>
-          <p class="waste-description">
-            Mad der bliver taget af gæsten, men som ikke bliver spist. Det kan skyldes oversized portioner,
-            manglende appetit eller præferencer.
-          </p>
-          <div class="waste-percentage">20-30%</div>
-          <p class="waste-percentage-label">typisk af kantin-spildet</p>
-          <div class="waste-impact-bar">
-            <div class="waste-impact-fill" data-progress="25"></div>
-          </div>
-          <p style="color: #333333; font-size: 0.95rem; margin-top: 1rem;">
-            <strong>Løsning:</strong> Mindre portioner som standard, self-service portionering, gæst-kommunikation
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scope and Context -->
-    <div style="margin: 5rem 0;">
-      <header class="section-header animate-on-scroll">
-        <h2 class="section-title">Omfang for Kantiner</h2>
-        <p class="section-lead">
-          Madspild i kantiner har både økonomiske, miljømæssige og etiske implikationer
-        </p>
-      </header>
-
-      <div class="scope-section animate-on-scroll">
-        <div class="scope-item">
-          <span class="scope-icon">💰</span>
-          <div>
-            <div class="scope-title">Økonomisk Tab</div>
-            <div class="scope-description">
-              En kantine med 500 måltider dagligt kan smide væk for 10.000-20.000 kr. årligt i usolgte
-              eller kasseret mad. Det er direkte tab på bundlinjen – uden værdi for gæsten.
-            </div>
-          </div>
-        </div>
-
-        <div class="scope-item">
-          <span class="scope-icon">🌍</span>
-          <div>
-            <div class="scope-title">Miljøpåvirkning</div>
-            <div class="scope-description">
-              Hver kg mad der smides væk, betyder at alle ressourcer brugt på at producere den – vand,
-              jord, gødning, pesticidr, energi og transport – også er spildt. Madspild er både klimaaftryk og ressourcespild.
-            </div>
-          </div>
-        </div>
-
-        <div class="scope-item">
-          <span class="scope-icon">🤝</span>
-          <div>
-            <div class="scope-title">Etisk Ansvar</div>
-            <div class="scope-description">
-              Verdensomspændende har millioner mennesker ikke mad nok, mens kantiner i velstillede lande
-              smider mad væk. Der er et etisk element i at handle rundt omkring dette.
-            </div>
-          </div>
-        </div>
-
-        <div class="scope-item">
-          <span class="scope-icon">📊</span>
-          <div>
-            <div class="scope-title">Måleudfordringer</div>
-            <div class="scope-description">
-              Madspild er ikke altid synligt eller nemt at måle. Det kan ske spredt hen over dag,
-              fra flere kilder, og data samles sjældent systematisk. Derfor ses problemet ofte ikke, før man faktisk måler.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hidden Spild -->
-    <div class="insight-highlight animate-on-scroll">
-      <strong>🔍 Det Skjulte Spild</strong>
-      <p>
-        Mange kantiner tror, de ikke har et madspild-problem, fordi de "slipper godt afsted" eller "ikke ser så meget væk".
-        Men uden målinger er det ren gætteri. Statistikker viser, at næsten alle kantiner kan reducere spild med 30-50%,
-        blot ved at måle, identificere mønstrene, og justere efter det. Det første skridt er altid målinger.
-      </p>
-    </div>
-
-  </article>
-</section>
-
-<!-- Next Section CTA -->
-<section class="page-section callout-dark animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <h2>Næste: Hvorfor er det vigtigt?</h2>
-  <p class="section-lead">
-    Se hvordan madspild påvirker både økonomien, klimaet og ressourcerne – og hvorfor det er et
-    af de mest omkostningseffektive indsatsområder for kantiner.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_madspild_why') }}" class="btn-primary">Læs mere →</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Vi skelner mellem madspild og madaffald. Madspild er det, der kunne være spist. Madaffald er skræller, ben og
+      kaffegrums.
+    </p>
   </div>
 </section>
 
-{% endblock %}
+<!-- Explanation Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+      <!-- Left Column -->
+      <div class="space-y-12">
+        <div>
+          <h3 class="mb-4 font-display text-3xl font-bold uppercase tracking-wide text-stone-900">Madspild
+          </h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Brød der er blevet tørt, rester fra buffeten, eller grøntsager der er blevet bløde. Alt det, der burde have
+            mættet en mund, men endte i skraldespanden.
+          </p>
+        </div>
+        <div>
+          <h3 class="mb-4 font-display text-3xl font-bold uppercase tracking-wide text-stone-900">Madaffald
+          </h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Det uundgåelige affald fra madlavningen. Æggeskaller, bananskræller og kyllingeben. Dette kan ikke undgås,
+            men det kan genanvendes til biogas.
+          </p>
+        </div>
+      </div>
 
-{% block extra_js %}
-<script>
-// Animate waste impact bars on scroll
-document.addEventListener('DOMContentLoaded', function() {
-    const wasteImpactBars = document.querySelectorAll('.waste-impact-fill');
+      <!-- Right Column -->
+      <div class="bg-white p-12 shadow-xl">
+        <h3 class="mb-6 font-display text-2xl font-bold uppercase tracking-wide text-cb-orange-dark">Hvor sker spildet?
+        </h3>
+        <ul class="space-y-4 font-sans text-stone-600">
+          <li class="flex items-start">
+            <span class="mr-3 text-cb-orange-dark">•</span>
+            <span><strong>Lageret:</strong> Varer der bliver for gamle før brug.</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-3 text-cb-orange-dark">•</span>
+            <span><strong>Produktionen:</strong> Afskær og fejltilberedninger.</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-3 text-cb-orange-dark">•</span>
+            <span><strong>Buffeten:</strong> Mad der er sat frem, men ikke spist.</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-3 text-cb-orange-dark">•</span>
+            <span><strong>Tallerkenen:</strong> Mad gæsten tager, men levner.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const progress = parseInt(bar.getAttribute('data-progress'));
-                setTimeout(() => {
-                    bar.style.width = progress + '%';
-                }, 200);
-                observer.unobserve(bar);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    wasteImpactBars.forEach(bar => observer.observe(bar));
-});
-</script>
+<!-- Key Takeaway -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-orange-dark">
+      "Mål det"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      For at bekæmpe madspild skal vi vide, hvor det opstår. Derfor vejer og registrerer vi vores spild.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_madspild_why') }}"
+        class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+        Hvorfor er det vigtigt? →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

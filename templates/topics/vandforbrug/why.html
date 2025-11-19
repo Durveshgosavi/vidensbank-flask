@@ -1,395 +1,98 @@
 {% extends "base.html" %}
 
-{% block title %}Hvorfor er vandforbrug vigtigt? - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Water Importance Styles */
-.impact-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.impact-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid #0077b6;
-    transition: all 0.3s ease;
-}
-
-.impact-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.impact-card-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-}
-
-.impact-card-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.75rem;
-}
-
-.impact-card-description {
-    color: #333333;
-    line-height: 1.7;
-}
-
-.impact-stat-section {
-    background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
-    color: white;
-    padding: 3rem 2rem;
-    border-radius: 24px;
-    margin: 3rem 0;
-    text-align: center;
-}
-
-.stat-item {
-    margin: 1.5rem 0;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 1.1rem;
-    opacity: 0.95;
-}
-
-.denmark-section {
-    background: #f5f5f5;
-    padding: 3rem;
-    border-radius: 24px;
-    margin: 3rem 0;
-}
-
-.risk-opportunity {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.risk-box, .opportunity-box {
-    padding: 2rem;
-    border-radius: 16px;
-    border-left: 5px solid;
-}
-
-.risk-box {
-    background: #ffe5e5;
-    border-left-color: #c0392b;
-}
-
-.opportunity-box {
-    background: #d4edda;
-    border-left-color: #27ae60;
-}
-
-.risk-box h3, .opportunity-box h3 {
-    margin-top: 0;
-    font-size: 1.3rem;
-}
-
-.risk-box ul, .opportunity-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.risk-box li, .opportunity-box li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.risk-box li::before {
-    content: '⚠️';
-    position: absolute;
-    left: 0;
-}
-
-.opportunity-box li::before {
-    content: '✅';
-    position: absolute;
-    left: 0;
-}
-
-.chart-section {
-    background: white;
-    padding: 3rem;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    margin: 3rem 0;
-}
-
-.visualize-impact {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.impact-number {
-    background: linear-gradient(135deg, #48cae4 0%, #0077b6 100%);
-    color: white;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-}
-
-.impact-number-value {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.impact-number-label {
-    font-size: 1rem;
-    opacity: 0.95;
-}
-
-@media (max-width: 768px) {
-    .risk-opportunity {
-        grid-template-columns: 1fr;
-    }
-
-    .impact-card-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Hvorfor Spare på Vandet? - Vidensbank{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19'); background-position: center;">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Hvorfor er vandforbrug vigtigt?</h1>
-    <p class="hero-subtitle">Vandknaphed globalt og betydningen for kantiner</p>
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Why Save Water"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Globalt er fersktvand en knap ressource. Fødevareproduktion står for omkring 70% af det globale vandforbrug,
-      og vandknaphed påvirker 2 milliarder mennesker verden over. For Danmark betyder det, at vi gennem vores
-      fødevareimport påvirker vandsituationen i andre lande.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-yellow-light">
+      Hvorfor<br>Vigtigt?
+    </h1>
+  </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "En begrænset ressource."
     </p>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_vandforbrug_what') }}" class="filter-pill">← Forrige</a>
-    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">Næste →</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-
-    <!-- Impact Cards -->
-    <div class="impact-card-grid animate-on-scroll">
-      <div class="impact-card">
-        <div class="impact-card-icon">💧</div>
-        <h3 class="impact-card-title">Vandknaphed</h3>
-        <p class="impact-card-description">
-          2 milliarder mennesker lever i områder med høj vandstress. Vandforbrug fra fødevareproduktion øger presset på
-          allerede knappe ressourcer.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-card-icon">🌍</div>
-        <h3 class="impact-card-title">Økosystemers Påvirkning</h3>
-        <p class="impact-card-description">
-          Højt vandforbrug reducerer vandflow i floder og søer, hvilket ødelægger naturlige økosystemer og biodiversitet.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-card-icon">🥕</div>
-        <h3 class="impact-card-title">Fødevaresikkerhed</h3>
-        <p class="impact-card-description">
-          Vandstress påvirker landbruksproduktion globalt. Løst forbinder sig til højere fødevarepriser og ustabilitet.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-card-icon">❄️</div>
-        <h3 class="impact-card-title">Klimaforbindelse</h3>
-        <p class="impact-card-description">
-          Vandstress og klima hænger sammen. Tørre perioder reducerer høst, og mere ekstremvejr påvirker vandtilgængelighed.
-        </p>
-      </div>
-    </div>
-
-    <!-- Key Statistics -->
-    <div class="impact-stat-section animate-on-scroll">
-      <h2 style="margin-top: 0; margin-bottom: 2rem;">Vigtige tal om global vandsituation</h2>
-      <div class="visualize-impact">
-        <div class="impact-number">
-          <div class="impact-number-value">70%</div>
-          <div class="impact-number-label">af verdensforbruget til landbruk</div>
-        </div>
-        <div class="impact-number">
-          <div class="impact-number-value">2B</div>
-          <div class="impact-number-label">mennesker uden sikker adgang</div>
-        </div>
-        <div class="impact-number">
-          <div class="impact-number-value">4000L</div>
-          <div class="impact-number-label">pr. europæer pr. dag gennem fødevarer</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Denmark Specific Section -->
-    <div class="denmark-section animate-on-scroll">
-      <h2 style="margin-top: 0;">Danmarks situation og globale forbindelse</h2>
-      <p>
-        Selvom Danmark har rigeligt med ferskvand, importerer vi fødevarer fra vandknappe områder verden over.
-      </p>
-      <ul style="line-height: 2;">
-        <li>Danmark selv producerer omkring <strong>50% af sit landbrug med kunstig vanding</strong></li>
-        <li>Vi importerer ca. <strong>60% af vores kød fra lande med vandstress</strong></li>
-        <li>En dansk familie's fødevarekonsum påvirker vandressourcer på flere kontinenter</li>
-        <li>Danske kantiner kan direkte påvirke global vansberedskab gennem råvarevalg</li>
-      </ul>
-    </div>
-
-    <!-- Risk vs Opportunity -->
-    <div style="margin: 4rem 0;">
-      <h2 style="text-align: center; margin-bottom: 2rem;">Fra risiko til mulighed</h2>
-      <div class="risk-opportunity">
-        <div class="risk-box">
-          <h3>⚠️ Risici ved ikke at handle</h3>
-          <ul>
-            <li>Stigende vandknaphed påvirker fødevarepriser</li>
-            <li>Reputationsrisiko ved ikke at tænke bæredygtigt</li>
-            <li>Fremtidig regulering af vandintensive fødevarer</li>
-            <li>Kunders stigende krav til ansvar</li>
-            <li>Økonomisk usikkerhed omkring fødevaretilgang</li>
-          </ul>
-        </div>
-
-        <div class="opportunity-box">
-          <h3>✅ Muligheder ved handling</h3>
-          <ul>
-            <li>Påvirkningsmulig gennem rationelle valg</li>
-            <li>Kostbesparelser ved reduktion af kødforbrug</li>
-            <li>Differentiere jer som ansvarligt firma</li>
-            <li>Tiltrække vandbevidste kunder og talenter</li>
-            <li>Bidrage til global vanssikkerhed gennem konkret indsats</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Global Water Crisis Impact -->
-    <div class="chart-section animate-on-scroll">
-      <h2 style="text-align: center; margin-top: 0;">Vandforbrug i landbrukssektor</h2>
-      <p style="text-align: center; color: #333333; margin-bottom: 2rem;">
-        Se hvordan forskellige fødevarekategorier påvirker global vandressourcer
-      </p>
-      <canvas id="waterFootprintChart" style="max-height: 400px;"></canvas>
-    </div>
-
-    <!-- For Cantines -->
-    <div class="impact-highlight animate-on-scroll" style="background: linear-gradient(135deg, #48cae4 0%, #0077b6 100%); color: white; padding: 2rem; border-left: none; border-radius: 12px; margin: 3rem 0;">
-      <h3 style="font-size: 1.3rem; margin-top: 0;">🎯 For kantiner betyder det:</h3>
-      <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">
-        Ved at vælge råvarer med lavere vandaftryk kan kantiner <strong>direkte bidrage til global vandsikkerhed</strong>.
-        En stor kantine med 500 daglige gæster kan reducere vandaftrykket med millioner af liter pr. år gennem
-        intelligent menuplanering. Det gør kantiner til en af de mest potente arenaer for positive forandringer på
-        området.
-      </p>
-    </div>
-
-  </article>
-</section>
-
-<!-- Next Section CTA -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Næste: Mål & Ambition</h2>
-  <p class="section-lead">
-    Hvad ønsker vi at opnå? Se konkrete mål og vores strategi for at reducere vandforbrug i danske kantiner.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="btn-primary">Læs mere →</a>
-    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Selvom jorden er dækket af vand, er kun en forsvindende lille del drikkevand. Vi skal værne om det, vi har.
+    </p>
   </div>
 </section>
 
-{% endblock %}
+<!-- Reasons Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <!-- Reason 1 -->
+      <div class="bg-white p-12 shadow-sm transition-all duration-300 hover:shadow-xl">
+        <span class="mb-6 block text-5xl">💧</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Knaphed</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Globalt set er vandmangel en stigende krise. Ved at importere varer fra tørre områder, påvirker vi deres
+          vandbalance.
+        </p>
+      </div>
 
-{% block extra_js %}
-<!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+      <!-- Reason 2 -->
+      <div class="bg-white p-12 shadow-sm transition-all duration-300 hover:shadow-xl">
+        <span class="mb-6 block text-5xl">⚡️</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Energi</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Det koster store mængder energi at pumpe, rense og opvarme vand. Vandbesparelser er derfor også
+          energibesparelser.
+        </p>
+      </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const chartCanvas = document.getElementById('waterFootprintChart');
-    if (chartCanvas) {
-        new Chart(chartCanvas, {
-            type: 'bar',
-            data: {
-                labels: ['Oksekød', 'Lam', 'Nødder', 'Svinekød', 'Kylling', 'Ris', 'Bælgfrugter', 'Grøntsager'],
-                datasets: [{
-                    label: 'Vandaftryk (L/kg)',
-                    data: [15000, 10400, 9100, 6000, 4300, 2500, 4000, 300],
-                    backgroundColor: [
-                        '#c0392b',
-                        '#e74c3c',
-                        '#e67e22',
-                        '#f39c12',
-                        '#27ae60',
-                        '#52b788',
-                        '#27ae60',
-                        '#27ae60'
-                    ],
-                    borderColor: 'transparent',
-                    borderRadius: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                indexAxis: 'y',
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0,0,0,0.05)'
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-    }
-});
-</script>
+      <!-- Reason 3 -->
+      <div class="bg-white p-12 shadow-sm transition-all duration-300 hover:shadow-xl">
+        <span class="mb-6 block text-5xl">🌱</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Natur</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Overforbrug af grundvand kan skade naturen og vandløbene. Vi skal sikre balancen i vores eget økosystem.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote/Highlight -->
+<section class="bg-cb-yellow-light py-24">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <blockquote
+      class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+      "Rent vand er et privilegium, ikke en selvfølge."
+    </blockquote>
+  </div>
+</section>
+
+<!-- Next Step -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-yellow-dark">
+      "Vores Indsats"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      Vi arbejder målrettet på at reducere vores vandforbrug i alle led.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_vandforbrug_goal') }}"
+        class="inline-block border-b-2 border-cb-yellow-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-yellow-dark">
+        Se Målene →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

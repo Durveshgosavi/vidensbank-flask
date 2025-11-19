@@ -1,485 +1,118 @@
 {% extends "base.html" %}
 
-{% block title %}Tips & Tricks - Madspild - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-:root {
-    --madspild-primary: #bc4b51;
-    --madspild-dark: #8b2635;
-    --madspild-light: #e8d4d6;
-}
-
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.tip-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-top: 5px solid var(--madspild-primary);
-}
-
-.tip-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.tip-category {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
-    background: var(--madspild-light);
-    color: #1a1a1a;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.tip-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.tip-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.tip-description {
-    color: #333333;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.tip-impact {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.tip-impact-icon {
-    font-size: 1.3rem;
-    margin-right: 0.75rem;
-}
-
-.tip-impact-text {
-    font-size: 0.95rem;
-    color: var(--text-dark);
-}
-
-.tip-impact-value {
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-left: auto;
-}
-
-.strategy-cards {
-    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
-    color: white;
-    border-radius: 24px;
-    padding: 4rem 2rem;
-    margin: 4rem 0;
-}
-
-.strategy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 3rem auto 0;
-}
-
-.strategy-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-}
-
-.strategy-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-5px);
-}
-
-.strategy-number {
-    width: 50px;
-    height: 50px;
-    background: var(--madspild-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.strategy-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.strategy-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.strategy-list li {
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    position: relative;
-    line-height: 1.6;
-    font-size: 0.95rem;
-}
-
-.strategy-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--madspild-primary);
-    font-weight: 700;
-}
-
-.quick-wins {
-    background: linear-gradient(135deg, #f5f5f5, var(--madspild-light));
-    padding: 3rem 2rem;
-    border-radius: 24px;
-    margin: 3rem 0;
-}
-
-.quick-wins-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.quick-win {
-    text-align: center;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
-
-.quick-win:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.quick-win-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.quick-win-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-}
-</style>
-{% endblock %}
+{% block title %}Tips mod Madspild - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Tips & Tricks - Madspild</h1>
-    <p class="hero-subtitle">Praktiske værktøjer til daglig brug</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/waste_kitchen.jpg') }}" alt="Food Waste Tips"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Konkrete metoder til at måle, forstå og reducere madspild i kantinen.
-      Disse tips er testet i danske kantiner og dokumenteret med resultater.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Red<br>Maden
+    </h1>
+  </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Brug det hele."
     </p>
-  </header>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      De bedste kokke er dem, der kan trylle med rester. Her er vores tips til at minimere spildet i hverdagen.
+    </p>
+  </div>
+</section>
 
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_madspild_impact') }}" class="filter-pill">← Forrige</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="filter-pill">Tilbage til emnet</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-
-    <!-- Quick Wins -->
-    <div class="quick-wins animate-on-scroll">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 1rem; color: var(--text-dark);">Hurtige Gevinster</h2>
-      <p style="text-align: center; color: #333333; margin-bottom: 2rem;">
-        Start her - disse kan implementeres inden for dage
-      </p>
-
-      <div class="quick-wins-grid">
-        <div class="quick-win">
-          <div class="quick-win-value">-20%</div>
-          <div class="quick-win-label">Mindre portioner som standard</div>
-        </div>
-
-        <div class="quick-win">
-          <div class="quick-win-value">-15%</div>
-          <div class="quick-win-label">Databaser planlægning</div>
-        </div>
-
-        <div class="quick-win">
-          <div class="quick-win-value">-12%</div>
-          <div class="quick-win-label">Buffet-layout justering</div>
-        </div>
-
-        <div class="quick-win">
-          <div class="quick-win-value">-10%</div>
-          <div class="quick-win-label">Gæst-kommunikation</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tips Grid -->
-    <div style="margin: 5rem 0;">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Konkrete Tips Efter Område</h2>
-
-      <div class="tips-grid">
-        <!-- Måling Tips -->
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Måling</span>
-          <div class="tip-icon">📊</div>
-          <h3 class="tip-title">Mål i 2 Uger</h3>
-          <p class="tip-description">
-            Start med at registrere alt spild i 2 uger – det giver dig baseline og viser hvor problemet er.
-            Simpel vægtregistrering eller antal portioner.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">🎯</span>
-            <span class="tip-impact-text">Effekt:</span>
-            <span class="tip-impact-value">Baseline etableret</span>
-          </div>
-        </div>
-
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Måling</span>
-          <div class="tip-icon">📈</div>
-          <h3 class="tip-title">Track Dagligt</h3>
-          <p class="tip-description">
-            En enkel registrering hver dag – hvor meget blev lavet, hvor meget blev solgt, hvor meget blev væk.
-            Dit værktøj til at se mønstre.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">💡</span>
-            <span class="tip-impact-text">Potentiale:</span>
-            <span class="tip-impact-value">-20-30%</span>
-          </div>
-        </div>
-
-        <!-- Planlægning Tips -->
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Planlægning</span>
-          <div class="tip-icon">🗓️</div>
-          <h3 class="tip-title">Brug Historiske Data</h3>
-          <p class="tip-description">
-            Hvilken dag er torsdag altid populær? Hvornår sælger kartofler dårligt?
-            Lav mindre on dage med lavt forbrug.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">⚡</span>
-            <span class="tip-impact-text">Effekt:</span>
-            <span class="tip-impact-value">-25%</span>
-          </div>
-        </div>
-
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Planlægning</span>
-          <div class="tip-icon">🥘</div>
-          <h3 class="tip-title">Mindre Batches Oftere</h3>
-          <p class="tip-description">
-            I stedet for at lave alt på én gang, lav mindre portioner flere gange på dagen.
-            Holder maden frisk og reducerer overspild.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">✨</span>
-            <span class="tip-impact-text">Bonus:</span>
-            <span class="tip-impact-value">Bedre kvalitet</span>
-          </div>
-        </div>
-
-        <!-- Buffet Tips -->
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Buffet</span>
-          <div class="tip-icon">🍽️</div>
-          <h3 class="tip-title">Ret Først på Buffeten</h3>
-          <p class="tip-description">
-            Placer de populære (og mindre kostbare) retter først. Det påvirker enormt hvad gæster tager.
-            Det grønneste først har også en effekt.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">🎯</span>
-            <span class="tip-impact-text">Salg stigning:</span>
-            <span class="tip-impact-value">+40%</span>
-          </div>
-        </div>
-
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Buffet</span>
-          <div class="tip-icon">🥄</div>
-          <h3 class="tip-title">Mindre Portionsskeer</h3>
-          <p class="tip-description">
-            Små portionsskeer betyder mindre naturlig portion – og gæster kan altid tage mere.
-            Reducerer tallerkenspild væsentligt.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📉</span>
-            <span class="tip-impact-text">Spildsreduktion:</span>
-            <span class="tip-impact-value">-15%</span>
-          </div>
-        </div>
-
-        <!-- Communication Tips -->
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">💬</div>
-          <h3 class="tip-title">Fortæl Om Retten</h3>
-          <p class="tip-description">
-            "Sæsonens bedste kartofler med..." virker bedre end bare madretten.
-            Positive narrativer øger salgene og reducerer rester.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📢</span>
-            <span class="tip-impact-text">Effekt:</span>
-            <span class="tip-impact-value">+30% salg</span>
-          </div>
-        </div>
-
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">🎓</div>
-          <h3 class="tip-title">Train Dit Team</h3>
-          <p class="tip-description">
-            Alle skal forstå hvorfor madspild betyder noget. Små møder hvor I deler data og
-            resultater opbygger ejerskab.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">🤝</span>
-            <span class="tip-impact-text">Kulture-shift:</span>
-            <span class="tip-impact-value">Kritisk</span>
-          </div>
-        </div>
-
-        <!-- Resto Tips -->
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Resto</span>
-          <div class="tip-icon">🍲</div>
-          <h3 class="tip-title">Planlagt Restebrug</h3>
-          <p class="tip-description">
-            Planlagen fra dag 1 hvad der skal ske med rester. Et "Rester-måltid" eller
-            tilføjelse til næste dags ret.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">✅</span>
-            <span class="tip-impact-text">Spildsreduktion:</span>
-            <span class="tip-impact-value">-20%</span>
-          </div>
-        </div>
-
-        <div class="tip-card animate-on-scroll">
-          <span class="tip-category">Resto</span>
-          <div class="tip-icon">🔧</div>
-          <h3 class="tip-title">Lager-Management</h3>
-          <p class="tip-description">
-            FIFO-princippet: First In, First Out. Hold styr på hvad der er ældst og
-            brug det først.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">⏰</span>
-            <span class="tip-impact-text">Holdbarhed:</span>
-            <span class="tip-impact-value">+Kvalitet</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Implementation Plan -->
-    <div class="strategy-cards animate-on-scroll">
-      <div style="text-align: center; margin-bottom: 3rem;">
-        <h2 style="font-size: 2rem; font-weight: 700; color: white; margin-bottom: 1rem;">3-Måneders Kickstart</h2>
-        <p style="font-size: 1.05rem; opacity: 0.95; max-width: 700px; margin: 0 auto;">
-          Trinvis tilgang til implementering med dokumenterede resultater
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Tip 1 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">01</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Planlægning</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Køb ind efter behov, ikke efter vane. Tjek lageret før du bestiller, og hav en plan for resterne allerede når
+          du laver menuen.
         </p>
       </div>
 
-      <div class="strategy-grid">
-        <div class="strategy-card">
-          <div class="strategy-number">1</div>
-          <h3 class="strategy-title">Måned 1: Baseline</h3>
-          <ul class="strategy-list">
-            <li>Registrer spild i 2 uger</li>
-            <li>Kortlæg strømning</li>
-            <li>Identificer 3 hotspots</li>
-            <li>Præsenter data for team</li>
-          </ul>
-        </div>
+      <!-- Tip 2 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">02</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Opbevaring</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Korrekt opbevaring forlænger holdbarheden markant. Hold orden i køleskabet og brug "først ind, først ud"
+          princippet.
+        </p>
+      </div>
 
-        <div class="strategy-card">
-          <div class="strategy-number">2</div>
-          <h3 class="strategy-title">Måned 2-3: Action</h3>
-          <ul class="strategy-list">
-            <li>Implementer 5 tips</li>
-            <li>Fortsæt daglig registrering</li>
-            <li>Justér baseret på data</li>
-            <li>Fejr små succeser</li>
-          </ul>
-        </div>
+      <!-- Tip 3 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">03</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Buffet-styring</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug mindre fade mod slutningen af åbningstiden. Det ser stadig fyldt ud, men mindsker spildet, når buffeten
+          lukker.
+        </p>
+      </div>
 
-        <div class="strategy-card">
-          <div class="strategy-number">3</div>
-          <h3 class="strategy-title">Fremover: Vedligehold</h3>
-          <ul class="strategy-list">
-            <li>Månedlige reviews</li>
-            <li>Sæt nye mål</li>
-            <li>Del succeser</li>
-            <li>Gå videre til næste indsatser</li>
-          </ul>
-        </div>
+      <!-- Tip 4 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">04</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Kreativitet</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Gammelt brød bliver til croutoner. Urtestilke til pesto. Grøntsagsrester til fond. Kun fantasien sætter
+          grænser.
+        </p>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">05</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Portionering</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Hjælp gæsten med at tage passende portioner. Mindre tallerkener eller portionsanretninger kan reducere
+          tallerken-spildet.
+        </p>
+      </div>
+
+      <!-- Tip 6 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-orange-dark">06</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Kommunikation</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Fortæl gæsterne, at I arbejder mod madspild. "Tag lidt men tit" er en god opfordring ved buffeten.
+        </p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Final Message -->
-    <div style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%); color: white; padding: 3rem 2rem; border-radius: 20px; margin: 4rem 0; text-align: center;">
-      <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">Kom i Gang I Morgen</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.95; max-width: 700px; margin: 0 auto;">
-        Du behøver ikke vente på perfekte systemer eller store investeringer.
-        Start med at måle, og brug dataene til at justere. Resultaterne kommer inden for uger.
-      </p>
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-orange-dark">
+      "Gør en forskel"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      Hver gang du redder mad fra skraldespanden, sparer du penge og skåner miljøet.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_madspild_impact') }}"
+        class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+        Se Aftrykket →
+      </a>
     </div>
-
-  </article>
+  </div>
 </section>
-
-<section class="page-section callout-dark animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <h2>Tilbage til Emnet</h2>
-  <p class="section-lead">
-    Du har nu læst hele madspild-serien. Brug det du har lært til at gøre en forskel i din kantine.
-  </p>
-  <a href="{{ url_for('topic_madspild_landing') }}" class="btn-primary">← Tilbage til madspild</a>
-</section>
-
 {% endblock %}

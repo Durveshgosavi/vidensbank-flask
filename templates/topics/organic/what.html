@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er Økologi? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
+            alt="Organic Ingredients" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Hvad er<br>Økologi?
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            Økologi er en produktionsform, der tager særligt hensyn til miljø, natur og dyrevelfærd. I storkøkkener
+            dokumenteres indsatsen ofte med Det Økologiske Spisemærke.
+        </p>
+    </div>
+</div>
+
+<!-- The Labels -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="mb-16 text-center">
+            <span
+                class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Certificering</span>
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Det Økologiske
+                Spisemærke</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+            <!-- Bronze -->
+            <div class="group text-center">
+                <div
+                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-amber-700 bg-stone-50 transition-transform group-hover:scale-110">
+                    <span class="font-display text-4xl font-bold text-amber-700">30-60%</span>
+                </div>
+                <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Bronze</h3>
+                <p class="font-sans text-stone-600">
+                    Godt i gang. Mellem 30% og 60% af indkøbet er økologisk.
+                </p>
+            </div>
+
+            <!-- Silver -->
+            <div class="group text-center">
+                <div
+                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-stone-400 bg-stone-50 transition-transform group-hover:scale-110">
+                    <span class="font-display text-4xl font-bold text-stone-400">60-90%</span>
+                </div>
+                <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Sølv</h3>
+                <p class="font-sans text-stone-600">
+                    Ambitiøst niveau. Mellem 60% og 90% af indkøbet er økologisk.
+                </p>
+            </div>
+
+            <!-- Gold -->
+            <div class="group text-center">
+                <div
+                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-yellow-500 bg-stone-50 transition-transform group-hover:scale-110">
+                    <span class="font-display text-4xl font-bold text-yellow-500">90-100%</span>
+                </div>
+                <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Guld</h3>
+                <p class="font-sans text-stone-600">
+                    Det højeste niveau. Over 90% økologi og krav om råvarepolitik.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rules & Calculation -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+            <div>
+                <h3 class="mb-6 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">Reglerne
+                </h3>
+                <ul class="space-y-4 font-sans text-lg text-stone-600">
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 h-2 w-2 rounded-full bg-cb-green-dark"></span>
+                        <span>Alle indkøb af mad og drikke tæller med.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 h-2 w-2 rounded-full bg-cb-green-dark"></span>
+                        <span>Opgøres typisk over en periode på 3 måneder.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 h-2 w-2 rounded-full bg-cb-green-dark"></span>
+                        <span>Kontrolleres af Fødevarestyrelsen.</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-6 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">Beregning
+                </h3>
+                <p class="mb-4 font-sans text-lg text-stone-600">
+                    Økologiprocenten kan beregnes på to måder:
+                </p>
+                <div class="space-y-4">
+                    <div class="bg-white p-6 shadow-sm">
+                        <span class="block font-bold uppercase text-cb-green-dark">Vægt (kg)</span>
+                        <p class="text-sm text-stone-500">Godt hvis man bruger mange tunge basisvarer (mel, gryn,
+                            grønt).</p>
+                    </div>
+                    <div class="bg-white p-6 shadow-sm">
+                        <span class="block font-bold uppercase text-cb-green-dark">Kroner (DKK)</span>
+                        <p class="text-sm text-stone-500">Godt hvis man bruger dyre økologiske varer (kød, vin, kaffe).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-stone-900 py-24 text-center text-white">
+    <div class="mx-auto max-w-3xl px-6">
+        <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide">Hvor ligger I?</h2>
+        <p class="mb-12 font-sans text-lg text-stone-400">
+            Brug vores simple beregner til at få et overblik over jeres nuværende økologiprocent.
+        </p>
+        <a href="{{ url_for('topic_organic_impact') }}"
+            class="inline-block bg-cb-green-dark px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-cb-green-medium">
+            Prøv Beregneren
+        </a>
+    </div>
+</section>
+{% endblock %}

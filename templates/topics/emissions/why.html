@@ -1,657 +1,120 @@
 {% extends "base.html" %}
 
-{% block title %}Hvorfor er fødevarerelaterede emissioner vigtige? - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Impact Statistics Styles */
-.impact-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 4rem 0;
-}
-
-.impact-stat-card {
-    background: #ffffff;
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    border-top: 4px solid #2c5f2d;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.impact-stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.impact-stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
-.impact-stat-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
-}
-
-.impact-stat-desc {
-    font-size: 1rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-/* Policy Timeline */
-.policy-timeline {
-    position: relative;
-    padding: 3rem 0;
-    margin: 4rem 0;
-}
-
-.timeline-line {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: #2c5f2d;
-    transform: translateX(-50%);
-}
-
-.timeline-item {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 3rem;
-    align-items: center;
-    margin-bottom: 4rem;
-    position: relative;
-}
-
-.timeline-content {
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    transition: all 0.3s ease;
-}
-
-.timeline-content:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-year {
-    width: 60px;
-    height: 60px;
-    background: #2c5f2d;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #ffffff;
-    z-index: 2;
-}
-
-.timeline-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.75rem;
-}
-
-.timeline-desc {
-    font-size: 0.95rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-.timeline-item:nth-child(even) .timeline-content:first-child {
-    order: 3;
-}
-
-/* Sector Comparison */
-.sector-comparison {
-    background: #f5f5f5;
-    padding: 3rem 2rem;
-    border-radius: 16px;
-    margin: 3rem 0;
-}
-
-.sector-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.sector-bar-item {
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-}
-
-.sector-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.sector-name {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #1a1a1a;
-}
-
-.sector-value {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-}
-
-.sector-bar-track {
-    height: 20px;
-    background: #f5f5f5;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.sector-bar-fill {
-    height: 100%;
-    background: #2c5f2d;
-    border-radius: 10px;
-    transition: width 1s ease;
-    width: 0%;
-}
-
-/* Canteen Impact Cards */
-.canteen-impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.canteen-card {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    border-top: 4px solid #2c5f2d;
-    transition: all 0.3s ease;
-}
-
-.canteen-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.canteen-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.canteen-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.canteen-desc {
-    font-size: 1rem;
-    color: #333333;
-    line-height: 1.7;
-    text-align: center;
-}
-
-/* Risk vs Opportunity */
-.risk-opportunity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.risk-card, .opportunity-card {
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.risk-card {
-    background: #fef5f5;
-    border-left: 4px solid #c0392b;
-}
-
-.opportunity-card {
-    background: #f0f9f0;
-    border-left: 4px solid #2c5f2d;
-}
-
-.risk-card h3, .opportunity-card h3 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.risk-card h3 {
-    color: #c0392b;
-}
-
-.opportunity-card h3 {
-    color: var(--text-dark);
-}
-
-.risk-card ul, .opportunity-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.risk-card li, .opportunity-card li {
-    padding: 0.75rem 0;
-    padding-left: 2rem;
-    position: relative;
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-.risk-card li::before {
-    content: '⚠️';
-    position: absolute;
-    left: 0;
-}
-
-.opportunity-card li::before {
-    content: '✅';
-    position: absolute;
-    left: 0;
-}
-
-/* Chart Section */
-.chart-section-dark {
-    background: #1f1f1f;
-    padding: 3rem 2rem;
-    border-radius: 16px;
-    margin: 3rem 0;
-    color: white;
-}
-
-.chart-container-white {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    margin: 2rem 0;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .timeline-item {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .timeline-line {
-        left: 30px;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content:first-child {
-        order: 1;
-    }
-
-    .risk-opportunity-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Hvorfor er det vigtigt? - Vidensbank{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Hvorfor er fødevarerelaterede emissioner vigtige?</h1>
-    <p class="hero-subtitle">Madens rolle i Danmarks klimamål og den grønne omstilling</p>
-  </div>
-</header>
-
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      I Danmark fylder mad en væsentlig del af både den enkeltes og samfundets klimaaftryk.
-      Derfor er fødevarerelaterede emissioner et centralt indsatsområde i den grønne omstilling.
-    </p>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_emissions_what') }}" class="filter-pill">← Hvad er det?</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_emissions_goal') }}" class="filter-pill">Mål & ambition →</a>
-  </nav>
-
-  <!-- Impact Statistics -->
-  <div class="impact-stats-grid">
-    <div class="impact-stat-card animate-on-scroll">
-      <div class="impact-stat-number" data-counter="25" data-suffix="%">0%</div>
-      <div class="impact-stat-label">Af dansk klimaaftryk</div>
-      <p class="impact-stat-desc">
-        Fødevareproduktion udgør cirka en fjerdedel af det samlede danske klimaaftryk.
-      </p>
-    </div>
-
-    <div class="impact-stat-card animate-on-scroll">
-      <div class="impact-stat-number" data-counter="1.7">0.0</div>
-      <div class="impact-stat-label">Ton CO₂e pr. dansker årligt</div>
-      <p class="impact-stat-desc">
-        Gennemsnitsdanskeren udleder cirka 1.7 ton CO₂e årligt gennem madforbrug.
-      </p>
-    </div>
-
-    <div class="impact-stat-card animate-on-scroll">
-      <div class="impact-stat-number" data-counter="40" data-suffix="%">0%</div>
-      <div class="impact-stat-label">Reduktionspotentiale</div>
-      <p class="impact-stat-desc">
-        Kantiner kan reducere klimaaftrykket med op til 40% gennem strategiske valg.
-      </p>
-    </div>
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/emissions_hero.jpg') }}" alt="Why Important"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
 
-  <article style="max-width: 1200px; margin: 0 auto;">
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Hvorfor er det<br>Vigtigt?
+    </h1>
+  </div>
+</div>
 
-    <!-- Sector Comparison Section -->
-    <div class="sector-comparison animate-on-scroll">
-      <header class="section-header">
-        <h2 class="section-title" style="color: var(--text-dark);">Madens rolle i Danmarks klimaaftryk</h2>
-        <p class="section-lead" style="color: #333333;">
-          Sammenligning af forskellige sektorers bidrag til danske drivhusgasudledninger
-        </p>
-      </header>
-
-      <div class="sector-bars">
-        <div class="sector-bar-item">
-          <div class="sector-header">
-            <span class="sector-name">🍽️ Fødevareproduktion</span>
-            <span class="sector-value">25%</span>
-          </div>
-          <div class="sector-bar-track">
-            <div class="sector-bar-fill" data-progress="25"></div>
-          </div>
-        </div>
-
-        <div class="sector-bar-item">
-          <div class="sector-header">
-            <span class="sector-name">🚗 Transport</span>
-            <span class="sector-value">27%</span>
-          </div>
-          <div class="sector-bar-track">
-            <div class="sector-bar-fill" data-progress="27"></div>
-          </div>
-        </div>
-
-        <div class="sector-bar-item">
-          <div class="sector-header">
-            <span class="sector-name">🏭 Industri</span>
-            <span class="sector-value">15%</span>
-          </div>
-          <div class="sector-bar-track">
-            <div class="sector-bar-fill" data-progress="15"></div>
-          </div>
-        </div>
-
-        <div class="sector-bar-item">
-          <div class="sector-header">
-            <span class="sector-name">🏠 Boliger</span>
-            <span class="sector-value">18%</span>
-          </div>
-          <div class="sector-bar-track">
-            <div class="sector-bar-fill" data-progress="18"></div>
-          </div>
-        </div>
-
-        <div class="sector-bar-item">
-          <div class="sector-header">
-            <span class="sector-name">⚡ Energiforsyning</span>
-            <span class="sector-value">15%</span>
-          </div>
-          <div class="sector-bar-track">
-            <div class="sector-bar-fill" data-progress="15"></div>
-          </div>
-        </div>
-      </div>
-
-      <p style="text-align: center; font-size: 1.1rem; color: #333333; margin-top: 2rem;">
-        Fødevarer udgør en større andel end industri og er næsten på niveau med transport –
-        et område hvor kantiner kan gøre en reel forskel.
-      </p>
-    </div>
-
-    <!-- Policy Timeline -->
-    <div style="margin: 5rem 0;">
-      <header class="section-header animate-on-scroll">
-        <p class="eyebrow">POLITIK & REGULERING</p>
-        <h2 class="section-title">Danmarks Klimarejse</h2>
-        <p class="section-lead">
-          Vigtige milepæle i dansk klimapolitik relateret til fødevarer
-        </p>
-      </header>
-
-      <div class="policy-timeline">
-        <div class="timeline-line"></div>
-
-        <div class="timeline-item animate-on-scroll">
-          <div class="timeline-content">
-            <h3 class="timeline-title">Klimaloven vedtages</h3>
-            <p class="timeline-desc">
-              Danmark vedtager verdens mest ambitiøse klimalov med mål om 70% reduktion i 2030 og klimaneutralitet i 2050.
-            </p>
-          </div>
-          <div class="timeline-year">2019</div>
-          <div></div>
-        </div>
-
-        <div class="timeline-item animate-on-scroll">
-          <div></div>
-          <div class="timeline-year">2021</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">Opdaterede kostråd</h3>
-            <p class="timeline-desc">
-              Fødevarestyrelsen opdaterer de officielle kostråd til at inkludere både sundhed og klimahensyn.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item animate-on-scroll">
-          <div class="timeline-content">
-            <h3 class="timeline-title">Fødevarestrategi</h3>
-            <p class="timeline-desc">
-              Regeringen præsenterer strategi for bæredygtig fødevareproduktion med fokus på plantebaseret protein og madspild.
-            </p>
-          </div>
-          <div class="timeline-year">2023</div>
-          <div></div>
-        </div>
-
-        <div class="timeline-item animate-on-scroll">
-          <div></div>
-          <div class="timeline-year">2030</div>
-          <div class="timeline-content">
-            <h3 class="timeline-title">70% Reduktionsmål</h3>
-            <p class="timeline-desc">
-              Alle sektorer, inklusive fødevarer, skal bidrage til at nå det nationale mål om 70% CO₂-reduktion.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Canteen Impact Section -->
-    <div style="margin: 5rem 0;">
-      <header class="section-header animate-on-scroll">
-        <p class="eyebrow">KANTINERNES ROLLE</p>
-        <h2 class="section-title">Kantiner som nøglespiller</h2>
-        <p class="section-lead">
-          Professionelle køkkener har en unik mulighed for at drive forandring i stor skala
-        </p>
-      </header>
-
-      <div class="canteen-impact-grid">
-        <div class="canteen-card animate-on-scroll">
-          <div class="canteen-icon">🍽️</div>
-          <h3 class="canteen-title">1000+ Måltider Dagligt</h3>
-          <p class="canteen-desc">
-            Store kantiner serverer dagligt måltider til tusindvis af gæster, hvilket giver en unik skaleringsmulighed.
-          </p>
-        </div>
-
-        <div class="canteen-card animate-on-scroll">
-          <div class="canteen-icon">💡</div>
-          <h3 class="canteen-title">Påvirkning gennem Nudging</h3>
-          <p class="canteen-desc">
-            Kantiner kan påvirke gæsternes vaner gennem udbud, synlighed, placering og adfærdsnudging.
-          </p>
-        </div>
-
-        <div class="canteen-card animate-on-scroll">
-          <div class="canteen-icon">📊</div>
-          <h3 class="canteen-title">Datadrevet Arbejde</h3>
-          <p class="canteen-desc">
-            Mulighed for at arbejde systematisk med data, indkøb, madspild og reduktionsmål i stor skala.
-          </p>
-        </div>
-      </div>
-
-      <div class="impact-highlight animate-on-scroll" style="background-color: var(--light-gron); padding: 2rem; border-left: 5px solid var(--dark-gron); border-radius: 12px; margin: 3rem 0;">
-        <strong style="font-size: 1.3rem; display: block; margin-bottom: 1rem;">🎯 Skalerings-effekten</strong>
-        <p style="font-size: 1.1rem; line-height: 1.7; margin: 0;">
-          Hvor den enkelte forbruger kan ændre én tallerken ad gangen, kan en større kantine ændre flere
-          hundrede eller tusinde måltider på én dag. En 40% reduktion i en kantine med 500 daglige gæster
-          svarer til at fjerne klimaaftrykket fra 20 biler om året. Det gør kantiner til en central del af
-          løsningen på både klima- og madspildsudfordringen.
-        </p>
-      </div>
-    </div>
-
-    <!-- Risk vs Opportunity -->
-    <div style="margin: 5rem 0;">
-      <header class="section-header animate-on-scroll">
-        <h2 class="section-title">Fra Risiko til Mulighed</h2>
-        <p class="section-lead">
-          For foodservice-branchen er fødevarerelaterede emissioner både en udfordring og en chance
-        </p>
-      </header>
-
-      <div class="risk-opportunity-grid">
-        <div class="risk-card animate-on-scroll">
-          <h3>⚠️ Risiko</h3>
-          <ul>
-            <li>Skærpet regulering og dokumentationskrav</li>
-            <li>Stigende kundekrav til bæredygtighed</li>
-            <li>Potentiel CO₂-beskatning på fødevarer</li>
-            <li>Reputationsrisiko ved manglende handling</li>
-            <li>Øgede omkostninger til klimakompensation</li>
-          </ul>
-        </div>
-
-        <div class="opportunity-card animate-on-scroll">
-          <h3>✅ Mulighed</h3>
-          <ul>
-            <li>Differentier jer som klimabevidst leverandør</li>
-            <li>Dokumenter og kommuniker reduktioner</li>
-            <li>Tiltrække klimabevidste kunder og talenter</li>
-            <li>Reducere omkostninger gennem madspildsreduktion</li>
-            <li>Styrke brand og skabe konkurrencefordel</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart Section -->
-    <div class="chart-section-dark animate-on-scroll">
-      <header class="section-header">
-        <h2 class="section-title" style="color: white;">Udvikling i Dansk Fødevareforbrug</h2>
-        <p class="section-lead" style="color: rgba(255,255,255,0.9);">
-          Skift i forbrugsmønstre fra 2015 til 2025 viser en positiv udvikling mod mere bæredygtige valg
-        </p>
-      </header>
-
-      <div class="chart-container-white">
-        <canvas id="consumptionTrendChart"></canvas>
-      </div>
-    </div>
-
-    <p class="animate-on-scroll" style="font-size: 1.15rem; line-height: 1.8; text-align: center; max-width: 800px; margin: 4rem auto; padding: 2rem; background: #f5f5f5; border-radius: 16px;">
-      <strong>Vidensbanken er designet til at gøre denne viden tilgængelig</strong>, så kantiner kan træffe
-      oplyste, strategiske valg og være en aktiv del af Danmarks grønne omstilling. Med de rigtige data og
-      værktøjer kan hver kantine blive en kraftfuld drivkraft for positiv forandring.
+<!-- Intro -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Fødevarer er en af de største påvirkninger på planetens sundhed."
     </p>
-  </article>
-</section>
-
-<!-- Next Section CTA -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Næste: Mål & Ambition</h2>
-  <p class="section-lead">
-    Hvad ønsker Vidensbanken og Cheval Blanc at opnå på emissionsområdet? Se vores konkrete mål og strategi.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_emissions_goal') }}" class="btn-primary">Læs mere →</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
   </div>
 </section>
 
-{% endblock %}
+<!-- Narrative Section 1: The Climate Reality -->
+<section class="w-full bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <div>
+        <span
+          class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Klimavirkeligheden</span>
+        <h2 class="mb-6 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">En Global
+          Udfordring</h2>
+        <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+          Ifølge FN's klimapanel (IPCC) er en omstilling af fødevaresystemet nødvendig for at begrænse den globale
+          opvarmning.
+        </p>
+        <p class="font-sans text-lg leading-relaxed text-stone-600">
+          En gennemsnitlig dansker udleder ca. 3 tons CO₂e årligt fra mad og drikke. Forskning viser, at en
+          plantebaseret kost kan reducere dette aftryk betydeligt.
+        </p>
+      </div>
+      <div class="flex flex-col justify-center border-l-4 border-cb-orange-dark pl-8 md:pl-12">
+        <blockquote class="font-display text-3xl font-bold leading-tight text-stone-800 uppercase">
+          "Mad kan være den stærkeste medicin for både mennesker og planeten."
+        </blockquote>
+        <cite class="mt-6 block font-sans text-sm font-bold uppercase tracking-widest text-stone-500">— EAT-Lancet
+          Commission</cite>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% block extra_js %}
-<!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Narrative Section 2: The Business Case -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-16 text-center">
+      <span
+        class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Markedstendenser</span>
+      <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide text-white">Udviklingen i Branchen</h2>
+    </div>
 
-<!-- Custom Charts Script -->
-<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <!-- Item 1 -->
+      <div class="group">
+        <div class="mb-6 h-1 w-full bg-stone-700 transition-colors group-hover:bg-cb-orange-dark"></div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-cb-orange-light uppercase">Lovgivning</h3>
+        <p class="text-stone-400 font-sans leading-relaxed">
+          Med EU's CSRD-direktiv stiger kravene til bæredygtighedsrapportering for store virksomheder, hvilket
+          forplanter sig i hele værdikæden.
+        </p>
+      </div>
 
-<script>
-// Create consumption trend chart
-document.addEventListener('DOMContentLoaded', function() {
-    const chartCanvas = document.getElementById('consumptionTrendChart');
-    if (chartCanvas) {
-        window.VidenbankCharts.createComparisonChart(chartCanvas);
-    }
+      <!-- Item 2 -->
+      <div class="group">
+        <div class="mb-6 h-1 w-full bg-stone-700 transition-colors group-hover:bg-cb-orange-dark"></div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-cb-orange-light uppercase">Ressourcer</h3>
+        <p class="text-stone-400 font-sans leading-relaxed">
+          Optimering af råvareforbrug og reduktion af madspild ses i stigende grad som en økonomisk nødvendighed såvel
+          som et miljømæssigt hensyn.
+        </p>
+      </div>
 
-    // Animate sector bars
-    const sectorBars = document.querySelectorAll('[data-progress]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                const progress = entry.target.getAttribute('data-progress');
-                setTimeout(() => {
-                    entry.target.style.width = progress + '%';
-                    entry.target.classList.add('animated');
-                }, 200);
-            }
-        });
-    }, { threshold: 0.5 });
+      <!-- Item 3 -->
+      <div class="group">
+        <div class="mb-6 h-1 w-full bg-stone-700 transition-colors group-hover:bg-cb-orange-dark"></div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-cb-orange-light uppercase">Forventninger</h3>
+        <p class="text-stone-400 font-sans leading-relaxed">
+          Både medarbejdere og gæster efterspørger i højere grad gennemsigtighed og ansvarlighed omkring de måltider,
+          der serveres.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    sectorBars.forEach(bar => observer.observe(bar));
-});
-</script>
+<!-- Final CTA -->
+<section class="bg-white py-32 text-center">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="mb-8 font-display text-5xl font-bold text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+      Viden er Nøglen
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-600">
+      Forståelse af data og sammenhænge er første skridt mod forandring.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_emissions_goal') }}"
+        class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:text-cb-orange-dark">
+        Se Nationale Mål →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

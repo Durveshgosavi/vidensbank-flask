@@ -1,831 +1,143 @@
 {% extends "base.html" %}
 
-{% block title %}Tips & Tricks - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Tips Page Specific Styles */
-.tips-hero {
-    position: relative;
-    min-height: 450px;
-    background: #2c5f2d;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    overflow: hidden;
-}
-
-.quick-wins-banner {
-    background: white;
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: -3rem auto 4rem;
-    max-width: 1100px;
-    position: relative;
-    z-index: 10;
-}
-
-.quick-wins-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.quick-win-card {
-    text-align: center;
-    padding: 1.5rem;
-    background: #f5f5f5;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.quick-win-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.quick-win-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.quick-win-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.25rem;
-}
-
-.quick-win-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-}
-
-.comparison-tool {
-    background: #f5f5f5;
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    margin: 4rem 0;
-}
-
-.comparison-slider-section {
-    max-width: 900px;
-    margin: 3rem auto;
-}
-
-.slider-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-}
-
-.slider-label {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-}
-
-.slider-input {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    background: #e0e0e0;
-    outline: none;
-    -webkit-appearance: none;
-}
-
-.slider-input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--dark-gron);
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.slider-input::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--dark-gron);
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border: none;
-}
-
-.slider-value-display {
-    text-align: center;
-    margin-top: 0.75rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #1a1a1a;
-}
-
-.before-after-comparison {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.comparison-side {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.comparison-side::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-}
-
-.comparison-side.before::before {
-    background: linear-gradient(90deg, #e74c3c, #c0392b);
-}
-
-.comparison-side.after::before {
-    background: linear-gradient(90deg, #27ae60, #52b788);
-}
-
-.comparison-badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.comparison-side.before .comparison-badge {
-    background: #ffe5e5;
-    color: #c0392b;
-}
-
-.comparison-side.after .comparison-badge {
-    background: #d4edda;
-    color: #27ae60;
-}
-
-.comparison-value {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.comparison-side.before .comparison-value {
-    color: #e74c3c;
-}
-
-.comparison-side.after .comparison-value {
-    color: #27ae60;
-}
-
-.comparison-details {
-    color: #333333;
-    line-height: 1.8;
-    margin-top: 1.5rem;
-}
-
-.reduction-indicator {
-    text-align: center;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, var(--dark-gron), #52b788);
-    color: white;
-    border-radius: 12px;
-    margin: 2rem 0;
-}
-
-.reduction-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.tip-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-top: 5px solid var(--dark-gron);
-}
-
-.tip-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.tip-category {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
-    background: var(--light-gron);
-    color: #1a1a1a;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.tip-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.tip-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.tip-description {
-    color: #333333;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.tip-impact {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.tip-impact-icon {
-    font-size: 1.5rem;
-    margin-right: 0.75rem;
-}
-
-.tip-impact-text {
-    flex: 1;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-}
-
-.tip-impact-value {
-    font-weight: 700;
-    color: #1a1a1a;
-    font-size: 1.1rem;
-}
-
-.strategy-section {
-    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
-    color: white;
-    border-radius: 24px;
-    padding: 4rem 2rem;
-    margin: 4rem 0;
-}
-
-.strategy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 3rem auto 0;
-}
-
-.strategy-card {
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.strategy-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.strategy-number {
-    width: 50px;
-    height: 50px;
-    background: var(--dark-gron);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.strategy-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
-}
-
-.strategy-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.strategy-list li {
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    position: relative;
-    line-height: 1.6;
-    color: #333333;
-}
-
-.strategy-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #1a1a1a;
-    font-weight: 700;
-}
-
-@media (max-width: 768px) {
-    .quick-wins-banner {
-        padding: 2rem 1.5rem;
-        margin: -2rem 1rem 3rem;
-    }
-
-    .before-after-comparison {
-        grid-template-columns: 1fr;
-    }
-
-    .comparison-value {
-        font-size: 2.5rem;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Best Practice - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Hero Section -->
-<header class="tips-hero animate-on-scroll">
-  <div class="goal-hero-content">
-    <h1 class="hero-title">Tips og tricks til at reducere emissioner</h1>
-    <p class="hero-subtitle">Praktiske, dokumenterede strategier til danske kantiner – med målbare resultater</p>
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/emissions_cooking.jpg') }}" alt="Sustainable Canteen"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Quick Wins Banner -->
-<div class="quick-wins-banner animate-on-scroll">
-  <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem;">Hurtige Gevinster</h2>
-  <p style="text-align: center; color: #666; margin-bottom: 2rem;">
-    De mest effektive ændringer du kan implementere i morgen
-  </p>
-
-  <div class="quick-wins-grid">
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🌱</div>
-      <div class="quick-win-value">-30%</div>
-      <div class="quick-win-label">Erstat oksekød med kylling</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">📊</div>
-      <div class="quick-win-value">-15%</div>
-      <div class="quick-win-label">Reducer madspild</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🥗</div>
-      <div class="quick-win-value">-40%</div>
-      <div class="quick-win-label">Flere plantebaserede</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🍽️</div>
-      <div class="quick-win-value">-20%</div>
-      <div class="quick-win-label">Optimér portioner</div>
-    </div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-blue-light">
+      Best<br>Practice
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+      Generelle anbefalinger til reduktion af emissioner i storkøkkener, baseret på brancheerfaringer og data.
+    </p>
   </div>
 </div>
 
-<section class="page-section">
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_emissions_impact') }}" class="filter-pill">← Mit aftryk</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
-  </nav>
+<!-- Quick Wins List -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mb-16 text-center">
+      <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Handlingsmuligheder</h2>
+    </div>
 
-  <article style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header animate-on-scroll">
-      <h2 class="section-title">Praktiske Greb Med Målbar Effekt</h2>
-      <p class="section-lead">
-        Her finder du dokumenterede strategier, som danske kantiner kan bruge til at reducere klimaaftrykket –
-        uden at gå på kompromis med madglæde og service.
-      </p>
-    </header>
+    <div class="space-y-8">
+      <!-- Item 1 -->
+      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+        <span class="font-display text-5xl font-bold text-cb-blue-dark">01</span>
+        <div>
+          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Proteinskift</h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Data viser, at udskiftning af rødt kød med lyst kød eller bælgfrugter er den mest effektive måde at reducere
+            CO₂e på.
+          </p>
+        </div>
+      </div>
 
-    <!-- Interactive Comparison Tool -->
-    <div class="comparison-tool animate-on-scroll">
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-          <p class="eyebrow">INTERAKTIVT VÆRKTØJ</p>
-          <h2 class="section-title">Se Effekten af Dine Valg</h2>
-          <p class="section-lead">Juster parametrene og se hvordan forskellige strategier påvirker klimaaftrykket</p>
-        </header>
+      <!-- Item 2 -->
+      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+        <span class="font-display text-5xl font-bold text-cb-blue-dark">02</span>
+        <div>
+          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Madspild</h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Reduktion af madspild sparer både ressourcer i produktionen og ved bortskaffelse. Måling er ofte første
+            skridt.
+          </p>
+        </div>
+      </div>
 
-        <div class="comparison-slider-section">
-          <div class="slider-container">
-            <div class="slider-label">Andel plantebaserede retter (%)</div>
-            <input type="range" id="plantBasedSlider" class="slider-input" min="0" max="100" value="30" step="5">
-            <div class="slider-value-display" id="plantBasedValue">30%</div>
-          </div>
+      <!-- Item 3 -->
+      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
+        <span class="font-display text-5xl font-bold text-cb-blue-dark">03</span>
+        <div>
+          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Nudging</h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Placering af de grønne retter først i buffeten kan øge indtaget af grønt markant, viser adfærdsstudier.
+          </p>
+        </div>
+      </div>
 
-          <div class="slider-container">
-            <div class="slider-label">Andel oksekød i kødretter (%)</div>
-            <input type="range" id="beefSlider" class="slider-input" min="0" max="100" value="40" step="5">
-            <div class="slider-value-display" id="beefValue">40%</div>
-          </div>
-
-          <div class="slider-container">
-            <div class="slider-label">Madspild (%)</div>
-            <input type="range" id="wasteSlider" class="slider-input" min="0" max="30" value="15" step="1">
-            <div class="slider-value-display" id="wasteValue">15%</div>
-          </div>
-
-          <div class="reduction-indicator">
-            <div class="reduction-value" id="totalImpact">2800 kg CO₂e</div>
-            <div>Estimeret ugentligt aftryk (500 måltider)</div>
-          </div>
+      <!-- Item 4 -->
+      <div class="flex items-start gap-6">
+        <span class="font-display text-5xl font-bold text-cb-blue-dark">04</span>
+        <div>
+          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Sæsonvarer</h3>
+          <p class="font-sans text-stone-600 leading-relaxed">
+            Brug af frilandsgrønt i sæson har typisk et lavere klimaaftryk end varer fra opvarmede drivhuse.
+          </p>
         </div>
       </div>
     </div>
-
-    <!-- Before/After Comparison -->
-    <div class="animate-on-scroll" style="margin: 5rem 0;">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title">Før & Efter: Real Case Study</h2>
-        <p class="section-lead">Kantine i Københavns Kommune med 600 måltider/uge</p>
-      </header>
-
-      <div class="before-after-comparison">
-        <div class="comparison-side before">
-          <span class="comparison-badge">Før</span>
-          <div class="comparison-value" data-counter="5400">0</div>
-          <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
-          <ul class="comparison-details">
-            <li>60% kødbaserede retter</li>
-            <li>Oksekød 4 gange/uge</li>
-            <li>18% madspild</li>
-            <li>Ingen klimadata i drift</li>
-            <li>Traditionel menustruktur</li>
-          </ul>
-        </div>
-
-        <div class="comparison-side after">
-          <span class="comparison-badge">Efter</span>
-          <div class="comparison-value" data-counter="2200">0</div>
-          <p style="color: #666; margin-bottom: 1rem;">kg CO₂e / uge</p>
-          <ul class="comparison-details">
-            <li>70% plantebaserede retter</li>
-            <li>Oksekød 1 gang/måned</li>
-            <li>7% madspild</li>
-            <li>Ugentlig data-opfølgning</li>
-            <li>Nudging og kommunikation</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reduction-indicator">
-        <div class="reduction-value">59% Reduktion</div>
-        <div>Opnået på 12 måneder uden tab af gæsttilfredshed</div>
-      </div>
-    </div>
-
-    <!-- Detailed Tips Grid -->
-    <div class="animate-on-scroll" style="margin: 5rem 0;">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title">Konkrete Tips Efter Kategori</h2>
-      </header>
-
-      <div class="tips-grid">
-        <!-- Menu Development -->
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🍽️</div>
-          <h3 class="tip-title">Gør det grønne til standarden</h3>
-          <p class="tip-description">
-            Lad det mest klima- og plantebaserede tilbud være det mest synlige og letteste valg i buffeten.
-            Placer det først, på øjenhøjde, med størst portionsskeer.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">25-35%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🌱</div>
-          <h3 class="tip-title">Protein-skift</h3>
-          <p class="tip-description">
-            Erstat en del af kødet med bælgfrugter, korn eller grøntsager, så retten bevarer fylde og mæthed,
-            men med lavere CO₂e. Start med 25% udskiftning.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">15-20%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🥗</div>
-          <h3 class="tip-title">Råvarer først, kød som tilbehør</h3>
-          <p class="tip-description">
-            Byg retter omkring grøntsager, bælgfrugter og korn som omdrejningspunkt.
-            Kød bliver accent, ikke hovedaktør. Tænk "buddha bowls" og sammensat tallerkener.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">30-40%</span>
-          </div>
-        </div>
-
-        <!-- Procurement -->
-        <div class="tip-card">
-          <span class="tip-category">Indkøb</span>
-          <div class="tip-icon">🛒</div>
-          <h3 class="tip-title">Efterspørg klimadata</h3>
-          <p class="tip-description">
-            Spørg leverandører, om de kan dokumentere klimaaftryk, produktionsforhold og certificeringer.
-            Det skaber markedstryk og gør det lettere at sammenligne.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">5-10%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Indkøb</span>
-          <div class="tip-icon">📊</div>
-          <h3 class="tip-title">Sammenlign alternativer</h3>
-          <p class="tip-description">
-            Brug tilgængelige klimadata til at vurdere, hvor der kan skiftes til mindre belastende produkter
-            uden at miste kvalitet. Dokumenter besparelser.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">8-12%</span>
-          </div>
-        </div>
-
-        <!-- Waste Reduction -->
-        <div class="tip-card">
-          <span class="tip-category">Madspild</span>
-          <div class="tip-icon">📊</div>
-          <h3 class="tip-title">Mål før du handler</h3>
-          <p class="tip-description">
-            Start med at registrere madspild i produktion, buffet og fra tallerkener i en 2-ugers periode.
-            Før man har data, gætter man. Brug simple vægtregistreringer.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">10-15%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Madspild</span>
-          <div class="tip-icon">🎯</div>
-          <h3 class="tip-title">Tilpas produktionen</h3>
-          <p class="tip-description">
-            Brug historiske tal og sæsonmønstre til at justere mængder, især på de retter, hvor der ofte er overskud.
-            Lav mindre batches oftere.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">12-18%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Madspild</span>
-          <div class="tip-icon">🍲</div>
-          <h3 class="tip-title">Gør restebrug lækkert</h3>
-          <p class="tip-description">
-            Planlæg "dag 2"-retter, hvor rester kan bruges kreativt uden at virke som en nedgradering af kvaliteten.
-            Transformér i stedet for at genopvarme.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">8-12%</span>
-          </div>
-        </div>
-
-        <!-- Communication -->
-        <div class="tip-card">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">💬</div>
-          <h3 class="tip-title">Positive narrativer</h3>
-          <p class="tip-description">
-            Tal om smag, kvalitet og sæson frem for afsavn og afkald.
-            "Sæsonens bedste grøntsager" virker bedre end "mindre kød".
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Øget accept:</span>
-            <span class="tip-impact-value">+40%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">📣</div>
-          <h3 class="tip-title">Del resultater</h3>
-          <p class="tip-description">
-            Når I har opnået en reduktion i madspild eller CO₂e, så del det med gæsterne og kunderne.
-            Synliggør fremdrift med plakater og digitale skærme.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Engagement:</span>
-            <span class="tip-impact-value">+55%</span>
-          </div>
-        </div>
-
-        <!-- Energy -->
-        <div class="tip-card">
-          <span class="tip-category">Drift</span>
-          <div class="tip-icon">⚡</div>
-          <h3 class="tip-title">Sluk når muligt</h3>
-          <p class="tip-description">
-            Sluk udstyr når det ikke er i brug, og saml produktion i færre tidsrum.
-            Lav en simpel "sluk-rutine" for slutningen af dagen.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">5-8%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Drift</span>
-          <div class="tip-icon">🔧</div>
-          <h3 class="tip-title">Energirigtige valg</h3>
-          <p class="tip-description">
-            Ved udskiftning af udstyr: vælg energirigtige løsninger.
-            Kombiovne med varmegenvinding og induktionskomfurer giver stor forskel.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel reduktion:</span>
-            <span class="tip-impact-value">10-15%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
+  </div>
 </section>
 
-<!-- Implementation Strategy -->
-<section class="strategy-section animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header" style="text-align: center; margin-bottom: 2rem;">
-      <p class="eyebrow" style="color: rgba(255,255,255,0.9);">IMPLEMENTERING</p>
-      <h2 class="section-title">3-Måneders Kickstart Plan</h2>
-      <p class="section-lead" style="color: rgba(255,255,255,0.9);">
-        Trinvis tilgang til at reducere jeres klimaaftryk med dokumenterede resultater
-      </p>
-    </header>
+<!-- 3-Month Plan -->
+<section class="bg-stone-900 py-32 text-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-16 text-center">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Proces</span>
+      <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide text-white">Typisk Forløb</h2>
+    </div>
 
-    <div class="strategy-grid">
-      <div class="strategy-card">
-        <div class="strategy-number">1</div>
-        <h3 class="strategy-title">Måned 1: Baseline & Data</h3>
-        <ul class="strategy-list">
-          <li>Registrér nuværende madspild i 2 uger</li>
-          <li>Kortlæg menu-sammensætning</li>
-          <li>Beregn baseline CO₂e-aftryk</li>
-          <li>Identificér 3 hurtige gevinster</li>
-          <li>Præsentér resultater for team</li>
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <!-- Phase 1 -->
+      <div>
+        <div class="mb-6 font-display text-8xl font-bold text-cb-blue-medium">1</div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Kortlægning</h3>
+        <ul class="space-y-3 font-sans text-sm text-stone-400">
+          <li>• Etablering af baseline</li>
+          <li>• Identifikation af store udledere</li>
+          <li>• Opsætning af målesystemer</li>
         </ul>
       </div>
 
-      <div class="strategy-card">
-        <div class="strategy-number">2</div>
-        <h3 class="strategy-title">Måned 2: Implementering</h3>
-        <ul class="strategy-list">
-          <li>Introducer 2 nye plantebaserede retter</li>
-          <li>Reducer oksekød til 1 gang/uge</li>
-          <li>Justér buffet-layout (grønt først)</li>
-          <li>Start kommunikation til gæster</li>
-          <li>Fortsæt madspildsregistrering</li>
+      <!-- Phase 2 -->
+      <div>
+        <div class="mb-6 font-display text-8xl font-bold text-cb-blue-medium">2</div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Indsats</h3>
+        <ul class="space-y-3 font-sans text-sm text-stone-400">
+          <li>• Justering af menuer</li>
+          <li>• Uddannelse af personale</li>
+          <li>• Optimering af arbejdsgange</li>
         </ul>
       </div>
 
-      <div class="strategy-card">
-        <div class="strategy-number">3</div>
-        <h3 class="strategy-title">Måned 3: Evaluering & Skalering</h3>
-        <ul class="strategy-list">
-          <li>Beregn ny CO₂e-reduktion</li>
-          <li>Mål gæsttilfredshed</li>
-          <li>Identificér næste fase</li>
-          <li>Del resultater eksternt</li>
-          <li>Justér og fortsæt</li>
+      <!-- Phase 3 -->
+      <div>
+        <div class="mb-6 font-display text-8xl font-bold text-cb-blue-medium">3</div>
+        <h3 class="mb-4 font-display text-2xl font-bold text-white uppercase">Opfølgning</h3>
+        <ul class="space-y-3 font-sans text-sm text-stone-400">
+          <li>• Evaluering af data</li>
+          <li>• Kommunikation af resultater</li>
+          <li>• Justering af mål</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Klar til at Beregne Jeres Klimaaftryk?</h2>
-  <p class="section-lead">
-    Brug vores CO₂ beregner til at få konkrete tal på jeres kantines klimaaftryk og se hvor I kan skabe størst effekt.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('calculator') }}" class="btn-primary">CO₂ Beregner</a>
-    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Klimadata</a>
+<!-- Final CTA -->
+<section class="bg-white py-24 text-center">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Vil du vide mere?</h2>
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href="{{ url_for('topic_emissions_impact') }}"
+        class="rounded-none bg-cb-blue-dark px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-900 transition-transform hover:-translate-y-1 hover:bg-cb-blue-medium">
+        Prøv Beregneren
+      </a>
+      <a href="{{ url_for('topic_emissions_landing') }}"
+        class="rounded-none border border-stone-300 px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900">
+        Tilbage til Oversigt
+      </a>
+    </div>
   </div>
 </section>
-
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// Interactive Comparison Tool
-document.addEventListener('DOMContentLoaded', function() {
-    const plantBasedSlider = document.getElementById('plantBasedSlider');
-    const beefSlider = document.getElementById('beefSlider');
-    const wasteSlider = document.getElementById('wasteSlider');
-
-    const plantBasedValue = document.getElementById('plantBasedValue');
-    const beefValue = document.getElementById('beefValue');
-    const wasteValue = document.getElementById('wasteValue');
-    const totalImpact = document.getElementById('totalImpact');
-
-    function calculateImpact() {
-        const plantPercent = parseInt(plantBasedSlider.value);
-        const beefPercent = parseInt(beefSlider.value);
-        const wastePercent = parseInt(wasteSlider.value);
-
-        // Update display values
-        plantBasedValue.textContent = plantPercent + '%';
-        beefValue.textContent = beefPercent + '%';
-        wasteValue.textContent = wastePercent + '%';
-
-        // Calculate total impact (simplified model for 500 meals/week)
-        const baseImpact = 5000; // Starting point: all meat, high waste
-        const plantReduction = (plantPercent / 100) * 2000; // Plant-based saves up to 2000kg
-        const beefImpact = (beefPercent / 100) * (100 - plantPercent) / 100 * 1500; // Beef adds impact
-        const wasteImpact = (wastePercent / 100) * 500; // Waste adds up to 500kg
-
-        const total = Math.round(baseImpact - plantReduction + beefImpact + wasteImpact);
-
-        totalImpact.textContent = total.toLocaleString() + ' kg CO₂e';
-    }
-
-    // Add event listeners
-    plantBasedSlider.addEventListener('input', calculateImpact);
-    beefSlider.addEventListener('input', calculateImpact);
-    wasteSlider.addEventListener('input', calculateImpact);
-
-    // Initial calculation
-    calculateImpact();
-});
-</script>
 {% endblock %}

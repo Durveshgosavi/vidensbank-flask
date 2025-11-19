@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er Biodiversitet? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
+            alt="Biodiversity Hero" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Hvad er<br>Biodiversitet?
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Mangfoldigheden af liv på Jorden."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Biodiversitet dækker over alt liv – fra bakterier og svampe til planter og dyr. Det handler ikke kun om
+            antallet af arter, men også om deres genetiske variation og de økosystemer, de indgår i.
+        </p>
+    </div>
+</section>
+
+<!-- Split Section: The Three Levels -->
+<section class="w-full border-t border-stone-200">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="flex flex-col justify-center bg-cb-taupe-light px-8 py-20 lg:px-24">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Struktur</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Tre Niveauer
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                For at forstå biodiversitet fuldt ud, skal man se på det gennem tre linser. Alle niveauer er afhængige
+                af hinanden for at opretholde balancen i naturen.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                Når vi mister variation på ét niveau, svækkes hele systemets modstandskraft over for forandringer som
+                f.eks. klimaændringer eller sygdomme.
+            </p>
+        </div>
+        <div class="flex items-center justify-center bg-stone-900 px-8 py-20 text-white lg:px-24">
+            <div class="space-y-12 w-full max-w-md">
+                <div>
+                    <div class="text-4xl font-display font-bold text-cb-green-dark mb-2">Gener</div>
+                    <div class="text-stone-400 font-sans">Variationen inden for hver art. Sikrer tilpasningsevne.</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-4xl font-display font-bold text-cb-green-dark mb-2">Arter</div>
+                    <div class="text-stone-400 font-sans">Mangfoldigheden af dyr, planter og mikroorganismer.</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-4xl font-display font-bold text-cb-green-dark mb-2">Økosystemer</div>
+                    <div class="text-stone-400 font-sans">Samspillet mellem arterne og deres fysiske miljø.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Split Section: Ecosystem Services -->
+<section class="w-full">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="order-2 flex items-center justify-center bg-white px-8 py-20 lg:order-1 lg:px-24">
+            <ul class="w-full max-w-md space-y-8">
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">01</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Bestøvning
+                        </h4>
+                        <p class="text-stone-500 font-sans">75% af verdens afgrøder afhænger af insekter.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">02</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">
+                            Jordfrugtbarhed</h4>
+                        <p class="text-stone-500 font-sans">Mikroorganismer omdanner organisk materiale til næring.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">03</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Vandrensning
+                        </h4>
+                        <p class="text-stone-500 font-sans">Planter og jord filtrerer og renser vores grundvand.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6">
+                    <span class="font-display text-4xl font-bold text-cb-green-dark">04</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">
+                            Klimaregulering</h4>
+                        <p class="text-stone-500 font-sans">Skove og have optager og lagrer store mængder CO₂.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order-1 flex flex-col justify-center bg-cb-green-light px-8 py-20 lg:order-2 lg:px-24">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Værdi</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Naturens
+                Tjenester
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                Vi kalder de goder, vi får fra naturen, for økosystemtjenester. Uden dem ville vores fødevareproduktion
+                kollapse.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                <strong>Fakta:</strong> En sund biodiversitet er den bedste forsikring mod skadedyr og sygdomme i
+                landbruget, da naturlige fjender holder bestanden nede.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Key Takeaway -->
+<section class="bg-stone-900 py-32 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+            "Naturen arbejder for os"
+        </h2>
+        <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+            Men kun hvis vi giver den plads. Biodiversitet er ikke en luksus, men en nødvendighed for fremtidens
+            fødevarer.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_biodiversity_why') }}"
+                class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+                Næste: Hvorfor er det vigtigt? →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

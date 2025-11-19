@@ -1,261 +1,100 @@
 {% extends "base.html" %}
 
-{% block title %}Mål & Ambition - Madspild - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-:root {
-    --madspild-primary: #bc4b51;
-    --madspild-dark: #8b2635;
-    --madspild-light: #e8d4d6;
-}
-
-.goal-container {
-    background: linear-gradient(135deg, #f5f5f5, var(--madspild-light));
-    padding: 4rem 2rem;
-    border-radius: 32px;
-    margin: 4rem 0;
-}
-
-.goal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.goal-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid var(--madspild-primary);
-    transition: all 0.3s ease;
-}
-
-.goal-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.goal-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-}
-
-.goal-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.goal-description {
-    color: #333333;
-    line-height: 1.7;
-}
-
-.strategy-section {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 24px;
-    margin: 3rem 0;
-}
-
-.strategy-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.strategy-item {
-    padding: 2rem;
-    background: #f5f5f5;
-    border-radius: 12px;
-    border-left: 4px solid var(--madspild-primary);
-}
-
-.strategy-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.strategy-label {
-    font-size: 0.95rem;
-    color: #333333;
-    font-weight: 600;
-}
-
-.vision-box {
-    background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);
-    color: white;
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    margin: 3rem 0;
-    text-align: center;
-}
-
-.vision-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.vision-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    opacity: 0.95;
-}
-</style>
-{% endblock %}
+{% block title %}Mål for Madspild - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Mål & Ambition - Madspild</h1>
-    <p class="hero-subtitle">Halvering af spild som første trin</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/waste_kitchen.jpg') }}" alt="Waste Reduction Goals"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Målet er at halvere madspildet fra nuværende 20-30% til 10-15% gennem systematisk måling og implementering
-      af konkrete tiltag. Det er ambitiøst, men nbart ikke umuligt.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Mål &<br>Ambitioner
+    </h1>
+  </div>
+</div>
+
+<!-- The Manifesto -->
+<section class="bg-cb-taupe-light py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Vores
+      Løfte</span>
+    <h2 class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+      "Hvert gram tæller."
+    </h2>
+    <div class="mx-auto mt-12 h-1 w-24 bg-cb-orange-dark"></div>
+    <p class="mx-auto mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+      Vi accepterer ikke spild som en naturlig del af driften. Vi udfordrer vaner og arbejdsgange for at redde maden.
     </p>
-  </header>
-
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_madspild_why') }}" class="filter-pill">← Forrige</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_madspild_impact') }}" class="filter-pill">Næste →</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-
-    <!-- Main Goals -->
-    <div class="goal-container animate-on-scroll">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title" style="color: var(--text-dark);">Tre Centrale Mål</h2>
-      </header>
-
-      <div class="goal-grid">
-        <div class="goal-card animate-on-scroll">
-          <div class="goal-icon">📊</div>
-          <h3 class="goal-title">Måling Først</h3>
-          <p class="goal-description">
-            Etabler systematisk registrering af madspild i alle tre kategorier. Uden data kan du ikke vide,
-            hvor problemet ligger, og derfor heller ikke hvor du skal starte.
-          </p>
-        </div>
-
-        <div class="goal-card animate-on-scroll">
-          <div class="goal-icon">🎯</div>
-          <h3 class="goal-title">Halvering i 12 Mdr.</h3>
-          <p class="goal-description">
-            Reducere madspild fra 25% til 12-15% gennem fokus på planlægning, buffet-styring og gæst-kommunikation.
-            Realistisk timeplan baseret på pilotkantiner.
-          </p>
-        </div>
-
-        <div class="goal-card animate-on-scroll">
-          <div class="goal-icon">💡</div>
-          <h3 class="goal-title">Kultur-Shift</h3>
-          <p class="goal-description">
-            Gøre madspildsreduktion til en naturlig del af køkkendriften, ikke en engangs-indsats.
-            Alle medarbeidere skal forstå, hvorfor det betyder noget.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Strategy Section -->
-    <div class="strategy-section animate-on-scroll">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Tricyklen til Succes</h2>
-
-      <div class="strategy-items">
-        <div class="strategy-item animate-on-scroll">
-          <div class="strategy-number">1</div>
-          <div class="strategy-label">Måling & Data</div>
-          <p style="color: #333333; font-size: 0.9rem; margin-top: 0.5rem;">
-            2-ugers registrering til baseline
-          </p>
-        </div>
-
-        <div class="strategy-item animate-on-scroll">
-          <div class="strategy-number">2</div>
-          <div class="strategy-label">Analyse & Prioriter</div>
-          <p style="color: #333333; font-size: 0.9rem; margin-top: 0.5rem;">
-            Find de 3 største kilder
-          </p>
-        </div>
-
-        <div class="strategy-item animate-on-scroll">
-          <div class="strategy-number">3</div>
-          <div class="strategy-label">Implementering & Opfølg</div>
-          <p style="color: #333333; font-size: 0.9rem; margin-top: 0.5rem;">
-            Juster og gentag hver måned
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- The Vision -->
-    <div class="vision-box animate-on-scroll">
-      <h2 class="vision-title">Vores Vision</h2>
-      <p class="vision-text">
-        Danske kantiner skal være globale forbilleder for hvordan man reducerer madspild på praktisk,
-        omkostningseffektiv måde – uden at gå på kompromis med madglæde og kvalitet. En kantine, der
-        har halveret madspildet, har både bedre økonomi OG mindre klimaaftryk. Det er en vinder på alle parametre.
-      </p>
-    </div>
-
-    <!-- Practical Timeline -->
-    <div style="margin: 4rem 0;">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">12-Måneders Roadmap</h2>
-
-      <div style="background: #f5f5f5; padding: 2rem; border-radius: 16px; margin: 2rem 0;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-          <div class="animate-on-scroll">
-            <h3 style="color: #1a1a1a; font-weight: 700; margin-bottom: 0.5rem;">Mdr 1-2</h3>
-            <p style="color: #333333; font-size: 0.95rem; line-height: 1.6;">
-              Igang-sætning, opsamling af baseline data, training af team.
-            </p>
-          </div>
-
-          <div class="animate-on-scroll">
-            <h3 style="color: #1a1a1a; font-weight: 700; margin-bottom: 0.5rem;">Mdr 3-6</h3>
-            <p style="color: #333333; font-size: 0.95rem; line-height: 1.6;">
-              Implementering af tiltag, kontinuerlig måling, justering baseret på data.
-            </p>
-          </div>
-
-          <div class="animate-on-scroll">
-            <h3 style="color: #1a1a1a; font-weight: 700; margin-bottom: 0.5rem;">Mdr 7-12</h3>
-            <p style="color: #333333; font-size: 0.95rem; line-height: 1.6;">
-              Optimering, konsolidering af succes, dokumentering og deling af resultater.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </article>
-</section>
-
-<section class="page-section callout-dark animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <h2>Næste: Mit Aftryk</h2>
-  <p class="section-lead">
-    Forstå hvor dine daglige valg påvirker madspildet – og hvordan du kan ændre det.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_madspild_impact') }}" class="btn-primary">Læs mere →</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
   </div>
 </section>
 
+<!-- The Roadmap -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="relative border-l border-stone-200 pl-12 md:pl-20">
+      <!-- Item 1 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cb-orange-dark ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-cb-orange-dark">Nu</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase">Daglig Måling</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-600">
+          Vi vejer og registrerer alt madaffald opdelt i kategorier. Data er grundlaget for forbedring.
+        </p>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Mål</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Halvering</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          Vi arbejder mod FN's verdensmål om at halvere madspildet inden 2030.
+        </p>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Vision</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Nul Spild</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          En fremtid hvor intet spiseligt ender i skraldespanden, men i stedet bliver til nye måltider eller energi.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision Image Stack -->
+<section class="w-full">
+  <div class="grid w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-[500px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/waste_buffet.jpg') }}" alt="Zero Waste Vision"
+        class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+    </div>
+    <div class="flex flex-col justify-center bg-stone-900 px-8 py-20 text-white md:px-24">
+      <h2 class="mb-6 font-display text-4xl font-bold uppercase tracking-brand-wide text-cb-orange-light">Perspektivet
+      </h2>
+      <p class="font-sans text-lg leading-relaxed text-stone-300">
+        Når vi reducerer spildet, frigør vi ressourcer til at købe bedre råvarer. Det er en positiv spiral for
+        kvaliteten.
+      </p>
+      <div class="mt-12">
+        <a href="{{ url_for('topic_madspild_tips') }}"
+          class="inline-block border-b border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+          Få tips til reduktion →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

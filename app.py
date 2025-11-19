@@ -134,8 +134,39 @@ def topic_emissions_impact():
 
 @app.route('/vidensbank/emissioner/tips-og-tricks')
 def topic_emissions_tips():
-    """Tips and tricks"""
+    """Emissions - Tips & Tricks"""
     return render_template('topics/emissions/tips.html')
+
+# --- Organic Topic Routes ---
+@app.route('/vidensbank/okologi')
+def topic_organic_landing():
+    """Organic topic landing page"""
+    return render_template('topics/organic/landing.html')
+
+@app.route('/vidensbank/okologi/hvad-er-det')
+def topic_organic_what():
+    """Organic - What is it?"""
+    return render_template('topics/organic/what.html')
+
+@app.route('/vidensbank/okologi/hvorfor-er-det-vigtigt')
+def topic_organic_why():
+    """Organic - Why is it important?"""
+    return render_template('topics/organic/why.html')
+
+@app.route('/vidensbank/okologi/maal-og-ambition')
+def topic_organic_goal():
+    """Organic - Goal & Ambition"""
+    return render_template('topics/organic/goal.html')
+
+@app.route('/vidensbank/okologi/mit-aftryk')
+def topic_organic_impact():
+    """Organic - My Impact / Calculator"""
+    return render_template('topics/organic/impact.html')
+
+@app.route('/vidensbank/okologi/tips-og-tricks')
+def topic_organic_tips():
+    """Organic - Tips & Tricks"""
+    return render_template('topics/organic/tips.html')
 
 # ============================================================================
 # ERNÆRING TOPIC ROUTES
@@ -171,39 +202,8 @@ def topic_ernaering_tips():
     """Tips and tricks for Ernæring"""
     return render_template('topics/ernaering/tips.html')
 
-# ============================================================================
-# ØKOLOGI TOPIC ROUTES
-# ============================================================================
-
-@app.route('/vidensbank/okologi')
-def topic_okologi_landing():
-    """Økologi topic landing page"""
-    return render_template('topics/okologi/landing.html')
-
-@app.route('/vidensbank/okologi/hvad-er-det')
-def topic_okologi_what():
-    """What is Økologi?"""
-    return render_template('topics/okologi/what.html')
-
-@app.route('/vidensbank/okologi/hvorfor-vigtigt')
-def topic_okologi_why():
-    """Why Økologi matters"""
-    return render_template('topics/okologi/why.html')
-
-@app.route('/vidensbank/okologi/maal-og-ambition')
-def topic_okologi_goal():
-    """Goals and ambitions for Økologi"""
-    return render_template('topics/okologi/goal.html')
-
-@app.route('/vidensbank/okologi/mit-aftryk')
-def topic_okologi_impact():
-    """Impact for Økologi"""
-    return render_template('topics/okologi/impact.html')
-
-@app.route('/vidensbank/okologi/tips-og-tricks')
-def topic_okologi_tips():
-    """Tips and tricks for Økologi"""
-    return render_template('topics/okologi/tips.html')
+# Legacy Økologi routes removed in favor of new Organic topic structure
+# See lines 140-170 for active routes
 
 # ============================================================================
 # VANDFORBRUG TOPIC ROUTES
@@ -437,6 +437,74 @@ def okologi_esg():
 @app.route('/okologi/nuanceret')
 def okologi_nuanceret():
     return render_template('okologi/okologi_nuanceret.html')
+
+# ============================================================================
+# BIODIVERSITET TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/biodiversitet')
+def topic_biodiversity_landing():
+    """Biodiversity topic landing page"""
+    return render_template('topics/biodiversity/landing.html')
+
+@app.route('/vidensbank/biodiversitet/hvad-er-det')
+def topic_biodiversity_what():
+    """Biodiversity - What is it?"""
+    return render_template('topics/biodiversity/what.html')
+
+@app.route('/vidensbank/biodiversitet/hvorfor-er-det-vigtigt')
+def topic_biodiversity_why():
+    """Biodiversity - Why is it important?"""
+    return render_template('topics/biodiversity/why.html')
+
+@app.route('/vidensbank/biodiversitet/maal-og-ambition')
+def topic_biodiversity_goal():
+    """Biodiversity - Goal & Ambition"""
+    return render_template('topics/biodiversity/goal.html')
+
+@app.route('/vidensbank/biodiversitet/mit-aftryk')
+def topic_biodiversity_impact():
+    """Biodiversity - My Impact"""
+    return render_template('topics/biodiversity/impact.html')
+
+@app.route('/vidensbank/biodiversitet/tips-og-tricks')
+def topic_biodiversity_tips():
+    """Biodiversity - Tips & Tricks"""
+    return render_template('topics/biodiversity/tips.html')
+
+# ============================================================================
+# SÆSON TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/saeson')
+def topic_saeson_landing():
+    """Seasonality topic landing page"""
+    return render_template('topics/saeson/landing.html')
+
+@app.route('/vidensbank/saeson/hvad-er-det')
+def topic_saeson_what():
+    """Seasonality - What is it?"""
+    return render_template('topics/saeson/what.html')
+
+@app.route('/vidensbank/saeson/hvorfor-vigtigt')
+def topic_saeson_why():
+    """Seasonality - Why is it important?"""
+    return render_template('topics/saeson/why.html')
+
+@app.route('/vidensbank/saeson/maal-og-ambition')
+def topic_saeson_goal():
+    """Seasonality - Goal & Ambition"""
+    return render_template('topics/saeson/goal.html')
+
+@app.route('/vidensbank/saeson/mit-aftryk')
+def topic_saeson_impact():
+    """Seasonality - My Impact"""
+    return render_template('topics/saeson/impact.html')
+
+@app.route('/vidensbank/saeson/tips-og-tricks')
+def topic_saeson_tips():
+    """Seasonality - Tips & Tricks"""
+    return render_template('topics/saeson/tips.html')
 
 # Add more routes for your other pages here
 

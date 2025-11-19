@@ -1,424 +1,169 @@
 {% extends "base.html" %}
 
-{% block title %}Fødevarerelaterede Emissioner og Bæredygtighed - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Topic Landing Page Specific Styles */
-.topic-hero {
-    position: relative;
-    min-height: 400px;
-    background: #2c5f2d;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-}
-
-.topic-hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-}
-
-.topic-hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-family: var(--ff-display);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-}
-
-.topic-hero-subtitle {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.topic-stats-banner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: -4rem auto 4rem;
-    max-width: 1100px;
-    padding: 0 2rem;
-    position: relative;
-    z-index: 10;
-}
-
-.topic-stat-card {
-    background: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.topic-stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.topic-stat-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.topic-stat-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.topic-intro-section {
-    max-width: 800px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    text-align: center;
-}
-
-.topic-intro-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.topic-intro-section p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #333333;
-}
-
-.data-viz-section {
-    background: #f5f5f5;
-    padding: 4rem 2rem;
-    margin: 3rem 0;
-    border-radius: 16px;
-}
-
-.comparison-grid-visual {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.comparison-item-visual {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.comparison-item-visual:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.comparison-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-}
-
-.comparison-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.comparison-value.high {
-    color: #e74c3c;
-}
-
-.comparison-value.medium {
-    color: #f39c12;
-}
-
-.comparison-value.low {
-    color: #27ae60;
-}
-
-.comparison-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 0.5rem;
-}
-
-.comparison-description {
-    font-size: 0.95rem;
-    color: #333333;
-    line-height: 1.6;
-}
-
-.chart-showcase {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e5e5;
-    margin: 2rem 0;
-}
-
-.chart-showcase canvas {
-    max-height: 500px;
-}
-</style>
-{% endblock %}
+{% block title %}Emissioner - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Topic Hero -->
-<header class="topic-hero animate-on-scroll">
-  <div class="topic-hero-content">
-    <h1>Fødevarerelaterede Emissioner og Bæredygtighed</h1>
-    <p class="topic-hero-subtitle">
-      Et samlet overblik over, hvordan madens klimaaftryk opstår fra jord til tallerken,
-      og hvordan danske kantiner kan arbejde strategisk med reduktion gennem data-drevne beslutninger.
-    </p>
-    <div class="hero-actions">
-      <a href="#explore" class="btn-primary">Udforsk Emnet</a>
-      <a href="{{ url_for('calculator') }}" class="btn-secondary is-light">CO₂ Beregner</a>
-    </div>
+<!-- Hero Section -->
+<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/emissions_hero.jpg') }}" alt="Sustainable Canteen"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Topic Statistics Banner -->
-<div class="topic-stats-banner">
-  <!-- Source: Our World in Data, Poore & Nemecek (2018) Science -->
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="60">0</div>
-    <div class="topic-stat-label">kg CO₂e / kg Oksekød</div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-yellow-light">
+      Fødevarerelaterede<br>Emissioner
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+      En vidensbaseret guide til forståelse, måling og reduktion af klimaaftrykket i professionelle køkkener. Baseret på
+      data fra Concito og Fødevarestyrelsen.
+    </p>
   </div>
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="90" data-suffix="%">0%</div>
-    <div class="topic-stat-label">Reduktion mulig</div>
-  </div>
-  <div class="topic-stat-card animate-on-scroll">
-    <div class="topic-stat-value" data-counter="25" data-suffix="%">0%</div>
-    <div class="topic-stat-label">Af dansk klimaaftryk</div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-yellow-light">
+    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
   </div>
 </div>
 
-<!-- Introduction Section -->
-<section class="topic-intro-section animate-on-scroll">
-  <h2>Hvorfor Fokusere på Fødevareemissioner?</h2>
-  <p>
-    Fødevareproduktion står for cirka 25% af det danske klimaaftryk, og kantiner har en unik mulighed
-    for at påvirke forbruget gennem menuplanlægning, indkøb og gæstkommunikation. Med den rette viden
-    og de rigtige værktøjer kan en gennemsnitlig kantine reducere sit klimaaftryk med op til 40% uden
-    at gå på kompromis med smag, kvalitet eller ernæring.
-  </p>
-</section>
-
-<!-- Data Visualization Section -->
-<section class="data-viz-section animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header">
-      <p class="eyebrow">DATA & FAKTA</p>
-      <h2 class="section-title">Sammenlign Klimaaftrykket</h2>
-      <p class="section-lead">
-        Ikke alle råvarer er skabt lige. Se forskellen mellem fødevarekategorier.
-      </p>
-    </header>
-
-    <div class="comparison-grid-visual">
-      <!-- Source: Our World in Data, Poore & Nemecek (2018) Science -->
-      <div class="comparison-item-visual">
-        <div class="comparison-icon">🥩</div>
-        <div class="comparison-value high" data-counter="60">0</div>
-        <h3 class="comparison-label">kg CO₂e / kg Oksekød</h3>
-        <p class="comparison-description">
-          Højeste klimaaftryk blandt alle fødevarer på grund af metanudledning og landanvendelse.
-        </p>
-      </div>
-
-      <div class="comparison-item-visual">
-        <div class="comparison-icon">🐔</div>
-        <div class="comparison-value medium" data-counter="6.9">0</div>
-        <h3 class="comparison-label">kg CO₂e / kg Kylling</h3>
-        <p class="comparison-description">
-          Moderat klimaaftryk sammenlignet med rødt kød, men stadig betydeligt højere end planter.
-        </p>
-      </div>
-
-      <!-- Source: Our World in Data, Poore & Nemecek (2018) Science -->
-      <div class="comparison-item-visual">
-        <div class="comparison-icon">🌱</div>
-        <div class="comparison-value low" data-counter="2">0</div>
-        <h3 class="comparison-label">kg CO₂e / kg Bælgfrugter</h3>
-        <p class="comparison-description">
-          Laveste klimaaftryk og samtidig høj næringsværdi – den optimale proteinkilde.
-        </p>
-      </div>
-    </div>
-
-    <!-- Chart Showcase -->
-    <div class="chart-showcase">
-      <canvas id="emissionsComparisonChart"></canvas>
-    </div>
-  </div>
-</section>
-
-<!-- Main Content Section -->
-<section id="explore" class="page-section">
-  <header class="section-header animate-on-scroll">
-    <h2 class="section-title">Udforsk Emnet i Dybden</h2>
-    <p class="section-lead">
-      Vælg et område nedenfor for at dykke ned i specifik viden, data og handlingsanvisninger.
+<!-- Introduction -->
+<section class="bg-cb-taupe-light py-24 md:py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-green-dark md:text-5xl uppercase">
+      Fødevaresystemets Rolle
+    </h2>
+    <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
+      Fødevaresystemet står for ca. en tredjedel af de globale drivhusgasemissioner. Data viser, at professionelle
+      køkkener har et betydeligt potentiale for at bidrage til den grønne omstilling gennem omlægning af råvarevalg.
     </p>
-  </header>
-
-  <!-- Filter Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Underemner om emissioner">
-    <a href="{{ url_for('topic_emissions_what') }}" class="filter-pill">Hvad er det?</a>
-    <a href="{{ url_for('topic_emissions_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
-    <a href="{{ url_for('topic_emissions_goal') }}" class="filter-pill">Mål & ambition</a>
-    <a href="{{ url_for('topic_emissions_impact') }}" class="filter-pill">Mit aftryk</a>
-    <a href="{{ url_for('topic_emissions_tips') }}" class="filter-pill">Tips & tricks</a>
-  </nav>
-
-  <!-- Card Grid -->
-  <div class="card-grid">
-    <!-- Card 1: Hvad er det? -->
-    <a href="{{ url_for('topic_emissions_what') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200"
-             alt="Illustration af madens vej fra jord til tallerken i en dansk kantine" loading="lazy">
-        <span class="card-category-tag">Overblik</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVAD ER FØDEVARERELATEREDE EMISSIONER?</h3>
-        <p class="card-teaser">
-          En introduktion til CO₂e, livscyklus-tænkning og de vigtigste udledningskilder i fødevaresystemet.
-        </p>
-        <div class="card-metadata">
-          <span>Grundlæggende viden</span>
-          <span>•</span>
-          <span>5–7 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 2: Hvorfor er det vigtigt? -->
-    <a href="{{ url_for('topic_emissions_why') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1473186578172-c141e6798cf4?q=80&w=1200"
-             alt="Grafik over danske klimamål og politiske aftaler" loading="lazy">
-        <span class="card-category-tag">Danmark</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVORFOR ER DET VIGTIGT?</h3>
-        <p class="card-teaser">
-          Emissioner fra mad udgør en stor del af danskernes klimaaftryk og er centralt i nationale klimamål.
-        </p>
-        <div class="card-metadata">
-          <span>Politisk kontekst</span>
-          <span>•</span>
-          <span>5–8 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 3: Mål & ambition -->
-    <a href="{{ url_for('topic_emissions_goal') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200"
-             alt="Køkkenpersonale der planlægger bæredygtige menuer i kantinen" loading="lazy">
-        <span class="card-category-tag">Strategi</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">MÅL & AMBITION</h3>
-        <p class="card-teaser">
-          Hvordan Vidensbanken og kantiner sammen kan bidrage til at nå Danmarks klimamål gennem data og handling.
-        </p>
-        <div class="card-metadata">
-          <span>Ambition</span>
-          <span>•</span>
-          <span>4–6 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 4: Mit aftryk -->
-    <a href="{{ url_for('topic_emissions_impact') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200"
-             alt="Tallerken i kantine med plantebaseret måltid og klimadata" loading="lazy">
-        <span class="card-category-tag">Mit aftryk</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">HVAD ER MIT AFTRYK?</h3>
-        <p class="card-teaser">
-          Hvilken rolle spiller kantiner, køkkenledere og gæster i den samlede klimabelastning – og hvad kan ændres?
-        </p>
-        <div class="card-metadata">
-          <span>Praksisnært</span>
-          <span>•</span>
-          <span>5–7 min læsning</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Card 5: Tips & tricks -->
-    <a href="{{ url_for('topic_emissions_tips') }}" class="aww-card animate-on-scroll">
-      <div class="card-image-container">
-        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1200"
-             alt="Kantine der arbejder med madspildsreduktion og menuplanlægning" loading="lazy">
-        <span class="card-category-tag">Handling</span>
-      </div>
-      <div class="card-content-body">
-        <h3 class="card-title">TIPS & TRICKS</h3>
-        <p class="card-teaser">
-          Konkrete greb til menuudvikling, indkøb og drift, der reducerer CO₂e i danske kantiner.
-        </p>
-        <div class="card-metadata">
-          <span>Værktøjer</span>
-          <span>•</span>
-          <span>3–6 min læsning</span>
-        </div>
-      </div>
-    </a>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Klar til at Reducere Jeres Klimaaftryk?</h2>
-  <p class="section-lead">
-    Brug vores CO₂ beregner til at få præcis indsigt i jeres kantines klimaaftryk og identificer områder med størst potentiale.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('calculator') }}" class="btn-primary">CO₂ Beregner</a>
-    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Klimadata</a>
+<!-- Content Stacks -->
+<section class="w-full bg-white">
+  <!-- Stack 1: What is it? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/emissions_cooking.jpg') }}" alt="Fresh Ingredients"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
+    <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Grundlæggende
+        Viden</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">Hvad er
+        emissioner?</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Få indsigt i CO₂e-begrebet og forskellen på klimaaftrykket fra forskellige fødevaregrupper. F.eks. forskellen
+        mellem animalske og plantebaserede proteinkilder.
+      </p>
+      <a href="{{ url_for('topic_emissions_what') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-green-dark hover:text-cb-green-medium transition-colors">
+        Læs om CO₂e
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Stack 2: Why is it important? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="flex flex-col justify-center bg-cb-taupe-medium px-8 py-16 md:order-1 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Kontekst &
+        Betydning</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">Hvorfor
+        er det vigtigt?</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Klimarådet peger på kostomlægning som et centralt virkemiddel. Forstå de bredere samfundsmæssige og miljømæssige
+        konsekvenser af fødevareproduktion.
+      </p>
+      <a href="{{ url_for('topic_emissions_why') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-orange-dark hover:text-cb-orange-medium transition-colors">
+        Se Baggrunden
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden md:order-2">
+      <img src="{{ url_for('static', filename='images/waste_buffet.jpg') }}" alt="Waste Reduction"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
+  </div>
+
+  <!-- Stack 3: Goal & Ambition -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/kitchen_chef.jpg') }}" alt="Chef Plating"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
+    <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Målsætninger</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+        Nationale Mål</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Danmark har et mål om 70% reduktion af drivhusgasser i 2030. Se hvordan fødevaresektoren forventes at bidrage
+        til denne udvikling.
+      </p>
+      <a href="{{ url_for('topic_emissions_goal') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-yellow-dark hover:text-cb-yellow-medium transition-colors">
+        Læs om Målene
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
   </div>
 </section>
-{% endblock %}
 
-{% block extra_js %}
-<!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Data Highlight (Minimalist) -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-green-dark">20%</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Af Danskernes Aftryk</p>
+        <p class="mt-4 text-stone-400">Stammer fra fødevarer (Kilde: Fødevarestyrelsen)</p>
+      </div>
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-yellow-dark">70%</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Nationalt Mål</p>
+        <p class="mt-4 text-stone-400">Reduktion inden 2030 (Kilde: Klimaloven)</p>
+      </div>
+      <div class="text-center">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-orange-dark">1.5°C</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Paris Aftalen</p>
+        <p class="mt-4 text-stone-400">Global målsætning</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- Custom Charts Script -->
-<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
-
-<script>
-// Create emissions comparison chart
-document.addEventListener('DOMContentLoaded', function() {
-    const chartCanvas = document.getElementById('emissionsComparisonChart');
-    if (chartCanvas) {
-        window.VidenbankCharts.createEmissionsChart(chartCanvas);
-    }
-});
-</script>
+<!-- Navigation Grid (Text Only) -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-16 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Værktøjer
+      & Viden</h2>
+    <div class="grid grid-cols-1 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="{{ url_for('topic_emissions_impact') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-green-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Beregn Aftryk</h3>
+        <p class="text-stone-600 font-sans">Estimer et køkkens aftryk baseret på standardtal fra Concito.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-green-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="{{ url_for('topic_emissions_tips') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-yellow-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Best Practice</h3>
+        <p class="text-stone-600 font-sans">Råd og vejledning til reduktion af madspild og CO₂.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-yellow-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="#" class="group relative bg-white p-12 transition-colors hover:bg-cb-orange-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Cases</h3>
+        <p class="text-stone-600 font-sans">Eksempler på tiltag i branchen.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-orange-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

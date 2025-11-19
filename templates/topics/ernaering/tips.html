@@ -1,814 +1,115 @@
 {% extends "base.html" %}
 
-{% block title %}Tips & Tricks - Ernæring | Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-/* Tips Page Specific Styles */
-.tips-hero {
-    position: relative;
-    min-height: 450px;
-    background: #2d6a4f;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    overflow: hidden;
-}
-
-.quick-wins-banner {
-    background: white;
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: -3rem auto 4rem;
-    max-width: 1100px;
-    position: relative;
-    z-index: 10;
-}
-
-.quick-wins-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.quick-win-card {
-    text-align: center;
-    padding: 1.5rem;
-    background: #f0f8f0;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.quick-win-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.quick-win-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.quick-win-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 0.25rem;
-}
-
-.quick-win-label {
-    font-size: 0.9rem;
-    color: #333333;
-    font-weight: 600;
-}
-
-.comparison-tool {
-    background: #f0f8f0;
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    margin: 4rem 0;
-}
-
-.comparison-slider-section {
-    max-width: 900px;
-    margin: 3rem auto;
-}
-
-.slider-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-}
-
-.slider-label {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #1f1f1f;
-}
-
-.slider-input {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    background: #e0e0e0;
-    outline: none;
-    -webkit-appearance: none;
-}
-
-.slider-input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #2d6a4f;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.slider-input::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #2d6a4f;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border: none;
-}
-
-.slider-value-display {
-    text-align: center;
-    margin-top: 0.75rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #2d6a4f;
-}
-
-.before-after-comparison {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.comparison-side {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.comparison-side::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-}
-
-.comparison-side.before::before {
-    background: linear-gradient(90deg, #e74c3c, #c0392b);
-}
-
-.comparison-side.after::before {
-    background: linear-gradient(90deg, #27ae60, #52b788);
-}
-
-.comparison-badge {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.comparison-side.before .comparison-badge {
-    background: #ffe5e5;
-    color: #c0392b;
-}
-
-.comparison-side.after .comparison-badge {
-    background: #d4edda;
-    color: #27ae60;
-}
-
-.comparison-value {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.comparison-side.before .comparison-value {
-    color: #e74c3c;
-}
-
-.comparison-side.after .comparison-value {
-    color: #27ae60;
-}
-
-.comparison-details {
-    color: #333333;
-    line-height: 1.8;
-    margin-top: 1.5rem;
-}
-
-.reduction-indicator {
-    text-align: center;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #2d6a4f, #52b788);
-    color: white;
-    border-radius: 12px;
-    margin: 2rem 0;
-}
-
-.reduction-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.tip-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-top: 5px solid #2d6a4f;
-}
-
-.tip-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.tip-category {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
-    background: #e8f5e9;
-    color: #2d6a4f;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.tip-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.tip-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1f1f1f;
-    margin-bottom: 1rem;
-}
-
-.tip-description {
-    color: #333333;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.tip-impact {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: #f0f8f0;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.tip-impact-icon {
-    font-size: 1.5rem;
-    margin-right: 0.75rem;
-}
-
-.tip-impact-text {
-    flex: 1;
-    font-size: 0.95rem;
-    color: #1f1f1f;
-}
-
-.tip-impact-value {
-    font-weight: 700;
-    color: #2d6a4f;
-    font-size: 1.1rem;
-}
-
-.strategy-section {
-    background: linear-gradient(135deg, #1f4332 0%, #2d6a4f 100%);
-    color: white;
-    border-radius: 24px;
-    padding: 4rem 2rem;
-    margin: 4rem 0;
-}
-
-.strategy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 3rem auto 0;
-}
-
-.strategy-card {
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 16px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.strategy-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.strategy-number {
-    width: 50px;
-    height: 50px;
-    background: #2d6a4f;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.strategy-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
-}
-
-.strategy-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.strategy-list li {
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    position: relative;
-    line-height: 1.6;
-    color: #333333;
-}
-
-.strategy-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #52b788;
-    font-weight: 700;
-}
-
-@media (max-width: 768px) {
-    .quick-wins-banner {
-        padding: 2rem 1.5rem;
-        margin: -2rem 1rem 3rem;
-    }
-
-    .before-after-comparison {
-        grid-template-columns: 1fr;
-    }
-
-    .comparison-value {
-        font-size: 2.5rem;
-    }
-}
-</style>
-{% endblock %}
+{% block title %}Tips til Ernæring - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Enhanced Hero Section -->
-<header class="tips-hero animate-on-scroll">
-  <div class="goal-hero-content">
-    <h1 class="hero-title">Tips og tricks til bedre ernæring</h1>
-    <p class="hero-subtitle">Praktiske, dokumenterede strategier til danske kantiner – med målbare resultater</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Nutrition Tips"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<!-- Quick Wins Banner -->
-<div class="quick-wins-banner animate-on-scroll">
-  <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem;">Hurtige Gevinster</h2>
-  <p style="text-align: center; color: #666; margin-bottom: 2rem;">
-    De mest effektive ændringer du kan implementere i morgen
-  </p>
-
-  <div class="quick-wins-grid">
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🥗</div>
-      <div class="quick-win-value">+35%</div>
-      <div class="quick-win-label">Mere grøntsager i menuen</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🌾</div>
-      <div class="quick-win-value">+50%</div>
-      <div class="quick-win-label">Byg på fuldkorn</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">🧂</div>
-      <div class="quick-win-value">-30%</div>
-      <div class="quick-win-label">Reducer salt og sukker</div>
-    </div>
-
-    <div class="quick-win-card">
-      <div class="quick-win-icon">👁️</div>
-      <div class="quick-win-value">+40%</div>
-      <div class="quick-win-label">Nudge mod sundt</div>
-    </div>
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+      Sundhed i<br>Køkkenet
+    </h1>
   </div>
 </div>
 
-<section class="page-section">
-  <!-- Navigation -->
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">← Mit aftryk</a>
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header animate-on-scroll">
-      <h2 class="section-title">Praktiske Greb Med Målbar Effekt</h2>
-      <p class="section-lead">
-        Her finder du dokumenterede strategier, som danske kantiner kan bruge til at forbedre ernæringen –
-        uden at gå på kompromis med madglæde og service.
-      </p>
-    </header>
-
-    <!-- Interactive Comparison Tool -->
-    <div class="comparison-tool animate-on-scroll">
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-          <p class="eyebrow" style="color: #2d6a4f;">INTERAKTIVT VÆRKTØJ</p>
-          <h2 class="section-title">Se Effekten af Dine Valg</h2>
-          <p class="section-lead">Juster parametrene og se hvordan forskellige strategier påvirker ernæringskvaliteten</p>
-        </header>
-
-        <div class="comparison-slider-section">
-          <div class="slider-container">
-            <div class="slider-label">Andel af menu med grøntsager (%)</div>
-            <input type="range" id="vegetableSlider" class="slider-input" min="0" max="100" value="35" step="5">
-            <div class="slider-value-display" id="vegetableValue">35%</div>
-          </div>
-
-          <div class="slider-container">
-            <div class="slider-label">Andel fuldkorn i kulhydrater (%)</div>
-            <input type="range" id="wholeGrainSlider" class="slider-input" min="0" max="100" value="40" step="5">
-            <div class="slider-value-display" id="wholeGrainValue">40%</div>
-          </div>
-
-          <div class="slider-container">
-            <div class="slider-label">Salt-niveau i maden (1-5, hvor 5 er for meget)</div>
-            <input type="range" id="saltSlider" class="slider-input" min="1" max="5" value="3" step="1">
-            <div class="slider-value-display" id="saltValue">3/5</div>
-          </div>
-
-          <div class="reduction-indicator">
-            <div class="reduction-value" id="totalScore">68</div>
-            <div>Ernæringskarakter (0-100)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Before/After Comparison -->
-    <div class="animate-on-scroll" style="margin: 5rem 0;">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title">Før & Efter: Real Case Study</h2>
-        <p class="section-lead">Kantine i København med 600 måltider/uge</p>
-      </header>
-
-      <div class="before-after-comparison">
-        <div class="comparison-side before">
-          <span class="comparison-badge">Før</span>
-          <div class="comparison-value" data-counter="42">0</div>
-          <p style="color: #666; margin-bottom: 1rem;">Ernæringskarakter</p>
-          <ul class="comparison-details">
-            <li>Kun 20% grøntsager</li>
-            <li>15% fuldkorn</li>
-            <li>Højt salt og sukker</li>
-            <li>Ingen fokus på ernæring</li>
-            <li>Traditionel buffet-opsætning</li>
-          </ul>
-        </div>
-
-        <div class="comparison-side after">
-          <span class="comparison-badge">Efter</span>
-          <div class="comparison-value" data-counter="87">0</div>
-          <p style="color: #666; margin-bottom: 1rem;">Ernæringskarakter</p>
-          <ul class="comparison-details">
-            <li>60% grøntsager og fuldkorn</li>
-            <li>75% fuldkorn</li>
-            <li>Reduceret salt og sukker</li>
-            <li>Data-drevet menu-planlægning</li>
-            <li>Sundhed-focused buffet</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reduction-indicator">
-        <div class="reduction-value">+45 point forbedring</div>
-        <div>Opnået på 6 måneder uden tab af gæsttilfredshed</div>
-      </div>
-    </div>
-
-    <!-- Detailed Tips Grid -->
-    <div class="animate-on-scroll" style="margin: 5rem 0;">
-      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <h2 class="section-title">Konkrete Tips Efter Kategori</h2>
-      </header>
-
-      <div class="tips-grid">
-        <!-- Menu Development -->
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🍽️</div>
-          <h3 class="tip-title">Gør grønt til standarden</h3>
-          <p class="tip-description">
-            Lad det mest ernæringsrigtigt tilbud være det mest synlige og letteste valg i buffeten.
-            Placer det først, på øjenhøjde, med størst portionsskeer.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+25%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🌱</div>
-          <h3 class="tip-title">Proteinvariation</h3>
-          <p class="tip-description">
-            Byt traditionelle kødretter ud med varierede proteinkilder: bælgfrugter, fisk, fjerkræ og plant-baseret.
-            Giv gæsterne valgfrihed uden at miste ernæringskvaliteten.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+20%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Menu</span>
-          <div class="tip-icon">🥗</div>
-          <h3 class="tip-title">Tallerkenmodellen</h3>
-          <p class="tip-description">
-            Byg retter omkring: ½ grøntsager, ¼ protein, ¼ kulhydrater (gerne fuldkorn).
-            Denne balance sikrer både sæthed, ernæring og smag.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+30%</span>
-          </div>
-        </div>
-
-        <!-- Recipe Development -->
-        <div class="tip-card">
-          <span class="tip-category">Opskrifter</span>
-          <div class="tip-icon">👨‍🍳</div>
-          <h3 class="tip-title">Smag uden salt</h3>
-          <p class="tip-description">
-            Byg dybde med urter, krydderier, fermentering, syrlighed og umami.
-            En god fond, rosting og lagdeling giver meget mere smag end salt alene.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+18%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Opskrifter</span>
-          <div class="tip-icon">🌾</div>
-          <h3 class="tip-title">Fuldkorn som standard</h3>
-          <p class="tip-description">
-            Skift til fuldkornsris, -pasta, -brød og -mel hvor det giver mening.
-            Start med blandinger hvis gæsterne ikke er vant til det.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+15%</span>
-          </div>
-        </div>
-
-        <!-- Buffet Setup -->
-        <div class="tip-card">
-          <span class="tip-category">Buffet</span>
-          <div class="tip-icon">📍</div>
-          <h3 class="tip-title">Placer grønt først</h3>
-          <p class="tip-description">
-            Psykologisk er det første gæster fylder mest af. Start buffeten med salater og grøntsager.
-            Dette øger indtaget af fiber og næringsstoffer automatisk.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+22%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Buffet</span>
-          <div class="tip-icon">🎨</div>
-          <h3 class="tip-title">Farver og præsentation</h3>
-          <p class="tip-description">
-            Synlige farver fra diverse grøntsager tiltaler både øjet og smagsløberne.
-            Flot anretning gør sundere mad mere appetitlig og tillokkende.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Potentiel forbedring:</span>
-            <span class="tip-impact-value">+12%</span>
-          </div>
-        </div>
-
-        <!-- Communication -->
-        <div class="tip-card">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">💬</div>
-          <h3 class="tip-title">Positive narrativer</h3>
-          <p class="tip-description">
-            Tal om smag, kvalitet og sæson frem for afsavn og afkald.
-            "Sæsonens bedste spinat" virker bedre end "mindre kød".
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Øget accept:</span>
-            <span class="tip-impact-value">+38%</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Kommunikation</span>
-          <div class="tip-icon">📣</div>
-          <h3 class="tip-title">Del resultater</h3>
-          <p class="tip-description">
-            Når I har forbedret ernæringen, så del det med gæsterne. Brug plakater og digitale skærme.
-            Engagement stiger når folk ved de gør det rigtigt.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Engagement:</span>
-            <span class="tip-impact-value">+52%</span>
-          </div>
-        </div>
-
-        <!-- Operations -->
-        <div class="tip-card">
-          <span class="tip-category">Drift</span>
-          <div class="tip-icon">⚡</div>
-          <h3 class="tip-title">Mål jeres udgangspunkt</h3>
-          <p class="tip-description">
-            Før du ændrer noget, skal du måle nuværende ernæringskvalitet. Start en 2-ugers baseline.
-            Med data kan du bevise effekten af dine ændringer.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Vigtig for:</span>
-            <span class="tip-impact-value">Dokumentation</span>
-          </div>
-        </div>
-
-        <div class="tip-card">
-          <span class="tip-category">Drift</span>
-          <div class="tip-icon">🔄</div>
-          <h3 class="tip-title">Løbende opfølgning</h3>
-          <p class="tip-description">
-            Etabler en rutine for at følge op på ernæringskvalitet hver måned.
-            Hvad virker? Hvad skal vi ændre? Inddrag dit køkkenteam i dialogen.
-          </p>
-          <div class="tip-impact">
-            <span class="tip-impact-icon">📈</span>
-            <span class="tip-impact-text">Vigtig for:</span>
-            <span class="tip-impact-value">Vedligeholdelse</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </article>
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Smagen er afgørende."
+    </p>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Vi kan lave verdens sundeste mad, men hvis den ikke bliver spist, gør den ingen gavn. Her er vores tips til sund
+      velsmag.
+    </p>
+  </div>
 </section>
 
-<!-- Implementation Strategy -->
-<section class="strategy-section animate-on-scroll">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <header class="section-header" style="text-align: center; margin-bottom: 2rem;">
-      <p class="eyebrow" style="color: rgba(255,255,255,0.9);">IMPLEMENTERING</p>
-      <h2 class="section-title">3-Måneders Kickstart Plan</h2>
-      <p class="section-lead" style="color: rgba(255,255,255,0.9);">
-        Trinvis tilgang til at forbedre ernæringen med dokumenterede resultater
-      </p>
-    </header>
-
-    <div class="strategy-grid">
-      <div class="strategy-card">
-        <div class="strategy-number">1</div>
-        <h3 class="strategy-title">Måned 1: Baseline & Data</h3>
-        <ul class="strategy-list">
-          <li>Analysér nuværende menu og ernæringskvalitet</li>
-          <li>Tag baseline-mål af gæsttilfredshed</li>
-          <li>Dokumenter hvad der virker i dag</li>
-          <li>Identificér 3 hurtige gevinster</li>
-          <li>Præsentér findinger for ledelse</li>
-        </ul>
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Tip 1 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">01</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Mere Smag</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug masser af friske krydderurter, citrus, hvidløg og ingefær. Det giver smag uden at tilføje salt eller
+          fedt.
+        </p>
       </div>
 
-      <div class="strategy-card">
-        <div class="strategy-number">2</div>
-        <h3 class="strategy-title">Måned 2: Implementering</h3>
-        <ul class="strategy-list">
-          <li>Introducer mere fuldkorn og grøntsager</li>
-          <li>Justér buffet-layout (grønt først)</li>
-          <li>Skab nye opskrifter med lavere salt</li>
-          <li>Start kommunikation til gæster</li>
-          <li>Træn køkkenpersonale</li>
-        </ul>
+      <!-- Tip 2 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">02</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Tekstur</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Sørg for knas og bid i salaterne. Ristede kerner, nødder eller sprøde grøntsager gør det sjovere at spise.
+        </p>
       </div>
 
-      <div class="strategy-card">
-        <div class="strategy-number">3</div>
-        <h3 class="strategy-title">Måned 3: Evaluering & Skalering</h3>
-        <ul class="strategy-list">
-          <li>Beregn ny ernæringskvalitet</li>
-          <li>Mål gæsttilfredshed igen</li>
-          <li>Dokumenter resultater og learnings</li>
-          <li>Del resultater med stakeholders</li>
-          <li>Planlæg næste fase</li>
-        </ul>
+      <!-- Tip 3 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">03</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Farver</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Vi spiser med øjnene. En farverig tallerken signalerer sundhed og variation. Brug hele paletten.
+        </p>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">04</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Skjult Grønt</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Blend grøntsager i supper, saucer og bagværk. Det giver fylde, næring og saftighed.
+        </p>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">05</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Fuldkorn</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug fuldkornsmel, perlespelt eller brune ris. Det mætter bedre og smager af mere.
+        </p>
+      </div>
+
+      <!-- Tip 6 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">06</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Anretning</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Placer det grønne først på buffeten. Det får gæsterne til at tage mere af det sunde.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="page-section callout-dark animate-on-scroll">
-  <h2>Klar til at Forbedre Ernæringen?</h2>
-  <p class="section-lead">
-    Brug vores ernæringsanalyse til at få konkrete tal på din kantines ernæringskvalitet og se hvor du kan skabe størst effekt.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="btn-primary">Gå tilbage til Ernæring</a>
-    <a href="{{ url_for('home') }}" class="btn-secondary is-light">Til forsiden</a>
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+      "Gør det nemt"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      Når det sunde valg er det lækreste valg, behøver vi ikke løfte pegefingeren.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_ernaering_impact') }}"
+        class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+        Se Aftrykket →
+      </a>
+    </div>
   </div>
 </section>
-
-{% endblock %}
-
-{% block extra_js %}
-<script>
-// Interactive Nutrition Tool
-document.addEventListener('DOMContentLoaded', function() {
-    const vegetableSlider = document.getElementById('vegetableSlider');
-    const wholeGrainSlider = document.getElementById('wholeGrainSlider');
-    const saltSlider = document.getElementById('saltSlider');
-
-    const vegetableValue = document.getElementById('vegetableValue');
-    const wholeGrainValue = document.getElementById('wholeGrainValue');
-    const saltValue = document.getElementById('saltValue');
-    const totalScore = document.getElementById('totalScore');
-
-    function calculateScore() {
-        const vegetables = parseInt(vegetableSlider.value);
-        const wholeGrain = parseInt(wholeGrainSlider.value);
-        const salt = parseInt(saltSlider.value);
-
-        // Update display values
-        vegetableValue.textContent = vegetables + '%';
-        wholeGrainValue.textContent = wholeGrain + '%';
-        saltValue.textContent = salt + '/5';
-
-        // Calculate score
-        const vegScore = (vegetables / 100) * 40;
-        const grainScore = (wholeGrain / 100) * 35;
-        const saltScore = ((5 - salt) / 4) * 25;
-
-        const score = Math.round(vegScore + grainScore + saltScore);
-        totalScore.textContent = score;
-    }
-
-    // Add event listeners
-    vegetableSlider.addEventListener('input', calculateScore);
-    wholeGrainSlider.addEventListener('input', calculateScore);
-    saltSlider.addEventListener('input', calculateScore);
-
-    // Initial calculation
-    calculateScore();
-});
-</script>
 {% endblock %}

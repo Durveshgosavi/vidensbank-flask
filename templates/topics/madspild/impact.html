@@ -1,344 +1,103 @@
 {% extends "base.html" %}
 
-{% block title %}Mit Aftryk - Madspild - Vidensbank{% endblock %}
-
-{% block extra_css %}
-<style>
-:root {
-    --madspild-primary: #bc4b51;
-    --madspild-dark: #8b2635;
-    --madspild-light: #e8d4d6;
-}
-
-.impact-calculator {
-    background: white;
-    border-radius: 24px;
-    padding: 3rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: -3rem auto 4rem;
-    max-width: 900px;
-    position: relative;
-    z-index: 10;
-}
-
-.calc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.calc-input-group {
-    background: #f5f5f5;
-    padding: 1.5rem;
-    border-radius: 12px;
-}
-
-.calc-label {
-    display: block;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 0.75rem;
-}
-
-.calc-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.calc-input:focus {
-    outline: none;
-    border-color: var(--madspild-primary);
-}
-
-.calc-result {
-    background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);
-    color: white;
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.result-value {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.result-label {
-    font-size: 1rem;
-    opacity: 0.9;
-}
-
-.impact-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.impact-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid var(--madspild-primary);
-    transition: all 0.3s ease;
-}
-
-.impact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.impact-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.impact-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-}
-
-.impact-text {
-    color: #333333;
-    line-height: 1.7;
-}
-
-.checklist {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    margin: 3rem 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.checklist-item {
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-    background: #f5f5f5;
-    border-radius: 12px;
-    border-left: 4px solid var(--madspild-primary);
-    display: flex;
-    gap: 1rem;
-}
-
-.checklist-item:last-child {
-    margin-bottom: 0;
-}
-
-.checklist-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-.checklist-content {
-    flex: 1;
-}
-
-.checklist-title {
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.25rem;
-}
-
-.checklist-desc {
-    color: #333333;
-    font-size: 0.95rem;
-}
-</style>
-{% endblock %}
+{% block title %}Madspildsaftryk - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Mit Aftryk - Madspild</h1>
-    <p class="hero-subtitle">Din rolle og dine muligheder</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/waste_buffet.jpg') }}" alt="Food Waste Impact"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header animate-on-scroll">
-    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Dit ansvar for planlægning, produktion og kommunikation påvirker direkte madspildet.
-      Se hvor dine daglige valg har størst effekt.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Dit<br>Aftryk
+    </h1>
+  </div>
+</div>
+
+<!-- Explanation -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Dobbelt regning."
     </p>
-  </header>
-
-  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_madspild_goal') }}" class="filter-pill">← Forrige</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_madspild_tips') }}" class="filter-pill">Næste →</a>
-  </nav>
-
-  <article style="max-width: 1200px; margin: 0 auto;">
-
-    <div class="impact-calculator animate-on-scroll">
-      <h2 style="text-align: center; margin-bottom: 2rem;">Beregn Dit Spild</h2>
-      <p style="text-align: center; color: #333333; margin-bottom: 2rem;">
-        Skøn dit madspild baseret på kantines størrelse og nuværende praksis
-      </p>
-
-      <div class="calc-grid">
-        <div class="calc-input-group">
-          <label class="calc-label">Måltider pr. dag</label>
-          <input type="number" id="meals" class="calc-input" value="500" min="10" step="10">
-        </div>
-
-        <div class="calc-input-group">
-          <label class="calc-label">Nuværende spildprocent</label>
-          <input type="number" id="waste" class="calc-input" value="25" min="0" max="100" step="1">
-        </div>
-
-        <div class="calc-input-group">
-          <label class="calc-label">Dage i drift pr. år</label>
-          <input type="number" id="days" class="calc-input" value="250" min="1" max="365">
-        </div>
-      </div>
-
-      <div class="calc-result">
-        <div class="result-value" id="totalWaste">0</div>
-        <div class="result-label">kg madspild årligt</div>
-        <div style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
-          Potentiel reduktion ved 50%: <span id="reduction" style="font-weight: 700;">0 kg</span>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title" style="text-align: center; margin: 4rem 0 2rem;">Hvor Du Kan Gøre en Forskel</h2>
-
-    <div class="impact-cards animate-on-scroll">
-      <div class="impact-card">
-        <div class="impact-icon">📊</div>
-        <h3 class="impact-title">Planlægning</h3>
-        <p class="impact-text">
-          Brug historiske data til at estimere, hvor meget du skal lave. Mindre batches oftere
-          reducerer overspill uden at påvirke friskhed.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-icon">🍽️</div>
-        <h3 class="impact-title">Buffet-Design</h3>
-        <p class="impact-text">
-          Placer populære retter først. Justering af buffet-layout har enorm effekt på hvad
-          gæster tager og hvad der bliver til rester.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-icon">🥄</div>
-        <h3 class="impact-title">Portionering</h3>
-        <p class="impact-text">
-          Start med mindre portioner som standard. Gæster kan altid tage mere, men det
-          reducerer tallerkenspild væsentligt.
-        </p>
-      </div>
-
-      <div class="impact-card">
-        <div class="impact-icon">💬</div>
-        <h3 class="impact-title">Kommunikation</h3>
-        <p class="impact-text">
-          Fortæl gæsterne om retter, varmen og sæsonen. Positive narrativer øger salget og
-          reducerer rester på buffeten.
-        </p>
-      </div>
-    </div>
-
-    <!-- Practical Checklist -->
-    <div class="checklist animate-on-scroll">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Dine Daglige Valg</h2>
-
-      <div class="checklist-item">
-        <div class="checklist-icon">▸</div>
-        <div class="checklist-content">
-          <div class="checklist-title">DagensMenu</div>
-          <div class="checklist-desc">Er den baseret på historiske salgdata eller gætteri?</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checklist-icon">▸</div>
-        <div class="checklist-content">
-          <div class="checklist-title">Mængdeestimater</div>
-          <div class="checklist-desc">Hvor kommer dine tal fra? Er der systematisk feedback?</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checklist-icon">▸</div>
-        <div class="checklist-content">
-          <div class="checklist-title">Resto-behandling</div>
-          <div class="checklist-desc">Hvad sker der med rester fra buffeten? Planlægges de væk?</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checklist-icon">▸</div>
-        <div class="checklist-content">
-          <div class="checklist-title">Gæst-feedback</div>
-          <div class="checklist-desc">Hvordan ved du hvad gæsterne vil have næste gang?</div>
-        </div>
-      </div>
-
-      <div class="checklist-item">
-        <div class="checklist-icon">▸</div>
-        <div class="checklist-content">
-          <div class="checklist-title">Målinger</div>
-          <div class="checklist-desc">Registrerer I spild, og bruger I det til at justere?</div>
-        </div>
-      </div>
-    </div>
-
-  </article>
-</section>
-
-<section class="page-section callout-dark animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
-  <h2>Næste: Tips & Tricks</h2>
-  <p class="section-lead">
-    Få konkrete værktøjer og strategier til at reducere madspild i praksis.
-  </p>
-  <div class="cta-row">
-    <a href="{{ url_for('topic_madspild_tips') }}" class="btn-primary">Læs mere →</a>
-    <a href="{{ url_for('topic_madspild_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Når vi smider mad ud, betaler vi to gange: Først for at købe råvaren, og derefter for at komme af med den som
+      affald. Og klimaet betaler prisen hele vejen.
+    </p>
   </div>
 </section>
 
-{% endblock %}
+<!-- Impact Visualization -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="bg-white p-12 shadow-xl">
+      <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">CO₂e tabt pr.
+        kg Spild</h3>
 
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mealsInput = document.getElementById('meals');
-    const wasteInput = document.getElementById('waste');
-    const daysInput = document.getElementById('days');
+      <!-- Chart Placeholder -->
+      <div class="space-y-8">
+        <!-- Item 1 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Oksekød</span>
+            <span class="font-sans text-stone-500">~30 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-orange-dark" style="width: 100%"></div>
+          </div>
+        </div>
 
-    function calculate() {
-        const meals = parseInt(mealsInput.value) || 0;
-        const waste = parseInt(wasteInput.value) || 0;
-        const days = parseInt(daysInput.value) || 0;
+        <!-- Item 2 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Ost</span>
+            <span class="font-sans text-stone-500">~10 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-yellow-dark" style="width: 33%"></div>
+          </div>
+        </div>
 
-        const avgWeight = 0.25; // kg per meal
-        const totalWaste = Math.round(meals * waste / 100 * avgWeight * days);
-        const reduction = Math.round(totalWaste / 2);
+        <!-- Item 3 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Brød & Grønt</span>
+            <span class="font-sans text-stone-500">~1-2 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-green-dark" style="width: 6%"></div>
+          </div>
+        </div>
+      </div>
 
-        document.getElementById('totalWaste').textContent = totalWaste.toLocaleString();
-        document.getElementById('reduction').textContent = reduction.toLocaleString() + ' kg';
-    }
+      <p class="mt-12 text-center font-sans text-sm text-stone-500">
+        Kilde: CONCITO Den Store Klimadatabase. Tallene er vejledende gennemsnit.
+      </p>
+    </div>
+  </div>
+</section>
 
-    mealsInput.addEventListener('input', calculate);
-    wasteInput.addEventListener('input', calculate);
-    daysInput.addEventListener('input', calculate);
-
-    calculate();
-});
-</script>
+<!-- Conclusion -->
+<section class="bg-stone-900 py-32 text-center text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-orange-dark">
+      "Stop Spildet"
+    </h2>
+    <p class="mx-auto max-w-2xl text-xl font-sans font-light text-stone-300">
+      Den mest effektive klimahandling i køkkenet er at bruge det hele.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_madspild_landing') }}"
+        class="inline-block border-b-2 border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+        Tilbage til Oversigten →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}
