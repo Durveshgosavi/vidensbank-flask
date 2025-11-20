@@ -178,6 +178,9 @@
   </div>
 </section>
 
+<!-- Load Shared Calculation Engine -->
+<script src="{{ url_for('static', filename='js/climate_calculator_engine.js') }}"></script>
+
 <script>
 let dist = {r: 30, b: 40, f: 15, v: 15};
 
@@ -213,44 +216,38 @@ function upd() {
   dist = {r, b, f, v};
 }
 
-async function calc() {
+function calc() {
   if (dist.r + dist.b + dist.f + dist.v !== 100) {
     alert('Total skal være 100%');
     return;
   }
 
   try {
-    let res = await fetch('/api/calculate-canteen-impact', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        employees: +document.getElementById('employees').value,
-        attendance_rate: +document.getElementById('attendance').value / 100,
-        operating_days: +document.getElementById('operating_days').value,
-        meals_per_day: 1,
-        meat_distribution: {
-          red_meat_percent: dist.r,
-          bright_meat_percent: dist.b,
-          fish_percent: dist.f,
-          vegetarian_percent: dist.v
-        },
-        portion_sizes: {protein_gram: 120, vegetables_gram: 200, carbs_gram: 150},
-        organic_percent: {meat: 40, vegetables: 60, dairy: 30},
-        waste: {preparation: 8, plate: 12, buffet: 5},
-        local_sourcing: 60,
-        seasonal_produce: 50
-      })
-    });
+    // Use shared calculation engine instead of API call
+    const params = {
+      employees: +document.getElementById('employees').value,
+      attendance_rate: +document.getElementById('attendance').value / 100,
+      operating_days: +document.getElementById('operating_days').value,
+      meat_distribution: {
+        red_meat_percent: dist.r,
+        bright_meat_percent: dist.b,
+        fish_percent: dist.f,
+        vegetarian_percent: dist.v
+      },
+      waste: {preparation: 8, plate: 12, buffet: 5},
+      seasonal_produce: 50
+    };
 
-    let d = await res.json();
-    if (d.success) {
+    const result = calculateCanteenImpact(params);
+
+    if (result.success) {
       document.getElementById('results').classList.remove('hidden');
-      document.getElementById('mainRes').textContent = d.results.per_meal_kg.toFixed(2);
-      document.getElementById('tons').textContent = d.results.annual_tons.toFixed(1);
-      document.getElementById('savings').textContent = Math.round(d.results.estimated_cost_savings_dkk).toLocaleString();
+      document.getElementById('mainRes').textContent = result.results.per_meal_kg.toFixed(2);
+      document.getElementById('tons').textContent = result.results.annual_tons.toFixed(1);
+      document.getElementById('savings').textContent = Math.round(result.results.estimated_cost_savings_dkk).toLocaleString();
 
       let h = '';
-      d.results.recommendations.forEach(r => {
+      result.results.recommendations.forEach(r => {
         h += `
           <div class="border-l-4 border-cb-green-dark bg-cb-taupe-light p-6">
             <div class="font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark mb-2">
