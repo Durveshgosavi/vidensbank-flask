@@ -268,11 +268,11 @@
                     </div>
                 </div>
 
-                <!-- Breakdown Chart (Simple Bars for now) -->
+                <!-- Breakdown Chart -->
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
                     <h3 class="font-display font-bold text-lg text-stone-900 mb-4">Fordeling af CO2-aftryk</h3>
-                    <div class="space-y-4" id="breakdownBars">
-                        <!-- Bars injected via JS -->
+                    <div class="max-w-md mx-auto">
+                        <canvas id="breakdownChart"></canvas>
                     </div>
                 </div>
 
@@ -289,6 +289,8 @@
     </div>
 </div>
 
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <!-- Load Shared Calculation Engine -->
 <script src="{{ url_for('static', filename='js/climate_calculator_engine.js') }}"></script>
 <!-- Load Calculator Script -->

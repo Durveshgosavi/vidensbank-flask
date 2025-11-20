@@ -168,21 +168,35 @@
     </div>
 
     <!-- Recommendations -->
-    <div class="bg-white p-8 md:p-12">
+    <div class="bg-white p-8 md:p-12 mb-8">
       <h3 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-stone-900 uppercase">
         Anbefalinger
       </h3>
       <div id="recs" class="space-y-6"></div>
     </div>
 
+    <!-- CO2 Breakdown Chart -->
+    <div class="bg-white p-8 md:p-12">
+      <h3 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-stone-900 uppercase">
+        CO₂-Fordeling
+      </h3>
+      <div class="max-w-md mx-auto">
+        <canvas id="breakdownChart"></canvas>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <!-- Load Shared Calculation Engine -->
 <script src="{{ url_for('static', filename='js/climate_calculator_engine.js') }}"></script>
 
 <script>
 let dist = {r: 30, b: 40, f: 15, v: 15};
+let breakdownChart = null;
 
 function upd() {
   let r = +document.getElementById('redMeat').value;
@@ -270,11 +284,76 @@ function calc() {
         `;
       });
       document.getElementById('recs').innerHTML = h;
+
+      // Render breakdown chart
+      renderBreakdownChart(result.results.breakdown);
+
       document.getElementById('results').scrollIntoView({behavior: 'smooth'});
     }
   } catch (e) {
     alert('Fejl ved beregning: ' + e.message);
   }
+}
+
+function renderBreakdownChart(breakdown) {
+  const ctx = document.getElementById('breakdownChart');
+
+  // Destroy existing chart if it exists
+  if (breakdownChart) {
+    breakdownChart.destroy();
+  }
+
+  // Calculate total CO2 from protein sources
+  const proteinData = [
+    { label: 'Rødt Kød', value: breakdown.protein.red_meat, color: '#dc2626' },
+    { label: 'Lyst Kød', value: breakdown.protein.bright_meat, color: '#f97316' },
+    { label: 'Fisk', value: breakdown.protein.fish, color: '#3b82f6' },
+    { label: 'Vegetarisk', value: breakdown.protein.vegetarian, color: '#16a34a' }
+  ].filter(item => item.value > 0);
+
+  breakdownChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: proteinData.map(d => d.label),
+      datasets: [{
+        data: proteinData.map(d => d.value.toFixed(2)),
+        backgroundColor: proteinData.map(d => d.color),
+        borderWidth: 2,
+        borderColor: '#ffffff'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: {
+              family: 'Work Sans',
+              size: 14,
+              weight: 'bold'
+            },
+            padding: 20
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.parsed;
+              const total = context.dataset.data.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return label + ': ' + value + ' kg CO₂e (' + percentage + '%)';
+            }
+          },
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleFont: { family: 'Big Shoulders Inline Text', size: 16 },
+          bodyFont: { family: 'Work Sans', size: 14 }
+        }
+      }
+    }
+  });
 }
 
 ['redMeat', 'brightMeat', 'fish', 'vegetarian'].forEach(id =>

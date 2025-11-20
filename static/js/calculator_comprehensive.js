@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Chart instance
+    let breakdownChart = null;
+
     // --- VERIFIED DANISH DATA (CONCITO & Our World in Data 2024) ---
     const CO2_FACTORS = {
         // kg CO2e per kg of food (Source: Poore & Nemecek 2018, CONCITO)
@@ -450,6 +453,72 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="w-12 text-right text-stone-700 text-xs">100%</div>
         `;
         displays.breakdown.appendChild(totalBar);
+
+        // 5. Render Breakdown Chart
+        renderBreakdownChart(result.breakdown);
+    }
+
+    function renderBreakdownChart(breakdown) {
+        const ctx = document.getElementById('breakdownChart');
+        if (!ctx) return;
+
+        // Destroy existing chart if it exists
+        if (breakdownChart) {
+            breakdownChart.destroy();
+        }
+
+        // Prepare data
+        const categories = [
+            { key: 'red_meat', label: 'Rødt Kød', color: '#dc2626' },
+            { key: 'bright_meat', label: 'Lyst Kød', color: '#f97316' },
+            { key: 'fish', label: 'Fisk', color: '#3b82f6' },
+            { key: 'vegetarian', label: 'Plantebaseret', color: '#16a34a' },
+            { key: 'waste', label: 'Madspild', color: '#78716c' }
+        ].filter(cat => (breakdown[cat.key] || 0) > 0);
+
+        breakdownChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: categories.map(c => c.label),
+                datasets: [{
+                    data: categories.map(c => (breakdown[c.key] || 0).toFixed(2)),
+                    backgroundColor: categories.map(c => c.color),
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Work Sans',
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return label + ': ' + value + ' kg CO₂e (' + percentage + '%)';
+                            }
+                        },
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: { family: 'Big Shoulders Inline Text', size: 14 },
+                        bodyFont: { family: 'Work Sans', size: 13 }
+                    }
+                }
+            }
+        });
     }
 
     // --- SCENARIOS ---
