@@ -67,7 +67,7 @@
       </h2>
 
       <!-- Visual Bar -->
-      <div class="mb-8 h-16 flex overflow-hidden border-2 border-stone-200" id="meatBar">
+      <div class="mb-8 h-12 sm:h-16 flex overflow-hidden border-2 border-stone-200" id="meatBar">
         <div id="segmentRed" class="h-full flex items-center justify-center text-white font-sans font-bold text-sm bg-red-600 transition-all duration-300" style="width:30%">
           Rødt 30%
         </div>
@@ -83,7 +83,7 @@
       </div>
 
       <!-- Sliders -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <div>
           <label class="block mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-600">
             Rødt Kød
@@ -152,13 +152,13 @@
         <span class="block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-light">
           Resultat
         </span>
-        <div class="flex gap-2">
+        <div class="flex gap-2 flex-wrap">
           <button onclick="shareResults()" title="Del resultater"
-            class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest transition-colors">
+            class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap">
             📤 Del
           </button>
           <button onclick="exportPDF()" title="Eksportér som PDF"
-            class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest transition-colors">
+            class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap">
             📄 PDF
           </button>
         </div>
@@ -617,37 +617,84 @@ window.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-/* Range slider styling */
+/* Range slider styling - Mobile optimized */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
+  /* Larger touch target for mobile */
+  height: 32px;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-track {
+  height: 8px;
+  background: #e7e5e4;
+  border-radius: 4px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  background: #e7e5e4;
+  border-radius: 4px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background: #1c1917;
   cursor: pointer;
   border-radius: 50%;
+  margin-top: -8px;
+  /* Larger touch target for mobile */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background: #1c1917;
   cursor: pointer;
   border-radius: 50%;
   border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-input[type="range"]::-webkit-slider-thumb:hover {
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-webkit-slider-thumb:active {
   background: #a0d7a5;
+  width: 28px;
+  height: 28px;
+  margin-top: -10px;
 }
 
-input[type="range"]::-moz-range-thumb:hover {
+input[type="range"]::-moz-range-thumb:hover,
+input[type="range"]::-moz-range-thumb:active {
   background: #a0d7a5;
+  width: 28px;
+  height: 28px;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  input[type="range"]::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+    margin-top: -10px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Prevent zoom on input focus on iOS */
+input[type="number"],
+input[type="range"] {
+  font-size: 16px;
 }
 </style>
 
