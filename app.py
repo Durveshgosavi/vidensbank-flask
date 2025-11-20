@@ -531,8 +531,54 @@ def calculator():
 
 @app.route('/calculator/comprehensive')
 def calculator_comprehensive():
-    """Legacy route for comprehensive calculator (redirects to main)"""
-    return redirect(url_for('calculator'))
+    """Render the comprehensive calculator page."""
+    return render_template('calculators/comprehensive.html')
+
+@app.route('/api/canteens')
+def api_canteens():
+    """Get all canteens for dropdown."""
+    canteens = mock_data_service.get_all_canteens()
+    return jsonify(canteens)
+
+@app.route('/api/canteen/<int:canteen_id>')
+def api_canteen_details(canteen_id):
+    """Get detailed data for a specific canteen."""
+    details = mock_data_service.get_canteen_details(canteen_id)
+    waste = mock_data_service.get_waste_metrics(canteen_id)
+    
+    if not details:
+        return jsonify({'error': 'Canteen not found'}), 404
+        
+    return jsonify({
+        'details': details,
+        'waste': waste
+    })
+
+@app.route('/api/calculate', methods=['POST'])
+def api_calculate():
+    """Run the climate calculation engine."""
+    data = request.json
+    
+    # Transform frontend data to engine params structure if needed
+    # For now assuming frontend sends correct structure matching ClimateCalculatorEngine.calculate_canteen_impact
+    
+    try:
+        result = calculator_engine.calculate_canteen_impact(data)
+        
+        # Convert dataclass to dict for JSON serialization
+        return jsonify({
+            'total_co2_kg': result.total_co2_kg,
+            'per_meal_kg': result.per_meal_kg,
+            'annual_tons': result.annual_tons,
+            'breakdown': result.breakdown,
+            'recommendations': result.recommendations,
+            'organic_impact': result.organic_impact,
+            'waste_impact': result.waste_impact,
+            'seasonal_benefit': result.seasonal_benefit,
+            'cost_savings': result.cost_savings
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 @app.route('/calculator-advanced')
 def calculator_advanced():
