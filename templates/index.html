@@ -31,82 +31,241 @@
   </div>
 </div>
 
-<!-- Intro Stats (Neutral) -->
-<section class="bg-cb-taupe-light py-24">
+<!-- Mission Section -->
+<section class="bg-white py-24">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-3 text-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
-        <div class="mb-2 font-display text-6xl font-bold text-cb-green-dark">1/3</div>
-        <p class="font-sans text-sm font-bold uppercase tracking-widest text-stone-500">Af Globale Emissioner</p>
-        <p class="mt-2 text-stone-600">Stammer fra fødevaresystemet</p>
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Vores
+          Mission</span>
+        <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide leading-tight">
+          Fra Viden til<br>Handling
+        </h2>
+        <p class="mb-6 font-sans text-lg text-stone-600 leading-relaxed">
+          Vidensbanken er Cheval Blancs centrale nervesystem for bæredygtig udvikling. Vi tror på, at de bedste
+          beslutninger træffes på baggrund af fakta, ikke fornemmelser.
+        </p>
+        <p class="mb-8 font-sans text-lg text-stone-600 leading-relaxed">
+          Her samler vi den nyeste forskning fra CONCITO, data fra Fødevarestyrelsen og vores egne erfaringer for at
+          give dig værktøjerne til at gøre en reel forskel i køkkenet.
+        </p>
+
+        <div class="grid grid-cols-2 gap-8 mt-12">
+          <div class="border-l-4 border-cb-green-medium pl-6">
+            <div class="font-display text-4xl font-bold text-stone-900 mb-1">100%</div>
+            <div class="text-xs font-bold uppercase tracking-widest text-stone-500">Datadrevet</div>
+          </div>
+          <div class="border-l-4 border-cb-blue-medium pl-6">
+            <div class="font-display text-4xl font-bold text-stone-900 mb-1">24/7</div>
+            <div class="text-xs font-bold uppercase tracking-widest text-stone-500">Tilgængelighed</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <div class="mb-2 font-display text-6xl font-bold text-cb-orange-dark">45%</div>
-        <p class="font-sans text-sm font-bold uppercase tracking-widest text-stone-500">Reduktionspotentiale</p>
-        <p class="mt-2 text-stone-600">Ved omlægning til plantebaseret kost</p>
-      </div>
-      <div>
-        <div class="mb-2 font-display text-6xl font-bold text-cb-blue-dark">2030</div>
-        <p class="font-sans text-sm font-bold uppercase tracking-widest text-stone-500">National Deadline</p>
-        <p class="mt-2 text-stone-600">For 70% reduktionsmålet</p>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-cb-taupe-light rounded-xl transform rotate-2"></div>
+        <img src="{{ url_for('static', filename='images/chevalas2k4134.jpg') }}" alt="Cheval Blanc Chef"
+          class="relative rounded-lg shadow-lg w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Pillars Section (Infographic Style) -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <span class="font-sans text-xs font-bold tracking-widest uppercase text-stone-500">Vores Fundament</span>
+      <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mt-2">Tre Søjler for
+        Udvikling</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <!-- Connecting Line (Desktop) -->
+      <div class="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-stone-300 -z-10"></div>
+
+      <!-- Pillar 1 -->
+      <div class="relative flex flex-col items-center text-center group">
+        <div
+          class="w-24 h-24 bg-white rounded-full border-4 border-cb-green-medium flex items-center justify-center mb-6 shadow-lg transition-transform group-hover:scale-110">
+          <svg class="w-10 h-10 text-cb-green-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+            </path>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Viden</h3>
+        <p class="font-sans text-stone-600 leading-relaxed max-w-xs">
+          Vi bygger på valideret data fra førende eksperter. Ingen gætværk, kun fakta der kan omsættes til handling.
+        </p>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="relative flex flex-col items-center text-center group">
+        <div
+          class="w-24 h-24 bg-white rounded-full border-4 border-cb-yellow-medium flex items-center justify-center mb-6 shadow-lg transition-transform group-hover:scale-110">
+          <svg class="w-10 h-10 text-cb-yellow-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Handling</h3>
+        <p class="font-sans text-stone-600 leading-relaxed max-w-xs">
+          Viden er intet uden handling. Vi udvikler konkrete værktøjer, der gør det nemt at implementere bæredygtige
+          valg.
+        </p>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="relative flex flex-col items-center text-center group">
+        <div
+          class="w-24 h-24 bg-white rounded-full border-4 border-cb-blue-medium flex items-center justify-center mb-6 shadow-lg transition-transform group-hover:scale-110">
+          <svg class="w-10 h-10 text-cb-blue-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+            </path>
+          </svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Ansvar</h3>
+        <p class="font-sans text-stone-600 leading-relaxed max-w-xs">
+          Vi tager ansvar for vores aftryk og inspirerer gæster og kollegaer til at gøre det samme gennem
+          gennemsigtighed.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Impact Data Section (Chart) -->
+<section class="bg-stone-900 py-24 text-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Chart Context -->
+      <div class="lg:col-span-5">
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Det Store
+          Billede</span>
+        <h2 class="mb-6 font-display text-4xl font-bold text-white uppercase tracking-brand-wide">
+          Hvorfor Fødevarer?
+        </h2>
+        <p class="mb-8 text-stone-400 leading-relaxed">
+          Fødevaresystemet står for ca. en tredjedel af de globale drivhusgasemissioner. Det er her, vi har den største
+          mulighed for at påvirke klodens fremtid gennem vores daglige valg.
+        </p>
+
+        <ul class="space-y-6">
+          <li class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-cb-red-medium flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="font-bold text-xs text-white">1</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-lg">Animalsk Produktion</h4>
+              <p class="text-sm text-stone-400">Står for næsten 60% af fødevarernes samlede udledning.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-cb-yellow-medium flex items-center justify-center flex-shrink-0 mt-1">
+              <span class="font-bold text-xs text-stone-900">2</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-lg">Madspild</h4>
+              <p class="text-sm text-stone-400">Hvis madspild var et land, ville det være verdens 3. største udleder.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Chart Visualization -->
+      <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Global Chart -->
+        <div class="bg-stone-800 rounded-xl p-6 border border-stone-700 shadow-2xl">
+          <div class="mb-4">
+            <h3 class="font-display text-xl text-white">Global Udledning</h3>
+            <span class="text-xs font-bold uppercase tracking-widest text-stone-500">Kilde: IPCC</span>
+          </div>
+          <div class="relative h-[250px] w-full">
+            <canvas id="globalChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Food Breakdown Chart -->
+        <div class="bg-stone-800 rounded-xl p-6 border border-stone-700 shadow-2xl">
+          <div class="mb-4">
+            <h3 class="font-display text-xl text-white">Fødevare Aftryk</h3>
+            <span class="text-xs font-bold uppercase tracking-widest text-stone-500">Kilde: CONCITO</span>
+          </div>
+          <div class="relative h-[250px] w-full">
+            <canvas id="foodChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Topics Grid -->
-<section id="topics" class="bg-white py-32">
+<section id="topics" class="bg-cb-taupe-light py-32">
   <div class="mx-auto max-w-7xl px-6">
     <div class="mb-20 text-center">
-      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-stone-400">Fokusområder</span>
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Viden & Indsigt</h2>
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-stone-500">Vidensbankens
+        Indhold</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Udforsk Emnerne</h2>
     </div>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <!-- Topic 1: Emissions -->
       <a href="{{ url_for('topic_emissions_landing') }}"
-        class="group relative block h-[500px] overflow-hidden bg-stone-100">
-        <img src="{{ url_for('static', filename='images/waste_reduction_aesthetic_1763550161182.png') }}"
-          alt="Emissions" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-        <div class="absolute inset-0 bg-stone-900/40 transition-opacity group-hover:bg-stone-900/30"></div>
-        <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/waste_reduction_aesthetic_1763550161182.png') }}"
+            alt="Emissions" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
           <span
-            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-light">Klima</span>
-          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide">Emissioner</h3>
-          <p class="font-sans text-sm text-stone-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Forstå CO₂e, beregn aftryk og find reduktionsmuligheder.
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Klima</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-yellow-dark transition-colors">
+            Emissioner</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Forstå CO₂e, beregn aftryk og find reduktionsmuligheder i hverdagen.
           </p>
         </div>
       </a>
 
       <!-- Topic 2: Organic -->
       <a href="{{ url_for('topic_organic_landing') }}"
-        class="group relative block h-[500px] overflow-hidden bg-stone-100">
-        <img src="{{ url_for('static', filename='images/seasonal_salad.jpg') }}" alt="Organic"
-          class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-        <div class="absolute inset-0 bg-stone-900/40 transition-opacity group-hover:bg-stone-900/30"></div>
-        <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/seasonal_salad.jpg') }}" alt="Organic"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
           <span
-            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-light">Råvarer</span>
-          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">Økologi</h3>
-          <p class="font-sans text-sm text-stone-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Det Økologiske Spisemærke, regler og værdien af økologi.
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Råvarer</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-green-dark transition-colors">
+            Økologi</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Det Økologiske Spisemærke, regler og værdien af økologi for biodiversiteten.
           </p>
         </div>
       </a>
 
       <!-- Topic 3: Biodiversity -->
       <a href="{{ url_for('topic_biodiversity_landing') }}"
-        class="group relative block h-[500px] overflow-hidden bg-stone-100">
-        <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Biodiversity"
-          class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-        <div class="absolute inset-0 bg-stone-900/40 transition-opacity group-hover:bg-stone-900/30"></div>
-        <div class="absolute bottom-0 left-0 w-full p-8 text-white">
-          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-light">Natur</span>
-          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">Biodiversitet
-          </h3>
-          <p class="font-sans text-sm text-stone-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Beskyttelse af arter og økosystemer gennem bevidste valg.
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Biodiversity"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
+          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Natur</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-blue-dark transition-colors">
+            Biodiversitet</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Beskyttelse af arter og økosystemer gennem bevidste valg af råvarer.
           </p>
         </div>
       </a>
@@ -114,32 +273,146 @@
   </div>
 </section>
 
-<!-- Tools Section -->
-<section class="bg-stone-900 py-32 text-white">
+<!-- Interactive Tools Teaser -->
+<section class="bg-white py-32">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
-      <div>
-        <span
-          class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Værktøjskassen</span>
-        <h2 class="mb-8 font-display text-5xl font-bold uppercase tracking-brand-wide text-white">
-          Beregn &<br>Analyser
-        </h2>
-        <p class="mb-8 font-sans text-lg text-stone-400 leading-relaxed">
-          Få adgang til simple beregnere, der kan give et overblik over klimabelastningen fra forskellige
-          fødevarekategorier.
-        </p>
-        <a href="{{ url_for('topic_emissions_impact') }}"
-          class="inline-block border-b border-cb-blue-dark pb-1 font-sans text-sm font-bold uppercase tracking-widest text-white hover:text-cb-blue-dark transition-colors">
-          Gå til Beregner →
-        </a>
-      </div>
-      <div class="relative h-[400px] bg-stone-800 p-8 flex items-center justify-center border border-stone-700">
-        <div class="text-center">
-          <div class="font-display text-6xl text-stone-600 mb-4">DATA</div>
-          <p class="font-sans text-stone-500">Visualisering af klimadata</p>
+    <div class="bg-stone-900 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="p-12 lg:p-20 flex flex-col justify-center">
+          <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-medium">Prøv
+            Værktøjet</span>
+          <h2 class="mb-6 font-display text-5xl font-bold uppercase tracking-brand-wide text-white leading-none">
+            Klimaberegner<br><span class="text-cb-green-medium">2.0</span>
+          </h2>
+          <p class="mb-10 font-sans text-lg text-stone-400 leading-relaxed">
+            Vi har udviklet en avanceret beregner, der giver dig mulighed for at simulere effekten af jeres tiltag. Se
+            hvordan små ændringer i menuen kan give store resultater på klimakontoen.
+          </p>
+          <div class="flex flex-wrap gap-6">
+            <a href="{{ url_for('calculator') }}"
+              class="bg-cb-green-medium px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-stone-900 hover:bg-white transition-colors">
+              Start Beregner
+            </a>
+            <a href="{{ url_for('topic_emissions_landing') }}"
+              class="border border-stone-600 px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-white hover:border-white transition-colors">
+              Læs om Metoden
+            </a>
+          </div>
+        </div>
+        <div class="relative min-h-[400px] bg-stone-800">
+          <!-- Abstract Visualization of Calculator -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="w-3/4 h-3/4 bg-stone-900 rounded-lg border border-stone-700 p-6 opacity-80 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              <div class="h-4 w-1/3 bg-stone-700 rounded mb-6"></div>
+              <div class="space-y-4">
+                <div class="h-2 w-full bg-stone-800 rounded overflow-hidden">
+                  <div class="h-full bg-cb-red-medium w-3/4"></div>
+                </div>
+                <div class="h-2 w-full bg-stone-800 rounded overflow-hidden">
+                  <div class="h-full bg-cb-yellow-medium w-1/2"></div>
+                </div>
+                <div class="h-2 w-full bg-stone-800 rounded overflow-hidden">
+                  <div class="h-full bg-cb-green-medium w-1/4"></div>
+                </div>
+              </div>
+              <div class="mt-8 flex justify-between items-end">
+                <div
+                  class="h-16 w-16 rounded-full border-4 border-cb-green-medium flex items-center justify-center text-cb-green-medium font-bold text-xl">
+                  -25%</div>
+                <div class="text-right">
+                  <div class="text-xs text-stone-500 uppercase">Potentiel Besparelse</div>
+                  <div class="text-2xl font-bold text-white">12.5 Tons</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Chart 1: Global Emissions
+    const ctxGlobal = document.getElementById('globalChart').getContext('2d');
+    new Chart(ctxGlobal, {
+      type: 'doughnut',
+      data: {
+        labels: ['Fødevarer', 'Energi', 'Transport', 'Byggeri', 'Andet'],
+        datasets: [{
+          data: [34, 35, 15, 10, 6],
+          backgroundColor: [
+            '#a0d7a5', // Food (Green - Highlight)
+            '#44403c',
+            '#57534e',
+            '#78716c',
+            '#a8a29e'
+          ],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '70%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: '#a8a29e', font: { family: "'Work Sans', sans-serif", size: 10 }, usePointStyle: true }
+          }
+        }
+      }
+    });
+
+    // Chart 2: Food Breakdown
+    const ctxFood = document.getElementById('foodChart').getContext('2d');
+    new Chart(ctxFood, {
+      type: 'bar',
+      data: {
+        labels: ['Kød', 'Mejeri', 'Grønt', 'Spild'],
+        datasets: [{
+          label: 'CO2e Aftryk',
+          data: [58, 18, 14, 10],
+          backgroundColor: [
+            '#e74c3c', // Meat (Red)
+            '#f1c40f', // Dairy (Yellow)
+            '#2ecc71', // Veg (Green)
+            '#95a5a6'  // Waste (Grey)
+          ],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1c1917',
+            titleFont: { family: "'Work Sans', sans-serif" },
+            bodyFont: { family: "'Work Sans', sans-serif" },
+            padding: 12,
+            cornerRadius: 4
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: '#44403c' },
+            ticks: { color: '#a8a29e', font: { family: "'Work Sans', sans-serif" } }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: '#a8a29e', font: { family: "'Work Sans', sans-serif" } }
+          }
+        }
+      }
+    });
+  });
+</script>
 {% endblock %}

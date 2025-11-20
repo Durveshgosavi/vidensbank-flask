@@ -523,8 +523,16 @@ def get_climate_db():
 
 @app.route('/calculator')
 def calculator():
-    """Basic climate calculator page"""
-    return render_template('calculator.html')
+    """
+    Main Climate Calculator
+    Replaces the old basic calculator with the new comprehensive engine.
+    """
+    return render_template('calculators/comprehensive.html')
+
+@app.route('/calculator/comprehensive')
+def calculator_comprehensive():
+    """Legacy route for comprehensive calculator (redirects to main)"""
+    return redirect(url_for('calculator'))
 
 @app.route('/calculator-advanced')
 def calculator_advanced():

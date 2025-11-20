@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // --- STATE ---
     let currentCanteen = null;
     let calculationDebounce = null;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         wasteBuffet: document.getElementById('wasteBuffetInput'),
         wastePlate: document.getElementById('wastePlateInput')
     };
-    
+
     const displays = {
         redMeat: document.getElementById('redMeatVal'),
         brightMeat: document.getElementById('brightMeatVal'),
@@ -41,20 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- EVENT LISTENERS ---
     function setupEventListeners() {
         canteenSelect.addEventListener('change', loadCanteenData);
-        
+
         // Sliders
         inputs.redMeat.addEventListener('input', () => { updateMeatSliders('red'); calculate(); });
         inputs.brightMeat.addEventListener('input', () => { updateMeatSliders('bright'); calculate(); });
         inputs.fish.addEventListener('input', () => { updateMeatSliders('fish'); calculate(); });
-        
-        inputs.organic.addEventListener('input', (e) => { 
-            displays.organic.textContent = e.target.value + '%'; 
-            calculate(); 
+
+        inputs.organic.addEventListener('input', (e) => {
+            displays.organic.textContent = e.target.value + '%';
+            calculate();
         });
-        
-        inputs.season.addEventListener('input', (e) => { 
-            displays.season.textContent = e.target.value + '%'; 
-            calculate(); 
+
+        inputs.season.addEventListener('input', (e) => {
+            displays.season.textContent = e.target.value + '%';
+            calculate();
         });
 
         // Inputs
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('/api/canteens');
             const canteens = await response.json();
-            
+
             canteenSelect.innerHTML = '<option value="">Vælg en kantine...</option>';
             canteens.forEach(c => {
                 const option = document.createElement('option');
@@ -90,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch(`/api/canteen/${id}`);
             const data = await response.json();
-            
+
             if (data.error) return;
 
             currentCanteen = data;
-            
+
             // Populate Inputs
             document.getElementById('locationInput').value = data.details.location || '';
             inputs.guests.value = data.details.employees || 0;
@@ -105,13 +105,13 @@ document.addEventListener('DOMContentLoaded', function() {
             inputs.redMeat.value = menu.red_meat_percent;
             inputs.brightMeat.value = menu.bright_meat_percent;
             inputs.fish.value = menu.fish_percent;
-            
+
             updateMeatSliders(null); // Update text displays
 
             // Set Sustainability
             inputs.organic.value = Math.round(data.details.organic_profile.total_percent);
             displays.organic.textContent = inputs.organic.value + '%';
-            
+
             inputs.season.value = Math.round(data.details.sourcing.seasonal_percent);
             displays.season.textContent = inputs.season.value + '%';
 
@@ -133,16 +133,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let red = parseFloat(inputs.redMeat.value);
         let bright = parseFloat(inputs.brightMeat.value);
         let fish = parseFloat(inputs.fish.value);
-        
+
         // Ensure total doesn't exceed 100
         const total = red + bright + fish;
-        
+
         if (total > 100) {
             // Simple normalization logic: reduce others proportionally
             // This is a bit complex to do perfectly UX-wise, so for now we just clamp the current one
             // or let the user mess up and show negative veg (which we clamp to 0 visualy)
             // Better approach: Clamp the changed input so it fits
-            
+
             if (changedSource === 'red') {
                 red = 100 - bright - fish;
                 inputs.redMeat.value = red;
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            
+
             const result = await response.json();
             if (result.error) throw new Error(result.error);
 
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Simplified: We show the calculated Annual Tons as "Optimized Impact"
         // and we need a "Current Impact" to compare against.
         // Let's use the currentCanteen's static CO2/kg * meals * days as baseline estimate.
-        
+
         const baselineCo2PerKg = currentCanteen.details.current_co2_per_kg;
         const totalMeals = parseInt(inputs.guests.value) * parseInt(inputs.days.value) * 0.85; // 0.85 attendance
         const baselineTons = (baselineCo2PerKg * 0.5 * totalMeals) / 1000; // 0.5kg meal size assumption
@@ -262,37 +262,67 @@ document.addEventListener('DOMContentLoaded', function() {
             displays.recList.appendChild(div);
         });
 
-        // 4. Breakdown Bars
-        displays.breakdown.innerHTML = '';
-        const categories = [
-            { key: 'red_meat', label: 'Rødt Kød', color: 'bg-cb-red-medium' },
-            { key: 'bright_meat', label: 'Lyst Kød', color: 'bg-cb-yellow-medium' },
-            { key: 'fish', label: 'Fisk', color: 'bg-cb-blue-medium' },
-            { key: 'vegetarian', label: 'Grønt', color: 'bg-cb-green-medium' },
-            { key: 'waste', label: 'Madspild', color: 'bg-stone-400' }
-        ];
+        // 4. Breakdown Chart
+        updateChart(result.breakdown);
+    }
 
-        const maxVal = Math.max(...Object.values(result.breakdown));
-        
-        categories.forEach(cat => {
-            const val = result.breakdown[cat.key];
-            const pct = (val / result.per_meal_kg) * 100; // % of total
-            
-            const bar = document.createElement('div');
-            bar.className = 'flex items-center gap-3 text-xs';
-            bar.innerHTML = `
-                <div class="w-20 font-bold text-stone-600">${cat.label}</div>
-                <div class="flex-1 bg-stone-100 rounded-full h-3 overflow-hidden">
-                    <div class="${cat.color} h-full rounded-full" style="width: ${pct}%"></div>
-                </div>
-                <div class="w-12 text-right text-stone-500">${val.toFixed(2)} kg</div>
-            `;
-            displays.breakdown.appendChild(bar);
-        });
+    // --- CHART ---
+    let breakdownChart = null;
+
+    function updateChart(breakdown) {
+        const ctx = document.getElementById('breakdownChart').getContext('2d');
+
+        const data = {
+            labels: ['Rødt Kød', 'Lyst Kød', 'Fisk', 'Grønt', 'Madspild'],
+            datasets: [{
+                data: [
+                    breakdown.red_meat,
+                    breakdown.bright_meat,
+                    breakdown.fish,
+                    breakdown.vegetarian,
+                    breakdown.waste
+                ],
+                backgroundColor: [
+                    '#e74c3c', // Red
+                    '#f1c40f', // Yellow
+                    '#3498db', // Blue
+                    '#2ecc71', // Green
+                    '#95a5a6'  // Grey
+                ],
+                borderWidth: 0
+            }]
+        };
+
+        if (breakdownChart) {
+            breakdownChart.data = data;
+            breakdownChart.update();
+        } else {
+            breakdownChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                },
+                                usePointStyle: true
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
     }
 
     // --- SCENARIOS ---
-    window.applyScenario = function(type) {
+    window.applyScenario = function (type) {
         if (type === 'meat_free_day') {
             // Reduce meat by ~20% (1/5 days)
             inputs.redMeat.value = inputs.redMeat.value * 0.8;

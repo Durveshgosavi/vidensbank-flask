@@ -214,7 +214,8 @@
                         <div>
                             <p class="text-sm text-stone-400 mb-1">Optimeret Aftryk</p>
                             <p class="text-2xl font-bold text-cb-green-light"><span id="optimizedImpactVal">0</span>
-                                <span class="text-sm font-normal text-stone-500">tons/år</span></p>
+                                <span class="text-sm font-normal text-stone-500">tons/år</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -268,11 +269,11 @@
                     </div>
                 </div>
 
-                <!-- Breakdown Chart (Simple Bars for now) -->
+                <!-- Breakdown Chart -->
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
                     <h3 class="font-display font-bold text-lg text-stone-900 mb-4">Fordeling af CO2-aftryk</h3>
-                    <div class="space-y-4" id="breakdownBars">
-                        <!-- Bars injected via JS -->
+                    <div class="relative h-64 w-full">
+                        <canvas id="breakdownChart"></canvas>
                     </div>
                 </div>
 
@@ -289,6 +290,8 @@
     </div>
 </div>
 
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Load Calculator Script -->
 <script src="{{ url_for('static', filename='js/calculator_comprehensive.js') }}"></script>
 {% endblock %}
