@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block title %}Klimaberegner - Vidensbank{% endblock %}
+
+{% block content %}
+<div class="bg-stone-50 min-h-screen py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="mb-10 text-center">
+            <h1 class="text-4xl font-display font-bold text-cb-blue-dark uppercase tracking-brand-wide mb-4">
+                Klimaberegner
+            </h1>
+            <p class="text-lg text-stone-600 max-w-2xl mx-auto">
+                Simuler effekten af jeres tiltag. Juster parametrene nedenfor og se hvordan små ændringer kan gøre en
+                stor forskel for klimaet.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- LEFT COLUMN: INPUTS -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- Canteen Selection -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-display font-bold text-cb-blue-dark mb-4 border-b border-stone-100 pb-2">
+                        1. Kantine Data
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-1">Vælg Kantine</label>
+                            <select id="canteenSelect"
+                                class="w-full rounded-md border-stone-300 shadow-sm focus:border-cb-blue-medium focus:ring focus:ring-cb-blue-light focus:ring-opacity-50">
+                                <option value="">Indlæser kantiner...</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-stone-500 uppercase">Lokation</label>
+                                <input type="text" id="locationInput" readonly
+                                    class="w-full mt-1 bg-stone-50 border-none text-stone-600 text-sm rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-stone-500 uppercase">Antal Gæster</label>
+                                <input type="number" id="guestsInput"
+                                    class="w-full mt-1 border-stone-300 rounded-md text-sm focus:border-cb-blue-medium focus:ring-cb-blue-light">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-stone-500 uppercase">Årlige Driftsdage</label>
+                            <input type="number" id="daysInput" value="240"
+                                class="w-full mt-1 border-stone-300 rounded-md text-sm focus:border-cb-blue-medium focus:ring-cb-blue-light">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Composition -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-display font-bold text-cb-blue-dark mb-4 border-b border-stone-100 pb-2">
+                        2. Menu Sammensætning
+                    </h2>
+                    <p class="text-xs text-stone-500 mb-4">Fordeling af proteinkilder (skal totalt give 100%)</p>
+
+                    <div class="space-y-6">
+                        <!-- Red Meat -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="text-sm font-bold text-cb-red-dark">Rødt Kød (Okse/Lam)</label>
+                                <span class="text-sm font-mono font-bold" id="redMeatVal">0%</span>
+                            </div>
+                            <input type="range" id="redMeatSlider" min="0" max="100"
+                                class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-red-medium">
+                        </div>
+
+                        <!-- Bright Meat -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="text-sm font-bold text-cb-yellow-dark">Lyst Kød (Svin/Kylling)</label>
+                                <span class="text-sm font-mono font-bold" id="brightMeatVal">0%</span>
+                            </div>
+                            <input type="range" id="brightMeatSlider" min="0" max="100"
+                                class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-yellow-medium">
+                        </div>
+
+                        <!-- Fish -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="text-sm font-bold text-cb-blue-dark">Fisk & Skaldyr</label>
+                                <span class="text-sm font-mono font-bold" id="fishVal">0%</span>
+                            </div>
+                            <input type="range" id="fishSlider" min="0" max="100"
+                                class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-blue-medium">
+                        </div>
+
+                        <!-- Vegetarian (Calculated) -->
+                        <div class="bg-cb-green-light/20 p-3 rounded-md border border-cb-green-light">
+                            <div class="flex justify-between items-center">
+                                <label class="text-sm font-bold text-cb-green-dark">Vegetarisk / Plantebaseret</label>
+                                <span class="text-lg font-mono font-bold text-cb-green-dark" id="vegVal">100%</span>
+                            </div>
+                            <p class="text-xs text-stone-500 mt-1">Automatisk beregnet restværdi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sustainability Initiatives -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-display font-bold text-cb-green-dark mb-4 border-b border-stone-100 pb-2">
+                        3. Bæredygtige Tiltag
+                    </h2>
+
+                    <div class="space-y-5">
+                        <!-- Organic -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="text-sm font-bold text-stone-700">Økologi-andel</label>
+                                <span class="text-sm font-mono font-bold" id="organicVal">0%</span>
+                            </div>
+                            <input type="range" id="organicSlider" min="0" max="100"
+                                class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-green-medium">
+                            <p class="text-xs text-stone-400 mt-1">Bemærk: Økologi er ikke altid lig med lavere CO2</p>
+                        </div>
+
+                        <!-- Seasonality -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="text-sm font-bold text-stone-700">Sæsonvarer</label>
+                                <span class="text-sm font-mono font-bold" id="seasonVal">0%</span>
+                            </div>
+                            <input type="range" id="seasonSlider" min="0" max="100"
+                                class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-green-medium">
+                        </div>
+
+                        <!-- Waste -->
+                        <div class="pt-4 border-t border-stone-100">
+                            <h3 class="text-sm font-bold text-stone-900 mb-3 uppercase tracking-wider">Madspild</h3>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div>
+                                    <label class="block text-xs text-stone-500">Prep %</label>
+                                    <input type="number" id="wastePrepInput"
+                                        class="w-full mt-1 text-sm border-stone-300 rounded-md">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-stone-500">Buffet %</label>
+                                    <input type="number" id="wasteBuffetInput"
+                                        class="w-full mt-1 text-sm border-stone-300 rounded-md">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-stone-500">Tallerken %</label>
+                                    <input type="number" id="wastePlateInput"
+                                        class="w-full mt-1 text-sm border-stone-300 rounded-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What If Scenarios -->
+                <div class="bg-cb-taupe-light p-6 rounded-lg border border-cb-taupe-medium">
+                    <h2 class="text-lg font-display font-bold text-stone-800 mb-3">
+                        Hvad nu hvis...?
+                    </h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="applyScenario('meat_free_day')"
+                            class="px-3 py-2 bg-white border border-stone-300 rounded shadow-sm text-sm font-medium text-stone-700 hover:bg-cb-green-light hover:text-cb-green-dark transition-colors">
+                            🌱 1 Kødfri Dag
+                        </button>
+                        <button onclick="applyScenario('less_beef')"
+                            class="px-3 py-2 bg-white border border-stone-300 rounded shadow-sm text-sm font-medium text-stone-700 hover:bg-cb-red-light hover:text-cb-red-dark transition-colors">
+                            🥩 Halvér Oksekød
+                        </button>
+                        <button onclick="applyScenario('seasonal_boost')"
+                            class="px-3 py-2 bg-white border border-stone-300 rounded shadow-sm text-sm font-medium text-stone-700 hover:bg-cb-yellow-light hover:text-cb-yellow-dark transition-colors">
+                            🍂 80% Sæson
+                        </button>
+                        <button onclick="applyScenario('zero_waste')"
+                            class="px-3 py-2 bg-white border border-stone-300 rounded shadow-sm text-sm font-medium text-stone-700 hover:bg-cb-blue-light hover:text-cb-blue-dark transition-colors">
+                            ♻️ Minimer Spild
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: RESULTS -->
+            <div class="lg:col-span-7 space-y-6">
+
+                <!-- Main KPI Card -->
+                <div class="bg-stone-900 text-white p-8 rounded-xl shadow-lg relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-cb-green-medium rounded-full opacity-20 blur-2xl">
+                    </div>
+
+                    <h2 class="text-lg font-sans font-bold uppercase tracking-widest text-stone-400 mb-2">
+                        Jeres Potentielle Besparelse
+                    </h2>
+
+                    <div class="flex items-baseline gap-4 mb-6">
+                        <span id="totalSavingsVal"
+                            class="text-6xl md:text-7xl font-display font-bold text-cb-green-light">0.0</span>
+                        <span class="text-xl md:text-2xl text-stone-300">tons CO2e / år</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-stone-700 pt-6">
+                        <div>
+                            <p class="text-sm text-stone-400 mb-1">Nuværende Aftryk</p>
+                            <p class="text-2xl font-bold text-white"><span id="currentImpactVal">0</span> <span
+                                    class="text-sm font-normal text-stone-500">tons/år</span></p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-stone-400 mb-1">Optimeret Aftryk</p>
+                            <p class="text-2xl font-bold text-cb-green-light"><span id="optimizedImpactVal">0</span>
+                                <span class="text-sm font-normal text-stone-500">tons/år</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analogies -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 flex items-center gap-4">
+                        <div class="p-3 bg-blue-50 rounded-full text-blue-600">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-stone-900" id="flightsVal">0</p>
+                            <p class="text-xs text-stone-500 uppercase font-bold">Flyrejser til London</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 flex items-center gap-4">
+                        <div class="p-3 bg-green-50 rounded-full text-green-600">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-stone-900" id="treesVal">0</p>
+                            <p class="text-xs text-stone-500 uppercase font-bold">Træer plantet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendations -->
+                <div class="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+                    <div class="bg-cb-blue-light/10 p-4 border-b border-stone-100 flex justify-between items-center">
+                        <h3 class="font-display font-bold text-lg text-cb-blue-dark flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            AI Anbefalinger
+                        </h3>
+                        <span class="text-xs font-bold bg-cb-blue-dark text-white px-2 py-1 rounded">LIVE</span>
+                    </div>
+                    <div id="recommendationsList" class="divide-y divide-stone-100">
+                        <!-- Recommendations will be injected here -->
+                        <div class="p-6 text-center text-stone-500 italic">
+                            Juster parametrene til venstre for at få anbefalinger...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breakdown Chart (Simple Bars for now) -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                    <h3 class="font-display font-bold text-lg text-stone-900 mb-4">Fordeling af CO2-aftryk</h3>
+                    <div class="space-y-4" id="breakdownBars">
+                        <!-- Bars injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Methodology -->
+                <div class="bg-stone-100 p-4 rounded text-xs text-stone-500 leading-relaxed">
+                    <strong>Metode:</strong> Beregningerne er baseret på emissionsfaktorer fra CONCITO's store
+                    klimadatabase (v2.0).
+                    Vi tager højde for produktionsmetoder, transport, sæsonvariabler og madspild.
+                    Tallene er estimater og bør bruges som vejledende værktøj til strategiske beslutninger.
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load Calculator Script -->
+<script src="{{ url_for('static', filename='js/calculator_comprehensive.js') }}"></script>
+{% endblock %}
