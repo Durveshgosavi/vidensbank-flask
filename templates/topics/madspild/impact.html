@@ -36,51 +36,103 @@
 <section class="bg-cb-taupe-light py-24">
   <div class="mx-auto max-w-5xl px-6">
     <div class="bg-white p-12 shadow-xl">
-      <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">CO₂e tabt pr.
-        kg Spild</h3>
+      <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">
+        Beregn Dit Spild
+      </h3>
 
-      <!-- Chart Placeholder -->
-      <div class="space-y-8">
-        <!-- Item 1 -->
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+        <!-- Calculator Input -->
         <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Oksekød</span>
-            <span class="font-sans text-stone-500">~30 kg CO₂e</span>
+          <label for="wasteInput"
+            class="mb-4 block font-sans text-sm font-bold uppercase tracking-widest text-stone-500">
+            Hvor meget mad smider I ud om ugen? (kg)
+          </label>
+          <div class="relative flex items-center">
+            <input type="number" id="wasteInput" value="50" min="0" max="1000"
+              class="block w-full border-b-2 border-stone-300 bg-transparent py-4 text-4xl font-bold text-stone-900 focus:border-cb-orange-dark focus:outline-none">
+            <span class="absolute right-0 text-xl text-stone-400">kg</span>
           </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-orange-dark" style="width: 100%"></div>
-          </div>
+          <input type="range" id="wasteRange" min="0" max="500" value="50"
+            class="mt-6 h-2 w-full cursor-pointer appearance-none rounded-lg bg-stone-200 accent-cb-orange-dark">
+          <p class="mt-4 font-sans text-sm text-stone-500">
+            Juster skyderen eller indtast et tal.
+          </p>
         </div>
 
-        <!-- Item 2 -->
-        <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Ost</span>
-            <span class="font-sans text-stone-500">~10 kg CO₂e</span>
+        <!-- Calculator Output -->
+        <div class="flex flex-col justify-center space-y-8 rounded-xl bg-stone-50 p-8">
+          <div>
+            <span class="block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Årligt
+              Klimaaftryk</span>
+            <div class="flex items-baseline gap-2">
+              <span id="co2Output" class="font-display text-5xl font-bold text-cb-orange-dark">0</span>
+              <span class="font-sans text-lg font-bold text-stone-900">kg CO₂e</span>
+            </div>
+            <p class="mt-1 text-sm text-stone-500">Svarer til <span id="carKmOutput"
+                class="font-bold text-stone-900">0</span> km i en benzinbil.</p>
           </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-yellow-dark" style="width: 33%"></div>
-          </div>
-        </div>
 
-        <!-- Item 3 -->
-        <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Brød & Grønt</span>
-            <span class="font-sans text-stone-500">~1-2 kg CO₂e</span>
-          </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-green-dark" style="width: 6%"></div>
+          <div>
+            <span class="block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Måltider
+              Spildt</span>
+            <div class="flex items-baseline gap-2">
+              <span id="mealsOutput" class="font-display text-5xl font-bold text-cb-yellow-dark">0</span>
+              <span class="font-sans text-lg font-bold text-stone-900">måltider</span>
+            </div>
+            <p class="mt-1 text-sm text-stone-500">Pr. år (baseret på 500g pr. måltid).</p>
           </div>
         </div>
       </div>
 
       <p class="mt-12 text-center font-sans text-sm text-stone-500">
-        Kilde: CONCITO Den Store Klimadatabase. Tallene er vejledende gennemsnit.
+        Beregning baseret på gennemsnitligt klimaaftryk for blandet madaffald (ca. 2.5 kg CO₂e/kg).
       </p>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wasteInput = document.getElementById('wasteInput');
+    const wasteRange = document.getElementById('wasteRange');
+    const co2Output = document.getElementById('co2Output');
+    const carKmOutput = document.getElementById('carKmOutput');
+    const mealsOutput = document.getElementById('mealsOutput');
+
+    // Constants
+    const CO2_PER_KG_WASTE = 2.5; // Avg CO2e per kg of mixed food waste
+    const KG_PER_MEAL = 0.5; // Avg weight of a meal
+    const CO2_PER_KM_CAR = 0.12; // Avg CO2e per km driving
+
+    function updateCalculator() {
+      const weeklyWaste = parseFloat(wasteInput.value) || 0;
+      const annualWaste = weeklyWaste * 52;
+
+      const annualCO2 = annualWaste * CO2_PER_KG_WASTE;
+      const annualMeals = annualWaste / KG_PER_MEAL;
+      const carKm = annualCO2 / CO2_PER_KM_CAR;
+
+      // Animate numbers (simple version)
+      co2Output.textContent = Math.round(annualCO2).toLocaleString('da-DK');
+      mealsOutput.textContent = Math.round(annualMeals).toLocaleString('da-DK');
+      carKmOutput.textContent = Math.round(carKm).toLocaleString('da-DK');
+    }
+
+    // Sync inputs
+    wasteInput.addEventListener('input', function () {
+      wasteRange.value = this.value;
+      updateCalculator();
+    });
+
+    wasteRange.addEventListener('input', function () {
+      wasteInput.value = this.value;
+      updateCalculator();
+    });
+
+    // Initialize
+    updateCalculator();
+  });
+</script>
 
 <!-- Conclusion -->
 <section class="bg-stone-900 py-32 text-center text-white">

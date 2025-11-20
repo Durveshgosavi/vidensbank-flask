@@ -3,162 +3,142 @@
 {% block title %}Oksekød - Råvarer | Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1588347818036-4c0c2c4f0d94?w=1920&q=85&fit=crop&crop=entropy');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Oksekød</h1>
-    <p class="hero-subtitle">Klimaaftryk, kvalitet og bæredygtige valg</p>
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1588347818036-4c0c2c4f0d94?w=1920&q=85&fit=crop&crop=entropy"
+      alt="Oksekød" class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Oksekød har det højeste klimaaftryk blandt alle almindelige fødevarer. For kantiner er det afgørende
-      at forstå hvorfor, og hvordan man kan reducere både forbrug og klimapåvirkning gennem smarte valg.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <span class="mb-4 font-sans text-sm font-bold tracking-widest uppercase text-cb-orange-light">Råvarer &
+      Produkter</span>
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-white">
+      Oksekød
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+      Klimaaftryk, kvalitet og bæredygtige valg. Forstå hvorfor oksekød vejer tungt i regnskabet.
     </p>
-  </header>
+  </div>
+</div>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
-  </nav>
-
-  <article style="max-width: 900px; margin: 0 auto;">
-    <!-- Climate Footprint Section -->
-    <h2>Klimaaftryk</h2>
-    <div class="metrics-grid" style="margin: 2rem 0;">
-      <article class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-rod);">~60</div>
-        <h3 class="metric-label">kg CO₂e per kg oksekød</h3>
-        <p class="metric-text">
-          Dette er gennemsnittet for konventionelt oksekød. Det er omkring 15-20 gange højere end kylling og 60 gange højere end bælgfrugter.
-        </p>
-      </article>
-
-      <article class="metric-tile">
-        <div class="metric-value"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
-        <h3 class="metric-label">Methan fra drøvtyggere</h3>
-        <p class="metric-text">
-          Køer producerer methan (CH₄) under fordøjelsen – en drivhusgas der er 28 gange stærkere end CO₂ over 100 år.
-        </p>
-      </article>
-
-      <article class="metric-tile">
-        <div class="metric-value"><img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
-        <h3 class="metric-label">Foderimport</h3>
-        <p class="metric-text">
-          Meget foder til køer er soja fra Sydamerika, hvor dyrkning ofte medfører afskovning og tab af biodiversitet.
-        </p>
-      </article>
-    </div>
-
-    <p>
-      Oksekøds høje klimaaftryk skyldes primært metanemissioner fra køernes fordøjelse samt store landbrugsarealer
-      til foder. Der er også betydelig indirekte påvirkning gennem import af foder, især soja fra regioner med
-      afskovning.
+<!-- Intro -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Oksekød har det højeste klimaaftryk blandt alle almindelige fødevarer."
     </p>
-
-    <!-- Environmental Impact Beyond Climate -->
-    <h2>Miljøpåvirkning ud over klima</h2>
-    <p>
-      Ud over klimaaftryk har oksekødsproduktion andre miljøkonsekvenser:
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      For kantiner er det afgørende at forstå hvorfor, og hvordan man kan reducere både forbrug og klimapåvirkning
+      gennem smarte valg.
     </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Arealforbrug:</strong> Kvæghold kræver store arealer til græsning og foder – mere end nogen anden fødevare per kalorie eller protein.</li>
-      <li><strong>Vandforbrug:</strong> Produktionen af 1 kg oksekød kræver omkring 15.000 liter vand, hovedsageligt til foder.</li>
-      <li><strong>Biodiversitet:</strong> Græsning og foderafgrøder kan fortrænge naturlige levesteder, især i Sydamerika.</li>
-      <li><strong>Kvælstofforurening:</strong> Gødning fra køer bidrager til udledning af ammoniak og kvælstof til vandmiljøet.</li>
-    </ul>
-
-    <!-- Recommendations for Canteens -->
-    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>Anbefalinger til kantiner:</strong><br>
-      1. <strong>Reducer mængden:</strong> Server mindre portioner oksekød og erstat resten med grøntsager, bælgfrugter eller svampe.<br>
-      2. <strong>Substitution:</strong> Byt oksekød ud med kylling, fisk eller plantebaseret protein i nogle retter.<br>
-      3. <strong>Kvalitet frem for kvantitet:</strong> Vælg dansk oksekød med dokumenteret oprindelse og god dyrevelfærd – server det sjældnere, men bedre.<br>
-      4. <strong>Begræns høj-emissions retter:</strong> Bøffer og steaks har højest aftryk per portion. Overvej hakket kød i blandingsretter hvor protein kan strækkes.
-    </p>
-
-    <!-- Organic vs Conventional -->
-    <h2>Økologisk vs. konventionel</h2>
-    <p>
-      Økologisk oksekød har ofte <strong>lidt højere klimaaftryk</strong> end konventionelt på grund af længere
-      opdrættstid og lavere foderefektivitet. Men økologi giver fordele inden for:
-    </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Dyrevelfærd:</strong> Mere plads, adgang til udendørs områder, ingen forebyggende antibiotika.</li>
-      <li><strong>Jordsundhed:</strong> Økologiske græsningsarealer har typisk bedre biodiversitet og jordfrugtbarhed.</li>
-      <li><strong>Ingen syntetiske pesticider:</strong> Reducerer kemisk belastning af miljø og grundvand.</li>
-    </ul>
-    <p>
-      For kantiner kan valget mellem økologisk og konventionel derfor afhænge af, om man prioriterer klima eller
-      andre bæredygtighedsparametre. En kombineret strategi kunne være: <em>Økologisk oksekød, men mindre mængde og
-      sjældnere servering.</em>
-    </p>
-
-    <!-- Certifications and Labeling -->
-    <h2>Certificeringer og mærker</h2>
-    <p>
-      Når du køber oksekød, kan følgende certificeringer hjælpe med at sikre bedre dyrevelfærd og miljø:
-    </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Ø-mærket (Danmark):</strong> Garanterer økologisk produktion med højere dyrevelfærd.</li>
-      <li><strong>Bedre Dyrevelfærd (Hjertemærket):</strong> Certificering med fokus på velfærd – findes i 1-3 stjerner.</li>
-      <li><strong>Dansk Kødkvæg:</strong> Mærkning der sikrer dansk oprindelse og sporbarhed.</li>
-      <li><strong>Klimavenligt Landbrug:</strong> Nye mærkningsordninger under udvikling for lavere emissioner (følg med i udviklingen).</li>
-    </ul>
-
-    <!-- Quality and Seasonality -->
-    <h2>Kvalitet og oprindelse</h2>
-    <p>
-      Vælg dansk oksekød hvor muligt. Danmark har høje standarder for dyrevelfærd og miljø sammenlignet med mange
-      andre lande. Importeret oksekød – især fra Sydamerika – er ofte forbundet med afskovning og lavere
-      dyrevelfærdsstandarder.
-    </p>
-    <p>
-      <strong>Sæsonalitet:</strong> Oksekød har ikke decideret sæson, men græsningskød fra sommermåneder kan have
-      lidt lavere klimaaftryk da køerne spiser mere friskt græs i stedet for importeret foder.
-    </p>
-
-    <!-- Practical Tips -->
-    <h2>Praktiske tips til indkøb</h2>
-    <div class="metric-tile" style="margin: 2rem 0;">
-      <h3 class="metric-label">Gode strategier for kantinen</h3>
-      <ul style="line-height: 1.8; text-align: left;">
-        <li>Planlæg en "kødfri dag" om ugen, eller reducer oksekød til 1-2 gange om ugen</li>
-        <li>Bland hakket oksekød med hakket kylling eller svampe for at reducere klimaaftrykket uden at ændre smagsoplevelsen drastisk</li>
-        <li>Brug bulgur, linser eller bønner til at "strække" kødretter – f.eks. i kødsovs, chili eller farsbrød</li>
-        <li>Kommunikér til gæsterne hvorfor I reducerer oksekød – skab forståelse for bæredygtighed</li>
-        <li>Prøv alternative proteiner som plantebaseret "kød", svampe eller bælgfrugter i kendte retter</li>
-        <li>Vælg mindre udskæringer med mere smag (f.eks. culotte, flanksteak) og server mindre portioner</li>
-      </ul>
-    </div>
-
-    <!-- Price Considerations -->
-    <h2>Prisovervejelser</h2>
-    <p>
-      Oksekød er typisk den dyreste proteinkilde i kantinen. Ved at reducere mængden og kombinere med billigere
-      proteiner (kylling, bælgfrugter, æg) kan kantiner både <strong>spare penge og reducere klimaaftrykket</strong>.
-    </p>
-    <p>
-      Økologisk oksekød er 20-40% dyrere end konventionel, men ved at servere mindre portioner kan det stadig være
-      økonomisk fornuftigt som en del af en bæredygtighedsstrategi.
-    </p>
-  </article>
+  </div>
 </section>
 
-<!-- Call to Action -->
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Udforsk andre proteiner</h2>
-    <p class="section-lead">Se hvordan andre kødtyper og plantebaserede alternativer kan reducere klimaaftrykket.</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
-      <a href="{{ url_for('product_fjerkreae') }}" class="btn-primary">Fjerkræ →</a>
-      <a href="{{ url_for('product_svinekoed') }}" class="btn-primary">Svinekød →</a>
-      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+<!-- Climate Impact -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Data</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Klimaaftryk</h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <!-- Metric 1 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-orange-dark">~60</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">kg CO₂e / kg</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Gennemsnit for konventionelt oksekød. Ca. 15-20 gange højere end kylling.
+        </p>
+      </div>
+
+      <!-- Metric 2 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-orange-dark">28x</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">Methan Effekt</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Køer udleder methan, en drivhusgas der er 28 gange stærkere end CO₂.
+        </p>
+      </div>
+
+      <!-- Metric 3 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-orange-dark">15k</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">Liter Vand</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Vandforbrug pr. kg kød, primært til produktion af foder.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Recommendations -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="grid grid-cols-1 gap-16 md:grid-cols-2 items-center">
+      <div>
+        <span
+          class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-light">Strategi</span>
+        <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">
+          Anbefalinger til Kantinen
+        </h2>
+        <ul class="space-y-6">
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">1</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Reducer Mængden</h4>
+              <p class="mt-2 font-sans text-stone-400">Server mindre portioner og erstat resten med grøntsager eller
+                bælgfrugter.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">2</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Kvalitet frem for Kvantitet</h4>
+              <p class="mt-2 font-sans text-stone-400">Vælg dansk kød med god dyrevelfærd – server det sjældnere, men
+                bedre.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">3</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Hybrid-Retter</h4>
+              <p class="mt-2 font-sans text-stone-400">Bland hakket kød med svampe eller linser (50/50) i gryderetter.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="relative h-[500px]">
+        <img src="{{ url_for('static', filename='images/chef_plating_food_1763550153863.png') }}" alt="Chef Cooking"
+          class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation -->
+<section class="bg-white py-24 text-center">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Udforsk Alternativer
+    </h2>
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href="{{ url_for('product_fjerkreae') }}"
+        class="rounded-none bg-cb-green-dark px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-white transition-transform hover:-translate-y-1 hover:bg-cb-green-medium">
+        Se Fjerkræ
+      </a>
+      <a href="{{ url_for('products_overview') }}"
+        class="rounded-none border border-stone-300 px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900">
+        Tilbage til Oversigt
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

@@ -79,28 +79,37 @@
         </div>
       </a>
 
-      <!-- Topic 2: Organic (Placeholder) -->
-      <div class="group relative block h-[500px] overflow-hidden bg-stone-100 opacity-75">
-        <div class="absolute inset-0 bg-cb-green-light flex items-center justify-center">
-          <span class="font-display text-2xl text-cb-green-dark uppercase">Kommer Snart</span>
+      <!-- Topic 2: Organic -->
+      <a href="{{ url_for('topic_organic_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-stone-100">
+        <img src="{{ url_for('static', filename='images/seasonal_salad.jpg') }}" alt="Organic"
+          class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-stone-900/40 transition-opacity group-hover:bg-stone-900/30"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+          <span
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-light">Råvarer</span>
+          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">Økologi</h3>
+          <p class="font-sans text-sm text-stone-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Det Økologiske Spisemærke, regler og værdien af økologi.
+          </p>
         </div>
-        <div class="absolute bottom-0 left-0 w-full p-8">
-          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-stone-500">Råvarer</span>
-          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-stone-400">Økologi</h3>
-        </div>
-      </div>
+      </a>
 
-      <!-- Topic 3: Biodiversity (Placeholder) -->
-      <div class="group relative block h-[500px] overflow-hidden bg-stone-100 opacity-75">
-        <div class="absolute inset-0 bg-cb-blue-light flex items-center justify-center">
-          <span class="font-display text-2xl text-cb-blue-dark uppercase">Kommer Snart</span>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full p-8">
-          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-stone-500">Natur</span>
-          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-stone-400">Biodiversitet
+      <!-- Topic 3: Biodiversity -->
+      <a href="{{ url_for('topic_biodiversity_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-stone-100">
+        <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Biodiversity"
+          class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-stone-900/40 transition-opacity group-hover:bg-stone-900/30"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 text-white">
+          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-light">Natur</span>
+          <h3 class="mb-4 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">Biodiversitet
           </h3>
+          <p class="font-sans text-sm text-stone-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Beskyttelse af arter og økosystemer gennem bevidste valg.
+          </p>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>

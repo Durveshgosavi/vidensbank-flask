@@ -36,51 +36,130 @@
 <section class="bg-cb-taupe-light py-24">
   <div class="mx-auto max-w-5xl px-6">
     <div class="bg-white p-12 shadow-xl">
-      <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">Liter Vand
-        pr. kg Fødevare</h3>
+      <h3 class="mb-8 text-center font-display text-3xl font-bold uppercase tracking-wide text-stone-900">
+        Beregn Vandaftryk
+      </h3>
 
-      <!-- Chart Placeholder -->
-      <div class="space-y-8">
-        <!-- Item 1 -->
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+        <!-- Calculator Input -->
         <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Oksekød</span>
-            <span class="font-sans text-stone-500">~15.000 Liter</span>
+          <div class="mb-6">
+            <label for="foodSelect"
+              class="mb-2 block font-sans text-sm font-bold uppercase tracking-widest text-stone-500">
+              Vælg Fødevare
+            </label>
+            <select id="foodSelect"
+              class="block w-full rounded-none border-b-2 border-stone-300 bg-transparent py-3 font-sans text-xl font-bold text-stone-900 focus:border-cb-blue-dark focus:outline-none">
+              <option value="15400">Oksekød</option>
+              <option value="6000">Svinekød</option>
+              <option value="4300">Kylling</option>
+              <option value="3300">Æg</option>
+              <option value="2500">Ris</option>
+              <option value="1000">Mælk</option>
+              <option value="322">Grøntsager (blandet)</option>
+            </select>
           </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-blue-dark" style="width: 100%"></div>
+
+          <div class="mb-6">
+            <label for="amountInput"
+              class="mb-2 block font-sans text-sm font-bold uppercase tracking-widest text-stone-500">
+              Mængde (kg)
+            </label>
+            <div class="relative flex items-center">
+              <input type="number" id="amountInput" value="1" min="0" max="1000"
+                class="block w-full border-b-2 border-stone-300 bg-transparent py-3 text-4xl font-bold text-stone-900 focus:border-cb-blue-dark focus:outline-none">
+              <span class="absolute right-0 text-xl text-stone-400">kg</span>
+            </div>
           </div>
         </div>
 
-        <!-- Item 2 -->
-        <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Kylling</span>
-            <span class="font-sans text-stone-500">~4.000 Liter</span>
+        <!-- Calculator Output -->
+        <div class="flex flex-col justify-center space-y-8 rounded-xl bg-stone-50 p-8">
+          <div>
+            <span class="block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Vandforbrug</span>
+            <div class="flex items-baseline gap-2">
+              <span id="waterOutput" class="font-display text-5xl font-bold text-cb-blue-dark">0</span>
+              <span class="font-sans text-lg font-bold text-stone-900">Liter</span>
+            </div>
           </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-green-dark" style="width: 26%"></div>
+
+          <div>
+            <span class="block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Svarer til</span>
+            <div class="flex items-baseline gap-2">
+              <span id="showerOutput" class="font-display text-5xl font-bold text-cb-blue-light">0</span>
+              <span class="font-sans text-lg font-bold text-stone-900">brusebade</span>
+            </div>
+            <p class="mt-1 text-sm text-stone-500">Baseret på 5 min. bad (ca. 50 liter).</p>
           </div>
         </div>
+      </div>
 
-        <!-- Item 3 -->
-        <div>
-          <div class="flex justify-between mb-2">
-            <span class="font-sans font-bold text-stone-700">Grøntsager</span>
-            <span class="font-sans text-stone-500">~300 Liter</span>
-          </div>
-          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
-            <div class="h-full bg-cb-yellow-dark" style="width: 2%"></div>
+      <!-- Visual Bar -->
+      <div class="mt-12">
+        <p class="mb-2 font-sans text-sm font-bold text-stone-500">Sammenligning (Liter pr. kg)</p>
+        <div class="relative h-12 w-full overflow-hidden rounded-full bg-stone-100">
+          <div id="visualBar" class="absolute left-0 top-0 h-full bg-cb-blue-dark transition-all duration-500"
+            style="width: 0%"></div>
+          <div
+            class="absolute inset-0 flex items-center justify-between px-4 text-xs font-bold text-stone-400 mix-blend-multiply">
+            <span>0</span>
+            <span>5.000</span>
+            <span>10.000</span>
+            <span>15.000+</span>
           </div>
         </div>
       </div>
 
       <p class="mt-12 text-center font-sans text-sm text-stone-500">
-        Kilde: Water Footprint Network. Tallene er globale gennemsnit.
+        Kilde: Water Footprint Network. Tallene er globale gennemsnit for "vandaftryk" (grønt, blåt og gråt vand).
       </p>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const foodSelect = document.getElementById('foodSelect');
+    const amountInput = document.getElementById('amountInput');
+    const waterOutput = document.getElementById('waterOutput');
+    const showerOutput = document.getElementById('showerOutput');
+    const visualBar = document.getElementById('visualBar');
+
+    const LITERS_PER_SHOWER = 50;
+    const MAX_SCALE = 16000; // For visual bar scaling
+
+    function updateCalculator() {
+      const litersPerKg = parseInt(foodSelect.value);
+      const amount = parseFloat(amountInput.value) || 0;
+
+      const totalLiters = litersPerKg * amount;
+      const showers = totalLiters / LITERS_PER_SHOWER;
+
+      // Update text
+      waterOutput.textContent = Math.round(totalLiters).toLocaleString('da-DK');
+      showerOutput.textContent = Math.round(showers).toLocaleString('da-DK');
+
+      // Update visual bar (based on per kg value to show intensity)
+      const percentage = Math.min((litersPerKg / MAX_SCALE) * 100, 100);
+      visualBar.style.width = percentage + '%';
+
+      // Change color based on intensity
+      if (litersPerKg < 1000) {
+        visualBar.className = "absolute left-0 top-0 h-full bg-cb-green-dark transition-all duration-500";
+      } else if (litersPerKg < 5000) {
+        visualBar.className = "absolute left-0 top-0 h-full bg-cb-yellow-dark transition-all duration-500";
+      } else {
+        visualBar.className = "absolute left-0 top-0 h-full bg-cb-blue-dark transition-all duration-500";
+      }
+    }
+
+    foodSelect.addEventListener('change', updateCalculator);
+    amountInput.addEventListener('input', updateCalculator);
+
+    // Initialize
+    updateCalculator();
+  });
+</script>
 
 <!-- Conclusion -->
 <section class="bg-stone-900 py-32 text-center text-white">
