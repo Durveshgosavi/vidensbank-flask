@@ -56,18 +56,18 @@ def test_product_fjerkreae(client):
     assert 'Fjerkræ' in content
     assert 'Klimaaftryk' in content
 
-def test_product_oksekoed(client):
-    """Test that the Oksekød product page loads."""
-    response = client.get('/vidensbank/raavarer/oksekoed')
+def test_product_fisk(client):
+    """Test that the Fisk & Skaldyr product page loads."""
+    response = client.get('/vidensbank/raavarer/fisk-skalddyr')
     assert response.status_code == 200
     content = response.data.decode('utf-8')
-    assert 'Oksekød' in content
+    assert 'Fisk & Skaldyr' in content
     assert 'Klimaaftryk' in content
 
-def test_product_svinekoed(client):
-    """Test that the Svinekød product page loads."""
-    response = client.get('/vidensbank/raavarer/svinekoed')
+def test_product_mejeriprodukter(client):
+    """Test that the Mejeriprodukter product page loads."""
+    response = client.get('/vidensbank/raavarer/mejeriprodukter')
     assert response.status_code == 200
     content = response.data.decode('utf-8')
-    assert 'Svinekød' in content
-    assert 'Dansk Produktion' in content
+    assert 'Mejeri' in content
+    assert 'Klimaaftryk' in content

@@ -6,9 +6,9 @@
 <!-- Hero Section -->
 <div class="relative h-screen min-h-[600px] w-full overflow-hidden">
   <div class="absolute inset-0">
-    <img src="{{ url_for('static', filename='images/waste_kitchen.jpg') }}" alt="Kitchen Workflow"
+    <img src="{{ url_for('static', filename='images/kitchen_staff_action.jpg') }}" alt="Kitchen Workflow"
       class="h-full w-full object-cover">
-    <div class="absolute inset-0 brand-overlay"></div>
+    <div class="absolute inset-0 bg-black/40 brand-overlay"></div>
   </div>
 
   <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
@@ -16,7 +16,7 @@
       class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
       Stop<br>Madspild
     </h1>
-    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl drop-shadow-md">
       Respekt for råvaren, håndværket og kloden. Hvert gram tæller.
     </p>
   </div>
@@ -32,11 +32,11 @@
 
 <!-- Introduction -->
 <section class="bg-cb-taupe-light py-24 md:py-32">
-  <div class="mx-auto max-w-4xl px-6 text-center">
+  <div class="mx-auto max-w-7xl px-6 text-left">
     <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-orange-dark md:text-5xl uppercase">
       Mindre Spild, Mere Værdi
     </h2>
-    <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
+    <p class="max-w-3xl font-sans text-lg leading-loose text-stone-800 md:text-xl">
       Madspild er ikke bare spild af mad. Det er spild af den jord, det vand og den arbejdsindsats, der er lagt i at
       producere den. I professionelle køkkener har vi et særligt ansvar for at udnytte ressourcerne fuldt ud.
     </p>
@@ -84,7 +84,7 @@
       </a>
     </div>
     <div class="relative h-full min-h-[400px] w-full overflow-hidden md:order-2">
-      <img src="{{ url_for('static', filename='images/waste_kitchen.jpg') }}" alt="Creative Cooking"
+      <img src="{{ url_for('static', filename='images/hot_dish_served.jpg') }}" alt="Creative Cooking"
         class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
     </div>
   </div>
@@ -94,17 +94,17 @@
 <section class="bg-stone-900 py-24 text-white">
   <div class="mx-auto max-w-7xl px-6">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
-      <div class="text-center">
+      <div class="text-left">
         <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-orange-dark">1/3</div>
         <p class="text-sm font-bold uppercase tracking-widest text-white">Af al mad</p>
         <p class="mt-4 text-stone-400">Spildes globalt hvert år</p>
       </div>
-      <div class="text-center">
+      <div class="text-left">
         <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-yellow-dark">8%</div>
         <p class="text-sm font-bold uppercase tracking-widest text-white">Emissioner</p>
         <p class="mt-4 text-stone-400">Kommer fra madspild</p>
       </div>
-      <div class="text-center">
+      <div class="text-left">
         <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-green-dark">0%</div>
         <p class="text-sm font-bold uppercase tracking-widest text-white">Vision</p>
         <p class="mt-4 text-stone-400">Intet spiseligt skal smides ud</p>
@@ -116,7 +116,7 @@
 <!-- Navigation Grid -->
 <section class="bg-cb-taupe-light py-24">
   <div class="mx-auto max-w-7xl px-6">
-    <h2 class="mb-16 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+    <h2 class="mb-16 text-left font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
       Værktøjer & Viden</h2>
     <div class="grid grid-cols-1 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
       <a href="{{ url_for('topic_madspild_impact') }}"
