@@ -108,7 +108,7 @@ h1, .main-title {
   text-transform: uppercase;
   letter-spacing: 0.03em;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
   margin-bottom: 1.5rem;
   color: var(--text-dark);
 }
