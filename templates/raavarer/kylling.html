@@ -1,0 +1,535 @@
+{% extends "base.html" %}
+
+{% block title %}Kylling & Fjerkræ - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<div class="bg-cb-taupe-light py-4">
+    <div class="mx-auto max-w-7xl px-6">
+        <nav class="text-sm">
+            <a href="{{ url_for('raavarer_landing') }}" class="text-cb-orange-dark hover:text-cb-orange-medium">Råvarer</a>
+            <span class="mx-2 text-stone-400">/</span>
+            <span class="text-stone-600">Kylling & Fjerkræ</span>
+        </nav>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="relative bg-gradient-to-br from-yellow-50 to-amber-50 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="font-display text-6xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                    Kylling &<br>Fjerkræ
+                </h1>
+                <p class="font-sans text-xl text-stone-600 mb-8 leading-relaxed">
+                    Kylling er det mest klimavenlige kød på markedet med kun 6,9 kg CO₂e pr. kg – betydeligt lavere end
+                    svinekød og oksekød. Det er en proteinrig og alsidig kødkilde med stigende popularitet i danske køkkener.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-yellow-200">
+                        <div class="text-3xl font-bold text-yellow-600">6.9</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">kg CO₂e/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-yellow-200">
+                        <div class="text-3xl font-bold text-yellow-600">9x</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vs oksekød</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-yellow-200">
+                        <div class="text-3xl font-bold text-yellow-600">4,325L</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vand/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-yellow-200">
+                        <div class="text-3xl font-bold text-yellow-600">7.2m²</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">areal/kg</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+                <img src="{{ url_for('static', filename='images/kitchen_chef.jpg') }}"
+                     alt="Kylling"
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest uppercase text-yellow-600 mb-4 block">Klimaaftryk</span>
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Det mest klimavenlige kød
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Kylling har det laveste klimaaftryk af alle kødtyper. Med 6,9 kg CO₂e/kg er det et godt valg for dem,
+                der vil reducere deres klimapåvirkning uden at blive vegetar.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <canvas id="chickenComparisonChart" height="100"></canvas>
+        </div>
+
+        <div class="mt-16 bg-yellow-50 p-8 rounded-lg max-w-4xl mx-auto">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Klimafakta</h3>
+            <div class="grid md:grid-cols-2 gap-6 font-sans text-stone-700">
+                <div class="flex items-start gap-3">
+                    <span class="text-yellow-600 text-xl">•</span>
+                    <p>1 kg kylling = 6,9 kg CO₂e (CONCITO 2024)</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-yellow-600 text-xl">•</span>
+                    <p>42% lavere klimaaftryk end svinekød, 87% lavere end oksekød</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-yellow-600 text-xl">•</span>
+                    <p>Effektiv foder-konvertering: 1,8 kg foder = 1 kg kød</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-yellow-600 text-xl">•</span>
+                    <p>Kort produktionstid (6-7 uger) reducerer ressourceforbrug</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Miljøpåvirkning
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Water Usage -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-blue-400">
+                <div class="text-5xl mb-4">💧</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vandforbrug</h3>
+                <div class="text-4xl font-bold text-blue-600 mb-2">4,325 L</div>
+                <p class="text-sm text-stone-600 mb-4">per kg kylling</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    3,5x lavere end oksekød. Kyllinger kræver mindre vand til både foder og direkte forbrug.
+                </p>
+            </div>
+
+            <!-- Land Use -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-green-400">
+                <div class="text-5xl mb-4">🌾</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Arealforbrug</h3>
+                <div class="text-4xl font-bold text-green-600 mb-2">7.2 m²</div>
+                <p class="text-sm text-stone-600 mb-4">per kg kylling</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    45x lavere end oksekød. Den mest arealeffektive kødproduktion takket være hurtig vækst.
+                </p>
+            </div>
+
+            <!-- Animal Welfare -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-amber-400">
+                <div class="text-5xl mb-4">🐔</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Dyrevelfærd</h3>
+                <div class="text-4xl font-bold text-amber-600 mb-2">Vigtigt!</div>
+                <p class="text-sm text-stone-600 mb-4">fokusområde</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    Vælg frilandskylling eller økologisk for bedre leveforhold. Konventionel produktion har høj bestandstæthed.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Chicken -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Fordele ved kylling
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Low Climate Impact -->
+            <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg border-2 border-green-200">
+                <div class="text-4xl mb-3">🌍</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Lavt Klimaaftryk</h3>
+                <p class="text-sm text-stone-700 font-sans">
+                    Med 6,9 kg CO₂e/kg er kylling det mest klimavenlige kød – ideelt til klimabevidste køkkener.
+                </p>
+            </div>
+
+            <!-- High Protein -->
+            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border-2 border-blue-200">
+                <div class="text-4xl mb-3">💪</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Høj Proteinværdi</h3>
+                <p class="text-sm text-stone-700 font-sans">
+                    ~27g protein pr. 100g kyllingebryst. Lavt fedtindhold gør det populært i sundhedsbevidste diæter.
+                </p>
+            </div>
+
+            <!-- Versatile -->
+            <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-lg border-2 border-yellow-200">
+                <div class="text-4xl mb-3">🍽️</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Alsidig</h3>
+                <p class="text-sm text-stone-700 font-sans">
+                    Passer til utallige retter: grillet, kogt, stegt, marineret. Neutral smag optager krydderier godt.
+                </p>
+            </div>
+
+            <!-- Affordable -->
+            <div class="bg-gradient-to-br from-orange-50 to-white p-6 rounded-lg border-2 border-orange-200">
+                <div class="text-4xl mb-3">💰</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Økonomisk</h3>
+                <p class="text-sm text-stone-700 font-sans">
+                    Generelt billigere end andre kødtyper. God kilde til protein uden at belaste budgettet.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide mb-6 text-yellow-400">
+                Køb ansvarligt
+            </h2>
+            <p class="font-sans text-lg text-stone-300">
+                Sådan vælger du kylling med respekt for dyr, miljø og klima:
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🏅 Vælg økologisk eller frilandskylling</h3>
+                <p class="text-stone-300">
+                    Bedre dyrevelfærd med adgang til udendørs arealer, lavere bestandstæthed (max 10 vs 20-25 fugle/m²),
+                    og ingen brug af antibiotika til vækstfremme.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🐓 Undgå hurtigvoksende racer</h3>
+                <p class="text-stone-300">
+                    Hurtigvoksende racer (Ready-to-Cook på 33 dage) har øget risiko for bensygdomme og hjerteproblemer.
+                    Vælg langsomtvoksende racer hvor muligt.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🇩🇰 Køb dansk kylling</h3>
+                <p class="text-stone-300">
+                    Dansk fjerkræproduktion har strengere dyrevelfærdskrav end mange andre lande. Kortere transport reducerer stress.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🔄 Brug hele fuglen</h3>
+                <p class="text-stone-300">
+                    Køb hele kyllinger i stedet for kun brystfilet. Brug skrog til bouillon, lår til gryder, vinger til snacks.
+                    Det reducerer madspild og er billigere.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">❄️ Frossen er også fint</h3>
+                <p class="text-stone-300">
+                    Frosset kylling har samme næringsværdi og klimaaftryk som frisk. Det giver længere holdbarhed og reducerer madspild.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-yellow-400">
+                <h3 class="font-sans text-lg font-bold mb-2">⚖️ Vær opmærksom på portionsstørrelse</h3>
+                <p class="text-stone-300">
+                    120-150g kylling pr. person er ofte rigeligt. Fyld op med grøntsager for en balanceret ret.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Can You Go Lower? -->
+<section class="py-24 bg-gradient-to-br from-green-50 to-emerald-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Kan du gå lavere?
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Selvom kylling er det bedste kødvalg, er der stadig alternativer med endnu lavere klimaaftryk:
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Legumes -->
+            <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-green-500">
+                <div class="text-5xl mb-4">🫘</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Bælgfrugter</h3>
+                <div class="text-4xl font-bold text-green-600 mb-2">-71%</div>
+                <p class="text-sm text-stone-600 mb-4">CO₂-reduktion vs kylling</p>
+                <p class="text-stone-700 font-sans">
+                    Linser, kikærter, bønner giver 2 kg CO₂e/kg – næsten identisk protein, laver pris, og højere fiberindhold.
+                </p>
+            </div>
+
+            <!-- Tofu/Tempeh -->
+            <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-orange-400">
+                <div class="text-5xl mb-4">🥢</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Tofu/Tempeh</h3>
+                <div class="text-4xl font-bold text-orange-600 mb-2">-57%</div>
+                <p class="text-sm text-stone-600 mb-4">CO₂-reduktion vs kylling</p>
+                <p class="text-stone-700 font-sans">
+                    Sojabaseret protein med 3 kg CO₂e/kg. Kan marineres som kylling og bruges i de samme retter.
+                </p>
+            </div>
+
+            <!-- Eggs -->
+            <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-yellow-400">
+                <div class="text-5xl mb-4">🥚</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Æg</h3>
+                <div class="text-4xl font-bold text-yellow-600 mb-2">-30%</div>
+                <p class="text-sm text-stone-600 mb-4">CO₂-reduktion vs kylling</p>
+                <p class="text-stone-700 font-sans">
+                    4,8 kg CO₂e/kg. Komplet protein, alsidig anvendelse, og ofte fra mere etisk produktion.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-yellow-50 to-amber-50">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Beregn Din Besparelse
+            </h2>
+            <p class="font-sans text-lg text-stone-600">
+                Sammenlign kylling med alternativer og se din klimabesparelse
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <div class="mb-6">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvor meget kylling spiser du om ugen?
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="chickenAmount" min="0" max="2000" value="600" step="50"
+                           class="flex-1 h-2 bg-yellow-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="calculateChickenSavings()">
+                    <span id="chickenAmountDisplay" class="font-bold text-2xl text-yellow-600 min-w-[100px]">600g</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvad sammenligner du med?
+                </label>
+                <select id="chickenComparison"
+                        class="w-full p-3 border-2 border-stone-200 rounded-lg font-sans text-stone-700 focus:border-yellow-400 focus:outline-none"
+                        onchange="calculateChickenSavings()">
+                    <option value="compare-higher">Sammenlign med højere CO₂ (hvis jeg erstattede...)</option>
+                    <option value="12">...svinekød med kylling</option>
+                    <option value="24">...lammekød med kylling</option>
+                    <option value="60">...oksekød med kylling</option>
+                    <option value="compare-lower">Eller gå endnu lavere:</option>
+                    <option value="2">...bælgfrugter i stedet for kylling</option>
+                    <option value="3">...tofu i stedet for kylling</option>
+                    <option value="4.8">...æg i stedet for kylling</option>
+                </select>
+            </div>
+
+            <div id="chickenSavingsResult" class="hidden">
+                <div class="bg-gradient-to-r from-yellow-100 to-amber-100 p-6 rounded-lg mb-4">
+                    <div class="text-center">
+                        <div class="text-sm uppercase tracking-wider text-stone-600 mb-2">
+                            <span id="chickenSavingsLabel">Ugentlig besparelse</span>
+                        </div>
+                        <div class="text-5xl font-bold mb-2">
+                            <span id="chickenSavingsValue" class="text-yellow-600">0</span>
+                            <span class="text-2xl text-stone-600">kg CO₂e</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Årlig forskel</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="chickenAnnualSavings">0</span> tons CO₂e
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Svarer til</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="chickenFlightEquiv">0</span> flyvninger KBH-London
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-stone-500 mt-4 text-center">
+                    * Beregninger baseret på CONCITO klimadatabase 2024
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+    <div class="mx-auto max-w-5xl px-6">
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">Datakilder</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-600 font-sans">
+            <div class="bg-white p-4 rounded">
+                <strong>CONCITO Klimadatabase v2.0 (2024)</strong><br>
+                CO₂-ækvivalenter for kylling og alternativer
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Poore & Nemecek (2018), Science</strong><br>
+                Global analyse af fjerkræproduktionens miljøpåvirkning
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Fødevarestyrelsen</strong><br>
+                Dyrevelfærdskrav for fjerkræproduktion i Danmark
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Water Footprint Network</strong><br>
+                Vandforbrugsdata for kyllingeproduktion
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// Chicken comparison chart
+const chickenCtx = document.getElementById('chickenComparisonChart').getContext('2d');
+new Chart(chickenCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Bælgfrugter', 'Tofu', 'Æg', 'Hvid fisk', 'Kylling', 'Ost', 'Svinekød', 'Lammekød', 'Oksekød'],
+        datasets: [{
+            label: 'kg CO₂e per kg fødevare',
+            data: [2, 3, 4.8, 6, 6.9, 8, 12, 24, 60],
+            backgroundColor: [
+                'rgba(34, 197, 94, 0.8)',   // green - legumes
+                'rgba(251, 146, 60, 0.8)',  // orange - tofu
+                'rgba(250, 204, 21, 0.8)',  // yellow - eggs
+                'rgba(59, 130, 246, 0.8)',  // blue - fish
+                'rgba(234, 179, 8, 0.9)',   // amber - CHICKEN (highlighted)
+                'rgba(245, 158, 11, 0.8)',  // orange - cheese
+                'rgba(236, 72, 153, 0.8)',  // pink - pork
+                'rgba(239, 68, 68, 0.8)',   // red - lamb
+                'rgba(127, 29, 29, 0.8)'    // dark red - beef
+            ],
+            borderColor: [
+                'rgb(34, 197, 94)',
+                'rgb(251, 146, 60)',
+                'rgb(250, 204, 21)',
+                'rgb(59, 130, 246)',
+                'rgb(234, 179, 8)',
+                'rgb(245, 158, 11)',
+                'rgb(236, 72, 153)',
+                'rgb(239, 68, 68)',
+                'rgb(127, 29, 29)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + ' kg CO₂e/kg';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'kg CO₂e per kg fødevare',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        }
+    }
+});
+
+// Calculator function
+function calculateChickenSavings() {
+    const chickenAmount = parseFloat(document.getElementById('chickenAmount').value) || 0;
+    const comparisonValue = document.getElementById('chickenComparison').value;
+
+    // Update display
+    document.getElementById('chickenAmountDisplay').textContent = chickenAmount + 'g';
+
+    // Skip if descriptive option selected
+    if (comparisonValue === 'compare-higher' || comparisonValue === 'compare-lower') {
+        document.getElementById('chickenSavingsResult').classList.add('hidden');
+        return;
+    }
+
+    const comparisonCO2 = parseFloat(comparisonValue);
+    const chickenCO2 = 6.9; // kg CO2e/kg
+
+    const chickenEmissions = (chickenAmount / 1000) * chickenCO2;
+    const comparisonEmissions = (chickenAmount / 1000) * comparisonCO2;
+    const weeklySavings = comparisonEmissions - chickenEmissions;
+    const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
+    const flights = Math.round(Math.abs(annualSavings) / 0.25); // ~250kg per flight
+
+    // Determine if savings or increase
+    const savingsElement = document.getElementById('chickenSavingsValue');
+    const labelElement = document.getElementById('chickenSavingsLabel');
+
+    if (weeklySavings > 0) {
+        // Positive savings (comparing with higher CO2 options)
+        labelElement.textContent = 'Ugentlig besparelse ved at vælge kylling';
+        savingsElement.className = 'text-green-600';
+    } else {
+        // Going lower (comparing with lower CO2 options)
+        labelElement.textContent = 'Yderligere besparelse ved at vælge alternativ';
+        savingsElement.className = 'text-green-600';
+    }
+
+    document.getElementById('chickenSavingsValue').textContent = Math.abs(weeklySavings).toFixed(1);
+    document.getElementById('chickenAnnualSavings').textContent = Math.abs(annualSavings).toFixed(2);
+    document.getElementById('chickenFlightEquiv').textContent = flights;
+
+    document.getElementById('chickenSavingsResult').classList.remove('hidden');
+}
+
+// Initialize calculator on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set to pork comparison by default
+    document.getElementById('chickenComparison').value = '12';
+    calculateChickenSavings();
+});
+</script>
+{% endblock %}

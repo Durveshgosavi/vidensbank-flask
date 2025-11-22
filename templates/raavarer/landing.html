@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% block title %}Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
+      alt="Råvarer" class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
+  </div>
+
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <span class="mb-4 font-sans text-sm font-bold tracking-widest uppercase text-cb-yellow-light">
+      Råvare Leksikon
+    </span>
+    <h1 class="mb-6 max-w-5xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-9xl uppercase text-white">
+      Råvarer &<br>Bæredygtighed
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+      En komplet encyklopædi over råvarer med fokus på klimaaftryk, kvalitet, sæson, pris og bæredygtige
+      indkøbsanbefalinger baseret på nyeste data fra CONCITO og Fødevarestyrelsen.
+    </p>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-yellow-light">
+    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</div>
+
+<!-- Introduction -->
+<section class="bg-cb-taupe-light py-24 md:py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-green-dark md:text-5xl uppercase">
+      Fra Viden til Handling
+    </h2>
+    <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
+      Fødevarer står for over 20% af en gennemsnitsdanskers klimaaftryk. Med bedre kendskab til hver råvares
+      miljøpåvirkning kan professionelle køkkener træffe informerede beslutninger der gør en reel forskel.
+    </p>
+  </div>
+</section>
+
+<!-- Category Overview -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-16 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+      Råvarekategorier
+    </h2>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Kød & Fjerkræ -->
+      <div class="group bg-gradient-to-br from-cb-red-light to-white p-8 rounded-lg border-2 border-cb-red-medium hover:border-cb-red-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cb-red-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
+            🥩
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Kød & Fjerkræ</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Oksekød, svinekød, lammekød, kylling og andet fjerkræ med klimadata og bæredygtige alternativer.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_oksekoed') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Oksekød</span>
+            <span class="float-right text-cb-red-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_svinekoed') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Svinekød</span>
+            <span class="float-right text-cb-red-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_kylling') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Kylling & Fjerkræ</span>
+            <span class="float-right text-cb-red-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_lam') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Lammekød</span>
+            <span class="float-right text-cb-red-dark">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Fisk & Skaldyr -->
+      <div class="group bg-gradient-to-br from-cb-blue-light to-white p-8 rounded-lg border-2 border-cb-blue-medium hover:border-cb-blue-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cb-blue-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
+            🐟
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Fisk & Skaldyr</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Opdræt, vildtfang, certificeringer og bæredygtige valg for marine ressourcer.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_laks') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Laks & Ørred</span>
+            <span class="float-right text-cb-blue-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_hvid_fisk') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Hvid Fisk</span>
+            <span class="float-right text-cb-blue-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_skaldyr') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Skaldyr & Muslinger</span>
+            <span class="float-right text-cb-blue-dark">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mejeri & Æg -->
+      <div class="group bg-gradient-to-br from-cb-yellow-light to-white p-8 rounded-lg border-2 border-cb-yellow-medium hover:border-cb-yellow-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cb-yellow-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
+            🥛
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Mejeri & Æg</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Mælk, ost, smør, yoghurt og æg med fokus på økologi og dyrevelfærd.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_maelk') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Mælk & Yoghurt</span>
+            <span class="float-right text-cb-yellow-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_ost') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Ost</span>
+            <span class="float-right text-cb-yellow-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_aeg') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Æg</span>
+            <span class="float-right text-cb-yellow-dark">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Korn & Stivelse -->
+      <div class="group bg-gradient-to-br from-cb-taupe-light to-white p-8 rounded-lg border-2 border-cb-taupe-medium hover:border-cb-taupe-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-stone-700 rounded-full flex items-center justify-center text-white font-bold text-xl">
+            🌾
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Korn & Stivelse</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Brød, pasta, ris, kartofler og alternative kornprodukter.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_broed') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Brød & Mel</span>
+            <span class="float-right text-stone-700">→</span>
+          </a>
+          <a href="{{ url_for('raavare_ris') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Ris</span>
+            <span class="float-right text-stone-700">→</span>
+          </a>
+          <a href="{{ url_for('raavare_kartofler') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Kartofler</span>
+            <span class="float-right text-stone-700">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Grøntsager -->
+      <div class="group bg-gradient-to-br from-cb-green-light to-white p-8 rounded-lg border-2 border-cb-green-medium hover:border-cb-green-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cb-green-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
+            🥬
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Grøntsager</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Rodfrugter, bladgrønt, bælgfrugter og sæsonvariationer.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_baelgfrugter') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Bælgfrugter</span>
+            <span class="float-right text-cb-green-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_rodfrugter') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Rodfrugter</span>
+            <span class="float-right text-cb-green-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_bladgroent') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Bladgrønt</span>
+            <span class="float-right text-cb-green-dark">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Specialvarer -->
+      <div class="group bg-gradient-to-br from-cb-orange-light to-white p-8 rounded-lg border-2 border-cb-orange-medium hover:border-cb-orange-dark transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cb-orange-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
+            ☕
+          </div>
+          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Specialvarer</h3>
+        </div>
+        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+          Kaffe, te, kakao, olier og andre specialråvarer.
+        </p>
+        <div class="space-y-2">
+          <a href="{{ url_for('raavare_kaffe') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Kaffe & Te</span>
+            <span class="float-right text-cb-orange-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_kakao') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Kakao & Chokolade</span>
+            <span class="float-right text-cb-orange-dark">→</span>
+          </a>
+          <a href="{{ url_for('raavare_olier') }}"
+             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
+            <span class="font-sans text-sm font-bold">Olier & Fedtstoffer</span>
+            <span class="float-right text-cb-orange-dark">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Climate Impact Overview -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-16 text-center font-display text-4xl font-bold uppercase tracking-brand-wide">
+      Klimaaftryk Oversigt
+    </h2>
+
+    <div class="max-w-4xl mx-auto">
+      <canvas id="climateComparisonChart"></canvas>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-stone-400 font-sans text-sm">
+        Data fra CONCITO's Den Store Klimadatabase v2.0 og Poore & Nemecek (2018)
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// Climate comparison chart
+const ctx = document.getElementById('climateComparisonChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Kylling', 'Fisk', 'Ost', 'Æg', 'Ris', 'Bælgfrugter', 'Kartofler'],
+    datasets: [{
+      label: 'kg CO₂e per kg fødevare',
+      data: [60, 24, 12, 6.9, 6, 8, 4.8, 4, 2, 0.2],
+      backgroundColor: [
+        '#dc2626', // Red for beef
+        '#f97316', // Orange for lamb
+        '#fb923c', // Light orange for pork
+        '#fbbf24', // Yellow for chicken
+        '#3b82f6', // Blue for fish
+        '#fde047', // Light yellow for cheese
+        '#fef3c7', // Very light yellow for eggs
+        '#d1d5db', // Gray for rice
+        '#16a34a', // Green for legumes
+        '#4ade80'  // Light green for potatoes
+      ],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleFont: { family: 'Big Shoulders Inline Text', size: 16 },
+        bodyFont: { family: 'Work Sans', size: 14 },
+        callbacks: {
+          label: function(context) {
+            return context.parsed.y + ' kg CO₂e/kg';
+          }
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)'
+        },
+        ticks: {
+          color: '#e7e5e4',
+          font: {
+            family: 'Work Sans',
+            size: 12
+          }
+        },
+        title: {
+          display: true,
+          text: 'kg CO₂e per kg',
+          color: '#e7e5e4',
+          font: {
+            family: 'Work Sans',
+            size: 14,
+            weight: 'bold'
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        },
+        ticks: {
+          color: '#e7e5e4',
+          font: {
+            family: 'Work Sans',
+            size: 11
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+
+{% endblock %}

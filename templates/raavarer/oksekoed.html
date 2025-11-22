@@ -1,0 +1,430 @@
+{% extends "base.html" %}
+
+{% block title %}Oksekød - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/Cheval21226.jpeg') }}"
+      alt="Oksekød" class="h-full w-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+  </div>
+
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <a href="{{ url_for('raavarer_landing') }}" class="mb-4 inline-flex items-center text-cb-yellow-light hover:text-cb-yellow-medium transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span class="font-sans text-sm font-bold uppercase tracking-widest">Tilbage til Råvarer</span>
+    </a>
+
+    <h1 class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-white">
+      Oksekød
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+      Omfattende guide til oksekød: klimaaftryk, miljøpåvirkninger, kvalitet, sæson og bæredygtige indkøbsanbefalinger.
+    </p>
+
+    <!-- Quick Stats -->
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+      <div class="bg-white/10 backdrop-blur-sm p-4 rounded">
+        <div class="text-3xl font-bold text-cb-red-light">60</div>
+        <div class="text-xs uppercase tracking-wider text-stone-300">kg CO₂e/kg</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm p-4 rounded">
+        <div class="text-3xl font-bold text-cb-yellow-light">13x</div>
+        <div class="text-xs uppercase tracking-wider text-stone-300">vs. Grisekød</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm p-4 rounded">
+        <div class="text-3xl font-bold text-cb-orange-light">100x</div>
+        <div class="text-xs uppercase tracking-wider text-stone-300">vs. Grøntsager</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm p-4 rounded">
+        <div class="text-3xl font-bold text-cb-red-light">Højest</div>
+        <div class="text-xs uppercase tracking-wider text-stone-300">Klimaaftryk</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Climate Impact Section -->
+<section class="bg-cb-red-light/20 py-16 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-red-dark">
+          Klimaaftryk
+        </span>
+        <h2 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+          Ekstremt Høj<br>Klimabelastning
+        </h2>
+        <p class="mb-6 font-sans text-lg text-stone-700 leading-relaxed">
+          Oksekød har det højeste klimaaftryk blandt alle almindelige fødevarer med gennemsnitligt <strong>60 kg CO₂e per kg</strong> ifølge CONCITO's klimadatabase.
+        </p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-cb-red-dark mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-sans text-stone-700"><strong>Metan-udledning:</strong> Køernes fordøjelse producerer store mængder metan (CH₄)</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-cb-red-dark mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-sans text-stone-700"><strong>Arealfor brug:</strong> Kræver enorme arealer til græsning og foderproduktion</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-cb-red-dark mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-sans text-stone-700"><strong>Soja-import:</strong> Dansk kvæg fodres med soja fra et areal på størrelse med Sjælland, Falster og Bornholm</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-cb-red-dark mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-sans text-stone-700"><strong>Regnskovsrydning:</strong> Sojaimport forbundet med rydning af regnskov i Sydamerika</span>
+          </li>
+        </ul>
+
+        <div class="bg-stone-900 p-6 rounded-lg text-white">
+          <div class="flex items-center mb-3">
+            <svg class="w-6 h-6 text-cb-yellow-light mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-sans text-sm font-bold uppercase tracking-wider">Anbefaling</span>
+          </div>
+          <p class="font-sans text-sm leading-relaxed">
+            <strong>Minimér oksekød drastisk</strong> eller udelad det helt fra kantinens menu. Hvis det serveres, kun i meget små portioner med masser af grønt tilbehør.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-xl shadow-lg">
+        <h3 class="font-display text-2xl font-bold text-stone-900 mb-6 uppercase">Klimasammenligning</h3>
+        <canvas id="beefComparisonChart"></canvas>
+        <p class="mt-6 text-xs text-stone-500 text-center font-sans">
+          Oksekød sammenlignet med andre proteinkilder (kg CO₂e per kg)
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="bg-white py-16 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-12 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+      Miljøpåvirkninger
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Water Usage -->
+      <div class="bg-cb-blue-light/30 p-8 rounded-lg border-l-4 border-cb-blue-dark">
+        <div class="w-12 h-12 bg-cb-blue-dark rounded-full flex items-center justify-center text-white mb-4">
+          💧
+        </div>
+        <h3 class="font-display text-xl font-bold text-stone-900 mb-3 uppercase">Vandforbrug</h3>
+        <div class="text-4xl font-bold text-cb-blue-dark mb-2">15.400 L</div>
+        <p class="text-sm text-stone-600 mb-4">vand per kg oksekød</p>
+        <p class="font-sans text-sm text-stone-700 leading-relaxed">
+          Omfatter vand til foder, drikke og forarbejdning. Markant højere end andre proteinkilder.
+        </p>
+      </div>
+
+      <!-- Land Use -->
+      <div class="bg-cb-green-light/30 p-8 rounded-lg border-l-4 border-cb-green-dark">
+        <div class="w-12 h-12 bg-cb-green-dark rounded-full flex items-center justify-center text-white mb-4">
+          🌍
+        </div>
+        <h3 class="font-display text-xl font-bold text-stone-900 mb-3 uppercase">Landbrug</h3>
+        <div class="text-4xl font-bold text-cb-green-dark mb-2">326 m²</div>
+        <p class="text-sm text-stone-600 mb-4">jord per kg oksekød årligt</p>
+        <p class="font-sans text-sm text-stone-700 leading-relaxed">
+          Både til græsning og foderproduktion. Stor driver for afskovning globalt.
+        </p>
+      </div>
+
+      <!-- Biodiversity -->
+      <div class="bg-cb-yellow-light/30 p-8 rounded-lg border-l-4 border-cb-yellow-dark">
+        <div class="w-12 h-12 bg-cb-yellow-dark rounded-full flex items-center justify-center text-white mb-4">
+          🦋
+        </div>
+        <h3 class="font-display text-xl font-bold text-stone-900 mb-3 uppercase">Biodiversitet</h3>
+        <div class="text-4xl font-bold text-cb-yellow-dark mb-2">Høj</div>
+        <p class="text-sm text-stone-600 mb-4">påvirkning på økosystemer</p>
+        <p class="font-sans text-sm text-stone-700 leading-relaxed">
+          Kvæghold bidrager til tab af biodiversitet gennem habitatdestruktion og forurening.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alternatives & Recommendations -->
+<section class="bg-cb-taupe-light py-16 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div>
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">
+          Alternativer
+        </span>
+        <h2 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+          Klimavenlige<br>Erstatninger
+        </h2>
+
+        <div class="space-y-4">
+          <div class="bg-white p-6 rounded-lg border-l-4 border-cb-green-dark">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-sans text-lg font-bold text-stone-900">Bælgfrugter</h4>
+              <span class="text-2xl font-bold text-cb-green-dark">-97%</span>
+            </div>
+            <p class="text-sm text-stone-600 mb-3">
+              Bønner, linser, ærter: ~2 kg CO₂e/kg
+            </p>
+            <p class="font-sans text-xs text-stone-700 leading-relaxed">
+              Kan erstatte oksekød i gryderetter, farsretter og bøffer. Lige så proteinrigt og mættende.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border-l-4 border-cb-blue-medium">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-sans text-lg font-bold text-stone-900">Kylling</h4>
+              <span class="text-2xl font-bold text-cb-blue-dark">-88%</span>
+            </div>
+            <p class="text-sm text-stone-600 mb-3">
+              Fjerkræ: ~6.9 kg CO₂e/kg
+            </p>
+            <p class="font-sans text-xs text-stone-700 leading-relaxed">
+              Markant lavere klimaaftryk. Velegnet til mange retter hvor oksekød traditionelt bruges.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border-l-4 border-cb-blue-dark">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-sans text-lg font-bold text-stone-900">Fisk</h4>
+              <span class="text-2xl font-bold text-cb-blue-dark">-90%</span>
+            </div>
+            <p class="text-sm text-stone-600 mb-3">
+              Bæredygtig fisk: ~6 kg CO₂e/kg
+            </p>
+            <p class="font-sans text-xs text-stone-700 leading-relaxed">
+              Vælg MSC-certificeret fisk. Sild, makrel og hvid fisk er gode valg.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg border-l-4 border-stone-700">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-sans text-lg font-bold text-stone-900">Svampe</h4>
+              <span class="text-2xl font-bold text-stone-700">-95%</span>
+            </div>
+            <p class="text-sm text-stone-600 mb-3">
+              Portobello, shiitake: ~2-3 kg CO₂e/kg
+            </p>
+            <p class="font-sans text-xs text-stone-700 leading-relaxed">
+              Umamismag gør svampe til perfekt køderstatter i mange retter.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">
+          Indkøbsvejledning
+        </span>
+        <h2 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+          Hvis Det Skal<br>Være Oksekød
+        </h2>
+
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-6">
+          <h4 class="font-sans text-lg font-bold text-stone-900 mb-4 flex items-center">
+            <span class="w-8 h-8 bg-cb-green-dark rounded-full flex items-center justify-center text-white text-sm mr-3">✓</span>
+            Vælg Økologisk
+          </h4>
+          <ul class="space-y-2 text-sm text-stone-700 font-sans pl-11">
+            <li>• Køer har været på græs om sommeren</li>
+            <li>• Økologisk foder uden pesticider</li>
+            <li>• Bedre dyrevelfærd</li>
+            <li>• Reduceret miljøbelastning (dog stadig højt klimaaftryk)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-6">
+          <h4 class="font-sans text-lg font-bold text-stone-900 mb-4 flex items-center">
+            <span class="w-8 h-8 bg-cb-blue-dark rounded-full flex items-center justify-center text-white text-sm mr-3">📏</span>
+            Reducer Portionsstørrelsen
+          </h4>
+          <p class="text-sm text-stone-700 font-sans leading-relaxed">
+            Server mindre udskæringer (max 80-100g) med store mængder grøntsager og kartofler. Lad kødet være tilbehøret, ikke hovedretten.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-lg mb-6">
+          <h4 class="font-sans text-lg font-bold text-stone-900 mb-4 flex items-center">
+            <span class="w-8 h-8 bg-cb-yellow-dark rounded-full flex items-center justify-center text-white text-sm mr-3">🔄</span>
+            Frekvens
+          </h4>
+          <p class="text-sm text-stone-700 font-sans leading-relaxed">
+            <strong>Maksimalt 1 gang om ugen</strong> eller mindre. Mange bæredygtige kantiner har helt udeladt oksekød fra menuen.
+          </p>
+        </div>
+
+        <div class="bg-cb-red-light/30 border-2 border-cb-red-dark p-6 rounded-lg">
+          <div class="flex items-start">
+            <svg class="w-6 h-6 text-cb-red-dark mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <h5 class="font-sans text-sm font-bold text-stone-900 mb-2">Vigtig Note</h5>
+              <p class="text-xs text-stone-700 font-sans leading-relaxed">
+                Økologisk oksekød har næsten samme klimaaftryk som konventionelt. Den vigtigste indsats er at <strong>reducere mængden</strong> af oksekød drastisk, uanset produktionsform.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="bg-stone-900 py-16 md:py-24 text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2 class="mb-8 text-center font-display text-4xl font-bold uppercase tracking-brand-wide">
+      Beregn Din Besparelse
+    </h2>
+    <p class="text-center text-stone-400 font-sans mb-12">
+      Se hvor meget CO₂ du kan spare ved at erstatte oksekød
+    </p>
+
+    <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label class="block text-sm font-bold uppercase tracking-wider text-stone-300 mb-2">
+            Nuværende oksekød (kg/uge)
+          </label>
+          <input type="number" id="beefAmount" value="10" min="0" max="1000"
+                 class="w-full px-4 py-3 bg-white/20 border-2 border-white/30 rounded text-white text-lg focus:border-cb-yellow-light focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-bold uppercase tracking-wider text-stone-300 mb-2">
+            Erstat med
+          </label>
+          <select id="replacement"
+                  class="w-full px-4 py-3 bg-white/20 border-2 border-white/30 rounded text-white text-lg focus:border-cb-yellow-light focus:outline-none">
+            <option value="2">Bælgfrugter (2 kg CO₂e/kg)</option>
+            <option value="6.9">Kylling (6.9 kg CO₂e/kg)</option>
+            <option value="6">Fisk (6 kg CO₂e/kg)</option>
+            <option value="12">Svinekød (12 kg CO₂e/kg)</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="calculateSavings()"
+              class="w-full bg-cb-yellow-dark hover:bg-cb-yellow-medium text-stone-900 font-bold py-4 rounded uppercase tracking-wider transition-colors">
+        Beregn Besparelse
+      </button>
+
+      <div id="savingsResult" class="mt-8 hidden">
+        <div class="bg-cb-green-dark/30 border-2 border-cb-green-light rounded-lg p-6">
+          <div class="text-center mb-4">
+            <div class="text-5xl font-bold text-cb-green-light" id="savingsValue">0</div>
+            <div class="text-sm uppercase tracking-wider text-stone-300 mt-2">kg CO₂e sparet per uge</div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/20">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white" id="annualSavings">0</div>
+              <div class="text-xs uppercase tracking-wider text-stone-400">tons CO₂e/år</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white" id="flightEquiv">0</div>
+              <div class="text-xs uppercase tracking-wider text-stone-400">flyrejser til London</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="bg-cb-taupe-light py-12">
+  <div class="mx-auto max-w-7xl px-6">
+    <h3 class="text-center font-display text-2xl font-bold text-stone-900 mb-6 uppercase">Datakilder</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-sm text-stone-600 font-sans">
+      <span>• CONCITO's Den Store Klimadatabase v2.0</span>
+      <span>• Poore & Nemecek (2018), Science</span>
+      <span>• Danmarks Naturfredningsforening</span>
+      <span>• Fødevarestyrelsen</span>
+      <span>• Our World in Data (2024)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// Beef comparison chart
+const ctx = document.getElementById('beefComparisonChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Kylling', 'Fisk', 'Bælgfrugter'],
+    datasets: [{
+      label: 'kg CO₂e/kg',
+      data: [60, 24, 12, 6.9, 6, 2],
+      backgroundColor: ['#dc2626', '#f97316', '#fb923c', '#fbbf24', '#3b82f6', '#16a34a']
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        titleFont: { family: 'Big Shoulders Inline Text', size: 14 },
+        bodyFont: { family: 'Work Sans', size: 13 }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+        title: {
+          display: true,
+          text: 'kg CO₂e per kg',
+          font: { family: 'Work Sans', size: 12, weight: 'bold' }
+        }
+      },
+      y: {
+        grid: { display: false }
+      }
+    }
+  }
+});
+
+// Calculator
+function calculateSavings() {
+  const beefAmount = parseFloat(document.getElementById('beefAmount').value) || 0;
+  const replacementCO2 = parseFloat(document.getElementById('replacement').value);
+
+  const beefCO2 = 60; // kg CO2e/kg
+  const currentEmissions = beefAmount * beefCO2;
+  const newEmissions = beefAmount * replacementCO2;
+  const weeklySavings = currentEmissions - newEmissions;
+  const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
+  const flights = Math.round(annualSavings / 0.25); // ~250kg per flight to London
+
+  document.getElementById('savingsValue').textContent = weeklySavings.toFixed(1);
+  document.getElementById('annualSavings').textContent = annualSavings.toFixed(2);
+  document.getElementById('flightEquiv').textContent = flights;
+  document.getElementById('savingsResult').classList.remove('hidden');
+}
+</script>
+
+{% endblock %}

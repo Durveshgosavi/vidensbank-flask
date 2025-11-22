@@ -333,78 +333,119 @@ def topic_madspild_cases():
     return render_template('topics/madspild/cases.html')
 
 # ============================================================================
-# RÅVARER (PRODUCTS) SECTION ROUTES
+# RÅVARER (RAW MATERIALS) SECTION ROUTES
 # ============================================================================
 
 @app.route('/vidensbank/raavarer')
-def products_overview():
-    """Products database overview"""
-    return render_template('products/overview.html')
+def raavarer_landing():
+    """Raw materials landing page"""
+    return render_template('raavarer/landing.html')
 
 # Meat Products
 @app.route('/vidensbank/raavarer/oksekoed')
-def product_oksekoed():
+def raavare_oksekoed():
     """Beef product page"""
-    return render_template('products/oksekoed.html')
+    return render_template('raavarer/oksekoed.html')
 
 @app.route('/vidensbank/raavarer/svinekoed')
-def product_svinekoed():
+def raavare_svinekoed():
     """Pork product page"""
-    return render_template('products/svinekoed.html')
+    return render_template('raavarer/svinekoed.html')
 
-@app.route('/vidensbank/raavarer/fjerkreae')
-def product_fjerkreae():
-    """Poultry product page"""
-    return render_template('products/fjerkreae.html')
+@app.route('/vidensbank/raavarer/kylling')
+def raavare_kylling():
+    """Chicken product page"""
+    return render_template('raavarer/kylling.html')
 
-@app.route('/vidensbank/raavarer/lam')
-def product_lam():
+@app.route('/vidensbank/raavarer/lammekoed')
+def raavare_lammekoed():
     """Lamb product page"""
-    return render_template('products/lam.html')
+    return render_template('raavarer/lammekoed.html')
 
 # Fish and Seafood
-@app.route('/vidensbank/raavarer/fisk-skalddyr')
-def product_fisk():
-    """Fish and seafood overview"""
-    return render_template('products/fisk-skalddyr.html')
+@app.route('/vidensbank/raavarer/laks')
+def raavare_laks():
+    """Salmon product page"""
+    return render_template('raavarer/laks.html')
+
+@app.route('/vidensbank/raavarer/hvid-fisk')
+def raavare_hvid_fisk():
+    """White fish product page"""
+    return render_template('raavarer/hvid-fisk.html')
+
+@app.route('/vidensbank/raavarer/skaldyr')
+def raavare_skaldyr():
+    """Shellfish product page"""
+    return render_template('raavarer/skaldyr.html')
 
 # Dairy and Eggs
-@app.route('/vidensbank/raavarer/mejeriprodukter')
-def product_dairy():
-    """Dairy products page"""
-    return render_template('products/mejeriprodukter.html')
+@app.route('/vidensbank/raavarer/maelk')
+def raavare_maelk():
+    """Milk and yogurt product page"""
+    return render_template('raavarer/maelk.html')
+
+@app.route('/vidensbank/raavarer/ost')
+def raavare_ost():
+    """Cheese product page"""
+    return render_template('raavarer/ost.html')
 
 @app.route('/vidensbank/raavarer/aeg')
-def product_eggs():
+def raavare_aeg():
     """Eggs product page"""
-    return render_template('products/aeg.html')
+    return render_template('raavarer/aeg.html')
 
-# Plant-Based
-@app.route('/vidensbank/raavarer/korn-pasta')
-def product_grains():
-    """Grains and pasta page"""
-    return render_template('products/korn-pasta.html')
+# Grains and Starch
+@app.route('/vidensbank/raavarer/broed')
+def raavare_broed():
+    """Bread and flour product page"""
+    return render_template('raavarer/broed.html')
 
-@app.route('/vidensbank/raavarer/groentstager')
-def product_vegetables():
-    """Vegetables page"""
-    return render_template('products/groentstager.html')
+@app.route('/vidensbank/raavarer/ris')
+def raavare_ris():
+    """Rice product page"""
+    return render_template('raavarer/ris.html')
 
-@app.route('/vidensbank/raavarer/frugt-baer')
-def product_fruits():
-    """Fruits and berries page"""
-    return render_template('products/frugt-baer.html')
+@app.route('/vidensbank/raavarer/kartofler')
+def raavare_kartofler():
+    """Potatoes product page"""
+    return render_template('raavarer/kartofler.html')
 
-# Commodities
-@app.route('/vidensbank/raavarer/kaffe-te-kakao')
-def product_beverages():
-    """Coffee, tea, cocoa page"""
-    return render_template('products/kaffe-te-kakao.html')
+# Vegetables and Legumes
+@app.route('/vidensbank/raavarer/baelgfrugter')
+def raavare_baelgfrugter():
+    """Legumes product page"""
+    return render_template('raavarer/baelgfrugter.html')
 
-@app.route('/vidensbank/raavarer/olier-fedt')
-def product_oils():
-    """Oils and fats page"""
-    return render_template('products/olier-fedt.html')
+@app.route('/vidensbank/raavarer/rodfrugter')
+def raavare_rodfrugter():
+    """Root vegetables product page"""
+    return render_template('raavarer/rodfrugter.html')
+
+@app.route('/vidensbank/raavarer/bladgroent')
+def raavare_bladgroent():
+    """Leafy greens product page"""
+    return render_template('raavarer/bladgroent.html')
+
+# Specialty Items
+@app.route('/vidensbank/raavarer/kaffe')
+def raavare_kaffe():
+    """Coffee product page"""
+    return render_template('raavarer/kaffe.html')
+
+@app.route('/vidensbank/raavarer/te')
+def raavare_te():
+    """Tea product page"""
+    return render_template('raavarer/te.html')
+
+@app.route('/vidensbank/raavarer/kakao')
+def raavare_kakao():
+    """Cocoa and chocolate product page"""
+    return render_template('raavarer/kakao.html')
+
+@app.route('/vidensbank/raavarer/olier')
+def raavare_olier():
+    """Oils and fats product page"""
+    return render_template('raavarer/olier.html')
 
 # ============================================================================
 # ØKOLOGI ROUTES
