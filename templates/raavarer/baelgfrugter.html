@@ -1,0 +1,561 @@
+{% extends "base.html" %}
+
+{% block title %}Bælgfrugter - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<div class="bg-cb-taupe-light py-4">
+    <div class="mx-auto max-w-7xl px-6">
+        <nav class="text-sm">
+            <a href="{{ url_for('raavarer_landing') }}" class="text-cb-orange-dark hover:text-cb-orange-medium">Råvarer</a>
+            <span class="mx-2 text-stone-400">/</span>
+            <span class="text-stone-600">Bælgfrugter</span>
+        </nav>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="relative bg-gradient-to-br from-green-50 to-emerald-50 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="font-display text-6xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                    Bælgfrugter
+                </h1>
+                <p class="font-sans text-xl text-stone-600 mb-8 leading-relaxed">
+                    Bælgfrugter (linser, bønner, kikærter, ærter) er fremtidens protein. Med kun 2 kg CO₂e pr. kg,
+                    højt proteinindhold, lavpris og lang holdbarhed er de det ultimative klimavenlige valg.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-green-200">
+                        <div class="text-3xl font-bold text-green-600">2.0</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">kg CO₂e/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-green-200">
+                        <div class="text-3xl font-bold text-green-600">30x</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vs oksekød</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-green-200">
+                        <div class="text-3xl font-bold text-green-600">4,055L</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vand/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-green-200">
+                        <div class="text-3xl font-bold text-green-600">3.4m²</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">areal/kg</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+                <img src="{{ url_for('static', filename='images/vegetables_closeup.jpg') }}"
+                     alt="Bælgfrugter"
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest uppercase text-green-600 mb-4 block">Klimaaftryk</span>
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Fremtidens Protein
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Bælgfrugter har et ekstremt lavt klimaaftryk sammenlignet med alle kødkilder. De fikserer selv kvælstof
+                fra luften, hvilket reducerer behovet for kunstgødning.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <canvas id="legumesComparisonChart" height="100"></canvas>
+        </div>
+
+        <div class="mt-16 bg-green-50 p-8 rounded-lg max-w-4xl mx-auto">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Klimafakta</h3>
+            <div class="grid md:grid-cols-2 gap-6 font-sans text-stone-700">
+                <div class="flex items-start gap-3">
+                    <span class="text-green-600 text-xl">•</span>
+                    <p>1 kg bælgfrugter = 2 kg CO₂e (CONCITO 2024)</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-green-600 text-xl">•</span>
+                    <p>97% lavere klimaaftryk end oksekød, 83% lavere end svinekød</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-green-600 text-xl">•</span>
+                    <p>Fikserer kvælstof naturligt - reducerer gødningsbehov med 80%</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-green-600 text-xl">•</span>
+                    <p>Forbedrer jordsundheden for efterfølgende afgrøder (sædskifte-fordel)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Types of Legumes -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Typer af Bælgfrugter
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Lentils -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-orange-400">
+                <div class="text-5xl mb-4">🟤</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-3">Linser</h3>
+                <div class="space-y-2 text-sm text-stone-600 font-sans">
+                    <p><strong>Protein:</strong> 25g/100g</p>
+                    <p><strong>Kogetid:</strong> 15-30 min</p>
+                    <p><strong>Brug:</strong> Supper, dal, salater</p>
+                    <p class="text-green-600 font-bold">Hurtig tilberedning!</p>
+                </div>
+            </div>
+
+            <!-- Chickpeas -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-yellow-400">
+                <div class="text-5xl mb-4">🫘</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-3">Kikærter</h3>
+                <div class="space-y-2 text-sm text-stone-600 font-sans">
+                    <p><strong>Protein:</strong> 19g/100g</p>
+                    <p><strong>Kogetid:</strong> 1-2 timer</p>
+                    <p><strong>Brug:</strong> Hummus, falafel, karry</p>
+                    <p class="text-green-600 font-bold">Alsidig i køkkenet</p>
+                </div>
+            </div>
+
+            <!-- Beans -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-red-400">
+                <div class="text-5xl mb-4">🫘</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-3">Bønner</h3>
+                <div class="space-y-2 text-sm text-stone-600 font-sans">
+                    <p><strong>Protein:</strong> 21g/100g</p>
+                    <p><strong>Kogetid:</strong> 1-2 timer</p>
+                    <p><strong>Brug:</strong> Chili, salater, pure</p>
+                    <p class="text-green-600 font-bold">Høj fiberværdi</p>
+                </div>
+            </div>
+
+            <!-- Peas -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-green-400">
+                <div class="text-5xl mb-4">🫛</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-3">Ærter</h3>
+                <div class="space-y-2 text-sm text-stone-600 font-sans">
+                    <p><strong>Protein:</strong> 23g/100g</p>
+                    <p><strong>Kogetid:</strong> 30-45 min</p>
+                    <p><strong>Brug:</strong> Supper, mos, proteinisolat</p>
+                    <p class="text-green-600 font-bold">Basis for ærteprotein</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nutritional Benefits -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Næringsstoffer & Sundhed
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Protein -->
+            <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-2 border-blue-200">
+                <div class="text-5xl mb-4">💪</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Komplet Protein</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    19-25g protein pr. 100g (tørrede). Kombiner forskellige bælgfrugter eller spis med korn for alle essentielle aminosyrer.
+                </p>
+                <div class="text-sm text-green-600 font-bold">= Kød i proteinværdi</div>
+            </div>
+
+            <!-- Fiber -->
+            <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-lg border-2 border-green-200">
+                <div class="text-5xl mb-4">🌾</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Højt Fiberindhold</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    15-16g fiber pr. 100g. Mætter bedre og længere end kød. Gavnligt for tarmsundheden og blodsukkeret.
+                </p>
+                <div class="text-sm text-green-600 font-bold">Kød indeholder 0g fiber</div>
+            </div>
+
+            <!-- Micronutrients -->
+            <div class="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-lg border-2 border-yellow-200">
+                <div class="text-5xl mb-4">⚡</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Rige På Mineraler</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    Høje niveauer af jern, zink, magnesium, folat og B-vitaminer. Kombiner med C-vitamin for bedre jernoptagelse.
+                </p>
+                <div class="text-sm text-green-600 font-bold">Lavt i mættet fedt</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Environmental Benefits -->
+<section class="py-24 bg-emerald-900 text-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide mb-6 text-green-400">
+                Miljøfordele
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-emerald-800 p-8 rounded-lg">
+                <h3 class="font-display text-2xl font-bold mb-4 text-green-300">🌱 Kvælstoffiksering</h3>
+                <p class="text-stone-200 font-sans leading-relaxed">
+                    Bælgfrugter samarbejder med bakterier i rødderne, der omdanner atmosfærisk nitrogen til plantetilgængeligt kvælstof.
+                    Dette reducerer behovet for kunstgødning med 80%, hvilket sænker både emissioner og omkostninger.
+                </p>
+            </div>
+
+            <div class="bg-emerald-800 p-8 rounded-lg">
+                <h3 class="font-display text-2xl font-bold mb-4 text-green-300">♻️ Jordforbedring</h3>
+                <p class="text-stone-200 font-sans leading-relaxed">
+                    Bælgfrugter i sædskifte forbedrer jordens struktur og frugtbarhed. Efterfølgende afgrøder (fx hvede) får 15-20% højere udbytte.
+                    Dette princip er kendt fra økologisk landbrug og regenerativt jordbrug.
+                </p>
+            </div>
+
+            <div class="bg-emerald-800 p-8 rounded-lg">
+                <h3 class="font-display text-2xl font-bold mb-4 text-green-300">💧 Lavt Vandforbrug</h3>
+                <p class="text-stone-200 font-sans leading-relaxed">
+                    4,055 liter vand pr. kg – betydeligt mindre end animalske proteiner. Linser bruger kun 1/4 af vandet sammenlignet med oksekød,
+                    og de kan dyrkes i tørrere klimaer end mange andre afgrøder.
+                </p>
+            </div>
+
+            <div class="bg-emerald-800 p-8 rounded-lg">
+                <h3 class="font-display text-2xl font-bold mb-4 text-green-300">🐝 Biodiversitet</h3>
+                <p class="text-stone-200 font-sans leading-relaxed">
+                    Blomstrende bælgplanteafgrøder (fx ærter, vikker) tiltrækker bestøvere. Dyrkningsrotation med bælgfrugter øger insektdiversitet
+                    med op til 34% sammenlignet med monokultur.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Economic Benefits -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Økonomisk Fornuft
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="text-center p-6 bg-green-50 rounded-lg">
+                <div class="text-6xl font-bold text-green-600 mb-2">70%</div>
+                <div class="text-sm uppercase tracking-wider text-stone-600 mb-3">Billigere</div>
+                <p class="text-stone-700 font-sans text-sm">
+                    End kød pr. gram protein. 1 kg tørrede linser ≈ 25 kr vs. 1 kg oksekød ≈ 120 kr
+                </p>
+            </div>
+
+            <div class="text-center p-6 bg-green-50 rounded-lg">
+                <div class="text-6xl font-bold text-green-600 mb-2">2 år</div>
+                <div class="text-sm uppercase tracking-wider text-stone-600 mb-3">Holdbarhed</div>
+                <p class="text-stone-700 font-sans text-sm">
+                    Tørre bælgfrugter holder i årevis. Ingen kølekæde, minimalt madspild, perfekt til storindkøb
+                </p>
+            </div>
+
+            <div class="text-center p-6 bg-green-50 rounded-lg">
+                <div class="text-6xl font-bold text-green-600 mb-2">0 kr</div>
+                <div class="text-sm uppercase tracking-wider text-stone-600 mb-3">Spild</div>
+                <p class="text-stone-700 font-sans text-sm">
+                    Køb præcist hvad du skal bruge, ingen holdbarhedsproblemer, nul svind
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cooking Tips -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Tilberedning & Tips
+            </h2>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h3 class="font-sans text-lg font-bold mb-2">💧 Blødsæt Over Natten</h3>
+                <p class="text-stone-600">
+                    For bønner og kikærter: blødsæt 8-12 timer reducerer kogetid med 50% og forbedrer fordøjeligheden.
+                    Skift vandet før kogning. Linser behøver ikke blødsætning.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h3 class="font-sans text-lg font-bold mb-2">🔥 Tilsæt Salt Efter Kogning</h3>
+                <p class="text-stone-600">
+                    Salt under kogning gør bælgfrugter sejere. Tilsæt salt først når de er møre (ca. sidste 10 min).
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h3 class="font-sans text-lg font-bold mb-2">🌿 Krydder For Fordøjelse</h3>
+                <p class="text-stone-600">
+                    Komme, koriander, ingefær og laurbærblade reducerer luftdannelse. Kog med kombu-tang (japansk teknik) for ekstra fordøjelseshjælp.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h3 class="font-sans text-lg font-bold mb-2">🥫 Dåse Er Også Fint</h3>
+                <p class="text-stone-600">
+                    Kogte bælgfrugter på dåse er praktiske og har samme næringsværdi. Skyl dem grundigt for at reducere natriumindholdet.
+                    Klimaaftrykket er marginalt højere (emballage + energi til kogning), men stadig ekstremt lavt.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h3 class="font-sans text-lg font-bold mb-2">🍽️ Kombiner Med Korn</h3>
+                <p class="text-stone-600">
+                    Bælgfrugter + korn (ris, brød, quinoa) giver alle essentielle aminosyrer – en komplet proteinprofil.
+                    Klassiske kombinationer: linser + ris (dal), hummus + pitabrød, bønner + majs (mexikansk).
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-green-50 to-emerald-50">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Beregn Din Klimabesparelse
+            </h2>
+            <p class="font-sans text-lg text-stone-600">
+                Se hvor meget CO₂ du sparer ved at erstatte kød med bælgfrugter
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <div class="mb-6">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvor meget kød erstatter du om ugen?
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="meatAmount" min="0" max="2000" value="500" step="50"
+                           class="flex-1 h-2 bg-green-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="calculateLegumesSavings()">
+                    <span id="meatAmountDisplay" class="font-bold text-2xl text-green-600 min-w-[100px]">500g</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvilket kød erstatter du?
+                </label>
+                <select id="meatType"
+                        class="w-full p-3 border-2 border-stone-200 rounded-lg font-sans text-stone-700 focus:border-green-400 focus:outline-none"
+                        onchange="calculateLegumesSavings()">
+                    <option value="60">Oksekød (60 kg CO₂e/kg)</option>
+                    <option value="24">Lammekød (24 kg CO₂e/kg)</option>
+                    <option value="12" selected>Svinekød (12 kg CO₂e/kg)</option>
+                    <option value="6.9">Kylling (6.9 kg CO₂e/kg)</option>
+                </select>
+            </div>
+
+            <div id="legumesSavingsResult">
+                <div class="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-lg mb-4">
+                    <div class="text-center">
+                        <div class="text-sm uppercase tracking-wider text-stone-600 mb-2">Ugentlig besparelse</div>
+                        <div class="text-5xl font-bold text-green-600 mb-2">
+                            <span id="legumesSavingsValue">0</span> kg CO₂e
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Årlig besparelse</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="legumesAnnualSavings">0</span> tons CO₂e
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Svarer til</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="legumesFlightEquiv">0</span> flyvninger
+                        </div>
+                        <div class="text-xs text-stone-500">København-London</div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Pengebesparelse/år</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="legumesMoneySaved">0</span> kr
+                        </div>
+                        <div class="text-xs text-stone-500">ca. estimat</div>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 p-4 rounded border-l-4 border-green-500">
+                    <p class="text-sm text-stone-700 font-sans">
+                        <strong>💡 Bonus:</strong> Du får også mere fiber, færre mættede fedtsyrer, og bidrager til bedre jordsundhed!
+                    </p>
+                </div>
+
+                <p class="text-xs text-stone-500 mt-4 text-center">
+                    * Beregninger baseret på CONCITO klimadatabase 2024. Prisforskelle estimeret fra gennemsnitlige supermarkedspriser.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+    <div class="mx-auto max-w-5xl px-6">
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">Datakilder</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-600 font-sans">
+            <div class="bg-white p-4 rounded">
+                <strong>CONCITO Klimadatabase v2.0 (2024)</strong><br>
+                CO₂-ækvivalenter for bælgfrugter og proteinalternativer
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Poore & Nemecek (2018), Science</strong><br>
+                Global analyse af miljøpåvirkning fra proteinkilder
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>DTU Fødevareinstituttet</strong><br>
+                Næringsværdier for danske bælgfrugter
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Water Footprint Network</strong><br>
+                Vandforbrugsdata for bælgfrugtproduktion
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// Legumes comparison chart
+const legumesCtx = document.getElementById('legumesComparisonChart').getContext('2d');
+new Chart(legumesCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Bælgfrugter', 'Tofu', 'Æg', 'Hvid fisk', 'Kylling', 'Ost', 'Svinekød', 'Lammekød', 'Oksekød'],
+        datasets: [{
+            label: 'kg CO₂e per kg fødevare',
+            data: [2, 3, 4.8, 6, 6.9, 8, 12, 24, 60],
+            backgroundColor: [
+                'rgba(34, 197, 94, 0.95)',  // bright green - LEGUMES (highlighted)
+                'rgba(251, 146, 60, 0.8)',  // orange - tofu
+                'rgba(250, 204, 21, 0.8)',  // yellow - eggs
+                'rgba(59, 130, 246, 0.8)',  // blue - fish
+                'rgba(234, 179, 8, 0.8)',   // amber - chicken
+                'rgba(245, 158, 11, 0.8)',  // orange - cheese
+                'rgba(236, 72, 153, 0.8)',  // pink - pork
+                'rgba(239, 68, 68, 0.8)',   // red - lamb
+                'rgba(127, 29, 29, 0.8)'    // dark red - beef
+            ],
+            borderColor: [
+                'rgb(34, 197, 94)',
+                'rgb(251, 146, 60)',
+                'rgb(250, 204, 21)',
+                'rgb(59, 130, 246)',
+                'rgb(234, 179, 8)',
+                'rgb(245, 158, 11)',
+                'rgb(236, 72, 153)',
+                'rgb(239, 68, 68)',
+                'rgb(127, 29, 29)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + ' kg CO₂e/kg';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'kg CO₂e per kg fødevare',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        }
+    }
+});
+
+// Calculator function
+function calculateLegumesSavings() {
+    const meatAmount = parseFloat(document.getElementById('meatAmount').value) || 0;
+    const meatCO2 = parseFloat(document.getElementById('meatType').value);
+
+    // Update display
+    document.getElementById('meatAmountDisplay').textContent = meatAmount + 'g';
+
+    const legumesCO2 = 2; // kg CO2e/kg
+    const meatEmissions = (meatAmount / 1000) * meatCO2;
+    const legumesEmissions = (meatAmount / 1000) * legumesCO2;
+    const weeklySavings = meatEmissions - legumesEmissions;
+    const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
+    const flights = Math.round(annualSavings / 0.25); // ~250kg per flight
+
+    // Money savings estimation
+    // Meat avg: 120 kr/kg (oksekød), 80 kr/kg (svinekød), 60 kr/kg (kylling)
+    // Legumes avg: 25 kr/kg (dried lentils)
+    let meatPrice = 80; // Default pork
+    if (meatCO2 == 60) meatPrice = 120; // Beef
+    else if (meatCO2 == 24) meatPrice = 100; // Lamb
+    else if (meatCO2 == 6.9) meatPrice = 60; // Chicken
+
+    const legumesPrice = 25;
+    const weeklyMoneySaved = ((meatAmount / 1000) * meatPrice) - ((meatAmount / 1000) * legumesPrice);
+    const annualMoneySaved = Math.round(weeklyMoneySaved * 52);
+
+    document.getElementById('legumesSavingsValue').textContent = weeklySavings.toFixed(1);
+    document.getElementById('legumesAnnualSavings').textContent = annualSavings.toFixed(2);
+    document.getElementById('legumesFlightEquiv').textContent = flights;
+    document.getElementById('legumesMoneySaved').textContent = annualMoneySaved.toLocaleString();
+}
+
+// Initialize calculator on page load
+document.addEventListener('DOMContentLoaded', function() {
+    calculateLegumesSavings();
+});
+</script>
+{% endblock %}
