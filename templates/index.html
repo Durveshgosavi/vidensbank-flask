@@ -238,6 +238,83 @@
         </div>
       </a>
     </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mt-8">
+      <!-- Topic 4: Nutrition -->
+      <a href="{{ url_for('topic_ernaering_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/fruit_basket.jpg') }}" alt="Nutrition"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
+          <span
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Sundhed</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-green-dark transition-colors">
+            Ernæring</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Sundhed og velsmag hånd i hånd. De officielle kostråd i praksis.
+          </p>
+        </div>
+      </a>
+
+      <!-- Topic 5: Food Waste -->
+      <a href="{{ url_for('topic_madspild_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/kitchen_staff_action.jpg') }}" alt="Food Waste"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
+          <span
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Ressourcer</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-orange-dark transition-colors">
+            Madspild</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Respekt for råvaren og reduktion af spild i alle led.
+          </p>
+        </div>
+      </a>
+
+      <!-- Topic 6: Water -->
+      <a href="{{ url_for('topic_vandforbrug_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/water_kitchen.jpg') }}" alt="Water"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
+          <span class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Miljø</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-blue-dark transition-colors">
+            Vandforbrug</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Ansvarligt forbrug af vores vigtigste ressource.
+          </p>
+        </div>
+      </a>
+
+      <!-- Topic 7: Seasonality -->
+      <a href="{{ url_for('topic_saeson_landing') }}"
+        class="group relative block h-[500px] overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
+        <div class="h-2/3 overflow-hidden">
+          <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Seasonality"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+        </div>
+        <div class="p-8 h-1/3 flex flex-col justify-center bg-white relative z-10">
+          <span
+            class="mb-2 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Kvalitet</span>
+          <h3
+            class="mb-2 font-display text-3xl font-bold uppercase tracking-brand-wide text-stone-900 group-hover:text-cb-orange-dark transition-colors">
+            Sæson</h3>
+          <p class="font-sans text-sm text-stone-500 line-clamp-2">
+            Brug råvarerne når de er bedst for smag og klima.
+          </p>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 

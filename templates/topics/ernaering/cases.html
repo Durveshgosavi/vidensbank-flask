@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Cases - Emissioner | Vidensbank{% endblock %}
+{% block title %}Cases - Ernæring | Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978');">
+<header class="hero-video-container"
+  style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978');">
   <div class="bg-overlay-dark"></div>
   <div class="hero-content">
     <h1 class="hero-title">Cases & Eksempler</h1>
-    <p class="hero-subtitle">Emissioner & Bæredygtighed</p>
+    <p class="hero-subtitle">Ernæring & Sundhed</p>
   </div>
 </header>
 
 <section class="page-section">
   <header class="section-header">
     <p class="section-lead">
-      Cases og konkrete eksempler fra danske kantiner, der har arbejdet med at reducere emissioner.
+      Cases og konkrete eksempler fra danske kantiner, der har arbejdet med ernæring og sundhed.
     </p>
   </header>
 
   <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">← Tilbage til emnet</a>
   </nav>
 
   <article style="max-width: 900px; margin: 0 auto;">

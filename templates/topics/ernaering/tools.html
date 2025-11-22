@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Tools - Emissioner | Vidensbank{% endblock %}
+{% block title %}Tools - Ernæring | Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f');">
+<header class="hero-video-container"
+  style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f');">
   <div class="bg-overlay-dark"></div>
   <div class="hero-content">
     <h1 class="hero-title">Tools & Værktøjer</h1>
-    <p class="hero-subtitle">Emissioner & Bæredygtighed</p>
+    <p class="hero-subtitle">Ernæring & Sundhed</p>
   </div>
 </header>
 
 <section class="page-section">
   <header class="section-header">
     <p class="section-lead">
-      Her finder du praktiske værktøjer til at arbejde med emissioner og bæredygtighed i din kantine.
+      Her finder du praktiske værktøjer til at arbejde med ernæring og sundhed i din kantine.
     </p>
   </header>
 
   <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">← Tilbage til emnet</a>
   </nav>
 
   <article style="max-width: 900px; margin: 0 auto;">
