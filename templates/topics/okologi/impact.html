@@ -4,7 +4,7 @@
 
 {% block extra_css %}
 <style>
-.impact-hero-okologi {
+  .impact-hero-okologi {
     position: relative;
     min-height: 450px;
     background: linear-gradient(135deg, #40916c 0%, #1b4332 100%);
@@ -15,20 +15,20 @@
     text-align: center;
     padding: 4rem 2rem;
     overflow: hidden;
-}
+  }
 
-.impact-hero-okologi::before {
+  .impact-hero-okologi::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e');
+    background-image: url('{{ url_for(' static', filename=' images/Environmental-impacts-of-agriculture-v2.png') }}');
     background-size: cover;
     background-position: center;
     opacity: 0.15;
     z-index: 0;
-}
+  }
 
-.calculator-section-okologi {
+  .calculator-section-okologi {
     background: white;
     border-radius: 24px;
     padding: 3rem;
@@ -37,51 +37,51 @@
     max-width: 900px;
     position: relative;
     z-index: 10;
-}
+  }
 
-.calculator-title-okologi {
+  .calculator-title-okologi {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
     color: var(--text-dark);
-}
+  }
 
-.calculator-grid-okologi {
+  .calculator-grid-okologi {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: 2rem 0;
-}
+  }
 
-.calculator-input-group-okologi {
+  .calculator-input-group-okologi {
     background: var(--light-gron);
     padding: 1.5rem;
     border-radius: 12px;
-}
+  }
 
-.calculator-label-okologi {
+  .calculator-label-okologi {
     display: block;
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.75rem;
     font-size: 1.05rem;
-}
+  }
 
-.calculator-input-okologi {
+  .calculator-input-okologi {
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
-}
+  }
 
-.calculator-input-okologi:focus {
+  .calculator-input-okologi:focus {
     outline: none;
     border-color: #1a1a1a;
-}
+  }
 
-.calculator-result-okologi {
+  .calculator-result-okologi {
     background: linear-gradient(135deg, var(--dark-gron) 0%, #2c5f2d 100%);
     color: white;
     padding: 2rem;
@@ -89,69 +89,69 @@
     text-align: center;
     margin: 2rem 0;
     grid-column: 1 / -1;
-}
+  }
 
-.result-value-okologi {
+  .result-value-okologi {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-}
+  }
 
-.result-label-okologi {
+  .result-label-okologi {
     font-size: 1.2rem;
     opacity: 0.9;
-}
+  }
 
-.benefit-cards-okologi {
+  .benefit-cards-okologi {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin: 3rem 0;
-}
+  }
 
-.benefit-card-okologi {
+  .benefit-card-okologi {
     background: white;
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border-top: 5px solid var(--dark-gron);
-}
+  }
 
-.benefit-card-okologi:hover {
+  .benefit-card-okologi:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.benefit-icon-okologi {
+  .benefit-icon-okologi {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-align: center;
-}
+  }
 
-.benefit-title-okologi {
+  .benefit-title-okologi {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0.75rem;
     text-align: center;
-}
+  }
 
-.benefit-desc-okologi {
+  .benefit-desc-okologi {
     color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
     text-align: center;
-}
+  }
 
-.scenario-grid-okologi {
+  .scenario-grid-okologi {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 2rem 0;
-}
+  }
 
-.scenario-card-okologi {
+  .scenario-card-okologi {
     background: white;
     border-radius: 16px;
     padding: 2rem;
@@ -159,9 +159,9 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-}
+  }
 
-.scenario-card-okologi::before {
+  .scenario-card-okologi::before {
     content: '';
     position: absolute;
     top: 0;
@@ -169,70 +169,70 @@
     right: 0;
     height: 6px;
     background: linear-gradient(90deg, var(--dark-gron), #52b788);
-}
+  }
 
-.scenario-card-okologi.low::before {
+  .scenario-card-okologi.low::before {
     background: linear-gradient(90deg, #e74c3c, #c0392b);
-}
+  }
 
-.scenario-card-okologi.medium::before {
+  .scenario-card-okologi.medium::before {
     background: linear-gradient(90deg, #f39c12, #e67e22);
-}
+  }
 
-.scenario-card-okologi:hover {
+  .scenario-card-okologi:hover {
     transform: scale(1.03);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.scenario-label-okologi {
+  .scenario-label-okologi {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
     color: #333333;
     margin-bottom: 0.75rem;
-}
+  }
 
-.scenario-title-okologi {
+  .scenario-title-okologi {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 1rem;
-}
+  }
 
-.scenario-value-okologi {
+  .scenario-value-okologi {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-}
+  }
 
-.scenario-value-okologi.high {
+  .scenario-value-okologi.high {
     color: #e74c3c;
-}
+  }
 
-.scenario-value-okologi.medium {
+  .scenario-value-okologi.medium {
     color: #f39c12;
-}
+  }
 
-.scenario-value-okologi.low {
+  .scenario-value-okologi.low {
     color: #27ae60;
-}
+  }
 
-.scenario-details-okologi {
+  .scenario-details-okologi {
     color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
-}
+  }
 
-.checklist-okologi {
+  .checklist-okologi {
     background: white;
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     margin: 3rem 0;
-}
+  }
 
-.checklist-item-okologi {
+  .checklist-item-okologi {
     display: flex;
     align-items: flex-start;
     padding: 1.25rem;
@@ -241,44 +241,44 @@
     border-radius: 12px;
     border-left: 4px solid var(--dark-gron);
     transition: all 0.3s ease;
-}
+  }
 
-.checklist-item-okologi:hover {
+  .checklist-item-okologi:hover {
     transform: translateX(8px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.checklist-icon-okologi {
+  .checklist-icon-okologi {
     font-size: 1.5rem;
     margin-right: 1rem;
     flex-shrink: 0;
-}
+  }
 
-.checklist-content-okologi {
+  .checklist-content-okologi {
     flex: 1;
-}
+  }
 
-.checklist-title-okologi {
+  .checklist-title-okologi {
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
-}
+  }
 
-.checklist-desc-okologi {
+  .checklist-desc-okologi {
     color: #333333;
     font-size: 0.95rem;
     line-height: 1.6;
-}
+  }
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .calculator-grid-okologi {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
 
     .calculator-result-okologi {
-        grid-column: 1;
+      grid-column: 1;
     }
-}
+  }
 </style>
 {% endblock %}
 
@@ -495,7 +495,8 @@
     <div class="impact-highlight animate-on-scroll">
       <strong>📌 Dit Aftryk:</strong>
       <p style="margin: 0.75rem 0 0; font-size: 1.05rem; line-height: 1.7;">
-        Du som kantinechef har magt til at påvirke tusinder af menneskers sundhed, miljø og dyrevelfærd gennem dine valg.
+        Du som kantinechef har magt til at påvirke tusinder af menneskers sundhed, miljø og dyrevelfærd gennem dine
+        valg.
         Ved at øge økologiandelen fra 5% til 30% reducerer du miljøpåvirkningen betydeligt – og bliver samtidig en
         miljøleder i din branche. Start nu, gør det trinvis, og dokumenter fremgangen.
       </p>
@@ -520,36 +521,36 @@
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     // Calculate CO2 reduction
     const currentInput = document.getElementById('currentOrganic');
     const targetInput = document.getElementById('targetOrganic');
     const resultDisplay = document.getElementById('organicResult');
 
     function calculateReduction() {
-        const current = parseFloat(currentInput.value) || 0;
-        const target = parseFloat(targetInput.value) || 0;
-        const increase = target - current;
+      const current = parseFloat(currentInput.value) || 0;
+      const target = parseFloat(targetInput.value) || 0;
+      const increase = target - current;
 
-        // Estimation: 500 meals/day, 250 days/year, ~2kg CO2e per meal difference
-        const dailyMeals = 500;
-        const daysPerYear = 250;
-        const co2PerMeal = 2; // kg CO2e difference between organic and conventional
+      // Estimation: 500 meals/day, 250 days/year, ~2kg CO2e per meal difference
+      const dailyMeals = 500;
+      const daysPerYear = 250;
+      const co2PerMeal = 2; // kg CO2e difference between organic and conventional
 
-        const co2Reduction = (increase / 100) * dailyMeals * daysPerYear * co2PerMeal;
+      const co2Reduction = (increase / 100) * dailyMeals * daysPerYear * co2PerMeal;
 
-        if (co2Reduction > 0) {
-            resultDisplay.textContent = Math.round(co2Reduction) + ' kg CO₂e';
-        } else if (co2Reduction < 0) {
-            resultDisplay.textContent = Math.round(Math.abs(co2Reduction)) + ' kg CO₂e';
-        } else {
-            resultDisplay.textContent = '0 kg CO₂e';
-        }
+      if (co2Reduction > 0) {
+        resultDisplay.textContent = Math.round(co2Reduction) + ' kg CO₂e';
+      } else if (co2Reduction < 0) {
+        resultDisplay.textContent = Math.round(Math.abs(co2Reduction)) + ' kg CO₂e';
+      } else {
+        resultDisplay.textContent = '0 kg CO₂e';
+      }
     }
 
     currentInput.addEventListener('input', calculateReduction);
     targetInput.addEventListener('input', calculateReduction);
     calculateReduction();
-});
+  });
 </script>
 {% endblock %}

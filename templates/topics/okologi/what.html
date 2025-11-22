@@ -4,15 +4,15 @@
 
 {% block extra_css %}
 <style>
-/* Økologi What Page Styles */
-.principles-grid {
+  /* Økologi What Page Styles */
+  .principles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 4rem 0;
-}
+  }
 
-.principle-card {
+  .principle-card {
     background: white;
     padding: 3rem 2rem;
     border-radius: 24px;
@@ -20,55 +20,55 @@
     text-align: center;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     border-top: 5px solid var(--dark-gron);
-}
+  }
 
-.principle-card:hover {
+  .principle-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.principle-icon {
+  .principle-icon {
     font-size: 4rem;
     margin-bottom: 1.5rem;
     display: inline-block;
-}
+  }
 
-.principle-title {
+  .principle-title {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 1rem;
-}
+  }
 
-.principle-desc {
+  .principle-desc {
     font-size: 1rem;
     color: #333333;
     line-height: 1.7;
-}
+  }
 
-/* Comparison Grid */
-.comparison-container {
+  /* Comparison Grid */
+  .comparison-container {
     background: linear-gradient(135deg, #a7c957, #dce8c3);
     border-radius: 32px;
     padding: 4rem 2rem;
     margin: 4rem 0;
-}
+  }
 
-.comparison-grid {
+  .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     margin: 3rem 0;
-}
+  }
 
-.comparison-column {
+  .comparison-column {
     background: white;
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.comparison-header {
+  .comparison-header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-dark);
@@ -76,156 +76,157 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-}
+  }
 
-.comparison-list {
+  .comparison-list {
     list-style: none;
     padding: 0;
-}
+  }
 
-.comparison-item {
+  .comparison-item {
     padding: 1rem;
     margin-bottom: 0.75rem;
     background: #f9f9f9;
     border-radius: 12px;
     border-left: 4px solid;
     transition: all 0.3s ease;
-}
+  }
 
-.comparison-column:nth-child(1) .comparison-item {
+  .comparison-column:nth-child(1) .comparison-item {
     border-left-color: #e67e22;
-}
+  }
 
-.comparison-column:nth-child(2) .comparison-item {
+  .comparison-column:nth-child(2) .comparison-item {
     border-left-color: var(--dark-gron);
-}
+  }
 
-.comparison-item:hover {
+  .comparison-item:hover {
     transform: translateX(8px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
+  }
 
-.comparison-item-text {
+  .comparison-item-text {
     font-size: 0.95rem;
     color: var(--text-dark);
     line-height: 1.6;
-}
+  }
 
-/* Standards Section */
-.standards-container {
+  /* Standards Section */
+  .standards-container {
     background: white;
     border-radius: 24px;
     padding: 3rem;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     margin: 4rem 0;
-}
+  }
 
-.standards-grid {
+  .standards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     margin: 3rem 0;
-}
+  }
 
-.standard-item {
+  .standard-item {
     padding: 2rem;
     background: linear-gradient(135deg, var(--light-gron), #f0f8f0);
     border-radius: 16px;
     border-left: 5px solid var(--dark-gron);
     transition: all 0.3s ease;
-}
+  }
 
-.standard-item:hover {
+  .standard-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.standard-label {
+  .standard-label {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--dark-gron);
     font-weight: 700;
     margin-bottom: 0.75rem;
-}
+  }
 
-.standard-title {
+  .standard-title {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 1rem;
-}
+  }
 
-.standard-desc {
+  .standard-desc {
     color: #333333;
     line-height: 1.6;
     font-size: 0.95rem;
-}
+  }
 
-/* Stats Section */
-.stats-showcase {
+  /* Stats Section */
+  .stats-showcase {
     background: linear-gradient(135deg, var(--dark-gron), #2c5f2d);
     color: white;
     border-radius: 32px;
     padding: 4rem 2rem;
     margin: 4rem 0;
-}
+  }
 
-.stats-grid {
+  .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
-}
+  }
 
-.stat-item {
+  .stat-item {
     text-align: center;
     padding: 2rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-}
+  }
 
-.stat-item:hover {
+  .stat-item:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
-}
+  }
 
-.stat-value {
+  .stat-value {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     line-height: 1;
-}
+  }
 
-.stat-label {
+  .stat-label {
     font-size: 1.1rem;
     font-weight: 600;
     opacity: 0.95;
     line-height: 1.4;
-}
+  }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
     .comparison-grid {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
 
     .comparison-container {
-        padding: 2rem;
+      padding: 2rem;
     }
 
     .principles-grid {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-}
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399');">
+<header class="hero-video-container animate-on-scroll"
+  style="background-image: url('{{ url_for('static', filename='images/vegetables_closeup.jpg') }}');">
   <div class="bg-overlay-dark"></div>
   <div class="hero-content">
     <h1 class="hero-title">Hvad er økologi?</h1>
@@ -236,8 +237,10 @@
 <section class="page-section">
   <header class="section-header animate-on-scroll">
     <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
-      Økologi er en dokumenteret og certificeret produktionsmetode, hvor fødevarer dyrkes og forarbejdes uden kunstige pesticider,
-      kunstgødning eller genetisk modificering (GMO). Det er en global standard med klare krav til miljø, dyrevelfærd og bæredygtighed.
+      Økologi er en dokumenteret og certificeret produktionsmetode, hvor fødevarer dyrkes og forarbejdes uden kunstige
+      pesticider,
+      kunstgødning eller genetisk modificering (GMO). Det er en global standard med klare krav til miljø, dyrevelfærd og
+      bæredygtighed.
     </p>
   </header>
 
@@ -254,7 +257,8 @@
     <div class="animate-on-scroll" style="margin: 5rem 0;">
       <header class="section-header">
         <h2 class="section-title">Tre centrale principper for økologi</h2>
-        <p class="section-lead">Økologisk produktion bygger på tre grundprincipper som differentierer det fra konventionelt landbrug</p>
+        <p class="section-lead">Økologisk produktion bygger på tre grundprincipper som differentierer det fra
+          konventionelt landbrug</p>
       </header>
 
       <div class="principles-grid">
@@ -378,7 +382,8 @@
           <div class="standard-label">🇩🇰 Dansk Standard</div>
           <h3 class="standard-title">Dansk Ø-Mærke</h3>
           <p class="standard-desc">
-            Danmarks egen økologimærke – ofte strengere end EU-reglerne. Kræver blandt andet 100% økologisk foder til dyr,
+            Danmarks egen økologimærke – ofte strengere end EU-reglerne. Kræver blandt andet 100% økologisk foder til
+            dyr,
             og dansk produktion eller forvaltning. Et tegn på ekstra høj dansk kvalitet.
           </p>
         </div>
@@ -388,7 +393,8 @@
           <h3 class="standard-title">Øvrige Certificeringer</h3>
           <p class="standard-desc">
             IFOAM (International Federation of Organic Agriculture Movements) er verdensstandarden.
-            Nogle producenter bruger også Demeter-certificering for biodynamisk produktion – endnu strengere end økologi.
+            Nogle producenter bruger også Demeter-certificering for biodynamisk produktion – endnu strengere end
+            økologi.
           </p>
         </div>
       </div>
@@ -398,7 +404,8 @@
     <div class="stats-showcase animate-on-scroll">
       <header class="section-header" style="text-align: center;">
         <h2 class="section-title" style="color: white;">Fakta om Økologi</h2>
-        <p class="section-lead" style="color: rgba(255,255,255,0.9);">Hvad tal og forskning viser om økologisk produktion</p>
+        <p class="section-lead" style="color: rgba(255,255,255,0.9);">Hvad tal og forskning viser om økologisk
+          produktion</p>
       </header>
 
       <div class="stats-grid">
@@ -455,32 +462,32 @@
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
 <script>
-// Initialize animated counters on scroll
-document.addEventListener('DOMContentLoaded', function() {
+  // Initialize animated counters on scroll
+  document.addEventListener('DOMContentLoaded', function () {
     // Counter animation
     const counters = document.querySelectorAll('[data-counter]');
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                const target = parseInt(entry.target.getAttribute('data-counter'));
-                const suffix = entry.target.getAttribute('data-suffix') || '';
-                let current = 0;
-                const increment = target / 30;
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          const target = parseInt(entry.target.getAttribute('data-counter'));
+          const suffix = entry.target.getAttribute('data-suffix') || '';
+          let current = 0;
+          const increment = target / 30;
 
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                        entry.target.classList.add('counted');
-                    }
-                    entry.target.textContent = Math.floor(current) + suffix;
-                }, 50);
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+              entry.target.classList.add('counted');
             }
-        });
+            entry.target.textContent = Math.floor(current) + suffix;
+          }, 50);
+        }
+      });
     }, { threshold: 0.5 });
 
     counters.forEach(counter => observer.observe(counter));
-});
+  });
 </script>
 {% endblock %}

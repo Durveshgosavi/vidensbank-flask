@@ -4,15 +4,15 @@
 
 {% block extra_css %}
 <style>
-/* Økologi Why Page Styles */
-.impact-cards-grid {
+  /* Økologi Why Page Styles */
+  .impact-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 4rem 0;
-}
+  }
 
-.impact-card-why {
+  .impact-card-why {
     background: white;
     padding: 3rem 2rem;
     border-radius: 24px;
@@ -20,40 +20,40 @@
     text-align: center;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     border-top: 5px solid var(--dark-gron);
-}
+  }
 
-.impact-card-why:hover {
+  .impact-card-why:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.impact-card-icon {
+  .impact-card-icon {
     font-size: 4rem;
     margin-bottom: 1.5rem;
     display: inline-block;
-}
+  }
 
-.impact-card-title {
+  .impact-card-title {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 1rem;
-}
+  }
 
-.impact-card-desc {
+  .impact-card-desc {
     font-size: 1rem;
     color: #333333;
     line-height: 1.7;
-}
+  }
 
-/* Timeline Styles */
-.timeline-organic {
+  /* Timeline Styles */
+  .timeline-organic {
     position: relative;
     padding: 3rem 0;
     margin: 4rem 0;
-}
+  }
 
-.timeline-line-organic {
+  .timeline-line-organic {
     position: absolute;
     left: 50%;
     top: 0;
@@ -61,31 +61,31 @@
     width: 4px;
     background: linear-gradient(180deg, var(--dark-gron), var(--light-gron));
     transform: translateX(-50%);
-}
+  }
 
-.timeline-item-organic {
+  .timeline-item-organic {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: 3rem;
     align-items: center;
     margin-bottom: 4rem;
     position: relative;
-}
+  }
 
-.timeline-content-organic {
+  .timeline-content-organic {
     background: white;
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-}
+  }
 
-.timeline-content-organic:hover {
+  .timeline-content-organic:hover {
     transform: scale(1.05);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.timeline-year-organic {
+  .timeline-year-organic {
     width: 80px;
     height: 80px;
     background: linear-gradient(135deg, var(--dark-gron), #2c5f2d);
@@ -98,158 +98,159 @@
     color: white;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     z-index: 2;
-}
+  }
 
-.timeline-title-organic {
+  .timeline-title-organic {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 0.75rem;
-}
+  }
 
-.timeline-desc-organic {
+  .timeline-desc-organic {
     font-size: 0.95rem;
     color: #333333;
     line-height: 1.6;
-}
+  }
 
-.timeline-item-organic:nth-child(even) .timeline-content-organic:first-child {
+  .timeline-item-organic:nth-child(even) .timeline-content-organic:first-child {
     order: 3;
-}
+  }
 
-/* Market Comparison */
-.market-showcase {
+  /* Market Comparison */
+  .market-showcase {
     background: linear-gradient(135deg, #a7c957, #dce8c3);
     border-radius: 32px;
     padding: 4rem 2rem;
     margin: 4rem 0;
-}
+  }
 
-.market-bars {
+  .market-bars {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     margin: 3rem 0;
-}
+  }
 
-.market-bar-item {
+  .market-bar-item {
     background: white;
     padding: 1.5rem;
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
+  }
 
-.market-header {
+  .market-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-}
+  }
 
-.market-name {
+  .market-name {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-dark);
-}
+  }
 
-.market-value {
+  .market-value {
     font-size: 1.3rem;
     font-weight: 700;
     color: #1a1a1a;
-}
+  }
 
-.market-bar-track {
+  .market-bar-track {
     height: 20px;
     background: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
-}
+  }
 
-.market-bar-fill {
+  .market-bar-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--dark-gron), #52b788);
     border-radius: 10px;
     transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     width: 0%;
-}
+  }
 
-/* Benefits Grid */
-.benefits-grid {
+  /* Benefits Grid */
+  .benefits-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
-}
+  }
 
-.benefit-item {
+  .benefit-item {
     background: white;
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     border-top: 4px solid var(--dark-gron);
-}
+  }
 
-.benefit-item:hover {
+  .benefit-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-}
+  }
 
-.benefit-icon {
+  .benefit-icon {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
-}
+  }
 
-.benefit-title {
+  .benefit-title {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 1rem;
     text-align: center;
-}
+  }
 
-.benefit-desc {
+  .benefit-desc {
     font-size: 1rem;
     color: #333333;
     line-height: 1.7;
     text-align: center;
-}
+  }
 
-/* Chart Section */
-.chart-section-organic {
+  /* Chart Section */
+  .chart-section-organic {
     background: white;
     padding: 3rem;
     border-radius: 24px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     margin: 4rem 0;
-}
+  }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
     .timeline-item-organic {
-        grid-template-columns: 1fr;
-        text-align: center;
+      grid-template-columns: 1fr;
+      text-align: center;
     }
 
     .timeline-line-organic {
-        left: 30px;
+      left: 30px;
     }
 
     .timeline-item-organic:nth-child(even) .timeline-content-organic:first-child {
-        order: 1;
+      order: 1;
     }
 
     .impact-cards-grid {
-        grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
     }
-}
+  }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef');">
+<header class="hero-video-container animate-on-scroll"
+  style="background-image: url('{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}');">
   <div class="bg-overlay-dark"></div>
   <div class="hero-content">
     <h1 class="hero-title">Hvorfor er økologi vigtigt?</h1>
@@ -324,7 +325,8 @@
     <div class="market-showcase animate-on-scroll">
       <header class="section-header">
         <h2 class="section-title" style="color: var(--text-dark);">Danmark som Økologi-Ledende Land</h2>
-        <p class="section-lead" style="color: #333333;">Se hvor dominerende økologi er i Danmark sammenlignet med verden</p>
+        <p class="section-lead" style="color: #333333;">Se hvor dominerende økologi er i Danmark sammenlignet med verden
+        </p>
       </header>
 
       <div class="market-bars">
@@ -557,22 +559,22 @@
 <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 
 <script>
-// Animate market bars on scroll
-document.addEventListener('DOMContentLoaded', function() {
+  // Animate market bars on scroll
+  document.addEventListener('DOMContentLoaded', function () {
     const marketBars = document.querySelectorAll('[data-progress]');
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                const progress = entry.target.getAttribute('data-progress');
-                setTimeout(() => {
-                    entry.target.style.width = progress + '%';
-                    entry.target.classList.add('animated');
-                }, 200);
-            }
-        });
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+          const progress = entry.target.getAttribute('data-progress');
+          setTimeout(() => {
+            entry.target.style.width = progress + '%';
+            entry.target.classList.add('animated');
+          }, 200);
+        }
+      });
     }, { threshold: 0.5 });
 
     marketBars.forEach(bar => observer.observe(bar));
-});
+  });
 </script>
 {% endblock %}
