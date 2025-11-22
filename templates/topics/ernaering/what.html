@@ -2,6 +2,10 @@
 
 {% block title %}Hvad er Ernæring? - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
@@ -60,7 +64,7 @@
       <div class="bg-white p-12 shadow-xl">
         <h3 class="mb-6 font-display text-2xl font-bold uppercase tracking-wide text-cb-green-dark">De Officielle
           Kostråd</h3>
-        <ul class="space-y-4 font-sans text-stone-600">
+        <ul class="space-y-4 font-sans text-stone-600 mb-8">
           <li class="flex items-start">
             <span class="mr-3 text-cb-green-dark">•</span>
             <span>Spis planterigt, varieret og ikke for meget.</span>
@@ -90,6 +94,22 @@
             <span>Sluk tørsten i vand.</span>
           </li>
         </ul>
+
+        <div class="citation-box">
+          <span class="citation-label">Kilde</span>
+          <p class="citation-text">
+            Fødevarestyrelsen. (2023). De officielle Kostråd – godt for sundhed og klima.
+            <a href="https://altomkost.dk/raad-og-anbefalinger/de-officielle-kostraad" target="_blank">Læs mere</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="did-you-know mt-16">
+      <div class="dyk-title">Vidste du?</div>
+      <div class="dyk-content">
+        Kroppen optager visse vitaminer bedre, når de spises sammen med fedt. For eksempel optages A-, D-, E- og
+        K-vitamin fra gulerødder og spinat bedre, hvis du spiser dem med lidt olie, nødder eller avocado.
       </div>
     </div>
   </div>

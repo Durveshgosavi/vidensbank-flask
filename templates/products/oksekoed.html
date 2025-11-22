@@ -2,6 +2,10 @@
 
 {% block title %}Oksekød - Råvarer | Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
@@ -72,6 +76,14 @@
           Vandforbrug pr. kg kød, primært til produktion af foder.
         </p>
       </div>
+
+      <div class="citation-box text-left mt-12">
+        <span class="citation-label">Kilde</span>
+        <p class="citation-text">
+          Danish Crown & Concito. (2024). Klimaaftryk for oksekød varierer afhængigt af produktionsform og udskæring.
+          <a href="https://denstoreklimadatabase.dk/" target="_blank">Se tallene</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -86,35 +98,36 @@
         <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">
           Anbefalinger til Kantinen
         </h2>
-        <ul class="space-y-6">
-          <li class="flex items-start gap-4">
-            <span
-              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">1</span>
-            <div>
-              <h4 class="font-display text-xl font-bold uppercase text-white">Reducer Mængden</h4>
-              <p class="mt-2 font-sans text-stone-400">Server mindre portioner og erstat resten med grøntsager eller
-                bælgfrugter.</p>
+        <div class="action-checklist text-left">
+          <div class="checklist-title">Handlingsplan</div>
+
+          <div class="action-item">
+            <span class="action-icon">📉</span>
+            <div class="action-content">
+              <div class="action-title">Reducer Mængden</div>
+              <div class="action-description">Server mindre portioner (f.eks. 100g i stedet for 150g) og erstat resten
+                med grove grøntsager eller bælgfrugter.</div>
             </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span
-              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">2</span>
-            <div>
-              <h4 class="font-display text-xl font-bold uppercase text-white">Kvalitet frem for Kvantitet</h4>
-              <p class="mt-2 font-sans text-stone-400">Vælg dansk kød med god dyrevelfærd – server det sjældnere, men
-                bedre.</p>
+          </div>
+
+          <div class="action-item">
+            <span class="action-icon">⭐</span>
+            <div class="action-content">
+              <div class="action-title">Kvalitet frem for Kvantitet</div>
+              <div class="action-description">Vælg dansk kød med god dyrevelfærd. Server det sjældnere, men gør det til
+                en særlig oplevelse når det er på menuen.</div>
             </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span
-              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-orange-dark font-display font-bold text-stone-900">3</span>
-            <div>
-              <h4 class="font-display text-xl font-bold uppercase text-white">Hybrid-Retter</h4>
-              <p class="mt-2 font-sans text-stone-400">Bland hakket kød med svampe eller linser (50/50) i gryderetter.
-              </p>
+          </div>
+
+          <div class="action-item">
+            <span class="action-icon">🍄</span>
+            <div class="action-content">
+              <div class="action-title">Hybrid-Retter</div>
+              <div class="action-description">Bland hakket kød med svampe, linser eller revne rodfrugter (50/50) i
+                gryderetter som bolognese eller chili con carne.</div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
       <div class="relative h-[500px]">
         <img src="{{ url_for('static', filename='images/chef_plating_food_1763550153863.png') }}" alt="Chef Cooking"

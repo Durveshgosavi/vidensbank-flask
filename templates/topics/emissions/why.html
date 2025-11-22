@@ -2,6 +2,10 @@
 
 {% block title %}Hvorfor er det vigtigt? - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
@@ -41,6 +45,14 @@
           Ifølge FN's klimapanel (IPCC) er en omstilling af fødevaresystemet nødvendig for at begrænse den globale
           opvarmning.
         </p>
+
+        <div class="citation-box text-left">
+          <span class="citation-label">Kilde</span>
+          <p class="citation-text">
+            IPCC. (2023). Climate Change 2023: Synthesis Report.
+            <a href="https://www.ipcc.ch/report/ar6/syr/" target="_blank">Læs rapporten</a>
+          </p>
+        </div>
         <p class="font-sans text-lg leading-relaxed text-stone-600">
           En gennemsnitlig dansker udleder ca. 3 tons CO₂e årligt fra mad og drikke. Forskning viser, at en
           plantebaseret kost kan reducere dette aftryk betydeligt.
@@ -54,6 +66,16 @@
           Commission</cite>
       </div>
     </div>
+
+    <div class="did-you-know mt-12">
+      <div class="dyk-title">Vidste du?</div>
+      <div class="dyk-content">
+        Fødevaresystemet står for ca. en tredjedel af de globale drivhusgasudledninger. Det betyder, at selv hvis vi
+        stoppede alle andre udledninger i dag, ville fødevareproduktion alene kunne forhindre os i at nå klimamålene,
+        hvis vi ikke ændrer kurs.
+      </div>
+    </div>
+  </div>
   </div>
 </section>
 

@@ -2,6 +2,10 @@
 
 {% block title %}Best Practice - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
@@ -29,50 +33,42 @@
       <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Handlingsmuligheder</h2>
     </div>
 
-    <div class="space-y-8">
-      <!-- Item 1 -->
-      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
-        <span class="font-display text-5xl font-bold text-cb-blue-dark">01</span>
-        <div>
-          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Proteinskift</h3>
-          <p class="font-sans text-stone-600 leading-relaxed">
-            Data viser, at udskiftning af rødt kød med lyst kød eller bælgfrugter er den mest effektive måde at reducere
-            CO₂e på.
-          </p>
+    <div class="action-checklist">
+      <div class="checklist-title">Handlingsmuligheder</div>
+
+      <div class="action-item">
+        <span class="action-icon">🥩</span>
+        <div class="action-content">
+          <div class="action-title">Proteinskift</div>
+          <div class="action-description">Data viser, at udskiftning af rødt kød med lyst kød eller bælgfrugter er den
+            mest effektive måde at reducere CO₂e på.</div>
         </div>
       </div>
 
-      <!-- Item 2 -->
-      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
-        <span class="font-display text-5xl font-bold text-cb-blue-dark">02</span>
-        <div>
-          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Madspild</h3>
-          <p class="font-sans text-stone-600 leading-relaxed">
-            Reduktion af madspild sparer både ressourcer i produktionen og ved bortskaffelse. Måling er ofte første
-            skridt.
-          </p>
+      <div class="action-item">
+        <span class="action-icon">🗑️</span>
+        <div class="action-content">
+          <div class="action-title">Madspild</div>
+          <div class="action-description">Reduktion af madspild sparer både ressourcer i produktionen og ved
+            bortskaffelse. Måling er ofte første skridt.</div>
         </div>
       </div>
 
-      <!-- Item 3 -->
-      <div class="flex items-start gap-6 border-b border-stone-300 pb-8">
-        <span class="font-display text-5xl font-bold text-cb-blue-dark">03</span>
-        <div>
-          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Nudging</h3>
-          <p class="font-sans text-stone-600 leading-relaxed">
-            Placering af de grønne retter først i buffeten kan øge indtaget af grønt markant, viser adfærdsstudier.
-          </p>
+      <div class="action-item">
+        <span class="action-icon">🥗</span>
+        <div class="action-content">
+          <div class="action-title">Nudging</div>
+          <div class="action-description">Placering af de grønne retter først i buffeten kan øge indtaget af grønt
+            markant, viser adfærdsstudier.</div>
         </div>
       </div>
 
-      <!-- Item 4 -->
-      <div class="flex items-start gap-6">
-        <span class="font-display text-5xl font-bold text-cb-blue-dark">04</span>
-        <div>
-          <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Sæsonvarer</h3>
-          <p class="font-sans text-stone-600 leading-relaxed">
-            Brug af frilandsgrønt i sæson har typisk et lavere klimaaftryk end varer fra opvarmede drivhuse.
-          </p>
+      <div class="action-item">
+        <span class="action-icon">📅</span>
+        <div class="action-content">
+          <div class="action-title">Sæsonvarer</div>
+          <div class="action-description">Brug af frilandsgrønt i sæson har typisk et lavere klimaaftryk end varer fra
+            opvarmede drivhuse.</div>
         </div>
       </div>
     </div>

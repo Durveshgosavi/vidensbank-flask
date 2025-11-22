@@ -2,6 +2,10 @@
 
 {% block title %}Ernæring - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-screen min-h-[600px] w-full overflow-hidden">

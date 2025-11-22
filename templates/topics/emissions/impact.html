@@ -2,6 +2,10 @@
 
 {% block title %}Beregn Aftryk - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
@@ -89,6 +93,58 @@
       Et gennemsnitligt dansk måltid udleder ca. 1,8 kg CO₂e. En klimavenlig ret bør ifølge eksperter ligge under 0,5 kg
       CO₂e.
     </p>
+
+    <div class="comparison-chart text-left mb-12">
+      <div class="chart-title">Aftryk pr. kg Råvare</div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>Oksekød</span>
+          <span><strong>~28 kg CO₂e</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-high" style="width: 100%;">Højest</div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>Svinekød</span>
+          <span><strong>~4.6 kg CO₂e</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-medium" style="width: 16%;">Middel</div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>Kylling</span>
+          <span><strong>~3.5 kg CO₂e</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-medium" style="width: 12%;">Middel</div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>Linser/Bønner</span>
+          <span><strong>~0.8 kg CO₂e</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-low" style="width: 3%;">Lavest</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="citation-box text-left">
+      <span class="citation-label">Kilde</span>
+      <p class="citation-text">
+        CONCITO. (2025). Den store klimadatabase, version 1.2.
+        <a href="https://denstoreklimadatabase.dk/" target="_blank">Besøg databasen</a>
+      </p>
+    </div>
     <a href="{{ url_for('topic_emissions_tips') }}"
       class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-cb-green-dark transition-colors hover:text-cb-green-medium">
       Se Best Practice →

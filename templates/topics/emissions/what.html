@@ -2,6 +2,10 @@
 
 {% block title %}Hvad er Emissioner? - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
@@ -29,6 +33,14 @@
       Ifølge Concito er valget af fødevarer den absolut vigtigste faktor for klimaaftrykket. Transport og emballage
       betyder mindre end selve produktionen af råvaren.
     </p>
+
+    <div class="citation-box text-left mx-auto max-w-2xl">
+      <span class="citation-label">Kilde</span>
+      <p class="citation-text">
+        CONCITO. (2025). Den store klimadatabase, version 1.2.
+        <a href="https://denstoreklimadatabase.dk/" target="_blank">Besøg databasen</a>
+      </p>
+    </div>
   </div>
 </section>
 
@@ -46,6 +58,14 @@
         Metan er ca. 28 gange kraftigere end CO₂ over en 100-årig periode. Derfor har oksekød et så højt aftryk
         sammenlignet med kylling eller planter.
       </p>
+
+      <div class="did-you-know">
+        <div class="dyk-title">Vidste du?</div>
+        <div class="dyk-content">
+          Selvom metan nedbrydes hurtigere end CO₂, er det langt mere effektivt til at holde på varmen. Det gør
+          drøvtyggere til en af de største kilder til landbrugets klimabelastning.
+        </div>
+      </div>
     </div>
     <div class="flex items-center justify-center bg-stone-900 px-8 py-20 text-white lg:px-24">
       <div class="space-y-12 w-full max-w-md">
@@ -112,6 +132,40 @@
         <strong>Tommelfingerregel:</strong> Animalske produkter vejer tungest. 1 kg oksekød svarer klimamæssigt til over
         50 kg kartofler.
       </p>
+
+      <div class="comparison-chart">
+        <div class="chart-title">Klimaaftryk (kg CO₂e/kg)</div>
+
+        <div class="chart-item">
+          <div class="chart-label">
+            <span>Oksekød</span>
+            <span><strong>~14-30 kg</strong></span>
+          </div>
+          <div class="chart-bar-container">
+            <div class="chart-bar emissions-very-high" style="width: 100%;">Højest</div>
+          </div>
+        </div>
+
+        <div class="chart-item">
+          <div class="chart-label">
+            <span>Kylling</span>
+            <span><strong>~3-5 kg</strong></span>
+          </div>
+          <div class="chart-bar-container">
+            <div class="chart-bar emissions-medium" style="width: 25%;">Middel</div>
+          </div>
+        </div>
+
+        <div class="chart-item">
+          <div class="chart-label">
+            <span>Kartofler</span>
+            <span><strong>~0.2 kg</strong></span>
+          </div>
+          <div class="chart-bar-container">
+            <div class="chart-bar emissions-very-low" style="width: 5%;">Lavest</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

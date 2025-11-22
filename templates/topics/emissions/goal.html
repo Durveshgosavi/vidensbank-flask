@@ -2,6 +2,10 @@
 
 {% block title %}Nationale Mål - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
 <!-- Hero Section -->
 <div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
@@ -32,6 +36,38 @@
       Dette mål er fastsat i Klimaloven. Fødevaresektoren spiller en afgørende rolle i at nå dette mål, da den står for
       en betydelig del af de samlede udledninger.
     </p>
+
+    <div class="citation-box text-left mx-auto max-w-2xl mt-8">
+      <span class="citation-label">Kilde</span>
+      <p class="citation-text">
+        Klima-, Energi- og Forsyningsministeriet. (2020). Klimaloven.
+        <a href="https://kefm.dk/klima-og-vejr/regeringens-klimapolitik/klimaloven" target="_blank">Læs om loven</a>
+      </p>
+    </div>
+
+    <div class="comparison-chart text-left mx-auto max-w-2xl mt-12">
+      <div class="chart-title">Reduktionsmål (Mio. ton CO₂e)</div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>1990 (Basisår)</span>
+          <span><strong>~78 mio. ton</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-high" style="width: 100%;">100%</div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>2030 (Mål)</span>
+          <span><strong>~23 mio. ton</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-low" style="width: 30%;">30% (70% reduktion)</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
