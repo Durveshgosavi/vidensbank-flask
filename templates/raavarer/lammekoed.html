@@ -1,0 +1,503 @@
+{% extends "base.html" %}
+
+{% block title %}Lammekød - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<div class="bg-cb-taupe-light py-4">
+    <div class="mx-auto max-w-7xl px-6">
+        <nav class="text-sm">
+            <a href="{{ url_for('raavarer_landing') }}" class="text-cb-orange-dark hover:text-cb-orange-medium">Råvarer</a>
+            <span class="mx-2 text-stone-400">/</span>
+            <span class="text-stone-600">Lammekød</span>
+        </nav>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="relative bg-gradient-to-br from-red-50 to-orange-50 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="font-display text-6xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                    Lammekød
+                </h1>
+                <p class="font-sans text-xl text-stone-600 mb-8 leading-relaxed">
+                    Lammekød har et klimaaftryk på 24 kg CO₂e pr. kg – det næsthøjeste efter oksekød. Primært grundet
+                    metanudledning fra drøvtyggere og ekstensivt græsningsareal. Men det er også næringsrigt og ofte
+                    produceret på marginale arealer uegnede til anden produktion.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-red-200">
+                        <div class="text-3xl font-bold text-red-600">24</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">kg CO₂e/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-red-200">
+                        <div class="text-3xl font-bold text-red-600">2.5x</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vs oksekød</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-red-200">
+                        <div class="text-3xl font-bold text-red-600">8,763L</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vand/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-red-200">
+                        <div class="text-3xl font-bold text-red-600">370m²</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">areal/kg</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+                <img src="{{ url_for('static', filename='images/Cheval21233.jpeg') }}"
+                     alt="Lammekød"
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest uppercase text-red-600 mb-4 block">Klimaaftryk</span>
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Høj Klimapåvirkning
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Lammekød er blandt de mest klimabelastende fødevarer. Lammet producerer metan gennem drøvtyggning,
+                og ekstensiv græsning kræver store arealer.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <canvas id="lambComparisonChart" height="100"></canvas>
+        </div>
+
+        <div class="mt-16 bg-red-50 p-8 rounded-lg max-w-4xl mx-auto">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Klimafakta</h3>
+            <div class="grid md:grid-cols-2 gap-6 font-sans text-stone-700">
+                <div class="flex items-start gap-3">
+                    <span class="text-red-600 text-xl">•</span>
+                    <p>1 kg lammekød = 24 kg CO₂e (CONCITO 2024)</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-red-600 text-xl">•</span>
+                    <p>Primært fra enterisk metan (drøvtyggning) - ca. 70%</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-red-600 text-xl">•</span>
+                    <p>Græsningsbaseret produktion kræver store arealer</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-red-600 text-xl">•</span>
+                    <p>Ofte produceret på marginale arealer (bjergområder, udmark)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Miljøpåvirkning
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Water Usage -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-blue-400">
+                <div class="text-5xl mb-4">💧</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vandforbrug</h3>
+                <div class="text-4xl font-bold text-blue-600 mb-2">8,763 L</div>
+                <p class="text-sm text-stone-600 mb-4">per kg lammekød</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    Lavere end oksekød men stadig betydeligt. Primært til foderafgrøder og drikkevand til dyrene.
+                </p>
+            </div>
+
+            <!-- Land Use -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-green-400">
+                <div class="text-5xl mb-4">🌾</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Arealforbrug</h3>
+                <div class="text-4xl font-bold text-green-600 mb-2">370 m²</div>
+                <p class="text-sm text-stone-600 mb-4">per kg lammekød</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    Næsthøjeste efter oksekød. Lam græsser ofte på bjergskråninger og marginal jord.
+                </p>
+            </div>
+
+            <!-- Biodiversity -->
+            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-amber-400">
+                <div class="text-5xl mb-4">🌱</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Biodiversitet</h3>
+                <div class="text-4xl font-bold text-amber-600 mb-2">Nuanceret</div>
+                <p class="text-sm text-stone-600 mb-4">påvirkning</p>
+                <p class="text-stone-700 font-sans text-sm">
+                    Extensiv græsning kan vedligeholde kulturlandskaber og åbne biotoper. Men overgræsning skader økosystemer.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nuanced Perspective -->
+<section class="py-24 bg-amber-50">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Det Nuancerede Billede
+            </h2>
+        </div>
+
+        <div class="space-y-6 bg-white p-8 rounded-xl shadow-lg">
+            <div class="border-l-4 border-amber-500 pl-6">
+                <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">✅ Marginal Jord</h3>
+                <p class="text-stone-600">
+                    Lam kan græsse på arealer uegnede til planteproduktion (bjergskråninger, heder, kystområder).
+                    Her konkurrerer de ikke direkte med fødevareproduktion.
+                </p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-6">
+                <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">✅ Kulturlandskab</h3>
+                <p class="text-stone-600">
+                    Extensiv fåregræsning vedligeholder åbne landskaber, forhindrer genbevoksning og understøtter
+                    biodiversitet i habitater som overdrev og heder.
+                </p>
+            </div>
+
+            <div class="border-l-4 border-amber-500 pl-6">
+                <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">✅ Næringsværdi</h3>
+                <p class="text-stone-600">
+                    Lammekød er rigt på protein, jern, B12, zink og omega-3 (især græsfodret lam).
+                    Højere næringstæthed end mange plantealternativer.
+                </p>
+            </div>
+
+            <div class="border-l-4 border-red-500 pl-6">
+                <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">⚠️ Men: Klimaaftrykket Er Reelt</h3>
+                <p class="text-stone-600">
+                    Selv på marginal jord er metanemissioner fra drøvtyggning betydelige. 24 kg CO₂e/kg er 12x højere
+                    end bælgfrugter og 3.5x højere end kylling.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Alternatives Section -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Klimavenlige Alternativer
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Hvis lammekød skal reduceres, her er de bedste alternativer:
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Legumes -->
+            <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg border-2 border-green-200 hover:border-green-400 transition-all">
+                <div class="text-4xl mb-3">🫘</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Bælgfrugter</h3>
+                <div class="text-3xl font-bold text-green-600 mb-2">-92%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    2 kg CO₂e/kg. Højeste proteinindhold, laveste klimaaftryk. 12x bedre end lam.
+                </p>
+            </div>
+
+            <!-- Chicken -->
+            <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-lg border-2 border-yellow-200 hover:border-yellow-400 transition-all">
+                <div class="text-4xl mb-3">🐔</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Kylling</h3>
+                <div class="text-3xl font-bold text-yellow-600 mb-2">-71%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    6.9 kg CO₂e/kg. Mest klimavenlige kød. 3.5x bedre end lam.
+                </p>
+            </div>
+
+            <!-- Pork -->
+            <div class="bg-gradient-to-br from-pink-50 to-white p-6 rounded-lg border-2 border-pink-200 hover:border-pink-400 transition-all">
+                <div class="text-4xl mb-3">🐷</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Svinekød</h3>
+                <div class="text-3xl font-bold text-pink-600 mb-2">-50%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    12 kg CO₂e/kg. Halvdelen af lammets klimaaftryk. Stadig betydeligt protein.
+                </p>
+            </div>
+
+            <!-- Fish -->
+            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border-2 border-blue-200 hover:border-blue-400 transition-all">
+                <div class="text-4xl mb-3">🐟</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Hvid Fisk</h3>
+                <div class="text-3xl font-bold text-blue-600 mb-2">-75%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    6 kg CO₂e/kg. MSC-certificeret hvid fisk er en bæredygtig proteinkilde.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide mb-6 text-red-400">
+                Hvis du køber lammekød
+            </h2>
+            <p class="font-sans text-lg text-stone-300">
+                Sådan minimerer du klimaaftrykket og sikrer bedre dyrevelfærd:
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🏔️ Vælg græsfodret lam fra ekstensiv drift</h3>
+                <p class="text-stone-300">
+                    Græsfodret lam fra naturområder (Island, New Zealand, Skotland) udnytter marginal jord og
+                    vedligeholder kulturlandskaber. Bedre end lam fra intensive staldsystemer.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🇩🇰 Overvej dansk lam</h3>
+                <p class="text-stone-300">
+                    Dansk lammeproduktion har kortere transport, strengere dyrevelfærdskrav og ofte græsning på
+                    naturarealer som overdrev og vadehav-diger.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-sans text-lg font-bold mb-2">📏 Reducer portionsstørrelse</h3>
+                <p class="text-stone-300">
+                    Lammekød har høj næringstæthed – mindre portioner er nok. 80-100g lam pr. person kombineret med
+                    grøntsager giver en balanceret ret.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🔄 Brug hele dyret</h3>
+                <p class="text-stone-300">
+                    Køb også skank, hals, bryst og indvolde. Det reducerer madspild og respekterer at et dyr er opdrættet.
+                    Lav fond af knogler.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-red-400">
+                <h3 class="font-sans text-lg font-bold mb-2">📅 Gør det til en særanledning</h3>
+                <p class="text-stone-300">
+                    Med et klimaaftryk på 24 kg CO₂e/kg bør lammekød være en sjælden fornøjelse – fx til påske eller
+                    specielle middage. Max 1-2 gange om måneden.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-red-50 to-orange-50">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Beregn Din Besparelse
+            </h2>
+            <p class="font-sans text-lg text-stone-600">
+                Se hvor meget CO₂ du kan spare ved at erstatte lammekød med alternativer
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <div class="mb-6">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvor meget lammekød spiser du om måneden?
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="lambAmount" min="0" max="2000" value="400" step="50"
+                           class="flex-1 h-2 bg-red-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="calculateLambSavings()">
+                    <span id="lambAmountDisplay" class="font-bold text-2xl text-red-600 min-w-[100px]">400g</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvad vil du erstatte det med?
+                </label>
+                <select id="lambReplacement"
+                        class="w-full p-3 border-2 border-stone-200 rounded-lg font-sans text-stone-700 focus:border-red-400 focus:outline-none"
+                        onchange="calculateLambSavings()">
+                    <option value="2">Bælgfrugter (linser, bønner, kikærter)</option>
+                    <option value="6.9">Kylling</option>
+                    <option value="12" selected>Svinekød</option>
+                    <option value="6">Hvid fisk (MSC-certificeret)</option>
+                    <option value="60">Oksekød (stadig højt)</option>
+                    <option value="0">Intet - jeg stopper helt</option>
+                </select>
+            </div>
+
+            <div id="lambSavingsResult" class="hidden">
+                <div class="bg-gradient-to-r from-red-100 to-orange-100 p-6 rounded-lg mb-4">
+                    <div class="text-center">
+                        <div class="text-sm uppercase tracking-wider text-stone-600 mb-2">Månedlig besparelse</div>
+                        <div class="text-5xl font-bold text-red-600 mb-2">
+                            <span id="lambSavingsValue">0</span> kg CO₂e
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Årlig besparelse</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="lambAnnualSavings">0</span> tons CO₂e
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Svarer til</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="lambFlightEquiv">0</span> flyvninger KBH-London
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-stone-500 mt-4 text-center">
+                    * Beregninger baseret på CONCITO klimadatabase 2024
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+    <div class="mx-auto max-w-5xl px-6">
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">Datakilder</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-600 font-sans">
+            <div class="bg-white p-4 rounded">
+                <strong>CONCITO Klimadatabase v2.0 (2024)</strong><br>
+                CO₂-ækvivalenter for lammekød og alternativer
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Poore & Nemecek (2018), Science</strong><br>
+                Global analyse af lammeproduktionens miljøpåvirkning
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Water Footprint Network</strong><br>
+                Vandforbrugsdata for lammeproduktion
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>FAO - Food and Agriculture Organization</strong><br>
+                Data om extensiv fåregræsning og biodiversitet
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// Lamb comparison chart
+const lambCtx = document.getElementById('lambComparisonChart').getContext('2d');
+new Chart(lambCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Bælgfrugter', 'Hvid fisk', 'Kylling', 'Svinekød', 'Lammekød', 'Oksekød'],
+        datasets: [{
+            label: 'kg CO₂e per kg fødevare',
+            data: [2, 6, 6.9, 12, 24, 60],
+            backgroundColor: [
+                'rgba(34, 197, 94, 0.8)',   // green - legumes
+                'rgba(59, 130, 246, 0.8)',  // blue - fish
+                'rgba(234, 179, 8, 0.8)',   // yellow - chicken
+                'rgba(236, 72, 153, 0.8)',  // pink - pork
+                'rgba(239, 68, 68, 0.9)',   // red - LAMB (highlighted)
+                'rgba(127, 29, 29, 0.8)'    // dark red - beef
+            ],
+            borderColor: [
+                'rgb(34, 197, 94)',
+                'rgb(59, 130, 246)',
+                'rgb(234, 179, 8)',
+                'rgb(236, 72, 153)',
+                'rgb(239, 68, 68)',
+                'rgb(127, 29, 29)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + ' kg CO₂e/kg';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'kg CO₂e per kg fødevare',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        }
+    }
+});
+
+// Calculator function
+function calculateLambSavings() {
+    const lambAmount = parseFloat(document.getElementById('lambAmount').value) || 0;
+    const replacementCO2 = parseFloat(document.getElementById('lambReplacement').value);
+
+    // Update display
+    document.getElementById('lambAmountDisplay').textContent = lambAmount + 'g';
+
+    const lambCO2 = 24; // kg CO2e/kg
+    const currentEmissions = (lambAmount / 1000) * lambCO2;
+    const newEmissions = (lambAmount / 1000) * replacementCO2;
+    const monthlySavings = currentEmissions - newEmissions;
+    const annualSavings = (monthlySavings * 12) / 1000; // Convert to tons
+    const flights = Math.round(annualSavings / 0.25); // ~250kg per flight
+
+    document.getElementById('lambSavingsValue').textContent = monthlySavings.toFixed(1);
+    document.getElementById('lambAnnualSavings').textContent = annualSavings.toFixed(2);
+    document.getElementById('lambFlightEquiv').textContent = flights;
+
+    document.getElementById('lambSavingsResult').classList.remove('hidden');
+}
+
+// Initialize calculator on page load
+document.addEventListener('DOMContentLoaded', function() {
+    calculateLambSavings();
+});
+</script>
+{% endblock %}

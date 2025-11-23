@@ -1,0 +1,593 @@
+{% extends "base.html" %}
+
+{% block title %}Laks & Ørred - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<div class="bg-cb-taupe-light py-4">
+    <div class="mx-auto max-w-7xl px-6">
+        <nav class="text-sm">
+            <a href="{{ url_for('raavarer_landing') }}" class="text-cb-orange-dark hover:text-cb-orange-medium">Råvarer</a>
+            <span class="mx-2 text-stone-400">/</span>
+            <span class="text-stone-600">Laks & Ørred</span>
+        </nav>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="relative bg-gradient-to-br from-blue-50 to-cyan-50 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="font-display text-6xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                    Laks &<br>Ørred
+                </h1>
+                <p class="font-sans text-xl text-stone-600 mb-8 leading-relaxed">
+                    Opdr​ættet laks og ørred har et klimaaftryk på 11.9 kg CO₂e pr. kg – betydeligt højere end hvid fisk,
+                    men lavere end de fleste kødtyper. Klimaaftrykket kommer primært fra foderemissioner og energiforbrug
+                    i opdræt. Vildtfanget laks har lavere klimaaftryk men større udfordringer med overfiskeri.
+                </p>
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-blue-200">
+                        <div class="text-3xl font-bold text-blue-600">11.9</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">kg CO₂e/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-blue-200">
+                        <div class="text-3xl font-bold text-blue-600">2x</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vs hvid fisk</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-blue-200">
+                        <div class="text-3xl font-bold text-blue-600">3,091L</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">vand/kg</div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-blue-200">
+                        <div class="text-3xl font-bold text-blue-600">Ω-3</div>
+                        <div class="text-xs uppercase tracking-wider text-stone-600">Rigt indhold</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+                <img src="{{ url_for('static', filename='images/chef_tablet.jpg') }}"
+                     alt="Laks & Ørred"
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <span class="text-xs font-bold tracking-widest uppercase text-blue-600 mb-4 block">Klimaaftryk</span>
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Mellem Kød og Hvid Fisk
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Opdrættet laks ligger i mellemzonen: lavere end de fleste kødtyper, men højere end hvid fisk.
+                Primært grundet foder produceret fra industrifisk og energiforbrug i akvakultur-anlæg.
+            </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <canvas id="salmonComparisonChart" height="100"></canvas>
+        </div>
+
+        <div class="mt-16 bg-blue-50 p-8 rounded-lg max-w-4xl mx-auto">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Klimafakta</h3>
+            <div class="grid md:grid-cols-2 gap-6 font-sans text-stone-700">
+                <div class="flex items-start gap-3">
+                    <span class="text-blue-600 text-xl">•</span>
+                    <p>1 kg opdrættet laks = 11.9 kg CO₂e (CONCITO 2024)</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-blue-600 text-xl">•</span>
+                    <p>Primært fra produktion af fiskefoder (industrifisk, soja)</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-blue-600 text-xl">•</span>
+                    <p>Energiforbrug til vandpumper, iltning og temperaturkontrol</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="text-blue-600 text-xl">•</span>
+                    <p>Vildtfanget laks: ~6 kg CO₂e/kg, men overfiskerisudfordringer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Farmed vs Wild -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Opdræt vs. Vildtfanget
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Farmed -->
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="text-5xl">🏭</div>
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Opdrættet Laks</h3>
+                        <p class="text-sm text-stone-500">11.9 kg CO₂e/kg</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-red-500 text-xl">❌</span>
+                        <div>
+                            <strong class="text-stone-900">Højere klimaaftryk</strong>
+                            <p class="text-sm text-stone-600">Foder fra industrifisk og soja øger CO₂e</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-red-500 text-xl">❌</span>
+                        <div>
+                            <strong class="text-stone-900">Miljøpåvirkning</strong>
+                            <p class="text-sm text-stone-600">Næringsstofudledning, lusemiddel, rømningsproblematik</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl">✅</span>
+                        <div>
+                            <strong class="text-stone-900">Stabil forsyning</strong>
+                            <p class="text-sm text-stone-600">Forudsigelig produktion, ingen overfiskeri</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl">✅</span>
+                        <div>
+                            <strong class="text-stone-900">Lavere pris</strong>
+                            <p class="text-sm text-stone-600">Typisk 30-50% billigere end vildlaks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded">
+                    <p class="text-xs font-bold text-stone-700 uppercase mb-2">Vælg certificeret:</p>
+                    <p class="text-sm text-stone-600">ASC (Aquaculture Stewardship Council) sikrer bedre miljø- og dyrevelfærd</p>
+                </div>
+            </div>
+
+            <!-- Wild -->
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-cyan-500">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="text-5xl">🌊</div>
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Vildtfanget Laks</h3>
+                        <p class="text-sm text-stone-500">~6 kg CO₂e/kg</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl">✅</span>
+                        <div>
+                            <strong class="text-stone-900">Lavere klimaaftryk</strong>
+                            <p class="text-sm text-stone-600">Ingen foderproduktion, naturlig opvækst</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-green-500 text-xl">✅</span>
+                        <div>
+                            <strong class="text-stone-900">Højere Ω-3</strong>
+                            <p class="text-sm text-stone-600">Naturlig diæt giver bedre fedtsyreprofil</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-red-500 text-xl">❌</span>
+                        <div>
+                            <strong class="text-stone-900">Overfiskeri</strong>
+                            <p class="text-sm text-stone-600">Mange bestande er presset eller truede</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-red-500 text-xl">❌</span>
+                        <div>
+                            <strong class="text-stone-900">Højere pris</strong>
+                            <p class="text-sm text-stone-600">Premium produkt med begrænset tilgængelighed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cyan-50 p-4 rounded">
+                    <p class="text-xs font-bold text-stone-700 uppercase mb-2">Vælg certificeret:</p>
+                    <p class="text-sm text-stone-600">MSC (Marine Stewardship Council) sikrer bæredygtigt fiskeri</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nutritional Benefits -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Næringsværdi
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Laks er en af de mest næringstætte fødevarer med unikt indhold af omega-3 fedtsyrer
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Omega-3 -->
+            <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-2 border-blue-200">
+                <div class="text-5xl mb-4">🐟</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Omega-3</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    Laks indeholder <strong class="text-blue-600">2,3g EPA+DHA</strong> pr. 100g – blandt de højeste
+                    naturlige kilder. Essentielt for hjerte, hjerne og antiinflammatorisk effekt.
+                </p>
+                <div class="text-sm text-green-600 font-bold">✓ Bedre end kosttilskud</div>
+            </div>
+
+            <!-- Protein -->
+            <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-lg border-2 border-green-200">
+                <div class="text-5xl mb-4">💪</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Højkvalitets Protein</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    <strong class="text-green-600">20g protein</strong> pr. 100g med alle essentielle aminosyrer.
+                    Komplet protein sammenligneligt med kød.
+                </p>
+                <div class="text-sm text-green-600 font-bold">✓ Biologisk værdi: 100</div>
+            </div>
+
+            <!-- Vitamins -->
+            <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-lg border-2 border-orange-200">
+                <div class="text-5xl mb-4">⚡</div>
+                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vitaminer & Mineraler</h3>
+                <p class="text-stone-700 font-sans mb-4">
+                    Rigt på <strong class="text-orange-600">D-vitamin, B12, selen og jod</strong>. 100g laks dækker 100%
+                    af dagligt D-vitamin behov.
+                </p>
+                <div class="text-sm text-green-600 font-bold">✓ Næringstæt fødevare</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Alternatives Section -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Klimavenlige Fiskealternativer
+            </h2>
+            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+                Hvis du vil have fisk med lavere klimaaftryk end laks:
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- White Fish -->
+            <div class="bg-gradient-to-br from-cyan-50 to-white p-6 rounded-lg border-2 border-cyan-200 hover:border-cyan-400 transition-all">
+                <div class="text-4xl mb-3">🐟</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Hvid Fisk</h3>
+                <div class="text-3xl font-bold text-cyan-600 mb-2">-50%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    6 kg CO₂e/kg. Torsk, kuller, rødspætte – MSC-certificeret. Lavere fedt, men stadig godt protein.
+                </p>
+            </div>
+
+            <!-- Herring/Mackerel -->
+            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border-2 border-blue-200 hover:border-blue-400 transition-all">
+                <div class="text-4xl mb-3">🐡</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Sild & Makrel</h3>
+                <div class="text-3xl font-bold text-blue-600 mb-2">-70%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    ~3.5 kg CO₂e/kg. Vildtfanget, høj omega-3, bæredygtige bestande. Billigere end laks.
+                </p>
+            </div>
+
+            <!-- Mussels -->
+            <div class="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-lg border-2 border-emerald-200 hover:border-emerald-400 transition-all">
+                <div class="text-4xl mb-3">🦪</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Muslinger</h3>
+                <div class="text-3xl font-bold text-emerald-600 mb-2">-95%</div>
+                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    ~0.5 kg CO₂e/kg. Filtrerer vand, intet foder nødvendigt. Ultimativ bæredygtig skaldyr.
+                </p>
+            </div>
+
+            <!-- Trout (Ørred) -->
+            <div class="bg-gradient-to-br from-teal-50 to-white p-6 rounded-lg border-2 border-teal-200 hover:border-teal-400 transition-all">
+                <div class="text-4xl mb-3">🐠</div>
+                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Regnbueørred</h3>
+                <div class="text-3xl font-bold text-teal-600 mb-2">~0%</div>
+                <p class="text-xs text-stone-600 mb-3">Samme klimaaftryk</p>
+                <p class="text-sm text-stone-700 font-sans">
+                    11.9 kg CO₂e/kg (samme som laks). Men ofte billigere og dansk opdræt tilgængeligt.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide mb-6 text-blue-400">
+                Købsguide til Laks
+            </h2>
+            <p class="font-sans text-lg text-stone-300">
+                Sådan vælger du laks med mindst mulig miljøpåvirkning:
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-blue-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🏅 Vælg ASC- eller MSC-certificeret</h3>
+                <p class="text-stone-300">
+                    ASC (opdrættet) eller MSC (vildtfanget) garanterer bedre miljøhensyn, sporbarhed og dyrevelfærd.
+                    Krav til vandkvalitet, foderandel og rømningssikring.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-blue-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🇩🇰 Overvej dansk regnbueørred</h3>
+                <p class="text-stone-300">
+                    Dansk opdrættet regnbueørred har kortere transport, lignende næringsværdi og ofte strengere miljøkontrol.
+                    Samme klimaaftryk som laks men med lokale fordele.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-blue-400">
+                <h3 class="font-sans text-lg font-bold mb-2">❄️ Frossen er helt fint</h3>
+                <p class="text-stone-300">
+                    Frossen laks har samme næringsværdi og klimaaftryk som frisk. Det giver længere holdbarhed, reducerer
+                    madspild og er ofte billigere.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-blue-400">
+                <h3 class="font-sans text-lg font-bold mb-2">🔄 Variere med hvid fisk</h3>
+                <p class="text-stone-300">
+                    Skift mellem laks (høj omega-3) og hvid fisk (lavere klima). Fx laks 1-2x/uge og torsk/kuller de
+                    øvrige dage giver balance mellem næring og klima.
+                </p>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-blue-400">
+                <h3 class="font-sans text-lg font-bold mb-2">📦 Spis hele fisken</h3>
+                <p class="text-stone-300">
+                    Brug skind (steg sprødt), knogler (til fond) og trimminger (til fiskebudding). Det respekterer ressourcerne
+                    og reducerer spild.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+                Beregn Din Besparelse
+            </h2>
+            <p class="font-sans text-lg text-stone-600">
+                Sammenlign laks med andre proteinkilder
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <div class="mb-6">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvor meget laks spiser du om ugen?
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="salmonAmount" min="0" max="1500" value="400" step="50"
+                           class="flex-1 h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="calculateSalmonSavings()">
+                    <span id="salmonAmountDisplay" class="font-bold text-2xl text-blue-600 min-w-[100px]">400g</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block font-sans font-bold text-stone-700 mb-2">
+                    Hvad sammenligner du med?
+                </label>
+                <select id="salmonComparison"
+                        class="w-full p-3 border-2 border-stone-200 rounded-lg font-sans text-stone-700 focus:border-blue-400 focus:outline-none"
+                        onchange="calculateSalmonSavings()">
+                    <option value="compare-higher">Hvis jeg erstattede højere CO₂ kød med laks:</option>
+                    <option value="60">...oksekød → laks</option>
+                    <option value="24">...lammekød → laks</option>
+                    <option value="12">...svinekød → laks</option>
+                    <option value="compare-lower">Eller gå lavere end laks:</option>
+                    <option value="6">...hvid fisk i stedet</option>
+                    <option value="6.9">...kylling i stedet</option>
+                    <option value="2">...bælgfrugter i stedet</option>
+                </select>
+            </div>
+
+            <div id="salmonSavingsResult" class="hidden">
+                <div class="bg-gradient-to-r from-blue-100 to-cyan-100 p-6 rounded-lg mb-4">
+                    <div class="text-center">
+                        <div class="text-sm uppercase tracking-wider text-stone-600 mb-2">
+                            <span id="salmonSavingsLabel">Ugentlig besparelse</span>
+                        </div>
+                        <div class="text-5xl font-bold mb-2">
+                            <span id="salmonSavingsValue" class="text-blue-600">0</span>
+                            <span class="text-2xl text-stone-600">kg CO₂e</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Årlig forskel</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="salmonAnnualSavings">0</span> tons CO₂e
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded">
+                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Svarer til</div>
+                        <div class="text-2xl font-bold text-stone-900">
+                            <span id="salmonFlightEquiv">0</span> flyvninger KBH-London
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-stone-500 mt-4 text-center">
+                    * Beregninger baseret på CONCITO klimadatabase 2024
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+    <div class="mx-auto max-w-5xl px-6">
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">Datakilder</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-600 font-sans">
+            <div class="bg-white p-4 rounded">
+                <strong>CONCITO Klimadatabase v2.0 (2024)</strong><br>
+                CO₂-ækvivalenter for laks og fiskeprodukter
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>Poore & Nemecek (2018), Science</strong><br>
+                Analyse af akvakultur og fiskeriets miljøpåvirkning
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>ASC & MSC Certificeringsdata</strong><br>
+                Bæredygtighedsstandarder for opdræt og vildtfiskeri
+            </div>
+            <div class="bg-white p-4 rounded">
+                <strong>DTU Fødevareinstituttet</strong><br>
+                Næringsdata for fisk og skaldyr
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// Salmon comparison chart
+const salmonCtx = document.getElementById('salmonComparisonChart').getContext('2d');
+new Chart(salmonCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Bælgfrugter', 'Hvid fisk', 'Kylling', 'Svinekød', 'Laks', 'Lammekød', 'Oksekød'],
+        datasets: [{
+            label: 'kg CO₂e per kg fødevare',
+            data: [2, 6, 6.9, 12, 11.9, 24, 60],
+            backgroundColor: [
+                'rgba(34, 197, 94, 0.8)',   // green - legumes
+                'rgba(6, 182, 212, 0.8)',   // cyan - white fish
+                'rgba(234, 179, 8, 0.8)',   // yellow - chicken
+                'rgba(236, 72, 153, 0.8)',  // pink - pork
+                'rgba(59, 130, 246, 0.9)',  // blue - SALMON (highlighted)
+                'rgba(239, 68, 68, 0.8)',   // red - lamb
+                'rgba(127, 29, 29, 0.8)'    // dark red - beef
+            ],
+            borderColor: [
+                'rgb(34, 197, 94)',
+                'rgb(6, 182, 212)',
+                'rgb(234, 179, 8)',
+                'rgb(236, 72, 153)',
+                'rgb(59, 130, 246)',
+                'rgb(239, 68, 68)',
+                'rgb(127, 29, 29)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.x + ' kg CO₂e/kg';
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'kg CO₂e per kg fødevare',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            y: {
+                grid: {
+                    display: false
+                }
+            }
+        }
+    }
+});
+
+// Calculator function
+function calculateSalmonSavings() {
+    const salmonAmount = parseFloat(document.getElementById('salmonAmount').value) || 0;
+    const comparisonValue = document.getElementById('salmonComparison').value;
+
+    // Update display
+    document.getElementById('salmonAmountDisplay').textContent = salmonAmount + 'g';
+
+    // Skip if descriptive option selected
+    if (comparisonValue === 'compare-higher' || comparisonValue === 'compare-lower') {
+        document.getElementById('salmonSavingsResult').classList.add('hidden');
+        return;
+    }
+
+    const comparisonCO2 = parseFloat(comparisonValue);
+    const salmonCO2 = 11.9; // kg CO2e/kg
+
+    const salmonEmissions = (salmonAmount / 1000) * salmonCO2;
+    const comparisonEmissions = (salmonAmount / 1000) * comparisonCO2;
+    const weeklySavings = comparisonEmissions - salmonEmissions;
+    const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
+    const flights = Math.round(Math.abs(annualSavings) / 0.25); // ~250kg per flight
+
+    // Determine label
+    const labelElement = document.getElementById('salmonSavingsLabel');
+    if (weeklySavings > 0) {
+        labelElement.textContent = 'Ugentlig besparelse ved at vælge laks';
+    } else {
+        labelElement.textContent = 'Yderligere besparelse ved at gå lavere';
+    }
+
+    document.getElementById('salmonSavingsValue').textContent = Math.abs(weeklySavings).toFixed(1);
+    document.getElementById('salmonAnnualSavings').textContent = Math.abs(annualSavings).toFixed(2);
+    document.getElementById('salmonFlightEquiv').textContent = flights;
+
+    document.getElementById('salmonSavingsResult').classList.remove('hidden');
+}
+
+// Initialize calculator on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Set to beef comparison by default
+    document.getElementById('salmonComparison').value = '60';
+    calculateSalmonSavings();
+});
+</script>
+{% endblock %}

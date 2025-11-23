@@ -1,0 +1,758 @@
+{% extends "base.html" %}
+
+{% block title %}Mælk – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
+
+{% block content %}
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .initial-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+</style>
+
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-50 via-white to-sky-50 pt-32 pb-20 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="text-center mb-12">
+      <div class="inline-block mb-6 px-6 py-2 bg-blue-100 border-2 border-blue-300 rounded-full">
+        <span class="font-sans text-xs font-bold tracking-widest uppercase text-blue-800">Mejeriprodukt</span>
+      </div>
+      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
+        Mælk
+      </h1>
+      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+        Danmarks mest forbrugte mejeriprodukt. Med et klimaaftryk på 3 kg CO₂e pr. liter ligger mælk mellem plantemælk
+        og ost – en vigtig ingrediens at optimere i kantinen.
+      </p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
+      <img src="{{ url_for('static', filename='images/salad_fresh.jpg') }}"
+           alt="Frisk mælk i professionelt køkken"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 text-white">
+        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
+        <p class="text-4xl font-display font-bold">3.0 kg CO₂e pr. liter</p>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-1">
+        <div class="text-3xl mb-2">🥛</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">3.0 kg</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. liter</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-2">
+        <div class="text-3xl mb-2">🌱</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">15x</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">vs. Havremælk</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500 text-center initial-hidden animate-fade-in-up stagger-3">
+        <div class="text-3xl mb-2">💧</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">628L</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Vand pr. liter</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-500 text-center initial-hidden animate-fade-in-up stagger-4">
+        <div class="text-3xl mb-2">🐄</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">~9m²</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Arealforbrug pr. L</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Klimadata</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimaaftryk i Kontekst
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Med <strong class="text-blue-600">3.0 kg CO₂e pr. liter</strong> har mælk et moderat klimaaftryk sammenlignet
+        med kød, men er væsentligt højere end plantebaserede alternativer.
+      </p>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
+      <canvas id="milkComparisonChart" class="w-full" style="max-height: 400px;"></canvas>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">✅ Lavere end animalske produkter</h3>
+        <p class="text-sm text-stone-700">
+          Mælk har kun 5% af oksekøds klimaaftryk (60 kg CO₂e/kg) og 37.5% af osts (8 kg CO₂e/kg).
+          En mere klimavenlig kilde til kalcium og protein end hård ost.
+        </p>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">⚠️ Men: 15x højere end havremælk</h3>
+        <p class="text-sm text-stone-700">
+          Plantebaserede alternativer (havre, soja, mandel) har typisk 0.2-0.9 kg CO₂e/L –
+          op til 90% lavere klimaaftryk end komælk.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Miljøpåvirkning
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Water -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
+        <div class="text-5xl mb-4">💧</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
+        <div class="text-4xl font-bold text-blue-600 mb-4">628 L/liter</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Inkluderer vand til køernes foder (græs, majs, soja), drikkevand til dyr, og rengøring af stalde og mejerier.
+          Langt det meste går til foder-dyrkning.
+        </p>
+        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
+          ℹ️ 3-10x mere end plantemælk (havre: 48L, soja: 28L)
+        </div>
+      </div>
+
+      <!-- Land Use -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
+        <div class="text-5xl mb-4">🌾</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Arealforbrug</h3>
+        <div class="text-4xl font-bold text-green-600 mb-4">~9 m²/L</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Omfatter græsningsarealer og dyrkningsjord til kraftfoder. Mælkeproduktion er den mest landintensive fødevareproduktion
+          efter oksekød.
+        </p>
+        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
+          ℹ️ 10x mere end havremælk (~0.8 m²/L)
+        </div>
+      </div>
+
+      <!-- Methane Emissions -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
+        <div class="text-5xl mb-4">🐄</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Metan-Emissioner</h3>
+        <div class="text-4xl font-bold text-red-600 mb-4">~40%</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Ca. 40% af mælkens klimaaftryk kommer fra køernes drøvtyggning (metan-udledning).
+          Metan er 28x stærkere drivhusgas end CO₂ over 100 år.
+        </p>
+        <div class="text-sm text-stone-500 bg-red-50 p-3 rounded">
+          ℹ️ Gælder for både konventionel og økologisk mælk
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nutritional Benefits -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Næringsværdi & Sundhed
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Mælk er en rig kilde til flere essentielle næringsstoffer – men disse kan også fås fra plantebaserede kilder.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Calcium -->
+      <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-2 border-blue-200">
+        <div class="text-5xl mb-4">🦴</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Kalcium</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-blue-600">120 mg pr. 100 ml</strong> – essentielt for knoglesundhed.
+          Komælk er naturligt rig på biovejledbart kalcium.
+        </p>
+        <div class="text-xs bg-blue-100 p-3 rounded">
+          <strong class="text-blue-800">Alternativ:</strong> Berigede plantemælke har ofte samme kalciumniveau (120 mg/100ml)
+        </div>
+      </div>
+
+      <!-- Protein -->
+      <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-lg border-2 border-green-200">
+        <div class="text-5xl mb-4">💪</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Protein</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-green-600">3.4g pr. 100 ml</strong> – komplet proteinprofil med alle essentielle aminosyrer.
+          God kilde til muskelvæv og enzymer.
+        </p>
+        <div class="text-xs bg-green-100 p-3 rounded">
+          <strong class="text-green-800">Alternativ:</strong> Sojamælk har sammenlignelig protein (3-4g/100ml)
+        </div>
+      </div>
+
+      <!-- Vitamins -->
+      <div class="bg-gradient-to-br from-amber-50 to-white p-8 rounded-lg border-2 border-amber-200">
+        <div class="text-5xl mb-4">☀️</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vitaminer</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          Rig på <strong class="text-amber-600">B12, B2 (riboflavin), og D-vitamin</strong> (i beriget mælk).
+          B12 findes naturligt kun i animalske produkter.
+        </p>
+        <div class="text-xs bg-amber-100 p-3 rounded">
+          <strong class="text-amber-800">Alternativ:</strong> Berigede plantemælke kan have samme vitaminniveau
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-xl border-2 border-purple-200">
+      <div class="flex items-start gap-4">
+        <span class="text-5xl">🧬</span>
+        <div class="flex-1">
+          <h4 class="font-display text-xl font-bold text-stone-900 uppercase mb-3">Laktoseintolerans</h4>
+          <p class="text-stone-700 font-sans mb-4">
+            Ca. <strong class="text-purple-700">65% af verdens voksne</strong> har nedsat evne til at fordøje laktose (mælkesukker).
+            I Skandinavien er tallet lavere (~5-10%), men symptomer som oppustethed og ubehag er udbredte.
+          </p>
+          <p class="text-sm text-stone-600">
+            <strong>Løsning:</strong> Laktosefri mælk (enzymatisk behandlet) eller plantebaseret mælk uden laktose.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alternatives Section -->
+<section class="py-24 bg-gradient-to-br from-green-50 via-white to-emerald-50">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Plantebaserede Alternativer
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Plantemælk reducerer kantinens klimaaftryk markant – op til 90% lavere CO₂e afhængigt af valget.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Oat Milk -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-amber-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🌾</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Havremælk</h3>
+              <p class="text-xs text-stone-500 uppercase">0.9 kg CO₂e/L</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓70%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Mest klimavenlig plantemælk. Havre dyrkes lokalt i Norden, kræver minimal vanding.
+          Cremet konsistens perfekt til kaffe, morgenmad og bagning.
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold">✓ Lokal produktion</span>
+          <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-bold">✓ Lavt vandforbrug (48L/L)</span>
+        </div>
+      </div>
+
+      <!-- Soy Milk -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-green-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🫛</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Sojamælk</h3>
+              <p class="text-xs text-stone-500 uppercase">0.4 kg CO₂e/L</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓87%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Højeste proteinindhold (3-4g/100ml) blandt plantemælk – tæt på komælk.
+          Velegnet til madlavning og smoothies. Vælg EU-certificeret for at undgå regnskovsrydning.
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">✓ Højt protein</span>
+          <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-bold">✓ Lavest vandforbrug (28L/L)</span>
+        </div>
+      </div>
+
+      <!-- Almond Milk -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-brown-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🌰</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Mandelmælk</h3>
+              <p class="text-xs text-stone-500 uppercase">0.7 kg CO₂e/L</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓77%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Let, lidt sødlig smag. God til kaffe og smoothies. Bemærk: Højt vandforbrug (371L/L) pga. mandeldyrkning
+          i tørre regioner (Californien).
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold">⚠️ Højere vandforbrug</span>
+          <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">✓ Lavt CO₂e</span>
+        </div>
+      </div>
+
+      <!-- Rice Milk -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-stone-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🍚</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Rismælk</h3>
+              <p class="text-xs text-stone-500 uppercase">1.2 kg CO₂e/L</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓60%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Sødere smag, tynd konsistens. Allergivenlig (fri for nødder og soja).
+          Højere CO₂e end andre plantemælke pga. metanemissioner fra rismarker.
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-bold">✓ Allergivenlig</span>
+          <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold">⚠️ Højere CO₂e</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-white p-8 rounded-xl shadow-lg border-2 border-green-200">
+      <h4 class="font-display text-xl font-bold text-stone-900 uppercase mb-4 text-center">Kantineanbefaling</h4>
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="text-center">
+          <div class="text-4xl mb-2">☕</div>
+          <strong class="text-stone-900">Kaffe-Bar:</strong>
+          <p class="text-stone-600 mt-2">Havremælk (cremet, lokal, lavt CO₂e)</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-2">🥣</div>
+          <strong class="text-stone-900">Morgenmad:</strong>
+          <p class="text-stone-600 mt-2">Havremælk eller sojamælk (protein)</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-2">🍳</div>
+          <strong class="text-stone-900">Madlavning:</strong>
+          <p class="text-stone-600 mt-2">Sojamælk (varmebestandig)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Købeguide for Kantinen
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Optimér mælkeindkøb med balance mellem klimaaftryk, ernæring, pris og medarbejderpræferencer.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Tip 1 -->
+      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">1️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Introducer Plantemælk Gradvist</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Start med 20-30% plantemælk (havremælk) ved siden af komælk. Øg gradvist baseret på feedback.
+              Mange medarbejdere foretrækker havremælk til kaffe når først de prøver det.
+            </p>
+            <div class="bg-green-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-green-800 uppercase">Besparelse: 2-2.5 kg CO₂e pr. liter skiftet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 2 -->
+      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">2️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vælg Berigede Plantemælke</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Sørg for at plantemælk er beriget med kalcium (120mg/100ml), D-vitamin og B12 for at matche komælkens ernæringsværdi.
+              Check altid ingredienslisten.
+            </p>
+            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-blue-800 uppercase">Næringssværdi minder om komælk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 3 -->
+      <div class="bg-gradient-to-r from-amber-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-amber-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">3️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Økologisk når Muligt</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Økologisk mælk har marginal klimaforskel (~5-10% højere CO₂e), men bedre dyrevelfærd og ingen pesticider.
+              For komælk er dyrevelfærd ofte vigtigere parameter end klimaaftryk.
+            </p>
+            <div class="bg-amber-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-amber-800 uppercase">Bedre dyrevelfærd, ingen antibiotika-overanvendelse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">4️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Reducer Spild med Mindre Emballage</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Brug 200-250ml pakker til individuel servering i stedet for 1L pakker der åbnes og kasseres halvfulde.
+              Monitorér forbrug og juster ordrer baseret på data.
+            </p>
+            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-purple-800 uppercase">15-25% af mælk ender som spild i kantiner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-gradient-to-r from-red-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-red-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">5️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Kommuniker Klimadata Transparentligt</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Lav tydelige skilte ved mælkedispenserne: "Havremælk: 0.9 kg CO₂e/L | Komælk: 3.0 kg CO₂e/L".
+              Medarbejdere træffer oftere bæredygtige valg når information er synlig.
+            </p>
+            <div class="bg-red-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-red-800 uppercase">Transparens øger klimavenlige valg med 15-30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 6 -->
+      <div class="bg-gradient-to-r from-teal-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-teal-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">6️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Tilbyd Variation og Valgfrihed</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Hav altid 2-3 valgmuligheder: Komælk, havremælk og eventuelt sojamælk.
+              Nudge mod plantemælk ved at placere den først/mest synligt, men tvang ikke.
+            </p>
+            <div class="bg-teal-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-teal-800 uppercase">Valgfrihed + nudging = bedre adoption</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-stone-100 to-stone-50">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Beregn Klimabesparelsen
+      </h2>
+      <p class="font-sans text-lg text-stone-600">
+        Se hvor meget CO₂ kantinen kan spare ved at skifte fra komælk til plantemælk.
+      </p>
+    </div>
+
+    <div class="bg-white p-10 rounded-2xl shadow-2xl">
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Månedligt mælkeforbrug (liter):</label>
+        <input type="range" id="milkAmount" min="50" max="2000" value="500" step="50"
+               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+        <div class="text-center mt-3">
+          <span id="milkAmountDisplay" class="text-4xl font-display font-bold text-stone-900">500</span>
+          <span class="text-xl text-stone-500 ml-2">liter/måned</span>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Skift til plantemælk:</label>
+        <select id="switchType" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-blue-500">
+          <option value="25oat">25% skifter til havremælk</option>
+          <option value="50oat">50% skifter til havremælk</option>
+          <option value="75oat">75% skifter til havremælk</option>
+          <option value="100oat">100% skifter til havremælk</option>
+          <option value="50soy">50% skifter til sojamælk</option>
+          <option value="mix">50% havremælk + 25% sojamælk</option>
+        </select>
+      </div>
+
+      <div class="h-px bg-stone-200 my-8"></div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Nuværende Udledning</div>
+          <div id="currentMilkEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">1,500</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
+          <div id="savedMilkEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">525</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-sky-50 rounded-lg border-2 border-blue-200">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-3xl">🌍</span>
+          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
+        </div>
+        <p id="yearlyMilkImpact" class="text-stone-700 font-sans text-lg">
+          På et år sparer kantinen <strong class="text-blue-700">6,300 kg CO₂e</strong> –
+          svarende til <strong class="text-blue-700">1,313</strong> måltider med oksekød.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+  <div class="mx-auto max-w-5xl px-6">
+    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
+      Datakilder & Referencer
+    </h3>
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
+          <li>• Poore & Nemecek, Science (2018)</li>
+          <li>• Our World in Data (2024)</li>
+          <li>• Oxford University – Environmental Impacts (2023)</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Miljø & Ernæring</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• Water Footprint Network (2023)</li>
+          <li>• FAO – Livestock Environmental Assessment</li>
+          <li>• Danmarks Fødevareinstitut</li>
+          <li>• Nordic Nutrition Recommendations (2023)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script>
+  // Comparison Chart
+  const ctx = document.getElementById('milkComparisonChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Sojamælk', 'Havremælk', 'Mandelmælk', 'Rismælk', 'Komælk'],
+      datasets: [{
+        label: 'kg CO₂e pr. liter',
+        data: [0.4, 0.9, 0.7, 1.2, 3.0],
+        backgroundColor: [
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(251, 191, 36, 0.8)',
+          'rgba(168, 85, 247, 0.8)',
+          'rgba(148, 163, 184, 0.8)',
+          'rgba(59, 130, 246, 0.8)'
+        ],
+        borderColor: [
+          'rgb(34, 197, 94)',
+          'rgb(251, 191, 36)',
+          'rgb(168, 85, 247)',
+          'rgb(148, 163, 184)',
+          'rgb(59, 130, 246)'
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.x + ' kg CO₂e pr. liter';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'kg CO₂e pr. liter',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          grid: {
+            color: 'rgba(0, 0, 0, 0.05)'
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          }
+        }
+      }
+    }
+  });
+
+  // Scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('initial-hidden');
+        entry.target.classList.add('animate-fade-in-up');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
+
+  // Calculator Logic
+  const milkAmountSlider = document.getElementById('milkAmount');
+  const milkAmountDisplay = document.getElementById('milkAmountDisplay');
+  const switchTypeSelect = document.getElementById('switchType');
+  const currentMilkEmissionsDisplay = document.getElementById('currentMilkEmissions');
+  const savedMilkEmissionsDisplay = document.getElementById('savedMilkEmissions');
+  const yearlyMilkImpactDisplay = document.getElementById('yearlyMilkImpact');
+
+  const MILK_CO2_PER_L = 3.0; // kg CO₂e per liter cow milk
+  const OAT_CO2_PER_L = 0.9; // kg CO₂e per liter oat milk
+  const SOY_CO2_PER_L = 0.4; // kg CO₂e per liter soy milk
+
+  function calculateMilkSavings() {
+    const milkAmount = parseInt(milkAmountSlider.value);
+    const switchType = switchTypeSelect.value;
+
+    milkAmountDisplay.textContent = milkAmount.toLocaleString();
+
+    const currentEmissions = milkAmount * MILK_CO2_PER_L;
+    currentMilkEmissionsDisplay.textContent = currentEmissions.toLocaleString();
+
+    let savedEmissions = 0;
+
+    if (switchType === '25oat') {
+      savedEmissions = (milkAmount * 0.25) * (MILK_CO2_PER_L - OAT_CO2_PER_L);
+    } else if (switchType === '50oat') {
+      savedEmissions = (milkAmount * 0.50) * (MILK_CO2_PER_L - OAT_CO2_PER_L);
+    } else if (switchType === '75oat') {
+      savedEmissions = (milkAmount * 0.75) * (MILK_CO2_PER_L - OAT_CO2_PER_L);
+    } else if (switchType === '100oat') {
+      savedEmissions = milkAmount * (MILK_CO2_PER_L - OAT_CO2_PER_L);
+    } else if (switchType === '50soy') {
+      savedEmissions = (milkAmount * 0.50) * (MILK_CO2_PER_L - SOY_CO2_PER_L);
+    } else if (switchType === 'mix') {
+      const oatSavings = (milkAmount * 0.50) * (MILK_CO2_PER_L - OAT_CO2_PER_L);
+      const soySavings = (milkAmount * 0.25) * (MILK_CO2_PER_L - SOY_CO2_PER_L);
+      savedEmissions = oatSavings + soySavings;
+    }
+
+    savedMilkEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+
+    const yearlySavings = savedEmissions * 12;
+    const beefMealsEquivalent = Math.round(yearlySavings / 4.8); // 1 beef meal = ~4.8 kg CO₂e
+
+    yearlyMilkImpactDisplay.innerHTML = `
+      På et år sparer kantinen <strong class="text-blue-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
+      svarende til <strong class="text-blue-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
+    `;
+  }
+
+  milkAmountSlider.addEventListener('input', calculateMilkSavings);
+  switchTypeSelect.addEventListener('change', calculateMilkSavings);
+
+  // Initialize
+  calculateMilkSavings();
+</script>
+
+{% endblock %}
