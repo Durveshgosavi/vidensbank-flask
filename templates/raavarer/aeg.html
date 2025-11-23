@@ -1,0 +1,862 @@
+{% extends "base.html" %}
+
+{% block title %}Æg – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
+
+{% block content %}
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .initial-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+</style>
+
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-amber-50 via-white to-yellow-50 pt-32 pb-20 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="text-center mb-12">
+      <div class="inline-block mb-6 px-6 py-2 bg-amber-100 border-2 border-amber-300 rounded-full">
+        <span class="font-sans text-xs font-bold tracking-widest uppercase text-amber-800">Animalsk Protein</span>
+      </div>
+      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
+        Æg
+      </h1>
+      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+        Danmarks mest alsidige proteinkilde. Med moderat klimaaftryk og høj næringsværdi
+        er æg en smart ingrediens – men produktionsmetoden betyder enormt for dyrevelfærd.
+      </p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
+      <img src="{{ url_for('static', filename='images/fruit_basket.jpg') }}"
+           alt="Friske æg i professionelt køkken"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 text-white">
+        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
+        <p class="text-4xl font-display font-bold">4.8 kg CO₂e pr. kg æg</p>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-500 text-center initial-hidden animate-fade-in-up stagger-1">
+        <div class="text-3xl mb-2">🥚</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">4.8 kg</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-2">
+        <div class="text-3xl mb-2">📊</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">2.4x</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">vs. Bælgfrugter</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-3">
+        <div class="text-3xl mb-2">💧</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">3,265L</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Vand pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500 text-center initial-hidden animate-fade-in-up stagger-4">
+        <div class="text-3xl mb-2">💪</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">13g</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Protein pr. 100g</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Klimadata</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimaaftryk i Kontekst
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Med <strong class="text-orange-600">4.8 kg CO₂e pr. kg</strong> ligger æg mellem planteproteiner og kød.
+        Lavere end kylling (6.9 kg), men højere end bælgfrugter (2 kg).
+      </p>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
+      <canvas id="eggComparisonChart" class="w-full" style="max-height: 400px;"></canvas>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">✅ Bedre end de fleste animalske produkter</h3>
+        <p class="text-sm text-stone-700">
+          Æg har kun 8% af oksekøds klimaaftryk (60 kg CO₂e/kg) og 70% af kyllings.
+          En klimavenlig animalsk proteinkilde.
+        </p>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">⚠️ Men: 2.4x højere end bælgfrugter</h3>
+        <p class="text-sm text-stone-700">
+          Plantebaserede proteiner (bønner, linser, tofu) har 50-75% lavere klimaaftryk.
+          Kombination er optimal strategi.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Miljøpåvirkning
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Water -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
+        <div class="text-5xl mb-4">💧</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
+        <div class="text-4xl font-bold text-blue-600 mb-4">3,265 L/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Primært til foder til høner (majs, soja, hvede). Inkluderer også drikkevand til dyr
+          og rengøring af produktionsfaciliteter.
+        </p>
+        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
+          ℹ️ 16x mere end bælgfrugter (200 L/kg), men 60% af oksekøds forbrug
+        </div>
+      </div>
+
+      <!-- Land Use -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
+        <div class="text-5xl mb-4">🌾</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Arealforbrug</h3>
+        <div class="text-4xl font-bold text-green-600 mb-4">~6 m²/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Dyrkningsjord til foder (primært majs og soja) er den største arealkrævende faktor.
+          Frilandsæg kræver mere areal end buræg pga. udendørs adgang.
+        </p>
+        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
+          ℹ️ Økologisk kan kræve 20-30% mere areal pga. lavere tæthed
+        </div>
+      </div>
+
+      <!-- Feed Efficiency -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500">
+        <div class="text-5xl mb-4">🌽</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Foder-Effektivitet</h3>
+        <div class="text-4xl font-bold text-amber-600 mb-4">~2:1</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Høner omdanner ca. 2 kg foder til 1 kg æg – den mest effektive animalske produktion
+          (kylling: 2.5:1, svin: 4:1, okse: 25:1).
+        </p>
+        <div class="text-sm text-stone-500 bg-amber-50 p-3 rounded">
+          ℹ️ Høj proteinomdannelse gør æg klimavenlige sammenlignet med rødt kød
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Production Methods Comparison -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Produktionsmetoder & Dyrevelfærd
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Klimaaftrykket varierer marginalt mellem produktionsmetoder – men dyrevelfærd og etik adskiller sig drastisk.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      <!-- Cage Eggs -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🚫</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Buræg</h3>
+            <p class="text-sm text-stone-500">4.5-4.8 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Laveste klimaaftryk</strong>
+              <p class="text-sm text-stone-600">Høj tæthed = mindre energi per æg</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Ekstrem lav dyrevelfærd</strong>
+              <p class="text-sm text-stone-600">Høner lever i bure (600-750 cm² per høne) uden naturlig adfærd</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Etisk problematisk</strong>
+              <p class="text-sm text-stone-600">Ingen mulighed for at rode, pikke, eller udfolde vinger fuldt</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-red-50 p-4 rounded border-2 border-red-200">
+          <p class="text-xs font-bold text-red-700 uppercase mb-2">Status i Danmark:</p>
+          <p class="text-sm text-stone-600">Forbudt i EU fra 2012, men berigede bure stadig tilladt. Undgå!</p>
+        </div>
+      </div>
+
+      <!-- Barn Eggs -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🏠</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Skrabeæg</h3>
+            <p class="text-sm text-stone-500">4.6-5.0 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Moderat dyrevelfærd</strong>
+              <p class="text-sm text-stone-600">Høner kan bevæge sig frit indendørs, 9 høner/m²</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Naturlig adfærd</strong>
+              <p class="text-sm text-stone-600">Adgang til reder, sidde-pinde, og skrabemateriale</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-orange-500 text-xl">⚠️</span>
+            <div>
+              <strong class="text-stone-900">Ingen udendørs adgang</strong>
+              <p class="text-sm text-stone-600">Levet indendørs hele livet</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-orange-50 p-4 rounded border-2 border-orange-200">
+          <p class="text-xs font-bold text-orange-700 uppercase mb-2">Kantinestrategi:</p>
+          <p class="text-sm text-stone-600">Minimum-standard for ansvarlig indkøb</p>
+        </div>
+      </div>
+
+      <!-- Free Range Eggs -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🌿</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Frilandsæg</h3>
+            <p class="text-sm text-stone-500">4.8-5.2 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">God dyrevelfærd</strong>
+              <p class="text-sm text-stone-600">Udendørs adgang, 4 m² per høne udenfor</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Naturlig livsstil</strong>
+              <p class="text-sm text-stone-600">Kan rode, pikke i jorden, solebade, og støvbade</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-amber-500 text-xl">⚠️</span>
+            <div>
+              <strong class="text-stone-900">Marginalt højere CO₂e</strong>
+              <p class="text-sm text-stone-600">5-10% mere end buræg pga. lavere tæthed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded border-2 border-green-200">
+          <p class="text-xs font-bold text-green-700 uppercase mb-2">Anbefaling:</p>
+          <p class="text-sm text-stone-600">Bedste balance mellem dyrevelfærd og pris</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Organic Eggs -->
+    <div class="bg-gradient-to-r from-emerald-50 to-green-50 p-8 rounded-xl shadow-lg border-2 border-green-300">
+      <div class="flex items-start gap-6">
+        <span class="text-7xl">🌱</span>
+        <div class="flex-1">
+          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Økologiske Æg</h3>
+          <div class="grid md:grid-cols-2 gap-6 mb-4">
+            <div>
+              <strong class="text-stone-900">Klimaaftryk: 5.0-5.5 kg CO₂e/kg</strong>
+              <p class="text-sm text-stone-600 mt-2">
+                Marginalt højere end konventionel (5-15%) pga. økologisk foder, lavere tæthed (6 høner/m² indendørs),
+                og længere produktionstid.
+              </p>
+            </div>
+            <div>
+              <strong class="text-stone-900">Dyrevelfærd & Miljø:</strong>
+              <ul class="text-sm text-stone-600 mt-2 space-y-1">
+                <li>✓ Udendørs adgang (4 m²/høne)</li>
+                <li>✓ 100% økologisk foder (ingen pesticider)</li>
+                <li>✓ Ingen forebyggende antibiotika</li>
+                <li>✓ Bedre biodiversitet</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-white p-4 rounded border-2 border-green-200">
+            <p class="text-sm text-stone-700">
+              <strong class="text-green-700">Kantineanbefaling:</strong> Vælg økologisk frilandsæg når budget tillader det.
+              Forskellen i klimaaftryk er minimal (0.2-0.7 kg CO₂e/kg), men forbedring af dyrevelfærd og økosystem er betydelig.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nutritional Benefits -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Næringsværdi
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Protein -->
+      <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-2 border-blue-200">
+        <div class="text-5xl mb-4">💪</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Protein</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-blue-600">13g pr. 100g (2 æg)</strong> – komplet proteinprofil med alle 9 essentielle aminosyrer.
+          Høj biologisk værdi (93 ud af 100).
+        </p>
+        <div class="text-xs bg-blue-100 p-3 rounded">
+          <strong class="text-blue-800">Mæthed:</strong> Æg giver højere mæthedsfølelse end brød eller yoghurt
+        </div>
+      </div>
+
+      <!-- Vitamins -->
+      <div class="bg-gradient-to-br from-amber-50 to-white p-8 rounded-lg border-2 border-amber-200">
+        <div class="text-5xl mb-4">☀️</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vitaminer</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          Rig på <strong class="text-amber-600">B12, D, A, B2, folat og kolin</strong>.
+          Æggeblommer er en af de få naturlige kilder til D-vitamin.
+        </p>
+        <div class="text-xs bg-amber-100 p-3 rounded">
+          <strong class="text-amber-800">Kolin:</strong> Essentielt for hjernesundhed og leverfunktion
+        </div>
+      </div>
+
+      <!-- Minerals -->
+      <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-lg border-2 border-green-200">
+        <div class="text-5xl mb-4">⚡</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Mineraler</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          Høj i <strong class="text-green-600">jern, zink, selen og fosfor</strong>.
+          Selen er stærkt antioxidant og støtter immunforsvar.
+        </p>
+        <div class="text-xs bg-green-100 p-3 rounded">
+          <strong class="text-green-800">Jern:</strong> Bedre biotilgængelighed end plantebaserede kilder
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alternatives Section -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimavenlige Alternativer
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Reducer kantinens klimaaftryk ved at kombinere eller erstatte æg med plantebaserede proteiner.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Legumes -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-green-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🫘</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Bælgfrugter</h3>
+              <p class="text-xs text-stone-500 uppercase">2 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓58%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Bønner, linser og kikærter leverer protein, jern og fiber med 58% lavere klimaaftryk.
+          Perfekt til scrambles, fyldte retter og salater.
+        </p>
+        <div class="text-xs text-green-600 font-bold">✓ Højt fiberindhold, mættende</div>
+      </div>
+
+      <!-- Tofu -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-blue-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🧊</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Tofu Scramble</h3>
+              <p class="text-xs text-stone-500 uppercase">2.2 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-blue-100 rounded-full">
+            <span class="text-blue-700 font-bold text-sm">↓54%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Tofu krydret med gurkemeje, løg og krydderier efterligner røræg perfekt.
+          Samme konsistens og proteinindhold med halvt klimaaftryk.
+        </p>
+        <div class="text-xs text-blue-600 font-bold">✓ Komplet protein, jernrig</div>
+      </div>
+
+      <!-- Reduced Egg Usage -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-amber-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">⚖️</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Reduceret Forbrug</h3>
+              <p class="text-xs text-stone-500 uppercase">Kombination</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-amber-100 rounded-full">
+            <span class="text-amber-700 font-bold text-sm">↓20-40%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Stræk æg med grøntsager eller bælgfrugter: 2 æg + 100g sorte bønner i omelet
+          giver samme mæthed med 30% lavere CO₂e.
+        </p>
+        <div class="text-xs text-amber-600 font-bold">✓ Bibeholder smag, reducerer forbrug</div>
+      </div>
+
+      <!-- Aquafaba -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-purple-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">💧</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Aquafaba (Bagning)</h3>
+              <p class="text-xs text-stone-500 uppercase">~0.5 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-purple-100 rounded-full">
+            <span class="text-purple-700 font-bold text-sm">↓90%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Kikærtevand fra dåse kan piskes til skum og erstatte æggehvider i marengs, kager og mousse.
+          Gratis biprodukt med minimal miljøpåvirkning.
+        </p>
+        <div class="text-xs text-purple-600 font-bold">✓ Perfekt til bagning og desserter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-gradient-to-br from-stone-50 to-stone-100">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Købeguide for Kantinen
+      </h2>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Tip 1 -->
+      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">1️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vælg Minimum Frilandsæg</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Dyrevelfærd bør være højeste prioritet. Frilandsæg har kun 5-10% højere klimaaftryk end buræg,
+              men giver høner værdigt liv. Undgå buræg og berigede buræg.
+            </p>
+            <div class="bg-green-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-green-800 uppercase">Marginal klimaforskel, stor etisk forskel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 2 -->
+      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">2️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Prioriter Økologisk ved Koldskål & Bagning</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Når æg er hovedingrediens (koldskål, desserter, omeletter), vælg økologisk for bedste smag
+              og næringsværdi. Ved bagning hvor æg er bindemiddel, kan konventionel friland være ok.
+            </p>
+            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-blue-800 uppercase">Smag og kvalitet vigtigst når æg fremhæves</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 3 -->
+      <div class="bg-gradient-to-r from-amber-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-amber-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">3️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Kombiner Æg med Grøntsager</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Stræk æggeretter med spinat, svampe, tomater eller bønner. En 3-ægs omelet kan deles til 2 portioner
+              når volumen øges med grønt – 33% lavere klimaaftryk per portion.
+            </p>
+            <div class="bg-amber-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-amber-800 uppercase">Mere fiber, vitaminer og reduceret CO₂e</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">4️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Tilbyd Tofu Scramble Som Alternativ</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Introducer tofu scramble ved siden af røræg. Mange medarbejdere vil vælge plantebaseret når det
+              ser lige så tiltalende ud. Reducerer klimaaftryk med 54% per portion der skiftes.
+            </p>
+            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-purple-800 uppercase">Valgfrihed + nudging = bedre adoption</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-gradient-to-r from-red-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-red-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">5️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Minimér Spild med FIFO</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              First-In-First-Out: Rotér æggebakker så ældste bruges først. Opbevar ved 4-6°C.
+              Æg holder 3-4 uger efter "mindst holdbar til"-dato hvis korrekt opbevaret.
+            </p>
+            <div class="bg-red-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-red-800 uppercase">10-15% af æg ender som spild i kantiner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-amber-50 to-yellow-50">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Beregn Klimabesparelsen
+      </h2>
+      <p class="font-sans text-lg text-stone-600">
+        Se hvor meget CO₂ kantinen kan spare ved at reducere ægforbrug eller skifte til planteprotein.
+      </p>
+    </div>
+
+    <div class="bg-white p-10 rounded-2xl shadow-2xl">
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Månedligt ægforbrug (kg):</label>
+        <input type="range" id="eggAmount" min="10" max="300" value="80" step="10"
+               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-amber-600">
+        <div class="text-center mt-3">
+          <span id="eggAmountDisplay" class="text-4xl font-display font-bold text-stone-900">80</span>
+          <span class="text-xl text-stone-500 ml-2">kg/måned</span>
+          <p class="text-sm text-stone-500 mt-2">≈ <span id="eggCountDisplay">1,333</span> æg (60g per stk)</p>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Reduktion/Alternativ:</label>
+        <select id="eggReductionType" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-amber-500">
+          <option value="25veg">25% af æggeretter udvides med grøntsager</option>
+          <option value="50veg">50% af æggeretter udvides med grøntsager</option>
+          <option value="30tofu">30% skifter til tofu scramble</option>
+          <option value="50tofu">50% skifter til tofu scramble</option>
+          <option value="mix">30% tofu + 30% udvides med grøntsager</option>
+        </select>
+      </div>
+
+      <div class="h-px bg-stone-200 my-8"></div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Nuværende Udledning</div>
+          <div id="currentEggEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">384</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
+          <div id="savedEggEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">77</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg border-2 border-amber-200">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-3xl">🌍</span>
+          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
+        </div>
+        <p id="yearlyEggImpact" class="text-stone-700 font-sans text-lg">
+          På et år sparer kantinen <strong class="text-amber-700">924 kg CO₂e</strong> –
+          svarende til <strong class="text-amber-700">192</strong> måltider med oksekød.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+  <div class="mx-auto max-w-5xl px-6">
+    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
+      Datakilder & Referencer
+    </h3>
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
+          <li>• Poore & Nemecek, Science (2018)</li>
+          <li>• Our World in Data (2024)</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Dyrevelfærd & Ernæring</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• Dyrenes Beskyttelse (2024)</li>
+          <li>• EU-forordning 1999/74/EC</li>
+          <li>• Danmarks Fødevareinstitut</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script>
+  // Comparison Chart
+  const ctx = document.getElementById('eggComparisonChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Bælgfrugter', 'Tofu', 'Æg', 'Hvid Fisk', 'Kylling', 'Svinekød', 'Lammekød', 'Oksekød'],
+      datasets: [{
+        label: 'kg CO₂e pr. kg produkt',
+        data: [2, 2.2, 4.8, 6, 6.9, 12, 24, 60],
+        backgroundColor: [
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(251, 191, 36, 0.8)',
+          'rgba(96, 165, 250, 0.8)',
+          'rgba(234, 179, 8, 0.8)',
+          'rgba(249, 115, 22, 0.8)',
+          'rgba(239, 68, 68, 0.8)',
+          'rgba(127, 29, 29, 0.8)'
+        ],
+        borderColor: [
+          'rgb(34, 197, 94)',
+          'rgb(59, 130, 246)',
+          'rgb(251, 191, 36)',
+          'rgb(96, 165, 250)',
+          'rgb(234, 179, 8)',
+          'rgb(249, 115, 22)',
+          'rgb(239, 68, 68)',
+          'rgb(127, 29, 29)'
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.x + ' kg CO₂e pr. kg';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'kg CO₂e pr. kg produkt',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          grid: {
+            color: 'rgba(0, 0, 0, 0.05)'
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          }
+        }
+      }
+    }
+  });
+
+  // Scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('initial-hidden');
+        entry.target.classList.add('animate-fade-in-up');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
+
+  // Calculator Logic
+  const eggAmountSlider = document.getElementById('eggAmount');
+  const eggAmountDisplay = document.getElementById('eggAmountDisplay');
+  const eggCountDisplay = document.getElementById('eggCountDisplay');
+  const eggReductionTypeSelect = document.getElementById('eggReductionType');
+  const currentEggEmissionsDisplay = document.getElementById('currentEggEmissions');
+  const savedEggEmissionsDisplay = document.getElementById('savedEggEmissions');
+  const yearlyEggImpactDisplay = document.getElementById('yearlyEggImpact');
+
+  const EGG_CO2_PER_KG = 4.8; // kg CO₂e per kg eggs
+  const TOFU_CO2_PER_KG = 2.2; // kg CO₂e per kg tofu
+
+  function calculateEggSavings() {
+    const eggAmount = parseInt(eggAmountSlider.value);
+    const reductionType = eggReductionTypeSelect.value;
+
+    eggAmountDisplay.textContent = eggAmount;
+    const eggCount = Math.round((eggAmount * 1000) / 60); // 60g per egg
+    eggCountDisplay.textContent = eggCount.toLocaleString();
+
+    const currentEmissions = eggAmount * EGG_CO2_PER_KG;
+    currentEggEmissionsDisplay.textContent = currentEmissions.toLocaleString();
+
+    let savedEmissions = 0;
+
+    if (reductionType === '25veg') {
+      // Extending with vegetables reduces egg usage by ~20% per dish
+      savedEmissions = (eggAmount * 0.25 * 0.20) * EGG_CO2_PER_KG;
+    } else if (reductionType === '50veg') {
+      savedEmissions = (eggAmount * 0.50 * 0.20) * EGG_CO2_PER_KG;
+    } else if (reductionType === '30tofu') {
+      // Switching to tofu saves (4.8 - 2.2) = 2.6 kg CO₂e per kg
+      savedEmissions = (eggAmount * 0.30) * (EGG_CO2_PER_KG - TOFU_CO2_PER_KG);
+    } else if (reductionType === '50tofu') {
+      savedEmissions = (eggAmount * 0.50) * (EGG_CO2_PER_KG - TOFU_CO2_PER_KG);
+    } else if (reductionType === 'mix') {
+      const tofuSavings = (eggAmount * 0.30) * (EGG_CO2_PER_KG - TOFU_CO2_PER_KG);
+      const vegSavings = (eggAmount * 0.30 * 0.20) * EGG_CO2_PER_KG;
+      savedEmissions = tofuSavings + vegSavings;
+    }
+
+    savedEggEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+
+    const yearlySavings = savedEmissions * 12;
+    const beefMealsEquivalent = Math.round(yearlySavings / 4.8); // 1 beef meal = ~4.8 kg CO₂e
+
+    yearlyEggImpactDisplay.innerHTML = `
+      På et år sparer kantinen <strong class="text-amber-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
+      svarende til <strong class="text-amber-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
+    `;
+  }
+
+  eggAmountSlider.addEventListener('input', calculateEggSavings);
+  eggReductionTypeSelect.addEventListener('change', calculateEggSavings);
+
+  // Initialize
+  calculateEggSavings();
+</script>
+
+{% endblock %}
