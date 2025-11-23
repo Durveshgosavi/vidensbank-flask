@@ -3,351 +3,765 @@
 {% block title %}Råvarer - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  .initial-hidden { opacity: 0; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
+<!-- Hero Section with Parallax -->
+<div class="relative h-screen min-h-[700px] w-full overflow-hidden">
   <div class="absolute inset-0">
-    <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
-      alt="Råvarer" class="h-full w-full object-cover">
-    <div class="absolute inset-0 brand-overlay"></div>
+    <img src="{{ url_for('static', filename='images/buffet_hero.jpg') }}"
+         alt="Råvarer" class="h-full w-full object-cover transform scale-110"
+         id="heroImage">
+    <div class="absolute inset-0 bg-gradient-to-br from-stone-900/80 via-stone-900/60 to-transparent"></div>
   </div>
 
   <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
-    <span class="mb-4 font-sans text-sm font-bold tracking-widest uppercase text-cb-yellow-light">
+    <span class="mb-6 font-sans text-sm font-bold tracking-widest uppercase text-cb-yellow-light initial-hidden animate-fadeInUp">
       Råvare Leksikon
     </span>
-    <h1 class="mb-6 max-w-5xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-9xl uppercase text-white">
-      Råvarer &<br>Bæredygtighed
+    <h1 class="mb-8 max-w-5xl font-display text-7xl font-bold leading-none tracking-brand-wide md:text-9xl uppercase text-white initial-hidden animate-fadeInUp stagger-1">
+      Råvarer &<br><span class="gradient-text">Bæredygtighed</span>
     </h1>
-    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+    <p class="max-w-3xl font-sans text-xl font-normal leading-relaxed text-stone-200 md:text-2xl mb-12 initial-hidden animate-fadeInUp stagger-2">
       En komplet encyklopædi over råvarer med fokus på klimaaftryk, kvalitet, sæson, pris og bæredygtige
-      indkøbsanbefalinger baseret på nyeste data fra CONCITO og Fødevarestyrelsen.
+      indkøbsanbefalinger baseret på nyeste data fra CONCITO.
     </p>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl initial-hidden animate-fadeInUp stagger-3">
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
+        <div class="text-4xl font-bold text-cb-green-light mb-1">18</div>
+        <div class="text-sm uppercase tracking-wider text-stone-300">Råvarer</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
+        <div class="text-4xl font-bold text-cb-yellow-light mb-1">97%</div>
+        <div class="text-sm uppercase tracking-wider text-stone-300">Max Besparelse</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
+        <div class="text-4xl font-bold text-cb-blue-light mb-1">6</div>
+        <div class="text-sm uppercase tracking-wider text-stone-300">Kategorier</div>
+      </div>
+      <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20">
+        <div class="text-4xl font-bold text-cb-orange-light mb-1">100%</div>
+        <div class="text-sm uppercase tracking-wider text-stone-300">Data-drevet</div>
+      </div>
+    </div>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-yellow-light">
-    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
+  <!-- Animated Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+    <div class="flex flex-col items-center gap-2 text-white/80">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
   </div>
 </div>
 
-<!-- Introduction -->
-<section class="bg-cb-taupe-light py-24 md:py-32">
-  <div class="mx-auto max-w-4xl px-6 text-center">
-    <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-green-dark md:text-5xl uppercase">
-      Fra Viden til Handling
-    </h2>
-    <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
-      Fødevarer står for over 20% af en gennemsnitsdanskers klimaaftryk. Med bedre kendskab til hver råvares
-      miljøpåvirkning kan professionelle køkkener træffe informerede beslutninger der gør en reel forskel.
-    </p>
-  </div>
-</section>
-
-<!-- Category Overview -->
-<section class="bg-white py-24">
+<!-- Mission Statement -->
+<section class="bg-white py-32">
   <div class="mx-auto max-w-7xl px-6">
-    <h2 class="mb-16 text-center font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
-      Råvarekategorier
-    </h2>
-
-    <!-- Categories Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- Kød & Fjerkræ -->
-      <div class="group bg-gradient-to-br from-cb-red-light to-white p-8 rounded-lg border-2 border-cb-red-medium hover:border-cb-red-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cb-red-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
-            🥩
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Kød & Fjerkræ</h3>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="initial-hidden animate-slideInLeft">
+        <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">
+          Hvorfor Råvareviden Betyder Noget
+        </span>
+        <h2 class="mb-8 font-display text-6xl font-bold tracking-brand-wide text-stone-900 uppercase leading-tight">
+          Fra Viden<br>til Handling
+        </h2>
+        <div class="space-y-6 text-lg text-stone-600 leading-relaxed">
+          <p class="font-sans">
+            Fødevarer står for <strong class="text-stone-900">over 20%</strong> af en gennemsnitsdanskers klimaaftryk.
+            Med bedre kendskab til hver råvares miljøpåvirkning kan professionelle køkkener træffe informerede
+            beslutninger der gør en reel forskel.
+          </p>
+          <p class="font-sans">
+            Dette råvareleksikon samler verified klimadata fra CONCITO, prisanalyser, sæsoninformation og
+            bæredygtighedsvurderinger for de mest anvendte råvarer i danske storkøkkener.
+          </p>
         </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Oksekød, svinekød, lammekød, kylling og andet fjerkræ med klimadata og bæredygtige alternativer.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_oksekoed') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Oksekød</span>
-            <span class="float-right text-cb-red-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_svinekoed') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Svinekød</span>
-            <span class="float-right text-cb-red-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_kylling') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Kylling & Fjerkræ</span>
-            <span class="float-right text-cb-red-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_lam') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-red-light border border-cb-red-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Lammekød</span>
-            <span class="float-right text-cb-red-dark">→</span>
-          </a>
+
+        <div class="mt-10 flex gap-4">
+          <div class="bg-cb-green-light p-4 rounded-lg flex-1">
+            <div class="text-3xl font-bold text-cb-green-dark">500+</div>
+            <div class="text-xs uppercase text-stone-600">Fødevarer analyseret</div>
+          </div>
+          <div class="bg-cb-yellow-light p-4 rounded-lg flex-1">
+            <div class="text-3xl font-bold text-cb-yellow-dark">2024</div>
+            <div class="text-xs uppercase text-stone-600">Seneste data</div>
+          </div>
         </div>
       </div>
 
-      <!-- Fisk & Skaldyr -->
-      <div class="group bg-gradient-to-br from-cb-blue-light to-white p-8 rounded-lg border-2 border-cb-blue-medium hover:border-cb-blue-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cb-blue-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
-            🐟
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Fisk & Skaldyr</h3>
+      <!-- Infographic: Climate Comparison -->
+      <div class="relative initial-hidden animate-scaleIn stagger-2">
+        <div class="bg-stone-50 p-10 rounded-2xl shadow-2xl">
+          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-8 text-center">
+            Klimaaftryk Sammenligning
+          </h3>
+          <canvas id="heroComparisonChart" class="max-h-[400px]"></canvas>
         </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Opdræt, vildtfang, certificeringer og bæredygtige valg for marine ressourcer.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_laks') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Laks & Ørred</span>
-            <span class="float-right text-cb-blue-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_hvid_fisk') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Hvid Fisk</span>
-            <span class="float-right text-cb-blue-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_skaldyr') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-blue-light border border-cb-blue-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Skaldyr & Muslinger</span>
-            <span class="float-right text-cb-blue-dark">→</span>
-          </a>
+        <!-- Floating element -->
+        <div class="absolute -top-6 -right-6 bg-cb-green-dark text-white p-6 rounded-full shadow-xl animate-float">
+          <div class="text-center">
+            <div class="text-3xl font-bold">30x</div>
+            <div class="text-xs uppercase">Forskel</div>
+          </div>
         </div>
       </div>
-
-      <!-- Mejeri & Æg -->
-      <div class="group bg-gradient-to-br from-cb-yellow-light to-white p-8 rounded-lg border-2 border-cb-yellow-medium hover:border-cb-yellow-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cb-yellow-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
-            🥛
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Mejeri & Æg</h3>
-        </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Mælk, ost, smør, yoghurt og æg med fokus på økologi og dyrevelfærd.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_maelk') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Mælk & Yoghurt</span>
-            <span class="float-right text-cb-yellow-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_ost') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Ost</span>
-            <span class="float-right text-cb-yellow-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_aeg') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-yellow-light border border-cb-yellow-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Æg</span>
-            <span class="float-right text-cb-yellow-dark">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Korn & Stivelse -->
-      <div class="group bg-gradient-to-br from-cb-taupe-light to-white p-8 rounded-lg border-2 border-cb-taupe-medium hover:border-cb-taupe-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-stone-700 rounded-full flex items-center justify-center text-white font-bold text-xl">
-            🌾
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Korn & Stivelse</h3>
-        </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Brød, pasta, ris, kartofler og alternative kornprodukter.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_broed') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Brød & Mel</span>
-            <span class="float-right text-stone-700">→</span>
-          </a>
-          <a href="{{ url_for('raavare_ris') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Ris</span>
-            <span class="float-right text-stone-700">→</span>
-          </a>
-          <a href="{{ url_for('raavare_kartofler') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-taupe-light border border-cb-taupe-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Kartofler</span>
-            <span class="float-right text-stone-700">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Grøntsager -->
-      <div class="group bg-gradient-to-br from-cb-green-light to-white p-8 rounded-lg border-2 border-cb-green-medium hover:border-cb-green-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cb-green-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
-            🥬
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Grøntsager</h3>
-        </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Rodfrugter, bladgrønt, bælgfrugter og sæsonvariationer.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_baelgfrugter') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Bælgfrugter</span>
-            <span class="float-right text-cb-green-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_rodfrugter') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Rodfrugter</span>
-            <span class="float-right text-cb-green-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_bladgroent') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-green-light border border-cb-green-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Bladgrønt</span>
-            <span class="float-right text-cb-green-dark">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Specialvarer -->
-      <div class="group bg-gradient-to-br from-cb-orange-light to-white p-8 rounded-lg border-2 border-cb-orange-medium hover:border-cb-orange-dark transition-all duration-300">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cb-orange-dark rounded-full flex items-center justify-center text-white font-bold text-xl">
-            ☕
-          </div>
-          <h3 class="ml-4 font-display text-2xl font-bold text-stone-900 uppercase">Specialvarer</h3>
-        </div>
-        <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
-          Kaffe, te, kakao, olier og andre specialråvarer.
-        </p>
-        <div class="space-y-2">
-          <a href="{{ url_for('raavare_kaffe') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Kaffe & Te</span>
-            <span class="float-right text-cb-orange-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_kakao') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Kakao & Chokolade</span>
-            <span class="float-right text-cb-orange-dark">→</span>
-          </a>
-          <a href="{{ url_for('raavare_olier') }}"
-             class="block px-4 py-2 bg-white hover:bg-cb-orange-light border border-cb-orange-medium rounded transition-colors">
-            <span class="font-sans text-sm font-bold">Olier & Fedtstoffer</span>
-            <span class="float-right text-cb-orange-dark">→</span>
-          </a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- Climate Impact Overview -->
-<section class="bg-stone-900 py-24 text-white">
+<!-- Interactive Category Grid with Hover Effects -->
+<section class="bg-gradient-to-br from-stone-50 to-stone-100 py-32">
   <div class="mx-auto max-w-7xl px-6">
-    <h2 class="mb-16 text-center font-display text-4xl font-bold uppercase tracking-brand-wide">
-      Klimaaftryk Oversigt
-    </h2>
-
-    <div class="max-w-4xl mx-auto">
-      <canvas id="climateComparisonChart"></canvas>
-    </div>
-
-    <div class="mt-12 text-center">
-      <p class="text-stone-400 font-sans text-sm">
-        Data fra CONCITO's Den Store Klimadatabase v2.0 og Poore & Nemecek (2018)
+    <div class="text-center mb-20">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">
+        Udforsk Efter Kategori
+      </span>
+      <h2 class="mb-6 font-display text-6xl font-bold tracking-brand-wide text-stone-900 uppercase">
+        Råvarekategorier
+      </h2>
+      <p class="font-sans text-xl text-stone-600 max-w-3xl mx-auto">
+        Hver kategori indeholder detaljerede analyser af klimaaftryk, sæson, pris og bæredygtige alternativer
       </p>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Category 1: Kød & Fjerkræ -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              🥩
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Kød & Fjerkræ</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">4 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Komplet klimaanalyse af kød med fokus på alternativer og reduktionsstrategier
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_oksekoed') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Oksekød</span>
+                <span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full font-bold">60 kg CO₂e</span>
+              </div>
+              <span class="text-red-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_svinekoed') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Svinekød</span>
+                <span class="text-xs px-2 py-1 bg-orange-100 text-orange-700 rounded-full font-bold">12 kg CO₂e</span>
+              </div>
+              <span class="text-red-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_kylling') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Kylling</span>
+                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full font-bold">6.9 kg CO₂e</span>
+              </div>
+              <span class="text-red-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_lammekoed') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Lammekød</span>
+                <span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full font-bold">24 kg CO₂e</span>
+              </div>
+              <span class="text-red-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-red-600">25.7 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: Fisk & Skaldyr -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              🐟
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Fisk & Skaldyr</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">3 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Havets proteiner med fokus på MSC-certificering og bæredygtigt fiskeri
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_laks') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-blue-50 border border-stone-200 hover:border-blue-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Laks & Ørred</span>
+                <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-bold">11.9 kg CO₂e</span>
+              </div>
+              <span class="text-blue-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_hvid_fisk') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-blue-50 border border-stone-200 hover:border-blue-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Hvid Fisk</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">6 kg CO₂e</span>
+              </div>
+              <span class="text-blue-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_skaldyr') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-blue-50 border border-stone-200 hover:border-blue-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Skaldyr</span>
+                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full font-bold">18 kg CO₂e</span>
+              </div>
+              <span class="text-blue-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-blue-600">12 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Mejeri & Æg -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              🥛
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Mejeri & Æg</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">3 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Animalske proteiner med fokus på økologi og kalcium-alternativer
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_maelk') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-yellow-50 border border-stone-200 hover:border-yellow-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Mælk & Yoghurt</span>
+                <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full font-bold">3 kg CO₂e</span>
+              </div>
+              <span class="text-yellow-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_ost') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-yellow-50 border border-stone-200 hover:border-yellow-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Ost</span>
+                <span class="text-xs px-2 py-1 bg-orange-100 text-orange-700 rounded-full font-bold">8 kg CO₂e</span>
+              </div>
+              <span class="text-yellow-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_aeg') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-yellow-50 border border-stone-200 hover:border-yellow-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Æg</span>
+                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full font-bold">4.8 kg CO₂e</span>
+              </div>
+              <span class="text-yellow-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-yellow-600">5.3 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Korn & Stivelse -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              🌾
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Korn & Stivelse</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">3 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Basale kulhydrater med fokus på fuldkorn og økologiske valgmuligheder
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_broed') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-amber-50 border border-stone-200 hover:border-amber-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Brød & Mel</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">0.9 kg CO₂e</span>
+              </div>
+              <span class="text-amber-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_ris') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-amber-50 border border-stone-200 hover:border-amber-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Ris</span>
+                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full font-bold">4 kg CO₂e</span>
+              </div>
+              <span class="text-amber-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_kartofler') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-amber-50 border border-stone-200 hover:border-amber-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Kartofler</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">0.2 kg CO₂e</span>
+              </div>
+              <span class="text-amber-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-amber-600">1.7 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 5: Grøntsager -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              🥗
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Grøntsager</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">3 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Plantebaserede råvarer inkl. bælgfrugter som klimachampions
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_baelgfrugter') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-green-50 border border-stone-200 hover:border-green-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Bælgfrugter</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">2 kg CO₂e</span>
+              </div>
+              <span class="text-green-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_rodfrugter') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-green-50 border border-stone-200 hover:border-green-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Rodfrugter</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">0.4 kg CO₂e</span>
+              </div>
+              <span class="text-green-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_bladgroent') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-green-50 border border-stone-200 hover:border-green-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Bladgrønt</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">0.5 kg CO₂e</span>
+              </div>
+              <span class="text-green-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-green-600">1 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 6: Specialvarer -->
+      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        <div class="relative p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              ☕
+            </div>
+            <div class="ml-4">
+              <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Specialvarer</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider">4 produkter</p>
+            </div>
+          </div>
+
+          <p class="text-stone-600 mb-6 font-sans text-sm leading-relaxed">
+            Kaffe, te, kakao og olier med fokus på certificeringer og oprindelse
+          </p>
+
+          <div class="space-y-3 mb-6">
+            <a href="{{ url_for('raavare_kaffe') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-purple-50 border border-stone-200 hover:border-purple-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Kaffe</span>
+                <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold">17 kg CO₂e</span>
+              </div>
+              <span class="text-purple-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_te') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-purple-50 border border-stone-200 hover:border-purple-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Te</span>
+                <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-bold">6.3 kg CO₂e</span>
+              </div>
+              <span class="text-purple-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_kakao') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-purple-50 border border-stone-200 hover:border-purple-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Kakao</span>
+                <span class="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-bold">19 kg CO₂e</span>
+              </div>
+              <span class="text-purple-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="{{ url_for('raavare_olier') }}"
+               class="flex items-center justify-between px-4 py-3 bg-stone-50 hover:bg-purple-50 border border-stone-200 hover:border-purple-300 rounded-lg transition-all duration-300 group/link">
+              <div class="flex items-center gap-3">
+                <span class="font-sans text-sm font-bold text-stone-900">Olier & Fedt</span>
+                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full font-bold">3.5 kg CO₂e</span>
+              </div>
+              <span class="text-purple-600 transform group-hover/link:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <div class="pt-4 border-t border-stone-200">
+            <div class="text-xs text-stone-500 uppercase tracking-wider mb-2">Gns. Klimaaftryk</div>
+            <div class="text-2xl font-bold text-purple-600">11.5 kg CO₂e/kg</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Data Visualization: Full Climate Comparison -->
+<section class="bg-stone-900 py-32 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-light">
+        Komplet Oversigt
+      </span>
+      <h2 class="mb-6 font-display text-6xl font-bold tracking-brand-wide text-white uppercase">
+        Klimadata for Alle Råvarer
+      </h2>
+      <p class="font-sans text-xl text-stone-400 max-w-3xl mx-auto">
+        Interaktiv visualization af klimaaftryk baseret på CONCITO Klimadatabase 2024
+      </p>
+    </div>
 
+    <div class="bg-stone-800 p-10 rounded-2xl shadow-2xl">
+      <canvas id="fullComparisonChart" class="max-h-[600px]"></canvas>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-8 text-center">
+      <div class="bg-stone-800 p-8 rounded-xl">
+        <div class="text-5xl font-bold text-cb-red-light mb-2">300x</div>
+        <div class="text-sm uppercase tracking-wider text-stone-400">Forskel mellem højeste og laveste</div>
+      </div>
+      <div class="bg-stone-800 p-8 rounded-xl">
+        <div class="text-5xl font-bold text-cb-yellow-light mb-2">2024</div>
+        <div class="text-sm uppercase tracking-wider text-stone-400">Seneste CONCITO data</div>
+      </div>
+      <div class="bg-stone-800 p-8 rounded-xl">
+        <div class="text-5xl font-bold text-cb-green-light mb-2">18</div>
+        <div class="text-sm uppercase tracking-wider text-stone-400">Råvarer analyseret</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-gradient-to-br from-green-50 to-emerald-50 py-32">
+  <div class="mx-auto max-w-4xl px-6 text-center">
+    <h2 class="mb-8 font-display text-6xl font-bold tracking-brand-wide text-stone-900 uppercase">
+      Start Din Klimarejse
+    </h2>
+    <p class="font-sans text-xl text-stone-600 mb-12 leading-relaxed">
+      Udforsk hver råvare for detaljerede analyser, interaktive beregnere og konkrete handlingsanvisninger
+      til dit køkken
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+      <a href="{{ url_for('raavare_oksekoed') }}"
+         class="bg-stone-900 px-10 py-5 font-sans text-sm font-bold uppercase tracking-widest text-white hover:bg-cb-green-dark transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-3 group">
+        <span>Start Med Oksekød</span>
+        <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+
+      <a href="{{ url_for('raavare_baelgfrugter') }}"
+         class="border-2 border-stone-900 px-10 py-5 font-sans text-sm font-bold uppercase tracking-widest text-stone-900 hover:bg-stone-900 hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-3 group">
+        <span>Eller Bælgfrugter</span>
+        <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// Climate comparison chart
-const ctx = document.getElementById('climateComparisonChart');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Kylling', 'Fisk', 'Ost', 'Æg', 'Ris', 'Bælgfrugter', 'Kartofler'],
-    datasets: [{
-      label: 'kg CO₂e per kg fødevare',
-      data: [60, 24, 12, 6.9, 6, 8, 4.8, 4, 2, 0.2],
-      backgroundColor: [
-        '#dc2626', // Red for beef
-        '#f97316', // Orange for lamb
-        '#fb923c', // Light orange for pork
-        '#fbbf24', // Yellow for chicken
-        '#3b82f6', // Blue for fish
-        '#fde047', // Light yellow for cheese
-        '#fef3c7', // Very light yellow for eggs
-        '#d1d5db', // Gray for rice
-        '#16a34a', // Green for legumes
-        '#4ade80'  // Light green for potatoes
-      ],
-      borderWidth: 0
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    plugins: {
-      legend: {
-        display: false
-      },
-      tooltip: {
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        titleFont: { family: 'Big Shoulders Inline Text', size: 16 },
-        bodyFont: { family: 'Work Sans', size: 14 },
-        callbacks: {
-          label: function(context) {
-            return context.parsed.y + ' kg CO₂e/kg';
-          }
-        }
+  // Parallax effect for hero
+  document.addEventListener('scroll', function() {
+    const heroImage = document.getElementById('heroImage');
+    const scrolled = window.pageYOffset;
+    if (heroImage) {
+      heroImage.style.transform = `scale(1.1) translateY(${scrolled * 0.5}px)`;
+    }
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('initial-hidden');
       }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
+
+  // Chart 1: Hero comparison (simplified)
+  const heroCtx = document.getElementById('heroComparisonChart').getContext('2d');
+  new Chart(heroCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Oksekød', 'Lam', 'Svinekød', 'Kylling', 'Fisk', 'Æg', 'Bælgfrugter', 'Kartofler'],
+      datasets: [{
+        label: 'kg CO₂e per kg',
+        data: [60, 24, 12, 6.9, 6, 4.8, 2, 0.2],
+        backgroundColor: [
+          '#7f1d1d',
+          '#dc2626',
+          '#ec4899',
+          '#eab308',
+          '#3b82f6',
+          '#fbbf24',
+          '#10b981',
+          '#22c55e'
+        ],
+        borderRadius: 8,
+        borderWidth: 0
+      }]
     },
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: {
-          color: 'rgba(255, 255, 255, 0.1)'
-        },
-        ticks: {
-          color: '#e7e5e4',
-          font: {
-            family: 'Work Sans',
-            size: 12
-          }
-        },
-        title: {
-          display: true,
-          text: 'kg CO₂e per kg',
-          color: '#e7e5e4',
-          font: {
-            family: 'Work Sans',
-            size: 14,
-            weight: 'bold'
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1c1917',
+          padding: 12,
+          titleFont: { size: 14, weight: 'bold' },
+          bodyFont: { size: 13 },
+          callbacks: {
+            label: (context) => `${context.parsed.y} kg CO₂e/kg`
           }
         }
       },
-      x: {
-        grid: {
-          display: false
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: '#e7e5e4' },
+          ticks: {
+            color: '#78716c',
+            font: { family: "'Work Sans', sans-serif" }
+          },
+          title: {
+            display: true,
+            text: 'kg CO₂e per kg fødevare',
+            color: '#78716c',
+            font: { size: 12, weight: 'bold' }
+          }
         },
-        ticks: {
-          color: '#e7e5e4',
-          font: {
-            family: 'Work Sans',
-            size: 11
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: '#78716c',
+            font: { family: "'Work Sans', sans-serif", size: 11 }
           }
         }
       }
     }
-  }
-});
-</script>
+  });
 
+  // Chart 2: Full comparison (all products)
+  const fullCtx = document.getElementById('fullComparisonChart').getContext('2d');
+  new Chart(fullCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Oksekød', 'Lam', 'Kakao', 'Kaffe', 'Skaldyr', 'Svinekød', 'Laks', 'Ost', 'Kylling', 'Te', 'Hvid fisk', 'Æg', 'Ris', 'Olier', 'Mælk', 'Bælgfrugter', 'Brød', 'Bladgrønt', 'Rodfrugter', 'Kartofler'],
+      datasets: [{
+        label: 'kg CO₂e per kg',
+        data: [60, 24, 19, 17, 18, 12, 11.9, 8, 6.9, 6.3, 6, 4.8, 4, 3.5, 3, 2, 0.9, 0.5, 0.4, 0.2],
+        backgroundColor: function(context) {
+          const value = context.parsed.y;
+          if (value > 15) return '#7f1d1d';
+          if (value > 10) return '#dc2626';
+          if (value > 5) return '#f97316';
+          if (value > 3) return '#eab308';
+          if (value > 1) return '#84cc16';
+          return '#10b981';
+        },
+        borderRadius: 6,
+        borderWidth: 0
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0c0a09',
+          padding: 16,
+          titleFont: { size: 16, weight: 'bold' },
+          bodyFont: { size: 14 },
+          callbacks: {
+            label: (context) => `${context.parsed.x} kg CO₂e/kg`
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          grid: { color: '#57534e' },
+          ticks: {
+            color: '#d6d3d1',
+            font: { family: "'Work Sans', sans-serif" }
+          },
+          title: {
+            display: true,
+            text: 'kg CO₂e per kg fødevare',
+            color: '#d6d3d1',
+            font: { size: 14, weight: 'bold' }
+          }
+        },
+        y: {
+          grid: { display: false },
+          ticks: {
+            color: '#d6d3d1',
+            font: { family: "'Work Sans', sans-serif", size: 12 }
+          }
+        }
+      }
+    }
+  });
+</script>
 {% endblock %}
