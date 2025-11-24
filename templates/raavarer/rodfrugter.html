@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodfrugter - Klimavenlige Grøntsager | Vidensbank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-orange: #FF6B35;
+            --brand-yellow: #F7931E;
+            --brand-teal: #4ECDC4;
+            --brand-navy: #1A535C;
+            --brand-cream: #FFF8F0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .tracking-brand-wide {
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(-3deg);
+            }
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        .animation-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animation-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .animation-delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        [data-animate] {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-stone-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="mx-auto max-w-7xl px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="font-display text-3xl font-bold tracking-brand-wide" style="color: var(--brand-orange);">
+                    VIDENSBANK
+                </a>
+                <div class="flex gap-8">
+                    <a href="/topics" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Emner</a>
+                    <a href="/raavarer" class="font-sans text-orange-500 font-semibold border-b-2 border-orange-500">Råvarer</a>
+                    <a href="/resources" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Ressourcer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-amber-100 via-orange-50 to-stone-100 py-24 overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-400"></div>
+
+        <div class="relative mx-auto max-w-7xl px-6 md:px-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6" data-animate>
+                    <div class="inline-block bg-green-500 text-white px-6 py-2 rounded-full font-display font-bold text-lg">
+                        🥕 KLIMACHAMPION
+                    </div>
+                    <h1 class="font-display text-6xl md:text-7xl font-bold text-stone-900 uppercase tracking-brand-wide leading-tight">
+                        Rodfrugter
+                    </h1>
+                    <p class="text-xl text-stone-700 font-sans leading-relaxed">
+                        Gulerødder, rødbeder, turnips, pastinakker og andre rodfrugter er klimavenlige, næringsrige og alsidige ingredienser, der trives i dansk klima.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="#kob" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg">
+                            INDKØBSGUIDE
+                        </a>
+                        <a href="#kalkulator" class="bg-white hover:bg-stone-50 text-stone-900 px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg border-2 border-stone-200">
+                            BEREGN CO₂
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative" data-animate>
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-400 to-amber-500 rounded-3xl transform rotate-3 opacity-20"></div>
+                    <img src="{{ url_for('static', filename='images/annie-spratt-nKUkTnHMg48-unsplash.jpg') }}"
+                         alt="Friske rodfrugter"
+                         class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover">
+                    <div class="absolute top-8 right-8 bg-green-500 text-white px-6 py-3 rounded-full font-display font-bold text-xl shadow-lg">
+                        98% LAVERE END OKSEKØD
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-16 bg-white">
+        <div class="mx-auto max-w-7xl px-6 md:px-20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl text-center" data-animate>
+                    <div class="text-4xl font-bold text-green-600 mb-2">0.3</div>
+                    <div class="text-sm text-stone-600 font-semibold uppercase">kg CO₂e per kg</div>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl text-center" data-animate>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">200x</div>
+                    <div class="text-sm text-stone-600 font-semibold uppercase">Lavere end oksekød</div>
+                </div>
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl text-center" data-animate>
+                    <div class="text-4xl font-bold text-amber-600 mb-2">Høj</div>
+                    <div class="text-sm text-stone-600 font-semibold uppercase">Fiberindhold</div>
+                </div>
+                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl text-center" data-animate>
+                    <div class="text-4xl font-bold text-teal-600 mb-2">Lokal</div>
+                    <div class="text-sm text-stone-600 font-semibold uppercase">Dansk produktion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Climate Impact -->
+    <section class="py-24 bg-stone-50">
+        <div class="mx-auto max-w-5xl px-6 md:px-20">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
+                Klimaaftryk
+            </h2>
+
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl mb-12" data-animate>
+                <canvas id="climateChart" class="w-full" style="max-height: 400px;"></canvas>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
+                    <div class="text-5xl mb-4">🌱</div>
+                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Lavt Klimaaftryk</h3>
+                    <p class="text-stone-700 font-sans">
+                        Med kun <strong>0.3 kg CO₂e per kg</strong> er rodfrugter blandt de mest klimavenlige fødevarer.
+                        De kræver minimal energi til dyrkning og kan opbevares længe uden køling.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
+                    <div class="text-5xl mb-4">🇩🇰</div>
+                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Lokal Produktion</h3>
+                    <p class="text-stone-700 font-sans">
+                        Danmark producerer store mængder gulerødder, løg og andre rodfrugter.
+                        Lokal produktion reducerer transportemissioner og sikrer friskhed.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
+                    <div class="text-5xl mb-4">❄️</div>
+                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Lang Holdbarhed</h3>
+                    <p class="text-stone-700 font-sans">
+                        Rodfrugter kan opbevares i månedsvis uden køling i kølige, mørke rum.
+                        Dette reducerer energiforbrug til nedkøling og minimerer madspild.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal & Storage -->
+    <section class="py-24 bg-gradient-to-br from-orange-50 via-amber-50 to-stone-50">
+        <div class="mx-auto max-w-5xl px-6">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
+                Sæson & Opbevaring
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Seasonal -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500" data-animate>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-5xl">📅</div>
+                        <div>
+                            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Høstsæson</h3>
+                            <p class="text-sm text-stone-500">August - November</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-orange-400 pl-4">
+                            <p class="text-sm font-bold text-stone-700 uppercase mb-1">Gulerødder</p>
+                            <p class="text-sm text-stone-600">Høstes fra juli til november. Kan opbevares hele vinteren.</p>
+                        </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <p class="text-sm font-bold text-stone-700 uppercase mb-1">Rødbeder</p>
+                            <p class="text-sm text-stone-600">Høstes fra august til oktober. Fremragende opbevaringsevne.</p>
+                        </div>
+                        <div class="border-l-4 border-amber-400 pl-4">
+                            <p class="text-sm font-bold text-stone-700 uppercase mb-1">Pastinakker</p>
+                            <p class="text-sm text-stone-600">Høstes efter første frost (forbedrer smagen). Oktober-november.</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-400 pl-4">
+                            <p class="text-sm font-bold text-stone-700 uppercase mb-1">Knoldselleri</p>
+                            <p class="text-sm text-stone-600">Høstes fra september til november. Lagres køligt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Storage -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-teal-500" data-animate>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-5xl">📦</div>
+                        <div>
+                            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Optimal Opbevaring</h3>
+                            <p class="text-sm text-stone-500">2-6 måneder holdbarhed</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded">
+                            <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Gør dette:</p>
+                            <ul class="text-sm text-stone-600 space-y-1">
+                                <li>• Opbevar i kølige, mørke rum (0-4°C)</li>
+                                <li>• Fjern toppen (fx. på gulerødder)</li>
+                                <li>• Opbevar i sand eller papkasser</li>
+                                <li>• Hold høj luftfugtighed (90-95%)</li>
+                                <li>• Tjek regelmæssigt for råddenskab</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-red-50 p-4 rounded">
+                            <p class="text-xs font-bold text-stone-700 uppercase mb-2">❌ Undgå dette:</p>
+                            <ul class="text-sm text-stone-600 space-y-1">
+                                <li>• Opbevaring med frugter (ethylengas)</li>
+                                <li>• Plastikposer uden ventilation</li>
+                                <li>• Varm eller lys opbevaring</li>
+                                <li>• Vask før opbevaring (fremmer råddenskab)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Benefits -->
+    <section class="py-24 bg-white">
+        <div class="mx-auto max-w-5xl px-6">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
+                Ernæringsmæssige Fordele
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">🥕</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">A-vitamin</h3>
+                    <p class="text-sm text-stone-600">
+                        Gulerødder er rige på beta-caroten (A-vitamin), vigtigt for syn og immunforsvar.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">💪</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Jern & Folat</h3>
+                    <p class="text-sm text-stone-600">
+                        Rødbeder indeholder jern og folat, essentielt for blodproduktion og energi.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">🌾</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Fibre</h3>
+                    <p class="text-sm text-stone-600">
+                        Alle rodfrugter er rige på kostfibre, som fremmer mæthedsfølelse og tarmsundhed.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">🛡️</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Antioxidanter</h3>
+                    <p class="text-sm text-stone-600">
+                        Rodfrugter indeholder antioxidanter, der beskytter cellerne mod oxidativ stress.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Langsom Energi</h3>
+                    <p class="text-sm text-stone-600">
+                        Komplekse kulhydrater frigiver energi langsomt og holder blodsukkeret stabilt.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl" data-animate>
+                    <div class="text-4xl mb-3">🧂</div>
+                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Mineraler</h3>
+                    <p class="text-sm text-stone-600">
+                        Kalium, magnesium og mangan støtter muskler, knogler og nervesystemet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buying Guide -->
+    <section id="kob" class="py-24 bg-stone-50">
+        <div class="mx-auto max-w-5xl px-6">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
+                Indkøbsguide
+            </h2>
+
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">🇩🇰</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Vælg Danske Rodfrugter</h3>
+                            <p class="text-stone-700 font-sans">
+                                Danmark producerer fremragende rodfrugter. Dansk produktion reducerer transportemissioner og sikrer friskhed.
+                                <strong>Vælg altid lokalt</strong> når det er sæson.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">🌱</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Økologisk Når Muligt</h3>
+                            <p class="text-stone-700 font-sans">
+                                Rodfrugter dyrkes i jorden og kan optage pesticider. Vælg økologiske for at undgå sprøjtemidler.
+                                <strong>Især vigtig for gulerødder og knoldselleri.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">👀</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Kvalitetstjek</h3>
+                            <p class="text-stone-700 font-sans">
+                                Vælg faste, tunge rodfrugter uden bløde pletter. Undgå rodfrugter med skud eller rynket overflade.
+                                <strong>Lille jord på overfladen er OK</strong> - det indikerer friskhed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">📦</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Køb i Bulk</h3>
+                            <p class="text-stone-700 font-sans">
+                                Rodfrugter holder sig i månedsvis ved korrekt opbevaring. <strong>Køb større mængder i sæsonen</strong>
+                                (august-november) og opbevar køligt. Dette reducerer indkøbsfrekvens og madspild.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-purple-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">🥕</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Med Eller Uden Top?</h3>
+                            <p class="text-stone-700 font-sans">
+                                Rodfrugter med top (blade) er friskere, men toppen trækker fugt fra roden.
+                                <strong>Fjern toppen inden opbevaring</strong> for at forlænge holdbarheden. Toppen kan bruges i pesto eller suppe!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-teal-500" data-animate>
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">🎨</div>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Variation i Farver</h3>
+                            <p class="text-stone-700 font-sans">
+                                Prøv forskellige farver: lilla gulerødder, gule rødbeder, hvid pastinakker.
+                                <strong>Forskellige farver = forskellige antioxidanter</strong> og visuelt tiltalende retter.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Calculator -->
+    <section id="kalkulator" class="py-24 bg-gradient-to-br from-green-50 via-teal-50 to-blue-50">
+        <div class="mx-auto max-w-4xl px-6">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
+                Beregn Dit CO₂-Besparelser
+            </h2>
+
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl" data-animate>
+                <div class="space-y-8">
+                    <!-- Root Vegetable Amount -->
+                    <div>
+                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
+                            Månedligt forbrug af rodfrugter (kg)
+                        </label>
+                        <input type="range" id="rootAmount" min="10" max="200" value="50" step="10"
+                               class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-orange-500">
+                        <div class="flex justify-between mt-2">
+                            <span class="text-sm text-stone-600">10 kg</span>
+                            <span class="text-lg font-bold text-orange-600" id="rootAmountDisplay">50 kg</span>
+                            <span class="text-sm text-stone-600">200 kg</span>
+                        </div>
+                    </div>
+
+                    <!-- Replacement Type -->
+                    <div>
+                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
+                            Erstatter:
+                        </label>
+                        <select id="replacementType"
+                                class="w-full p-4 border-2 border-stone-200 rounded-lg font-sans text-stone-700 cursor-pointer hover:border-orange-500 transition-colors">
+                            <option value="12">Svinekød (12 kg CO₂e/kg)</option>
+                            <option value="60">Oksekød (60 kg CO₂e/kg)</option>
+                            <option value="24">Lammekød (24 kg CO₂e/kg)</option>
+                            <option value="6.9">Kylling (6.9 kg CO₂e/kg)</option>
+                            <option value="4">Ris (4 kg CO₂e/kg)</option>
+                            <option value="0.9">Brød (0.9 kg CO₂e/kg)</option>
+                        </select>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-8 rounded-xl border-2 border-green-200">
+                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">
+                            Månedlige Besparelser
+                        </h3>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-xl text-center">
+                                <div class="text-sm text-stone-600 uppercase mb-2">CO₂-Besparelse</div>
+                                <div class="text-5xl font-bold text-green-600 mb-2">
+                                    <span id="co2Savings">585</span>
+                                </div>
+                                <div class="text-sm text-stone-600">kg CO₂e</div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl text-center">
+                                <div class="text-sm text-stone-600 uppercase mb-2">Svarer Til</div>
+                                <div class="text-5xl font-bold text-blue-600 mb-2">
+                                    <span id="kmDriving">2,925</span>
+                                </div>
+                                <div class="text-sm text-stone-600">km bilkørsel</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-6 bg-white rounded-xl">
+                            <p class="text-sm text-stone-600 text-center">
+                                <strong class="text-green-700">🌍 Årlig besparelse:</strong>
+                                <span id="annualSavings" class="text-2xl font-bold text-green-600">7,020</span> kg CO₂e
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Sources -->
+    <section class="py-16 bg-white">
+        <div class="mx-auto max-w-5xl px-6">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">Datakilder</h3>
+            <div class="bg-stone-50 p-6 rounded-xl">
+                <ul class="space-y-2 text-sm text-stone-600">
+                    <li>• <strong>CONCITO Climate Database v2.0 (2024)</strong> - Klimaaftryk for danske fødevarer</li>
+                    <li>• <strong>Poore & Nemecek (2018), Science</strong> - Global fødevareproduktionens miljøpåvirkning</li>
+                    <li>• <strong>Our World in Data (2024)</strong> - Klimaaftryk for forskellige fødevarer</li>
+                    <li>• <strong>Fødevarestyrelsen (2024)</strong> - Ernæringsdata og anbefalinger</li>
+                    <li>• <strong>Landbrug & Fødevarer</strong> - Dansk produktion og sæsonkalender</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white py-12">
+        <div class="mx-auto max-w-7xl px-6 text-center">
+            <p class="font-display text-2xl font-bold tracking-brand-wide mb-4" style="color: var(--brand-orange);">VIDENSBANK</p>
+            <p class="text-stone-400 font-sans">&copy; 2024 Vidensbank. Alle rettigheder forbeholdes.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+        // Climate Chart
+        const ctx = document.getElementById('climateChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Ris', 'Brød', 'Rodfrugter'],
+                datasets: [{
+                    label: 'kg CO₂e per kg',
+                    data: [60, 24, 12, 4, 0.9, 0.3],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(251, 146, 60, 0.8)',
+                        'rgba(251, 191, 36, 0.8)',
+                        'rgba(251, 191, 36, 0.6)',
+                        'rgba(132, 204, 22, 0.6)',
+                        'rgba(34, 197, 94, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgb(239, 68, 68)',
+                        'rgb(251, 146, 60)',
+                        'rgb(251, 191, 36)',
+                        'rgb(251, 191, 36)',
+                        'rgb(132, 204, 22)',
+                        'rgb(34, 197, 94)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' kg CO₂e per kg';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'kg CO₂e per kg produkt',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Calculator
+        const ROOT_CO2 = 0.3; // kg CO₂e per kg
+        const CAR_CO2_PER_KM = 0.2; // Average car emissions
+
+        const rootAmountSlider = document.getElementById('rootAmount');
+        const rootAmountDisplay = document.getElementById('rootAmountDisplay');
+        const replacementTypeSelect = document.getElementById('replacementType');
+        const co2SavingsDisplay = document.getElementById('co2Savings');
+        const kmDrivingDisplay = document.getElementById('kmDriving');
+        const annualSavingsDisplay = document.getElementById('annualSavings');
+
+        function updateCalculations() {
+            const rootAmount = parseInt(rootAmountSlider.value);
+            const replacementCO2 = parseFloat(replacementTypeSelect.value);
+
+            // Update display
+            rootAmountDisplay.textContent = rootAmount + ' kg';
+
+            // Calculate savings
+            const rootEmissions = rootAmount * ROOT_CO2;
+            const replacementEmissions = rootAmount * replacementCO2;
+            const monthlySavings = replacementEmissions - rootEmissions;
+            const annualSavings = monthlySavings * 12;
+            const kmEquivalent = monthlySavings / CAR_CO2_PER_KM;
+
+            // Update displays
+            co2SavingsDisplay.textContent = Math.round(monthlySavings);
+            kmDrivingDisplay.textContent = Math.round(kmEquivalent).toLocaleString('da-DK');
+            annualSavingsDisplay.textContent = Math.round(annualSavings).toLocaleString('da-DK');
+        }
+
+        rootAmountSlider.addEventListener('input', updateCalculations);
+        replacementTypeSelect.addEventListener('change', updateCalculations);
+
+        // Initial calculation
+        updateCalculations();
+    </script>
+
+</body>
+</html>
