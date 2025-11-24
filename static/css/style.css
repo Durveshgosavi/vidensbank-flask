@@ -119,7 +119,7 @@ h2, .section-title {
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.01em; /* Tighter for display */
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem;
   margin-top: 3rem;
   color: var(--text-dark);
