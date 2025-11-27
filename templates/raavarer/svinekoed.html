@@ -3,453 +3,204 @@
 {% block title %}Svinekød - Råvarer - Vidensbank{% endblock %}
 
 {% block content %}
-<!-- Breadcrumb -->
-<div class="bg-cb-taupe-light py-4">
-    <div class="mx-auto max-w-7xl px-6">
-        <nav class="text-sm">
-            <a href="{{ url_for('raavarer_landing') }}" class="text-cb-orange-dark hover:text-cb-orange-medium">Råvarer</a>
-            <span class="mx-2 text-stone-400">/</span>
-            <span class="text-stone-600">Svinekød</span>
+<header class="page-header has-cover"
+    style="background-image: url('{{ url_for('static', filename='images/raw_pork.png') }}');">
+    <div class="page-header__content">
+        <p class="eyebrow">RÅVARER</p>
+        <h1>Svinekød</h1>
+        <p>Svinekød er en af de mest anvendte kødstyper i Danmark. Med et klimaaftryk på 12 kg CO₂e pr. kg ligger det
+            midt i feltet.</p>
+        <nav class="filter-nav" aria-label="Filtrer emner">
+            <a href="{{ url_for('raavarer_landing') }}" class="filter-pill">← Tilbage til Råvarer</a>
         </nav>
     </div>
-</div>
+</header>
 
-<!-- Hero Section -->
-<div class="relative bg-gradient-to-br from-pink-50 to-orange-50 py-24">
-    <div class="mx-auto max-w-7xl px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <h1 class="font-display text-6xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-                    Svinekød
-                </h1>
-                <p class="font-sans text-xl text-stone-600 mb-8 leading-relaxed">
-                    Svinekød er den mest konsumerede kødtype i Danmark og globalt. Med et klimaaftryk på 12 kg CO₂e pr. kg
-                    ligger det midt i spektret – bedre end oksekød, men betydeligt højere end plantebaserede alternativer.
-                </p>
-                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
-                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-pink-200">
-                        <div class="text-3xl font-bold text-pink-600">12</div>
-                        <div class="text-xs uppercase tracking-wider text-stone-600">kg CO₂e/kg</div>
-                    </div>
-                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-pink-200">
-                        <div class="text-3xl font-bold text-pink-600">6x</div>
-                        <div class="text-xs uppercase tracking-wider text-stone-600">vs kylling</div>
-                    </div>
-                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-pink-200">
-                        <div class="text-3xl font-bold text-pink-600">5,988L</div>
-                        <div class="text-xs uppercase tracking-wider text-stone-600">vand/kg</div>
-                    </div>
-                    <div class="bg-white/60 backdrop-blur-sm p-4 rounded border border-pink-200">
-                        <div class="text-3xl font-bold text-pink-600">11m²</div>
-                        <div class="text-xs uppercase tracking-wider text-stone-600">areal/kg</div>
-                    </div>
+<section class="page-section">
+    <header class="section-header">
+        <h2 class="section-title">Klimaaftryk & Miljø</h2>
+        <p class="section-lead">Svinekød belaster klimaet mindre end oksekød, men betydeligt mere end fjerkræ og
+            plantebaserede alternativer.</p>
+    </header>
+
+    <div class="grid-layout grid-2-col">
+        <div class="kpi-dashboard">
+            <div class="grid-layout" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="kpi-card">
+                    <div class="kpi-label">Klimaaftryk</div>
+                    <div class="kpi-number" style="color: #ec4899;">12</div>
+                    <p>kg CO₂e pr. kg</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Vs. Kylling</div>
+                    <div class="kpi-number">+74%</div>
+                    <p>højere udledning</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Vandforbrug</div>
+                    <div class="kpi-number">5.988</div>
+                    <p>liter pr. kg</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Areal</div>
+                    <div class="kpi-number">11</div>
+                    <p>m² pr. kg årligt</p>
                 </div>
             </div>
-            <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
-                <img src="{{ url_for('static', filename='images/Cheval21226.jpeg') }}"
-                     alt="Svinekød"
-                     class="w-full h-full object-cover">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Climate Impact Section -->
-<section class="py-24 bg-white">
-    <div class="mx-auto max-w-7xl px-6">
-        <div class="text-center mb-16">
-            <span class="text-xs font-bold tracking-widest uppercase text-pink-600 mb-4 block">Klimaaftryk</span>
-            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-                Hvor står svinekød?
-            </h2>
-            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-                Svinekød har et lavere klimaaftryk end oksekød og lam, men er stadig væsentligt højere end fjerkræ og planteproteiner.
-            </p>
         </div>
 
-        <div class="max-w-5xl mx-auto">
-            <canvas id="porkComparisonChart" height="100"></canvas>
-        </div>
-
-        <div class="mt-16 bg-pink-50 p-8 rounded-lg max-w-4xl mx-auto">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Klimafakta</h3>
-            <div class="grid md:grid-cols-2 gap-6 font-sans text-stone-700">
-                <div class="flex items-start gap-3">
-                    <span class="text-pink-600 text-xl">•</span>
-                    <p>1 kg svinekød = 12 kg CO₂e (CONCITO 2024)</p>
-                </div>
-                <div class="flex items-start gap-3">
-                    <span class="text-pink-600 text-xl">•</span>
-                    <p>80% af klimaaftrykket kommer fra foderemissioner (metan fra gyllestorage)</p>
-                </div>
-                <div class="flex items-start gap-3">
-                    <span class="text-pink-600 text-xl">•</span>
-                    <p>Dansk svineproduktion er blandt de mest effektive i verden</p>
-                </div>
-                <div class="flex items-start gap-3">
-                    <span class="text-pink-600 text-xl">•</span>
-                    <p>Økologisk svinekød har ~10% højere klimaaftryk grundet længere produktionstid</p>
-                </div>
+        <div class="kpi-card">
+            <h3 class="card-title">Hvor står svinekød?</h3>
+            <ul class="list-style-none">
+                <li class="mb-3"><strong>Foderproduktion:</strong> Ca. 80% af klimaaftrykket stammer fra produktionen af
+                    foder (soja og korn).</li>
+                <li class="mb-3"><strong>Effektivitet:</strong> Dansk svineproduktion er blandt verdens mest effektive,
+                    men dyret er stadig en "mellemmand" for kalorier.</li>
+                <li class="mb-3"><strong>Gylle:</strong> Håndtering af gylle er en væsentlig kilde til både metan og
+                    ammoniakfordampning.</li>
+            </ul>
+            <div class="mt-4 p-4 bg-light-pink border-radius-8">
+                <h4 class="mb-2">Vigtigt om Dyrevelfærd</h4>
+                <p class="mb-0">Vælg økologisk eller frilandsgris for at sikre, at dyrene har haft adgang til det fri og
+                    krølle på halen.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Environmental Impact -->
-<section class="py-24 bg-stone-50">
-    <div class="mx-auto max-w-7xl px-6">
-        <div class="text-center mb-16">
-            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-                Miljøpåvirkning
-            </h2>
+<section class="page-section is-muted">
+    <header class="section-header">
+        <h2 class="section-title">Klimavenlige Alternativer</h2>
+        <p class="section-lead">Hvis du vil reducere klimaaftrykket, er der gode alternativer at hente.</p>
+    </header>
+
+    <div class="grid-layout grid-3-col">
+        <div class="aww-card">
+            <div class="card-content-body">
+                <h3 class="card-title">Bælgfrugter</h3>
+                <div class="kpi-number" style="font-size: 2.5rem; color: var(--dark-gron);">-83%</div>
+                <p class="card-teaser">Linser og bønner (2 kg CO₂e/kg) er det mest effektive bytte for klimaet.</p>
+            </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Water Usage -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-blue-400">
-                <div class="text-5xl mb-4">💧</div>
-                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vandforbrug</h3>
-                <div class="text-4xl font-bold text-blue-600 mb-2">5,988 L</div>
-                <p class="text-sm text-stone-600 mb-4">per kg svinekød</p>
-                <p class="text-stone-700 font-sans text-sm">
-                    Væsentligt lavere end oksekød (15,400L), men stadig betydeligt. 90% bruges til foder-afgrøder.
+        <div class="aww-card">
+            <div class="card-content-body">
+                <h3 class="card-title">Kylling</h3>
+                <div class="kpi-number" style="font-size: 2.5rem; color: var(--cheval-gul);">-42%</div>
+                <p class="card-teaser">Ved at skifte fra svin til kylling (6,9 kg CO₂e/kg) halverer du næsten aftrykket.
                 </p>
             </div>
+        </div>
 
-            <!-- Land Use -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-green-400">
-                <div class="text-5xl mb-4">🌾</div>
-                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Arealforbrug</h3>
-                <div class="text-4xl font-bold text-green-600 mb-2">11 m²</div>
-                <p class="text-sm text-stone-600 mb-4">per kg svinekød</p>
-                <p class="text-stone-700 font-sans text-sm">
-                    Meget mere arealeffektivt end oksekød (326m²). Svin kan konvertere foder til kød mere effektivt.
-                </p>
-            </div>
-
-            <!-- Biodiversity -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-amber-400">
-                <div class="text-5xl mb-4">🌱</div>
-                <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Biodiversitet</h3>
-                <div class="text-4xl font-bold text-amber-600 mb-2">Moderat</div>
-                <p class="text-sm text-stone-600 mb-4">påvirkning</p>
-                <p class="text-stone-700 font-sans text-sm">
-                    Dansk svineproduktion er primært indendørs. Hovedpåvirkning kommer fra foderafgrøder og gyllebelastning.
-                </p>
+        <div class="aww-card">
+            <div class="card-content-body">
+                <h3 class="card-title">Hvid Fisk</h3>
+                <div class="kpi-number" style="font-size: 2.5rem; color: var(--cheval-blue);">-50%</div>
+                <p class="card-teaser">MSC-certificeret hvid fisk (ca. 6 kg CO₂e/kg) er et sundt og let alternativ.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Alternatives Section -->
-<section class="py-24 bg-white">
-    <div class="mx-auto max-w-7xl px-6">
-        <div class="text-center mb-16">
-            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-                Klimavenlige Alternativer
-            </h2>
-            <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-                Hvis du vil reducere klimaaftrykket uden at give afkald på proteinen, her er dine bedste valg:
-            </p>
-        </div>
+<section class="page-section">
+    <div class="container max-w-1000">
+        <div class="bg-white p-8 rounded-xl shadow-lg border-1 border-light">
+            <h2 class="section-title mb-6">Beregn Din Besparelse</h2>
+            <p class="text-center mb-8">Se effekten af at udskifte svinekød med grønnere alternativer.</p>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Legumes -->
-            <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg border-2 border-green-200 hover:border-green-400 transition-all">
-                <div class="text-4xl mb-3">🫘</div>
-                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Bælgfrugter</h3>
-                <div class="text-3xl font-bold text-green-600 mb-2">-83%</div>
-                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
-                <p class="text-sm text-stone-700 font-sans">
-                    Linser, bønner, kikærter. 2 kg CO₂e/kg. Billigere og lige så proteinrige.
-                </p>
-            </div>
-
-            <!-- Chicken -->
-            <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-lg border-2 border-yellow-200 hover:border-yellow-400 transition-all">
-                <div class="text-4xl mb-3">🐔</div>
-                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Kylling</h3>
-                <div class="text-3xl font-bold text-yellow-600 mb-2">-42%</div>
-                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
-                <p class="text-sm text-stone-700 font-sans">
-                    6.9 kg CO₂e/kg. Betydeligt lavere klimaaftryk og populært alternativ.
-                </p>
-            </div>
-
-            <!-- Tofu/Tempeh -->
-            <div class="bg-gradient-to-br from-orange-50 to-white p-6 rounded-lg border-2 border-orange-200 hover:border-orange-400 transition-all">
-                <div class="text-4xl mb-3">🥢</div>
-                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Tofu/Tempeh</h3>
-                <div class="text-3xl font-bold text-orange-600 mb-2">-75%</div>
-                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
-                <p class="text-sm text-stone-700 font-sans">
-                    3 kg CO₂e/kg. Soja-baseret protein med høj versatilitet i køkkenet.
-                </p>
-            </div>
-
-            <!-- Fish -->
-            <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-lg border-2 border-blue-200 hover:border-blue-400 transition-all">
-                <div class="text-4xl mb-3">🐟</div>
-                <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Hvid Fisk</h3>
-                <div class="text-3xl font-bold text-blue-600 mb-2">-50%</div>
-                <p class="text-xs text-stone-600 mb-3">CO₂-reduktion</p>
-                <p class="text-sm text-stone-700 font-sans">
-                    6 kg CO₂e/kg. MSC-certificeret hvid fisk er en bæredygtig kilde til protein.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Buying Guide -->
-<section class="py-24 bg-stone-900 text-white">
-    <div class="mx-auto max-w-5xl px-6">
-        <div class="text-center mb-16">
-            <h2 class="font-display text-5xl font-bold uppercase tracking-brand-wide mb-6 text-pink-400">
-                Hvis du køber svinekød
-            </h2>
-            <p class="font-sans text-lg text-stone-300">
-                Sådan minimerer du klimaaftrykket og sikrer bedre dyrevelfærd:
-            </p>
-        </div>
-
-        <div class="space-y-6">
-            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-pink-400">
-                <h3 class="font-sans text-lg font-bold mb-2">🏅 Vælg økologisk eller frilandsgris</h3>
-                <p class="text-stone-300">
-                    Bedre dyrevelfærd med adgang til udendørsarealer. Økologisk svin har strengere krav til foder og medicinforbrug.
-                </p>
-            </div>
-
-            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-pink-400">
-                <h3 class="font-sans text-lg font-bold mb-2">🇩🇰 Køb dansk svinekød</h3>
-                <p class="text-stone-300">
-                    Dansk svineproduktion er blandt verdens mest effektive og har strengere miljø- og dyrevelfærdskrav end mange andre lande.
-                </p>
-            </div>
-
-            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-pink-400">
-                <h3 class="font-sans text-lg font-bold mb-2">📏 Reducer portionsstørrelserne</h3>
-                <p class="text-stone-300">
-                    Danske kostråd anbefaler max 350-500g kød om ugen totalt. Fyld op med grøntsager i stedet.
-                </p>
-            </div>
-
-            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-pink-400">
-                <h3 class="font-sans text-lg font-bold mb-2">🔄 Brug hele grisen</h3>
-                <p class="text-stone-300">
-                    Køb også mindre populære dele som skank, hals og indvolde. Det reducerer madspild og er ofte billigere.
-                </p>
-            </div>
-
-            <div class="bg-stone-800 p-6 rounded-lg border-l-4 border-pink-400">
-                <h3 class="font-sans text-lg font-bold mb-2">📅 Max 2-3 gange om ugen</h3>
-                <p class="text-stone-300">
-                    Vær bevidst om hyppigheden. Udskift nogle kødmåltider med planteproteiner for at reducere det samlede klimaaftryk.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Interactive Calculator -->
-<section class="py-24 bg-gradient-to-br from-pink-50 to-orange-50">
-    <div class="mx-auto max-w-4xl px-6">
-        <div class="text-center mb-12">
-            <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-                Beregn Din Besparelse
-            </h2>
-            <p class="font-sans text-lg text-stone-600">
-                Se hvor meget CO₂ du kan spare ved at erstatte svinekød med alternativer
-            </p>
-        </div>
-
-        <div class="bg-white p-8 rounded-lg shadow-xl">
-            <div class="mb-6">
-                <label class="block font-sans font-bold text-stone-700 mb-2">
-                    Hvor meget svinekød spiser du om ugen?
-                </label>
-                <div class="flex items-center gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-sm font-bold uppercase tracking-wider text-dark mb-2">
+                        Mængde svinekød (g/uge)
+                    </label>
                     <input type="range" id="porkAmount" min="0" max="2000" value="500" step="50"
-                           class="flex-1 h-2 bg-pink-200 rounded-lg appearance-none cursor-pointer"
-                           oninput="calculatePorkSavings()">
-                    <span id="porkAmountDisplay" class="font-bold text-2xl text-pink-600 min-w-[100px]">500g</span>
+                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pink-500"
+                        oninput="calculatePorkSavings()">
+                    <div class="text-right font-bold text-lg text-pink-600 mt-2"><span
+                            id="porkAmountDisplay">500</span>g</div>
                 </div>
-            </div>
-
-            <div class="mb-8">
-                <label class="block font-sans font-bold text-stone-700 mb-2">
-                    Hvad vil du erstatte det med?
-                </label>
-                <select id="porkReplacement"
-                        class="w-full p-3 border-2 border-stone-200 rounded-lg font-sans text-stone-700 focus:border-pink-400 focus:outline-none"
+                <div>
+                    <label class="block text-sm font-bold uppercase tracking-wider text-dark mb-2">
+                        Erstat med
+                    </label>
+                    <select id="porkReplacement"
+                        class="w-full px-4 py-3 bg-light border border-gray-300 rounded text-dark text-lg focus:outline-none focus:border-pink-500"
                         onchange="calculatePorkSavings()">
-                    <option value="2">Bælgfrugter (linser, bønner, kikærter)</option>
-                    <option value="6.9">Kylling</option>
-                    <option value="3">Tofu/Tempeh</option>
-                    <option value="6">Hvid fisk (MSC-certificeret)</option>
-                    <option value="8">Ost (moderat forbrug)</option>
-                    <option value="0">Intet - jeg stopper helt</option>
-                </select>
+                        <option value="2">Bælgfrugter (2 kg CO₂e/kg)</option>
+                        <option value="6.9">Kylling (6,9 kg CO₂e/kg)</option>
+                        <option value="3">Tofu/Tempeh (3 kg CO₂e/kg)</option>
+                        <option value="6">Hvid fisk (6 kg CO₂e/kg)</option>
+                        <option value="0">Intet (skær bare ned)</option>
+                    </select>
+                </div>
             </div>
 
-            <div id="porkSavingsResult" class="hidden">
-                <div class="bg-gradient-to-r from-pink-100 to-orange-100 p-6 rounded-lg mb-4">
-                    <div class="text-center">
-                        <div class="text-sm uppercase tracking-wider text-stone-600 mb-2">Ugentlig besparelse</div>
-                        <div class="text-5xl font-bold text-pink-600 mb-2">
-                            <span id="porkSavingsValue">0</span> kg CO₂e
+            <div id="porkSavingsResult" class="mt-8 fade-in">
+                <div class="bg-pink-50 border border-pink-200 rounded-lg p-6 text-center">
+                    <div class="text-sm uppercase tracking-wider text-dark mb-2">Ugentlig besparelse</div>
+                    <div class="text-5xl font-bold text-pink-600 mb-2">
+                        <span id="porkSavingsValue">0</span> <span class="text-2xl text-dark">kg CO₂e/uge</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-pink-200">
+                        <div>
+                            <div class="text-2xl font-bold text-dark" id="porkAnnualSavings">0</div>
+                            <div class="text-xs uppercase tracking-wider text-gray-600">tons CO₂e/år</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-dark" id="porkFlightEquiv">0</div>
+                            <div class="text-xs uppercase tracking-wider text-gray-600">flyrejser til London</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-stone-50 p-4 rounded">
-                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Årlig besparelse</div>
-                        <div class="text-2xl font-bold text-stone-900">
-                            <span id="porkAnnualSavings">0</span> tons CO₂e
-                        </div>
-                    </div>
-                    <div class="bg-stone-50 p-4 rounded">
-                        <div class="text-xs uppercase tracking-wider text-stone-600 mb-1">Svarer til</div>
-                        <div class="text-2xl font-bold text-stone-900">
-                            <span id="porkFlightEquiv">0</span> flyvninger KBH-London
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-stone-500 mt-4 text-center">
-                    * Beregninger baseret på CONCITO klimadatabase 2024
-                </p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Data Sources -->
-<section class="py-16 bg-stone-100">
-    <div class="mx-auto max-w-5xl px-6">
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">Datakilder</h3>
-        <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-600 font-sans">
-            <div class="bg-white p-4 rounded">
-                <strong>CONCITO Klimadatabase v2.0 (2024)</strong><br>
-                CO₂-ækvivalenter for svinekød og alternativer
-            </div>
-            <div class="bg-white p-4 rounded">
-                <strong>Poore & Nemecek (2018), Science</strong><br>
-                Global analyse af fødevareproduktionens miljøpåvirkning
-            </div>
-            <div class="bg-white p-4 rounded">
-                <strong>Water Footprint Network</strong><br>
-                Vandforbrugsdata for svineproduktion
-            </div>
-            <div class="bg-white p-4 rounded">
-                <strong>Landbrug & Fødevarer</strong><br>
-                Danske data om svineproduktion og effektivitet
-            </div>
+<section class="bg-cb-taupe-light py-12">
+    <div class="mx-auto max-w-7xl px-6">
+        <h3 class="text-center font-display text-2xl font-bold text-stone-900 mb-6 uppercase">Datakilder</h3>
+        <div class="flex flex-wrap justify-center gap-4 text-sm text-stone-600 font-sans">
+            <span>• CONCITO's Den Store Klimadatabase v2.0</span>
+            <span>• Poore & Nemecek (2018), Science</span>
+            <span>• Landbrug & Fødevarer</span>
+            <span>• Water Footprint Network</span>
         </div>
     </div>
 </section>
 
+<!-- Load Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
 <script>
-// Pork comparison chart
-const porkCtx = document.getElementById('porkComparisonChart').getContext('2d');
-new Chart(porkCtx, {
-    type: 'bar',
-    data: {
-        labels: ['Bælgfrugter', 'Tofu', 'Hvid fisk', 'Kylling', 'Ost', 'Svinekød', 'Lammekød', 'Oksekød'],
-        datasets: [{
-            label: 'kg CO₂e per kg fødevare',
-            data: [2, 3, 6, 6.9, 8, 12, 24, 60],
-            backgroundColor: [
-                'rgba(34, 197, 94, 0.8)',   // green - legumes
-                'rgba(251, 146, 60, 0.8)',  // orange - tofu
-                'rgba(59, 130, 246, 0.8)',  // blue - fish
-                'rgba(234, 179, 8, 0.8)',   // yellow - chicken
-                'rgba(245, 158, 11, 0.8)',  // amber - cheese
-                'rgba(236, 72, 153, 0.9)',  // pink - PORK (highlighted)
-                'rgba(239, 68, 68, 0.8)',   // red - lamb
-                'rgba(127, 29, 29, 0.8)'    // dark red - beef
-            ],
-            borderColor: [
-                'rgb(34, 197, 94)',
-                'rgb(251, 146, 60)',
-                'rgb(59, 130, 246)',
-                'rgb(234, 179, 8)',
-                'rgb(245, 158, 11)',
-                'rgb(236, 72, 153)',
-                'rgb(239, 68, 68)',
-                'rgb(127, 29, 29)'
-            ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        indexAxis: 'y',
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return context.parsed.x + ' kg CO₂e/kg';
-                    }
-                }
-            }
-        },
-        scales: {
-            x: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'kg CO₂e per kg fødevare',
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                grid: {
-                    color: 'rgba(0, 0, 0, 0.05)'
-                }
-            },
-            y: {
-                grid: {
-                    display: false
-                }
-            }
-        }
+    // Calculator function
+    function calculatePorkSavings() {
+        const porkAmount = parseFloat(document.getElementById('porkAmount').value) || 0;
+        const replacementCO2 = parseFloat(document.getElementById('porkReplacement').value);
+        const porkCO2 = 12; // kg CO2e/kg
+
+        // Update display
+        document.getElementById('porkAmountDisplay').textContent = porkAmount;
+
+        const amountKg = porkAmount / 1000;
+        const currentEmissions = amountKg * porkCO2;
+        const newEmissions = amountKg * replacementCO2;
+
+        const weeklySavings = currentEmissions - newEmissions;
+        const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
+        const flights = Math.round(annualSavings / 0.25); // ~250kg per flight
+
+        document.getElementById('porkSavingsValue').textContent = weeklySavings.toFixed(1);
+        document.getElementById('porkAnnualSavings').textContent = annualSavings.toFixed(2);
+        document.getElementById('porkFlightEquiv').textContent = flights;
     }
-});
 
-// Calculator function
-function calculatePorkSavings() {
-    const porkAmount = parseFloat(document.getElementById('porkAmount').value) || 0;
-    const replacementCO2 = parseFloat(document.getElementById('porkReplacement').value);
-
-    // Update display
-    document.getElementById('porkAmountDisplay').textContent = porkAmount + 'g';
-
-    const porkCO2 = 12; // kg CO2e/kg
-    const currentEmissions = (porkAmount / 1000) * porkCO2;
-    const newEmissions = (porkAmount / 1000) * replacementCO2;
-    const weeklySavings = currentEmissions - newEmissions;
-    const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
-    const flights = Math.round(annualSavings / 0.25); // ~250kg per flight
-
-    document.getElementById('porkSavingsValue').textContent = weeklySavings.toFixed(1);
-    document.getElementById('porkAnnualSavings').textContent = annualSavings.toFixed(2);
-    document.getElementById('porkFlightEquiv').textContent = flights;
-
-    document.getElementById('porkSavingsResult').classList.remove('hidden');
-}
-
-// Initialize calculator on page load
-document.addEventListener('DOMContentLoaded', function() {
-    calculatePorkSavings();
-});
+    // Initialize calculator
+    document.addEventListener('DOMContentLoaded', function () {
+        calculatePorkSavings();
+    });
 </script>
+
 {% endblock %}

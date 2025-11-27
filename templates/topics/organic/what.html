@@ -6,8 +6,8 @@
 <!-- Hero Section -->
 <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ url_for('static', filename='images/Cheval21226.jpeg') }}"
-            alt="Organic Ingredients" class="h-full w-full object-cover">
+        <img src="{{ url_for('static', filename='images/Cheval21226.jpeg') }}" alt="Organic Ingredients"
+            class="h-full w-full object-cover">
         <div class="absolute inset-0 brand-overlay"></div>
     </div>
 
@@ -26,7 +26,7 @@
 <!-- The Labels -->
 <section class="bg-white py-24">
     <div class="mx-auto max-w-5xl px-6">
-        <div class="mb-16 text-center">
+        <div class="mb-16 text-left">
             <span
                 class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Certificering</span>
             <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Det Økologiske
@@ -35,9 +35,9 @@
 
         <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
             <!-- Bronze -->
-            <div class="group text-center">
+            <div class="group text-left">
                 <div
-                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-amber-700 bg-stone-50 transition-transform group-hover:scale-110">
+                    class="mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-amber-700 bg-stone-50 transition-transform group-hover:scale-110">
                     <span class="font-display text-4xl font-bold text-amber-700">30-60%</span>
                 </div>
                 <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Bronze</h3>
@@ -47,9 +47,9 @@
             </div>
 
             <!-- Silver -->
-            <div class="group text-center">
+            <div class="group text-left">
                 <div
-                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-stone-400 bg-stone-50 transition-transform group-hover:scale-110">
+                    class="mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-stone-400 bg-stone-50 transition-transform group-hover:scale-110">
                     <span class="font-display text-4xl font-bold text-stone-400">60-90%</span>
                 </div>
                 <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Sølv</h3>
@@ -59,9 +59,9 @@
             </div>
 
             <!-- Gold -->
-            <div class="group text-center">
+            <div class="group text-left">
                 <div
-                    class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-yellow-500 bg-stone-50 transition-transform group-hover:scale-110">
+                    class="mb-6 flex h-32 w-32 items-center justify-center rounded-full border-4 border-yellow-500 bg-stone-50 transition-transform group-hover:scale-110">
                     <span class="font-display text-4xl font-bold text-yellow-500">90-100%</span>
                 </div>
                 <h3 class="mb-2 font-display text-2xl font-bold text-stone-900 uppercase">Guld</h3>
@@ -119,10 +119,10 @@
 </section>
 
 <!-- CTA -->
-<section class="bg-stone-900 py-24 text-center text-white">
-    <div class="mx-auto max-w-3xl px-6">
+<section class="bg-stone-900 py-32 text-left text-white">
+    <div class="mx-auto max-w-3xl px-6 text-left">
         <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide">Hvor ligger I?</h2>
-        <p class="mb-12 font-sans text-lg text-stone-400">
+        <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
             Brug vores simple beregner til at få et overblik over jeres nuværende økologiprocent.
         </p>
         <a href="{{ url_for('topic_organic_impact') }}"
