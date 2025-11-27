@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fødevarerelaterede Emissioner - Komplet Guide</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm 1.5cm;
+            @top-center {
+                content: "Fødevarerelaterede Emissioner & Bæredygtighed";
+                font-family: 'Arial', sans-serif;
+                font-size: 10pt;
+                color: #666;
+            }
+            @bottom-right {
+                content: "Side " counter(page) " af " counter(pages);
+                font-family: 'Arial', sans-serif;
+                font-size: 9pt;
+                color: #666;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1e5631 0%, #3a7d4c 50%, #5ca36e 100%);
+            color: white;
+            page-break-after: always;
+            padding: 3cm;
+        }
+
+        .cover-title {
+            font-size: 48pt;
+            font-weight: 700;
+            margin-bottom: 0.5cm;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .cover-subtitle {
+            font-size: 18pt;
+            font-weight: 300;
+            margin-bottom: 2cm;
+            opacity: 0.9;
+        }
+
+        .cover-meta {
+            font-size: 12pt;
+            margin-top: 3cm;
+            opacity: 0.8;
+        }
+
+        .cover-icon {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1cm;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        /* Table of Contents */
+        .toc-page {
+            page-break-after: always;
+            padding: 2cm 0;
+        }
+
+        .toc-title {
+            font-size: 32pt;
+            color: #1e5631;
+            margin-bottom: 1cm;
+            border-bottom: 3px solid #3a7d4c;
+            padding-bottom: 0.5cm;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-item {
+            padding: 0.4cm 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12pt;
+        }
+
+        .toc-item:hover {
+            background: #f9f9f9;
+        }
+
+        .toc-number {
+            color: #3a7d4c;
+            font-weight: bold;
+            margin-right: 0.5cm;
+        }
+
+        .toc-title-text {
+            flex: 1;
+        }
+
+        .toc-page-num {
+            color: #666;
+        }
+
+        /* Section Styles */
+        .section {
+            page-break-before: always;
+            margin-bottom: 2cm;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #1e5631, #3a7d4c);
+            color: white;
+            padding: 1cm;
+            margin: -2cm -1.5cm 1cm -1.5cm;
+            position: relative;
+        }
+
+        .section-number {
+            font-size: 18pt;
+            opacity: 0.7;
+            margin-bottom: 0.2cm;
+        }
+
+        .section-title {
+            font-size: 28pt;
+            font-weight: 700;
+            margin-bottom: 0.3cm;
+        }
+
+        .section-subtitle {
+            font-size: 13pt;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Content Styles */
+        h2 {
+            font-size: 20pt;
+            color: #1e5631;
+            margin: 1cm 0 0.5cm 0;
+            border-left: 5px solid #3a7d4c;
+            padding-left: 0.4cm;
+        }
+
+        h3 {
+            font-size: 16pt;
+            color: #2d4a35;
+            margin: 0.8cm 0 0.4cm 0;
+        }
+
+        p {
+            font-size: 11pt;
+            margin-bottom: 0.5cm;
+            text-align: justify;
+        }
+
+        /* Infographic Boxes */
+        .info-box {
+            background: #f0f7f4;
+            border-left: 4px solid #3a7d4c;
+            padding: 0.6cm;
+            margin: 0.8cm 0;
+            page-break-inside: avoid;
+        }
+
+        .info-box-title {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #1e5631;
+            margin-bottom: 0.3cm;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box-icon {
+            font-size: 20pt;
+            margin-right: 0.3cm;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5cm;
+            margin: 1cm 0;
+            page-break-inside: avoid;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1e5631, #3a7d4c);
+            color: white;
+            padding: 0.6cm;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28pt;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.2cm;
+        }
+
+        .stat-label {
+            font-size: 10pt;
+            opacity: 0.9;
+        }
+
+        /* Lifecycle Diagram */
+        .lifecycle-container {
+            margin: 1cm 0;
+            page-break-inside: avoid;
+        }
+
+        .lifecycle-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.6cm;
+            padding: 0.4cm;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .lifecycle-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e5631, #3a7d4c);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18pt;
+            font-weight: bold;
+            margin-right: 0.5cm;
+            flex-shrink: 0;
+        }
+
+        .lifecycle-content {
+            flex: 1;
+        }
+
+        .lifecycle-title {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #1e5631;
+            margin-bottom: 0.2cm;
+        }
+
+        .lifecycle-description {
+            font-size: 10pt;
+            color: #666;
+        }
+
+        /* Emission Categories */
+        .emission-categories {
+            margin: 1cm 0;
+            page-break-inside: avoid;
+        }
+
+        .emission-category {
+            display: flex;
+            align-items: center;
+            padding: 0.5cm;
+            margin-bottom: 0.5cm;
+            border-radius: 8px;
+        }
+
+        .emission-high {
+            background: #ffe0e0;
+            border-left: 5px solid #d32f2f;
+        }
+
+        .emission-medium {
+            background: #fff3e0;
+            border-left: 5px solid #f57c00;
+        }
+
+        .emission-low {
+            background: #e8f5e9;
+            border-left: 5px solid #388e3c;
+        }
+
+        .emission-icon {
+            font-size: 30pt;
+            margin-right: 0.5cm;
+        }
+
+        .emission-label {
+            flex: 1;
+        }
+
+        .emission-title {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-bottom: 0.2cm;
+        }
+
+        .emission-items {
+            font-size: 10pt;
+            color: #666;
+        }
+
+        /* Tips List */
+        .tips-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.8cm 0;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.4cm;
+            margin-bottom: 0.4cm;
+            background: #f9f9f9;
+            border-radius: 6px;
+            page-break-inside: avoid;
+        }
+
+        .tip-icon {
+            font-size: 20pt;
+            margin-right: 0.4cm;
+            color: #3a7d4c;
+        }
+
+        .tip-content {
+            flex: 1;
+        }
+
+        .tip-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #1e5631;
+            margin-bottom: 0.2cm;
+        }
+
+        .tip-description {
+            font-size: 10pt;
+            color: #555;
+        }
+
+        /* Key Levers */
+        .levers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5cm;
+            margin: 1cm 0;
+            page-break-inside: avoid;
+        }
+
+        .lever-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.6cm;
+            text-align: center;
+        }
+
+        .lever-icon {
+            font-size: 36pt;
+            margin-bottom: 0.3cm;
+        }
+
+        .lever-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #1e5631;
+            margin-bottom: 0.3cm;
+        }
+
+        .lever-description {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: #1e5631;
+            color: white;
+            padding: 0.8cm;
+            margin: 1cm 0;
+            border-radius: 8px;
+            font-size: 13pt;
+            font-style: italic;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0.8cm 0;
+        }
+
+        .checklist-item {
+            padding: 0.3cm 0.3cm 0.3cm 1cm;
+            margin-bottom: 0.3cm;
+            position: relative;
+        }
+
+        .checklist-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3a7d4c;
+            font-size: 14pt;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .document-footer {
+            margin-top: 2cm;
+            padding-top: 0.5cm;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <div class="cover-icon">🌱</div>
+        <h1 class="cover-title">Fødevarerelaterede<br>Emissioner &<br>Bæredygtighed</h1>
+        <p class="cover-subtitle">En komplet guide til at forstå og reducere madens klimaaftryk<br>Fra jord til tallerken i danske kantiner</p>
+        <div class="cover-meta">
+            Vidensbank for Bæredygtighed<br>
+            {{ current_date }}
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc-page">
+        <h1 class="toc-title">Indholdsfortegnelse</h1>
+        <ul class="toc-list">
+            <li class="toc-item">
+                <span><span class="toc-number">1.</span><span class="toc-title-text">Hvad er Fødevarerelaterede Emissioner?</span></span>
+                <span class="toc-page-num">3</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">2.</span><span class="toc-title-text">Hvorfor er det Vigtigt?</span></span>
+                <span class="toc-page-num">6</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">3.</span><span class="toc-title-text">Mål & Ambition</span></span>
+                <span class="toc-page-num">9</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">4.</span><span class="toc-title-text">Mit Aftryk - Din Indflydelse</span></span>
+                <span class="toc-page-num">12</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">5.</span><span class="toc-title-text">Tips & Tricks til Reduktion</span></span>
+                <span class="toc-page-num">15</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">6.</span><span class="toc-title-text">Værktøjer & Ressourcer</span></span>
+                <span class="toc-page-num">19</span>
+            </li>
+            <li class="toc-item">
+                <span><span class="toc-number">7.</span><span class="toc-title-text">Opsummering & Næste Skridt</span></span>
+                <span class="toc-page-num">21</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- SECTION 1: WHAT IS IT? -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">01</div>
+            <h1 class="section-title">Hvad er Fødevarerelaterede Emissioner?</h1>
+            <p class="section-subtitle">En introduktion til CO₂e, livscyklus-tænkning og de vigtigste udledningskilder</p>
+        </div>
+
+        <h2>CO₂e – En Fælles Måleenhed</h2>
+        <p>
+            CO₂-ækvivalenter (CO₂e) er en universel måleenhed, der gør det muligt at sammenligne forskellige drivhusgassers
+            klimapåvirkning. Udover kuldioxid (CO₂) inkluderer dette metan (CH₄) fra drøvtyggere og lattergas (N₂O) fra gødning.
+            Ved at omregne alle disse gasser til CO₂e kan vi få et samlet billede af fødevarers klimaaftryk.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">💡</span>
+                Vidste du det?
+            </div>
+            <p>Metan (CH₄) er 25 gange mere klimaskadelig end CO₂ over en 100-årig periode, mens lattergas (N₂O) er 298 gange mere skadelig. Derfor er det vigtigt at måle alle drivhusgasser i CO₂e.</p>
+        </div>
+
+        <h2>Madens Livscyklus – Fra Jord til Tallerken</h2>
+        <p>
+            Fødevarers klimaaftryk opstår gennem hele livsforløbet – fra marker og stalde til køkkener og tallerkener.
+            Langt hovedparten af udledningerne kommer allerede i den første fase: selve landbrugsproduktionen.
+        </p>
+
+        <div class="lifecycle-container">
+            <div class="lifecycle-step">
+                <div class="lifecycle-number">1</div>
+                <div class="lifecycle-content">
+                    <div class="lifecycle-title">Landbrug og arealanvendelse</div>
+                    <div class="lifecycle-description">
+                        Den klart største kilde til emissioner. Inkluderer dyrkning, husdyrhold, gødning, foderproduktion og eventuel skovrydning.
+                    </div>
+                </div>
+            </div>
+
+            <div class="lifecycle-step">
+                <div class="lifecycle-number">2</div>
+                <div class="lifecycle-content">
+                    <div class="lifecycle-title">Forarbejdning og emballage</div>
+                    <div class="lifecycle-description">
+                        Energiforbrug i slagterier, mejerier og pakkerier. Emballageproduktion kan også bidrage betydeligt.
+                    </div>
+                </div>
+            </div>
+
+            <div class="lifecycle-step">
+                <div class="lifecycle-number">3</div>
+                <div class="lifecycle-content">
+                    <div class="lifecycle-title">Transport</div>
+                    <div class="lifecycle-description">
+                        Ofte en mindre del end antaget. Undtagelse: luftfragt af friske varer kan have meget stort aftryk.
+                    </div>
+                </div>
+            </div>
+
+            <div class="lifecycle-step">
+                <div class="lifecycle-number">4</div>
+                <div class="lifecycle-content">
+                    <div class="lifecycle-title">Detail, storkøkkener og forbrugere</div>
+                    <div class="lifecycle-description">
+                        Energi til køling og tilberedning samt madspild i butikker, kantiner og hos gæster.
+                    </div>
+                </div>
+            </div>
+
+            <div class="lifecycle-step">
+                <div class="lifecycle-number">5</div>
+                <div class="lifecycle-content">
+                    <div class="lifecycle-title">Produktion af hjælpematerialer</div>
+                    <div class="lifecycle-description">
+                        Gødning, foder, maskiner og infrastruktur. En indirekte, men vigtig faktor.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            "Valg af ingrediens – for eksempel oksekød contra grøntsager – betyder langt mere for klimaaftrykket end hvor langt varen er transporteret."
+        </div>
+
+        <h2>Høj-, Mellem- og Lav-udledende Fødevarer</h2>
+        <p>
+            Fødevarer kan groft inddeles i tre kategorier baseret på deres klimaaftryk. Dette giver et hurtigt overblik
+            over, hvilke ingredienser der påvirker menuen mest.
+        </p>
+
+        <div class="emission-categories">
+            <div class="emission-category emission-high">
+                <div class="emission-icon">🔴</div>
+                <div class="emission-label">
+                    <div class="emission-title">Høj udledning</div>
+                    <div class="emission-items">Oksekød, lammekød og andre røde kødtyper</div>
+                </div>
+            </div>
+
+            <div class="emission-category emission-medium">
+                <div class="emission-icon">🟠</div>
+                <div class="emission-label">
+                    <div class="emission-title">Mellem udledning</div>
+                    <div class="emission-items">Svinekød, fjerkræ, fisk og ost</div>
+                </div>
+            </div>
+
+            <div class="emission-category emission-low">
+                <div class="emission-icon">🟢</div>
+                <div class="emission-label">
+                    <div class="emission-title">Lav udledning</div>
+                    <div class="emission-items">Grøntsager, bælgfrugter, korn og plantebaserede produkter</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: WHY IS IT IMPORTANT? -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">02</div>
+            <h1 class="section-title">Hvorfor er det Vigtigt?</h1>
+            <p class="section-subtitle">Madens rolle i Danmarks klimamål og kantinernes unikke position</p>
+        </div>
+
+        <h2>Madens Rolle i Danmarks Klimaaftryk</h2>
+        <p>
+            Fødevarer udgør en væsentlig andel af Danmarks samlede klimaaftryk. Med klimamål om 70% reduktion i 2030
+            og klimaneutralitet i 2050 er det afgørende, at også fødevaresektoren bidrager aktivt. Danske kantiner har
+            en unik mulighed for at drive denne forandring gennem deres daglige valg og indflydelse på spisevaner.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">🇩🇰</span>
+                Politiske Mål og Rammer
+            </div>
+            <p>
+                Danmarks klimamål er forankret i Klimaloven fra 2020, og de officielle kostråd fra 2021 anbefaler en
+                mere plantebaseret kost både af sundhedsmæssige og klimamæssige årsager. Dette skaber et stærkt fundament
+                for kantiner til at træffe bæredygtige valg.
+            </p>
+        </div>
+
+        <h2>Kantiner som Nøglespiller</h2>
+        <p>
+            Storkøkkener og kantiner indtager en helt særlig rolle i den grønne omstilling. Med tusindvis af måltider
+            dagligt har selv små justeringer i menusammensætning og indkøb en massiv skaleringseffekt.
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Måltider<br>dagligt</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">365</span>
+                <span class="stat-label">Dage om<br>året</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Muligheder for<br>positiv påvirkning</span>
+            </div>
+        </div>
+
+        <h3>Kantinens Superkræfter</h3>
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">🍽️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Påvirkning gennem nudging</div>
+                    <div class="tip-description">
+                        Ved at gøre de klimavenlige retter til standardvalget kan kantiner nudge gæster i en bæredygtig retning uden at begrænse valgfriheden.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📊</div>
+                <div class="tip-content">
+                    <div class="tip-title">Datadrevet arbejde</div>
+                    <div class="tip-description">
+                        Med klimaberegnere og menuanalyseværktøjer kan kantiner dokumentere deres indsats og kommunikere resultaterne tydeligt til klienter og gæster.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🤝</div>
+                <div class="tip-content">
+                    <div class="tip-title">Leverandørsamarbejde</div>
+                    <div class="tip-description">
+                        Store kantiner har indkøbsmagt til at stille krav til leverandører om klimadata, certificeringer og bæredygtige produkter.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Fra Risiko til Mulighed</h2>
+        <p>
+            At ignorere klimapåvirkning fra mad er i stigende grad en forretningsrisiko. Omvendt giver proaktivt arbejde
+            med emissioner en række strategiske fordele.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8cm; margin: 1cm 0; page-break-inside: avoid;">
+            <div style="background: #fff3f3; padding: 0.6cm; border-radius: 8px; border: 2px solid #d32f2f;">
+                <h3 style="color: #d32f2f; margin: 0 0 0.4cm 0;">⚠️ Risici ved Inaction</h3>
+                <ul style="font-size: 10pt; line-height: 1.6; margin: 0; padding-left: 0.6cm;">
+                    <li>Manglende opfyldelse af klienters ESG-krav</li>
+                    <li>Negative PR ved høje emissioner</li>
+                    <li>Øgede omkostninger ved fremtidige CO₂-afgifter</li>
+                    <li>Tabt konkurrenceevne</li>
+                </ul>
+            </div>
+            <div style="background: #f0f7f4; padding: 0.6cm; border-radius: 8px; border: 2px solid #388e3c;">
+                <h3 style="color: #388e3c; margin: 0 0 0.4cm 0;">✅ Muligheder ved Action</h3>
+                <ul style="font-size: 10pt; line-height: 1.6; margin: 0; padding-left: 0.6cm;">
+                    <li>Styrket kunderelation gennem dokumenterede resultater</li>
+                    <li>Positive historier og medieomtale</li>
+                    <li>Omkostningsbesparelser ved reduceret madspild og kødforbrug</li>
+                    <li>Konkurrencefordel ved udbud</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            "Kantiner er ikke bare en del af problemet – de er en central del af løsningen. Med over 1.000 måltider dagligt har hver enkelt beslutning om menu og indkøb en effekt, der kan mærkes på nationalt niveau."
+        </div>
+    </div>
+
+    <!-- SECTION 3: GOAL & AMBITION -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">03</div>
+            <h1 class="section-title">Mål & Ambition</h1>
+            <p class="section-subtitle">Vidensbanken som katalysator for handling i danske kantiner</p>
+        </div>
+
+        <h2>Fra Viden til Handling</h2>
+        <p>
+            Vidensbanken er designet med ét klart formål: at gøre det lettere for danske kantiner at arbejde målrettet
+            med reduktion af fødevarerelaterede emissioner. Viden skal ikke blot være tilgængelig – den skal være
+            anvendelig i dagligdagen.
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">🔍</span>
+                <span class="stat-label">Let at<br>finde</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">📖</span>
+                <span class="stat-label">Let at<br>forstå</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">⚡</span>
+                <span class="stat-label">Let at<br>anvende</span>
+            </div>
+        </div>
+
+        <p>
+            Denne tredelte tilgang sikrer, at køkkenchefer, indkøbsansvarlige og kantinepersonale hurtigt kan finde
+            de oplysninger, de har brug for, forstå dem i deres kontekst og omsætte dem til konkrete handlinger.
+        </p>
+
+        <h2>Ambition for Danske Kantiner</h2>
+        <p>
+            Målet er ikke kun at reducere emissioner, men at gøre det på en måde, der styrker både kvalitet, gæstetilfredshed
+            og forretning. Ambitionerne er høje, men realistiske og forankret i best practice fra hele sektoren.
+        </p>
+
+        <ul class="checklist">
+            <li class="checklist-item">
+                <strong>Reducere klimaaftrykket per gæst</strong> uden at gå på kompromis med kvalitet, smag eller velvære
+            </li>
+            <li class="checklist-item">
+                <strong>Gøre plantebaserede retter til det naturlige førstevalg</strong> – ikke 'alternativet', men standarden
+            </li>
+            <li class="checklist-item">
+                <strong>Arbejde aktivt med data</strong> fra klimaberegnere og menuanalyseværktøjer for at træffe informerede beslutninger
+            </li>
+            <li class="checklist-item">
+                <strong>Understøtte klienters ESG-mål</strong> med dokumenterede resultater og transparent rapportering
+            </li>
+            <li class="checklist-item">
+                <strong>Minimere madspild</strong> i hele værdikæden fra indkøb til buffet og tallerken
+            </li>
+            <li class="checklist-item">
+                <strong>Styrke leverandørsamarbejder</strong> med fokus på klimadata, oprindelsesmærkning og bæredygtige produkter
+            </li>
+        </ul>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">🎯</span>
+                Konkret målsætning
+            </div>
+            <p>
+                Mange kantiner arbejder med mål om 25-30% reduktion i CO₂e per gæst inden for 3-5 år. Dette opnås primært gennem
+                øget andel af plantebaserede retter, optimeret indkøb og reduktion af madspild. Vores værktøjer hjælper med at
+                sætte realistiske mål og følge fremskridtene.
+            </p>
+        </div>
+
+        <h2>Vidensbanken som Fundament for Dialog</h2>
+        <p>
+            Udover at understøtte intern læring og udvikling fungerer Vidensbanken også som et dialogværktøj. Den giver
+            et fælles sprog og faktuelt grundlag for kommunikation med klienter, leverandører og gæster.
+        </p>
+
+        <h3>Anvendelsesmuligheder</h3>
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">💼</div>
+                <div class="tip-content">
+                    <div class="tip-title">Klientmøder og ESG-rapportering</div>
+                    <div class="tip-description">
+                        Dokumentér jeres klimaindsats med data og fakta fra Vidensbanken, og vis hvordan I bidrager til klientens bæredygtighedsmål.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🎓</div>
+                <div class="tip-content">
+                    <div class="tip-title">Intern oplæring og kompetenceudvikling</div>
+                    <div class="tip-description">
+                        Brug indholdet som fundament for workshops, kurser og løbende kompetenceløft af køkkenpersonale.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📢</div>
+                <div class="tip-content">
+                    <div class="tip-title">Gæstekommunikation</div>
+                    <div class="tip-description">
+                        Informér gæster om baggrunden for menuvalg og klimavenlige retter med troværdige fakta og positive historier.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="quote-box">
+            "Viden uden handling er spild. Handling uden viden er risikabelt. Vidensbanken bygger broen mellem de to."
+        </div>
+    </div>
+
+    <!-- SECTION 4: MY IMPACT -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">04</div>
+            <h1 class="section-title">Mit Aftryk - Din Indflydelse</h1>
+            <p class="section-subtitle">Hvordan dine valg som køkkenprofessionel former klimaaftrykket</p>
+        </div>
+
+        <h2>De Vigtigste Håndtag i Kantinen</h2>
+        <p>
+            Som køkkenchef, indkøber eller medarbejder i en kantine har du direkte kontrol over de tre mest afgørende
+            faktorer for fødevarerelaterede emissioner. Dit aftryk er summen af dine daglige beslutninger.
+        </p>
+
+        <div class="levers-grid">
+            <div class="lever-card">
+                <div class="lever-icon">🍽️</div>
+                <div class="lever-title">Menusammensætning</div>
+                <div class="lever-description">
+                    Forholdet mellem kød og plantebaserede ingredienser. Jo højere andel af grønt, jo lavere aftryk.
+                </div>
+            </div>
+
+            <div class="lever-card">
+                <div class="lever-icon">🛒</div>
+                <div class="lever-title">Indkøb & ingrediensvalg</div>
+                <div class="lever-description">
+                    Valg af råvarer med lavt CO₂e-aftryk, lokale produkter og bæredygtige certificeringer.
+                </div>
+            </div>
+
+            <div class="lever-card">
+                <div class="lever-icon">♻️</div>
+                <div class="lever-title">Madspild</div>
+                <div class="lever-description">
+                    Minimering af spild fra forberedelse, overproduktion og tallerkenaffald gennem målrettet indsats.
+                </div>
+            </div>
+        </div>
+
+        <h2>Fra Tal til Hverdagssituationer</h2>
+        <p>
+            Abstrakte CO₂e-tal kan være svære at forholde sig til. Lad os oversætte dem til konkrete køkkensituationer,
+            hvor du træffer valg hver dag.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">🔢</span>
+                Eksempel: Oksefilet vs. Kikærtefrikadeller
+            </div>
+            <p style="margin-bottom: 0.3cm;">
+                <strong>Oksefilet:</strong> Ca. 27 kg CO₂e per kg kød<br>
+                <strong>Kikærtefrikadeller:</strong> Ca. 1 kg CO₂e per kg færdigvare
+            </p>
+            <p>
+                Ved at servere kikærtefrikadeller i stedet for oksefilet til 100 gæster sparer du ca. <strong>2.600 kg CO₂e</strong> –
+                svarende til at køre 13.000 km i en gennemsnitsbil.
+            </p>
+        </div>
+
+        <h3>Menusammensætning i Praksis</h3>
+        <p>
+            Den mest effektive måde at reducere emissioner på er at øge andelen af plantebaserede retter og reducere
+            portionsstørrelser af kød, især rødt kød.
+        </p>
+
+        <div style="background: #f9f9f9; padding: 0.8cm; border-radius: 8px; margin: 1cm 0; page-break-inside: avoid;">
+            <h4 style="color: #1e5631; margin: 0 0 0.5cm 0;">Konkrete Menustrategier</h4>
+            <ul style="font-size: 10pt; line-height: 1.8; margin: 0; padding-left: 0.8cm;">
+                <li><strong>70/30-reglen:</strong> 70% grønt, 30% kød – en balance der fungerer i praksis</li>
+                <li><strong>Fredagsgrønt:</strong> En fast ugentlig dag med kun plantebaserede retter</li>
+                <li><strong>Halv portion kød, dobbelt grønt:</strong> Reducer kødandelen og løft grøntsagerne til hovedrollen</li>
+                <li><strong>Oksekød som premium:</strong> Servér oksekød sjældnere, men med højere kvalitet som noget særligt</li>
+                <li><strong>Skjult grønt:</strong> Brug bælgfrugter, svampe og nødder til at give fylde og umami uden kød</li>
+            </ul>
+        </div>
+
+        <h3>Indkøb & Ingrediensvalg</h3>
+        <p>
+            Når menuen er fastlagt, er næste skridt at vælge de mest klimavenlige varianter af hver ingrediens.
+            Her er der store forskelle mellem producenter og produkttyper.
+        </p>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">🌾</div>
+                <div class="tip-content">
+                    <div class="tip-title">Vælg bælgfrugter frem for kød</div>
+                    <div class="tip-description">
+                        Linser, kikærter og bønner har lavt klimaaftryk og højt proteinindhold. Perfekt erstatning i supper, gryderetter og frikadeller.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🐔</div>
+                <div class="tip-content">
+                    <div class="tip-title">Hvis kød, så kylling frem for oksekød</div>
+                    <div class="tip-description">
+                        Fjerkræ har væsentligt lavere aftryk end rødt kød. Samme gælder svinekød sammenlignet med okse.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🧀</div>
+                <div class="tip-content">
+                    <div class="tip-title">Begræns oste med højt aftryk</div>
+                    <div class="tip-description">
+                        Hård ost som parmesan og cheddar har højt aftryk. Overvej havre- eller mandelbaserede alternativer i dagligdagen.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🌍</div>
+                <div class="tip-content">
+                    <div class="tip-title">Prioriter lokale og sæsonvarer</div>
+                    <div class="tip-description">
+                        Lokalt producerede grøntsager i sæson har lavere transportemissioner og ofte bedre smag og kvalitet.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h3>Madspild – Den Oversete Klimasynder</h3>
+        <p>
+            Alt madspild repræsenterer spildte ressourcer og emissioner. Fødevarer, der ender i skraldespanden, har
+            udledt CO₂e gennem produktion, transport og tilberedning – helt forgæves.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">⚠️</span>
+                Madspild i perspektiv
+            </div>
+            <p>
+                Hvis madspild var et land, ville det være verdens tredjestørste udleder af drivhusgasser – kun overgået
+                af USA og Kina. I danske kantiner udgør madspild typisk 15-25% af de indkøbte råvarer, men det kan
+                reduceres markant med de rette metoder.
+            </p>
+        </div>
+
+        <h2>Mit Aftryk som Dialogværktøj</h2>
+        <p>
+            Data om dit aftryk er ikke blot tal til interne målinger. Det er et stærkt kommunikationsværktøj, både
+            internt med teamet, eksternt med klienter og synligt for gæsterne.
+        </p>
+
+        <div class="quote-box">
+            "Som køkkenprofessionel har du mere magt over klimaet end de fleste andre. Hver menu, hvert indkøb, hver tallerken tæller. Dit aftryk er ikke fast – det er et valg, du træffer hver dag."
+        </div>
+    </div>
+
+    <!-- SECTION 5: TIPS & TRICKS -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">05</div>
+            <h1 class="section-title">Tips & Tricks til Reduktion</h1>
+            <p class="section-subtitle">Praktiske og handlingsorienterede råd til kantinen</p>
+        </div>
+
+        <h2>Menuudvikling og Sortiment</h2>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">✅</div>
+                <div class="tip-content">
+                    <div class="tip-title">Gør det grønne til standarden</div>
+                    <div class="tip-description">
+                        Vend menuen på hovedet: Plantebaserede retter skal være standard, ikke 'det vegetariske alternativ'.
+                        Kød kan stadig være en mulighed, men ikke udgangspunktet.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🎨</div>
+                <div class="tip-content">
+                    <div class="tip-title">Skab smagfulde planteretter</div>
+                    <div class="tip-description">
+                        Undgå kedelige 'grøntsagsmåltider'. Brug umami, krydderier, røstning og varierede teksturer.
+                        Inspiration: mellemøstlige, indiske og asiatiske køkkener er eksperter i plantebaseret madlavning.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📊</div>
+                <div class="tip-content">
+                    <div class="tip-title">Mål popularitet og tilpas løbende</div>
+                    <div class="tip-description">
+                        Hold øje med hvilke retter der bliver mest populære. Hvis en plantebaseret ret flopper, find ud af hvorfor –
+                        og lav en bedre version i stedet for at give op.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🔄</div>
+                <div class="tip-content">
+                    <div class="tip-title">Roter menuen strategisk</div>
+                    <div class="tip-description">
+                        Brug sæsonvarer aktivt i menurotationen. Det sikrer friskhed, lavere pris og lavere klimaaftryk.
+                        Ærter og asparges om foråret, rodfrugter om vinteren.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Indkøb og Leverandørdialog</h2>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">📋</div>
+                <div class="tip-content">
+                    <div class="tip-title">Efterspørg klima- og oprindelsesdata</div>
+                    <div class="tip-description">
+                        Bed leverandører om CO₂e-data på produkter. Jo flere der spørger, desto hurtigere bliver det standard.
+                        Brug data til at træffe bedre indkøbsbeslutninger.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🏷️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Prioriter certificeringer</div>
+                    <div class="tip-description">
+                        Økologisk, MSC (bæredygtigt fiskeri), Fairtrade og andre certificeringer kan være indikatorer for lavere aftryk
+                        og bedre dyrevelfærd. Vær kritisk, men brug dem som rettesnor.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🤝</div>
+                <div class="tip-content">
+                    <div class="tip-title">Byg langsigtede relationer</div>
+                    <div class="tip-description">
+                        Arbejd tæt sammen med udvalgte leverandører, der deler jeres bæredygtighedsambitioner.
+                        Långt, forudsigeligt partnerskab giver bedre priser og service.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📦</div>
+                <div class="tip-content">
+                    <div class="tip-title">Optimer emballage og levering</div>
+                    <div class="tip-description">
+                        Bed om minimal emballage og konsoliderede leveringer. Færre ture og mindre plastik reducerer aftrykket.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Madspild i Praksis</h2>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">📏</span>
+                <span class="stat-label">Mål før<br>du handler</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">🔧</span>
+                <span class="stat-label">Tilpas løbende<br>på data</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">♻️</span>
+                <span class="stat-label">Genudnyt<br>rester kreativt</span>
+            </div>
+        </div>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">⚖️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Vej madspild fra alle kilder</div>
+                    <div class="tip-description">
+                        Forberedelse, buffet, tallerkener – mål det hele. Kun når du ved hvor spildet opstår, kan du handle målrettet.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🍲</div>
+                <div class="tip-content">
+                    <div class="tip-title">Mindre buffet, fyldes oftere op</div>
+                    <div class="tip-description">
+                        Store buffeter frister til overproduktion. Mindre fade der fyldes løbende holder maden frisk og reducerer spild.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🍽️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Mindre tallerkener = mindre spild</div>
+                    <div class="tip-description">
+                        Gæster tager automatisk mindre portioner på mindre tallerkener. De kan altid komme tilbage for mere.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🥣</div>
+                <div class="tip-content">
+                    <div class="tip-title">Brug rester kreativt</div>
+                    <div class="tip-description">
+                        Overskydende grøntsager bliver til suppe. Stegt kød kan bruges i wraps eller salater. Brød bliver til croutoner.
+                        Tænk som en zero-waste kok.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Drift og Energiforbrug</h2>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">🔥</div>
+                <div class="tip-content">
+                    <div class="tip-title">Sluk for ovne og komfurer i god tid</div>
+                    <div class="tip-description">
+                        Udnyt restvarmen. Sluk 10-15 minutter før madlavningen er færdig.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">❄️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Hold køl og frys optimalt indstillet</div>
+                    <div class="tip-description">
+                        Køleskabe: 4-5°C. Frysere: -18°C. Hvert ekstra grad koster energi.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">💡</div>
+                <div class="tip-content">
+                    <div class="tip-title">LED-belysning og bevægelsessensorer</div>
+                    <div class="tip-description">
+                        Udskift gamle lysstofrør med LED. Installer sensorer i lagre og omklædning.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🚿</div>
+                <div class="tip-content">
+                    <div class="tip-title">Brug opvaskemaskinen effektivt</div>
+                    <div class="tip-description">
+                        Kør kun fulde maskiner, og brug eco-programmer hvor muligt. Rens filtre regelmæssigt.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Kommunikation til Gæster</h2>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">💬</span>
+                Brug positive narrativer
+            </div>
+            <p>
+                Tal ikke om 'at spare', 'give afkald' eller 'den vegetariske mulighed'. Fokusér i stedet på smag, kvalitet,
+                sundhed og oplevelse. Gæster skal have lyst til at vælge grønt – ikke have dårlig samvittighed over ikke at gøre det.
+            </p>
+        </div>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">🏷️</div>
+                <div class="tip-content">
+                    <div class="tip-title">Navngiv retter appetitligt</div>
+                    <div class="tip-description">
+                        "Krydret linsesuppe med kokosmælk og sprød hvidløgsbrød" lyder bedre end "Vegetarisk suppe".
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">🌱</div>
+                <div class="tip-content">
+                    <div class="tip-title">Vis klimadata diskret</div>
+                    <div class="tip-description">
+                        Nogle gæster vil gerne vide CO₂e-tallene. Vis dem diskret på menukort eller skærme, men lad smagen tale for sig selv.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📖</div>
+                <div class="tip-content">
+                    <div class="tip-title">Fortæl historien bag råvarerne</div>
+                    <div class="tip-description">
+                        "Økologiske gulerødder fra Lammefjorden" skaber værdi og engagement.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="quote-box">
+            "Den bedste klimaret er den, gæsten vælger fordi den smager fantastisk – ikke fordi den har en grøn mærkat."
+        </div>
+    </div>
+
+    <!-- SECTION 6: TOOLS & RESOURCES -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">06</div>
+            <h1 class="section-title">Værktøjer & Ressourcer</h1>
+            <p class="section-subtitle">Praktiske tools til at måle og reducere dit klimaaftryk</p>
+        </div>
+
+        <h2>CO₂-Beregner</h2>
+        <p>
+            Vores interaktive CO₂-beregner giver dig mulighed for at sammenligne klimaaftrykket af forskellige fødevarer
+            og måltider. Du kan indtaste ingredienser, portionsstørrelser og tilberedningsmetoder og få et præcist estimat
+            i kg CO₂e.
+        </p>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">🔗</span>
+                Adgang til CO₂-Beregner
+            </div>
+            <p style="margin-bottom: 0;">
+                Find beregneren på Vidensbanken under "Værktøjer" eller direkte på:<br>
+                <strong>www.vidensbank.dk/tools/co2-calculator</strong>
+            </p>
+        </div>
+
+        <h3>Sådan bruger du beregneren</h3>
+        <ol style="font-size: 10pt; line-height: 1.8; margin: 0.5cm 0 1cm 1cm; padding: 0;">
+            <li><strong>Vælg ingredienser:</strong> Søg eller vælg fra dropdown-menu</li>
+            <li><strong>Indtast mængder:</strong> Angiv portionsstørrelser i gram eller stykker</li>
+            <li><strong>Se resultat:</strong> Få øjeblikkelig feedback på CO₂e-aftrykket</li>
+            <li><strong>Sammenlign alternativer:</strong> Test forskellige ingredienser for at finde den mest klimavenlige løsning</li>
+        </ol>
+
+        <h2>Kommende Værktøjer</h2>
+        <p>
+            Vi arbejder løbende på at udvide værktøjskassen med nye ressourcer, der understøtter jeres arbejde med
+            bæredygtighed i kantinen.
+        </p>
+
+        <ul class="tips-list">
+            <li class="tip-item">
+                <div class="tip-icon">📊</div>
+                <div class="tip-content">
+                    <div class="tip-title">Menuanalyse-værktøj</div>
+                    <div class="tip-description">
+                        Upload din menu og få automatisk beregnet klimaaftryk per ret og samlet ugentligt aftryk.
+                        Får forslag til optimering.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📈</div>
+                <div class="tip-content">
+                    <div class="tip-title">Dashboard til tracking</div>
+                    <div class="tip-description">
+                        Følg jeres fremskridt over tid med grafer og visuelle rapporter. Perfekt til ESG-rapportering
+                        og intern motivation.
+                    </div>
+                </div>
+            </li>
+            <li class="tip-item">
+                <div class="tip-icon">📚</div>
+                <div class="tip-content">
+                    <div class="tip-title">Opskriftsbibliotek</div>
+                    <div class="tip-description">
+                        Kuraterede opskrifter på klimavenlige retter fra danske kantiner. Filtrér på sæson,
+                        aftryk og popularitet.
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h2>Eksterne Ressourcer</h2>
+
+        <div style="background: #f9f9f9; padding: 0.6cm; border-radius: 8px; margin: 1cm 0; page-break-inside: avoid;">
+            <h3 style="color: #1e5631; margin: 0 0 0.4cm 0;">Anbefalede Links</h3>
+            <ul style="font-size: 10pt; line-height: 1.8; margin: 0; padding-left: 0.8cm;">
+                <li><strong>Klimarådet:</strong> Danmarks officielle klimaråd med anbefalinger og rapporter</li>
+                <li><strong>Fødevarestyrelsen:</strong> Officielle kostråd og vejledninger</li>
+                <li><strong>FN's klimapanel (IPCC):</strong> Globale klimarapporter og data</li>
+                <li><strong>Our World in Data:</strong> Visualiseringer og data om fødevarer og klima</li>
+                <li><strong>WWF Danmark:</strong> Guide til bæredygtigt forbrug</li>
+            </ul>
+        </div>
+
+        <div class="quote-box">
+            "Data er magt. Med de rette værktøjer kan du omsætte ambitioner til målbare resultater."
+        </div>
+    </div>
+
+    <!-- SECTION 7: SUMMARY -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">07</div>
+            <h1 class="section-title">Opsummering & Næste Skridt</h1>
+            <p class="section-subtitle">Det vigtigste at tage med – og hvordan du kommer i gang</p>
+        </div>
+
+        <h2>Kernebudskaber</h2>
+
+        <div class="info-box">
+            <div class="info-box-title">
+                <span class="info-box-icon">🎯</span>
+                Hvad du skal huske
+            </div>
+            <ul style="font-size: 10pt; line-height: 1.8; margin: 0.3cm 0 0 0.8cm; padding: 0;">
+                <li><strong>Fødevarers klimaaftryk måles i CO₂e</strong> – en fælles enhed for alle drivhusgasser</li>
+                <li><strong>Landbrug er den største kilde</strong> – valg af ingrediens betyder mere end transport</li>
+                <li><strong>Rødt kød har højest aftryk</strong> – bælgfrugter, grønt og fjerkræ er bedre valg</li>
+                <li><strong>Kantiner har enorm indflydelse</strong> – små ændringer skalerer til store resultater</li>
+                <li><strong>Madspild er klimaspild</strong> – reducer spild for dobbelt gevinst</li>
+                <li><strong>Kommunikation er nøglen</strong> – gør grønt til det lækre førstevalg</li>
+            </ul>
+        </div>
+
+        <h2>Dine Tre Vigtigste Håndtag</h2>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">🍽️</span>
+                <span class="stat-label">Menu:<br>Mere grønt</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">🛒</span>
+                <span class="stat-label">Indkøb:<br>Smarte valg</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">♻️</span>
+                <span class="stat-label">Madspild:<br>Mål & minimer</span>
+            </div>
+        </div>
+
+        <h2>Kom i Gang: 5 Konkrete Handlinger</h2>
+
+        <ul class="checklist">
+            <li class="checklist-item">
+                <strong>Brug CO₂-beregneren</strong> til at analysere jeres nuværende menu og identificér de største klimasyndere
+            </li>
+            <li class="checklist-item">
+                <strong>Sæt et realistisk mål</strong> for CO₂e-reduktion – for eksempel 20% over de næste 2 år
+            </li>
+            <li class="checklist-item">
+                <strong>Introducer én ny plantebaseret ret per uge</strong> og følg gæsternes reaktion
+            </li>
+            <li class="checklist-item">
+                <strong>Mål madspild i én uge</strong> fra alle kilder (forberedelse, buffet, tallerkener) for at få et baseline
+            </li>
+            <li class="checklist-item">
+                <strong>Tal med jeres leverandør</strong> om klimadata og bæredygtige alternativer til jeres mest brugte råvarer
+            </li>
+        </ul>
+
+        <h2>Fra Viden til Handling</h2>
+        <p>
+            Du har nu læst gennem en omfattende guide til fødevarerelaterede emissioner. Men viden er kun værd noget,
+            hvis den omsættes til handling. Start i det små, eksperimenter, og lad resultaterne tale for sig selv.
+        </p>
+
+        <div class="quote-box">
+            "Den længste rejse begynder med et enkelt skridt. Dit første skridt kan være at ændre én ret på menuen i morgen. Hvad vælger du?"
+        </div>
+
+        <h2>Har du spørgsmål?</h2>
+        <p>
+            Vidensbanken opdateres løbende med ny viden, cases og værktøjer. Besøg os på <strong>www.vidensbank.dk</strong>
+            eller kontakt os direkte for at dele dine erfaringer eller stille spørgsmål.
+        </p>
+
+        <div class="document-footer">
+            <p>
+                <strong>Vidensbank for Bæredygtighed</strong><br>
+                Fødevarerelaterede Emissioner & Bæredygtighed<br>
+                Udgivet: {{ current_date }}<br>
+                <br>
+                Denne rapport er genereret fra Vidensbank.dk
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -2573,3 +2573,83 @@ h1, h2, h3 {
   transform: translateY(0);
 }
 
+
+/* ============================================================================
+   PDF Download Button Styles
+   ============================================================================ */
+
+.pdf-download-section {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f0f7f4 0%, #e8f5e9 100%);
+  border-radius: 12px;
+}
+
+.pdf-download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1e5631, #3a7d4c);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.pdf-download-button:hover {
+  background: linear-gradient(135deg, #2d7a49, #4d9662);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  color: white !important;
+}
+
+.pdf-download-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pdf-download-button svg {
+  flex-shrink: 0;
+}
+
+.pdf-download-description {
+  margin-top: 0.75rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Compact PDF button for sub-pages */
+.pdf-download-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #1e5631, #3a7d4c);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+}
+
+.pdf-download-compact:hover {
+  background: linear-gradient(135deg, #2d7a49, #4d9662);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  color: white !important;
+}
+
+.pdf-download-compact svg {
+  width: 18px;
+  height: 18px;
+}

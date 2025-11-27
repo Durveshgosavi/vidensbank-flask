@@ -11,6 +11,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'climate_data'))
 from calculator_engine import ClimateCalculatorEngine
 import sqlite3
 
+# Import PDF generator
+from pdf_generator import PDFGenerator
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///vidensbank.db')
@@ -289,6 +292,18 @@ def topic_emissions_cases():
     return render_template('topics/emissions/cases.html')
 
 # Ernæring Tools & Cases
+
+# PDF Download Route for Emissions
+@app.route('/vidensbank/emissioner/download-pdf')
+def emissions_download_pdf():
+    """Generate and download PDF report for Emissions topic"""
+    try:
+        pdf_gen = PDFGenerator()
+        return pdf_gen.generate_emissions_report()
+    except Exception as e:
+        flash(f'Der opstod en fejl ved generering af PDF: {str(e)}', 'error')
+        return redirect(url_for('topic_emissions_landing'))
+
 @app.route('/vidensbank/ernaering/tools')
 def topic_ernaering_tools():
     """Tools for Ernæring topic"""
