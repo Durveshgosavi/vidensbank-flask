@@ -1,27 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Råvarer - Vidensbank{% endblock %}
+{% block title %}Råvareleksikon – Viden til Grønne Valg | Canteen Buddy{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section with Parallax & Fade-in -->
+<!-- Minimalist Hero -->
 <header class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 z-0">
     <img src="{{ url_for('static', filename='images/raw_landing.png') }}" alt="Råvarer"
       class="w-full h-full object-cover opacity-90 scale-105 animate-slow-zoom">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70"></div>
   </div>
 
   <div class="relative z-10 text-center text-white px-6 max-w-5xl mx-auto animate-fade-in-up">
-    <div class="inline-block mb-6 border border-white/30 px-4 py-1 rounded-full backdrop-blur-sm">
-      <span class="text-xs font-bold tracking-[0.2em] uppercase text-white">Vidensbank</span>
-    </div>
-    <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-8 leading-[0.9]">
+    <p class="text-sm font-bold tracking-[0.2em] uppercase mb-6 text-white/80">Vidensbank</p>
+    <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-8 leading-none">
       Råvare<br><span
-        class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-stone-300">Leksikon</span>
+        class="text-transparent bg-clip-text bg-gradient-to-r from-cb-green-light to-white">Leksikon</span>
     </h1>
-    <p class="font-sans text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+    <p class="font-sans text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed">
       Det professionelle køkkens guide til klimaaftryk, sæson og kvalitet.
+      Forstå dine råvarer og gør en forskel.
     </p>
   </div>
 
@@ -35,122 +34,133 @@
 
 <!-- Intro Section -->
 <section class="py-24 bg-white relative overflow-hidden">
-  <!-- Decorative background element -->
-  <div class="absolute top-0 left-0 w-64 h-64 bg-stone-50 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-
   <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+    <span
+      class="text-9xl font-display font-light text-stone-100 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10">01</span>
     <h2 class="font-display text-4xl md:text-5xl text-stone-900 mb-8">Fra Viden til Handling</h2>
-    <div class="prose prose-xl prose-stone mx-auto text-stone-600 font-serif leading-loose">
+    <div class="prose prose-xl prose-stone mx-auto text-stone-600 font-light leading-relaxed">
       <p>
         Hver råvare fortæller en historie om oprindelse, smag og aftryk.
         I dette leksikon samler vi fakta, der gør dig i stand til at træffe de valg,
-        der former fremtidens gastronomi.
+        der former fremtidens gastronomi. Fra det tunge oksekød til de lette bælgfrugter.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Bento Grid Category Layout -->
+<!-- Bento Grid Navigation -->
 <section class="py-12 bg-stone-50 px-4 md:px-8">
   <div class="max-w-7xl mx-auto">
     <header class="mb-12 flex items-end justify-between">
       <div>
         <h2 class="font-display text-3xl text-stone-900">Udforsk Kategorier</h2>
-        <p class="text-stone-500 mt-2">Dyk ned i data og inspiration.</p>
+        <p class="text-stone-500 mt-2 font-light">Dyk ned i data og inspiration.</p>
       </div>
     </header>
 
     <!-- Grid Container -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[220px]">
 
-      <!-- Large Item: Kød (Span 2x2) -->
-      <a href="{{ url_for('raavare_oksekoed') }}"
-        class="group relative md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500">
-        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-colors z-10"></div>
+      <!-- Kød (Large) -->
+      <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden bg-white shadow-sm group relative">
         <img src="{{ url_for('static', filename='images/raw_beef.png') }}"
           class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           alt="Kød">
-        <div class="absolute bottom-0 left-0 p-8 z-20 w-full bg-gradient-to-t from-black/80 to-transparent">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8 w-full">
           <div class="text-xs font-bold text-red-400 uppercase tracking-widest mb-2">Højt Aftryk</div>
-          <h3 class="text-3xl font-display text-white mb-2">Kød & Fjerkræ</h3>
-          <p
-            class="text-white/80 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-            Okse, svin og kylling. Forstå forskellene og find de bedste alternativer.
-          </p>
+          <h3 class="text-3xl font-display text-white mb-4">Kød & Fjerkræ</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="{{ url_for('raavare_oksekoed') }}"
+              class="px-3 py-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-xs text-white font-bold transition-colors">Okse</a>
+            <a href="{{ url_for('raavare_lammekoed') }}"
+              class="px-3 py-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-xs text-white font-bold transition-colors">Lam</a>
+            <a href="{{ url_for('raavare_svinekoed') }}"
+              class="px-3 py-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-xs text-white font-bold transition-colors">Svin</a>
+            <a href="{{ url_for('raavare_kylling') }}"
+              class="px-3 py-1 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-xs text-white font-bold transition-colors">Kylling</a>
+          </div>
         </div>
-      </a>
+      </div>
 
-      <!-- Medium Item: Grønt (Span 2x1) -->
-      <a href="{{ url_for('raavare_baelgfrugter') }}"
-        class="group relative md:col-span-2 rounded-2xl overflow-hidden bg-green-50 shadow-sm hover:shadow-xl transition-all duration-500">
+      <!-- Grønt (Medium) -->
+      <div
+        class="md:col-span-2 rounded-2xl overflow-hidden bg-cb-green-light/20 shadow-sm group relative border border-cb-green-light/30">
         <div class="absolute right-0 top-0 w-1/2 h-full">
           <img src="{{ url_for('static', filename='images/raw_legumes.png') }}"
             class="w-full h-full object-cover mask-image-gradient" alt="Grønt">
         </div>
         <div class="absolute inset-0 p-8 flex flex-col justify-center z-10 w-2/3">
-          <div class="text-xs font-bold text-green-600 uppercase tracking-widest mb-2">Klimahits</div>
-          <h3 class="text-3xl font-display text-stone-900 mb-2">Grøntsager & Bælgfrugter</h3>
-          <p class="text-stone-600 text-sm">Fremtidens proteiner og sæsonens grønne guld.</p>
-        </div>
-      </a>
-
-      <!-- Small Item: Svinekød -->
-      <a href="{{ url_for('raavare_svinekoed') }}"
-        class="group relative rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between border border-stone-100">
-        <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300 origin-left">🐖
-        </div>
-        <div>
-          <h3 class="font-display text-xl text-stone-900 group-hover:text-pink-600 transition-colors">Svinekød</h3>
-          <p class="text-xs text-stone-500 mt-1">12 kg CO₂e/kg</p>
-        </div>
-        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-pink-600">→
-        </div>
-      </a>
-
-      <!-- Small Item: Kylling -->
-      <a href="{{ url_for('raavare_kylling') }}"
-        class="group relative rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between border border-stone-100">
-        <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300 origin-left">🐓
-        </div>
-        <div>
-          <h3 class="font-display text-xl text-stone-900 group-hover:text-yellow-600 transition-colors">Kylling</h3>
-          <p class="text-xs text-stone-500 mt-1">6.9 kg CO₂e/kg</p>
-        </div>
-        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-yellow-600">→
-        </div>
-      </a>
-
-      <!-- Medium Item: Havet (Span 2x1) -->
-      <div
-        class="group relative md:col-span-2 rounded-2xl overflow-hidden bg-blue-50 shadow-sm hover:shadow-lg transition-all duration-300">
-        <div class="absolute inset-0 flex items-center justify-between p-8">
-          <div class="z-10">
-            <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Havet</div>
-            <h3 class="text-3xl font-display text-stone-900 mb-2">Fisk & Skaldyr</h3>
-            <p class="text-stone-600 text-sm max-w-xs">Kommer snart. Fokus på MSC og skånsomt fiskeri.</p>
+          <div class="text-xs font-bold text-cb-green-dark uppercase tracking-widest mb-2">Klimahits</div>
+          <h3 class="text-3xl font-display text-stone-900 mb-4">Grønt & Basis</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="{{ url_for('raavare_baelgfrugter') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Bælgfrugter</a>
+            <a href="{{ url_for('raavare_ris') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Ris</a>
+            <a href="{{ url_for('raavare_broed') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Brød</a>
           </div>
-          <div class="text-8xl opacity-20 transform group-hover:rotate-12 transition-transform duration-700">🐟</div>
         </div>
       </div>
 
-      <!-- Small Item: Mejeri -->
+      <!-- Mejeri (Small) -->
       <div
-        class="group relative rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between border border-stone-100 cursor-not-allowed opacity-70">
-        <div class="text-4xl mb-4 grayscale">🧀</div>
-        <div>
-          <h3 class="font-display text-xl text-stone-900">Mejeri</h3>
-          <p class="text-xs text-stone-400 mt-1">Kommer snart</p>
+        class="rounded-2xl overflow-hidden bg-white shadow-sm group relative p-6 border border-stone-100 hover:shadow-md transition-all">
+        <div class="text-4xl mb-4">🧀</div>
+        <h3 class="font-display text-xl text-stone-900 mb-4">Mejeri & Æg</h3>
+        <div class="flex flex-wrap gap-2">
+          <a href="{{ url_for('raavare_maelk') }}"
+            class="text-xs font-bold text-stone-500 hover:text-cb-yellow-dark transition-colors">Mælk</a>
+          <span class="text-stone-300">•</span>
+          <a href="{{ url_for('raavare_ost') }}"
+            class="text-xs font-bold text-stone-500 hover:text-cb-yellow-dark transition-colors">Ost</a>
+          <span class="text-stone-300">•</span>
+          <a href="{{ url_for('raavare_aeg') }}"
+            class="text-xs font-bold text-stone-500 hover:text-cb-yellow-dark transition-colors">Æg</a>
         </div>
       </div>
 
-      <!-- Small Item: Special -->
+      <!-- Drikkevarer (Small) -->
       <div
-        class="group relative rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-all duration-300 p-6 flex flex-col justify-between border border-stone-100 cursor-not-allowed opacity-70">
-        <div class="text-4xl mb-4 grayscale">☕️</div>
-        <div>
-          <h3 class="font-display text-xl text-stone-900">Special</h3>
-          <p class="text-xs text-stone-400 mt-1">Kommer snart</p>
+        class="rounded-2xl overflow-hidden bg-white shadow-sm group relative p-6 border border-stone-100 hover:shadow-md transition-all">
+        <div class="text-4xl mb-4">☕</div>
+        <h3 class="font-display text-xl text-stone-900 mb-4">Drikkevarer</h3>
+        <div class="flex flex-wrap gap-2">
+          <a href="{{ url_for('raavare_kaffe') }}"
+            class="text-xs font-bold text-stone-500 hover:text-stone-900 transition-colors">Kaffe</a>
+          <span class="text-stone-300">•</span>
+          <a href="{{ url_for('raavare_te') }}"
+            class="text-xs font-bold text-stone-500 hover:text-stone-900 transition-colors">Te</a>
+          <span class="text-stone-300">•</span>
+          <a href="{{ url_for('raavare_kakao') }}"
+            class="text-xs font-bold text-stone-500 hover:text-stone-900 transition-colors">Kakao</a>
         </div>
+      </div>
+
+      <!-- Kolonial (Wide) -->
+      <div
+        class="md:col-span-2 rounded-2xl overflow-hidden bg-stone-900 shadow-sm group relative p-8 flex items-center justify-between">
+        <div class="z-10">
+          <div class="text-xs font-bold text-cb-yellow-medium uppercase tracking-widest mb-2">Det Usynlige</div>
+          <h3 class="text-3xl font-display text-white mb-2">Olier & Fedtstof</h3>
+          <p class="text-stone-400 text-sm mb-4 max-w-xs">Fra raps til palmeolie. Kend forskellen.</p>
+          <a href="{{ url_for('raavare_olier') }}"
+            class="inline-block px-6 py-2 bg-cb-yellow-medium text-stone-900 font-bold rounded-full hover:bg-white transition-colors">Læs
+            Guide</a>
+        </div>
+        <div class="text-8xl opacity-20 transform group-hover:rotate-12 transition-transform duration-700">🌻</div>
+      </div>
+
+      <!-- Fisk (Wide) -->
+      <div
+        class="md:col-span-2 rounded-2xl overflow-hidden bg-blue-50 shadow-sm group relative p-8 flex items-center justify-between border border-blue-100">
+        <div class="z-10">
+          <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Havet</div>
+          <h3 class="text-3xl font-display text-stone-900 mb-2">Fisk & Skaldyr</h3>
+          <p class="text-stone-600 text-sm mb-4 max-w-xs">Kommer snart. Fokus på MSC og skånsomt fiskeri.</p>
+        </div>
+        <div class="text-8xl opacity-20 transform group-hover:-rotate-12 transition-transform duration-700">🐟</div>
       </div>
 
     </div>
@@ -178,46 +188,50 @@
   </div>
 </section>
 
-<!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   // Custom Chart Config for Dark Mode
-  Chart.defaults.font.family = "'Work Sans', sans-serif";
+  Chart.defaults.font.family = "'Inter', sans-serif";
   Chart.defaults.color = '#a8a29e';
 
   const ctx = document.getElementById('climateComparisonChart');
 
-  // Gradient for bars
-  const gradientBeef = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
-  gradientBeef.addColorStop(0, '#ef4444');
-  gradientBeef.addColorStop(1, '#7f1d1d');
+  // Gradients
+  const gradientHigh = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+  gradientHigh.addColorStop(0, '#ef4444'); // Red-500
+  gradientHigh.addColorStop(1, '#7f1d1d'); // Red-900
 
-  const gradientGreen = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
-  gradientGreen.addColorStop(0, '#4ade80');
-  gradientGreen.addColorStop(1, '#14532d');
+  const gradientMedium = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+  gradientMedium.addColorStop(0, '#f59e0b'); // Amber-500
+  gradientMedium.addColorStop(1, '#78350f'); // Amber-900
+
+  const gradientLow = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+  gradientLow.addColorStop(0, '#22c55e'); // Green-500
+  gradientLow.addColorStop(1, '#14532d'); // Green-900
 
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Ost', 'Kylling', 'Fisk', 'Æg', 'Ris', 'Bælgfrugter', 'Kartofler'],
+      labels: ['Oksekød', 'Lammekød', 'Kakao', 'Svinekød', 'Ost', 'Kylling', 'Fisk', 'Olier', 'Æg', 'Ris', 'Bælgfrugter', 'Kartofler'],
       datasets: [{
         label: 'kg CO₂e per kg',
-        data: [60, 24, 12, 8, 6.9, 6, 4.8, 4, 2, 0.2],
+        data: [60, 24, 25, 12, 8, 6.9, 6, 3.8, 4.8, 4, 2, 0.2],
         backgroundColor: [
-          gradientBeef, // Beef
-          '#f97316', // Lamb
-          '#fb923c', // Pork
-          '#fbbf24', // Cheese
-          '#fde047', // Chicken
-          '#3b82f6', // Fish
-          '#e5e7eb', // Eggs
-          '#9ca3af', // Rice
-          '#22c55e', // Legumes
-          gradientGreen // Potatoes
+          gradientHigh, // Beef
+          gradientHigh, // Lamb
+          gradientHigh, // Cocoa
+          gradientMedium, // Pork
+          gradientMedium, // Cheese
+          gradientMedium, // Chicken
+          gradientMedium, // Fish
+          gradientLow, // Oils (Rapeseed)
+          gradientLow, // Eggs
+          gradientLow, // Rice
+          gradientLow, // Legumes
+          gradientLow // Potatoes
         ],
         borderRadius: 6,
-        barThickness: 30,
+        barThickness: 20,
         hoverBackgroundColor: '#ffffff'
       }]
     },
@@ -232,8 +246,8 @@
         legend: { display: false },
         tooltip: {
           backgroundColor: 'rgba(0,0,0,0.9)',
-          titleFont: { size: 14, family: 'Work Sans' },
-          bodyFont: { size: 14, family: 'Work Sans', weight: 'bold' },
+          titleFont: { size: 14, family: 'Inter' },
+          bodyFont: { size: 14, family: 'Inter', weight: 'bold' },
           padding: 16,
           cornerRadius: 8,
           displayColors: false,
@@ -255,7 +269,7 @@
         x: {
           grid: { display: false },
           border: { display: false },
-          ticks: { font: { size: 12, weight: '500' } }
+          ticks: { font: { size: 11, weight: '500' }, maxRotation: 45, minRotation: 45 }
         }
       }
     }
@@ -263,7 +277,6 @@
 </script>
 
 <style>
-  /* Custom Animations */
   @keyframes slow-zoom {
     0% {
       transform: scale(1);
