@@ -106,73 +106,8 @@
 </section>
 
 <script>
-    // Data Model
-    // origin: 'DK', 'EU', 'World'
-    // price: 1 (Low/Best), 2 (Med), 3 (High/Worst) -> Lower is better for score
-    // climate: 1 (Low/Best), 2 (Med), 3 (High/Worst) -> Lower is better for score
-    // quality: 3 (Peak), 2 (Good), 1 (Tired/Storage) -> Higher is better for score
-    // status: 'Sæsonstart', 'Højsæson', 'Sæsonafslutning', 'Lager'
-
-    const seasonData = [
-        // Jan (0)
-        {
-            items: [
-                { name: "Kål (Alle typer)", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Gulerødder", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Pastinak", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Rødbede", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Løg", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Æbler", category: "Frugt", origin: "DK", price: 2, climate: 1, quality: 1, status: "Lager" },
-                { name: "Pærer", category: "Frugt", origin: "DK", price: 2, climate: 1, quality: 1, status: "Lager" },
-                { name: "Appelsiner", category: "Frugt", origin: "EU", price: 1, climate: 2, quality: 3, status: "Højsæson" },
-                { name: "Torsk", category: "Fisk", origin: "DK", price: 2, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Muslinger", category: "Fisk", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Østers", category: "Fisk", origin: "DK", price: 3, climate: 1, quality: 3, status: "Højsæson" }
-            ],
-            strategy: "Fokusér på grove grøntsager og kål. Dansk frugt er på retur kvalitetsmæssigt, så suppler med sydeuropæisk citrus."
-        },
-        // Feb (1)
-        {
-            items: [
-                { name: "Kål (Rød/Hvid)", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Porrer", category: "Grønt", origin: "DK", price: 2, climate: 1, quality: 2, status: "Sæsonafslutning" },
-                { name: "Gulerødder", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 2, status: "Lager" },
-                { name: "Æbler", category: "Frugt", origin: "EU", price: 2, climate: 2, quality: 3, status: "Højsæson" },
-                { name: "Appelsiner", category: "Frugt", origin: "EU", price: 1, climate: 2, quality: 3, status: "Højsæson" },
-                { name: "Bananer", category: "Frugt", origin: "World", price: 1, climate: 2, quality: 2, status: "Helår" },
-                { name: "Stenbiderrogn", category: "Fisk", origin: "DK", price: 3, climate: 1, quality: 3, status: "Sæsonstart" },
-                { name: "Torsk", category: "Fisk", origin: "DK", price: 2, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Skrubbe", category: "Fisk", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" }
-            ],
-            strategy: "Dansk lager er i bund. Det er acceptabelt at skifte til europæisk frugt for at opretholde kvaliteten."
-        },
-        // Nov (10) - Example for contrast
-        {
-            items: [
-                { name: "Rosenkål", category: "Grønt", origin: "DK", price: 2, climate: 1, quality: 3, status: "Sæsonstart" },
-                { name: "Rodfrugter", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Grønkål", category: "Grønt", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Æbler", category: "Frugt", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Klementiner", category: "Frugt", origin: "EU", price: 2, climate: 2, quality: 3, status: "Sæsonstart" },
-                { name: "Muslinger", category: "Fisk", origin: "DK", price: 1, climate: 1, quality: 3, status: "Højsæson" },
-                { name: "Torsk", category: "Fisk", origin: "DK", price: 2, climate: 1, quality: 3, status: "Højsæson" }
-            ],
-            strategy: "Dansk højsæson. Brug danske æbler og rodfrugter. De er billigst, bedst og mest klimavenlige nu."
-        }
-        // ... (Ideally all months would be filled, using simplified dataset for demo)
-    ];
-
-    // Fill missing months with generic data to prevent errors
-    for (let i = 0; i < 12; i++) {
-        if (!seasonData[i]) {
-            seasonData[i] = {
-                items: [
-                    { name: "Sæsonvare", category: "Grønt", origin: "DK", price: 2, climate: 1, quality: 2, status: "Generel" }
-                ],
-                strategy: "Generel sæsonanbefaling."
-            };
-        }
-    }
+    // Data passed from Flask Backend
+    const seasonData = {{ season_data | tojson }};
 
     let currentViewMode = 'simple';
     let currentMonthIndex = new Date().getMonth();
@@ -223,18 +158,6 @@
         renderContent();
     }
 
-    function calculateScore(item) {
-        // Lower price/climate is better. Higher quality is better.
-        // Normalize to 0-1 scale where 1 is best.
-
-        const priceScore = (4 - item.price) / 3; // 1->1.0, 2->0.66, 3->0.33
-        const climateScore = (4 - item.climate) / 3;
-        const qualityScore = item.quality / 3;
-
-        // Weighted Score: 40% Price, 40% Quality, 20% Climate
-        return (priceScore * 0.4) + (qualityScore * 0.4) + (climateScore * 0.2);
-    }
-
     function getBadgeColor(type, value) {
         if (type === 'price' || type === 'climate') {
             if (value === 1) return 'bg-green-100 text-green-800';
@@ -260,13 +183,13 @@
         const data = seasonData[currentMonthIndex];
         document.getElementById('strategy-text').textContent = data.strategy;
 
-        // Sort items by Score (Best first)
-        const sortedItems = [...data.items].sort((a, b) => calculateScore(b) - calculateScore(a));
+        // Items are already sorted by score from backend
+        const items = data.items;
 
         if (currentViewMode === 'simple') {
-            renderSimpleView(sortedItems);
+            renderSimpleView(items);
         } else {
-            renderProView(sortedItems);
+            renderProView(items);
         }
     }
 
@@ -303,8 +226,7 @@
         const tbody = document.getElementById('pro-table-body');
 
         tbody.innerHTML = items.map((item, index) => {
-            const score = calculateScore(item);
-            const isBestBuy = index === 0; // Since it's sorted
+            const isBestBuy = index === 0; // Top item is best buy
 
             return `
             <tr class="hover:bg-stone-50 transition-colors ${isBestBuy ? 'bg-green-50/50' : ''}">
@@ -335,7 +257,7 @@
                     </span>
                 </td>
                 <td class="px-6 py-4 text-right font-mono text-xs text-stone-400">
-                    ${(score * 100).toFixed(0)}%
+                    ${item.score}%
                 </td>
             </tr>
           `;

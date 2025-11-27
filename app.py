@@ -497,13 +497,60 @@ def okologi_hvad_er():
 def okologi_regulering():
     return render_template('okologi/okologi_regulering.html')
 
-@app.route('/okologi/fordele')
-def okologi_fordele():
-    return render_template('okologi/okologi_fordele.html')
+from sourcing_engine import SourcingEngine
 
-@app.route('/okologi/kantinen')
-def okologi_kantinen():
-    return render_template('okologi/okologi_kantinen.html')
+# Initialize Engine
+sourcing_engine = SourcingEngine()
+
+@app.route('/vidensbank/raavarer/frugt')
+def raavare_frugt():
+    """Fruit product page"""
+    return render_template('raavarer/frugt.html')
+
+@app.route('/vidensbank/raavarer/planteprotein')
+def raavare_planteprotein():
+    """Plant protein product page"""
+    return render_template('raavarer/planteprotein.html')
+
+# ============================================================================
+# TOOLS ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/tools/saesonhjulet')
+def tool_saesonhjulet():
+    # Default to current month if not specified
+    # In a real app, we might accept a query param ?month=X
+    # For now, we pass the engine instance or data to the template
+    # The template will likely fetch data via an API or we pass all data at once
+    
+    # Let's pass all 12 months of data to the template so it can handle switching client-side
+    # or we could create an API endpoint. For simplicity/speed, let's pass all data.
+    
+    all_months_data = []
+    for m in range(12):
+        recommendations = sourcing_engine.get_monthly_recommendations(m)
+        # Add strategy text (mocked for now, could be in JSON)
+        strategies = [
+            "Januar: Kål og rodfrugter er kongerne. Dansk frugt er på retur.",
+            "Februar: Dansk lager er i bund. Import af frugt er nødvendig.",
+            "Marts: Foråret lurer. Ramsløg titter frem.",
+            "April: Vent på de danske asparges. Import er okay indtil da.",
+            "Maj: Danske asparges er her! Spis dem.",
+            "Juni: Sommeren starter. Dansk grønt er bedst nu.",
+            "Juli: Bær og tomater smager af sol.",
+            "August: Højsæson for alt. Konserver til vinteren.",
+            "September: Æbler og pærer er billigst nu.",
+            "Oktober: Græskar og kål. Efterårsmad.",
+            "November: Danske rødder og kål er bedst.",
+            "December: Julemad. Kål, kartofler og citrus fra syden."
+        ]
+        all_months_data.append({
+            'month_index': m,
+            'strategy': strategies[m],
+            'items': recommendations
+        })
+        
+    return render_template('tools/saesonhjulet.html', season_data=all_months_data)
 
 @app.route('/okologi/esg')
 def okologi_esg():

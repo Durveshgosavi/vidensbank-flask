@@ -1,0 +1,135 @@
+{
+  "gulerod": {
+    "name": "Gulerødder",
+    "category": "Grønt",
+    "co2_base": 0.2,
+    "months": {
+      "0": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 3, "import_quality": 3 },
+      "1": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 3, "import_quality": 3 },
+      "2": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 1, "import_origin": "EU", "import_price": 3, "import_quality": 3 },
+      "3": { "dk_status": "Lager", "dk_price": 3, "dk_quality": 1, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "4": { "dk_status": "Ny", "dk_price": 3, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "5": { "dk_status": "Ny", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "6": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "7": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "8": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "9": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "10": { "dk_status": "Lager", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "11": { "dk_status": "Lager", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 }
+    }
+  },
+  "aebler": {
+    "name": "Æbler",
+    "category": "Frugt",
+    "co2_base": 0.4,
+    "months": {
+      "0": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "1": { "dk_status": "Lager", "dk_price": 3, "dk_quality": 1, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "2": { "dk_status": "Lager", "dk_price": 3, "dk_quality": 1, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "3": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 2, "import_quality": 3 },
+      "4": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 2, "import_quality": 3 },
+      "5": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 2, "import_quality": 3 },
+      "6": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "7": { "dk_status": "Ny", "dk_price": 3, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "8": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "9": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "10": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "11": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 3 }
+    }
+  },
+  "torsk": {
+    "name": "Torsk",
+    "category": "Fisk",
+    "co2_base": 2.8,
+    "months": {
+      "0": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "1": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "2": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "3": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 2, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "4": { "dk_status": "Ude", "dk_price": 3, "dk_quality": 1, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "5": { "dk_status": "Ude", "dk_price": 3, "dk_quality": 1, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "6": { "dk_status": "Ude", "dk_price": 3, "dk_quality": 1, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "7": { "dk_status": "Ude", "dk_price": 3, "dk_quality": 1, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "8": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 2, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "9": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "10": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 },
+      "11": { "dk_status": "Sæson", "dk_price": 3, "dk_quality": 3, "import_origin": "N/A", "import_price": 0, "import_quality": 0 }
+    }
+  },
+  "appelsin": {
+    "name": "Appelsiner",
+    "category": "Frugt",
+    "co2_base": 0.6,
+    "months": {
+      "0": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 1, "import_quality": 3 },
+      "1": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 1, "import_quality": 3 },
+      "2": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "3": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "4": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 2, "import_quality": 2 },
+      "5": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 2 },
+      "6": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 1 },
+      "7": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 1 },
+      "8": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 1 },
+      "9": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "10": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "11": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 1, "import_quality": 3 }
+    }
+  },
+  "jordbaer": {
+    "name": "Jordbær",
+    "category": "Frugt",
+    "co2_base": 0.8,
+    "months": {
+      "0": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 3, "import_quality": 1 },
+      "1": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 3, "import_quality": 1 },
+      "2": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "3": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "4": { "dk_status": "Ny", "dk_price": 3, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "5": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "6": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "7": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 3, "import_quality": 2 },
+      "8": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 3, "import_quality": 1 },
+      "9": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 3, "import_quality": 1 },
+      "10": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 1 },
+      "11": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "World", "import_price": 3, "import_quality": 1 }
+    }
+  },
+  "kaal": {
+    "name": "Kål (Alle typer)",
+    "category": "Grønt",
+    "co2_base": 0.3,
+    "months": {
+      "0": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "1": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "2": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "3": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "4": { "dk_status": "Ude", "dk_price": 0, "dk_quality": 0, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "5": { "dk_status": "Ny", "dk_price": 3, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "6": { "dk_status": "Sæson", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "7": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "8": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "9": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "10": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "11": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 }
+    }
+  },
+  "kartofler": {
+    "name": "Kartofler",
+    "category": "Grønt",
+    "co2_base": 0.2,
+    "months": {
+      "0": { "dk_status": "Lager", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "1": { "dk_status": "Lager", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "2": { "dk_status": "Lager", "dk_price": 1, "dk_quality": 2, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "3": { "dk_status": "Lager", "dk_price": 2, "dk_quality": 2, "import_origin": "EU", "import_price": 2, "import_quality": 3 },
+      "4": { "dk_status": "Ny", "dk_price": 3, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "5": { "dk_status": "Ny", "dk_price": 2, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "6": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "7": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "8": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "9": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "10": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 },
+      "11": { "dk_status": "Sæson", "dk_price": 1, "dk_quality": 3, "import_origin": "EU", "import_price": 2, "import_quality": 2 }
+    }
+  }
+}
