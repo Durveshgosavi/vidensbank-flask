@@ -55,37 +55,79 @@
     </div>
 </section>
 
-<!-- Minimalist Data Section -->
-<section class="py-24 bg-stone-50">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <!-- Stat 1 -->
-            <div class="text-center md:text-left">
-                <div class="text-6xl font-display text-stone-900 mb-2">12</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Et moderat klimaaftryk. Bedre end oksekød, men udfordret af foderproduktionens miljøbelastning.
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="font-display text-3xl text-stone-900 mb-6">Miljøprofil</h2>
+                <p class="text-stone-600 font-serif leading-relaxed mb-8">
+                    Svinekød ligger i midterfeltet. Foderet (soja) er den store synder, især for arealanvendelse.
+                    Grafen viser svinekødets belastning (pink) sammenlignet med oksekød (grå skygge) og plantebaseret
+                    (grøn).
                 </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Klimaaftryk</span>
+                        <span class="font-display text-xl text-stone-900">12 kg CO₂e</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Vandforbrug</span>
+                        <span class="font-display text-xl text-stone-900">6.000 L/kg</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Arealanvendelse</span>
+                        <span class="font-display text-xl text-stone-900">11 m²/år</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Stat 2 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">+74%</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Kylling</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Svinekød belaster klimaet betydeligt mere end fjerkræ, primært på grund af foderforbruget.
-                </p>
+            <div class="relative">
+                <div class="aspect-square w-full max-w-md mx-auto bg-white rounded-full shadow-xl p-8">
+                    <canvas id="porkRadarChart"></canvas>
+                </div>
+                <!-- Decorative elements -->
+                <div
+                    class="absolute -top-10 -right-10 w-32 h-32 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
+                <div
+                    class="absolute -bottom-10 -left-10 w-32 h-32 bg-stone-200 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Stat 3 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">80%</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Foderets andel</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Hele 80% af svinekødets klimaaftryk stammer fra produktionen af foder, herunder soja og korn.
-                </p>
+<!-- Seasonality Section -->
+<section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-3xl text-stone-900 mb-4">Sæson</h2>
+            <p class="text-stone-500">Svinekød er en helårsråvare, men traditionerne følger året.</p>
+        </div>
+
+        <div class="relative">
+            <!-- Months Grid -->
+            <div class="grid grid-cols-12 gap-1 mb-2">
+                {% for month in ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'] %}
+                <div class="text-center">
+                    <div class="text-[10px] uppercase font-bold text-stone-400 mb-2">{{ month }}</div>
+                    <div class="h-12 w-full rounded-sm transition-all duration-500
+            {% if month in ['Nov', 'Dec'] %}
+              bg-stone-800 scale-y-100
+            {% else %}
+              bg-stone-300 scale-y-75
+            {% endif %}
+          "></div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-4">
+                <span
+                    class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-widest rounded-full">
+                    Højsæson: Jul & Vinter (Tradition)
+                </span>
             </div>
         </div>
     </div>
@@ -194,6 +236,59 @@
 </section>
 
 <script>
+    // Radar Chart Config
+    Chart.defaults.font.family = "'Work Sans', sans-serif";
+
+    const ctxRadar = document.getElementById('porkRadarChart');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂e', 'Vand', 'Areal', 'Eutrofiering'],
+            datasets: [{
+                label: 'Svinekød',
+                data: [20, 39, 3.5, 40], // Relative to beef (100)
+                fill: true,
+                backgroundColor: 'rgba(236, 72, 153, 0.2)', // Pink-500
+                borderColor: 'rgb(236, 72, 153)',
+                pointBackgroundColor: 'rgb(236, 72, 153)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(236, 72, 153)'
+            }, {
+                label: 'Oksekød (Reference)',
+                data: [100, 100, 100, 100],
+                fill: false,
+                borderColor: 'rgba(120, 113, 108, 0.3)', // Stone-500 low opacity
+                borderDash: [5, 5],
+                pointRadius: 0
+            }]
+        },
+        options: {
+            elements: {
+                line: { borderWidth: 3 }
+            },
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: {
+                        font: { size: 12, weight: 'bold' },
+                        color: '#44403c'
+                    },
+                    ticks: { display: false, backdropColor: 'transparent' },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 12 } }
+                }
+            }
+        }
+    });
+
     function calculatePorkSavings() {
         const porkAmount = parseFloat(document.getElementById('porkAmount').value) || 0;
         const replacementCO2 = parseFloat(document.getElementById('porkReplacement').value);

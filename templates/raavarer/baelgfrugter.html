@@ -49,39 +49,80 @@
     </div>
 </section>
 
-<!-- Minimalist Data Section -->
-<section class="py-24 bg-stone-50">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <!-- Stat 1 -->
-            <div class="text-center md:text-left">
-                <div class="text-6xl font-display text-stone-900 mb-2">2.0</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Det ultimative klimavalg. Et aftryk så lavt, at det næsten ikke kan måles i forhold til oksekød.
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="font-display text-3xl text-stone-900 mb-6">Miljøprofil</h2>
+                <p class="text-stone-600 font-serif leading-relaxed mb-8">
+                    Bælgfrugter er i en liga for sig. De gøder jorden og kræver minimalt vand.
+                    Grafen viser bælgfrugters minimale belastning (grøn) sammenlignet med oksekød (grå skygge).
                 </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Klimaaftryk</span>
+                        <span class="font-display text-xl text-stone-900">2.0 kg CO₂e</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Vandforbrug</span>
+                        <span class="font-display text-xl text-stone-900">4.055 L/kg</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Arealanvendelse</span>
+                        <span class="font-display text-xl text-stone-900">16 m²/år</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Stat 2 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">-97%</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Oksekød</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Ved at erstatte oksekød med linser eller bønner fjerner du stort set hele klimabelastningen fra
-                    retten.
-                </p>
+            <div class="relative">
+                <div class="aspect-square w-full max-w-md mx-auto bg-white rounded-full shadow-xl p-8">
+                    <canvas id="legumesRadarChart"></canvas>
+                </div>
+                <!-- Decorative elements -->
+                <div
+                    class="absolute -top-10 -right-10 w-32 h-32 bg-green-100 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
+                <div
+                    class="absolute -bottom-10 -left-10 w-32 h-32 bg-stone-200 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Stat 3 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">70%</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Billigere protein</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Bælgfrugter er ikke kun gode for klimaet, men også for bundlinjen. Proteinprisen er en brøkdel af
-                    kødets.
-                </p>
+<!-- Seasonality Section -->
+<section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-3xl text-stone-900 mb-4">Sæson</h2>
+            <p class="text-stone-500">Tørrede bælgfrugter har ingen sæson, men friske danske ærter og bønner har.</p>
+        </div>
+
+        <div class="relative">
+            <!-- Months Grid -->
+            <div class="grid grid-cols-12 gap-1 mb-2">
+                {% for month in ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'] %}
+                <div class="text-center">
+                    <div class="text-[10px] uppercase font-bold text-stone-400 mb-2">{{ month }}</div>
+                    <div class="h-12 w-full rounded-sm transition-all duration-500
+            {% if month in ['Jun', 'Jul', 'Aug'] %}
+              bg-stone-800 scale-y-100
+            {% elif month in ['Maj', 'Sep'] %}
+              bg-stone-400 scale-y-75
+            {% else %}
+              bg-stone-200 scale-y-50
+            {% endif %}
+          "></div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-4">
+                <span
+                    class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-widest rounded-full">
+                    Frisk Sæson: Sommer (Danske Ærter & Bønner)
+                </span>
             </div>
         </div>
     </div>
@@ -188,6 +229,59 @@
 </section>
 
 <script>
+    // Radar Chart Config
+    Chart.defaults.font.family = "'Work Sans', sans-serif";
+
+    const ctxRadar = document.getElementById('legumesRadarChart');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂e', 'Vand', 'Areal', 'Eutrofiering'],
+            datasets: [{
+                label: 'Bælgfrugter',
+                data: [5, 10, 5, 5], // Relative to beef (100)
+                fill: true,
+                backgroundColor: 'rgba(34, 197, 94, 0.2)', // Green-500
+                borderColor: 'rgb(34, 197, 94)',
+                pointBackgroundColor: 'rgb(34, 197, 94)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(34, 197, 94)'
+            }, {
+                label: 'Oksekød (Reference)',
+                data: [100, 100, 100, 100],
+                fill: false,
+                borderColor: 'rgba(120, 113, 108, 0.3)', // Stone-500 low opacity
+                borderDash: [5, 5],
+                pointRadius: 0
+            }]
+        },
+        options: {
+            elements: {
+                line: { borderWidth: 3 }
+            },
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: {
+                        font: { size: 12, weight: 'bold' },
+                        color: '#44403c'
+                    },
+                    ticks: { display: false, backdropColor: 'transparent' },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 12 } }
+                }
+            }
+        }
+    });
+
     function calculateLegumesSavings() {
         const meatAmount = parseFloat(document.getElementById('meatAmount').value) || 0;
         const meatCO2 = parseFloat(document.getElementById('meatType').value);

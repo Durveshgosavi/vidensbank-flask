@@ -53,39 +53,79 @@
     </div>
 </section>
 
-<!-- Minimalist Data Section -->
-<section class="py-24 bg-stone-50">
-    <div class="max-w-5xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <!-- Stat 1 -->
-            <div class="text-center md:text-left">
-                <div class="text-6xl font-display text-stone-900 mb-2">6.9</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Et relativt lavt aftryk for kød, men stadig højere end plantebaserede alternativer som linser (2
-                    kg).
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="font-display text-3xl text-stone-900 mb-6">Miljøprofil</h2>
+                <p class="text-stone-600 font-serif leading-relaxed mb-8">
+                    Kylling er det mest klimaeffektive kød, men har stadig et aftryk.
+                    Grafen viser kyllingens belastning (gul) sammenlignet med oksekød (grå skygge) og plantebaseret
+                    (grøn).
                 </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Klimaaftryk</span>
+                        <span class="font-display text-xl text-stone-900">6.9 kg CO₂e</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Vandforbrug</span>
+                        <span class="font-display text-xl text-stone-900">4.300 L/kg</span>
+                    </div>
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+                        <span class="text-sm font-bold uppercase tracking-widest text-stone-500">Arealanvendelse</span>
+                        <span class="font-display text-xl text-stone-900">12 m²/år</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Stat 2 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">-87%</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Oksekød</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Ved at bytte oksekød ud med kylling kan man opnå massive reduktioner i køkkenets samlede udledning.
-                </p>
+            <div class="relative">
+                <div class="aspect-square w-full max-w-md mx-auto bg-white rounded-full shadow-xl p-8">
+                    <canvas id="chickenRadarChart"></canvas>
+                </div>
+                <!-- Decorative elements -->
+                <div
+                    class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
+                <div
+                    class="absolute -bottom-10 -left-10 w-32 h-32 bg-stone-200 rounded-full mix-blend-multiply filter blur-xl opacity-70">
+                </div>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Stat 3 -->
-            <div
-                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
-                <div class="text-6xl font-display text-stone-900 mb-2">1.8</div>
-                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Foderkonvertering</div>
-                <p class="text-stone-600 font-serif text-sm leading-relaxed">
-                    Kyllinger skal kun bruge ca. 1,8 kg foder for at producere 1 kg kød, hvilket gør dem meget
-                    ressourceeffektive.
-                </p>
+<!-- Seasonality Section -->
+<section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-3xl text-stone-900 mb-4">Sæson</h2>
+            <p class="text-stone-500">Kylling produceres året rundt, men frilandskyllinger har sæson.</p>
+        </div>
+
+        <div class="relative">
+            <!-- Months Grid -->
+            <div class="grid grid-cols-12 gap-1 mb-2">
+                {% for month in ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'] %}
+                <div class="text-center">
+                    <div class="text-[10px] uppercase font-bold text-stone-400 mb-2">{{ month }}</div>
+                    <div class="h-12 w-full rounded-sm transition-all duration-500
+            {% if month in ['Maj', 'Jun', 'Jul', 'Aug', 'Sep'] %}
+              bg-stone-800 scale-y-100
+            {% else %}
+              bg-stone-300 scale-y-75
+            {% endif %}
+          "></div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-4">
+                <span
+                    class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-widest rounded-full">
+                    Bedst: Sommer & Tidligt Efterår (Friland)
+                </span>
             </div>
         </div>
     </div>
@@ -192,20 +232,69 @@
 </section>
 
 <script>
+    // Radar Chart Config
+    Chart.defaults.font.family = "'Work Sans', sans-serif";
+
+    const ctxRadar = document.getElementById('chickenRadarChart');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂e', 'Vand', 'Areal', 'Eutrofiering'],
+            datasets: [{
+                label: 'Kylling',
+                data: [11.5, 28, 4, 30], // Relative to beef (100)
+                fill: true,
+                backgroundColor: 'rgba(234, 179, 8, 0.2)', // Yellow-500
+                borderColor: 'rgb(234, 179, 8)',
+                pointBackgroundColor: 'rgb(234, 179, 8)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(234, 179, 8)'
+            }, {
+                label: 'Oksekød (Reference)',
+                data: [100, 100, 100, 100],
+                fill: false,
+                borderColor: 'rgba(120, 113, 108, 0.3)', // Stone-500 low opacity
+                borderDash: [5, 5],
+                pointRadius: 0
+            }]
+        },
+        options: {
+            elements: {
+                line: { borderWidth: 3 }
+            },
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: {
+                        font: { size: 12, weight: 'bold' },
+                        color: '#44403c'
+                    },
+                    ticks: { display: false, backdropColor: 'transparent' },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 12 } }
+                }
+            }
+        }
+    });
+
     function calculateChickenSavings() {
         const chickenAmount = parseFloat(document.getElementById('chickenAmount').value) || 0;
         const comparisonValue = parseFloat(document.getElementById('chickenComparison').value);
         const chickenCO2 = 6.9;
 
-        const amountKg = chickenAmount; // Input is in kg for consistency with other calculators now
+        const amountKg = chickenAmount;
         const chickenEmissions = amountKg * chickenCO2;
         const comparisonEmissions = amountKg * comparisonValue;
 
         let weeklySavings = comparisonEmissions - chickenEmissions;
-
-        // If savings are negative (e.g. comparing to legumes), handle appropriately (not implemented in this simple view yet)
-        // But here we default to comparing with heavier meats as per UI options
-
         const annualSavings = (weeklySavings * 52) / 1000;
 
         // Animate numbers
