@@ -1,705 +1,360 @@
-<!DOCTYPE html>
-<html lang="da">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bladgrønt - Grønne Klimachampions | Vidensbank</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --brand-orange: #FF6B35;
-            --brand-yellow: #F7931E;
-            --brand-teal: #4ECDC4;
-            --brand-navy: #1A535C;
-            --brand-cream: #FFF8F0;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+{% block title %}Bladgrønt – Klimachampions & Næringsbomber | Canteen Buddy{% endblock %}
 
-        .font-display {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em;
-        }
+{% block content %}
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/kitchen_staff_action.jpg') }}" alt="Bladgrønt"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
 
-        .tracking-brand-wide {
-            letter-spacing: 0.1em;
-        }
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Bladgrønt</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            Køkkenets grønne guld. Ekstrem næringstæthed med minimalt klimaaftryk.
+        </p>
+    </div>
+</header>
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes wave {
-            0%, 100% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .animate-scale-in {
-            animation: scaleIn 0.6s ease-out forwards;
-        }
-
-        .animate-slide-in-left {
-            animation: slideInLeft 0.6s ease-out forwards;
-        }
-
-        .animate-wave {
-            animation: wave 3s ease-in-out infinite;
-        }
-
-        .animation-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .animation-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .animation-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        [data-animate] {
-            opacity: 0;
-        }
-    </style>
-</head>
-<body class="bg-stone-50">
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="mx-auto max-w-7xl px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-3xl font-bold tracking-brand-wide" style="color: var(--brand-orange);">
-                    VIDENSBANK
-                </a>
-                <div class="flex gap-8">
-                    <a href="/topics" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Emner</a>
-                    <a href="/raavarer" class="font-sans text-orange-500 font-semibold border-b-2 border-orange-500">Råvarer</a>
-                    <a href="/resources" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Ressourcer</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-green-100 via-emerald-50 to-teal-100 py-24 overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-400"></div>
-
-        <div class="relative mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6" data-animate>
-                    <div class="inline-block bg-green-600 text-white px-6 py-2 rounded-full font-display font-bold text-lg">
-                        🥬 EKSTREM KLIMACHAMPION
-                    </div>
-                    <h1 class="font-display text-6xl md:text-7xl font-bold text-stone-900 uppercase tracking-brand-wide leading-tight">
-                        Bladgrønt
-                    </h1>
-                    <p class="text-xl text-stone-700 font-sans leading-relaxed">
-                        Spinat, grønkål, salat, kål og andre bladgrøntsager er blandt de mest klimavenlige fødevarer med ekstremt lavt CO₂-aftryk og ekstraordinært højt næringsindhold.
-                    </p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#kob" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg">
-                            INDKØBSGUIDE
-                        </a>
-                        <a href="#kalkulator" class="bg-white hover:bg-stone-50 text-stone-900 px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg border-2 border-stone-200">
-                            BEREGN CO₂
-                        </a>
-                    </div>
-                </div>
-
-                <div class="relative" data-animate>
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-3xl transform rotate-3 opacity-20"></div>
-                    <img src="{{ url_for('static', filename='images/kitchen_staff_action.jpg') }}"
-                         alt="Frisk bladgrønt"
-                         class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover">
-                    <div class="absolute top-8 right-8 bg-green-600 text-white px-6 py-3 rounded-full font-display font-bold text-xl shadow-lg">
-                        99.7% LAVERE END OKSEKØD
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-green-600 mb-2">0.2</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">kg CO₂e per kg</div>
-                </div>
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-blue-600 mb-2">300x</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Lavere end oksekød</div>
-                </div>
-                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-amber-600 mb-2">Ekstrem</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Næringstæthed</div>
-                </div>
-                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-teal-600 mb-2">Lokal</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Dansk produktion</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Climate Impact -->
-    <section class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6 md:px-20">
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Klimaaftryk
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+            <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
+            <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
+                Klimaduksene
             </h2>
+            <div class="h-1 w-20 bg-cb-green-medium mb-8"></div>
+        </div>
+        <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
+            <p class="lead text-xl text-stone-800 font-normal mb-6">
+                Bladgrønt som spinat, grønkål og salater er blandt de mest effektive fødevarer, vi kan producere. De
+                leverer maksimal næring for minimal indsats fra naturens side.
+            </p>
+            <p class="mb-6">
+                Med et klimaaftryk på kun 0.2 kg CO₂e pr. kg er bladgrønt 300 gange mere klimavenligt end oksekød. De
+                vokser hurtigt, kræver lidt plads og kan dyrkes lokalt i Danmark en stor del af året.
+            </p>
+            <p>
+                Ernæringsmæssigt er de kraftværker. Grønkål indeholder mere C-vitamin end appelsiner og masser af
+                calcium. Spinat er rig på jern og folat. At integrere mere bladgrønt er den nemmeste vej til både
+                sundere gæster og et grønnere regnskab.
+            </p>
+        </div>
+    </div>
+</section>
 
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl mb-12" data-animate>
-                <canvas id="climateChart" class="w-full" style="max-height: 400px;"></canvas>
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil (Grønkål)</h3>
+                <p class="text-stone-600 mb-8 font-light">
+                    Bladgrønt scorer topkarakterer på næsten alle miljøparametre. Det eneste opmærksomhedspunkt er
+                    vandforbrug ved import fra tørre områder.
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+                        <div class="text-3xl font-display text-stone-900">0.2 <span
+                                class="text-sm font-sans text-stone-500">kg/kg</span></div>
+                    </div>
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Arealforbrug</div>
+                        <div class="text-3xl font-display text-stone-900">0.3 <span
+                                class="text-sm font-sans text-stone-500">m²/kg</span></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 text-sm text-stone-500">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-cb-green-medium"></span> Bladgrønt
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-stone-300"></span> Gennemsnit (Kød)
+                    </div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
-                    <div class="text-5xl mb-4">🌱</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Ekstremt Lavt</h3>
-                    <p class="text-stone-700 font-sans">
-                        Med kun <strong>0.2 kg CO₂e per kg</strong> har bladgrønt det laveste klimaaftryk af næsten alle fødevarer.
-                        300 gange lavere end oksekød!
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
-                    <div class="text-5xl mb-4">💧</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Lavt Vandforbrug</h3>
-                    <p class="text-stone-700 font-sans">
-                        Bladgrøntsager kræver minimal vanding sammenlignet med kød og andre grøntsager.
-                        Især i danske klimaforhold med naturlig nedbør.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg" data-animate>
-                    <div class="text-5xl mb-4">🚜</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Effektiv Dyrkning</h3>
-                    <p class="text-stone-700 font-sans">
-                        Bladgrønt vokser hurtigt og kræver lidt plads. Kan dyrkes lokalt året rundt i væksthuse
-                        eller importeres fra nærliggende lande.
-                    </p>
-                </div>
+            <div class="relative aspect-square max-w-md mx-auto">
+                <canvas id="greensRadarChart"></canvas>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Nutritional Powerhouse -->
-    <section class="py-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Ernæringsmæssig Kraftpakke
-            </h2>
-
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8" data-animate>
-                <div class="text-center mb-6">
-                    <div class="text-6xl mb-4">💪</div>
-                    <h3 class="font-display text-3xl font-bold text-green-700 uppercase">
-                        Ekstrem Næringstæthed
-                    </h3>
-                    <p class="text-stone-600 mt-2">
-                        Bladgrønt har flest næringsstoffer per kalorie af alle fødevaregrupper
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">🥬</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">K-vitamin</h3>
-                    <p class="text-sm text-stone-600">
-                        Grønkål indeholder <strong>700% af dagsbehovet</strong> per 100g. Essentielt for blodpropper og knogler.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">🍃</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Folat (B9)</h3>
-                    <p class="text-sm text-stone-600">
-                        Spinat er ekstremt rig på folat, vigtigt for celledeling, DNA-syntese og graviditet.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">💊</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Jern</h3>
-                    <p class="text-sm text-stone-600">
-                        Spinat og grønkål indeholder ikke-hæme jern. <strong>Kombiner med C-vitamin</strong> for bedre optagelse.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">🛡️</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Antioxidanter</h3>
-                    <p class="text-sm text-stone-600">
-                        Lutein, zeaxanthin og beta-caroten beskytter øjne og celler. Reducerer risiko for kroniske sygdomme.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">🌾</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Fibre</h3>
-                    <p class="text-sm text-stone-600">
-                        Højt fiberindhold fremmer mæthedsfølelse, støtter fordøjelsen og tarmsundheden.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-sky-50 to-sky-100 p-6 rounded-xl" data-animate>
-                    <div class="text-4xl mb-3">🦴</div>
-                    <h3 class="font-sans text-lg font-bold mb-2 text-stone-900">Calcium</h3>
-                    <p class="text-sm text-stone-600">
-                        Grønkål og broccoli indeholder calcium i en form, der optages godt. Vigtigt for knogler og tænder.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Types of Greens -->
-    <section class="py-24 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Forskellige Typer Bladgrønt
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl shadow-lg border-l-4 border-green-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🥬</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Grønkål</h3>
-                                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">TOP NÆRINGSTÆTHED</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Den næringsmæssige champion.</strong> Ekstremt højt indhold af K-vitamin, calcium, jern og antioxidanter.
-                                Perfekt i smoothies, chips eller sauteret.
-                            </p>
-                            <p class="text-xs text-stone-500">Sæson: Oktober-marts (bedst efter frost)</p>
-                        </div>
+<!-- Seasonality Section -->
+<section class="py-24 bg-stone-900 text-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-4">
+                <h3 class="text-3xl font-display font-light text-white mb-6">Sæson & Tilgængelighed</h3>
+                <p class="text-stone-400 mb-6 font-light">
+                    Danmark er et kål-land. Grønkål og spidskål trives i vores kølige klima. Spinat og salater er bedst
+                    forår og efterår.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-cb-green-dark flex items-center justify-center text-xl">❄️
                     </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-xl shadow-lg border-l-4 border-emerald-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🍃</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Spinat</h3>
-                                <span class="bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold">ALSIDIG</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Den alsidige klassiker.</strong> Rig på folat, jern og magnesium.
-                                Perfekt rå i salater eller tilberedt i varme retter. Mild smag der passer alle.
-                            </p>
-                            <p class="text-xs text-stone-500">Sæson: Maj-oktober (dansk) eller året rundt (import)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-lime-50 to-green-50 p-6 rounded-xl shadow-lg border-l-4 border-lime-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🥗</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Salat (Iceberg, Romain, Ruccola)</h3>
-                                <span class="bg-lime-600 text-white px-3 py-1 rounded-full text-xs font-bold">LET & FRISK</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Den let fordøjelige.</strong> Lavere næringstæthed end grønkål og spinat, men høj vandindhold.
-                                Perfekt som base i salater. <strong>Ruccola tilføjer pebret smag.</strong>
-                            </p>
-                            <p class="text-xs text-stone-500">Sæson: Maj-oktober (dansk væksthus året rundt)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-xl shadow-lg border-l-4 border-cyan-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🥦</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Kål (Hvidkål, Spidskål, Rosenkål)</h3>
-                                <span class="bg-cyan-600 text-white px-3 py-1 rounded-full text-xs font-bold">SUND & MÆTTENDE</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Den robuste.</strong> Højt fiberindhold og C-vitamin. Holder sig længe og er billig.
-                                Fremragende i coleslaw, supper eller fermenteret som sauerkraut.
-                            </p>
-                            <p class="text-xs text-stone-500">Sæson: September-marts (kan opbevares hele vinteren)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-xl shadow-lg border-l-4 border-teal-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🌿</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Urter (Persille, Kørvel, Dild)</h3>
-                                <span class="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold">SMAG & NÆRING</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>De smag-boostende.</strong> Urter er mere næringsrige end mange tror. Persille er rig på K-vitamin.
-                                Brug generøst som topping eller i salater.
-                            </p>
-                            <p class="text-xs text-stone-500">Sæson: Maj-september (dansk) eller året rundt (væksthus)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Buying Guide -->
-    <section id="kob" class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Indkøbsguide
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🇩🇰</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Vælg Dansk & Sæsonbetonet</h3>
-                            <p class="text-stone-700 font-sans">
-                                Danmark producerer fremragende bladgrønt, især grønkål, spinat og salat.
-                                <strong>Dansk grønkål i sæsonen (oktober-marts)</strong> er billig, frisk og har lavt CO₂-aftryk.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🌱</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Økologisk Ved Bladgrønt</h3>
-                            <p class="text-stone-700 font-sans">
-                                Bladgrønt spises ofte råt og har stor overfladeareal, hvilket betyder <strong>højere risiko for pesticidrester</strong>.
-                                Vælg økologisk, især ved spinat og salat.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">👀</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Friskhedstjek</h3>
-                            <p class="text-stone-700 font-sans">
-                                Vælg bladgrønt med <strong>sprøde, levende blade uden gule pletter eller visnhed</strong>.
-                                Undgå slimet eller brunlig bladgrønt. Lugt det - det skal dufte friskt, ikke surt.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">❄️</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Overvej Frosset</h3>
-                            <p class="text-stone-700 font-sans">
-                                <strong>Frosset spinat og grønkål er fremragende valg.</strong> Fryses umiddelbart efter høst, bevarer næringsstoffer,
-                                reducerer madspild og er billigere. Perfekt til smoothies og varme retter.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-purple-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">💧</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Korrekt Opbevaring</h3>
-                            <p class="text-stone-700 font-sans">
-                                Opbevar bladgrønt i <strong>køleskabet i perforerede poser eller papirhåndklæder</strong> for at opretholde fugt.
-                                Spis inden for 3-5 dage. Vask kun lige før forbrug for at forlænge holdbarheden.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-teal-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🥗</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Blandinger & Variation</h3>
-                            <p class="text-stone-700 font-sans">
-                                <strong>Variér bladgrønt for at få forskellige næringsstoffer.</strong>
-                                Kombiner spinat (jern), grønkål (K-vitamin), salat (friskhed) og urter (smag) i salater og smoothies.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Calculator -->
-    <section id="kalkulator" class="py-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
-        <div class="mx-auto max-w-4xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Beregn Dit CO₂-Besparelser
-            </h2>
-
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl" data-animate>
-                <div class="space-y-8">
-                    <!-- Greens Amount -->
                     <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Månedligt forbrug af bladgrønt (kg)
-                        </label>
-                        <input type="range" id="greensAmount" min="5" max="100" value="20" step="5"
-                               class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-600">
-                        <div class="flex justify-between mt-2">
-                            <span class="text-sm text-stone-600">5 kg</span>
-                            <span class="text-lg font-bold text-green-600" id="greensAmountDisplay">20 kg</span>
-                            <span class="text-sm text-stone-600">100 kg</span>
+                        <div class="text-sm font-bold uppercase tracking-wider text-cb-green-medium">Vinterhelten</div>
+                        <div class="text-lg">Grønkål (Okt-Mar)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-8">
+                <!-- Linear Seasonality Chart -->
+                <div class="relative pt-8 pb-4">
+                    <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-500 mb-4">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Maj</span><span>Jun</span>
+                        <span>Jul</span><span>Aug</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Dec</span>
+                    </div>
+
+                    <!-- Season Bar: Grønkål -->
+                    <div class="relative h-2 bg-stone-800 rounded-full overflow-hidden mb-6">
+                        <div
+                            class="absolute inset-y-0 left-0 w-[25%] bg-gradient-to-r from-cb-green-dark via-cb-green-medium to-cb-green-dark opacity-80">
+                        </div>
+                        <div
+                            class="absolute inset-y-0 right-0 w-[25%] bg-gradient-to-r from-cb-green-dark via-cb-green-medium to-cb-green-dark opacity-80">
                         </div>
                     </div>
 
-                    <!-- Replacement Type -->
-                    <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Erstatter:
-                        </label>
-                        <select id="replacementType"
-                                class="w-full p-4 border-2 border-stone-200 rounded-lg font-sans text-stone-700 cursor-pointer hover:border-green-600 transition-colors">
-                            <option value="60">Oksekød (60 kg CO₂e/kg)</option>
-                            <option value="24">Lammekød (24 kg CO₂e/kg)</option>
-                            <option value="12">Svinekød (12 kg CO₂e/kg)</option>
-                            <option value="6.9">Kylling (6.9 kg CO₂e/kg)</option>
-                            <option value="4">Ris (4 kg CO₂e/kg)</option>
-                            <option value="0.9">Brød (0.9 kg CO₂e/kg)</option>
-                            <option value="0.3">Rodfrugter (0.3 kg CO₂e/kg)</option>
-                        </select>
+                    <!-- Season Bar: Spinat (Friland) -->
+                    <div class="relative h-2 bg-stone-800 rounded-full overflow-hidden">
+                        <div
+                            class="absolute inset-y-0 left-[33%] w-[50%] bg-gradient-to-r from-cb-green-dark via-cb-green-medium to-cb-green-dark opacity-60">
+                        </div>
                     </div>
 
-                    <!-- Results -->
-                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl border-2 border-green-200">
-                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">
-                            Månedlige Besparelser
-                        </h3>
-
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">CO₂-Besparelse</div>
-                                <div class="text-5xl font-bold text-green-600 mb-2">
-                                    <span id="co2Savings">1,196</span>
-                                </div>
-                                <div class="text-sm text-stone-600">kg CO₂e</div>
-                            </div>
-
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">Svarer Til</div>
-                                <div class="text-5xl font-bold text-blue-600 mb-2">
-                                    <span id="kmDriving">5,980</span>
-                                </div>
-                                <div class="text-sm text-stone-600">km bilkørsel</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 p-6 bg-white rounded-xl">
-                            <p class="text-sm text-stone-600 text-center">
-                                <strong class="text-green-700">🌍 Årlig besparelse:</strong>
-                                <span id="annualSavings" class="text-2xl font-bold text-green-600">14,352</span> kg CO₂e
-                            </p>
-                        </div>
+                    <!-- Legend -->
+                    <div class="flex justify-between mt-4 text-xs text-stone-400 font-light">
+                        <span>Grønkål (Dansk)</span>
+                        <span>Spinat (Dansk Friland)</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Data Sources -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">Datakilder</h3>
-            <div class="bg-stone-50 p-6 rounded-xl">
-                <ul class="space-y-2 text-sm text-stone-600">
-                    <li>• <strong>CONCITO Climate Database v2.0 (2024)</strong> - Klimaaftryk for danske fødevarer</li>
-                    <li>• <strong>Poore & Nemecek (2018), Science</strong> - Global fødevareproduktionens miljøpåvirkning</li>
-                    <li>• <strong>Our World in Data (2024)</strong> - Klimaaftryk for forskellige fødevarer</li>
-                    <li>• <strong>Fødevarestyrelsen (2024)</strong> - Ernæringsdata og anbefalinger</li>
-                    <li>• <strong>USDA FoodData Central</strong> - Næringsindhold i bladgrøntsager</li>
-                </ul>
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Køkkenet</h2>
+            <p class="text-stone-500 max-w-2xl mx-auto">
+                Fra sprøde salater til dybe, varme retter. Bladgrønt kan det hele.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">
+                        Grønkålschips</div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Sprødt & Råt</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Masseret grønkålssalat eller ovnbagte chips. Bevarer tekstur og farve.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Spinat
+                        Polenta</div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Sauteret & Dampet</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Spinat falder hurtigt sammen. Vend i pasta, saucer eller som tilbehør med hvidløg.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Kål Wraps
+                    </div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Fermenteret</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Kimchi og sauerkraut. Forlænger holdbarheden og tilføjer kompleksitet og probiotika.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white py-12">
-        <div class="mx-auto max-w-7xl px-6 text-center">
-            <p class="font-display text-2xl font-bold tracking-brand-wide mb-4" style="color: var(--brand-orange);">VIDENSBANK</p>
-            <p class="text-stone-400 font-sans">&copy; 2024 Vidensbank. Alle rettigheder forbeholdes.</p>
+<!-- Calculator Section (Adapted) -->
+<section class="py-24 bg-cb-taupe-light">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Din Besparelse</h2>
+            <p class="text-stone-600">Se effekten af at bruge mere bladgrønt</p>
         </div>
-    </footer>
 
-    <script>
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <div class="bg-white p-8 shadow-sm border border-stone-100">
+            <div class="mb-6">
+                <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                    Kg bladgrønt pr. måned
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="greensAmount" min="5" max="200" value="20" step="5"
+                        class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-green-medium"
+                        oninput="calculateGreensSavings()">
+                    <span id="greensAmountDisplay"
+                        class="font-display text-2xl text-cb-green-medium min-w-[80px]">20</span>
+                </div>
+            </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.classList.add('animate-fade-in-up');
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                        Erstatning for
+                    </label>
+                    <select id="replacementType"
+                        class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-green-medium"
+                        onchange="calculateGreensSavings()">
+                        <option value="beef">Oksekød (60 kg CO₂e/kg)</option>
+                        <option value="lamb">Lammekød (24 kg CO₂e/kg)</option>
+                        <option value="pork">Svinekød (12 kg CO₂e/kg)</option>
+                        <option value="chicken">Kylling (6.9 kg CO₂e/kg)</option>
+                        <option value="rice">Ris (4 kg CO₂e/kg)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                        Type
+                    </label>
+                    <select id="greensType"
+                        class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-green-medium"
+                        onchange="calculateGreensSavings()">
+                        <option value="greens">Generelt Bladgrønt (0.2 kg CO₂e/kg)</option>
+                        <option value="hothouse">Væksthus (0.5 kg CO₂e/kg)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="greensSavingsResult" class="border-t border-stone-100 pt-8">
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Månedlig besparelse
+                        </div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="savedGreensEmissions">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årlig besparelse
+                        </div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="yearlyGreensImpact">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+                        </div>
+                    </div>
+                </div>
+                <p id="championGreensMessage" class="text-center text-sm text-cb-green-dark mt-6 font-medium"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Radar Chart
+    const ctx = document.getElementById('greensRadarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
+            datasets: [{
+                label: 'Bladgrønt',
+                data: [2, 5, 2, 5, 90], // Extremely low impact
+                backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                borderColor: 'rgba(34, 197, 94, 1)',
+                pointBackgroundColor: 'rgba(34, 197, 94, 1)',
+                borderWidth: 2
+            }, {
+                label: 'Gennemsnit (Kød)',
+                data: [70, 60, 80, 60, 30],
+                backgroundColor: 'rgba(168, 162, 158, 0.2)',
+                borderColor: 'rgba(168, 162, 158, 1)',
+                pointBackgroundColor: 'rgba(168, 162, 158, 1)',
+                borderWidth: 1,
+                borderDash: [5, 5]
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { display: false },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-        // Climate Chart
-        const ctx = document.getElementById('climateChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Oksekød', 'Lammekød', 'Svinekød', 'Ris', 'Rodfrugter', 'Bladgrønt'],
-                datasets: [{
-                    label: 'kg CO₂e per kg',
-                    data: [60, 24, 12, 4, 0.3, 0.2],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.8)',
-                        'rgba(251, 146, 60, 0.8)',
-                        'rgba(251, 191, 36, 0.8)',
-                        'rgba(251, 191, 36, 0.6)',
-                        'rgba(132, 204, 22, 0.6)',
-                        'rgba(34, 197, 94, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgb(239, 68, 68)',
-                        'rgb(251, 146, 60)',
-                        'rgb(251, 191, 36)',
-                        'rgb(251, 191, 36)',
-                        'rgb(132, 204, 22)',
-                        'rgb(34, 197, 94)'
-                    ],
-                    borderWidth: 2
-                }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.y + ' kg CO₂e per kg';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'kg CO₂e per kg produkt',
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
+            plugins: {
+                legend: { display: false }
             }
-        });
-
-        // Calculator
-        const GREENS_CO2 = 0.2; // kg CO₂e per kg
-        const CAR_CO2_PER_KM = 0.2; // Average car emissions
-
-        const greensAmountSlider = document.getElementById('greensAmount');
-        const greensAmountDisplay = document.getElementById('greensAmountDisplay');
-        const replacementTypeSelect = document.getElementById('replacementType');
-        const co2SavingsDisplay = document.getElementById('co2Savings');
-        const kmDrivingDisplay = document.getElementById('kmDriving');
-        const annualSavingsDisplay = document.getElementById('annualSavings');
-
-        function updateCalculations() {
-            const greensAmount = parseInt(greensAmountSlider.value);
-            const replacementCO2 = parseFloat(replacementTypeSelect.value);
-
-            // Update display
-            greensAmountDisplay.textContent = greensAmount + ' kg';
-
-            // Calculate savings
-            const greensEmissions = greensAmount * GREENS_CO2;
-            const replacementEmissions = greensAmount * replacementCO2;
-            const monthlySavings = replacementEmissions - greensEmissions;
-            const annualSavings = monthlySavings * 12;
-            const kmEquivalent = monthlySavings / CAR_CO2_PER_KM;
-
-            // Update displays
-            co2SavingsDisplay.textContent = Math.round(monthlySavings).toLocaleString('da-DK');
-            kmDrivingDisplay.textContent = Math.round(kmEquivalent).toLocaleString('da-DK');
-            annualSavingsDisplay.textContent = Math.round(annualSavings).toLocaleString('da-DK');
         }
+    });
 
-        greensAmountSlider.addEventListener('input', updateCalculations);
-        replacementTypeSelect.addEventListener('change', updateCalculations);
+    // Calculator Logic
+    const greensAmountSlider = document.getElementById('greensAmount');
+    const greensAmountDisplay = document.getElementById('greensAmountDisplay');
+    const replacementTypeSelect = document.getElementById('replacementType');
+    const greensTypeSelect = document.getElementById('greensType');
+    const savedGreensEmissionsDisplay = document.getElementById('savedGreensEmissions');
+    const yearlyGreensImpactDisplay = document.getElementById('yearlyGreensImpact');
+    const championGreensMessageDisplay = document.getElementById('championGreensMessage');
 
-        // Initial calculation
-        updateCalculations();
-    </script>
+    const REPLACEMENT_CO2 = {
+        beef: 60,
+        lamb: 24,
+        pork: 12,
+        chicken: 6.9,
+        rice: 4
+    };
 
-</body>
-</html>
+    const GREENS_CO2 = {
+        greens: 0.2,
+        hothouse: 0.5
+    };
+
+    function calculateGreensSavings() {
+        const amount = parseInt(greensAmountSlider.value);
+        const replacement = replacementTypeSelect.value;
+        const type = greensTypeSelect.value;
+
+        greensAmountDisplay.textContent = amount;
+
+        const replacementCO2PerKg = REPLACEMENT_CO2[replacement];
+        const greensCO2PerKg = GREENS_CO2[type];
+
+        const currentEmissions = amount * replacementCO2PerKg;
+        const greensEmissions = amount * greensCO2PerKg;
+        const savedEmissions = currentEmissions - greensEmissions;
+        const yearlySavings = savedEmissions * 12;
+
+        savedGreensEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+        yearlyGreensImpactDisplay.textContent = Math.round(yearlySavings).toLocaleString();
+
+        if (savedEmissions > 0) {
+            championGreensMessageDisplay.textContent = `Du sparer miljøet for ${Math.round(savedEmissions)} kg CO₂e hver måned!`;
+            championGreensMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
+        } else {
+            championGreensMessageDisplay.textContent = "Ingen besparelse.";
+            championGreensMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
+        }
+    }
+
+    // Init
+    calculateGreensSavings();
+</script>
+{% endblock %}

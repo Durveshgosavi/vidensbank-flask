@@ -3,766 +3,301 @@
 {% block title %}Skaldyr – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
 
 {% block content %}
-
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes wave {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.6s ease-out forwards;
-  }
-
-  .animate-wave {
-    animation: wave 2s ease-in-out infinite;
-  }
-
-  .initial-hidden {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-</style>
-
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-blue-50 via-white to-cyan-50 pt-32 pb-20 overflow-hidden">
-  <div class="mx-auto max-w-7xl px-6 relative z-10">
-    <div class="text-center mb-12">
-      <div class="inline-block mb-6 px-6 py-2 bg-cyan-100 border-2 border-cyan-300 rounded-full">
-        <span class="font-sans text-xs font-bold tracking-widest uppercase text-cyan-800">Klimamester</span>
-      </div>
-      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
-        Skaldyr
-      </h1>
-      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
-        Muslinger, østers og rejer – havets laveste klimaaftryk. Med minimal miljøpåvirkning
-        og høj næringsværdi er skaldyr den mest bæredygtige animalske proteinkilde.
-      </p>
-    </div>
-
-    <!-- Hero Image -->
-    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
-      <img src="{{ url_for('static', filename='images/hot_dish_served.jpg') }}"
-           alt="Friske skaldyr i professionelt køkken"
-           class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-      <div class="absolute bottom-8 left-8 text-white">
-        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
-        <p class="text-4xl font-display font-bold">1.0-2.0 kg CO₂e pr. kg skaldyr</p>
-      </div>
-      <div class="absolute top-8 right-8 bg-cyan-500 text-white px-6 py-3 rounded-full font-display font-bold text-xl animate-wave">
-        🦐 97% LAVERE END OKSEKØD
-      </div>
-    </div>
-
-    <!-- Quick Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-cyan-500 text-center initial-hidden animate-fade-in-up stagger-1">
-        <div class="text-3xl mb-2">🦐</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">1-2 kg</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. kg</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-2">
-        <div class="text-3xl mb-2">🌊</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">Ingen</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">Foder nødvendig</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-3">
-        <div class="text-3xl mb-2">💧</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">Minimalt</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">Vandforbrug</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500 text-center initial-hidden animate-fade-in-up stagger-4">
-        <div class="text-3xl mb-2">💪</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">15-24g</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">Protein pr. 100g</div>
-      </div>
-    </div>
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="{{ url_for('static', filename='images/hot_dish_served.jpg') }}" alt="Skaldyr"
+      class="w-full h-full object-cover opacity-90">
+    <div class="absolute inset-0 bg-black/30"></div>
   </div>
-</section>
 
-<!-- Climate Impact Section -->
+  <div class="relative z-10 text-center text-white px-6">
+    <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+    <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Skaldyr</h1>
+    <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+      Havets klimadukse. Muslinger og østers tilbyder tårnhøj smag med minimalt aftryk.
+    </p>
+  </div>
+</header>
+
+<!-- The Story: Elaborative Content -->
 <section class="py-24 bg-white">
-  <div class="mx-auto max-w-5xl px-6">
-    <div class="text-center mb-16">
-      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Klimadata</span>
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Klimaaftryk i Kontekst
+  <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="md:col-span-4">
+      <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
+      <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
+        Naturens Vandrensere
       </h2>
-      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-        Med <strong class="text-cyan-600">1.0-2.0 kg CO₂e pr. kg</strong> er skaldyr den absolutte klimamester blandt animalske proteiner.
-        Muslinger og østers kan endda være <strong class="text-green-600">CO₂-negative</strong> da de optager CO₂ ved skalproduktion.
+      <div class="h-1 w-20 bg-cb-blue-medium mb-8"></div>
+    </div>
+    <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
+      <p class="lead text-xl text-stone-800 font-normal mb-6">
+        Skaldyr, især muslinger og østers, er unikke i fødevareverdenen. De kræver ingen foder, intet ferskvand og
+        optager faktisk CO₂ til deres skaller.
       </p>
-    </div>
-
-    <!-- Comparison Chart -->
-    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
-      <canvas id="shellfishComparisonChart" class="w-full" style="max-height: 500px;"></canvas>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded">
-        <h3 class="font-sans font-bold text-stone-900 mb-2">✅ Laveste klimaaftryk</h3>
-        <p class="text-sm text-stone-700">
-          Muslinger (0.5 kg CO₂e/kg) og østers (1.0 kg) er blandt de mest klimavenlige fødevarer overhovedet –
-          kun overgået af nogle grøntsager.
-        </p>
-      </div>
-
-      <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded">
-        <h3 class="font-sans font-bold text-stone-900 mb-2">🌊 Ingen foder</h3>
-        <p class="text-sm text-stone-700">
-          Muslinger og østers filtrerer naturligt føde fra havvandet – nul foderbehov = nul foder-relateret CO₂e.
-        </p>
-      </div>
-
-      <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
-        <h3 class="font-sans font-bold text-stone-900 mb-2">💧 Vandvenligt</h3>
-        <p class="text-sm text-stone-700">
-          Bruger havvand – ingen ferskvandsforbrug. Muslinger renser endda vandet ved at filtrere plankton.
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-12 bg-gradient-to-r from-cyan-50 to-blue-50 p-8 rounded-xl border-2 border-cyan-300">
-      <div class="flex items-center gap-4 mb-4">
-        <span class="text-6xl">🏆</span>
-        <div>
-          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Klimamester</h3>
-          <p class="text-sm text-stone-500">Den mest bæredygtige animalske proteinkilde</p>
-        </div>
-      </div>
-      <p class="text-stone-700 font-sans">
-        En 200g muslinge-portion producerer kun <strong class="text-cyan-700">0.1 kg CO₂e</strong> –
-        sammenlignet med 200g oksekød ved 12 kg CO₂e. Det er en <strong class="text-cyan-700">120x forskel</strong>.
-        Skaldyr er det perfekte proteinalternativ for klimabevidste kantiner.
+      <p class="mb-6">
+        Med et klimaaftryk helt ned til 0.5 kg CO₂e pr. kg er blåmuslinger en af de mest bæredygtige animalske
+        proteinkilder, der findes. De lever af at filtrere havvandet for alger, hvilket aktivt forbedrer vandkvaliteten
+        i fjordene.
+      </p>
+      <p>
+        Rejer har et højere aftryk, især hvis de er fra tropisk opdræt (mangrove-problematik) eller bundtrawlet. Derfor
+        er valget af art og oprindelse afgørende for bæredygtigheden.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Environmental Impact -->
+<!-- Environmental Profile (Radar Chart) -->
 <section class="py-24 bg-stone-50">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Miljøpåvirkning
-      </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil (Muslinger)</h3>
+        <p class="text-stone-600 mb-8 font-light">
+          Muslinger scorer exceptionelt lavt på alle parametre. De har negativ eutrofiering (de renser vandet), minimalt
+          arealforbrug (lineopdræt) og meget lavt CO₂-aftryk.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="p-4 bg-white border border-stone-100 shadow-sm">
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+            <div class="text-3xl font-display text-stone-900">0.5 <span
+                class="text-sm font-sans text-stone-500">kg/kg</span></div>
+          </div>
+          <div class="p-4 bg-white border border-stone-100 shadow-sm">
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Vandrensning</div>
+            <div class="text-3xl font-display text-stone-900">50L <span class="text-sm font-sans text-stone-500">pr.
+                dag</span></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-sm text-stone-500">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-cb-blue-medium"></span> Muslinger
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-stone-300"></span> Gennemsnit (Kød)
+          </div>
+        </div>
+      </div>
+
+      <div class="relative aspect-square max-w-md mx-auto">
+        <canvas id="shellfishRadarChart"></canvas>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Water Quality -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
-        <div class="text-5xl mb-4">💧</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandrensning</h3>
-        <div class="text-4xl font-bold text-blue-600 mb-4">Positivt</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Muslinger og østers er naturlige vandfiltre – en musling filtrerer op til 50 liter vand dagligt.
-          Fjerner alger, bakterier og næringsstoffer, hvilket forbedrer vandkvalitet.
+<!-- Seasonality Section -->
+<section class="py-24 bg-stone-900 text-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-4">
+        <h3 class="text-3xl font-display font-light text-white mb-6">Sæson & Tilgængelighed</h3>
+        <p class="text-stone-400 mb-6 font-light">
+          Muslinger er bedst i de kolde måneder ("måneder med R"). Om sommeren gyder de og er mindre kødfulde.
         </p>
-        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
-          ℹ️ Muslingedyrkning kan faktisk forbedre havmiljøet
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-cb-blue-dark flex items-center justify-center text-xl">🌊</div>
+          <div>
+            <div class="text-sm font-bold uppercase tracking-wider text-cb-blue-medium">Højsæson</div>
+            <div class="text-lg">Sep - Apr</div>
+          </div>
         </div>
       </div>
 
-      <!-- Carbon Sequestration -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
-        <div class="text-5xl mb-4">🌱</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">CO₂-Binding</h3>
-        <div class="text-4xl font-bold text-green-600 mb-4">Negativt!</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Muslinger og østers opbygger skaller af kalk (CaCO₃) ved at optage CO₂ fra havvandet.
-          Visse studier viser at dyrkede muslinger kan være <strong>CO₂-negative</strong>.
-        </p>
-        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
-          ℹ️ Eneste animalske fødevare der potentielt fjerner CO₂
-        </div>
-      </div>
+      <div class="md:col-span-8">
+        <!-- Linear Seasonality Chart -->
+        <div class="relative pt-8 pb-4">
+          <div class="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-500 mb-4">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Maj</span><span>Jun</span>
+            <span>Jul</span><span>Aug</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Dec</span>
+          </div>
 
-      <!-- Habitat Creation -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-cyan-500">
-        <div class="text-5xl mb-4">🐠</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Habitat-Skabelse</h3>
-        <div class="text-4xl font-bold text-cyan-600 mb-4">Biodiversitet</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Muslingebånd og østersrev fungerer som habitater for småfisk, krabber og andre marine arter.
-          Øger biodiversiteten i havområder.
-        </p>
-        <div class="text-sm text-stone-500 bg-cyan-50 p-3 rounded">
-          ℹ️ Bæredygtig dyrkning støtter økosystemer
+          <!-- Season Bar -->
+          <div class="relative h-2 bg-stone-800 rounded-full overflow-hidden">
+            <!-- Peak Season (Sept-Apr) -->
+            <div
+              class="absolute inset-y-0 left-0 w-[33%] bg-gradient-to-r from-cb-blue-dark via-cb-blue-medium to-cb-blue-dark opacity-80">
+            </div>
+            <div
+              class="absolute inset-y-0 right-0 w-[33%] bg-gradient-to-r from-cb-blue-dark via-cb-blue-medium to-cb-blue-dark opacity-80">
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="flex justify-between mt-4 text-xs text-stone-400 font-light">
+            <span>Blåmuslinger (Dansk)</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Shellfish Types Comparison -->
+<!-- Culinary Profile -->
 <section class="py-24 bg-white">
   <div class="mx-auto max-w-7xl px-6">
     <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Skaldyr-Typer & Klimavariation
-      </h2>
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Køkkenet</h2>
+      <p class="text-stone-500 max-w-2xl mx-auto">
+        Skaldyr tilføjer umami og elegance. De er hurtige at tilberede og fungerer perfekt som smagsgivere.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 mb-12">
-      <!-- Mussels -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-500">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="text-6xl">🦪</div>
-          <div>
-            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Muslinger</h3>
-            <p class="text-sm text-stone-500">0.5 kg CO₂e/kg</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <!-- Placeholder image, ideally specific to mussels -->
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Dampede Muslinger
           </div>
         </div>
-
-        <div class="space-y-4 mb-6">
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Laveste klimaaftryk</strong>
-              <p class="text-sm text-stone-600">CO₂-negative pga. kalkoptagelse</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Vandrensende</strong>
-              <p class="text-sm text-stone-600">Filtrerer 50L vand/dag – forbedrer miljø</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Høj næringsværdi</strong>
-              <p class="text-sm text-stone-600">Jern, B12, omega-3, zink</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-green-50 p-4 rounded border-2 border-green-200">
-          <p class="text-xs font-bold text-green-700 uppercase mb-2">Anbefaling:</p>
-          <p class="text-sm text-stone-600">Bedste klima- og miljøvalg – prioriter MSC-certificeret</p>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Dampet</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Klassisk Moules Marinières. Hvidvin, urter og fløde. Hurtigt, billigt og luksuriøst.
+        </p>
       </div>
 
-      <!-- Oysters -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="text-6xl">🦪</div>
-          <div>
-            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Østers</h3>
-            <p class="text-sm text-stone-500">1.0 kg CO₂e/kg</p>
-          </div>
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Skaldyrsbisque</div>
         </div>
-
-        <div class="space-y-4 mb-6">
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Ekstremt lavt CO₂e</strong>
-              <p class="text-sm text-stone-600">Ingen foder, naturlig filtrering</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Habitat-skaber</strong>
-              <p class="text-sm text-stone-600">Østersrev støtter biodiversitet</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Rig på zink</strong>
-              <p class="text-sm text-stone-600">Immunforsvar og hormonfunktion</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-blue-50 p-4 rounded border-2 border-blue-200">
-          <p class="text-xs font-bold text-blue-700 uppercase mb-2">Godt valg:</p>
-          <p class="text-sm text-stone-600">Luksus-ingrediens med minimal miljøpåvirkning</p>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Bisque & Fond</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Skallerne giver intens smag. Udnyt rejeskaller og muslingevand til saucer og supper.
+        </p>
       </div>
 
-      <!-- Shrimp -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-500">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="text-6xl">🦐</div>
-          <div>
-            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Rejer</h3>
-            <p class="text-sm text-stone-500">1.5-5 kg CO₂e/kg</p>
-          </div>
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Røgede Rejer</div>
         </div>
-
-        <div class="space-y-4 mb-6">
-          <div class="flex items-start gap-3">
-            <span class="text-amber-500 text-xl">⚠️</span>
-            <div>
-              <strong class="text-stone-900">Varierende klimaaftryk</strong>
-              <p class="text-sm text-stone-600">Vildtfanget: 1.5 kg, opdrættet: 3-5 kg CO₂e/kg</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-red-500 text-xl">❌</span>
-            <div>
-              <strong class="text-stone-900">Opdræt kan være problematisk</strong>
-              <p class="text-sm text-stone-600">Nogle opdræt ødelægger mangrover og bruger antibiotika</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-green-500 text-xl">✅</span>
-            <div>
-              <strong class="text-stone-900">Vildtfanget kan være ok</strong>
-              <p class="text-sm text-stone-600">MSC-certificeret nordisk rejer er bæredygtige</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-orange-50 p-4 rounded border-2 border-orange-200">
-          <p class="text-xs font-bold text-orange-700 uppercase mb-2">Vigtigt:</p>
-          <p class="text-sm text-stone-600">Vælg MSC eller ASC-certificeret – undgå tropisk opdræt</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sustainability Focus -->
-    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl shadow-lg border-2 border-green-300">
-      <div class="flex items-start gap-6">
-        <span class="text-7xl">🌊</span>
-        <div class="flex-1">
-          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Bæredygtig Skaldyr-Dyrkning</h3>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <strong class="text-stone-900">MSC-Certificeret (Vildtfanget):</strong>
-              <ul class="text-sm text-stone-600 mt-2 space-y-1">
-                <li>✓ Bæredygtig bestandsforvaltning</li>
-                <li>✓ Minimér bifangst</li>
-                <li>✓ Beskytter marine økosystemer</li>
-                <li>✓ Transparent sporbarhed</li>
-              </ul>
-            </div>
-            <div>
-              <strong class="text-stone-900">ASC-Certificeret (Opdrættet):</strong>
-              <ul class="text-sm text-stone-600 mt-2 space-y-1">
-                <li>✓ Ansvarlig foderforvaltn ing</li>
-                <li>✓ Minimér antibiotika</li>
-                <li>✓ Beskytter vilde bestande</li>
-                <li>✓ Ingen mangrove-ødelæggelse</li>
-              </ul>
-            </div>
-          </div>
-          <div class="mt-6 bg-white p-4 rounded border-2 border-green-200">
-            <p class="text-sm text-stone-700">
-              <strong class="text-green-700">Kantineanbefaling:</strong> Prioriter muslinger og østers (laveste CO₂e + miljøgevinster).
-              For rejer: Vælg MSC-certificeret nordiske eller ASC-certificeret opdræt. Undgå tropisk opdræt uden certificering.
-            </p>
-          </div>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Røget & Grillet</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Grillede jomfruhummer eller røgede rejer. Røg og varme fremhæver sødmen i kødet.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Nutritional Benefits -->
-<section class="py-24 bg-stone-50">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Næringsværdi
-      </h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Protein -->
-      <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-2 border-blue-200">
-        <div class="text-5xl mb-4">💪</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Protein</h3>
-        <p class="text-stone-700 font-sans mb-4">
-          <strong class="text-blue-600">15-24g pr. 100g</strong> – komplet protein med alle essentielle aminosyrer.
-          Rejer: 24g, muslinger: 18g, østers: 15g. Lavt fedtindhold.
-        </p>
-        <div class="text-xs bg-blue-100 p-3 rounded">
-          <strong class="text-blue-800">Mager protein:</strong> Perfekt til fedtfattig kost
-        </div>
-      </div>
-
-      <!-- Iron & B12 -->
-      <div class="bg-gradient-to-br from-red-50 to-white p-8 rounded-lg border-2 border-red-200">
-        <div class="text-5xl mb-4">🩸</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Jern & B12</h3>
-        <p class="text-stone-700 font-sans mb-4">
-          Muslinger indeholder <strong class="text-red-600">28mg jern pr. 100g</strong> (350% af dagsbehov!)
-          og høje niveauer af B12 – essentielt for blod og energi.
-        </p>
-        <div class="text-xs bg-red-100 p-3 rounded">
-          <strong class="text-red-800">For anæmiske:</strong> Bedste naturlige jernkilde
-        </div>
-      </div>
-
-      <!-- Omega-3 & Zinc -->
-      <div class="bg-gradient-to-br from-purple-50 to-white p-8 rounded-lg border-2 border-purple-200">
-        <div class="text-5xl mb-4">🧠</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Omega-3 & Zink</h3>
-        <p class="text-stone-700 font-sans mb-4">
-          Rig på <strong class="text-purple-600">EPA og DHA omega-3</strong> (hjerte/hjerne).
-          Østers har verdens højeste zinkindhold (78mg/100g – 700% dagsbehov).
-        </p>
-        <div class="text-xs bg-purple-100 p-3 rounded">
-          <strong class="text-purple-800">Zink:</strong> Immunforsvar, hormoner, sårheling
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Buying Guide -->
-<section class="py-24 bg-white">
-  <div class="mx-auto max-w-5xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Købeguide for Kantinen
-      </h2>
-    </div>
-
-    <div class="space-y-6">
-      <!-- Tip 1 -->
-      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">1️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Prioritér Muslinger & Østers</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Laveste klimaaftryk (0.5-1 kg CO₂e/kg) og faktisk miljøforbedrende.
-              Tilbyd muslingeretter 1-2 gange månedligt som klimavenligt alternativ til kød.
-            </p>
-            <div class="bg-green-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-green-800 uppercase">120x lavere CO₂e end oksekød</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 2 -->
-      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">2️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vælg MSC eller ASC-Certificeret</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              MSC (vildtfanget) garanterer bæredygtig fangst. ASC (opdrættet) sikrer ansvarlig produktion.
-              Dette er minimum-standard for skaldyr.
-            </p>
-            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-blue-800 uppercase">Verificeret bæredygtighed</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 3 -->
-      <div class="bg-gradient-to-r from-cyan-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-cyan-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">3️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Brug Som Kød-Substitut</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Erstatter oksekød, svinekød eller kylling med muslinger/rejer i pasta, salater og gryderetter.
-              En 200g muslingeportion sparer 11.9 kg CO₂e sammenlignet med oksekød.
-            </p>
-            <div class="bg-cyan-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-cyan-800 uppercase">Op til 98% klimabesparelse</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 4 -->
-      <div class="bg-gradient-to-r from-orange-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-orange-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">4️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Undgå Tropisk Opdræt</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Tropiske rejeopdræt (især Asien/Sydamerika) kan ødelægge mangrover og forurene.
-              Vælg nordiske rejer (Danmark, Norge, Grønland) eller ASC-certificeret.
-            </p>
-            <div class="bg-orange-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-orange-800 uppercase">Mangrove-beskyttelse er kritisk</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 5 -->
-      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">5️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Frosset vs. Frisk</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Frosne skaldyr har marginalt højere CO₂e (~10-15% mere) pga. frysning, men længere holdbarhed
-              reducerer madspild. For muslinger: Frisk når tilgængeligt. For rejer: Frosset er ok.
-            </p>
-            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-purple-800 uppercase">Balance mellem CO₂e og spild</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Interactive Calculator -->
-<section class="py-24 bg-gradient-to-br from-cyan-50 to-blue-50">
+<!-- Calculator Section (Adapted) -->
+<section class="py-24 bg-cb-taupe-light">
   <div class="mx-auto max-w-4xl px-6">
     <div class="text-center mb-12">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Beregn Klimabesparelsen
-      </h2>
-      <p class="font-sans text-lg text-stone-600">
-        Se hvor meget CO₂ kantinen kan spare ved at erstatte kød med skaldyr.
-      </p>
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Din Besparelse</h2>
+      <p class="text-stone-600">Se effekten af at skifte til skaldyr</p>
     </div>
 
-    <div class="bg-white p-10 rounded-2xl shadow-2xl">
-      <div class="mb-8">
-        <label class="block font-sans font-bold text-stone-900 mb-3">Månedlige portioner erstattet med skaldyr:</label>
-        <input type="range" id="shellfishMeals" min="20" max="500" value="100" step="20"
-               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cyan-600">
-        <div class="text-center mt-3">
-          <span id="shellfishMealsDisplay" class="text-4xl font-display font-bold text-stone-900">100</span>
-          <span class="text-xl text-stone-500 ml-2">portioner/måned</span>
+    <div class="bg-white p-8 shadow-sm border border-stone-100">
+      <div class="mb-6">
+        <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+          Antal portioner pr. måned
+        </label>
+        <div class="flex items-center gap-4">
+          <input type="range" id="shellfishMeals" min="20" max="500" value="100" step="20"
+            class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-blue-medium"
+            oninput="calculateShellfishSavings()">
+          <span id="shellfishMealsDisplay" class="font-display text-2xl text-cb-blue-medium min-w-[80px]">100</span>
         </div>
       </div>
 
-      <div class="mb-8">
-        <label class="block font-sans font-bold text-stone-900 mb-3">Hvilket protein erstattes:</label>
-        <select id="replacementProtein" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-cyan-500">
-          <option value="beef">Oksekød (60 kg CO₂e/kg)</option>
-          <option value="lamb">Lammekød (24 kg CO₂e/kg)</option>
-          <option value="pork">Svinekød (12 kg CO₂e/kg)</option>
-          <option value="chicken">Kylling (6.9 kg CO₂e/kg)</option>
-          <option value="salmon">Laks (11.9 kg CO₂e/kg)</option>
-        </select>
-      </div>
-
-      <div class="mb-8">
-        <label class="block font-sans font-bold text-stone-900 mb-3">Skaldyr-type:</label>
-        <select id="shellfishType" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-cyan-500">
-          <option value="mussels">Muslinger (0.5 kg CO₂e/kg)</option>
-          <option value="oysters">Østers (1.0 kg CO₂e/kg)</option>
-          <option value="shrimp">Rejer (1.5 kg CO₂e/kg)</option>
-        </select>
-      </div>
-
-      <div class="h-px bg-stone-200 my-8"></div>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-red-50 p-6 rounded-lg text-center">
-          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Hvis Fortsat Med Kød</div>
-          <div id="currentProteinEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">1,200</div>
-          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+            Erstatning for
+          </label>
+          <select id="replacementProtein"
+            class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-blue-medium"
+            onchange="calculateShellfishSavings()">
+            <option value="beef">Oksekød (60 kg CO₂e/kg)</option>
+            <option value="lamb">Lammekød (24 kg CO₂e/kg)</option>
+            <option value="pork">Svinekød (12 kg CO₂e/kg)</option>
+            <option value="chicken">Kylling (6.9 kg CO₂e/kg)</option>
+            <option value="salmon">Laks (11.9 kg CO₂e/kg)</option>
+          </select>
         </div>
-
-        <div class="bg-green-50 p-6 rounded-lg text-center">
-          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
-          <div id="savedShellfishEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">1,190</div>
-          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        <div>
+          <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+            Skaldyrstype
+          </label>
+          <select id="shellfishType"
+            class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-blue-medium"
+            onchange="calculateShellfishSavings()">
+            <option value="mussels">Muslinger (0.5 kg CO₂e/kg)</option>
+            <option value="oysters">Østers (1.0 kg CO₂e/kg)</option>
+            <option value="shrimp">Rejer (1.5 kg CO₂e/kg)</option>
+          </select>
         </div>
       </div>
 
-      <div class="mt-8 p-6 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg border-2 border-cyan-200">
-        <div class="flex items-center gap-3 mb-3">
-          <span class="text-3xl">🌍</span>
-          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
+      <div id="shellfishSavingsResult" class="border-t border-stone-100 pt-8">
+        <div class="grid grid-cols-2 gap-8 text-center">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Månedlig besparelse</div>
+            <div class="text-3xl font-display text-stone-900">
+              <span id="savedShellfishEmissions">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årlig besparelse</div>
+            <div class="text-3xl font-display text-stone-900">
+              <span id="yearlyShellfishImpact">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+            </div>
+          </div>
         </div>
-        <p id="yearlyShellfishImpact" class="text-stone-700 font-sans text-lg">
-          På et år sparer kantinen <strong class="text-cyan-700">14,280 kg CO₂e</strong> –
-          svarende til <strong class="text-cyan-700">2,975</strong> måltider med oksekød.
-        </p>
-      </div>
-
-      <div class="mt-6 bg-green-50 p-6 rounded-lg border-2 border-green-200">
-        <h4 class="font-sans font-bold text-stone-900 mb-3">🏆 Klimamester-Status:</h4>
-        <p class="text-sm text-stone-600" id="championShellfishMessage">
-          Ved at erstatte oksekød med muslinger 100 gange om måneden reducerer kantinen klimaaftryk
-          med 99.2% pr. portion. Dette er den mest effektive klimahandling kantinen kan tage.
-        </p>
+        <p id="championShellfishMessage" class="text-center text-sm text-cb-green-dark mt-6 font-medium"></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Data Sources -->
-<section class="py-16 bg-stone-100">
-  <div class="mx-auto max-w-5xl px-6">
-    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
-      Datakilder & Referencer
-    </h3>
-    <div class="grid md:grid-cols-2 gap-6 text-sm">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
-        <ul class="space-y-2 text-stone-600">
-          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
-          <li>• Poore & Nemecek, Science (2018)</li>
-          <li>• Our World in Data (2024)</li>
-        </ul>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-stone-900 mb-2">Bæredygtighed</h4>
-        <ul class="space-y-2 text-stone-600">
-          <li>• MSC – Marine Stewardship Council</li>
-          <li>• ASC – Aquaculture Stewardship Council</li>
-          <li>• FAO – Fisheries and Aquaculture (2024)</li>
-          <li>• Danmarks Fødevareinstitut</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Comparison Chart
-  const ctx = document.getElementById('shellfishComparisonChart');
+  // Radar Chart
+  const ctx = document.getElementById('shellfishRadarChart').getContext('2d');
   new Chart(ctx, {
-    type: 'bar',
+    type: 'radar',
     data: {
-      labels: ['Muslinger', 'Østers', 'Rejer', 'Bælgfrugter', 'Ris', 'Æg', 'Hvid Fisk', 'Kylling', 'Svinekød', 'Laks', 'Lammekød', 'Oksekød'],
+      labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
       datasets: [{
-        label: 'kg CO₂e pr. kg produkt',
-        data: [0.5, 1.0, 1.5, 2, 4, 4.8, 6, 6.9, 12, 11.9, 24, 60],
-        backgroundColor: [
-          'rgba(6, 182, 212, 0.9)',
-          'rgba(59, 130, 246, 0.9)',
-          'rgba(14, 165, 233, 0.8)',
-          'rgba(34, 197, 94, 0.8)',
-          'rgba(251, 146, 60, 0.8)',
-          'rgba(251, 191, 36, 0.8)',
-          'rgba(6, 182, 212, 0.8)',
-          'rgba(234, 179, 8, 0.8)',
-          'rgba(249, 115, 22, 0.8)',
-          'rgba(14, 165, 233, 0.8)',
-          'rgba(239, 68, 68, 0.8)',
-          'rgba(127, 29, 29, 0.8)'
-        ],
-        borderColor: [
-          'rgb(6, 182, 212)',
-          'rgb(59, 130, 246)',
-          'rgb(14, 165, 233)',
-          'rgb(34, 197, 94)',
-          'rgb(251, 146, 60)',
-          'rgb(251, 191, 36)',
-          'rgb(6, 182, 212)',
-          'rgb(234, 179, 8)',
-          'rgb(249, 115, 22)',
-          'rgb(14, 165, 233)',
-          'rgb(239, 68, 68)',
-          'rgb(127, 29, 29)'
-        ],
+        label: 'Muslinger',
+        data: [5, 5, 5, 10, 80], // Extremely low impact, high biodiversity support
+        backgroundColor: 'rgba(6, 182, 212, 0.2)',
+        borderColor: 'rgba(6, 182, 212, 1)',
+        pointBackgroundColor: 'rgba(6, 182, 212, 1)',
         borderWidth: 2
+      }, {
+        label: 'Gennemsnit (Kød)',
+        data: [70, 60, 80, 60, 30],
+        backgroundColor: 'rgba(168, 162, 158, 0.2)',
+        borderColor: 'rgba(168, 162, 158, 1)',
+        pointBackgroundColor: 'rgba(168, 162, 158, 1)',
+        borderWidth: 1,
+        borderDash: [5, 5]
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return context.parsed.x + ' kg CO₂e pr. kg';
-            }
-          }
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { display: false },
+          grid: { color: 'rgba(0,0,0,0.05)' }
         }
       },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'kg CO₂e pr. kg produkt',
-            font: {
-              size: 14,
-              weight: 'bold'
-            }
-          },
-          grid: {
-            color: 'rgba(0, 0, 0, 0.05)'
-          }
-        },
-        y: {
-          grid: {
-            display: false
-          }
-        }
+      plugins: {
+        legend: { display: false }
       }
     }
   });
-
-  // Scroll-triggered animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('initial-hidden');
-        entry.target.classList.add('animate-fade-in-up');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
 
   // Calculator Logic
   const shellfishMealsSlider = document.getElementById('shellfishMeals');
   const shellfishMealsDisplay = document.getElementById('shellfishMealsDisplay');
   const replacementProteinSelect = document.getElementById('replacementProtein');
   const shellfishTypeSelect = document.getElementById('shellfishType');
-  const currentProteinEmissionsDisplay = document.getElementById('currentProteinEmissions');
   const savedShellfishEmissionsDisplay = document.getElementById('savedShellfishEmissions');
   const yearlyShellfishImpactDisplay = document.getElementById('yearlyShellfishImpact');
   const championShellfishMessageDisplay = document.getElementById('championShellfishMessage');
@@ -796,45 +331,21 @@
     const currentEmissions = shellfishMeals * PORTION_SIZE * proteinCO2PerKg;
     const shellfishEmissions = shellfishMeals * PORTION_SIZE * shellfishCO2PerKg;
     const savedEmissions = currentEmissions - shellfishEmissions;
-
-    currentProteinEmissionsDisplay.textContent = Math.round(currentEmissions).toLocaleString();
-    savedShellfishEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
-
     const yearlySavings = savedEmissions * 12;
-    const beefMealsEquivalent = Math.round(yearlySavings / 4.8);
-    const reductionPercent = ((savedEmissions / currentEmissions) * 100).toFixed(1);
 
-    yearlyShellfishImpactDisplay.innerHTML = `
-      På et år sparer kantinen <strong class="text-cyan-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
-      svarende til <strong class="text-cyan-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
-    `;
+    savedShellfishEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+    yearlyShellfishImpactDisplay.textContent = Math.round(yearlySavings).toLocaleString();
 
-    const proteinNames = {
-      beef: 'oksekød',
-      lamb: 'lammekød',
-      pork: 'svinekød',
-      chicken: 'kylling',
-      salmon: 'laks'
-    };
-
-    const shellfishNames = {
-      mussels: 'muslinger',
-      oysters: 'østers',
-      shrimp: 'rejer'
-    };
-
-    championShellfishMessageDisplay.innerHTML = `
-      Ved at erstatte ${proteinNames[replacementProtein]} med ${shellfishNames[shellfishType]} ${shellfishMeals} gange om måneden reducerer kantinen klimaaftryk
-      med <strong class="text-cyan-700">${reductionPercent}%</strong> pr. portion. Dette er blandt de mest effektive klimahandlinger kantinen kan tage.
-    `;
+    if (savedEmissions > 0) {
+      championShellfishMessageDisplay.textContent = `Du sparer miljøet for ${Math.round(savedEmissions)} kg CO₂e hver måned!`;
+      championShellfishMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
+    } else {
+      championShellfishMessageDisplay.textContent = "Ingen besparelse (tjek dine valg).";
+      championShellfishMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
+    }
   }
 
-  shellfishMealsSlider.addEventListener('input', calculateShellfishSavings);
-  replacementProteinSelect.addEventListener('change', calculateShellfishSavings);
-  shellfishTypeSelect.addEventListener('change', calculateShellfishSavings);
-
-  // Initialize
+  // Init
   calculateShellfishSavings();
 </script>
-
 {% endblock %}

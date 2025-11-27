@@ -1,734 +1,354 @@
 {% extends "base.html" %}
 
-{% block title %}Ost – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
+{% block title %}Ost – Klimaaftryk, Typer & Alternativer | Canteen Buddy{% endblock %}
 
 {% block content %}
-
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.6s ease-out forwards;
-  }
-
-  .initial-hidden {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-</style>
-
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-yellow-50 via-white to-amber-50 pt-32 pb-20 overflow-hidden">
-  <div class="mx-auto max-w-7xl px-6 relative z-10">
-    <div class="text-center mb-12">
-      <div class="inline-block mb-6 px-6 py-2 bg-yellow-100 border-2 border-yellow-300 rounded-full">
-        <span class="font-sans text-xs font-bold tracking-widest uppercase text-yellow-800">Mejeriprodukt</span>
-      </div>
-      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
-        Ost
-      </h1>
-      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
-        Fra mild mozzarella til lagret parmesan – klimaaftrykket varierer betydeligt mellem ostetyper.
-        Forståelse af produktionsmetoder hjælper kantinen med at vælge smartere.
-      </p>
-    </div>
-
-    <!-- Hero Image -->
-    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
-      <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}"
-           alt="Ost i professionelt køkken"
-           class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-      <div class="absolute bottom-8 left-8 text-white">
-        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
-        <p class="text-4xl font-display font-bold">8 kg CO₂e pr. kg ost</p>
-      </div>
-    </div>
-
-    <!-- Quick Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500 text-center initial-hidden animate-fade-in-up stagger-1">
-        <div class="text-3xl mb-2">🧀</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">8 kg</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. kg</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500 text-center initial-hidden animate-fade-in-up stagger-2">
-        <div class="text-3xl mb-2">📊</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">4x</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">vs. Bælgfrugter</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-3">
-        <div class="text-3xl mb-2">💧</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">5,060L</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">Vand pr. kg</div>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-4">
-        <div class="text-3xl mb-2">🥛</div>
-        <div class="text-3xl font-display font-bold text-stone-900 mb-2">10L</div>
-        <div class="text-xs uppercase tracking-wider text-stone-500">Mælk til 1 kg ost</div>
-      </div>
-    </div>
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Ost"
+      class="w-full h-full object-cover opacity-90">
+    <div class="absolute inset-0 bg-black/30"></div>
   </div>
-</section>
 
-<!-- Climate Impact Section -->
+  <div class="relative z-10 text-center text-white px-6">
+    <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+    <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Ost</h1>
+    <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+      Koncentreret smag, koncentreret aftryk. Kunsten er at bruge det rigtigt.
+    </p>
+  </div>
+</header>
+
+<!-- The Story: Elaborative Content -->
 <section class="py-24 bg-white">
-  <div class="mx-auto max-w-5xl px-6">
-    <div class="text-center mb-16">
-      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Klimadata</span>
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Klimaaftryk i Kontekst
+  <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="md:col-span-4">
+      <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
+      <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
+        Det Koncentrerede Valg
       </h2>
-      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-        Med <strong class="text-orange-600">8 kg CO₂e pr. kg</strong> ligger ost mellem hvid fisk og svinekød.
-        Primært drevet af mælkeproduktion – kvægets metanemissioner, foder og jordressourcer.
+      <div class="h-1 w-20 bg-cb-yellow-medium mb-8"></div>
+    </div>
+    <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
+      <p class="lead text-xl text-stone-800 font-normal mb-6">
+        Ost er dybest set koncentreret mælk. Det kræver ca. 10 liter mælk at lave 1 kg hård ost. Derfor er
+        klimaaftrykket også koncentreret.
       </p>
-    </div>
-
-    <!-- Comparison Chart -->
-    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
-      <canvas id="cheeseComparisonChart" class="w-full" style="max-height: 400px;"></canvas>
-    </div>
-
-    <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded">
-      <p class="font-sans text-stone-700">
-        <strong class="text-orange-700">Vigtigt:</strong> Ost er koncentreret mælk – det kræver ca. 10 liter mælk at producere 1 kg ost.
-        Derfor er klimaaftrykket væsentligt højere end mælk (3 kg CO₂e/L), men stadig langt under oksekød (60 kg CO₂e/kg).
+      <p class="mb-6">
+        Med et gennemsnitligt aftryk på 8-12 kg CO₂e pr. kg er ost en af de mest klimabelastende fødevarer, vi har – på
+        niveau med svinekød og nogle gange højere.
+      </p>
+      <p>
+        Men ost bidrager med umami, fedme og dybde, som kan løfte vegetariske retter til nye højder. Nøglen er at bruge
+        det som et krydderi snarere end en hovedingrediens.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Environmental Impact -->
+<!-- Environmental Profile (Radar Chart) -->
 <section class="py-24 bg-stone-50">
   <div class="mx-auto max-w-7xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Miljøpåvirkning
-      </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil</h3>
+        <p class="text-stone-600 mb-8 font-light">
+          Ost har et højt aftryk på alle parametre: CO₂, vand og areal. Det er en ressourcetung forædling af mælk.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 mb-8">
+          <div class="p-4 bg-white border border-stone-100 shadow-sm">
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+            <div class="text-3xl font-display text-stone-900">8.0 <span
+                class="text-sm font-sans text-stone-500">kg/kg</span></div>
+          </div>
+          <div class="p-4 bg-white border border-stone-100 shadow-sm">
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Vandforbrug</div>
+            <div class="text-3xl font-display text-stone-900">5,060 <span
+                class="text-sm font-sans text-stone-500">L/kg</span></div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-sm text-stone-500">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-cb-yellow-medium"></span> Ost (Gns)
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-stone-300"></span> Kylling (Ref)
+          </div>
+        </div>
+      </div>
+
+      <div class="relative aspect-square max-w-md mx-auto">
+        <canvas id="cheeseRadarChart"></canvas>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Water -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
-        <div class="text-5xl mb-4">💧</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
-        <div class="text-4xl font-bold text-blue-600 mb-4">5,060 L/kg</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Primært til foder til malkekøer. Inkluderer både direkte drikkevand til dyr og kunstvanding af græs/kraftfoder.
+<!-- Cheese Types Comparison (Replaces Seasonality) -->
+<section class="py-24 bg-stone-900 text-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-4">
+        <h3 class="text-3xl font-display font-light text-white mb-6">Ostetyper</h3>
+        <p class="text-stone-400 mb-6 font-light">
+          Jo hårdere ost, jo mere mælk og jo højere aftryk. Bløde oste er mere klimavenlige.
         </p>
-        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
-          ℹ️ 25x mere end bælgfrugter (200 L/kg)
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-cb-yellow-dark flex items-center justify-center text-xl">🧀</div>
+          <div>
+            <div class="text-sm font-bold uppercase tracking-wider text-cb-yellow-medium">Tommelfingerregel</div>
+            <div class="text-lg">Blød = Bedre</div>
+          </div>
         </div>
       </div>
 
-      <!-- Land Use -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
-        <div class="text-5xl mb-4">🌾</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Arealforbrug</h3>
-        <div class="text-4xl font-bold text-green-600 mb-4">~90 m²/kg</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Græsningsarealer og dyrkningsjord til kraftfoder. Konventionel mælkeproduktion kræver betydelige landressourcer.
-        </p>
-        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
-          ℹ️ Økologisk ost kan kræve 20-30% mere areal pga. lavere ydelse
-        </div>
-      </div>
+      <div class="md:col-span-8">
+        <div class="space-y-6">
+          <!-- Hård Ost -->
+          <div class="flex items-center gap-4 p-4 bg-stone-800/50 rounded-lg border border-stone-700 opacity-70">
+            <div class="text-2xl">🧀</div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <span class="font-bold text-stone-300">Hård Ost (Parmesan/Cheddar)</span>
+                <span class="text-xs text-stone-500">10-12 kg CO₂e</span>
+              </div>
+              <p class="text-sm text-stone-500">Kræver mest mælk. Brug som smagsgiver (umami-booster).</p>
+            </div>
+          </div>
 
-      <!-- Production Process -->
-      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500">
-        <div class="text-5xl mb-4">🏭</div>
-        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Produktionsproces</h3>
-        <div class="text-4xl font-bold text-amber-600 mb-4">~15%</div>
-        <p class="text-stone-700 font-sans mb-4">
-          Ca. 15% af klimaaftrykket kommer fra selve osteproduktionen (varme, energi, transport).
-          De resterende 85% er fra mælkeproduktion.
-        </p>
-        <div class="text-sm text-stone-500 bg-amber-50 p-3 rounded">
-          ℹ️ Lokal produktion reducerer transport, men påvirker kun marginalt totalaftryk
+          <!-- Halvfast Ost -->
+          <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border border-stone-700">
+            <div class="text-2xl">🥪</div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <span class="font-bold text-white">Halvfast (Danbo/Gouda)</span>
+                <span class="text-xs text-stone-400">8-9 kg CO₂e</span>
+              </div>
+              <p class="text-sm text-stone-400">Standard pålægsost. Moderat aftryk.</p>
+            </div>
+          </div>
+
+          <!-- Blød Ost -->
+          <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-medium">
+            <div class="text-2xl">🥣</div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <span class="font-bold text-cb-green-medium">Blød Ost (Mozzarella/Brie)</span>
+                <span class="text-xs text-stone-400">5-7 kg CO₂e</span>
+              </div>
+              <p class="text-sm text-stone-300">Mindre mælk, mere vand. Bedre til volumen.</p>
+            </div>
+          </div>
+
+          <!-- Friskost -->
+          <div
+            class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-light shadow-lg shadow-cb-green-light/10">
+            <div class="text-2xl">🥄</div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <span class="font-bold text-cb-green-light">Friskost (Hytteost/Ricotta)</span>
+                <span class="text-xs text-stone-400">4-5 kg CO₂e</span>
+              </div>
+              <p class="text-sm text-stone-300">Lavest aftryk. Højt proteinindhold.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Cheese Types Comparison -->
+<!-- Culinary Profile -->
 <section class="py-24 bg-white">
   <div class="mx-auto max-w-7xl px-6">
     <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Ostetyper & Variation
-      </h2>
-      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-        Ikke al ost er ens. Hårde, modne oste kræver mere mælk og modning – bløde oste har typisk lavere klimaaftryk.
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Køkkenet</h2>
+      <p class="text-stone-500 max-w-2xl mx-auto">
+        Brug ost strategisk. Smag, tekstur og mængde afgør klimaaftrykket.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Hard Cheese -->
-      <div class="bg-gradient-to-br from-amber-50 to-white p-8 rounded-xl shadow-lg border-2 border-amber-200">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="text-6xl">🧀</div>
-          <div>
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Hård Ost</h3>
-            <p class="text-sm text-stone-500">Parmesan, Cheddar, Danbo</p>
-          </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Umami Booster</div>
         </div>
-
-        <div class="space-y-4">
-          <div class="border-l-4 border-red-500 pl-4">
-            <strong class="text-stone-900">Højere klimaaftryk (9-12 kg CO₂e/kg)</strong>
-            <p class="text-sm text-stone-600 mt-1">
-              Kræver 12-14 liter mælk pr. kg og ofte lang modning (energi til kølerum).
-            </p>
-          </div>
-
-          <div class="border-l-4 border-green-500 pl-4">
-            <strong class="text-stone-900">Fordele</strong>
-            <p class="text-sm text-stone-600 mt-1">
-              Intensiv smag betyder mindre volumen nødvendigt – brug som garnering i stedet for hovedingrediens.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-6 bg-amber-100 p-4 rounded">
-          <p class="text-xs font-bold text-stone-700 uppercase mb-2">Kantinestrategi:</p>
-          <p class="text-sm text-stone-600">Riv frisk parmesan over færre retter – mindre forbrug, bedre smag</p>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Umami-Booster</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Brug stærke oste (parmesan, blåskimmel) i små mængder. 10g giver mere smag end 50g mild ost.
+        </p>
       </div>
 
-      <!-- Soft Cheese -->
-      <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl shadow-lg border-2 border-blue-200">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="text-6xl">🧈</div>
-          <div>
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Blød Ost</h3>
-            <p class="text-sm text-stone-500">Mozzarella, Ricotta, Hytteost</p>
-          </div>
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Plantebaseret</div>
         </div>
-
-        <div class="space-y-4">
-          <div class="border-l-4 border-green-500 pl-4">
-            <strong class="text-stone-900">Lavere klimaaftryk (5-7 kg CO₂e/kg)</strong>
-            <p class="text-sm text-stone-600 mt-1">
-              Kræver 6-8 liter mælk pr. kg, minimal modning, hurtigere produktion.
-            </p>
-          </div>
-
-          <div class="border-l-4 border-blue-500 pl-4">
-            <strong class="text-stone-900">Ideelt til volume</strong>
-            <p class="text-sm text-stone-600 mt-1">
-              Velegnet når ost er hovedingrediens (lasagne, caprese, ostebakke).
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-6 bg-blue-100 p-4 rounded">
-          <p class="text-xs font-bold text-stone-700 uppercase mb-2">Kantinestrategi:</p>
-          <p class="text-sm text-stone-600">Prioriter bløde oste til salater og vegetarretter</p>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Plantebaseret</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Gærflager (nutritional yeast) giver oste-smag i saucer. Cashew-creme giver fedme.
+        </p>
       </div>
-    </div>
 
-    <!-- Quick Reference Table -->
-    <div class="mt-12 bg-stone-50 p-8 rounded-xl">
-      <h4 class="font-display text-xl font-bold text-stone-900 uppercase mb-6 text-center">Hurtig Reference</h4>
-      <div class="grid md:grid-cols-3 gap-4 text-sm">
-        <div class="bg-white p-4 rounded border-l-4 border-red-500">
-          <strong class="text-red-700">Højest (10-12 kg CO₂e/kg):</strong>
-          <p class="text-stone-600 mt-2">Parmesan, Gouda, Æltet ost, Cheddar</p>
+      <div class="group cursor-pointer">
+        <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Volumen</div>
         </div>
-        <div class="bg-white p-4 rounded border-l-4 border-orange-500">
-          <strong class="text-orange-700">Mellem (7-9 kg CO₂e/kg):</strong>
-          <p class="text-stone-600 mt-2">Feta, Brie, Camembert, Havarti</p>
-        </div>
-        <div class="bg-white p-4 rounded border-l-4 border-green-500">
-          <strong class="text-green-700">Lavest (5-7 kg CO₂e/kg):</strong>
-          <p class="text-stone-600 mt-2">Mozzarella, Ricotta, Hytteost, Cottage cheese</p>
-        </div>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Volumen</h3>
+        <p class="text-sm text-stone-600 font-light">
+          Når ost skal fylde (tærter, lasagne), brug hytteost eller ricotta blandet med spinat.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Alternatives Section -->
-<section class="py-24 bg-gradient-to-br from-green-50 via-white to-emerald-50">
-  <div class="mx-auto max-w-5xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Klimavenlige Alternativer
-      </h2>
-      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-        Reducer kantinens klimaaftryk ved at kombinere ost med lavere CO₂e-alternativer eller skifte helt.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- Plant-based cheese -->
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-green-600">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-4">
-            <div class="text-4xl">🌱</div>
-            <div>
-              <h3 class="font-sans text-lg font-bold text-stone-900">Plantebaseret Ost</h3>
-              <p class="text-xs text-stone-500 uppercase">0.5-2 kg CO₂e/kg</p>
-            </div>
-          </div>
-          <div class="px-4 py-2 bg-green-100 rounded-full">
-            <span class="text-green-700 font-bold text-sm">↓75-95%</span>
-          </div>
-        </div>
-        <p class="text-sm text-stone-600 mb-4">
-          Cashew-, mandel- og havreoste reducerer klimaaftryk drastisk. Smag og konsistens forbedres konstant – velegnet til smeltning og påsmøring.
-        </p>
-        <div class="text-xs text-green-600 font-bold">✓ Allergivenligt, cholesterolfrit</div>
-      </div>
-
-      <!-- Reduced portion + flavor boost -->
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-blue-600">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-4">
-            <div class="text-4xl">🧂</div>
-            <div>
-              <h3 class="font-sans text-lg font-bold text-stone-900">Mindre Mængde, Mere Smag</h3>
-              <p class="text-xs text-stone-500 uppercase">Reduceret forbrug</p>
-            </div>
-          </div>
-          <div class="px-4 py-2 bg-blue-100 rounded-full">
-            <span class="text-blue-700 font-bold text-sm">↓30-50%</span>
-          </div>
-        </div>
-        <p class="text-sm text-stone-600 mb-4">
-          Brug stærke oste (blåskimmel, parmesan) i mindre mængder. Boost smagsoplevelsen med urter, nødder, eller ristede frø.
-        </p>
-        <div class="text-xs text-blue-600 font-bold">✓ Bedre smag, lavere forbrug</div>
-      </div>
-
-      <!-- Legumes -->
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-amber-600">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-4">
-            <div class="text-4xl">🫘</div>
-            <div>
-              <h3 class="font-sans text-lg font-bold text-stone-900">Bælgfrugter (Protein-Substitut)</h3>
-              <p class="text-xs text-stone-500 uppercase">2 kg CO₂e/kg</p>
-            </div>
-          </div>
-          <div class="px-4 py-2 bg-amber-100 rounded-full">
-            <span class="text-amber-700 font-bold text-sm">↓75%</span>
-          </div>
-        </div>
-        <p class="text-sm text-stone-600 mb-4">
-          Erstat ost med krydrede kikærter, linser eller bønner i salater og wraps. Tilføj cremet tekstur med hummus eller cashewcreme.
-        </p>
-        <div class="text-xs text-amber-600 font-bold">✓ Højt fiberindhold, mættende</div>
-      </div>
-
-      <!-- Nuts & Seeds -->
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-orange-600">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-4">
-            <div class="text-4xl">🥜</div>
-            <div>
-              <h3 class="font-sans text-lg font-bold text-stone-900">Nødder & Frø (Topping)</h3>
-              <p class="text-xs text-stone-500 uppercase">1-3 kg CO₂e/kg</p>
-            </div>
-          </div>
-          <div class="px-4 py-2 bg-orange-100 rounded-full">
-            <span class="text-orange-700 font-bold text-sm">↓60-85%</span>
-          </div>
-        </div>
-        <p class="text-sm text-stone-600 mb-4">
-          Erstatt revet ost med ristede nødder, kerner eller næringsrige frø (solsikke, græskar, hørfrø). Tilføjer crunch og fedtsyrer.
-        </p>
-        <div class="text-xs text-orange-600 font-bold">✓ Omega-3, vitamin E</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Buying Guide -->
-<section class="py-24 bg-white">
-  <div class="mx-auto max-w-5xl px-6">
-    <div class="text-center mb-16">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Købeguide for Kantinen
-      </h2>
-      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
-        Når I vælger ost, skal I balancere smag, pris, klimaaftryk og ernæring. Her er 6 konkrete tips.
-      </p>
-    </div>
-
-    <div class="space-y-6">
-      <!-- Tip 1 -->
-      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">1️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Prioriter Bløde Oste til Volumen</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Når ost er hovedingrediens (lasagne, gratiner, salater), vælg mozzarella, ricotta eller hytteost.
-              Disse har 30-40% lavere klimaaftryk end hårde oste.
-            </p>
-            <div class="bg-green-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-green-800 uppercase">Besparelse: 3-5 kg CO₂e pr. kg ost</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 2 -->
-      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">2️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Brug Hård Ost som Garnering</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Parmesan, pecorino og gouda har intensiv smag – brug 20-30g pr. portion i stedet for 60-80g.
-              Reducer forbrug uden at gå på kompromis med smag.
-            </p>
-            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-blue-800 uppercase">Besparelse: 50-60% forbrug</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 3 -->
-      <div class="bg-gradient-to-r from-amber-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-amber-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">3️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vælg Økologisk eller Græsbaset</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Økologisk mælkeproduktion har generelt bedre dyrevelfærd og reduceret pesticidanvendelse.
-              Græsbaseret ost kan have marginalt lavere klimaaftryk pga. mindre kraftfoder.
-            </p>
-            <div class="bg-amber-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-amber-800 uppercase">Bonus: Understøtter biodiversitet</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 4 -->
-      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">4️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Test Plantebaserede Alternativer</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Introducer plantebaseret ost gradvist: Start med pizzaer og wraps. Moderne alternativer smelter godt
-              og har 75-95% lavere klimaaftryk.
-            </p>
-            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-purple-800 uppercase">Besparelse: 6-10 kg CO₂e pr. kg</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 5 -->
-      <div class="bg-gradient-to-r from-red-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-red-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">5️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Minimér Madspild</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Ost holder længere end mange tror – korrekt opbevaring (vakuumpakning, 4-6°C) forlænger holdbarheden.
-              Brug modne oste i kogte retter i stedet for at smide ud.
-            </p>
-            <div class="bg-red-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-red-800 uppercase">20-30% af kantinernes ost ender som spild</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tip 6 -->
-      <div class="bg-gradient-to-r from-teal-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-teal-600">
-        <div class="flex items-start gap-6">
-          <div class="text-5xl">6️⃣</div>
-          <div class="flex-1">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Kombiner Ost med Grønt</h3>
-            <p class="text-stone-700 font-sans mb-4">
-              Balancer oste-retter med rigelige mængder grøntsager. En caprese-salat med 50g mozzarella + 200g tomater
-              er både ernæringsmæssigt bedre og har lavere totalaftryk.
-            </p>
-            <div class="bg-teal-100 px-4 py-2 rounded inline-block">
-              <span class="text-xs font-bold text-teal-800 uppercase">Mere fiber, vitaminer og antioxidanter</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Interactive Calculator -->
-<section class="py-24 bg-gradient-to-br from-stone-100 to-stone-50">
+<!-- Calculator Section (Adapted) -->
+<section class="py-24 bg-cb-taupe-light">
   <div class="mx-auto max-w-4xl px-6">
     <div class="text-center mb-12">
-      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
-        Beregn Klimabesparelsen
-      </h2>
-      <p class="font-sans text-lg text-stone-600">
-        Se hvor meget CO₂ kantinen kan spare ved at reducere ostforbruget eller vælge alternativer.
-      </p>
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Din Besparelse</h2>
+      <p class="text-stone-600">Se effekten af at reducere eller udskifte ost</p>
     </div>
 
-    <div class="bg-white p-10 rounded-2xl shadow-2xl">
-      <div class="mb-8">
-        <label class="block font-sans font-bold text-stone-900 mb-3">Månedligt ostforbrug (kg):</label>
-        <input type="range" id="cheeseAmount" min="10" max="500" value="100" step="10"
-               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-yellow-600">
-        <div class="text-center mt-3">
-          <span id="cheeseAmountDisplay" class="text-4xl font-display font-bold text-stone-900">100</span>
-          <span class="text-xl text-stone-500 ml-2">kg/måned</span>
+    <div class="bg-white p-8 shadow-sm border border-stone-100">
+      <div class="mb-6">
+        <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+          Kg ost pr. måned
+        </label>
+        <div class="flex items-center gap-4">
+          <input type="range" id="cheeseAmount" min="10" max="500" value="100" step="10"
+            class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-yellow-medium"
+            oninput="calculateCheeseSavings()">
+          <span id="cheeseAmountDisplay" class="font-display text-2xl text-cb-yellow-medium min-w-[80px]">100</span>
         </div>
       </div>
 
       <div class="mb-8">
-        <label class="block font-sans font-bold text-stone-900 mb-3">Reduktion/Alternativ:</label>
-        <select id="reductionType" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-yellow-500">
-          <option value="25">25% reduktion i forbrug</option>
-          <option value="50">50% reduktion i forbrug</option>
-          <option value="soft">Skift fra hård til blød ost (3 kg CO₂e besparelse)</option>
-          <option value="plant">Skift til plantebaseret ost (7 kg CO₂e besparelse)</option>
+        <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+          Strategi
+        </label>
+        <select id="reductionType"
+          class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-yellow-medium"
+          onchange="calculateCheeseSavings()">
+          <option value="25">Reducer mængden med 25% (bedre kvalitet)</option>
+          <option value="soft">Skift 50% til blød ost (fra hård)</option>
+          <option value="plant">Skift 25% til planteost/gærflager</option>
         </select>
       </div>
 
-      <div class="h-px bg-stone-200 my-8"></div>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-red-50 p-6 rounded-lg text-center">
-          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Nuværende Udledning</div>
-          <div id="currentEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">800</div>
-          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+      <div id="cheeseSavingsResult" class="border-t border-stone-100 pt-8">
+        <div class="grid grid-cols-2 gap-8 text-center">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Månedlig besparelse</div>
+            <div class="text-3xl font-display text-stone-900">
+              <span id="savedCheeseEmissions">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årlig besparelse</div>
+            <div class="text-3xl font-display text-stone-900">
+              <span id="yearlyCheeseImpact">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+            </div>
+          </div>
         </div>
-
-        <div class="bg-green-50 p-6 rounded-lg text-center">
-          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
-          <div id="savedEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">200</div>
-          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
-        </div>
-      </div>
-
-      <div class="mt-8 p-6 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg border-2 border-yellow-200">
-        <div class="flex items-center gap-3 mb-3">
-          <span class="text-3xl">🌍</span>
-          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
-        </div>
-        <p id="yearlyImpact" class="text-stone-700 font-sans text-lg">
-          På et år sparer kantinen <strong class="text-yellow-700">2,400 kg CO₂e</strong> –
-          svarende til <strong class="text-yellow-700">500</strong> måltider med oksekød.
-        </p>
+        <p id="championCheeseMessage" class="text-center text-sm text-cb-green-dark mt-6 font-medium"></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Data Sources -->
-<section class="py-16 bg-stone-100">
-  <div class="mx-auto max-w-5xl px-6">
-    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
-      Datakilder & Referencer
-    </h3>
-    <div class="grid md:grid-cols-2 gap-6 text-sm">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
-        <ul class="space-y-2 text-stone-600">
-          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
-          <li>• Poore & Nemecek, Science (2018)</li>
-          <li>• Our World in Data (2024)</li>
-        </ul>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="font-bold text-stone-900 mb-2">Miljø & Ernæring</h4>
-        <ul class="space-y-2 text-stone-600">
-          <li>• Water Footprint Network (2023)</li>
-          <li>• FAO – Livestock Environmental Assessment</li>
-          <li>• Danmarks Fødevareinstitut</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Comparison Chart
-  const ctx = document.getElementById('cheeseComparisonChart');
+  // Radar Chart
+  const ctx = document.getElementById('cheeseRadarChart').getContext('2d');
   new Chart(ctx, {
-    type: 'bar',
+    type: 'radar',
     data: {
-      labels: ['Bælgfrugter', 'Mozzarella', 'Hvid Fisk', 'Kylling', 'Ost (gns)', 'Parmesan', 'Svinekød', 'Lammekød', 'Oksekød'],
+      labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
       datasets: [{
-        label: 'kg CO₂e pr. kg produkt',
-        data: [2, 6, 6, 6.9, 8, 11, 12, 24, 60],
-        backgroundColor: [
-          'rgba(34, 197, 94, 0.8)',
-          'rgba(59, 130, 246, 0.8)',
-          'rgba(96, 165, 250, 0.8)',
-          'rgba(251, 191, 36, 0.8)',
-          'rgba(249, 115, 22, 0.8)',
-          'rgba(239, 68, 68, 0.8)',
-          'rgba(220, 38, 38, 0.8)',
-          'rgba(185, 28, 28, 0.8)',
-          'rgba(127, 29, 29, 0.8)'
-        ],
-        borderColor: [
-          'rgb(34, 197, 94)',
-          'rgb(59, 130, 246)',
-          'rgb(96, 165, 250)',
-          'rgb(251, 191, 36)',
-          'rgb(249, 115, 22)',
-          'rgb(239, 68, 68)',
-          'rgb(220, 38, 38)',
-          'rgb(185, 28, 28)',
-          'rgb(127, 29, 29)'
-        ],
+        label: 'Ost (Gns)',
+        data: [70, 90, 80, 70, 60], // Very high impact
+        backgroundColor: 'rgba(234, 179, 8, 0.2)',
+        borderColor: 'rgba(234, 179, 8, 1)',
+        pointBackgroundColor: 'rgba(234, 179, 8, 1)',
         borderWidth: 2
+      }, {
+        label: 'Kylling (Ref)',
+        data: [45, 50, 50, 60, 50],
+        backgroundColor: 'rgba(168, 162, 158, 0.2)',
+        borderColor: 'rgba(168, 162, 158, 1)',
+        pointBackgroundColor: 'rgba(168, 162, 158, 1)',
+        borderWidth: 1,
+        borderDash: [5, 5]
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return context.parsed.x + ' kg CO₂e pr. kg';
-            }
-          }
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { display: false },
+          grid: { color: 'rgba(0,0,0,0.05)' }
         }
       },
-      scales: {
-        x: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'kg CO₂e pr. kg produkt',
-            font: {
-              size: 14,
-              weight: 'bold'
-            }
-          },
-          grid: {
-            color: 'rgba(0, 0, 0, 0.05)'
-          }
-        },
-        y: {
-          grid: {
-            display: false
-          }
-        }
+      plugins: {
+        legend: { display: false }
       }
     }
   });
-
-  // Scroll-triggered animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove('initial-hidden');
-        entry.target.classList.add('animate-fade-in-up');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
 
   // Calculator Logic
   const cheeseAmountSlider = document.getElementById('cheeseAmount');
   const cheeseAmountDisplay = document.getElementById('cheeseAmountDisplay');
   const reductionTypeSelect = document.getElementById('reductionType');
-  const currentEmissionsDisplay = document.getElementById('currentEmissions');
-  const savedEmissionsDisplay = document.getElementById('savedEmissions');
-  const yearlyImpactDisplay = document.getElementById('yearlyImpact');
+  const savedCheeseEmissionsDisplay = document.getElementById('savedCheeseEmissions');
+  const yearlyCheeseImpactDisplay = document.getElementById('yearlyCheeseImpact');
+  const championCheeseMessageDisplay = document.getElementById('championCheeseMessage');
 
-  const CHEESE_CO2_PER_KG = 8; // kg CO₂e per kg cheese
+  const CHEESE_CO2 = 8.0; // Avg
+  const HARD_CHEESE_CO2 = 11.0;
+  const SOFT_CHEESE_CO2 = 6.0;
+  const PLANT_CHEESE_CO2 = 2.0;
 
-  function calculateSavings() {
-    const cheeseAmount = parseInt(cheeseAmountSlider.value);
-    const reductionType = reductionTypeSelect.value;
+  function calculateCheeseSavings() {
+    const amount = parseInt(cheeseAmountSlider.value);
+    const strategy = reductionTypeSelect.value;
 
-    cheeseAmountDisplay.textContent = cheeseAmount;
-
-    const currentEmissions = cheeseAmount * CHEESE_CO2_PER_KG;
-    currentEmissionsDisplay.textContent = currentEmissions.toLocaleString();
+    cheeseAmountDisplay.textContent = amount;
 
     let savedEmissions = 0;
 
-    if (reductionType === '25') {
-      savedEmissions = currentEmissions * 0.25;
-    } else if (reductionType === '50') {
-      savedEmissions = currentEmissions * 0.50;
-    } else if (reductionType === 'soft') {
-      // Switching to soft cheese saves ~3 kg CO₂e per kg
-      savedEmissions = cheeseAmount * 3;
-    } else if (reductionType === 'plant') {
-      // Switching to plant-based saves ~7 kg CO₂e per kg
-      savedEmissions = cheeseAmount * 7;
+    if (strategy === '25') {
+      // 25% reduction
+      savedEmissions = (amount * 0.25) * CHEESE_CO2;
+    } else if (strategy === 'soft') {
+      // Switch 50% from hard to soft
+      // Saving per kg switched: 11 - 6 = 5 kg CO2e
+      savedEmissions = (amount * 0.50) * (HARD_CHEESE_CO2 - SOFT_CHEESE_CO2);
+    } else if (strategy === 'plant') {
+      // Switch 25% to plant
+      // Saving per kg switched: 8 - 2 = 6 kg CO2e
+      savedEmissions = (amount * 0.25) * (CHEESE_CO2 - PLANT_CHEESE_CO2);
     }
 
-    savedEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
-
     const yearlySavings = savedEmissions * 12;
-    const beefMealsEquivalent = Math.round(yearlySavings / 4.8); // 1 beef meal = ~4.8 kg CO₂e
 
-    yearlyImpactDisplay.innerHTML = `
-      På et år sparer kantinen <strong class="text-yellow-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
-      svarende til <strong class="text-yellow-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
-    `;
+    savedCheeseEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+    yearlyCheeseImpactDisplay.textContent = Math.round(yearlySavings).toLocaleString();
+
+    if (savedEmissions > 0) {
+      championCheeseMessageDisplay.textContent = `Du reducerer klimaaftrykket med ${Math.round(savedEmissions)} kg CO₂e hver måned!`;
+      championCheeseMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
+    } else {
+      championCheeseMessageDisplay.textContent = "Ingen besparelse.";
+      championCheeseMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
+    }
   }
 
-  cheeseAmountSlider.addEventListener('input', calculateSavings);
-  reductionTypeSelect.addEventListener('change', calculateSavings);
-
-  // Initialize
-  calculateSavings();
+  // Init
+  calculateCheeseSavings();
 </script>
-
 {% endblock %}

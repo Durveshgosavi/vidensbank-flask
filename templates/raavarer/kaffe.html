@@ -1,736 +1,337 @@
-<!DOCTYPE html>
-<html lang="da">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaffe - Klimavenlig Nydelse | Vidensbank</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --brand-orange: #FF6B35;
-            --brand-yellow: #F7931E;
-            --brand-teal: #4ECDC4;
-            --brand-navy: #1A535C;
-            --brand-cream: #FFF8F0;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+{% block title %}Kaffe – Klimaaftryk, Fair Trade & Brygning | Canteen Buddy{% endblock %}
 
-        .font-display {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em;
-        }
+{% block content %}
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/emissions_cooking.jpg') }}" alt="Kaffe"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
 
-        .tracking-brand-wide {
-            letter-spacing: 0.1em;
-        }
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Kaffe</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            Hverdagsluksus med en pris. Fra bønne til kop handler det om etik, transport og bryggemetode.
+        </p>
+    </div>
+</header>
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes wave {
-            0%, 100% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .animate-scale-in {
-            animation: scaleIn 0.6s ease-out forwards;
-        }
-
-        .animate-slide-in-left {
-            animation: slideInLeft 0.6s ease-out forwards;
-        }
-
-        .animate-wave {
-            animation: wave 3s ease-in-out infinite;
-        }
-
-        .animation-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .animation-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .animation-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        [data-animate] {
-            opacity: 0;
-        }
-    </style>
-</head>
-<body class="bg-stone-50">
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="mx-auto max-w-7xl px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-3xl font-bold tracking-brand-wide" style="color: var(--brand-orange);">
-                    VIDENSBANK
-                </a>
-                <div class="flex gap-8">
-                    <a href="/topics" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Emner</a>
-                    <a href="/raavarer" class="font-sans text-orange-500 font-semibold border-b-2 border-orange-500">Råvarer</a>
-                    <a href="/resources" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Ressourcer</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 py-24 overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-400"></div>
-
-        <div class="relative mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6" data-animate>
-                    <div class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full font-display font-bold text-lg">
-                        ☕ HVER KOP TÆLLER
-                    </div>
-                    <h1 class="font-display text-6xl md:text-7xl font-bold text-stone-900 uppercase tracking-brand-wide leading-tight">
-                        Kaffe
-                    </h1>
-                    <p class="text-xl text-stone-700 font-sans leading-relaxed">
-                        Kaffe har et moderat til højt klimaaftryk, men med bevidste valg kan du reducere påvirkningen markant. Fair trade, økologisk og bæredygtig kaffe gør en forskel.
-                    </p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#kob" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg">
-                            INDKØBSGUIDE
-                        </a>
-                        <a href="#kalkulator" class="bg-white hover:bg-stone-50 text-stone-900 px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg border-2 border-stone-200">
-                            BEREGN CO₂
-                        </a>
-                    </div>
-                </div>
-
-                <div class="relative" data-animate>
-                    <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl transform rotate-3 opacity-20"></div>
-                    <img src="{{ url_for('static', filename='images/emissions_cooking.jpg') }}"
-                         alt="Kaffe tilberedning"
-                         class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover">
-                    <div class="absolute top-8 right-8 bg-amber-600 text-white px-6 py-3 rounded-full font-display font-bold text-xl shadow-lg">
-                        ~15 kg CO₂e/kg
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-amber-600 mb-2">~15</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">kg CO₂e per kg bønner</div>
-                </div>
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-green-600 mb-2">0.075</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">kg CO₂e per kop (5g)</div>
-                </div>
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-blue-600 mb-2">2,5 mia</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">kopper dagligt globalt</div>
-                </div>
-                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-orange-600 mb-2">Fair</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Trade vigtigt</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Climate Impact -->
-    <section class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6 md:px-20">
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Klimaaftryk
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+            <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
+            <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
+                Det Sorte Guld
             </h2>
+            <div class="h-1 w-20 bg-cb-orange-medium mb-8"></div>
+        </div>
+        <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
+            <p class="lead text-xl text-stone-800 font-normal mb-6">
+                Kaffe er en uundværlig del af mange menneskers hverdag, men dens rejse fra tropiske højlande til vores
+                kopper er lang og ressourcekrævende.
+            </p>
+            <p class="mb-6">
+                Med et klimaaftryk på ca. 15 kg CO₂e pr. kg bønner ligger kaffe højt. Men da vi bruger små mængder pr.
+                kop (ca. 5-7g), er aftrykket pr. servering overkommeligt – hvis vi undgår spild og vælger rigtigt.
+            </p>
+            <p>
+                Certificeringer som Fairtrade og Økologi er ikke bare mærkater; de er garantier for, at både natur og
+                mennesker behandles ordentligt i processen.
+            </p>
+        </div>
+    </div>
+</section>
 
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl mb-12" data-animate>
-                <canvas id="climateChart" class="w-full" style="max-height: 400px;"></canvas>
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil</h3>
+                <p class="text-stone-600 mb-8 font-light">
+                    Kaffe scorer højt på vandforbrug og arealanvendelse. Transport og forarbejdning spiller også en
+                    rolle.
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+                        <div class="text-3xl font-display text-stone-900">15 <span
+                                class="text-sm font-sans text-stone-500">kg/kg</span></div>
+                    </div>
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Vandforbrug</div>
+                        <div class="text-3xl font-display text-stone-900">~140 <span
+                                class="text-sm font-sans text-stone-500">L/kop</span></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 text-sm text-stone-500">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-cb-orange-medium"></span> Kaffe
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-stone-300"></span> Te (Ref)
+                    </div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500" data-animate>
-                    <div class="text-5xl mb-4">🌍</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Moderat Aftryk</h3>
-                    <p class="text-stone-700 font-sans">
-                        Med ca. <strong>15 kg CO₂e per kg bønner</strong> ligger kaffe mellem kød og grøntsager.
-                        Per kop (5g bønner) er det kun ~0.075 kg CO₂e.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500" data-animate>
-                    <div class="text-5xl mb-4">🌲</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Skovrydning</h3>
-                    <p class="text-stone-700 font-sans">
-                        Den største miljøpåvirkning kommer fra <strong>afskovning for kaffeplantager</strong>,
-                        især i Brasilien, Colombia og Vietnam. Skyggedyrket kaffe er bedre.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500" data-animate>
-                    <div class="text-5xl mb-4">💧</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
-                    <p class="text-stone-700 font-sans">
-                        Kaffe kræver betydelig vanding (ca. 140L per kop inkl. produktion).
-                        <strong>Økologisk kaffe</strong> bruger ofte mindre vand og pesticider.
-                    </p>
-                </div>
+            <div class="relative aspect-square max-w-md mx-auto">
+                <canvas id="coffeeRadarChart"></canvas>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Coffee Lifecycle -->
-    <section class="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Kaffens Livscyklus
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🌱</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">1. Dyrkning (60% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kaffeplanter dyrkes i tropiske områder. <strong>Problemet:</strong> Afskovning, pesticider, gødning og vandforsyning.
-                            </p>
-                            <div class="bg-green-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• <strong>Skyggedyrket kaffe</strong> - bevarer skov og biodiversitet</li>
-                                    <li>• <strong>Økologisk certificeret</strong> - ingen syntetiske pesticider</li>
-                                    <li>• <strong>Rainforest Alliance</strong> - beskytter regnskov</li>
-                                </ul>
-                            </div>
-                        </div>
+<!-- Ethics & Certifications (Replaces Seasonality) -->
+<section class="py-24 bg-stone-900 text-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-4">
+                <h3 class="text-3xl font-display font-light text-white mb-6">Etik & Valg</h3>
+                <p class="text-stone-400 mb-6 font-light">
+                    Dine valg i indkøb gør en direkte forskel for bønder og biodiversitet.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-cb-green-dark flex items-center justify-center text-xl">🤝
                     </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🏭</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">2. Forarbejdning (15% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kaffebønner tørres, sorteres og ristes. <strong>Energikrævende proces</strong>, især ristning.
-                            </p>
-                            <div class="bg-amber-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• Kaffe ristet med <strong>vedvarende energi</strong></li>
-                                    <li>• Lokalt ristede bønner (reducerer transport)</li>
-                                    <li>• Fabrikker med vandrensning og genanvendelse</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🚢</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">3. Transport (10% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kaffe transporteres fra tropiske lande til Danmark. <strong>Skibsfart</strong> er relativt klimavenlig, men afstand tæller.
-                            </p>
-                            <div class="bg-blue-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">💡 Indsigt:</p>
-                                <p class="text-sm text-stone-600">
-                                    Transport er kun 10% af aftrykket. <strong>Fokuser på dyrkning og forbrug</strong> for størst klimaeffekt.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">☕</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">4. Forbrug & Tilberedning (15% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kaffemaskiner, vandopvarmning og <strong>især kapsler</strong> bidrager til klimaaftrykket.
-                            </p>
-                            <div class="bg-orange-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• <strong>Filterkaffemaskine</strong> (laveste aftryk)</li>
-                                    <li>• <strong>French press</strong> (ingen elektricitet)</li>
-                                    <li>• <strong>Undgå kapsler</strong> (10x højere aftryk pga. emballage + aluminium)</li>
-                                    <li>• Kog kun det vand du skal bruge</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fair Trade & Ethics -->
-    <section class="py-24 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Fair Trade & Etik
-            </h2>
-
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl shadow-lg mb-8" data-animate>
-                <div class="flex items-start gap-6">
-                    <div class="text-6xl">🤝</div>
                     <div>
-                        <h3 class="font-display text-3xl font-bold text-stone-900 uppercase mb-4">Hvorfor Fair Trade?</h3>
-                        <p class="text-stone-700 font-sans mb-4">
-                            Kaffebønder i udviklingslande står ofte over for ekstrem fattigdom, usikre arbejdsforhold og udbytning.
-                            <strong>Fair Trade garanterer rimelige priser og arbejdsforhold.</strong>
-                        </p>
+                        <div class="text-sm font-bold uppercase tracking-wider text-cb-green-medium">Anbefaling</div>
+                        <div class="text-lg">Dobbelt-certificeret</div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-600" data-animate>
-                    <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-4">✅ Fair Trade Fordele</h3>
-                    <ul class="space-y-3 text-sm text-stone-700">
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-xl">💰</span>
-                            <div>
-                                <strong>Mindstepriser</strong> - Beskytter bønder mod prisdyk
+            <div class="md:col-span-8">
+                <div class="space-y-6">
+                    <!-- Fairtrade -->
+                    <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border border-stone-700">
+                        <div class="text-2xl">⚖️</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-white">Fairtrade</span>
+                                <span class="text-xs text-stone-400">Social bæredygtighed</span>
                             </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-xl">👷</span>
-                            <div>
-                                <strong>Sikre arbejdsforhold</strong> - Forbud mod børnearbejde
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-xl">🌱</span>
-                            <div>
-                                <strong>Miljøstandarder</strong> - Reduceret pesticidanvendelse
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-xl">🏘️</span>
-                            <div>
-                                <strong>Samfundsinvestering</strong> - Præmier til lokalsamfund
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-600" data-animate>
-                    <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-4">🏷️ Certificeringer at kigge efter</h3>
-                    <ul class="space-y-3 text-sm text-stone-700">
-                        <li class="flex items-start gap-3">
-                            <span class="text-amber-600 text-xl">🤝</span>
-                            <div>
-                                <strong>Fairtrade International</strong> - Global standard for retfærdighed
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600 text-xl">🌿</span>
-                            <div>
-                                <strong>Økologisk (EU Organic)</strong> - Ingen syntetiske pesticider
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-emerald-600 text-xl">🌳</span>
-                            <div>
-                                <strong>Rainforest Alliance</strong> - Beskytter regnskov og biodiversitet
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 text-xl">🐦</span>
-                            <div>
-                                <strong>Bird Friendly (Smithsonian)</strong> - Skyggedyrket kaffe
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Buying Guide -->
-    <section id="kob" class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Indkøbsguide
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🌱</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Vælg Økologisk & Fair Trade</h3>
-                            <p class="text-stone-700 font-sans">
-                                <strong>Dobbelcertificeret kaffe</strong> (økologisk + Fairtrade) sikrer både miljø og bønders velfærd.
-                                Koster kun 10-20% mere, men gør massiv forskel.
-                            </p>
+                            <p class="text-sm text-stone-400">Sikrer mindstepriser og ordentlige forhold for
+                                kaffebønder.</p>
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🌳</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Skyggedyrket Kaffe</h3>
-                            <p class="text-stone-700 font-sans">
-                                Kaffe dyrket under skovdække bevarer biodiversitet og reducerer behov for gødning.
-                                <strong>Kig efter "Shade-grown" eller "Bird Friendly" certificering.</strong>
-                            </p>
+                    <!-- Økologisk -->
+                    <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border border-stone-700">
+                        <div class="text-2xl">🌱</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-white">Økologisk</span>
+                                <span class="text-xs text-stone-400">Miljøhensyn</span>
+                            </div>
+                            <p class="text-sm text-stone-400">Ingen syntetiske pesticider. Beskytter grundvand og
+                                biodiversitet.</p>
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">☕</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Hele Bønner Frem for Kapsler</h3>
-                            <p class="text-stone-700 font-sans">
-                                Kaffekapsler har <strong>10x højere klimaaftryk</strong> grundet aluminium/plastik emballage.
-                                Vælg hele bønner eller filterkaffe. Invester i en god kværn.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🏪</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Lokalt Ristede Bønner</h3>
-                            <p class="text-stone-700 font-sans">
-                                Danske kafferisterier importerer grønne bønner og rister lokalt.
-                                <strong>Friskere kaffe + reduceret transport</strong> af den tunge ristede kaffe.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-purple-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">📦</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Genbrugelig Emballage</h3>
-                            <p class="text-stone-700 font-sans">
-                                Nogle kaffebrands tilbyder genbrugelige poser eller refill-ordninger.
-                                <strong>Reducer plastik- og aluminiumsaffald.</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-teal-500" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">💧</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Effektiv Tilberedning</h3>
-                            <p class="text-stone-700 font-sans">
-                                Brug <strong>filterkaffemaskine eller French press</strong> frem for espressomaskiner og kapselmaskiner.
-                                Kog kun det vand du skal bruge. Sluk maskinen efter brug.
-                            </p>
+                    <!-- Shade Grown -->
+                    <div
+                        class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-medium shadow-lg shadow-cb-green-medium/10">
+                        <div class="text-2xl">🌳</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-cb-green-medium">Skyggedyrket (Bird Friendly)</span>
+                                <span class="text-xs text-stone-400">Biodiversitet</span>
+                            </div>
+                            <p class="text-sm text-stone-300">Dyrket under træer. Bevarer skov og fugleliv. Højeste
+                                standard.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Interactive Calculator -->
-    <section id="kalkulator" class="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-        <div class="mx-auto max-w-4xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Beregn Dit Kaffe-Aftryk
-            </h2>
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Bryggemetoder</h2>
+            <p class="text-stone-500 max-w-2xl mx-auto">
+                Hvordan du brygger kaffen påvirker både smag og energiforbrug.
+            </p>
+        </div>
 
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl" data-animate>
-                <div class="space-y-8">
-                    <!-- Coffee Cups per Day -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Filterkaffe
+                    </div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Filterkaffe</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Den mest klimavenlige metode (hvis du undgår spild). Brug genbrugsfilter eller ubleget papir.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Stempelkande
+                    </div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Stempelkande (French Press)</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Ingen filtre, ingen elektronik (udover elkedel). Fuld smag, minimalt affald.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Kaffegrums
+                    </div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Genbrug af Grums</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Smid ikke grumset ud! Brug det som gødning i haven, til hudpleje eller dyrkning af østershatte.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Calculator Section (Adapted) -->
+<section class="py-24 bg-cb-taupe-light">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Dit Kaffe-Aftryk</h2>
+            <p class="text-stone-600">Se hvad dit daglige forbrug betyder på et år</p>
+        </div>
+
+        <div class="bg-white p-8 shadow-sm border border-stone-100">
+            <div class="mb-6">
+                <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                    Kopper pr. dag
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="cupsPerDay" min="1" max="10" value="3" step="1"
+                        class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-orange-medium"
+                        oninput="calculateCoffeeImpact()">
+                    <span id="cupsDisplay" class="font-display text-2xl text-cb-orange-medium min-w-[80px]">3</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                    Kaffetype
+                </label>
+                <select id="coffeeType"
+                    class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-orange-medium"
+                    onchange="calculateCoffeeImpact()">
+                    <option value="15">Konventionel (15 kg CO₂e/kg)</option>
+                    <option value="12">Økologisk (12 kg CO₂e/kg)</option>
+                    <option value="10">Skyggedyrket (10 kg CO₂e/kg)</option>
+                </select>
+            </div>
+
+            <div id="coffeeResult" class="border-t border-stone-100 pt-8">
+                <div class="grid grid-cols-2 gap-8 text-center">
                     <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Kopper kaffe per dag
-                        </label>
-                        <input type="range" id="cupsPerDay" min="1" max="10" value="3" step="1"
-                               class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-amber-600">
-                        <div class="flex justify-between mt-2">
-                            <span class="text-sm text-stone-600">1 kop</span>
-                            <span class="text-lg font-bold text-amber-600" id="cupsDisplay">3 kopper</span>
-                            <span class="text-sm text-stone-600">10 kopper</span>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årligt aftryk</div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="annualCO2">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
                         </div>
                     </div>
-
-                    <!-- Coffee Type -->
                     <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Type kaffe:
-                        </label>
-                        <select id="coffeeType"
-                                class="w-full p-4 border-2 border-stone-200 rounded-lg font-sans text-stone-700 cursor-pointer hover:border-amber-600 transition-colors">
-                            <option value="15">Konventionel kaffe (15 kg CO₂e/kg)</option>
-                            <option value="12">Økologisk kaffe (12 kg CO₂e/kg)</option>
-                            <option value="10">Skyggedyrket + økologisk (10 kg CO₂e/kg)</option>
-                        </select>
-                    </div>
-
-                    <!-- Brewing Method -->
-                    <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Tilberedningsmetode:
-                        </label>
-                        <select id="brewMethod"
-                                class="w-full p-4 border-2 border-stone-200 rounded-lg font-sans text-stone-700 cursor-pointer hover:border-amber-600 transition-colors">
-                            <option value="0.02">Filterkaffe (0.02 kg CO₂e/kop ekstra)</option>
-                            <option value="0.03">French Press (0.03 kg CO₂e/kop ekstra)</option>
-                            <option value="0.05">Espressomaskine (0.05 kg CO₂e/kop ekstra)</option>
-                            <option value="0.15">Kaffekapsler (0.15 kg CO₂e/kop ekstra)</option>
-                        </select>
-                    </div>
-
-                    <!-- Results -->
-                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl border-2 border-amber-200">
-                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">
-                            Dit Årlige Kaffe-Aftryk
-                        </h3>
-
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">Årligt CO₂-Aftryk</div>
-                                <div class="text-5xl font-bold text-amber-600 mb-2">
-                                    <span id="annualCO2">89</span>
-                                </div>
-                                <div class="text-sm text-stone-600">kg CO₂e</div>
-                            </div>
-
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">Svarer Til</div>
-                                <div class="text-5xl font-bold text-blue-600 mb-2">
-                                    <span id="kmDriving">445</span>
-                                </div>
-                                <div class="text-sm text-stone-600">km bilkørsel</div>
-                            </div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Svarer til kørsel
                         </div>
-
-                        <div class="mt-6 p-6 bg-white rounded-xl">
-                            <p class="text-sm text-stone-600 text-center mb-4">
-                                <strong class="text-green-700">💡 Potentiel besparelse ved at skifte til økologisk + filterkaffe:</strong>
-                            </p>
-                            <div class="text-3xl font-bold text-green-600 text-center">
-                                <span id="potentialSavings">48</span> kg CO₂e/år
-                            </div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="kmDriving">0</span> <span class="text-sm text-stone-500">km</span>
                         </div>
                     </div>
                 </div>
+                <p id="coffeeMessage" class="text-center text-sm text-stone-500 mt-6 font-medium"></p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Data Sources -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">Datakilder</h3>
-            <div class="bg-stone-50 p-6 rounded-xl">
-                <ul class="space-y-2 text-sm text-stone-600">
-                    <li>• <strong>Poore & Nemecek (2018), Science</strong> - Global fødevareproduktionens miljøpåvirkning</li>
-                    <li>• <strong>Carbon Trust (2020)</strong> - Klimaaftryk for kaffe og tilberedningsmetoder</li>
-                    <li>• <strong>Our World in Data (2024)</strong> - Kaffens miljøpåvirkning</li>
-                    <li>• <strong>Fairtrade International (2024)</strong> - Fair Trade standarder og impact</li>
-                    <li>• <strong>Rainforest Alliance (2024)</strong> - Bæredygtig kaffeproduktion</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white py-12">
-        <div class="mx-auto max-w-7xl px-6 text-center">
-            <p class="font-display text-2xl font-bold tracking-brand-wide mb-4" style="color: var(--brand-orange);">VIDENSBANK</p>
-            <p class="text-stone-400 font-sans">&copy; 2024 Vidensbank. Alle rettigheder forbeholdes.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.classList.add('animate-fade-in-up');
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Radar Chart
+    const ctx = document.getElementById('coffeeRadarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
+            datasets: [{
+                label: 'Kaffe',
+                data: [60, 80, 70, 50, 60], // High water, moderate-high CO2
+                backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                borderColor: 'rgba(249, 115, 22, 1)',
+                pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+                borderWidth: 2
+            }, {
+                label: 'Te (Ref)',
+                data: [10, 20, 20, 10, 10], // Low impact
+                backgroundColor: 'rgba(168, 162, 158, 0.2)',
+                borderColor: 'rgba(168, 162, 158, 1)',
+                pointBackgroundColor: 'rgba(168, 162, 158, 1)',
+                borderWidth: 1,
+                borderDash: [5, 5]
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { display: false },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-        // Climate Chart
-        const ctx = document.getElementById('climateChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Oksekød', 'Lammekød', 'Kaffe', 'Svinekød', 'Ris', 'Bladgrønt'],
-                datasets: [{
-                    label: 'kg CO₂e per kg',
-                    data: [60, 24, 15, 12, 4, 0.2],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.8)',
-                        'rgba(251, 146, 60, 0.8)',
-                        'rgba(217, 119, 6, 0.8)',
-                        'rgba(251, 191, 36, 0.8)',
-                        'rgba(251, 191, 36, 0.6)',
-                        'rgba(34, 197, 94, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgb(239, 68, 68)',
-                        'rgb(251, 146, 60)',
-                        'rgb(217, 119, 6)',
-                        'rgb(251, 191, 36)',
-                        'rgb(251, 191, 36)',
-                        'rgb(34, 197, 94)'
-                    ],
-                    borderWidth: 2
-                }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.y + ' kg CO₂e per kg';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'kg CO₂e per kg produkt',
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
+            plugins: {
+                legend: { display: false }
             }
-        });
-
-        // Calculator
-        const GRAMS_PER_CUP = 5; // 5g coffee per cup
-        const CAR_CO2_PER_KM = 0.2; // Average car emissions
-
-        const cupsSlider = document.getElementById('cupsPerDay');
-        const cupsDisplay = document.getElementById('cupsDisplay');
-        const coffeeTypeSelect = document.getElementById('coffeeType');
-        const brewMethodSelect = document.getElementById('brewMethod');
-        const annualCO2Display = document.getElementById('annualCO2');
-        const kmDrivingDisplay = document.getElementById('kmDriving');
-        const potentialSavingsDisplay = document.getElementById('potentialSavings');
-
-        function updateCalculations() {
-            const cupsPerDay = parseInt(cupsSlider.value);
-            const coffeeCO2PerKg = parseFloat(coffeeTypeSelect.value);
-            const brewCO2PerCup = parseFloat(brewMethodSelect.value);
-
-            // Update display
-            cupsDisplay.textContent = cupsPerDay + (cupsPerDay === 1 ? ' kop' : ' kopper');
-
-            // Calculate annual CO2
-            const dailyCoffeeCO2 = (cupsPerDay * GRAMS_PER_CUP / 1000) * coffeeCO2PerKg; // kg CO2 from coffee beans
-            const dailyBrewCO2 = cupsPerDay * brewCO2PerCup; // kg CO2 from brewing
-            const dailyTotalCO2 = dailyCoffeeCO2 + dailyBrewCO2;
-            const annualCO2 = dailyTotalCO2 * 365;
-            const kmEquivalent = annualCO2 / CAR_CO2_PER_KM;
-
-            // Calculate potential savings (switch to organic + filter)
-            const bestCoffeeCO2 = 10; // Shade-grown + organic
-            const bestBrewCO2 = 0.02; // Filter coffee
-            const bestDailyCoffeeCO2 = (cupsPerDay * GRAMS_PER_CUP / 1000) * bestCoffeeCO2;
-            const bestDailyBrewCO2 = cupsPerDay * bestBrewCO2;
-            const bestDailyTotal = bestDailyCoffeeCO2 + bestDailyBrewCO2;
-            const bestAnnualCO2 = bestDailyTotal * 365;
-            const potentialSavings = annualCO2 - bestAnnualCO2;
-
-            // Update displays
-            annualCO2Display.textContent = Math.round(annualCO2);
-            kmDrivingDisplay.textContent = Math.round(kmEquivalent).toLocaleString('da-DK');
-            potentialSavingsDisplay.textContent = Math.max(0, Math.round(potentialSavings));
         }
+    });
 
-        cupsSlider.addEventListener('input', updateCalculations);
-        coffeeTypeSelect.addEventListener('change', updateCalculations);
-        brewMethodSelect.addEventListener('change', updateCalculations);
+    // Calculator Logic
+    const cupsSlider = document.getElementById('cupsPerDay');
+    const cupsDisplay = document.getElementById('cupsDisplay');
+    const coffeeTypeSelect = document.getElementById('coffeeType');
+    const annualCO2Display = document.getElementById('annualCO2');
+    const kmDrivingDisplay = document.getElementById('kmDriving');
+    const coffeeMessageDisplay = document.getElementById('coffeeMessage');
 
-        // Initial calculation
-        updateCalculations();
-    </script>
+    const GRAMS_PER_CUP = 7; // Approx 7g per cup
+    const CAR_CO2_PER_KM = 0.12; // kg CO2e per km (modern car)
 
-</body>
-</html>
+    function calculateCoffeeImpact() {
+        const cups = parseInt(cupsSlider.value);
+        const co2PerKg = parseInt(coffeeTypeSelect.value);
+
+        cupsDisplay.textContent = cups;
+
+        const dailyKg = (cups * GRAMS_PER_CUP) / 1000;
+        const dailyCO2 = dailyKg * co2PerKg;
+        const annualCO2 = dailyCO2 * 365;
+        const kmDriving = annualCO2 / CAR_CO2_PER_KM;
+
+        annualCO2Display.textContent = Math.round(annualCO2).toLocaleString();
+        kmDrivingDisplay.textContent = Math.round(kmDriving).toLocaleString();
+
+        if (co2PerKg <= 10) {
+            coffeeMessageDisplay.textContent = "Flot valg! Skyggedyrket kaffe skåner naturen.";
+            coffeeMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
+        } else {
+            coffeeMessageDisplay.textContent = "Overvej økologisk eller skyggedyrket kaffe for at reducere aftrykket.";
+            coffeeMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
+        }
+    }
+
+    // Init
+    calculateCoffeeImpact();
+</script>
+{% endblock %}

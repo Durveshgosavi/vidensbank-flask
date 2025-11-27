@@ -1,694 +1,335 @@
-<!DOCTYPE html>
-<html lang="da">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kakao - Chokoladens Klimaaftryk | Vidensbank</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --brand-orange: #FF6B35;
-            --brand-yellow: #F7931E;
-            --brand-teal: #4ECDC4;
-            --brand-navy: #1A535C;
-            --brand-cream: #FFF8F0;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+{% block title %}Kakao – Klimaaftryk, Afskovning & Etik | Canteen Buddy{% endblock %}
 
-        .font-display {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em;
-        }
+{% block content %}
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/nutrition_snacks.jpg') }}" alt="Kakao"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
 
-        .tracking-brand-wide {
-            letter-spacing: 0.1em;
-        }
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Kakao</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            En luksusvare med en bagside. Højt klimaaftryk og risiko for afskovning kræver omtanke.
+        </p>
+    </div>
+</header>
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes wave {
-            0%, 100% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .animate-scale-in {
-            animation: scaleIn 0.6s ease-out forwards;
-        }
-
-        .animate-slide-in-left {
-            animation: slideInLeft 0.6s ease-out forwards;
-        }
-
-        .animate-wave {
-            animation: wave 3s ease-in-out infinite;
-        }
-
-        .animation-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .animation-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .animation-delay-600 {
-            animation-delay: 0.6s;
-        }
-
-        [data-animate] {
-            opacity: 0;
-        }
-    </style>
-</head>
-<body class="bg-stone-50">
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="mx-auto max-w-7xl px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="font-display text-3xl font-bold tracking-brand-wide" style="color: var(--brand-orange);">
-                    VIDENSBANK
-                </a>
-                <div class="flex gap-8">
-                    <a href="/topics" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Emner</a>
-                    <a href="/raavarer" class="font-sans text-orange-500 font-semibold border-b-2 border-orange-500">Råvarer</a>
-                    <a href="/resources" class="font-sans text-stone-700 hover:text-orange-500 transition-colors font-semibold">Ressourcer</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-amber-100 via-orange-100 to-stone-200 py-24 overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-400"></div>
-
-        <div class="relative mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6" data-animate>
-                    <div class="inline-block bg-red-700 text-white px-6 py-2 rounded-full font-display font-bold text-lg">
-                        🍫 HIGH CLIMATE IMPACT
-                    </div>
-                    <h1 class="font-display text-6xl md:text-7xl font-bold text-stone-900 uppercase tracking-brand-wide leading-tight">
-                        Kakao
-                    </h1>
-                    <p class="text-xl text-stone-700 font-sans leading-relaxed">
-                        Kakao har et betydeligt klimaaftryk og er forbundet med afskovning og sociale udfordringer. Fair Trade og bæredygtig kakao er kritisk vigtigt.
-                    </p>
-                    <div class="flex gap-4 pt-4">
-                        <a href="#kob" class="bg-amber-800 hover:bg-amber-900 text-white px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg">
-                            INDKØBSGUIDE
-                        </a>
-                        <a href="#kalkulator" class="bg-white hover:bg-stone-50 text-stone-900 px-8 py-4 rounded-full font-display text-xl font-bold transition-all hover:scale-105 shadow-lg border-2 border-stone-200">
-                            BEREGN CO₂
-                        </a>
-                    </div>
-                </div>
-
-                <div class="relative" data-animate>
-                    <div class="absolute inset-0 bg-gradient-to-br from-amber-600 to-orange-700 rounded-3xl transform rotate-3 opacity-20"></div>
-                    <img src="{{ url_for('static', filename='images/nutrition_snacks.jpg') }}"
-                         alt="Kakao og chokolade"
-                         class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover">
-                    <div class="absolute top-8 right-8 bg-amber-800 text-white px-6 py-3 rounded-full font-display font-bold text-xl shadow-lg">
-                        ~25 kg CO₂e/kg
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-7xl px-6 md:px-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-amber-800 mb-2">~25</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">kg CO₂e per kg kakaopulver</div>
-                </div>
-                <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-red-700 mb-2">🌳</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Afskovningsrisiko</div>
-                </div>
-                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-green-700 mb-2">Fair</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Trade Vigtigt</div>
-                </div>
-                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl text-center" data-animate>
-                    <div class="text-4xl font-bold text-orange-700 mb-2">💪</div>
-                    <div class="text-sm text-stone-600 font-semibold uppercase">Rig på antioxidanter</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Climate Impact -->
-    <section class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6 md:px-20">
-            <h2 class="font-display text-4xl md:text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Klimaaftryk
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+            <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
+            <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
+                Den Bitre Sandhed
             </h2>
+            <div class="h-1 w-20 bg-cb-orange-dark mb-8"></div>
+        </div>
+        <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
+            <p class="lead text-xl text-stone-800 font-normal mb-6">
+                Chokolade elskes verden over, men kakaoproduktionen er en af de største drivkræfter bag afskovning i
+                Vestafrika.
+            </p>
+            <p class="mb-6">
+                Med et klimaaftryk på ca. 25 kg CO₂e pr. kg kakaopulver er det en af de mest belastende plantebaserede
+                fødevarer. Det skyldes primært ændringer i arealanvendelse (skovrydning) og lavt udbytte.
+            </p>
+            <p>
+                Men kakao kan dyrkes bæredygtigt i agro-forestry systemer, hvor kakaotræer vokser i skyggen af andre
+                træer. Det bevarer biodiversitet og binder kulstof.
+            </p>
+        </div>
+    </div>
+</section>
 
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl mb-12" data-animate>
-                <canvas id="climateChart" class="w-full" style="max-height: 400px;"></canvas>
+<!-- Environmental Profile (Radar Chart) -->
+<section class="py-24 bg-stone-50">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil</h3>
+                <p class="text-stone-600 mb-8 font-light">
+                    Kakao scorer højt på næsten alle parametre, især arealanvendelse og biodiversitetstab (pga.
+                    afskovning).
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+                        <div class="text-3xl font-display text-stone-900">25 <span
+                                class="text-sm font-sans text-stone-500">kg/kg</span></div>
+                    </div>
+                    <div class="p-4 bg-white border border-stone-100 shadow-sm">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Afskovning</div>
+                        <div class="text-3xl font-display text-red-600">Høj <span
+                                class="text-sm font-sans text-stone-500">Risiko</span></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 text-sm text-stone-500">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-cb-orange-dark"></span> Kakao
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-stone-300"></span> Kaffe (Ref)
+                    </div>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-600" data-animate>
-                    <div class="text-5xl mb-4">🌍</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Højt Aftryk</h3>
-                    <p class="text-stone-700 font-sans">
-                        Med ca. <strong>25 kg CO₂e per kg kakaopulver</strong> har kakao et betydeligt klimaaftryk -
-                        højere end de fleste plantebaserede fødevarer og endda højere end mange kødprodukter.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-600" data-animate>
-                    <div class="text-5xl mb-4">🌲</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Afskovning</h3>
-                    <p class="text-stone-700 font-sans">
-                        Den største miljøpåvirkning kommer fra <strong>afskovning i Vestafrika</strong> (Ghana, Elfenbenskysten),
-                        hvor 90% af oprindelig regnskov er forsvundet. Kakaoplantager erstatter regnskov.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600" data-animate>
-                    <div class="text-5xl mb-4">💧</div>
-                    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
-                    <p class="text-stone-700 font-sans">
-                        Kakaoproduktion kræver betydelig vanding og gødning.
-                        <strong>Fair Trade og økologisk kakao</strong> reducerer miljøbelastning og sikrer bedre arbejdsforhold.
-                    </p>
-                </div>
+            <div class="relative aspect-square max-w-md mx-auto">
+                <canvas id="cocoaRadarChart"></canvas>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Production Lifecycle -->
-    <section class="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-stone-100">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Kakaoens Livscyklus
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🌱</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">1. Dyrkning (70% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kakaotræer dyrkes i tropiske områder tæt på ækvator. <strong>Problemet:</strong> Massiv afskovning,
-                                monokulturer, pesticider og børnearbejde. Vestafrika står for 70% af verdens kakao.
-                            </p>
-                            <div class="bg-green-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• <strong>Fair Trade certificeret</strong> - ingen børnearbejde, rimelig løn</li>
-                                    <li>• <strong>Økologisk kakao</strong> - ingen syntetiske pesticider</li>
-                                    <li>• <strong>Rainforest Alliance</strong> - beskytter regnskov og biodiversitet</li>
-                                    <li>• <strong>Agro-forestry systemer</strong> - kakao dyrket sammen med andre træer</li>
-                                </ul>
-                            </div>
-                        </div>
+<!-- Chocolate Types (Replaces Seasonality) -->
+<section class="py-24 bg-stone-900 text-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-4">
+                <h3 class="text-3xl font-display font-light text-white mb-6">Vælg Klogt</h3>
+                <p class="text-stone-400 mb-6 font-light">
+                    Kvalitet frem for kvantitet. Mørk chokolade giver mere smag og sundhed for samme klimaaftryk.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-cb-orange-medium flex items-center justify-center text-xl">🍫
                     </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-700" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🏭</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">2. Forarbejdning (15% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kakaobønner fermenteres, tørres, ristes og males til kakaomasse, smør og pulver.
-                                <strong>Energikrævende proces</strong>, især ristning og finmaling.
-                            </p>
-                            <div class="bg-amber-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• Fabrikker med <strong>vedvarende energi</strong></li>
-                                    <li>• Lokal forarbejdning i dyrkningsland (styrker lokal økonomi)</li>
-                                    <li>• Bean-to-bar producenter med transparens</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🚢</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">3. Transport (10% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Kakao transporteres fra tropiske lande til chokoladefabrikker globalt.
-                                <strong>Skibsfart</strong> er relativt klimavenlig, men afstand og volumen tæller.
-                            </p>
-                            <div class="bg-blue-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">💡 Indsigt:</p>
-                                <p class="text-sm text-stone-600">
-                                    Transport er kun 10% af aftrykket. <strong>Fokuser på bæredygtig dyrkning og fair trade</strong>
-                                    for størst klimaeffekt og social retfærdighed.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🍫</div>
-                        <div class="flex-1">
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">4. Forbrug (5% af CO₂)</h3>
-                            <p class="text-stone-700 font-sans mb-4">
-                                Chokolade og kakaoprodukter forbruges direkte. Mælkechokolade har <strong>ekstra klimaaftryk fra mælk</strong>.
-                            </p>
-                            <div class="bg-orange-50 p-4 rounded">
-                                <p class="text-xs font-bold text-stone-700 uppercase mb-2">✅ Bedre valg:</p>
-                                <ul class="text-sm text-stone-600 space-y-1">
-                                    <li>• <strong>Mørk chokolade (70%+)</strong> - mindre mælk, mere kakao</li>
-                                    <li>• <strong>Rent kakaopulver</strong> - ingen tilsat sukker eller palmeolie</li>
-                                    <li>• <strong>Moderat forbrug</strong> - nyd kvalitet frem for kvantitet</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chocolate Types -->
-    <section class="py-24 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Forskellige Chokoladetyper
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-gradient-to-r from-stone-800 to-stone-700 text-white p-6 rounded-xl shadow-lg border-l-4 border-amber-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🍫</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold uppercase">Mørk Chokolade (70%+ kakao)</h3>
-                                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">BEDSTE VALG</span>
-                            </div>
-                            <p class="text-stone-200 font-sans mb-2">
-                                <strong>Højt kakaoindhold, minimal mælk og sukker.</strong> Klimaaftryk primært fra kakao (~18-25 kg CO₂e/kg).
-                                Rig på flavonoider og antioxidanter. Bedre for hjertesundhed.
-                            </p>
-                            <p class="text-xs text-stone-300">CO₂-aftryk: 18-25 kg CO₂e/kg</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-amber-100 to-orange-100 p-6 rounded-xl shadow-lg border-l-4 border-orange-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">🥛</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Mælkechokolade (30-50% kakao)</h3>
-                                <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">MODERAT IMPACT</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Lavere kakaoindhold + mælkepulver + sukker.</strong> Højere klimaaftryk pga. mælkeproduktion.
-                                Populær, men mindre sundhedsfordele end mørk chokolade.
-                            </p>
-                            <p class="text-xs text-stone-500">CO₂-aftryk: 30-40 kg CO₂e/kg (inkl. mælk)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-xl shadow-lg border-l-4 border-red-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl">☕</div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Kakaopulver (100% kakao)</h3>
-                                <span class="bg-red-700 text-white px-3 py-1 rounded-full text-xs font-bold">HØJEST CO₂</span>
-                            </div>
-                            <p class="text-stone-700 font-sans mb-2">
-                                <strong>Rent kakaopulver uden tilsætningsstoffer.</strong> Højeste CO₂ per kg (~25 kg), men bruges i små mængder.
-                                Perfekt til bagning og drikkechokolade. Vælg økologisk og Fair Trade.
-                            </p>
-                            <p class="text-xs text-stone-500">CO₂-aftryk: ~25 kg CO₂e/kg</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Buying Guide -->
-    <section id="kob" class="py-24 bg-stone-50">
-        <div class="mx-auto max-w-5xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Indkøbsguide
-            </h2>
-
-            <div class="space-y-6">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🤝</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Fair Trade + Økologisk</h3>
-                            <p class="text-stone-700 font-sans">
-                                <strong>Dobbelcertificeret chokolade</strong> (Fair Trade + økologisk) sikrer ingen børnearbejde,
-                                rimelig løn til bønder og ingen syntetiske pesticider. Dette er den vigtigste prioritet.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🌳</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Rainforest Alliance Certificering</h3>
-                            <p class="text-stone-700 font-sans">
-                                Kakao certificeret af <strong>Rainforest Alliance</strong> beskytter regnskov, fremmer biodiversitet
-                                og sikrer bæredygtige dyrkningsmetoder. Kig efter den grønne frø-mærkat.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-amber-700" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🍫</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Højt Kakaoindhold (70%+)</h3>
-                            <p class="text-stone-700 font-sans">
-                                Vælg <strong>mørk chokolade med mindst 70% kakao</strong>. Mindre sukker og mælk reducerer
-                                tilsat klimaaftryk og giver flere sundhedsmæssige fordele (antioxidanter, magnesium).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">📦</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Minimal Emballage</h3>
-                            <p class="text-stone-700 font-sans">
-                                Vælg chokolade i <strong>papir eller genbrugeligt materiale</strong> frem for plastik og aluminium.
-                                Undgå individuelt indpakket chokolade. Køb større formater for at reducere emballageaffald.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-red-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🚫</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Undgå Palmeolie</h3>
-                            <p class="text-stone-700 font-sans">
-                                Mange chokoladeprodukter indeholder <strong>palmeolie</strong>, som bidrager til afskovning.
-                                Læs ingredienslisten og vælg produkter uden palmeolie eller med certificeret bæredygtig palmeolie (RSPO).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600" data-animate>
-                    <div class="flex items-start gap-4">
-                        <div class="text-3xl">🔍</div>
-                        <div>
-                            <h3 class="font-display text-xl font-bold text-stone-900 uppercase mb-2">Støt Transparente Brands</h3>
-                            <p class="text-stone-700 font-sans">
-                                Vælg <strong>"bean-to-bar" chokoladeproducenter</strong> der er transparente om deres forsyningskæde
-                                og betaler bønder fair priser. Brands som Tony's Chocolonely, Divine, Original Beans.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Calculator -->
-    <section id="kalkulator" class="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-stone-100">
-        <div class="mx-auto max-w-4xl px-6">
-            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide mb-12 text-center" data-animate>
-                Beregn Dit Chokolade-Aftryk
-            </h2>
-
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl" data-animate>
-                <div class="space-y-8">
-                    <!-- Chocolate Consumption -->
                     <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Ugentligt chokoladeforbrug (gram)
-                        </label>
-                        <input type="range" id="chocolatePerWeek" min="50" max="500" value="150" step="50"
-                               class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-amber-800">
-                        <div class="flex justify-between mt-2">
-                            <span class="text-sm text-stone-600">50g</span>
-                            <span class="text-lg font-bold text-amber-800" id="chocolateDisplay">150g</span>
-                            <span class="text-sm text-stone-600">500g</span>
+                        <div class="text-sm font-bold uppercase tracking-wider text-cb-orange-light">Anbefaling</div>
+                        <div class="text-lg">70%+ & Fairtrade</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-8">
+                <div class="space-y-6">
+                    <!-- Mørk Chokolade -->
+                    <div
+                        class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-medium shadow-lg shadow-cb-green-medium/10">
+                        <div class="text-2xl">🍫</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-cb-green-medium">Mørk Chokolade (70%+)</span>
+                                <span class="text-xs text-stone-400">Bedste valg</span>
+                            </div>
+                            <p class="text-sm text-stone-300">Højt kakaoindhold, mindre sukker/mælk. Mætter mere, så man
+                                spiser mindre.</p>
                         </div>
                     </div>
 
-                    <!-- Chocolate Type -->
-                    <div>
-                        <label class="block font-display text-xl font-bold text-stone-900 uppercase mb-4">
-                            Type chokolade:
-                        </label>
-                        <select id="chocolateType"
-                                class="w-full p-4 border-2 border-stone-200 rounded-lg font-sans text-stone-700 cursor-pointer hover:border-amber-800 transition-colors">
-                            <option value="35">Mælkechokolade (35 kg CO₂e/kg)</option>
-                            <option value="25">Mørk chokolade 70% (25 kg CO₂e/kg)</option>
-                            <option value="20">Mørk chokolade 85% (20 kg CO₂e/kg)</option>
-                            <option value="18">Fair Trade + økologisk mørk (18 kg CO₂e/kg)</option>
-                        </select>
+                    <!-- Mælkechokolade -->
+                    <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border border-stone-700">
+                        <div class="text-2xl">🥛</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-white">Mælkechokolade</span>
+                                <span class="text-xs text-stone-400">Højt aftryk</span>
+                            </div>
+                            <p class="text-sm text-stone-400">Klimaaftryk fra både kakao og mælkepulver. Ofte lav
+                                kvalitet.</p>
+                        </div>
                     </div>
 
-                    <!-- Results -->
-                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl border-2 border-amber-200">
-                        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-6 text-center">
-                            Dit Årlige Chokolade-Aftryk
-                        </h3>
-
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">Årligt CO₂-Aftryk</div>
-                                <div class="text-5xl font-bold text-amber-800 mb-2">
-                                    <span id="annualCO2">273</span>
-                                </div>
-                                <div class="text-sm text-stone-600">kg CO₂e</div>
+                    <!-- Kakaopulver -->
+                    <div
+                        class="flex items-center gap-4 p-4 bg-stone-800/50 rounded-lg border border-stone-700 opacity-70">
+                        <div class="text-2xl">🥣</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold text-stone-300">Kakaopulver</span>
+                                <span class="text-xs text-stone-500">Rent produkt</span>
                             </div>
-
-                            <div class="bg-white p-6 rounded-xl text-center">
-                                <div class="text-sm text-stone-600 uppercase mb-2">Svarer Til</div>
-                                <div class="text-5xl font-bold text-blue-600 mb-2">
-                                    <span id="kmDriving">1365</span>
-                                </div>
-                                <div class="text-sm text-stone-600">km bilkørsel</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 p-6 bg-white rounded-xl">
-                            <p class="text-sm text-stone-600 text-center mb-4">
-                                <strong class="text-green-700">💡 Potentiel besparelse ved at skifte til Fair Trade økologisk mørk:</strong>
-                            </p>
-                            <div class="text-3xl font-bold text-green-600 text-center">
-                                <span id="potentialSavings">133</span> kg CO₂e/år
-                            </div>
+                            <p class="text-sm text-stone-500">Højt aftryk pr. kg, men bruges i små mængder. Vælg altid
+                                økologisk.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Data Sources -->
-    <section class="py-16 bg-white">
-        <div class="mx-auto max-w-5xl px-6">
-            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">Datakilder</h3>
-            <div class="bg-stone-50 p-6 rounded-xl">
-                <ul class="space-y-2 text-sm text-stone-600">
-                    <li>• <strong>Poore & Nemecek (2018), Science</strong> - Global fødevareproduktionens miljøpåvirkning</li>
-                    <li>• <strong>WWF (2024)</strong> - Kakao og afskovning i Vestafrika</li>
-                    <li>• <strong>Fairtrade International (2024)</strong> - Fair Trade standarder og børnearbejde i kakao</li>
-                    <li>• <strong>Rainforest Alliance (2024)</strong> - Bæredygtig kakaoproduktion</li>
-                    <li>• <strong>Our World in Data (2024)</strong> - Klimaaftryk for kakao og chokolade</li>
-                </ul>
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Køkkenet</h2>
+            <p class="text-stone-500 max-w-2xl mx-auto">
+                Brug kakao som et krydderi – det kan mere end bare kage.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Det Salte
+                        Køkken</div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">I Det Salte Køkken</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    En smule mørk chokolade eller kakao i chili con carne eller vildtsauce giver dybde og umami.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Nibs</div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Kakaonibs</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Ristede, knuste kakaobønner. Knasende tekstur uden sukker. Perfekt topping til grød eller salat.
+                </p>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
+                    <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Drikke</div>
+                </div>
+                <h3 class="text-xl font-display text-stone-900 mb-2">Varm Kakao</h3>
+                <p class="text-sm text-stone-600 font-light">
+                    Lav den på havremælk og god kakao. Tilsæt krydderier som kanel eller chili for at strække smagen.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white py-12">
-        <div class="mx-auto max-w-7xl px-6 text-center">
-            <p class="font-display text-2xl font-bold tracking-brand-wide mb-4" style="color: var(--brand-orange);">VIDENSBANK</p>
-            <p class="text-stone-400 font-sans">&copy; 2024 Vidensbank. Alle rettigheder forbeholdes.</p>
+<!-- Calculator Section (Adapted) -->
+<section class="py-24 bg-cb-taupe-light">
+    <div class="mx-auto max-w-4xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Dit Aftryk</h2>
+            <p class="text-stone-600">Hvad betyder dit chokoladeforbrug?</p>
         </div>
-    </footer>
 
-    <script>
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <div class="bg-white p-8 shadow-sm border border-stone-100">
+            <div class="mb-6">
+                <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                    Gram pr. uge
+                </label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="chocolateAmount" min="0" max="500" value="100" step="10"
+                        class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-orange-dark"
+                        oninput="calculateCocoaImpact()">
+                    <span id="chocolateDisplay"
+                        class="font-display text-2xl text-cb-orange-dark min-w-[80px]">100</span>
+                </div>
+            </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.classList.add('animate-fade-in-up');
+            <div class="mb-8">
+                <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
+                    Type
+                </label>
+                <select id="chocolateType"
+                    class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-orange-dark"
+                    onchange="calculateCocoaImpact()">
+                    <option value="35">Mælkechokolade (35 kg CO₂e/kg)</option>
+                    <option value="25">Mørk chokolade (25 kg CO₂e/kg)</option>
+                    <option value="18">Fairtrade Øko (18 kg CO₂e/kg)</option>
+                </select>
+            </div>
+
+            <div id="cocoaResult" class="border-t border-stone-100 pt-8">
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årligt aftryk</div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="annualCO2">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Svarer til kørsel
+                        </div>
+                        <div class="text-3xl font-display text-stone-900">
+                            <span id="kmDriving">0</span> <span class="text-sm text-stone-500">km</span>
+                        </div>
+                    </div>
+                </div>
+                <p id="cocoaMessage" class="text-center text-sm text-stone-500 mt-6 font-medium"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Radar Chart
+    const ctx = document.getElementById('cocoaRadarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
+            datasets: [{
+                label: 'Kakao',
+                data: [80, 70, 90, 60, 95], // Very high impact, esp biodiversity
+                backgroundColor: 'rgba(154, 52, 18, 0.2)',
+                borderColor: 'rgba(154, 52, 18, 1)',
+                pointBackgroundColor: 'rgba(154, 52, 18, 1)',
+                borderWidth: 2
+            }, {
+                label: 'Kaffe (Ref)',
+                data: [60, 80, 70, 50, 60],
+                backgroundColor: 'rgba(168, 162, 158, 0.2)',
+                borderColor: 'rgba(168, 162, 158, 1)',
+                pointBackgroundColor: 'rgba(168, 162, 158, 1)',
+                borderWidth: 1,
+                borderDash: [5, 5]
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { display: false },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
                 }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-        // Climate Chart
-        const ctx = document.getElementById('climateChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Oksekød', 'Kakao', 'Kaffe', 'Te', 'Bladgrønt'],
-                datasets: [{
-                    label: 'kg CO₂e per kg',
-                    data: [60, 25, 15, 8, 0.2],
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.8)',
-                        'rgba(217, 119, 6, 0.8)',
-                        'rgba(251, 191, 36, 0.8)',
-                        'rgba(20, 184, 166, 0.8)',
-                        'rgba(34, 197, 94, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgb(239, 68, 68)',
-                        'rgb(217, 119, 6)',
-                        'rgb(251, 191, 36)',
-                        'rgb(20, 184, 166)',
-                        'rgb(34, 197, 94)'
-                    ],
-                    borderWidth: 2
-                }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.y + ' kg CO₂e per kg';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'kg CO₂e per kg produkt',
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
+            plugins: {
+                legend: { display: false }
             }
-        });
-
-        // Calculator
-        const chocolateSlider = document.getElementById('chocolatePerWeek');
-        const chocolateDisplay = document.getElementById('chocolateDisplay');
-        const chocolateTypeSelect = document.getElementById('chocolateType');
-        const annualCO2Display = document.getElementById('annualCO2');
-        const kmDrivingDisplay = document.getElementById('kmDriving');
-        const potentialSavingsDisplay = document.getElementById('potentialSavings');
-
-        const CAR_CO2_PER_KM = 0.2; // Average car emissions
-
-        function updateCalculations() {
-            const gramsPerWeek = parseInt(chocolateSlider.value);
-            const chocolateCO2PerKg = parseFloat(chocolateTypeSelect.value);
-
-            // Update display
-            chocolateDisplay.textContent = gramsPerWeek + 'g';
-
-            // Calculate annual CO2
-            const kgPerWeek = gramsPerWeek / 1000;
-            const kgPerYear = kgPerWeek * 52;
-            const annualCO2 = kgPerYear * chocolateCO2PerKg;
-            const kmEquivalent = annualCO2 / CAR_CO2_PER_KM;
-
-            // Calculate potential savings (switch to best option: Fair Trade organic dark)
-            const bestChocolateCO2 = 18;
-            const bestAnnualCO2 = kgPerYear * bestChocolateCO2;
-            const potentialSavings = annualCO2 - bestAnnualCO2;
-
-            // Update displays
-            annualCO2Display.textContent = Math.round(annualCO2);
-            kmDrivingDisplay.textContent = Math.round(kmEquivalent).toLocaleString('da-DK');
-            potentialSavingsDisplay.textContent = Math.max(0, Math.round(potentialSavings));
         }
+    });
 
-        chocolateSlider.addEventListener('input', updateCalculations);
-        chocolateTypeSelect.addEventListener('change', updateCalculations);
+    // Calculator Logic
+    const chocolateSlider = document.getElementById('chocolateAmount');
+    const chocolateDisplay = document.getElementById('chocolateDisplay');
+    const chocolateTypeSelect = document.getElementById('chocolateType');
+    const annualCO2Display = document.getElementById('annualCO2');
+    const kmDrivingDisplay = document.getElementById('kmDriving');
+    const cocoaMessageDisplay = document.getElementById('cocoaMessage');
 
-        // Initial calculation
-        updateCalculations();
-    </script>
+    const CAR_CO2_PER_KM = 0.12;
 
-</body>
-</html>
+    function calculateCocoaImpact() {
+        const gramsPerWeek = parseInt(chocolateSlider.value);
+        const co2PerKg = parseFloat(chocolateTypeSelect.value);
+
+        chocolateDisplay.textContent = gramsPerWeek;
+
+        const kgPerYear = (gramsPerWeek / 1000) * 52;
+        const annualCO2 = kgPerYear * co2PerKg;
+        const kmDriving = annualCO2 / CAR_CO2_PER_KM;
+
+        annualCO2Display.textContent = Math.round(annualCO2).toLocaleString();
+        kmDrivingDisplay.textContent = Math.round(kmDriving).toLocaleString();
+
+        if (co2PerKg <= 18) {
+            cocoaMessageDisplay.textContent = "Fairtrade Øko er det ansvarlige valg!";
+            cocoaMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
+        } else {
+            cocoaMessageDisplay.textContent = "Kakao har et højt aftryk. Nyd det med omtanke.";
+            cocoaMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
+        }
+    }
+
+    // Init
+    calculateCocoaImpact();
+</script>
+{% endblock %}
