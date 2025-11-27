@@ -3,163 +3,183 @@
 {% block title %}Bælgfrugter - Råvarer - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="page-header has-cover"
-    style="background-image: url('{{ url_for('static', filename='images/raw_legumes.png') }}');">
-    <div class="page-header__content">
-        <p class="eyebrow">RÅVARER</p>
-        <h1>Bælgfrugter</h1>
-        <p>Fremtidens protein er her allerede. Linser, bønner og ærter er klimavenlige, billige og fyldt med næring.</p>
-        <nav class="filter-nav" aria-label="Filtrer emner">
-            <a href="{{ url_for('raavarer_landing') }}" class="filter-pill">← Tilbage til Råvarer</a>
-        </nav>
+
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/raw_legumes.png') }}" alt="Bælgfrugter"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Bælgfrugter</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            Fremtidens protein. En nøgle til det grønne køkken.
+        </p>
     </div>
 </header>
 
-<section class="page-section">
-    <header class="section-header">
-        <h2 class="section-title">Klimaaftryk & Miljø</h2>
-        <p class="section-lead">Med et aftryk på kun 2 kg CO₂e pr. kg er bælgfrugter det ultimative valg for den
-            klimabevidste kok.</p>
-    </header>
-
-    <div class="grid-layout grid-2-col">
-        <div class="kpi-dashboard">
-            <div class="grid-layout" style="grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div class="kpi-card">
-                    <div class="kpi-label">Klimaaftryk</div>
-                    <div class="kpi-number" style="color: #22c55e;">2.0</div>
-                    <p>kg CO₂e pr. kg</p>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Vs. Oksekød</div>
-                    <div class="kpi-number">-97%</div>
-                    <p>lavere udledning</p>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Vandforbrug</div>
-                    <div class="kpi-number">4.055</div>
-                    <p>liter pr. kg</p>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Areal</div>
-                    <div class="kpi-number">3.4</div>
-                    <p>m² pr. kg årligt</p>
-                </div>
-            </div>
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">Jordens Superhelte</h2>
+            <span class="font-mono text-stone-400 text-sm">01</span>
         </div>
 
-        <div class="kpi-card">
-            <h3 class="card-title">Hvorfor vælge bælgfrugter?</h3>
-            <ul class="list-style-none">
-                <li class="mb-3"><strong>Kvælstoffiksering:</strong> Bælgplanter optager kvælstof direkte fra luften,
-                    hvilket sparer kunstgødning og gavner jorden.</li>
-                <li class="mb-3"><strong>Jordforbedring:</strong> De efterlader jorden sundere til efterfølgende
-                    afgrøder, perfekt til sædskifte.</li>
-                <li class="mb-3"><strong>Biodiversitet:</strong> Blomstrende bælgplanter tiltrækker bier og insekter,
-                    hvilket styrker økosystemet.</li>
-            </ul>
-            <div class="mt-4 p-4 bg-light-green border-radius-8">
-                <h4 class="mb-2">Økonomisk Fordel</h4>
-                <p class="mb-0">Bælgfrugter er markant billigere end kød. Du sparer ca. 70% pr. gram protein ved at
-                    vælge linser frem for oksekød.</p>
+        <div class="prose prose-lg prose-stone font-serif leading-loose text-stone-600">
+            <p>
+                Linser, bønner og ærter er ikke bare ingredienser; de er små mirakler.
+                Botanisk set er de unikke ved deres evne til at fiksere kvælstof fra luften og føre det ned i jorden.
+                Det betyder, at de gøder sig selv og efterlader marken sundere, end de fandt den.
+            </p>
+            <p>
+                I køkkenet har de længe været undervurderet som "fattigmandskost" eller kedeligt tilbehør.
+                Men sandheden er, at bælgfrugter er rygraden i nogle af verdens mest velsmagende køkkener –
+                fra Indiens krydrede dhal til Mellemøstens cremede hummus og Toscanas rustikke bønnesupper.
+            </p>
+            <p>
+                Med et klimaaftryk, der er forsvindende lille sammenlignet med kød, og en ernæringsprofil spækket med
+                proteiner og fibre,
+                er bælgfrugter det mest effektive værktøj, vi har, til at skabe en bæredygtig madkultur.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Minimalist Data Section -->
+<section class="py-24 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Stat 1 -->
+            <div class="text-center md:text-left">
+                <div class="text-6xl font-display text-stone-900 mb-2">2.0</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Det ultimative klimavalg. Et aftryk så lavt, at det næsten ikke kan måles i forhold til oksekød.
+                </p>
+            </div>
+
+            <!-- Stat 2 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">-97%</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Oksekød</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Ved at erstatte oksekød med linser eller bønner fjerner du stort set hele klimabelastningen fra
+                    retten.
+                </p>
+            </div>
+
+            <!-- Stat 3 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">70%</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Billigere protein</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Bælgfrugter er ikke kun gode for klimaet, men også for bundlinjen. Proteinprisen er en brøkdel af
+                    kødets.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="page-section is-muted">
-    <header class="section-header">
-        <h2 class="section-title">Typer af Bælgfrugter</h2>
-        <p class="section-lead">En verden af variation, smag og tekstur.</p>
-    </header>
-
-    <div class="grid-layout grid-4-col">
-        <div class="aww-card">
-            <div class="card-content-body">
-                <h3 class="card-title">Linser</h3>
-                <p class="card-teaser">Hurtige at tilberede (ingen blødsætning). Perfekte til supper, dal og salater.
-                    Højt proteinindhold (25g/100g).</p>
-            </div>
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">I Køkkenet</h2>
+            <span class="font-mono text-stone-400 text-sm">02</span>
         </div>
 
-        <div class="aww-card">
-            <div class="card-content-body">
-                <h3 class="card-title">Kikærter</h3>
-                <p class="card-teaser">Nøddeagtig smag og fast tekstur. Basis for hummus og falafel. Kræver blødsætning,
-                    men er ventetiden værd.</p>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Sorter</h3>
+                <ul class="space-y-4 text-stone-600 font-serif">
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">01</span>
+                        <span><strong>Linser:</strong> Beluga, puy og røde linser. Kræver ingen iblødsætning og er klar
+                            på 20 minutter.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">02</span>
+                        <span><strong>Bønner:</strong> Sorte, hvide, kidney og hestebønner. Faste i biddet og mættende.
+                            Husk iblødsætning!</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">03</span>
+                        <span><strong>Kikærter:</strong> Nøddeagtige og alsidige. Kan bruges i alt fra salater til
+                            bagværk (aquafaba).</span>
+                    </li>
+                </ul>
             </div>
-        </div>
 
-        <div class="aww-card">
-            <div class="card-content-body">
-                <h3 class="card-title">Bønner</h3>
-                <p class="card-teaser">Utallige varianter (kidney, hvide, sorte). Rige på fiber og mættende. Ideelle til
-                    gryderetter og chili.</p>
-            </div>
-        </div>
-
-        <div class="aww-card">
-            <div class="card-content-body">
-                <h3 class="card-title">Ærter</h3>
-                <p class="card-teaser">Søde og børnevenlige. Gule ærter er en dansk klassiker. Bruges også til at lave
-                    ærteprotein-isolat.</p>
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Tilberedning & Tips</h3>
+                <p class="text-stone-600 font-serif leading-relaxed mb-6">
+                    Kog altid bønner med aromater – løg, hvidløg, laurbærblade. Salt først vandet til sidst for at undgå
+                    seje skaller.
+                    Og husk: Bælgfrugter elsker syre (citron, eddike) og fedt (olie, tahin) for at løfte smagen.
+                </p>
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+                    <p class="text-sm font-bold text-stone-900 mb-2">PRO TIP</p>
+                    <p class="text-stone-600 text-sm italic">
+                        "Brug marinerede belugalinser som 'kaviar' på smørrebrød eller i salater. De giver bid, smag og
+                        et eksklusivt look."
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="page-section">
-    <div class="container max-w-1000">
-        <div class="bg-white p-8 rounded-xl shadow-lg border-1 border-light">
-            <h2 class="section-title mb-6">Beregn Din Klimabesparelse</h2>
-            <p class="text-center mb-8">Se hvor meget CO₂ og penge du sparer ved at erstatte kød med bælgfrugter.</p>
+<!-- Minimalist Calculator -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl mb-4">Beregn Gevinsten</h2>
+            <p class="text-stone-400 font-light">Se hvor meget du sparer ved at bytte kød ud med bælgfrugter.</p>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
                 <div>
-                    <label class="block text-sm font-bold uppercase tracking-wider text-dark mb-2">
-                        Mængde kød erstattet (g/uge)
-                    </label>
-                    <input type="range" id="meatAmount" min="0" max="2000" value="500" step="50"
-                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500"
-                        oninput="calculateLegumesSavings()">
-                    <div class="text-right font-bold text-lg text-green-600 mt-2"><span
-                            id="meatAmountDisplay">500</span>g</div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Erstat kød
+                        (g/uge)</label>
+                    <input type="number" id="meatAmount" value="500"
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-3xl font-display focus:outline-none focus:border-white transition-colors text-white placeholder-stone-700">
                 </div>
+
                 <div>
-                    <label class="block text-sm font-bold uppercase tracking-wider text-dark mb-2">
-                        Hvilket kød erstatter du?
-                    </label>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Kødtype</label>
                     <select id="meatType"
-                        class="w-full px-4 py-3 bg-light border border-gray-300 rounded text-dark text-lg focus:outline-none focus:border-green-500"
-                        onchange="calculateLegumesSavings()">
-                        <option value="60">Oksekød (60 kg CO₂e/kg)</option>
-                        <option value="24">Lammekød (24 kg CO₂e/kg)</option>
-                        <option value="12" selected>Svinekød (12 kg CO₂e/kg)</option>
-                        <option value="6.9">Kylling (6.9 kg CO₂e/kg)</option>
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-xl font-sans focus:outline-none focus:border-white transition-colors text-white appearance-none cursor-pointer">
+                        <option value="60" class="text-stone-900">Oksekød (60 kg CO₂e)</option>
+                        <option value="12" class="text-stone-900">Svinekød (12 kg CO₂e)</option>
+                        <option value="24" class="text-stone-900">Lammekød (24 kg CO₂e)</option>
+                        <option value="6.9" class="text-stone-900">Kylling (6.9 kg CO₂e)</option>
                     </select>
                 </div>
+
+                <button onclick="calculateLegumesSavings()"
+                    class="group flex items-center gap-4 text-white hover:text-stone-300 transition-colors">
+                    <span class="text-sm font-bold uppercase tracking-widest">Beregn nu</span>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </button>
             </div>
 
-            <div id="legumesSavingsResult" class="mt-8 fade-in">
-                <div class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                    <div class="text-sm uppercase tracking-wider text-dark mb-2">Ugentlig besparelse</div>
-                    <div class="text-5xl font-bold text-green-600 mb-2">
-                        <span id="legumesSavingsValue">0</span> <span class="text-2xl text-dark">kg CO₂e/uge</span>
+            <div id="legumesSavingsResult" class="hidden opacity-0 transition-opacity duration-700">
+                <div class="border-l border-stone-700 pl-12">
+                    <div class="mb-8">
+                        <div class="text-6xl font-display text-white mb-2" id="legumesSavingsValue">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">kg CO₂e sparet / uge</div>
                     </div>
-
-                    <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-green-200">
-                        <div>
-                            <div class="text-2xl font-bold text-dark" id="legumesAnnualSavings">0</div>
-                            <div class="text-xs uppercase tracking-wider text-gray-600">tons CO₂e/år</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-dark" id="legumesFlightEquiv">0</div>
-                            <div class="text-xs uppercase tracking-wider text-gray-600">flyrejser til London</div>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-dark" id="legumesMoneySaved">0</div>
-                            <div class="text-xs uppercase tracking-wider text-gray-600">kr sparet/år</div>
-                        </div>
+                    <div>
+                        <div class="text-4xl font-display text-stone-300 mb-2" id="legumesMoneySaved">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">kr sparet / år (est.)</div>
                     </div>
                 </div>
             </div>
@@ -167,60 +187,52 @@
     </div>
 </section>
 
-<!-- Data Sources -->
-<section class="bg-cb-taupe-light py-12">
-    <div class="mx-auto max-w-7xl px-6">
-        <h3 class="text-center font-display text-2xl font-bold text-stone-900 mb-6 uppercase">Datakilder</h3>
-        <div class="flex flex-wrap justify-center gap-4 text-sm text-stone-600 font-sans">
-            <span>• CONCITO's Den Store Klimadatabase v2.0</span>
-            <span>• Poore & Nemecek (2018), Science</span>
-            <span>• DTU Fødevareinstituttet</span>
-            <span>• Water Footprint Network</span>
-        </div>
-    </div>
-</section>
-
-<!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
 <script>
-    // Calculator function
     function calculateLegumesSavings() {
         const meatAmount = parseFloat(document.getElementById('meatAmount').value) || 0;
         const meatCO2 = parseFloat(document.getElementById('meatType').value);
-        const legumesCO2 = 2; // kg CO2e/kg
-
-        // Update display
-        document.getElementById('meatAmountDisplay').textContent = meatAmount;
+        const legumesCO2 = 2;
 
         const amountKg = meatAmount / 1000;
         const meatEmissions = amountKg * meatCO2;
         const legumesEmissions = amountKg * legumesCO2;
 
         const weeklySavings = meatEmissions - legumesEmissions;
-        const annualSavings = (weeklySavings * 52) / 1000; // Convert to tons
-        const flights = Math.round(annualSavings / 0.25); // ~250kg per flight
 
         // Money savings estimation
-        let meatPrice = 80; // Default pork
-        if (meatCO2 == 60) meatPrice = 120; // Beef
-        else if (meatCO2 == 24) meatPrice = 100; // Lamb
-        else if (meatCO2 == 6.9) meatPrice = 60; // Chicken
+        let meatPrice = 80;
+        if (meatCO2 == 60) meatPrice = 120;
+        else if (meatCO2 == 24) meatPrice = 100;
+        else if (meatCO2 == 6.9) meatPrice = 60;
 
         const legumesPrice = 25;
         const weeklyMoneySaved = (amountKg * meatPrice) - (amountKg * legumesPrice);
         const annualMoneySaved = Math.round(weeklyMoneySaved * 52);
 
-        document.getElementById('legumesSavingsValue').textContent = weeklySavings.toFixed(1);
-        document.getElementById('legumesAnnualSavings').textContent = annualSavings.toFixed(2);
-        document.getElementById('legumesFlightEquiv').textContent = flights;
-        document.getElementById('legumesMoneySaved').textContent = annualMoneySaved.toLocaleString();
+        // Animate numbers
+        animateValue("legumesSavingsValue", 0, weeklySavings.toFixed(1), 1000);
+        animateValue("legumesMoneySaved", 0, annualMoneySaved, 1000);
+
+        const resultDiv = document.getElementById('legumesSavingsResult');
+        resultDiv.classList.remove('hidden');
+        void resultDiv.offsetWidth;
+        resultDiv.classList.remove('opacity-0');
     }
 
-    // Initialize calculator
-    document.addEventListener('DOMContentLoaded', function () {
-        calculateLegumesSavings();
-    });
+    function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const val = (progress * (end - start) + start);
+            obj.innerHTML = id === 'legumesMoneySaved' ? Math.round(val).toLocaleString() : val.toFixed(1);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
 </script>
 
 {% endblock %}
