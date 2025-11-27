@@ -100,6 +100,16 @@
               class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Ris</a>
             <a href="{{ url_for('raavare_broed') }}"
               class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Brød</a>
+            <a href="{{ url_for('raavare_bladgroent') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Bladgrønt</a>
+            <a href="{{ url_for('raavare_rodfrugter') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Rodfrugter</a>
+            <a href="{{ url_for('raavare_kartofler') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Kartofler</a>
+            <a href="{{ url_for('raavare_frugt') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Frugt</a>
+            <a href="{{ url_for('raavare_planteprotein') }}"
+              class="px-3 py-1 bg-white hover:bg-cb-green-light hover:text-white rounded-full text-xs text-stone-700 font-bold transition-colors shadow-sm">Planteprotein</a>
           </div>
         </div>
       </div>
@@ -158,9 +168,41 @@
         <div class="z-10">
           <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">Havet</div>
           <h3 class="text-3xl font-display text-stone-900 mb-2">Fisk & Skaldyr</h3>
-          <p class="text-stone-600 text-sm mb-4 max-w-xs">Kommer snart. Fokus på MSC og skånsomt fiskeri.</p>
+          <div class="flex flex-wrap gap-2 max-w-xs">
+            <a href="{{ url_for('raavare_hvid_fisk') }}"
+              class="px-3 py-1 bg-white hover:bg-blue-200 rounded-full text-xs text-blue-800 font-bold transition-colors shadow-sm">Hvid
+              Fisk</a>
+            <a href="{{ url_for('raavare_laks') }}"
+              class="px-3 py-1 bg-white hover:bg-blue-200 rounded-full text-xs text-blue-800 font-bold transition-colors shadow-sm">Laks</a>
+            <a href="{{ url_for('raavare_skaldyr') }}"
+              class="px-3 py-1 bg-white hover:bg-blue-200 rounded-full text-xs text-blue-800 font-bold transition-colors shadow-sm">Skaldyr</a>
+          </div>
         </div>
         <div class="text-8xl opacity-20 transform group-hover:-rotate-12 transition-transform duration-700">🐟</div>
+      </div>
+
+      <!-- Sæsonhjulet (Full Width) -->
+      <div
+        class="md:col-span-4 rounded-2xl overflow-hidden bg-stone-900 shadow-sm group relative p-8 flex items-center justify-between border border-stone-800">
+        <div class="absolute inset-0 z-0">
+          <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}"
+            class="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-700"
+            alt="Sæson">
+          <div class="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/80 to-transparent"></div>
+        </div>
+        <div class="z-10 relative">
+          <div class="text-xs font-bold text-cb-green-medium uppercase tracking-widest mb-2">Nyt Værktøj</div>
+          <h3 class="text-4xl font-display text-white mb-2">Sæsonhjulet</h3>
+          <p class="text-stone-300 text-lg mb-6 max-w-md">Hvad er i sæson lige nu? Få overblikket over grønt, frugt og
+            fisk.</p>
+          <a href="{{ url_for('tool_saesonhjulet') }}"
+            class="inline-block px-8 py-3 bg-cb-green-medium text-stone-900 font-bold rounded-full hover:bg-white transition-colors shadow-lg shadow-cb-green-medium/20">
+            Åbn Sæsonhjulet
+          </a>
+        </div>
+        <div
+          class="text-9xl opacity-20 transform group-hover:rotate-180 transition-transform duration-1000 text-white relative z-10">
+          ↺</div>
       </div>
 
     </div>

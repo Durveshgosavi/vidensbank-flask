@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Mælk – Klimaaftryk, Plantedrikke & Alternativer | Canteen Buddy{% endblock %}
+{% block title %}Mælk – Klimaaftryk, Alternativer & Valg | Canteen Buddy{% endblock %}
 
 {% block content %}
 <!-- Minimalist Hero -->
 <header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 z-0">
-    <img src="{{ url_for('static', filename='images/salad_fresh.jpg') }}" alt="Mælk"
+    <img src="{{ url_for('static', filename='images/chef_serving.jpg') }}" alt="Mælk"
       class="w-full h-full object-cover opacity-90">
     <div class="absolute inset-0 bg-black/30"></div>
   </div>
@@ -15,7 +15,7 @@
     <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
     <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Mælk</h1>
     <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
-      Hverdagens basisvare. Fra ko til havre – valget gør en forskel.
+      Hverdagsproduktet under lup. Fra konventionel til plante-baseret – valget betyder mere end du tror.
     </p>
   </div>
 </header>
@@ -26,22 +26,22 @@
     <div class="md:col-span-4">
       <span class="text-9xl font-display font-light text-stone-100 block -mt-8">01</span>
       <h2 class="text-4xl font-display font-light text-stone-900 mb-6 -mt-12 relative z-10">
-        Det Flydende Valg
+        Det Hvide Guld?
       </h2>
-      <div class="h-1 w-20 bg-cb-blue-medium mb-8"></div>
+      <div class="h-1 w-20 bg-blue-400 mb-8"></div>
     </div>
     <div class="md:col-span-8 prose prose-lg text-stone-600 font-light">
       <p class="lead text-xl text-stone-800 font-normal mb-6">
-        Mælk er en fast bestanddel i kantinen – til kaffen, til morgenmaden og i madlavningen. Men mælk er ikke længere
-        bare mælk.
+        Mælk er en fast bestanddel af dansk madkultur. Men med et klimaaftryk på ca. 3 kg CO₂e pr. liter (for komælk) er
+        det en betydelig post i kantinens regnskab.
       </p>
       <p class="mb-6">
-        Komælk har et klimaaftryk på ca. 3.0 kg CO₂e pr. liter. Det er markant lavere end oksekød, men 10-15 gange
-        højere end plantebaserede alternativer som havremælk.
+        Køer udleder metan, en potent drivhusgas. Samtidig kræver foderproduktion store arealer. Plantebaserede
+        alternativer som havre- og sojamælk har typisk et aftryk, der er 3-4 gange lavere.
       </p>
       <p>
-        Ved at tilbyde velsmagende alternativer kan vi reducere kantinens samlede aftryk betydeligt, uden at gå på
-        kompromis med den cremede oplevelse i kaffen eller på havregrynene.
+        Men mælk er også en vigtig kilde til calcium og protein. Udfordringen er at finde balancen – at bruge komælk
+        hvor smagen er afgørende, og alternativer hvor de kan bære det.
       </p>
     </div>
   </div>
@@ -54,29 +54,28 @@
       <div>
         <h3 class="text-3xl font-display font-light text-stone-900 mb-6">Miljøprofil</h3>
         <p class="text-stone-600 mb-8 font-light">
-          Mælkeproduktion kræver store arealer til foder og har et højt vandforbrug. Metan fra køerne bidrager også
-          væsentligt til klimaaftrykket.
+          Komælk har et markant højere aftryk end plantemælk på både CO₂, vand og areal.
         </p>
 
         <div class="grid grid-cols-2 gap-6 mb-8">
           <div class="p-4 bg-white border border-stone-100 shadow-sm">
-            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk</div>
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk (Ko)</div>
             <div class="text-3xl font-display text-stone-900">3.0 <span
                 class="text-sm font-sans text-stone-500">kg/L</span></div>
           </div>
           <div class="p-4 bg-white border border-stone-100 shadow-sm">
-            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">Vandforbrug</div>
-            <div class="text-3xl font-display text-stone-900">628 <span
-                class="text-sm font-sans text-stone-500">L/L</span></div>
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider mb-1">CO₂ Aftryk (Havre)</div>
+            <div class="text-3xl font-display text-green-600">0.9 <span
+                class="text-sm font-sans text-stone-500">kg/L</span></div>
           </div>
         </div>
 
         <div class="flex items-center gap-4 text-sm text-stone-500">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-cb-blue-medium"></span> Komælk
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span> Komælk
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-stone-300"></span> Havremælk (Ref)
+            <span class="w-3 h-3 rounded-full bg-green-500"></span> Havremælk
           </div>
         </div>
       </div>
@@ -88,60 +87,61 @@
   </div>
 </section>
 
-<!-- Alternatives Comparison (Replaces Seasonality) -->
+<!-- Comparison Section -->
 <section class="py-24 bg-stone-900 text-white overflow-hidden">
   <div class="mx-auto max-w-7xl px-6">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
       <div class="md:col-span-4">
-        <h3 class="text-3xl font-display font-light text-white mb-6">Alternativer</h3>
+        <h3 class="text-3xl font-display font-light text-white mb-6">Alternativerne</h3>
         <p class="text-stone-400 mb-6 font-light">
-          Plantebaserede drikke vinder frem på smag og bæredygtighed.
+          Markedet for plantemælk eksploderer. Her er overblikket.
         </p>
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-full bg-cb-blue-dark flex items-center justify-center text-xl">🌾</div>
+          <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-xl">🌾</div>
           <div>
-            <div class="text-sm font-bold uppercase tracking-wider text-cb-blue-medium">Anbefaling</div>
-            <div class="text-lg">Havredrik</div>
+            <div class="text-sm font-bold uppercase tracking-wider text-green-400">Anbefaling</div>
+            <div class="text-lg">Havremælk (Dansk)</div>
           </div>
         </div>
       </div>
 
       <div class="md:col-span-8">
         <div class="space-y-6">
-          <!-- Komælk -->
-          <div class="flex items-center gap-4 p-4 bg-stone-800/50 rounded-lg border border-stone-700 opacity-70">
-            <div class="text-2xl">🐄</div>
-            <div class="flex-1">
-              <div class="flex justify-between mb-1">
-                <span class="font-bold text-stone-300">Komælk</span>
-                <span class="text-xs text-stone-500">3.0 kg CO₂e</span>
-              </div>
-              <p class="text-sm text-stone-500">Højt aftryk. Vælg økologisk for dyrevelfærd.</p>
-            </div>
-          </div>
-
           <!-- Havremælk -->
           <div
-            class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-medium shadow-lg shadow-cb-green-medium/10">
+            class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-green-500 shadow-lg shadow-green-500/10">
             <div class="text-2xl">🌾</div>
             <div class="flex-1">
               <div class="flex justify-between mb-1">
-                <span class="font-bold text-cb-green-medium">Havredrik</span>
-                <span class="text-xs text-stone-400">0.9 kg CO₂e</span>
+                <span class="font-bold text-green-400">Havremælk</span>
+                <span class="text-xs text-stone-400">0.9 kg CO₂e/L</span>
               </div>
-              <p class="text-sm text-stone-300">Lokal (Norden), lavt vandforbrug, god smag i kaffe.</p>
+              <p class="text-sm text-stone-300">Lavt aftryk, god smag i kaffe, kan dyrkes i Norden.</p>
             </div>
           </div>
 
           <!-- Sojamælk -->
-          <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border-l-4 border-cb-green-light">
-            <div class="text-2xl">🫛</div>
+          <div class="flex items-center gap-4 p-4 bg-stone-800 rounded-lg border border-stone-700">
+            <div class="text-2xl">🌱</div>
             <div class="flex-1">
               <div class="flex justify-between mb-1">
-                <span class="font-bold text-white">Sojadrik</span>
-                <span class="text-xs text-stone-400">0.4 kg CO₂e</span>
+                <span class="font-bold text-white">Sojamælk</span>
+                <span class="text-xs text-stone-400">1.0 kg CO₂e/L</span>
               </div>
-              <p class="text-sm text-stone-400">Lavest CO₂e, højt protein. Vælg europæisk soja.</p>
+              <p class="text-sm text-stone-400">Højt proteinindhold. Vælg europæisk soja for at undgå
+                regnskovsproblematik.</p>
+            </div>
+          </div>
+
+          <!-- Komælk -->
+          <div class="flex items-center gap-4 p-4 bg-stone-800/50 rounded-lg border-l-4 border-blue-600 opacity-70">
+            <div class="text-2xl">🐄</div>
+            <div class="flex-1">
+              <div class="flex justify-between mb-1">
+                <span class="font-bold text-blue-400">Komælk</span>
+                <span class="text-xs text-stone-500">3.0 kg CO₂e/L</span>
+              </div>
+              <p class="text-sm text-stone-500">Højt aftryk. Brug med omtanke og undgå spild.</p>
             </div>
           </div>
         </div>
@@ -154,40 +154,40 @@
 <section class="py-24 bg-white">
   <div class="mx-auto max-w-7xl px-6">
     <div class="text-center mb-16">
-      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Kantinen</h2>
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">I Køkkenet</h2>
       <p class="text-stone-500 max-w-2xl mx-auto">
-        Brug de forskellige typer strategisk for bedste smag og mindst aftryk.
+        Mælk giver fylde og binder retter sammen. Men kan det erstattes?
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="group cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
-          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Kaffestationen</div>
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Kaffe</div>
         </div>
-        <h3 class="text-xl font-display text-stone-900 mb-2">Til Kaffen</h3>
+        <h3 class="text-xl font-display text-stone-900 mb-2">I Kaffen</h3>
         <p class="text-sm text-stone-600 font-light">
-          Havredrik "Barista" skummer perfekt og har en neutral/sødlig smag, der klæder kaffe.
+          Havremælk "Barista" skummer godt og har en sødme, der passer perfekt til kaffe.
         </p>
       </div>
 
       <div class="group cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
-          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Morgenmad</div>
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Bagning</div>
         </div>
-        <h3 class="text-xl font-display text-stone-900 mb-2">Til Morgenmad</h3>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Bagning</h3>
         <p class="text-sm text-stone-600 font-light">
-          Havre- eller sojadrik til gryn og granola. Tilbyd begge dele tydeligt.
+          I gærdej og kager kan plantemælk erstatte komælk 1:1 uden problemer.
         </p>
       </div>
 
       <div class="group cursor-pointer">
         <div class="aspect-[4/3] overflow-hidden mb-6 bg-stone-100">
-          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Madlavning</div>
+          <div class="w-full h-full bg-stone-200 flex items-center justify-center text-stone-400">Saucer</div>
         </div>
-        <h3 class="text-xl font-display text-stone-900 mb-2">I Madlavning</h3>
+        <h3 class="text-xl font-display text-stone-900 mb-2">Saucer & Gryderetter</h3>
         <p class="text-sm text-stone-600 font-light">
-          Sojadrik er stabil ved opvarmning og god i saucer. Kokosmælk til asiatiske retter.
+          Sojamælk eller havrefløde giver god cremethed. Pas på med at koge for hårdt (kan skille).
         </p>
       </div>
     </div>
@@ -198,53 +198,52 @@
 <section class="py-24 bg-cb-taupe-light">
   <div class="mx-auto max-w-4xl px-6">
     <div class="text-center mb-12">
-      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Din Besparelse</h2>
-      <p class="text-stone-600">Se effekten af at skifte til plantemælk</p>
+      <h2 class="font-display text-4xl font-light text-stone-900 mb-4">Beregn Besparelsen</h2>
+      <p class="text-stone-600">Hvad sker der, hvis vi skifter til plante-mælk?</p>
     </div>
 
     <div class="bg-white p-8 shadow-sm border border-stone-100">
       <div class="mb-6">
         <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
-          Liter mælk pr. måned
+          Liter pr. uge
         </label>
         <div class="flex items-center gap-4">
-          <input type="range" id="milkAmount" min="50" max="2000" value="500" step="50"
-            class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-cb-blue-medium"
+          <input type="range" id="milkAmount" min="10" max="500" value="100" step="10"
+            class="flex-1 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
             oninput="calculateMilkSavings()">
-          <span id="milkAmountDisplay" class="font-display text-2xl text-cb-blue-medium min-w-[80px]">500</span>
+          <span id="milkAmountDisplay" class="font-display text-2xl text-blue-600 min-w-[80px]">100</span>
         </div>
       </div>
 
       <div class="mb-8">
         <label class="block font-sans text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">
-          Skift til Havredrik
+          Skift fra Komælk til
         </label>
-        <select id="switchPercentage"
-          class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-cb-blue-medium"
+        <select id="replacementMilk"
+          class="w-full p-3 bg-stone-50 border-none font-sans text-stone-700 focus:ring-1 focus:ring-blue-600"
           onchange="calculateMilkSavings()">
-          <option value="0.25">25% af forbruget</option>
-          <option value="0.50">50% af forbruget</option>
-          <option value="0.75">75% af forbruget</option>
-          <option value="1.00">100% af forbruget</option>
+          <option value="0.9">Havremælk (0.9 kg CO₂e/L)</option>
+          <option value="1.0">Sojamælk (1.0 kg CO₂e/L)</option>
+          <option value="0.7">Mandelmælk (0.7 kg CO₂e/L)</option>
         </select>
       </div>
 
-      <div id="milkSavingsResult" class="border-t border-stone-100 pt-8">
+      <div id="milkResult" class="border-t border-stone-100 pt-8">
         <div class="grid grid-cols-2 gap-8 text-center">
           <div>
-            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Månedlig besparelse</div>
-            <div class="text-3xl font-display text-stone-900">
-              <span id="savedMilkEmissions">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Ugentlig besparelse</div>
+            <div class="text-3xl font-display text-cb-green-dark">
+              <span id="weeklyMilkSavings">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
             </div>
           </div>
           <div>
             <div class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-1">Årlig besparelse</div>
             <div class="text-3xl font-display text-stone-900">
-              <span id="yearlyMilkImpact">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
+              <span id="annualMilkSavings">0</span> <span class="text-sm text-stone-500">kg CO₂e</span>
             </div>
           </div>
         </div>
-        <p id="championMilkMessage" class="text-center text-sm text-cb-green-dark mt-6 font-medium"></p>
+        <p id="milkMessage" class="text-center text-sm text-stone-500 mt-6 font-medium"></p>
       </div>
     </div>
   </div>
@@ -260,19 +259,18 @@
       labels: ['CO₂ Aftryk', 'Vandforbrug', 'Arealforbrug', 'Eutrofiering', 'Biodiversitet'],
       datasets: [{
         label: 'Komælk',
-        data: [30, 80, 70, 60, 50], // High impact
+        data: [80, 80, 90, 80, 40],
         backgroundColor: 'rgba(59, 130, 246, 0.2)',
         borderColor: 'rgba(59, 130, 246, 1)',
         pointBackgroundColor: 'rgba(59, 130, 246, 1)',
         borderWidth: 2
       }, {
-        label: 'Havremælk (Ref)',
-        data: [10, 10, 10, 20, 10], // Low impact
+        label: 'Havremælk',
+        data: [20, 10, 20, 10, 80],
         backgroundColor: 'rgba(34, 197, 94, 0.2)',
         borderColor: 'rgba(34, 197, 94, 1)',
         pointBackgroundColor: 'rgba(34, 197, 94, 1)',
-        borderWidth: 1,
-        borderDash: [5, 5]
+        borderWidth: 2
       }]
     },
     options: {
@@ -285,7 +283,7 @@
         }
       },
       plugins: {
-        legend: { display: false }
+        legend: { display: true, position: 'bottom' }
       }
     }
   });
@@ -293,37 +291,29 @@
   // Calculator Logic
   const milkAmountSlider = document.getElementById('milkAmount');
   const milkAmountDisplay = document.getElementById('milkAmountDisplay');
-  const switchPercentageSelect = document.getElementById('switchPercentage');
-  const savedMilkEmissionsDisplay = document.getElementById('savedMilkEmissions');
-  const yearlyMilkImpactDisplay = document.getElementById('yearlyMilkImpact');
-  const championMilkMessageDisplay = document.getElementById('championMilkMessage');
+  const replacementMilkSelect = document.getElementById('replacementMilk');
+  const weeklyMilkSavingsDisplay = document.getElementById('weeklyMilkSavings');
+  const annualMilkSavingsDisplay = document.getElementById('annualMilkSavings');
+  const milkMessageDisplay = document.getElementById('milkMessage');
 
-  const MILK_CO2 = 3.0;
-  const OAT_CO2 = 0.9;
+  const COW_MILK_CO2 = 3.0;
 
   function calculateMilkSavings() {
-    const amount = parseInt(milkAmountSlider.value);
-    const percentage = parseFloat(switchPercentageSelect.value);
+    const liters = parseInt(milkAmountSlider.value);
+    const altCO2 = parseFloat(replacementMilkSelect.value);
 
-    milkAmountDisplay.textContent = amount;
+    milkAmountDisplay.textContent = liters;
 
-    const amountSwitched = amount * percentage;
-    const oldEmissions = amountSwitched * MILK_CO2;
-    const newEmissions = amountSwitched * OAT_CO2;
+    const currentCO2 = liters * COW_MILK_CO2;
+    const newCO2 = liters * altCO2;
+    const weeklySavings = currentCO2 - newCO2;
+    const annualSavings = weeklySavings * 52;
 
-    const savedEmissions = oldEmissions - newEmissions;
-    const yearlySavings = savedEmissions * 12;
+    weeklyMilkSavingsDisplay.textContent = Math.round(weeklySavings).toLocaleString();
+    annualMilkSavingsDisplay.textContent = Math.round(annualSavings).toLocaleString();
 
-    savedMilkEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
-    yearlyMilkImpactDisplay.textContent = Math.round(yearlySavings).toLocaleString();
-
-    if (savedEmissions > 0) {
-      championMilkMessageDisplay.textContent = `Du reducerer klimaaftrykket med ${Math.round(savedEmissions)} kg CO₂e hver måned!`;
-      championMilkMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
-    } else {
-      championMilkMessageDisplay.textContent = "Ingen besparelse.";
-      championMilkMessageDisplay.className = "text-center text-sm text-stone-500 mt-6 font-medium";
-    }
+    milkMessageDisplay.textContent = `Ved at skifte ${liters}L sparer du ${Math.round(annualSavings)} kg CO₂e om året.`;
+    milkMessageDisplay.className = "text-center text-sm text-cb-green-dark mt-6 font-medium";
   }
 
   // Init

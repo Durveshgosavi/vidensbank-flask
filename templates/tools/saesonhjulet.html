@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Sæsonhjulet – Din Guide til Årets Råvarer | Canteen Buddy{% endblock %}
+
+{% block content %}
+<!-- Minimalist Hero -->
+<header class="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-stone-900">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Sæson"
+            class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-b from-stone-900/50 via-stone-900/20 to-stone-900"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-cb-green-medium">Værktøjskassen</p>
+        <h1 class="font-display text-6xl md:text-8xl font-light tracking-tight mb-6">Sæsonhjulet</h1>
+        <p class="font-sans text-xl font-light text-stone-300 max-w-xl mx-auto">
+            Planlæg din menu efter naturens rytme. Det smager bedst, koster mindst og skåner klimaet.
+        </p>
+    </div>
+</header>
+
+<!-- Interactive Wheel Section -->
+<section class="py-12 bg-stone-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Month Selector -->
+        <div
+            class="flex flex-wrap justify-center gap-2 mb-16 sticky top-4 z-20 bg-stone-50/90 backdrop-blur-sm p-4 rounded-full shadow-sm border border-stone-200">
+            {% for month in ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'] %}
+            <button onclick="setMonth({{ loop.index0 }})" id="btn-{{ loop.index0 }}"
+                class="w-12 h-12 rounded-full text-sm font-bold transition-all duration-300 hover:scale-110 focus:outline-none
+                       {{ 'bg-stone-900 text-white shadow-lg scale-110' if loop.index0 == 0 else 'bg-white text-stone-500 hover:bg-stone-200' }}">
+                {{ month }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <!-- Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 transition-all duration-500" id="season-content">
+
+            <!-- Vegetables -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden group">
+                <div class="h-2 bg-green-500"></div>
+                <div class="p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-2xl">🥦
+                        </div>
+                        <h2 class="font-display text-3xl text-stone-900">Grønt</h2>
+                    </div>
+                    <ul id="veg-list" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fruit -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden group">
+                <div class="h-2 bg-orange-500"></div>
+                <div class="p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-2xl">🍎
+                        </div>
+                        <h2 class="font-display text-3xl text-stone-900">Frugt</h2>
+                    </div>
+                    <ul id="fruit-list" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fish -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden group">
+                <div class="h-2 bg-blue-500"></div>
+                <div class="p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-2xl">🐟
+                        </div>
+                        <h2 class="font-display text-3xl text-stone-900">Havet</h2>
+                    </div>
+                    <ul id="fish-list" class="space-y-3">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Empty State / Message -->
+        <div id="season-message" class="text-center mt-12 text-stone-400 font-light italic">
+            <!-- Populated by JS -->
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const seasonData = [
+        // Jan (0)
+        {
+            veg: ["Kål (Alle typer)", "Gulerødder", "Pastinak", "Rødbede", "Jordskokker", "Løg"],
+            fruit: ["Æbler (Lager)", "Pærer (Lager)"],
+            fish: ["Torsk", "Kuller", "Mørksej", "Muslinger", "Østers"],
+            msg: "Vinteren er rodfrugternes og kålens fest. Brug dem i varme supper og bagte retter."
+        },
+        // Feb (1)
+        {
+            veg: ["Kål (Alle typer)", "Gulerødder", "Pastinak", "Rødbede", "Porrer"],
+            fruit: ["Æbler (Lager)"],
+            fish: ["Torsk", "Stenbiderrogn", "Skrubbe", "Muslinger"],
+            msg: "Lageret svinder ind. Vær kreativ med fermentering og syltning fra efteråret."
+        },
+        // Mar (2)
+        {
+            veg: ["Ramsløg (Slutningen)", "Jordskokker", "Porrer"],
+            fruit: ["Æbler (Lager)"],
+            fish: ["Stenbiderrogn", "Rødspætte", "Sild"],
+            msg: "Foråret lurer. Hold øje med de første spæde skud i skovbunden."
+        },
+        // Apr (3)
+        {
+            veg: ["Ramsløg", "Asparges (Slutningen)", "Radiser"],
+            fruit: ["Rabarber (Slutningen)"],
+            fish: ["Rødspætte", "Pighvar", "Sild"],
+            msg: "Endelig! De første friske grøntsager titter frem. Rabarber og asparges er kongerne."
+        },
+        // Maj (4)
+        {
+            veg: ["Asparges", "Nye Kartofler", "Spinat", "Salat", "Radiser"],
+            fruit: ["Rabarber"],
+            fish: ["Hornfisk", "Rødspætte", "Pighvar", "Jomfruhummer"],
+            msg: "Lysere tider. De nye kartofler er en delikatesse i sig selv."
+        },
+        // Jun (5)
+        {
+            veg: ["Asparges", "Nye Kartofler", "Ærter", "Jordbær", "Salat", "Agurk"],
+            fruit: ["Jordbær", "Hyldeblomst"],
+            fish: ["Makrel", "Hornfisk", "Kulmule", "Jomfruhummer"],
+            msg: "Sommeren eksploderer. Spis jordbær og ærter direkte fra bælgen."
+        },
+        // Jul (6)
+        {
+            veg: ["Ærter", "Bønner", "Nye Kartofler", "Tomater", "Agurk", "Squash"],
+            fruit: ["Jordbær", "Hindbær", "Solbær", "Kirsebær"],
+            fish: ["Makrel", "Kulmule", "Mørksej"],
+            msg: "Højsæson for bær og lette grøntsager. Grillen skal frem."
+        },
+        // Aug (7)
+        {
+            veg: ["Majs", "Bønner", "Tomater", "Squash", "Broccoli", "Blomkål"],
+            fruit: ["Blommer", "Hindbær", "Brombær", "Tidlige Æbler"],
+            fish: ["Makrel", "Sild", "Kulmule"],
+            msg: "Sensommerens overflod. Tomaterne har fået masser af sol og smager af mest."
+        },
+        // Sep (8)
+        {
+            veg: ["Græskar", "Kål", "Gulerødder", "Rødbede", "Svampe", "Majs"],
+            fruit: ["Æbler", "Pærer", "Blommer", "Hyldebær"],
+            fish: ["Sild", "Makrel", "Mørksej"],
+            msg: "Høsten er i hus. Det er nu, du skal sylte og henkoge til vinteren."
+        },
+        // Okt (9)
+        {
+            veg: ["Græskar", "Kål", "Jordskokker", "Rodfrugter", "Svampe"],
+            fruit: ["Æbler", "Pærer", "Valnødder"],
+            fish: ["Sild", "Muslinger", "Østers", "Torsk"],
+            msg: "Efterårsstorme og simremad. Græskar og svampe giver dybde og umami."
+        },
+        // Nov (10)
+        {
+            veg: ["Kål (Alle typer)", "Rodfrugter", "Jordskokker", "Græskar"],
+            fruit: ["Æbler (Lager)", "Pærer (Lager)"],
+            fish: ["Muslinger", "Østers", "Torsk", "Kuller"],
+            msg: "Vinteren nærmer sig. Kålen får sødme af den første frost."
+        },
+        // Dec (11)
+        {
+            veg: ["Kål (Alle typer)", "Rodfrugter", "Jordskokker"],
+            fruit: ["Æbler (Lager)"],
+            fish: ["Torsk", "Kuller", "Muslinger", "Østers"],
+            msg: "Julens klassikere. Rødkål, grønkål og torsk hører sæsonen til."
+        }
+    ];
+
+    function setMonth(monthIndex) {
+        // Update Buttons
+        document.querySelectorAll('button[id^="btn-"]').forEach((btn, idx) => {
+            if (idx === monthIndex) {
+                btn.className = "w-12 h-12 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none bg-stone-900 text-white shadow-lg scale-110";
+            } else {
+                btn.className = "w-12 h-12 rounded-full text-sm font-bold transition-all duration-300 hover:scale-110 focus:outline-none bg-white text-stone-500 hover:bg-stone-200";
+            }
+        });
+
+        // Update Content with Animation
+        const content = document.getElementById('season-content');
+        content.classList.add('opacity-50', 'scale-95');
+
+        setTimeout(() => {
+            const data = seasonData[monthIndex];
+
+            updateList('veg-list', data.veg);
+            updateList('fruit-list', data.fruit);
+            updateList('fish-list', data.fish);
+
+            document.getElementById('season-message').textContent = `"${data.msg}"`;
+
+            content.classList.remove('opacity-50', 'scale-95');
+        }, 150);
+    }
+
+    function updateList(id, items) {
+        const list = document.getElementById(id);
+        list.innerHTML = items.map(item => `
+      <li class="flex items-center text-stone-600 font-light border-b border-stone-100 pb-2 last:border-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-stone-300 mr-3"></span>
+        ${item}
+      </li>
+    `).join('');
+    }
+
+    // Init with current month
+    const currentMonth = new Date().getMonth();
+    setMonth(currentMonth);
+</script>
+{% endblock %}
