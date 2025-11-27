@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Mål for Sæson - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/seasonal_fruit.jpg') }}" alt="Seasonal Goals"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-yellow-light">
+            Mål &<br>Ambitioner
+        </h1>
+    </div>
+</div>
+
+<!-- The Manifesto -->
+<section class="bg-cb-taupe-light py-32">
+    <div class="mx-auto max-w-4xl px-6 text-left">
+        <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Vores
+            Løfte</span>
+        <h2
+            class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+            "Altid det bedste."
+        </h2>
+        <div class="mt-12 h-1 w-24 bg-cb-yellow-dark"></div>
+        <p class="mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+            Vi stræber efter altid at bruge råvarer, når de er i sæson. Det er her, de smager bedst, og her de belaster
+            klimaet mindst.
+        </p>
+    </div>
+</section>
+
+<!-- The Roadmap -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6">
+        <div class="relative border-l border-stone-200 pl-12 md:pl-20">
+            <!-- Item 1 -->
+            <div class="mb-20 relative">
+                <span
+                    class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cb-yellow-dark ring-4 ring-white"></span>
+                <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-cb-yellow-dark">2025 Mål</span>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase">Dansk i Sæson</h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    Vi prioriterer altid danske råvarer, når de er i sæson. Jordbær, asparges og kål skal komme fra
+                    danske marker, når det er muligt.
+                </p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="mb-20 relative">
+                <span
+                    class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+                <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Mål</span>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Ingen Flyvarer</h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-400">
+                    Vi arbejder aktivt på at udfase varer, der er fløjet ind, da transporten udgør en uforholdsmæssig
+                    stor del af klimaaftrykket.
+                </p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative">
+                <span
+                    class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+                <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Vision</span>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">100% Sæsonbaseret</h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-400">
+                    Vores menuer skal afspejle årets gang fuldstændigt. Vi skal glæde os til råvarerne, når de kommer,
+                    og savne dem, når de er væk.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vision Image Stack -->
+<section class="w-full">
+    <div class="grid w-full grid-cols-1 md:grid-cols-2">
+        <div class="relative h-[500px] w-full overflow-hidden">
+            <img src="{{ url_for('static', filename='images/seasonal_salad.jpg') }}" alt="Seasonal Vision"
+                class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+        </div>
+        <div class="flex flex-col justify-center bg-stone-900 px-8 py-20 text-white md:px-20">
+            <h2 class="mb-6 font-display text-4xl font-bold uppercase tracking-brand-wide text-cb-yellow-light">
+                Perspektivet
+            </h2>
+            <p class="font-sans text-lg leading-relaxed text-stone-300">
+                Ved at følge sæsonerne støtter vi også en mere varieret og robust fødevareproduktion, der ikke er
+                afhængig af konstant import.
+            </p>
+            <div class="mt-12">
+                <a href="{{ url_for('topic_saeson_tips') }}"
+                    class="inline-block border-b border-cb-yellow-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-yellow-dark">
+                    Få tips til sæsonen →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

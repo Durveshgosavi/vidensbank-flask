@@ -1,0 +1,41 @@
+{%extends "base.html" %}
+
+{%block title %}Hvad er vandforbrug i fødevareproduktion? - Vidensbank{%endblock %}
+
+{%block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er vandforbrug i fødevareproduktion?</h1>
+    <p class="hero-subtitle">Blåt, grønt og gråt vand</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">Vandaftryk måler hvor meget vand der bruges til at producere fødevarer. Det omfatter både direkte vanding og vand i forsyningskæden.</p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_vandforbrug_why') }}" class="filter-pill">Næste →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>De tre typer vand</h2>
+    <p>Blåt vand er overfladevand, grønt vand er regnvand, og gråt vand er forurenet vand der skal renses.</p>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner:</strong> Nogle fødevarer kræver enormt meget vand – f.eks. kød og nødder.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Hvorfor er det vigtigt?</h2>
+    <a href="{{ url_for('topic_vandforbrug_why') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{%endblock %}

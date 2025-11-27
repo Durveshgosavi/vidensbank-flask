@@ -3,220 +3,139 @@
 {% block title %}Fisk & Skaldyr - Råvarer | Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=1920&q=85&fit=crop&crop=entropy');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Fisk & Skaldyr</h1>
-    <p class="hero-subtitle">Bæredygtig sourcing og certificeringer</p>
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=1920&q=85&fit=crop&crop=entropy"
+      alt="Fisk og Skaldyr" class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Fisk og skaldyr er vigtige proteinkilder med varierende klimaaftryk og miljøpåvirkning. Certificeringer
-      som MSC og ASC er afgørende for at sikre bæredygtig sourcing og undgå truede arter eller destruktive fangstmetoder.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white">
+    <span class="mb-4 font-sans text-sm font-bold tracking-widest uppercase text-cb-blue-light">Råvarer &
+      Produkter</span>
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-white">
+      Fisk & Skaldyr
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+      Bæredygtig sourcing er afgørende. Certificeringer sikrer fremtiden.
     </p>
-  </header>
+  </div>
+</div>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('products_overview') }}" class="filter-pill">← Tilbage til råvarer</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Læs om emissioner</a>
-  </nav>
-
-  <article style="max-width: 900px; margin: 0 auto;">
-    <!-- Climate Footprint Section -->
-    <h2>Klimaaftryk – meget variabelt</h2>
-    <div class="metrics-grid" style="margin: 2rem 0;">
-      <article class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">1-10</div>
-        <h3 class="metric-label">kg CO₂e per kg fisk</h3>
-        <p class="metric-text">
-          Klimaaftrykket varierer enormt afhængig af art, fangstmetode og om det er vildfanget eller opdrættet.
-        </p>
-      </article>
-
-      <article class="metric-tile">
-        <div class="metric-value"><img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=400" alt="Icon" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
-        <h3 class="metric-label">Lavt aftryk: Makrel, sild, muslinger</h3>
-        <p class="metric-text">
-          Fedtfisk fra kortvarig fangst eller muslinger fra opdræt har meget lavt klimaaftryk (1-3 kg CO₂e/kg).
-        </p>
-      </article>
-
-      <article class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--cheval-rod);">🦐</div>
-        <h3 class="metric-label">Højt aftryk: Rejer, langdistance-fangst</h3>
-        <p class="metric-text">
-          Tropiske rejer og fisk fanget med trawl på lang afstand kan have aftryk på 8-10 kg CO₂e/kg.
-        </p>
-      </article>
-    </div>
-
-    <p>
-      Fisk og skaldyr har meget varierende klimaaftryk. Små pelagiske fisk som makrel, sild og sardiner fanget
-      lokalt har lavt aftryk. Tropiske rejer, langdistance-trawlfiskeri og intensivt fiskeopdræt kan have
-      betydeligt højere aftryk.
+<!-- Intro -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Certificeringer er nøglen."
     </p>
-
-    <!-- Environmental Impacts Beyond Climate -->
-    <h2>Miljøpåvirkning ud over klima</h2>
-    <p>
-      Fiskeri og akvakultur har andre væsentlige miljøkonsekvenser:
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Fisk og skaldyr varierer enormt i klimaaftryk. MSC og ASC mærker er afgørende for at undgå truede arter og sikre
+      bæredygtighed.
     </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Overfiskning:</strong> Mange fiskebestande er overfiskede eller truede. Vælg arter fra bæredygtige bestande.</li>
-      <li><strong>Destruktive fangstmetoder:</strong> Bundtrawl kan ødelægge havbund og marine økosystemer. Linefangst og snurrevod er skånsommere.</li>
-      <li><strong>Bifangst:</strong> Nogle fiskerier fanger utilsigtet andre arter, herunder truede fugle, skildpadder og delfiner.</li>
-      <li><strong>Akvakultur-problemer:</strong> Opdræt kan føre til forurening, sygdomsspredning, flugt af fisk og forbrug af vildfisk til foder.</li>
-      <li><strong>Mikroplast og forurening:</strong> Havmiljøet er belastet af plastik og kemikalier, som kan akkumuleres i fisk.</li>
-    </ul>
-
-    <!-- Certifications - Critical for Sustainability -->
-    <h2>Certificeringer – afgørende for bæredygtighed</h2>
-    <p>
-      For fisk og skaldyr er certificeringer <strong>ekstremt vigtige</strong> for at sikre bæredygtighed:
-    </p>
-
-    <h3 style="margin-top: 1.5rem;">MSC (Marine Stewardship Council)</h3>
-    <ul style="line-height: 1.8;">
-      <li><strong>For vildfanget fisk:</strong> MSC-certificering garanterer at fiskeriet er bæredygtigt, undgår overfiskning og minimerer miljøpåvirkning.</li>
-      <li><strong>Vælg MSC-mærket fisk</strong> hvor muligt – især for torsk, kuller, makrel, sild.</li>
-      <li><strong>MSC sikrer:</strong> Sunde fiskebestande, minimeret bifangst, effektiv forvaltning.</li>
-    </ul>
-
-    <h3 style="margin-top: 1.5rem;">ASC (Aquaculture Stewardship Council)</h3>
-    <ul style="line-height: 1.8;">
-      <li><strong>For opdrættede fisk og skaldyr:</strong> ASC certificerer bæredygtigt akvakultur med fokus på miljø, dyrevelfærd og arbejdsforhold.</li>
-      <li><strong>Vælg ASC-mærket laks, ørred, rejer</strong> for bedre miljøstandarder.</li>
-      <li><strong>ASC sikrer:</strong> Reduceret forurening, ingen flugt af fisk, ansvarlig foderanvendelse.</li>
-    </ul>
-
-    <h3 style="margin-top: 1.5rem;">Ø-mærket (Økologisk akvakultur)</h3>
-    <ul style="line-height: 1.8;">
-      <li><strong>For økologisk opdrættede fisk:</strong> Højere dyrevelfærdsstandarder, økologisk foder, lavere bestandstæthed.</li>
-      <li><strong>Begrænset tilgængelighed</strong> – økologisk fisk er mindre udbredt end MSC/ASC.</li>
-    </ul>
-
-    <!-- Recommendations for Canteens -->
-    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>Anbefalinger til kantiner:</strong><br>
-      1. <strong>Kræv MSC eller ASC:</strong> Køb kun fisk og skaldyr med MSC (vildfanget) eller ASC (opdræt) certificering.<br>
-      2. <strong>Vælg lokale arter:</strong> Danske arter som makrel, sild og torsk har kortere transportvej og bedre sporbarhed.<br>
-      3. <strong>Undgå truede arter:</strong> Konsulter WWFs "Fiskeguide" eller MSC's liste for at undgå overfiskede arter som f.eks. ål, hajer, nogle tunarter.<br>
-      4. <strong>Skift fiskevalg efter sæson:</strong> Vælg fisk i fangst-sæsonen for lavest miljøpåvirkning og bedst kvalitet.
-    </p>
-
-    <!-- Specific Fish Recommendations -->
-    <h2>Anbefalede fiskearter</h2>
-    <div class="metric-tile" style="margin: 2rem 0;">
-      <h3 class="metric-label">Gode valg for kantinen (MSC-certificerede eller bæredygtige)</h3>
-      <ul style="line-height: 1.8; text-align: left;">
-        <li><strong>Makrel:</strong> Lavt klimaaftryk, rigelig bestand, højt indhold af omega-3. Dansk fangst sæson: maj-november.</li>
-        <li><strong>Sild:</strong> Meget lavt klimaaftryk, bæredygtig bestand, rigelig tilgængelighed.</li>
-        <li><strong>Torsk (MSC-certificeret):</strong> Tidligere overfisket, men MSC-certificerede bestande er nu bæredygtige.</li>
-        <li><strong>Laks (ASC-certificeret opdræt):</strong> Populær fisk – vælg ASC for bedre miljøstandarder.</li>
-        <li><strong>Muslinger og østers:</strong> Meget lavt klimaaftryk, filtrerer vand og forbedrer havmiljø.</li>
-        <li><strong>Hellefisk (MSC):</strong> God kvalitet, men dyrere. Vælg MSC-certificeret.</li>
-      </ul>
-    </div>
-
-    <div class="metric-tile" style="margin: 2rem 0; background-color: #ffe0e0;">
-      <h3 class="metric-label" style="color: var(--cheval-rod);">Undgå eller brug sparsomt</h3>
-      <ul style="line-height: 1.8; text-align: left;">
-        <li><strong>Tropiske rejer:</strong> Meget højt klimaaftryk og ofte destruktiv produktion. Vælg kun ASC-certificerede.</li>
-        <li><strong>Tun (især blåfinnet tun):</strong> Mange tunarter er truede. Vælg kun MSC-certificeret eller skipjack-tun fra bæredygtige fiskerier.</li>
-        <li><strong>Ål:</strong> Kritisk truet – undgå helt.</li>
-        <li><strong>Hajer og rokker:</strong> Langsom reproduktion og mange truede bestande – undgå.</li>
-        <li><strong>Tropisk fisk uden certificering:</strong> Ofte forbundet med ødelæggelse af koralrev og manglende sporbarhed.</li>
-      </ul>
-    </div>
-
-    <!-- Practical Tips -->
-    <h2>Praktiske tips til indkøb</h2>
-    <ul style="line-height: 1.8;">
-      <li>Spørg din leverandør om MSC/ASC-certificering – insister på dokumentation</li>
-      <li>Vælg hele fisk eller større udskæringer for at reducere spild og forarbejdning</li>
-      <li>Brug fiskerester til fiskefond eller fiskesuppe – minimer spild</li>
-      <li>Planlæg fiskemenu efter sæson for bedste kvalitet og lavest aftryk</li>
-      <li>Kombiner dyrere bæredygtig fisk med billigere bælgfrugter eller grøntsager for at strække budgettet</li>
-      <li>Kommunicér til gæsterne om MSC/ASC-certificering – skab stolthed omkring bæredygtige valg</li>
-      <li>Udforsk mindre kendte arter som kuller, sorte pomfret, havaborre for variation og bæredygtighed</li>
-    </ul>
-
-    <!-- Wild vs Farmed -->
-    <h2>Vildfanget vs. opdrættede fisk</h2>
-    <p>
-      Der er fordele og ulemper ved begge:
-    </p>
-    <h3 style="margin-top: 1.5rem;">Vildfanget fisk (MSC-certificeret)</h3>
-    <ul style="line-height: 1.8;">
-      <li><strong>Fordele:</strong> Naturligt foder, ingen kemikalier, lavere risiko for sygdomme.</li>
-      <li><strong>Ulemper:</strong> Risiko for overfiskning, bifangst, destruktive fangstmetoder hvis ikke certificeret.</li>
-    </ul>
-
-    <h3 style="margin-top: 1.5rem;">Opdrættede fisk (ASC-certificeret)</h3>
-    <ul style="line-height: 1.8;">
-      <li><strong>Fordele:</strong> Forudsigelig forsyning, kan reducere presset på vilde bestande.</li>
-      <li><strong>Ulemper:</strong> Forurening, sygdomme, brug af antibiotika, foder fra vildfangst.</li>
-    </ul>
-
-    <p>
-      <strong>For kantiner:</strong> Vælg MSC for vildfanget og ASC for opdræt – begge kan være bæredygtige hvis certificerede.
-    </p>
-
-    <!-- Price Considerations -->
-    <h2>Prisovervejelser</h2>
-    <p>
-      Fisk varierer meget i pris. MSC- og ASC-certificeret fisk kan koste 10-30% mere end ikke-certificeret,
-      men er nødvendig for bæredygtighed. Makrel og sild er billige og bæredygtige, mens laks og rejer er dyrere.
-    </p>
-    <p>
-      Ved at kombinere billige bæredygtige fisk (makrel, sild, muslinger) med dyrere arter (laks, torsk) kan
-      kantiner balancere økonomi og bæredygtighed.
-    </p>
-
-    <!-- Health Benefits -->
-    <h2>Sundhed og ernæring</h2>
-    <p>
-      Fisk er sundt protein med lavt fedtindhold og højt indhold af omega-3-fedtsyrer, som er vigtige for hjerte og hjerne:
-    </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Omega-3:</strong> Især fedtfisk som makrel, sild, laks har højt indhold.</li>
-      <li><strong>Protein:</strong> 18-25 g per 100 g fisk.</li>
-      <li><strong>Vitaminer:</strong> D-vitamin (især i fedtfisk), B12, jod.</li>
-      <li><strong>Mineraler:</strong> Selen, fosfor, jod.</li>
-    </ul>
-    <p>
-      Sundhedsstyrelsen anbefaler 2-3 fiskeretter om ugen, heraf mindst én fedtfisk.
-    </p>
-
-    <!-- Seasonality -->
-    <h2>Sæsonalitet</h2>
-    <p>
-      Fisk har sæson baseret på fiskeriet og bestandenes reproduktion:
-    </p>
-    <ul style="line-height: 1.8;">
-      <li><strong>Makrel:</strong> Maj-november (dansk fangst)</li>
-      <li><strong>Sild:</strong> Hele året, men bedst i efterår/vinter</li>
-      <li><strong>Torsk:</strong> Bedst i vinter-forår</li>
-      <li><strong>Muslinger:</strong> September-april (sommerlukning for at beskytte bestanden)</li>
-      <li><strong>Rejer:</strong> Helårsfangst, men bedst kvalitet i vinterhalvåret</li>
-    </ul>
-  </article>
+  </div>
 </section>
 
-<!-- Call to Action -->
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Udforsk andre proteiner</h2>
-    <p class="section-lead">Kombiner fisk med kylling, bælgfrugter og æg for en varieret og bæredygtig menu.</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
-      <a href="{{ url_for('product_fjerkreae') }}" class="btn-primary">Fjerkræ →</a>
-      <a href="{{ url_for('product_eggs') }}" class="btn-primary">Æg →</a>
-      <a href="{{ url_for('products_overview') }}" class="btn-primary">Alle råvarer →</a>
+<!-- Climate Impact -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Data</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Klimaaftryk</h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <!-- Metric 1 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-blue-dark">1-10</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">kg CO₂e / kg</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Meget variabelt. Muslinger og sild er lave, rejer og fly-importeret fisk er høje.
+        </p>
+      </div>
+
+      <!-- Metric 2 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-blue-dark">MSC</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">Vildfanget</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Sikrer bæredygtige bestande og minimeret miljøpåvirkning.
+        </p>
+      </div>
+
+      <!-- Metric 3 -->
+      <div class="bg-white p-8 shadow-sm">
+        <div class="mb-4 font-display text-6xl font-bold text-cb-blue-dark">ASC</div>
+        <h3 class="mb-2 font-sans text-sm font-bold uppercase tracking-widest text-stone-900">Opdræt</h3>
+        <p class="font-sans text-sm text-stone-600 leading-relaxed">
+          Certificerer ansvarligt havbrug med fokus på miljø og velfærd.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Recommendations -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="grid grid-cols-1 gap-16 md:grid-cols-2 items-center">
+      <div>
+        <span
+          class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-light">Strategi</span>
+        <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide text-white">
+          Anbefalinger til Kantinen
+        </h2>
+        <ul class="space-y-6">
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-blue-light font-display font-bold text-stone-900">1</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Kræv Certificering</h4>
+              <p class="mt-2 font-sans text-stone-400">Køb kun MSC (vild) eller ASC (opdræt) mærket fisk.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-blue-light font-display font-bold text-stone-900">2</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Vælg Lokalt & Sæson</h4>
+              <p class="mt-2 font-sans text-stone-400">Danske sild, makrel og muslinger har lavt aftryk.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cb-blue-light font-display font-bold text-stone-900">3</span>
+            <div>
+              <h4 class="font-display text-xl font-bold uppercase text-white">Undgå Røde Arter</h4>
+              <p class="mt-2 font-sans text-stone-400">Hold dig fra truede arter som ål og visse tunarter.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="relative h-[500px]">
+        <img src="{{ url_for('static', filename='images/fresh_ingredients_closeup_1763550147075.png') }}"
+          alt="Fresh Fish" class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation -->
+<section class="bg-white py-24 text-center">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Udforsk Alternativer
+    </h2>
+    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href="{{ url_for('product_fjerkreae') }}"
+        class="rounded-none bg-cb-green-dark px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-white transition-transform hover:-translate-y-1 hover:bg-cb-green-medium">
+        Se Fjerkræ
+      </a>
+      <a href="{{ url_for('products_overview') }}"
+        class="rounded-none border border-stone-300 px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-900">
+        Tilbage til Oversigt
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

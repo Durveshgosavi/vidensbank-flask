@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Biodiversitet - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/vegetables_closeup.jpg') }}" alt="Biodiversity Hero"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Biodiversitet &<br>Økosystemer
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl">
+            En vidensbaseret indføring i biodiversitetens betydning for fødevareproduktionen og hvordan køkkener kan
+            understøtte biologisk mangfoldighed.
+        </p>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-green-light">
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+            </path>
+        </svg>
+    </div>
+</div>
+
+<!-- Introduction -->
+<section class="bg-cb-taupe-light py-24 md:py-32">
+    <div class="mx-auto max-w-4xl px-6 text-left">
+        <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-green-dark md:text-5xl uppercase">
+            Naturens Ressourcer
+        </h2>
+        <p class="font-sans text-lg leading-loose text-stone-800 md:text-xl">
+            Biodiversitet er grundlaget for al fødevareproduktion. En rig natur sikrer bestøvning, jordfrugtbarhed og
+            naturlig skadedyrsbekæmpelse, hvilket er essentielt for en stabil forsyning af råvarer.
+        </p>
+    </div>
+</section>
+
+<!-- Content Stacks -->
+<section class="w-full bg-white">
+    <!-- Stack 1: What is it? -->
+    <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+        <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+            <img src="{{ url_for('static', filename='images/Cheval21233.jpeg') }}" alt="Biodiversity Definition"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+        </div>
+        <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+            <span
+                class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Definition</span>
+            <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+                Hvad er biodiversitet?</h3>
+            <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+                Biodiversitet dækker over mangfoldigheden af liv på jorden – fra gener og arter til økosystemer. Forstå
+                de forskellige niveauer og deres samspil.
+            </p>
+            <a href="{{ url_for('topic_biodiversity_what') }}"
+                class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-green-dark hover:text-cb-green-medium transition-colors">
+                Læs om Begrebet
+                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Stack 2: Why is it important? -->
+    <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+        <div class="flex flex-col justify-center bg-cb-taupe-medium px-8 py-16 md:order-1 md:px-20 md:py-0">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Betydning</span>
+            <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+                Hvorfor er det vigtigt?</h3>
+            <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+                Tab af biodiversitet truer fødevaresikkerheden. Lær om konsekvenserne af tilbagegang i arter og hvordan
+                landbrugspraksis påvirker naturen.
+            </p>
+            <a href="{{ url_for('topic_biodiversity_why') }}"
+                class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-blue-dark hover:text-cb-blue-medium transition-colors">
+                Se Konsekvenserne
+                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+            </a>
+        </div>
+        <div class="relative h-full min-h-[400px] w-full overflow-hidden md:order-2">
+            <img src="{{ url_for('static', filename='images/waste_reduction_aesthetic_1763550161182.png') }}"
+                alt="Ecosystem Services"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+        </div>
+    </div>
+
+    <!-- Stack 3: Goal & Ambition -->
+    <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+        <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+            <img src="{{ url_for('static', filename='images/chef_plating_food_1763550153863.png') }}" alt="Goals"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+        </div>
+        <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+            <span
+                class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Målsætninger</span>
+            <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+                Globale Mål</h3>
+            <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+                FN's verdensmål og EU's biodiversitetsstrategi sætter rammerne for beskyttelse af naturen. Se hvordan
+                det påvirker fødevarebranchen.
+            </p>
+            <a href="{{ url_for('topic_biodiversity_goal') }}"
+                class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-yellow-dark hover:text-cb-yellow-medium transition-colors">
+                Læs om Målene
+                <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Data Highlight -->
+<section class="bg-stone-900 py-24 text-white">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+            <div class="text-center">
+                <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-green-dark">1 mio.</div>
+                <p class="text-sm font-bold uppercase tracking-widest text-white">Truede Arter</p>
+                <p class="mt-4 text-stone-400">Globalt (Kilde: IPBES)</p>
+            </div>
+            <div class="text-center">
+                <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-yellow-dark">75%</div>
+                <p class="text-sm font-bold uppercase tracking-widest text-white">Afgrøder</p>
+                <p class="mt-4 text-stone-400">Afhænger af bestøvning</p>
+            </div>
+            <div class="text-center">
+                <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-blue-dark">30%</div>
+                <p class="text-sm font-bold uppercase tracking-widest text-white">Beskyttet Natur</p>
+                <p class="mt-4 text-stone-400">EU Mål for 2030</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation Grid -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <h2 class="mb-16 text-left font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+            Værktøjer & Viden</h2>
+        <div class="grid grid-cols-1 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="{{ url_for('topic_biodiversity_impact') }}"
+                class="group relative bg-white p-12 transition-colors hover:bg-cb-green-light">
+                <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Aftryk</h3>
+                <p class="text-stone-600 font-sans">Forstå hvordan forskellige fødevarer påvirker biodiversiteten.</p>
+                <span
+                    class="absolute bottom-8 right-8 text-2xl text-cb-green-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+            </a>
+            <a href="{{ url_for('topic_biodiversity_tips') }}"
+                class="group relative bg-white p-12 transition-colors hover:bg-cb-yellow-light">
+                <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Handlinger</h3>
+                <p class="text-stone-600 font-sans">Hvad kan man gøre i køkkenet for at støtte biodiversitet?</p>
+                <span
+                    class="absolute bottom-8 right-8 text-2xl text-cb-yellow-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+            </a>
+            <a href="{{ url_for('topic_biodiversity_goal') }}"
+                class="group relative bg-white p-12 transition-colors hover:bg-cb-blue-light">
+                <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Mål</h3>
+                <p class="text-stone-600 font-sans">Læs om de internationale og nationale målsætninger.</p>
+                <span
+                    class="absolute bottom-8 right-8 text-2xl text-cb-blue-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Sæsonaftryk - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/buffet_hero.jpg') }}" alt="Seasonal Impact"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Dit<br>Aftryk
+        </h1>
+    </div>
+</div>
+
+<!-- Explanation -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-left">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Kort og godt."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Klimaaftrykket fra frugt og grønt afhænger primært af produktionsformen. Transport betyder mindre end man
+            tror -
+            medmindre varen er fløjet ind. Drivhusopvarmning er den store synder.
+        </p>
+    </div>
+</section>
+
+<!-- Impact Visualization -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="bg-white p-12 shadow-xl">
+            <h3 class="mb-8 text-left font-display text-3xl font-bold uppercase tracking-wide text-stone-900">CO₂e pr.
+                kg
+                Tomat</h3>
+
+            <!-- Chart Placeholder -->
+            <div class="space-y-8">
+                <!-- Item 1 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Dansk Drivhus (Vinter)</span>
+                        <span class="font-sans text-stone-500">3.5 kg CO₂e</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-orange-dark" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Sydeuropæisk (Vinter)</span>
+                        <span class="font-sans text-stone-500">0.5 kg CO₂e</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-yellow-dark" style="width: 14%"></div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-sans font-bold text-stone-700">Dansk Friland (Sommer)</span>
+                        <span class="font-sans text-stone-500">0.2 kg CO₂e</span>
+                    </div>
+                    <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-cb-green-dark" style="width: 6%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-12 text-left font-sans text-sm text-stone-500">
+                Kilde: CONCITO Den Store Klimadatabase. Tallene er vejledende gennemsnit.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Conclusion -->
+<section class="bg-stone-900 py-32 text-left text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+            "Vælg rigtigt"
+        </h2>
+        <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
+            Ved at vælge danske varer i sæson kan du reducere klimaaftrykket markant - og samtidig få en bedre vare.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_saeson_landing') }}"
+                class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+                Tilbage til Oversigten →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

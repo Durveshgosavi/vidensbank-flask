@@ -1,0 +1,755 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er mit aftryk? - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Impact Page Specific Styles */
+.impact-hero {
+    position: relative;
+    min-height: 450px;
+    background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.impact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.calculator-section {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin: -3rem auto 4rem;
+    max-width: 900px;
+    position: relative;
+    z-index: 10;
+}
+
+.calculator-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.calculator-input-group {
+    background: var(--cheval-taube);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.calculator-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.calculator-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.calculator-input:focus {
+    outline: none;
+    border-color: var(--dark-gron);
+}
+
+.calculator-result {
+    background: linear-gradient(135deg, var(--dark-gron) 0%, #2c5f2d 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.result-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.result-comparison {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.impact-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.breakdown-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.breakdown-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.breakdown-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.breakdown-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.breakdown-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-gron);
+    margin-bottom: 0.5rem;
+}
+
+.breakdown-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.breakdown-bar-fill {
+    height: 100%;
+    background: var(--dark-gron);
+    border-radius: 4px;
+    transition: width 1s ease;
+    width: 0;
+}
+
+.breakdown-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.scenario-comparison {
+    background: var(--cheval-taube);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin: 4rem 0;
+}
+
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.scenario-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--dark-gron), #52b788);
+}
+
+.scenario-card.high::before {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+.scenario-card.medium::before {
+    background: linear-gradient(90deg, #e67e22, #f39c12);
+}
+
+.scenario-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.scenario-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.scenario-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.scenario-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.scenario-value.high {
+    color: #e74c3c;
+}
+
+.scenario-value.medium {
+    color: #f39c12;
+}
+
+.scenario-value.low {
+    color: #27ae60;
+}
+
+.scenario-details {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.action-checklist {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    background: var(--cheval-taube);
+    border-radius: 12px;
+    border-left: 4px solid var(--dark-gron);
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.checklist-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.checklist-content {
+    flex: 1;
+}
+
+.checklist-title {
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.checklist-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.impact-visualizer {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+}
+
+.visualizer-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.comparison-bars {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.comparison-bar-item {
+    margin-bottom: 2rem;
+}
+
+.comparison-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.comparison-bar-track {
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.comparison-bar-value {
+    height: 100%;
+    background: linear-gradient(90deg, var(--dark-gron), #52b788);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    color: white;
+    font-weight: 700;
+    transition: width 1.5s ease;
+    width: 0;
+}
+
+@media (max-width: 768px) {
+    .calculator-section {
+        padding: 2rem 1.5rem;
+        margin: -2rem 1rem 3rem;
+    }
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-value {
+        font-size: 2.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Enhanced Hero Section -->
+<header class="impact-hero animate-on-scroll">
+  <div class="goal-hero-content">
+    <h1 class="hero-title">Hvad er mit aftryk?</h1>
+    <p class="hero-subtitle">Dine valg former klimaaftrykket – se hvordan med konkrete tal og sammenligninger</p>
+  </div>
+</header>
+
+<!-- Personal Footprint Calculator -->
+<div class="calculator-section animate-on-scroll">
+  <h2 class="calculator-title">Beregn Din Kantines Uge-Aftryk</h2>
+  <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+    Indtast typiske værdier for at få et estimat af jeres klimapåvirkning
+  </p>
+
+  <div class="calculator-grid">
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="mealsPerWeek">Antal måltider pr. uge</label>
+      <input type="number" id="mealsPerWeek" class="calculator-input" value="500" min="0" step="10">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="meatPercentage">Andel kødbaserede retter (%)</label>
+      <input type="number" id="meatPercentage" class="calculator-input" value="60" min="0" max="100" step="5">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="wastePercentage">Madspild (%)</label>
+      <input type="number" id="wastePercentage" class="calculator-input" value="15" min="0" max="100" step="1">
+    </div>
+  </div>
+
+  <div class="calculator-result" id="calculatorResult">
+    <div class="result-value" id="resultValue">0</div>
+    <div class="result-label">kg CO₂e pr. uge</div>
+    <div class="result-comparison" id="resultComparison">
+      Dette svarer til cirka <strong>0 kg CO₂e pr. år</strong>
+    </div>
+  </div>
+
+  <p style="text-align: center; color: var(--text-light); font-size: 0.9rem; font-style: italic;">
+    * Beregningen er et estimat baseret på gennemsnitlige klimadata for danske kantiner
+  </p>
+</div>
+
+<section class="page-section">
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_emissions_goal') }}" class="filter-pill">← Mål & ambition</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_emissions_tips') }}" class="filter-pill">Tips & tricks →</a>
+  </nav>
+
+  <article style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll">
+      <h2 class="section-title">Hvor kommer klimaaftrykket fra?</h2>
+      <p class="section-lead">
+        Som køkkenchef, driftsansvarlig eller konsulent former du hundredvis af måltider hver uge.
+        Dit klimaaftryk handler om valg før, under og efter service.
+      </p>
+    </header>
+
+    <!-- Impact Breakdown -->
+    <div class="impact-breakdown animate-on-scroll">
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🍽️</div>
+        <h3 class="breakdown-title">Menuens sammensætning</h3>
+        <div class="breakdown-percentage" data-counter="65" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="65"></div>
+        </div>
+        <p class="breakdown-description">
+          Andelen af kød – især okse og lam – vs. grøntsager, korn og bælgfrugter har størst betydning.
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🛒</div>
+        <h3 class="breakdown-title">Indkøb & råvarevalg</h3>
+        <div class="breakdown-percentage" data-counter="20" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="20"></div>
+        </div>
+        <p class="breakdown-description">
+          Valg af varer med højt vs. lavt klimaaftryk, samt oprindelsesland og produktionsmetode.
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">♻️</div>
+        <h3 class="breakdown-title">Madspild</h3>
+        <div class="breakdown-percentage" data-counter="15" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="15"></div>
+        </div>
+        <p class="breakdown-description">
+          Mad der ender i skraldespanden fra produktion, buffet eller tallerkener betyder spildt ressourcer.
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Scenario Comparison -->
+<section class="scenario-comparison animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <p class="eyebrow">SAMMENLIGN SCENARIER</p>
+      <h2 class="section-title">Tre Typiske Kantiner</h2>
+      <p class="section-lead">
+        Se hvordan forskellige tilgange påvirker klimaaftrykket for en kantine med 500 måltider om ugen
+      </p>
+    </header>
+
+    <div class="scenario-grid">
+      <!-- High Impact Scenario -->
+      <div class="scenario-card high">
+        <div class="scenario-label">Høj udledning</div>
+        <h3 class="scenario-title">Traditionel Kantine</h3>
+        <div class="scenario-value high" data-counter="4500">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <ul class="scenario-details">
+          <li>70% kødbaserede retter</li>
+          <li>Oksekød 3-4 gange om ugen</li>
+          <li>20% madspild</li>
+          <li>Ingen klimadata i drift</li>
+        </ul>
+      </div>
+
+      <!-- Medium Impact Scenario -->
+      <div class="scenario-card medium">
+        <div class="scenario-label">Mellem udledning</div>
+        <h3 class="scenario-title">Bevidst Kantine</h3>
+        <div class="scenario-value medium" data-counter="2800">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <ul class="scenario-details">
+          <li>50% kødbaserede retter</li>
+          <li>Oksekød 1-2 gange om ugen</li>
+          <li>12% madspild</li>
+          <li>Sporadisk klimadata</li>
+        </ul>
+      </div>
+
+      <!-- Low Impact Scenario -->
+      <div class="scenario-card">
+        <div class="scenario-label">Lav udledning</div>
+        <h3 class="scenario-title">Klimavenlig Kantine</h3>
+        <div class="scenario-value low" data-counter="1400">0</div>
+        <p style="color: var(--text-light); margin-bottom: 1rem;">kg CO₂e / uge</p>
+        <ul class="scenario-details">
+          <li>70% plantebaserede retter</li>
+          <li>Oksekød max 1 gang/måned</li>
+          <li>5% madspild</li>
+          <li>Data-drevet menuplanlægning</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem; font-weight: 600; font-size: 1.1rem;">
+      Potentiel reduktion fra høj til lav udledning: <span style="color: var(--dark-gron); font-size: 1.3rem;">69%</span>
+    </p>
+  </div>
+</section>
+
+<!-- Action Checklist -->
+<section class="page-section">
+  <article style="max-width: 1000px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll" style="text-align: center;">
+      <h2 class="section-title">Fra Tal til Hverdagssituationer</h2>
+      <p class="section-lead">I praksis viser dit klimaaftryk sig i helt konkrete valg</p>
+    </header>
+
+    <div class="action-checklist animate-on-scroll">
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Buffetens sammensætning</div>
+          <div class="checklist-description">
+            Om buffeten har flere kødbaserede retter end nødvendigt, og om placement fremmer grønne valg.
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Attraktive garniturer</div>
+          <div class="checklist-description">
+            Om garniturer og tilbehør gør det attraktivt og nemt at vælge de grønnere retter.
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Data-drevet opfølgning</div>
+          <div class="checklist-description">
+            Om der følges op på data fra madspildsmålinger, salgstal og gæstepræferencer.
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Energieffektiv drift</div>
+          <div class="checklist-description">
+            Om køkkenet er indrettet og planlagt, så energiforbruget er rimeligt og ikke unødigt højt.
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Transparent kommunikation</div>
+          <div class="checklist-description">
+            Om gæster informeres om klimaaftryk og motiveres til grønne valg gennem positiv nudging.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Visualizer -->
+    <div class="impact-visualizer animate-on-scroll">
+      <div class="visualizer-header">
+        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Mit Aftryk som Dialogværktøj</h3>
+        <p style="color: var(--text-light);">
+          Ved at koble egne tal med viden fra Vidensbanken kan du:
+        </p>
+      </div>
+
+      <div class="comparison-bars">
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Forklare menubeslutninger</span>
+            <span style="color: var(--dark-gron); font-weight: 700;">90%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="90">Meget vigtigt</div>
+          </div>
+        </div>
+
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Dokumentere effekt af ændringer</span>
+            <span style="color: var(--dark-gron); font-weight: 700;">85%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="85">Vigtigt</div>
+          </div>
+        </div>
+
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Prioritere indsatser</span>
+            <span style="color: var(--dark-gron); font-weight: 700;">95%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="95">Essentielt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vision-statement animate-on-scroll" style="margin: 3rem 0;">
+      <p class="vision-quote">
+        Dit klimaaftryk er ikke noget abstrakt – det er summen af dine daglige beslutninger.
+      </p>
+      <p class="vision-author">Vidensbanken gør disse beslutninger lettere og mere kvalificerede</p>
+    </div>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Tips & Tricks</h2>
+  <p class="section-lead">
+    Få konkrete værktøjer og strategier til at reducere fødevarerelaterede emissioner i praksis.
+  </p>
+  <a href="{{ url_for('topic_emissions_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Personal Footprint Calculator
+document.addEventListener('DOMContentLoaded', function() {
+    const mealsInput = document.getElementById('mealsPerWeek');
+    const meatInput = document.getElementById('meatPercentage');
+    const wasteInput = document.getElementById('wastePercentage');
+    const resultValue = document.getElementById('resultValue');
+    const resultComparison = document.getElementById('resultComparison');
+
+    function calculateFootprint() {
+        const meals = parseInt(mealsInput.value) || 0;
+        const meatPercent = parseInt(meatInput.value) || 0;
+        const wastePercent = parseInt(wasteInput.value) || 0;
+
+        // Simplified calculation:
+        // Base: 2kg CO2e per meal average
+        // Meat multiplier: +0.1kg per 10% meat content
+        // Waste multiplier: +0.05kg per 5% waste
+        const baseCO2 = 2;
+        const meatMultiplier = (meatPercent / 10) * 0.5;
+        const wasteMultiplier = (wastePercent / 5) * 0.15;
+
+        const co2PerMeal = baseCO2 + meatMultiplier + wasteMultiplier;
+        const weeklyTotal = Math.round(meals * co2PerMeal);
+        const yearlyTotal = Math.round(weeklyTotal * 52);
+
+        // Animate result
+        animateValue(resultValue, 0, weeklyTotal, 1000, '');
+
+        // Update comparison text
+        resultComparison.innerHTML = `Dette svarer til cirka <strong>${yearlyTotal.toLocaleString()} kg CO₂e pr. år</strong>`;
+    }
+
+    function animateValue(element, start, end, duration, suffix) {
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current) + suffix;
+        }, 16);
+    }
+
+    // Add event listeners
+    [mealsInput, meatInput, wasteInput].forEach(input => {
+        input.addEventListener('input', calculateFootprint);
+    });
+
+    // Initial calculation
+    calculateFootprint();
+
+    // Animate breakdown bars on scroll
+    const breakdownBars = document.querySelectorAll('.breakdown-bar-fill');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = parseInt(bar.getAttribute('data-progress'));
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 200);
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    breakdownBars.forEach(bar => observer.observe(bar));
+
+    // Animate comparison bars
+    const comparisonBars = document.querySelectorAll('.comparison-bar-value');
+    const comparisonObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = parseInt(bar.getAttribute('data-progress'));
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 300);
+                comparisonObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    comparisonBars.forEach(bar => comparisonObserver.observe(bar));
+});
+</script>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Mål & Ambition - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er målet og vores ambition?</h1>
+    <p class="hero-subtitle">Fra viden til handling</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Målet er ikke blot at forstå tal og grafer, men at omsætte viden til konkrete ændringer i kantinedriften,
+      der både reducerer klimaaftryk og opleves som en gevinst for gæsterne.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_emissions_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_emissions_impact') }}" class="filter-pill">Mit aftryk →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Fra viden til handling</h2>
+    <p>
+      Vores ambition med Vidensbanken er at samle den vigtigste viden om fødevarerelaterede emissioner
+      ét sted, så den er:
+    </p>
+
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🔍</div>
+        <h3 class="metric-label">Let at finde</h3>
+        <p class="metric-text">
+          Emnerne er organiseret efter spørgsmål, kunderne faktisk stiller.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">📖</div>
+        <h3 class="metric-label">Let at forstå</h3>
+        <p class="metric-text">
+          Ingen unødig fagjargon, men stadig fagligt korrekt.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">⚡</div>
+        <h3 class="metric-label">Let at bruge</h3>
+        <p class="metric-text">
+          Direkte anvendelig i kundemøder, menudialoger og driftsbeslutninger.
+        </p>
+      </div>
+    </div>
+
+    <h2>Ambition for danske kantiner</h2>
+    <p>For kantiner og storkøkkener er ambitionen:</p>
+
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ At reducere klimaaftrykket pr. gæst uden at gå på kompromis med madglæde og kvalitet.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ At gøre plantebaserede og klimaoptimerede retter til det naturlige valg – ikke kun "alternativet".
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ At bruge data aktivt, f.eks. gennem klimaberegnere og menu-analyser.
+      </li>
+      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        ✓ At understøtte kundernes egne ESG- og bæredygtighedsmål med dokumenterede resultater.
+      </li>
+    </ul>
+
+    <h2>Vidensbanken som fundament for dialog</h2>
+    <p>
+      Internt skal Vidensbanken fungere som et fælles fundament:
+      Alle medarbejdere skal kunne slå op, finde forklaringer og hente tal eller eksempler til kundedialoger.
+      Eksternt skal den være udgangspunktet for materialer som white papers, præsentationer og kundespecifikke analyser.
+    </p>
+
+    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
+      "Hjælper denne side en kunde eller medarbejder med at tage det næste skridt mod en mere klimavenlig kantine?"
+    </p>
+
+    <p>
+      I praksis betyder det, at vi hele tiden spørger os selv om vores indhold lever op til dette mål.
+      Hver side, hvert tal og hvert eksempel skal kunne bruges aktivt til at skabe forandring.
+    </p>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Mit Aftryk</h2>
+    <p class="section-lead">
+      Forstå hvordan dine beslutninger påvirker klimaaftrykket.
+    </p>
+    <a href="{{ url_for('topic_emissions_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

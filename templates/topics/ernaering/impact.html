@@ -1,66 +1,103 @@
 {% extends "base.html" %}
 
-{% block title %}Mit Aftryk - Ernæring | Vidensbank{% endblock %}
+{% block title %}Ernæringsaftryk - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1556910633-5faa8e7d12ca');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Mit Aftryk - Ernæring</h1>
-    <p class="hero-subtitle">Dine beslutninger former gæsternes sundhed</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_snacks.jpg') }}" alt="Nutrition Impact"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Som køkkenchef eller ansvarlig for kantinens menu påvirker du direkte hundredvis af menneskers
-      ernæring hver dag. Dit aftryk handler om, hvilke råvarer du vælger, hvordan du sammensætter menuen,
-      og hvordan retterne præsenteres.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+      Dit<br>Aftryk
+    </h1>
+  </div>
+</div>
+
+<!-- Explanation -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-left">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Dobbelt gevinst."
     </p>
-  </header>
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Når du spiser efter kostrådene, gør du både din krop og klimaet en tjeneste. De fødevarer, der belaster klimaet
+      mest, er ofte også dem, vi bør begrænse for sundhedens skyld.
+    </p>
+  </div>
+</section>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">← Mål & ambition</a>
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_ernaering_tips') }}" class="filter-pill">Tips & tricks →</a>
-  </nav>
+<!-- Impact Visualization -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="bg-white p-12 shadow-xl">
+      <h3 class="mb-8 text-left font-display text-3xl font-bold uppercase tracking-wide text-stone-900">CO₂e pr. kg
+        Protein</h3>
 
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>De vigtigste håndtag</h2>
-    <p>Der er tre centrale områder, hvor dine beslutninger har størst indflydelse:</p>
+      <!-- Chart Placeholder -->
+      <div class="space-y-8">
+        <!-- Item 1 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Oksekød</span>
+            <span class="font-sans text-stone-500">~30 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-orange-dark" style="width: 100%"></div>
+          </div>
+        </div>
 
-    <div class="card-grid" style="margin: 2rem 0;">
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🥗</div>
-        <h3 class="metric-label">1. Menuens sammensætning</h3>
-        <p class="metric-text">Hvor stor en andel af menuen består af grøntsager, fuldkorn og sunde proteinkilder?</p>
+        <!-- Item 2 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Svinekød</span>
+            <span class="font-sans text-stone-500">~4 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-yellow-dark" style="width: 13%"></div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="font-sans font-bold text-stone-700">Linser & Bønner</span>
+            <span class="font-sans text-stone-500">~1 kg CO₂e</span>
+          </div>
+          <div class="h-8 w-full bg-stone-100 rounded-full overflow-hidden">
+            <div class="h-full bg-cb-green-dark" style="width: 3%"></div>
+          </div>
+        </div>
       </div>
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🎯</div>
-        <h3 class="metric-label">2. Portionsstørrelser og balance</h3>
-        <p class="metric-text">Følger tallerkenmodellen med ½ grøntsager, ¼ protein og ¼ kulhydrater?</p>
-      </div>
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">👁️</div>
-        <h3 class="metric-label">3. Synlighed og nudging</h3>
-        <p class="metric-text">Er de sundeste valg også de mest synlige og tilgængelige i buffeten?</p>
-      </div>
+
+      <p class="mt-12 text-left font-sans text-sm text-stone-500">
+        Kilde: CONCITO Den Store Klimadatabase. Tallene er vejledende gennemsnit.
+      </p>
     </div>
-
-    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>Husk:</strong> Dit ernæringsaftryk måles ikke kun i gram og kalorier, men også i gæsternes trivsel,
-      energiniveau og langsigtede sundhed. Små ændringer, gentaget hver dag, kan gøre en enorm forskel.
-    </p>
-  </article>
-</section>
-
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Tips & Tricks</h2>
-    <p class="section-lead">Få konkrete værktøjer til at forbedre ernæringen i din kantine.</p>
-    <a href="{{ url_for('topic_ernaering_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
   </div>
 </section>
 
+<!-- Conclusion -->
+<section class="bg-stone-900 py-32 text-left text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+      "Vælg Planter"
+    </h2>
+    <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
+      Ved at skifte kødet ud med planter bare én dag om ugen, gør du en kæmpe forskel.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_ernaering_landing') }}"
+        class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+        Tilbage til Oversigten →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

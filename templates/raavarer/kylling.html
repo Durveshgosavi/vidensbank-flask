@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Kylling - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/raw_chicken.png') }}" alt="Kylling"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Kylling</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            Den alsidige hverdagshelt. Et proteinrigt fundament i det moderne køkken.
+        </p>
+    </div>
+</header>
+
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">Effektivitet & Smag</h2>
+            <span class="font-mono text-stone-400 text-sm">01</span>
+        </div>
+
+        <div class="prose prose-lg prose-stone font-serif leading-loose text-stone-600">
+            <p>
+                Kylling har indtaget en unik position i verdens køkkener. Fra den franske coq au vin til den thailandske
+                grønne karry –
+                kyllingens milde smag og evne til at absorbere krydderier gør den til det perfekte lærred for kulinarisk
+                kreativitet.
+            </p>
+            <p>
+                Klimamæssigt er kylling en succeshistorie sammenlignet med det røde kød.
+                Kyllinger er utroligt effektive til at omsætte foder til kød, hvilket resulterer i et markant lavere
+                CO₂-aftryk.
+                Men "lavt" er relativt. Selvom kylling er bedre end oksekød, er det stadig en animalsk produktion, der
+                kræver ressourcer.
+            </p>
+            <p>
+                Udfordringen ligger i dyrevelfærden. Den industrielle effektivitet har ofte en pris for dyret.
+                Som professionelle har vi et ansvar for at vælge kyllinger, der har levet et liv med plads til at baske
+                med vingerne.
+                Kvalitet kan smages, og et godt liv giver bedre kødstruktur og dybere smag.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Minimalist Data Section -->
+<section class="py-24 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Stat 1 -->
+            <div class="text-center md:text-left">
+                <div class="text-6xl font-display text-stone-900 mb-2">6.9</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Et relativt lavt aftryk for kød, men stadig højere end plantebaserede alternativer som linser (2
+                    kg).
+                </p>
+            </div>
+
+            <!-- Stat 2 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">-87%</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Oksekød</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Ved at bytte oksekød ud med kylling kan man opnå massive reduktioner i køkkenets samlede udledning.
+                </p>
+            </div>
+
+            <!-- Stat 3 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">1.8</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Foderkonvertering</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Kyllinger skal kun bruge ca. 1,8 kg foder for at producere 1 kg kød, hvilket gør dem meget
+                    ressourceeffektive.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">I Køkkenet</h2>
+            <span class="font-mono text-stone-400 text-sm">02</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Udskæringer</h3>
+                <ul class="space-y-4 text-stone-600 font-serif">
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">01</span>
+                        <span><strong>Bryst:</strong> Magert og mildt. Pas på med overtilberedning – det bliver hurtigt
+                            tørt.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">02</span>
+                        <span><strong>Lår & Overlår:</strong> Mørkere kød med mere fedt og smag. Perfekt til gryderetter
+                            og ovnstegning.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">03</span>
+                        <span><strong>Skrog:</strong> Guldgruben. Kog altid fond på skrogene for at udnytte ressourcen
+                            fuldt ud.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Tilberedning & Tips</h3>
+                <p class="text-stone-600 font-serif leading-relaxed mb-6">
+                    Kylling er taknemmelig. Den kan steges, koges, braiseres og grilles.
+                    Husk at skindet indeholder meget smag – steg det sprødt, selvom det ikke skal spises, for at give
+                    smag til kødet.
+                </p>
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+                    <p class="text-sm font-bold text-stone-900 mb-2">PRO TIP</p>
+                    <p class="text-stone-600 text-sm italic">
+                        "Brug confitering til lårene. Det mørner kødet og giver en intens smag, som kan løfte enhver
+                        salat eller sandwich."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Minimalist Calculator -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl mb-4">Beregn Din Effekt</h2>
+            <p class="text-stone-400 font-light">Se effekten af at vælge kylling frem for tungere kødtyper.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Forbrug
+                        (kg/uge)</label>
+                    <input type="number" id="chickenAmount" value="20"
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-3xl font-display focus:outline-none focus:border-white transition-colors text-white placeholder-stone-700">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Sammenlign
+                        med</label>
+                    <select id="chickenComparison"
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-xl font-sans focus:outline-none focus:border-white transition-colors text-white appearance-none cursor-pointer">
+                        <option value="60" class="text-stone-900">Oksekød (60 kg CO₂e)</option>
+                        <option value="12" class="text-stone-900">Svinekød (12 kg CO₂e)</option>
+                        <option value="24" class="text-stone-900">Lammekød (24 kg CO₂e)</option>
+                    </select>
+                </div>
+
+                <button onclick="calculateChickenSavings()"
+                    class="group flex items-center gap-4 text-white hover:text-stone-300 transition-colors">
+                    <span class="text-sm font-bold uppercase tracking-widest">Beregn nu</span>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </button>
+            </div>
+
+            <div id="chickenSavingsResult" class="hidden opacity-0 transition-opacity duration-700">
+                <div class="border-l border-stone-700 pl-12">
+                    <div class="mb-8">
+                        <div class="text-6xl font-display text-white mb-2" id="chickenSavingsValue">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">kg CO₂e sparet / uge</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-display text-stone-300 mb-2" id="chickenAnnualSavings">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">tons CO₂e / år</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function calculateChickenSavings() {
+        const chickenAmount = parseFloat(document.getElementById('chickenAmount').value) || 0;
+        const comparisonValue = parseFloat(document.getElementById('chickenComparison').value);
+        const chickenCO2 = 6.9;
+
+        const amountKg = chickenAmount; // Input is in kg for consistency with other calculators now
+        const chickenEmissions = amountKg * chickenCO2;
+        const comparisonEmissions = amountKg * comparisonValue;
+
+        let weeklySavings = comparisonEmissions - chickenEmissions;
+
+        // If savings are negative (e.g. comparing to legumes), handle appropriately (not implemented in this simple view yet)
+        // But here we default to comparing with heavier meats as per UI options
+
+        const annualSavings = (weeklySavings * 52) / 1000;
+
+        // Animate numbers
+        animateValue("chickenSavingsValue", 0, weeklySavings.toFixed(1), 1000);
+        animateValue("chickenAnnualSavings", 0, annualSavings.toFixed(2), 1000);
+
+        const resultDiv = document.getElementById('chickenSavingsResult');
+        resultDiv.classList.remove('hidden');
+        void resultDiv.offsetWidth;
+        resultDiv.classList.remove('opacity-0');
+    }
+
+    function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = (progress * (end - start) + start).toFixed(id === 'chickenAnnualSavings' ? 2 : 1);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+</script>
+
+{% endblock %}

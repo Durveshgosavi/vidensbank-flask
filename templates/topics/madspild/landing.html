@@ -1,108 +1,146 @@
 {% extends "base.html" %}
 
-    {% block title %}Madspild - Vidensbank{% endblock %}
+{% block title %}Madspild - Vidensbank{% endblock %}
 
-    {% block content %}
-    <header class="page-header">
-      <p class="eyebrow">VIDENSBANK</p>
-      <h1>Madspild</h1>
-      <p>Arbejd systematisk med data og teams for at sænke spild i alle led.</p>
-      <nav class="filter-nav" aria-label="Underemner">
-      <a href="{{ url_for('topic_madspild_what') }}" class="filter-pill">Hvad er det?</a>
-      <a href="{{ url_for('topic_madspild_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
-      <a href="{{ url_for('topic_madspild_goal') }}" class="filter-pill">Mål & ambition</a>
-      <a href="{{ url_for('topic_madspild_impact') }}" class="filter-pill">Mit aftryk</a>
-      <a href="{{ url_for('topic_madspild_tips') }}" class="filter-pill">Tips & tricks</a>
-      </nav>
-    </header>
-
-    <section class="page-section">
-      <header class="section-header">
-        <h2 class="section-title">Start her</h2>
-        <p class="section-lead">Fra indkøb til buffet – lær at afdække og reducere madspild i praksis.</p>
-      </header>
-      <div class="card-grid">
-
-<a href="{{ url_for('topic_madspild_what') }}" class="aww-card">
-  <div class="card-image-container">
-    <img src="https://source.unsplash.com/featured/?madspild,what" alt="Hvad er det? for Madspild" loading="lazy">
-    <span class="card-category-tag">Hvad er det?</span>
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-screen min-h-[600px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/kitchen_staff_action.jpg') }}" alt="Kitchen Workflow"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 bg-black/40 brand-overlay"></div>
   </div>
-  <div class="card-content-body">
-    <h3 class="card-title">Hvad er det?</h3>
-    <p class="card-teaser">Forstå de grundlæggende koncepter og definitioner.</p>
-    <div class="card-metadata">
-      <span>Vidensbank</span>
-      <span>•</span>
-      <span>Madspild</span>
+
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Stop<br>Madspild
+    </h1>
+    <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white md:text-xl drop-shadow-md">
+      Respekt for råvaren, håndværket og kloden. Hvert gram tæller.
+    </p>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-cb-orange-light">
+    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+      </path>
+    </svg>
+  </div>
+</div>
+
+<!-- Introduction -->
+<section class="bg-cb-taupe-light py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 text-left">
+    <h2 class="mb-8 font-display text-4xl font-bold tracking-brand-wide text-cb-orange-dark md:text-5xl uppercase">
+      Mindre Spild, Mere Værdi
+    </h2>
+    <p class="max-w-3xl font-sans text-lg leading-loose text-stone-800 md:text-xl">
+      Madspild er ikke bare spild af mad. Det er spild af den jord, det vand og den arbejdsindsats, der er lagt i at
+      producere den. I professionelle køkkener har vi et særligt ansvar for at udnytte ressourcerne fuldt ud.
+    </p>
+  </div>
+</section>
+
+<!-- Content Stacks -->
+<section class="w-full bg-white">
+  <!-- Stack 1: What is it? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/waste_buffet.jpg') }}" alt="Buffet Management"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
+    </div>
+    <div class="flex flex-col justify-center bg-white px-8 py-16 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Strategi</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+        Mål & Vej</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Vi vejer vores madspild dagligt. Det giver os data til at handle og justere produktionen, så den matcher
+        gæsternes appetit.
+      </p>
+      <a href="{{ url_for('topic_madspild_what') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-orange-dark hover:text-cb-orange-medium transition-colors">
+        Se Vores Metode
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
     </div>
   </div>
-</a>
 
-<a href="{{ url_for('topic_madspild_why') }}" class="aww-card">
-  <div class="card-image-container">
-    <img src="https://source.unsplash.com/featured/?madspild,why" alt="Hvorfor er det vigtigt? for Madspild" loading="lazy">
-    <span class="card-category-tag">Hvorfor er det vigtigt?</span>
-  </div>
-  <div class="card-content-body">
-    <h3 class="card-title">Hvorfor er det vigtigt?</h3>
-    <p class="card-teaser">Sæt arbejdet ind i national kontekst og virksomhedsstrategi.</p>
-    <div class="card-metadata">
-      <span>Vidensbank</span>
-      <span>•</span>
-      <span>Madspild</span>
+  <!-- Stack 2: Why is it important? -->
+  <div class="grid min-h-[600px] w-full grid-cols-1 md:grid-cols-2">
+    <div class="flex flex-col justify-center bg-cb-taupe-medium px-8 py-16 md:order-1 md:px-20 md:py-0">
+      <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Kreativitet</span>
+      <h3 class="mb-6 font-display text-4xl font-bold text-stone-900 md:text-5xl uppercase tracking-brand-wide">
+        Nyt Liv</h3>
+      <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+        Gårsdagens brød bliver til croutoner eller øllebrød. Grøntsagsrester bliver til fond. Kreativitet er nøglen til
+        nul spild.
+      </p>
+      <a href="{{ url_for('topic_madspild_tips') }}"
+        class="group inline-flex items-center font-sans text-sm font-bold uppercase tracking-widest text-cb-green-dark hover:text-cb-green-medium transition-colors">
+        Få Tips til Rester
+        <span class="ml-2 transition-transform duration-300 group-hover:translate-x-2">→</span>
+      </a>
+    </div>
+    <div class="relative h-full min-h-[400px] w-full overflow-hidden md:order-2">
+      <img src="{{ url_for('static', filename='images/hot_dish_served.jpg') }}" alt="Creative Cooking"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105">
     </div>
   </div>
-</a>
+</section>
 
-<a href="{{ url_for('topic_madspild_goal') }}" class="aww-card">
-  <div class="card-image-container">
-    <img src="https://source.unsplash.com/featured/?madspild,goal" alt="Mål & ambition for Madspild" loading="lazy">
-    <span class="card-category-tag">Mål & ambition</span>
-  </div>
-  <div class="card-content-body">
-    <h3 class="card-title">Mål & ambition</h3>
-    <p class="card-teaser">Formuler målbare ambitioner, KPI’er og governance.</p>
-    <div class="card-metadata">
-      <span>Vidensbank</span>
-      <span>•</span>
-      <span>Madspild</span>
-    </div>
-  </div>
-</a>
-
-<a href="{{ url_for('topic_madspild_impact') }}" class="aww-card">
-  <div class="card-image-container">
-    <img src="https://source.unsplash.com/featured/?madspild,impact" alt="Mit aftryk for Madspild" loading="lazy">
-    <span class="card-category-tag">Mit aftryk</span>
-  </div>
-  <div class="card-content-body">
-    <h3 class="card-title">Mit aftryk</h3>
-    <p class="card-teaser">Omsæt data til handlinger i køkkenet og blandt gæster.</p>
-    <div class="card-metadata">
-      <span>Vidensbank</span>
-      <span>•</span>
-      <span>Madspild</span>
-    </div>
-  </div>
-</a>
-
-<a href="{{ url_for('topic_madspild_tips') }}" class="aww-card">
-  <div class="card-image-container">
-    <img src="https://source.unsplash.com/featured/?madspild,tips" alt="Tips & tricks for Madspild" loading="lazy">
-    <span class="card-category-tag">Tips & tricks</span>
-  </div>
-  <div class="card-content-body">
-    <h3 class="card-title">Tips & tricks</h3>
-    <p class="card-teaser">Få konkrete værktøjer til drift, indkøb og adfærd.</p>
-    <div class="card-metadata">
-      <span>Vidensbank</span>
-      <span>•</span>
-      <span>Madspild</span>
-    </div>
-  </div>
-</a>
-
+<!-- Data Highlight -->
+<section class="bg-stone-900 py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div class="text-left">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-orange-dark">1/3</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Af al mad</p>
+        <p class="mt-4 text-stone-400">Spildes globalt hvert år</p>
       </div>
-    </section>
-    {% endblock %}
+      <div class="text-left">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-yellow-dark">8%</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Emissioner</p>
+        <p class="mt-4 text-stone-400">Kommer fra madspild</p>
+      </div>
+      <div class="text-left">
+        <div class="mb-2 font-display text-7xl font-bold md:text-8xl text-cb-green-dark">0%</div>
+        <p class="text-sm font-bold uppercase tracking-widest text-white">Vision</p>
+        <p class="mt-4 text-stone-400">Intet spiseligt skal smides ud</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <h2 class="mb-16 text-left font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">
+      Værktøjer & Viden</h2>
+    <div class="grid grid-cols-1 gap-px bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="{{ url_for('topic_madspild_impact') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-orange-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Aftryk</h3>
+        <p class="text-stone-600 font-sans">Se konsekvenserne af madspild.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-orange-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="{{ url_for('topic_madspild_tips') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-yellow-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Tips & Tricks</h3>
+        <p class="text-stone-600 font-sans">Konkrete råd til at mindske spildet.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-yellow-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+      <a href="{{ url_for('topic_madspild_goal') }}"
+        class="group relative bg-white p-12 transition-colors hover:bg-cb-green-light">
+        <h3 class="mb-2 font-display text-3xl font-bold text-stone-900 uppercase">Mål</h3>
+        <p class="text-stone-600 font-sans">Vores ambitioner for reduktion.</p>
+        <span
+          class="absolute bottom-8 right-8 text-2xl text-cb-green-dark transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

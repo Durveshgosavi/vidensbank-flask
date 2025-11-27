@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Cases - Sæson | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container text-left items-start justify-start pl-20"
+    style="background-image: url('{{ url_for('static', filename='images/seasonal_salad.jpg') }}');">
+    <div class="bg-overlay-dark"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Cases & Eksempler</h1>
+        <p class="hero-subtitle">Sæson & Kvalitet</p>
+    </div>
+</header>
+
+<section class="page-section">
+    <header class="section-header text-left pl-6">
+        <p class="section-lead">
+            Cases og konkrete eksempler fra danske kantiner, der har arbejdet med sæsonvarer.
+        </p>
+    </header>
+
+    <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+        <a href="{{ url_for('topic_saeson_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    </nav>
+
+    <article style="max-width: 900px; margin: 0 auto;">
+        <div class="metric-tile text-left">
+            <h3 class="metric-label">Cases tilføjes løbende</h3>
+            <p class="metric-text">Vi indsamler og dokumenterer cases fra danske kantiner. Indhold tilføjes snart.</p>
+        </div>
+    </article>
+</section>
+
+{% endblock %}

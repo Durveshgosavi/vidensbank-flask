@@ -160,6 +160,12 @@ git push heroku main
 - Place JavaScript in `static/js/`
 - Place images in `static/images/`
 - Reference in templates: `{{ url_for('static', filename='css/style.css') }}`
+- Tailwind CSS is used for styling. To build the CSS, run the following command:
+  ```bash
+  curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+  chmod +x tailwindcss-linux-x64
+  ./tailwindcss-linux-x64 -i ./static/src/input.css -o ./static/dist/output.css
+  ```
 
 ### Templates
 

@@ -1,0 +1,42 @@
+{%extends "base.html" %}
+
+{%block title %}Mit Aftryk - Økologi - Vidensbank{%endblock %}
+
+{%block content %}
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Mit Aftryk - Økologi</h1>
+    <p class="hero-subtitle">Dine valg om økologi</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">Dit valg af økologiske råvarer påvirker både miljø, dyrevelfærd og kantinens image.</p>
+  </header>
+
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_okologi_goal') }}" class="filter-pill">← Forrige</a>
+    <a href="{{ url_for('topic_okologi_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_okologi_tips') }}" class="filter-pill">Næste →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Strategiske valg</h2>
+    <p>Vælg økologi hvor det giver mest mening – f.eks. mælkeprodukter, æg og grøntsager.</p>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner:</strong> Fokuser økologibudgettet på de varer, hvor det gør størst forskel.
+    </p>
+  </article>
+</section>
+
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Tips & Tricks</h2>
+    <a href="{{ url_for('topic_okologi_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{%endblock %}

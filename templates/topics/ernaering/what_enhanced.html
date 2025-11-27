@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er ernæring? - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Nutrition-specific color scheme */
+:root {
+    --nutrition-primary: #2d6a4f;
+    --nutrition-dark: #1f4332;
+    --nutrition-light: #d8f3dc;
+}
+
+/* Lifecycle Visualization Styles */
+.lifecycle-container {
+    background: linear-gradient(135deg, var(--nutrition-light), #b7e4c7);
+    padding: 4rem 2rem;
+    border-radius: 32px;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.lifecycle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.lifecycle-step {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.lifecycle-step:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.lifecycle-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--nutrition-primary), var(--nutrition-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.lifecycle-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+}
+
+.lifecycle-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.lifecycle-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    text-align: center;
+}
+
+.nutrient-explainer {
+    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 32px;
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.nutrient-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.nutrient-item {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.nutrient-icon {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--nutrition-primary);
+}
+
+.nutrient-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.nutrient-desc {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.chart-wrapper {
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.impact-highlight {
+    background: var(--nutrition-light);
+    padding: 2rem;
+    border-left: 5px solid var(--nutrition-dark);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.impact-highlight strong {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+.guideline-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--nutrition-primary);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.guideline-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er ernæring?</h1>
+    <p class="hero-subtitle">Sundhed, næringsværdi og balance i kantinen</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
+      Ernæring handler om de næringsstoffer, vi får gennem maden – og hvordan de påvirker vores sundhed,
+      velvære og arbejdsevne. For kantiner er det et centralt ansvarsområde, fordi mange gæster spiser
+      hovedparten af deres daglige måltider på arbejdspladsen.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Tilbage til emne" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_what') }}" class="filter-pill is-active">Hvad er det?</a>
+    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">Hvorfor vigtigt? →</a>
+  </nav>
+
+  <article style="max-width: 1200px; margin: 0 auto;">
+
+    <!-- Nutrients Explainer Section -->
+    <div class="nutrient-explainer animate-on-scroll">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">De centrale næringsstoffer</h2>
+      <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; opacity: 0.9; line-height: 1.8;">
+        Når vi taler om ernæring, fokuserer vi på de makro- og mikronæringsstoffer, kroppen har brug for
+        til at fungere optimalt. Disse fordeles typisk i tre hovedgrupper:
+      </p>
+
+      <div class="nutrient-visual">
+        <div class="nutrient-item">
+          <div class="nutrient-icon">🍞</div>
+          <div class="nutrient-name">Kulhydrater</div>
+          <p class="nutrient-desc">Kroppens primære energikilde fra fuldkorn, kartofler og grøntsager</p>
+        </div>
+
+        <div class="nutrient-item">
+          <div class="nutrient-icon">🥩</div>
+          <div class="nutrient-name">Protein</div>
+          <p class="nutrient-desc">Opbygger muskler og væv fra både animalske og plantebaserede kilder</p>
+        </div>
+
+        <div class="nutrient-item">
+          <div class="nutrient-icon">🥑</div>
+          <div class="nutrient-name">Fedt</div>
+          <p class="nutrient-desc">Essentielt for hormonbalance fra fisk, nødder og planteolier</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Guidelines -->
+    <div style="margin: 4rem 0;">
+      <header class="section-header animate-on-scroll">
+        <h2 class="section-title">De officielle kostråd</h2>
+        <p class="section-lead">
+          Fødevarestyrelsen og Sundhedsstyrelsen udgiver løbende opdaterede kostråd baseret på den nyeste forskning
+        </p>
+      </header>
+
+      <div class="guideline-card animate-on-scroll">
+        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem;">🌈 Spis varieret</h3>
+        <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+          En bred palette af fødevarer sikrer alle nødvendige næringsstoffer.
+        </p>
+      </div>
+
+      <div class="guideline-card animate-on-scroll">
+        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem;">🥗 Flere grøntsager, fuldkorn og fisk</h3>
+        <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+          Øg indtaget af plantebaserede fødevarer og færre animalske produkter, især rødt kød.
+        </p>
+      </div>
+
+      <div class="guideline-card animate-on-scroll">
+        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem;">🚫 Begrænset sukker, salt og mættet fedt</h3>
+        <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+          Dette reducerer risikoen for livsstilssygdomme betydeligt.
+        </p>
+      </div>
+
+      <div class="guideline-card animate-on-scroll">
+        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem;">🌍 Klima integreres i kostråd</h3>
+        <p style="margin: 0; color: var(--text-light); line-height: 1.6;">
+          Sundhed og bæredygtighed går i stigende grad hånd i hånd.
+        </p>
+      </div>
+    </div>
+
+    <!-- Canteen Nutrition -->
+    <div class="lifecycle-container animate-on-scroll">
+      <header class="section-header">
+        <h2 class="section-title" style="color: var(--text-dark);">Ernæring i kantinen</h2>
+        <p class="section-lead" style="color: var(--text-light); max-width: 700px; margin: 1rem auto;">
+          For professionelle køkkener betyder ernæring, at menuen skal opfylde fire centrale krav
+        </p>
+      </header>
+
+      <div class="lifecycle-grid">
+        <div class="lifecycle-step animate-on-scroll">
+          <div class="lifecycle-number">1</div>
+          <div class="lifecycle-icon">🍽️</div>
+          <h3 class="lifecycle-title">Næringsrige retter</h3>
+          <p class="lifecycle-desc">
+            Tilbyde måltider der dækker gæsternes energi- og næringsbehov gennem varieret kost.
+          </p>
+        </div>
+
+        <div class="lifecycle-step animate-on-scroll">
+          <div class="lifecycle-number">2</div>
+          <div class="lifecycle-icon">⚖️</div>
+          <h3 class="lifecycle-title">Balance på tallerken</h3>
+          <p class="lifecycle-desc">
+            Sikre optimal fordeling mellem protein, kulhydrater og grøntsager i hver ret.
+          </p>
+        </div>
+
+        <div class="lifecycle-step animate-on-scroll">
+          <div class="lifecycle-number">3</div>
+          <div class="lifecycle-icon">🥗</div>
+          <h3 class="lifecycle-title">Forskellige ernæringsbehov</h3>
+          <p class="lifecycle-desc">
+            Tage hensyn til vegetarer, allergier, intoleranser og særlige kostbehov.
+          </p>
+        </div>
+
+        <div class="lifecycle-step animate-on-scroll">
+          <div class="lifecycle-number">4</div>
+          <div class="lifecycle-icon">✅</div>
+          <h3 class="lifecycle-title">Sunde valg gjort nemme</h3>
+          <p class="lifecycle-desc">
+            Gennem tallerkenmodellen, visuel præsentation og strategisk buffet-layout.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="impact-highlight animate-on-scroll">
+      <strong>📌 For kantiner betyder det:</strong>
+      <p style="margin: 0.75rem 0 0; font-size: 1.05rem; line-height: 1.7;">
+        En veldrevet kantine har både et <strong>sundhedsmæssigt og socialt ansvar</strong>.
+        Gæster, der spiser i kantinen, bør kunne stole på, at maden er næringsrig, velsmagende
+        og understøtter deres trivsel. Når dette lykkes, skaber kantinen værdi langt ud over selve måltidet.
+      </p>
+    </div>
+  </article>
+</section>
+
+<!-- Navigation to next topic -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Hvorfor er ernæring vigtigt?</h2>
+  <p class="section-lead">
+    Forstå hvorfor ernæring er afgørende for folkesundheden og kantinegæsternes trivsel.
+  </p>
+  <div class="cta-row">
+    <a href="{{ url_for('topic_ernaering_why') }}" class="btn-primary">Læs mere →</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- Custom Charts Script -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,759 @@
+{% extends "base.html" %}
+
+{% block title %}Mit Aftryk - Ernæring | Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Impact Page Specific Styles */
+.impact-hero {
+    position: relative;
+    min-height: 450px;
+    background: linear-gradient(135deg, #2d6a4f 0%, #1f4332 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.impact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.calculator-section {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin: -3rem auto 4rem;
+    max-width: 900px;
+    position: relative;
+    z-index: 10;
+}
+
+.calculator-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1f1f1f;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.calculator-input-group {
+    background: #f0f8f0;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.calculator-label {
+    display: block;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+.calculator-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.calculator-input:focus {
+    outline: none;
+    border-color: #2d6a4f;
+}
+
+.calculator-result {
+    background: linear-gradient(135deg, #2d6a4f 0%, #1f4332 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.result-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.result-comparison {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.impact-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.breakdown-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.breakdown-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.breakdown-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.breakdown-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 0.75rem;
+}
+
+.breakdown-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d6a4f;
+    margin-bottom: 0.5rem;
+}
+
+.breakdown-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.breakdown-bar-fill {
+    height: 100%;
+    background: #2d6a4f;
+    border-radius: 4px;
+    transition: width 1s ease;
+    width: 0;
+}
+
+.breakdown-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.scenario-comparison {
+    background: #f0f8f0;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin: 4rem 0;
+}
+
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.scenario-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #2d6a4f, #52b788);
+}
+
+.scenario-card.high::before {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+.scenario-card.medium::before {
+    background: linear-gradient(90deg, #e67e22, #f39c12);
+}
+
+.scenario-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.scenario-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 0.75rem;
+}
+
+.scenario-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 1rem;
+}
+
+.scenario-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.scenario-value.high {
+    color: #e74c3c;
+}
+
+.scenario-value.medium {
+    color: #f39c12;
+}
+
+.scenario-value.low {
+    color: #27ae60;
+}
+
+.scenario-details {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.action-checklist {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    background: #f0f8f0;
+    border-radius: 12px;
+    border-left: 4px solid #2d6a4f;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.checklist-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.checklist-content {
+    flex: 1;
+}
+
+.checklist-title {
+    font-weight: 700;
+    color: #1f1f1f;
+    margin-bottom: 0.5rem;
+}
+
+.checklist-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.impact-visualizer {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 3rem 0;
+}
+
+.visualizer-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.comparison-bars {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.comparison-bar-item {
+    margin-bottom: 2rem;
+}
+
+.comparison-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.comparison-bar-track {
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.comparison-bar-value {
+    height: 100%;
+    background: linear-gradient(90deg, #2d6a4f, #52b788);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    color: white;
+    font-weight: 700;
+    transition: width 1.5s ease;
+    width: 0;
+}
+
+@media (max-width: 768px) {
+    .calculator-section {
+        padding: 2rem 1.5rem;
+        margin: -2rem 1rem 3rem;
+    }
+
+    .calculator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-value {
+        font-size: 2.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Enhanced Hero Section -->
+<header class="impact-hero animate-on-scroll">
+  <div class="goal-hero-content">
+    <h1 class="hero-title">Mit Aftryk - Ernæring</h1>
+    <p class="hero-subtitle">Dine valg former gæsternes sundhed og ernæring hver dag</p>
+  </div>
+</header>
+
+<!-- Personal Footprint Calculator -->
+<div class="calculator-section animate-on-scroll">
+  <h2 class="calculator-title">Analyser Din Kantines Ernæringsaftryk</h2>
+  <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+    Indtast typiske værdier fra din kantine for at få indsigt i ernæringskvaliteten
+  </p>
+
+  <div class="calculator-grid">
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="vegetablesPercent">Andel af menu med grøntsager (%)</label>
+      <input type="number" id="vegetablesPercent" class="calculator-input" value="35" min="0" max="100" step="5">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="wholeGrainPercent">Andel af kulhydrater der er fuldkorn (%)</label>
+      <input type="number" id="wholeGrainPercent" class="calculator-input" value="40" min="0" max="100" step="5">
+    </div>
+
+    <div class="calculator-input-group">
+      <label class="calculator-label" for="saltLevel">Estimeret salt i maden (1-5, hvor 5 er for meget)</label>
+      <input type="number" id="saltLevel" class="calculator-input" value="3" min="1" max="5" step="1">
+    </div>
+  </div>
+
+  <div class="calculator-result" id="calculatorResult">
+    <div class="result-value" id="resultValue">0</div>
+    <div class="result-label">Ernæringskarakter</div>
+    <div class="result-comparison" id="resultComparison">
+      Score: Gennemsnitlig – potentiale for forbedring
+    </div>
+  </div>
+
+  <p style="text-align: center; color: #666; font-size: 0.9rem; font-style: italic;">
+    * Analysen er et estimat baseret på ernæringsstandarder for danske kantiner
+  </p>
+</div>
+
+<section class="page-section">
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">← Mål & ambition</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_tips') }}" class="filter-pill">Tips & tricks →</a>
+  </nav>
+
+  <article style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll">
+      <h2 class="section-title">De vigtigste håndtag for ernæring</h2>
+      <p class="section-lead">
+        Som køkkenchef eller ansvarlig for kantinens menu påvirker du direkte hundredvis af menneskers
+        ernæring hver dag. Dit ernæringsaftryk handler om, hvilke råvarer du vælger, hvordan du sammensætter menuen,
+        og hvordan retterne præsenteres og kommunikeres.
+      </p>
+    </header>
+
+    <!-- Impact Breakdown -->
+    <div class="impact-breakdown animate-on-scroll">
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🥗</div>
+        <h3 class="breakdown-title">Menuens sammensætning</h3>
+        <div class="breakdown-percentage" data-counter="45" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="45"></div>
+        </div>
+        <p class="breakdown-description">
+          Hvor stor en andel af menuen består af grøntsager, fuldkorn og sunde proteinkilder vs. højfed kød?
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">🎯</div>
+        <h3 class="breakdown-title">Portionsstørrelser og balance</h3>
+        <div class="breakdown-percentage" data-counter="30" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="30"></div>
+        </div>
+        <p class="breakdown-description">
+          Følger tallerkenmodellen med ½ grøntsager, ¼ protein og ¼ kulhydrater?
+        </p>
+      </div>
+
+      <div class="breakdown-item">
+        <div class="breakdown-icon">👁️</div>
+        <h3 class="breakdown-title">Synlighed og nudging</h3>
+        <div class="breakdown-percentage" data-counter="25" data-suffix="%">0%</div>
+        <div class="breakdown-bar">
+          <div class="breakdown-bar-fill" data-progress="25"></div>
+        </div>
+        <p class="breakdown-description">
+          Er de sundeste valg også de mest synlige og tilgængelige i buffeten?
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Scenario Comparison -->
+<section class="scenario-comparison animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      <p class="eyebrow" style="color: #2d6a4f;">SAMMENLIGN TILGANGE</p>
+      <h2 class="section-title">Tre Typiske Kantinetyper</h2>
+      <p class="section-lead">
+        Se hvordan forskellige tilgange påvirker ernæringskvaliteten i kantinen
+      </p>
+    </header>
+
+    <div class="scenario-grid">
+      <!-- High Nutrition Scenario -->
+      <div class="scenario-card">
+        <div class="scenario-label">Høj ernæringskvalitet</div>
+        <h3 class="scenario-title">Sundhedsfokuseret Kantine</h3>
+        <div class="scenario-value low" data-counter="92">0</div>
+        <p style="color: #666; margin-bottom: 1rem;">Ernæringskarakter (0-100)</p>
+        <ul class="scenario-details">
+          <li>60% af menuen plantebaseret</li>
+          <li>80% fuldkorn i kulhydrater</li>
+          <li>Reduceret salt og sukker</li>
+          <li>Fokus på ernæring i drift</li>
+        </ul>
+      </div>
+
+      <!-- Medium Nutrition Scenario -->
+      <div class="scenario-card medium">
+        <div class="scenario-label">Mellem ernæringskvalitet</div>
+        <h3 class="scenario-title">Bevidst Kantine</h3>
+        <div class="scenario-value medium" data-counter="68">0</div>
+        <p style="color: #666; margin-bottom: 1rem;">Ernæringskarakter (0-100)</p>
+        <ul class="scenario-details">
+          <li>40% plantebaseret</li>
+          <li>50% fuldkorn i kulhydrater</li>
+          <li>Moderat salt og sukker</li>
+          <li>Sporadisk ernæringsfokus</li>
+        </ul>
+      </div>
+
+      <!-- Low Nutrition Scenario -->
+      <div class="scenario-card high">
+        <div class="scenario-label">Lav ernæringskvalitet</div>
+        <h3 class="scenario-title">Traditionel Kantine</h3>
+        <div class="scenario-value high" data-counter="42">0</div>
+        <p style="color: #666; margin-bottom: 1rem;">Ernæringskarakter (0-100)</p>
+        <ul class="scenario-details">
+          <li>20% plantebaseret</li>
+          <li>20% fuldkorn i kulhydrater</li>
+          <li>Højt salt og sukker</li>
+          <li>Ingen ernæringsfokus</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem; font-weight: 600; font-size: 1.1rem;">
+      Potentiel forbedring fra lav til høj ernæringskvalitet: <span style="color: #2d6a4f; font-size: 1.3rem;">+50 point</span>
+    </p>
+  </div>
+</section>
+
+<!-- Action Checklist -->
+<section class="page-section">
+  <article style="max-width: 1000px; margin: 0 auto;">
+    <header class="section-header animate-on-scroll" style="text-align: center;">
+      <h2 class="section-title">Fra Viden til Praksis</h2>
+      <p class="section-lead">Dit ernæringsaftryk viser sig i helt konkrete daglige valg</p>
+    </header>
+
+    <div class="action-checklist animate-on-scroll">
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Menuets grundstruktur</div>
+          <div class="checklist-description">
+            Hvor mange hovedretter indeholder kød vs. plantebaseret protein, og hvor høj en andel er fuldkorn?
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Buffetens opbygning</div>
+          <div class="checklist-description">
+            Placeres de sunde valg først, på øjenhøjde og med størst portionsskeer?
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Recepturer og smag</div>
+          <div class="checklist-description">
+            Bygges smag på urter, krydderier og teknik, eller primært på salt, sukker og fedt?
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Gæstkommunikation</div>
+          <div class="checklist-description">
+            Informeres gæsterne om ernæringens betydning, og motiveres de til sunde valg gennem positiv nudging?
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist-item">
+        <div class="checklist-icon">▸</div>
+        <div class="checklist-content">
+          <div class="checklist-title">Data og opfølgning</div>
+          <div class="checklist-description">
+            Måles og følges der op på ernæringskvalitet, gæstepræferencer og input fra brugere?
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Visualizer -->
+    <div class="impact-visualizer animate-on-scroll">
+      <div class="visualizer-header">
+        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Mit Ernæringsaftryk Som Dialogværktøj</h3>
+        <p style="color: #666;">
+          Ved at koble egne tal med viden fra Vidensbanken kan du:
+        </p>
+      </div>
+
+      <div class="comparison-bars">
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Dokumentere sundhedsforbedringer</span>
+            <span style="color: #2d6a4f; font-weight: 700;">88%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="88">Meget vigtig</div>
+          </div>
+        </div>
+
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Vejlede menuplanlægning</span>
+            <span style="color: #2d6a4f; font-weight: 700;">92%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="92">Essentiel</div>
+          </div>
+        </div>
+
+        <div class="comparison-bar-item">
+          <div class="comparison-bar-label">
+            <span>Kommunikere med ledelse og gæster</span>
+            <span style="color: #2d6a4f; font-weight: 700;">85%</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-value" data-progress="85">Vigtig</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vision-statement animate-on-scroll" style="margin: 3rem 0; background: linear-gradient(135deg, #2d6a4f 0%, #1f4332 100%); color: white; padding: 3rem 2rem; border-radius: 24px; text-align: center;">
+      <p style="font-size: 1.6rem; font-style: italic; margin-bottom: 1rem;">
+        Dit ernæringsaftryk er ikke noget abstrakt – det er summen af dine daglige beslutninger som kantineansvarlig.
+      </p>
+      <p style="font-size: 1rem; opacity: 0.9; font-weight: 600;">
+        Vidensbanken gør disse beslutninger lettere og mere kvalificerede
+      </p>
+    </div>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Tips & Tricks</h2>
+  <p class="section-lead">
+    Få konkrete værktøjer og strategier til at forbedre ernæringen i din kantine.
+  </p>
+  <a href="{{ url_for('topic_ernaering_tips') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Nutrition Impact Calculator
+document.addEventListener('DOMContentLoaded', function() {
+    const vegetablesInput = document.getElementById('vegetablesPercent');
+    const wholeGrainInput = document.getElementById('wholeGrainPercent');
+    const saltInput = document.getElementById('saltLevel');
+    const resultValue = document.getElementById('resultValue');
+    const resultComparison = document.getElementById('resultComparison');
+
+    function calculateScore() {
+        const vegetables = parseInt(vegetablesInput.value) || 0;
+        const wholeGrain = parseInt(wholeGrainInput.value) || 0;
+        const salt = parseInt(saltInput.value) || 3;
+
+        // Simplified calculation:
+        // Base: vegetables (0-40 points), whole grain (0-35 points), salt reduction (0-25 points)
+        const vegScore = (vegetables / 100) * 40;
+        const grainScore = (wholeGrain / 100) * 35;
+        const saltScore = ((5 - salt) / 4) * 25;
+
+        const totalScore = Math.round(vegScore + grainScore + saltScore);
+
+        // Animate result
+        animateValue(resultValue, 0, totalScore, 1000, '');
+
+        // Update comparison text
+        let assessment = 'Gennemsnitlig – potentiale for forbedring';
+        if (totalScore >= 80) assessment = 'Fremragende – sundt kantinekøkken';
+        else if (totalScore >= 65) assessment = 'Godt – et solidt fundament';
+        else if (totalScore >= 50) assessment = 'Acceptabelt – men der er plads til forbedring';
+
+        resultComparison.innerHTML = `Score: <strong>${assessment}</strong>`;
+    }
+
+    function animateValue(element, start, end, duration, suffix) {
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current) + suffix;
+        }, 16);
+    }
+
+    // Add event listeners
+    [vegetablesInput, wholeGrainInput, saltInput].forEach(input => {
+        input.addEventListener('input', calculateScore);
+    });
+
+    // Initial calculation
+    calculateScore();
+
+    // Animate breakdown bars on scroll
+    const breakdownBars = document.querySelectorAll('.breakdown-bar-fill');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = parseInt(bar.getAttribute('data-progress'));
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 200);
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    breakdownBars.forEach(bar => observer.observe(bar));
+
+    // Animate comparison bars
+    const comparisonBars = document.querySelectorAll('.comparison-bar-value');
+    const comparisonObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = parseInt(bar.getAttribute('data-progress'));
+                setTimeout(() => {
+                    bar.style.width = progress + '%';
+                }, 300);
+                comparisonObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    comparisonBars.forEach(bar => comparisonObserver.observe(bar));
+});
+</script>
+{% endblock %}

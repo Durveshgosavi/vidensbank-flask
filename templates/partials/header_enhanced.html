@@ -1,0 +1,794 @@
+<header class="site-header-premium">
+    <nav class="premium-nav" role="banner">
+        <div class="nav-container">
+            <!-- Logo/Brand -->
+            <a class="brand-logo" href="{{ url_for('index') }}" aria-label="Vidensbank - Forside">
+                <img src="{{ url_for('static', filename='images/logo_cbk.png') }}" alt="Vidensbank" class="brand-image" onerror="this.style.display='none'">
+                <span class="brand-text">Vidensbank</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links desktop-only">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}">
+                        Forside
+                    </a>
+                </li>
+
+                <!-- Topics Mega Menu -->
+                <li class="nav-item has-dropdown">
+                    <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                        Emner
+                        <svg class="dropdown-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="mega-dropdown">
+                        <div class="mega-grid">
+                            <a href="{{ url_for('topic_emissions_landing') }}" class="mega-item">
+                                <div class="mega-icon" style="background: linear-gradient(135deg, #2c5f2d, #1a3a1b);">🌍</div>
+                                <div class="mega-content">
+                                    <h4>Emissioner</h4>
+                                    <p>Fødevarerelaterede emissioner og klimaaftryk</p>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('topic_ernaering_landing') }}" class="mega-item">
+                                <div class="mega-icon" style="background: linear-gradient(135deg, #2d6a4f, #1f4332);">🥗</div>
+                                <div class="mega-content">
+                                    <h4>Ernæring</h4>
+                                    <p>Sundhed, kostråd og bæredygtige menuer</p>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('topic_madspild_landing') }}" class="mega-item">
+                                <div class="mega-icon" style="background: linear-gradient(135deg, #bc4b51, #8b2635);">♻️</div>
+                                <div class="mega-content">
+                                    <h4>Madspild</h4>
+                                    <p>Reduktion og ressourceeffektivitet</p>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('topic_okologi_landing') }}" class="mega-item">
+                                <div class="mega-icon" style="background: linear-gradient(135deg, #6a994e, #386641);">🌱</div>
+                                <div class="mega-content">
+                                    <h4>Økologi</h4>
+                                    <p>Certificering og økologisk omstilling</p>
+                                </div>
+                            </a>
+                            <a href="{{ url_for('topic_vandforbrug_landing') }}" class="mega-item">
+                                <div class="mega-icon" style="background: linear-gradient(135deg, #0077b6, #023e8a);">💧</div>
+                                <div class="mega-content">
+                                    <h4>Vandforbrug</h4>
+                                    <p>Vandbesparelse og optimering</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Tools Dropdown -->
+                <li class="nav-item has-dropdown">
+                    <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                        Værktøjer
+                        <svg class="dropdown-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="standard-dropdown">
+                        <a href="{{ url_for('calculator') }}" class="dropdown-item">
+                            <span class="item-icon">📊</span>
+                            <div>
+                                <div class="item-title">Basis Beregner</div>
+                                <div class="item-desc">Hurtigt CO₂-aftryk</div>
+                            </div>
+                        </a>
+                        <a href="{{ url_for('calculator_advanced') }}" class="dropdown-item">
+                            <span class="item-icon">🏢</span>
+                            <div>
+                                <div class="item-title">Kantineberegner</div>
+                                <div class="item-desc">Detaljeret analyse</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url_for('climate_data') }}" class="dropdown-item">
+                            <span class="item-icon">📈</span>
+                            <div>
+                                <div class="item-title">Klimadata</div>
+                                <div class="item-desc">Database og statistik</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">
+                        Kontakt
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right Side Actions -->
+            <div class="nav-actions">
+                <!-- Search -->
+                <button class="icon-button" id="searchToggle" aria-label="Søg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+
+                <!-- User Menu -->
+                {% if current_user.is_authenticated %}
+                <div class="user-menu has-dropdown">
+                    <button class="icon-button user-button" aria-label="Brugermenu" aria-expanded="false">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 19c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="standard-dropdown user-dropdown">
+                        <div class="dropdown-header">{{ current_user.username }}</div>
+                        <a href="{{ url_for('dashboard') }}" class="dropdown-item">
+                            <span class="item-icon">📊</span>
+                            <div class="item-title">Dashboard</div>
+                        </a>
+                        {% if current_user.role == 'admin' %}
+                        <a href="{{ url_for('admin') }}" class="dropdown-item">
+                            <span class="item-icon">⚙️</span>
+                            <div class="item-title">Admin</div>
+                        </a>
+                        {% endif %}
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url_for('logout') }}" class="dropdown-item logout">
+                            <span class="item-icon">🚪</span>
+                            <div class="item-title">Log ud</div>
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="cta-button">Log ind</a>
+                {% endif %}
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle mobile-only" id="mobileToggle" aria-label="Menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="searchOverlay">
+            <div class="search-container">
+                <form action="{{ url_for('search') }}" method="get" class="search-form">
+                    <svg class="search-icon" width="24" height="24" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="search" name="q" class="search-input" placeholder="Søg efter emner, artikler, data..." autocomplete="off" value="{{ request.args.get('q', '') }}">
+                    <button type="button" class="search-close" id="searchClose" aria-label="Luk søgning">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <a href="{{ url_for('index') }}" class="mobile-link">Forside</a>
+
+                <div class="mobile-section">
+                    <div class="mobile-section-title">Emner</div>
+                    <a href="{{ url_for('topic_emissions_landing') }}" class="mobile-link">🌍 Emissioner</a>
+                    <a href="{{ url_for('topic_ernaering_landing') }}" class="mobile-link">🥗 Ernæring</a>
+                    <a href="{{ url_for('topic_madspild_landing') }}" class="mobile-link">♻️ Madspild</a>
+                    <a href="{{ url_for('topic_okologi_landing') }}" class="mobile-link">🌱 Økologi</a>
+                    <a href="{{ url_for('topic_vandforbrug_landing') }}" class="mobile-link">💧 Vandforbrug</a>
+                </div>
+
+                <div class="mobile-section">
+                    <div class="mobile-section-title">Værktøjer</div>
+                    <a href="{{ url_for('calculator') }}" class="mobile-link">📊 Basis Beregner</a>
+                    <a href="{{ url_for('calculator_advanced') }}" class="mobile-link">🏢 Kantineberegner</a>
+                    <a href="{{ url_for('climate_data') }}" class="mobile-link">📈 Klimadata</a>
+                </div>
+
+                <a href="{{ url_for('contact') }}" class="mobile-link">Kontakt</a>
+
+                {% if current_user.is_authenticated %}
+                <div class="mobile-divider"></div>
+                <a href="{{ url_for('dashboard') }}" class="mobile-link">Dashboard</a>
+                {% if current_user.role == 'admin' %}
+                <a href="{{ url_for('admin') }}" class="mobile-link">Admin</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="mobile-link mobile-logout">Log ud</a>
+                {% else %}
+                <div class="mobile-divider"></div>
+                <a href="{{ url_for('login') }}" class="mobile-cta">Log ind</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+/* Premium Header Styles */
+.site-header-premium {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.premium-nav {
+    width: 100%;
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/* Brand */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.brand-logo:hover {
+    opacity: 0.8;
+}
+
+.brand-image {
+    height: 32px;
+    width: auto;
+}
+
+.brand-text {
+    font-family: 'Theinhardt', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 1rem;
+    font-family: 'Theinhardt', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #000;
+}
+
+.nav-link.active {
+    color: var(--dark-gron, #2c5f2d);
+    background: rgba(44, 95, 45, 0.08);
+}
+
+.dropdown-icon {
+    transition: transform 0.2s;
+}
+
+.has-dropdown.open .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Mega Dropdown */
+.mega-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    min-width: 600px;
+}
+
+.has-dropdown.open .mega-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+}
+
+.mega-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.mega-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.mega-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+    transform: translateX(4px);
+}
+
+.mega-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.mega-content h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem 0;
+}
+
+.mega-content p {
+    font-size: 0.8125rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Standard Dropdown */
+.standard-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    min-width: 240px;
+}
+
+.has-dropdown.open .standard-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.dropdown-header {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.item-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.item-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.item-desc {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.125rem;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 0.5rem 0;
+}
+
+.dropdown-item.logout .item-title {
+    color: #dc3545;
+}
+
+/* Actions */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-button:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #000;
+}
+
+.cta-button {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: white;
+    background: var(--dark-gron, #2c5f2d);
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cta-button:hover {
+    background: #1f4321;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(44, 95, 45, 0.3);
+}
+
+/* Search Overlay */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
+    max-width: 700px;
+    margin: 120px auto 0;
+    padding: 0 2rem;
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 0 1.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.search-icon {
+    color: #999;
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    padding: 1.5rem 1rem;
+    font-size: 1.25rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: 'Theinhardt', sans-serif;
+}
+
+.search-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.search-close:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+}
+
+/* Mobile */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: flex;
+}
+
+.mobile-toggle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger {
+    width: 20px;
+    height: 2px;
+    background: #333;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: #333;
+    transition: all 0.2s;
+}
+
+.hamburger::before {
+    top: -6px;
+}
+
+.hamburger::after {
+    bottom: -6px;
+}
+
+.mobile-toggle.active .hamburger {
+    background: transparent;
+}
+
+.mobile-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.mobile-toggle.active .hamburger::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-content {
+    padding: 2rem;
+}
+
+.mobile-link {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    transition: color 0.2s;
+}
+
+.mobile-link:hover {
+    color: var(--dark-gron, #2c5f2d);
+}
+
+.mobile-section {
+    margin: 1.5rem 0;
+}
+
+.mobile-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 0.75rem;
+}
+
+.mobile-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 1.5rem 0;
+}
+
+.mobile-logout {
+    color: #dc3545 !important;
+}
+
+.mobile-cta {
+    display: block;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    background: var(--dark-gron, #2c5f2d);
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+    .desktop-only {
+        display: none !important;
+    }
+    .mobile-only {
+        display: flex;
+    }
+    .nav-container {
+        padding: 0 1rem;
+    }
+}
+</style>
+
+<script>
+// Premium Navigation JavaScript
+(function() {
+    // Dropdown toggles
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const parent = trigger.closest('.has-dropdown');
+            const isOpen = parent.classList.contains('open');
+
+            // Close all dropdowns
+            document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
+
+            // Toggle current
+            if (!isOpen) {
+                parent.classList.add('open');
+            }
+        });
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.has-dropdown').forEach(d => d.classList.remove('open'));
+    });
+
+    // Search overlay
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.querySelector('.search-input');
+
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 100);
+        });
+
+        searchClose.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+        });
+
+        searchOverlay.addEventListener('click', (e) => {
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+
+        // ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+    }
+
+    // User menu toggle
+    const userButton = document.querySelector('.user-button');
+    if (userButton) {
+        userButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const parent = userButton.closest('.user-menu');
+            parent.classList.toggle('open');
+        });
+    }
+})();
+</script>

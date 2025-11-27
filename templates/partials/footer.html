@@ -1,42 +1,58 @@
-<footer class="footer" role="contentinfo">
-    <div class="footer-top">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Vidensbank</h3>
-                    <p>Din kilde til viden om bæredygtighed, klimadata og fødevareinnovation</p>
-                    <p><strong>Cheval Blanc Kantiner A/S</strong></p>
+<footer class="bg-stone-900 text-white pt-24 pb-12">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-8">
+                    <div
+                        class="h-12 w-12 bg-white flex items-center justify-center text-stone-900 font-display font-bold text-2xl">
+                        CB</div>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-display text-2xl font-bold tracking-brand-wide uppercase text-white leading-none">Vidensbanken</span>
+                        <span
+                            class="font-sans text-xs font-bold tracking-[0.2em] uppercase text-stone-500">Bæredygtighed</span>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Hurtige Links</h4>
-                    <ul>
-                        <li><a href="{{ url_for('index') }}">Hjem</a></li>
-                        <li><a href="{{ url_for('emissions_sustainability') }}">Emissioner & Bæredygtighed</a></li>
-                        <li><a href="{{ url_for('calculator') }}">CO2 Beregner</a></li>
-                        <li><a href="{{ url_for('climate_data') }}">Klimadata</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Ressourcer</h4>
-                    <ul>
-                        <li><a href="{{ url_for('market_analysis') }}">Markedsanalyse</a></li>
-                        <li><a href="{{ url_for('political_landscape') }}">Politisk Landskab</a></li>
-                        <li><a href="{{ url_for('data_driven_approach') }}">Datadreven Tilgang</a></li>
-                        <li><a href="{{ url_for('food_emissions') }}">Fødevareemissioner</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Kontakt</h4>
-                    <p>Email: info@chevalblanc.dk</p>
-                    <p>Telefon: +45 XX XX XX XX</p>
-                    <p><a href="{{ url_for('contact') }}">Kontaktformular</a></p>
-                </div>
+                <p class="max-w-md font-sans text-stone-400 leading-relaxed">
+                    Vi leverer gastronomiske oplevelser med omtanke. Vores vidensbank er dedikeret til at dele indsigt
+                    og værktøjer for en mere bæredygtig fremtid i fødevarebranchen.
+                </p>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h4 class="mb-6 font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Udforsk</h4>
+                <ul class="space-y-4 font-sans text-sm text-stone-400">
+                    <li><a href="{{ url_for('topic_emissions_landing') }}"
+                            class="hover:text-white transition-colors">Emissioner</a></li>
+                    <li><a href="{{ url_for('topic_emissions_impact') }}"
+                            class="hover:text-white transition-colors">Beregner</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Økologi (Kommer snart)</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Biodiversitet (Kommer snart)</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="mb-6 font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Kontakt</h4>
+                <ul class="space-y-4 font-sans text-sm text-stone-400">
+                    <li>Vidensbanken</li>
+                    <li>info@cheval-blanc.dk</li>
+                    <li>+45 12 34 56 78</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <p>&copy; {{ current_year }} Cheval Blanc Kantiner A/S. Alle rettigheder forbeholdes.</p>
+
+        <!-- Bottom -->
+        <div class="border-t border-stone-800 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="font-sans text-xs text-stone-600">© 2025 Vidensbanken. Alle rettigheder forbeholdes.</p>
+            <div class="flex gap-6">
+                <a href="#"
+                    class="font-sans text-xs text-stone-600 hover:text-white transition-colors">Privatlivspolitik</a>
+                <a href="#"
+                    class="font-sans text-xs text-stone-600 hover:text-white transition-colors">Cookiepolitik</a>
+            </div>
         </div>
     </div>
 </footer>

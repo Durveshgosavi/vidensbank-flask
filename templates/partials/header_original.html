@@ -1,0 +1,208 @@
+<header class="site-header">
+    <!-- Clean, Compact, Single-Line Header with Functional Dropdowns -->
+    <nav class="navbar navbar-expand-xl navbar-light static-top" style="background: #FFFFFF; padding: 0.5rem 0; border-bottom: 1px solid #F4F2F1;" role="banner">
+        <div class="container" style="max-width: 1400px;">
+            <!-- Logo/Brand -->
+            <a class="navbar-brand" href="{{ url_for('index') }}" style="margin: 0; padding: 0; font-weight: 700; font-size: 1.25rem;">
+                <img src="{{ url_for('static', filename='images/logo_cbk.png') }}" alt="Vidensbank Logo" height="35" class="me-2" onerror="this.style.display='none'">
+                <span style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif;">Vidensbank</span>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button type="button" class="navbar-toggler"
+                    style="border: 1px solid #dee2e6; padding: 0.3rem 0.5rem; background: transparent;"
+                    data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="setHeight();">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div id="navbarNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto weblinks" style="align-items: center; margin: 0; display: flex; flex-direction: row; white-space: nowrap;">
+                    <li class="nav-item" style="margin: 0 0.25rem;">
+                        <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}"
+                           style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
+                            Forside
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint in ['emissions_sustainability', 'food_emissions', 'data_driven_approach', 'market_analysis', 'climate_data', 'political_landscape'] %}active{% endif %}"
+                           href="#" id="emissionerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
+                            Emissioner & Bæredygtighed
+                        </a>
+                        <ul class="dropdown-menu" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 0.5rem 0; margin-top: 0.25rem; min-width: 220px;">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('emissions_sustainability') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #212529; font-weight: bold; font-size: 0.9rem; padding: 0.35rem 1rem;">
+                                    Oversigt
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('food_emissions') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Fra Jord til Bord</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('data_driven_approach') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Datadrevet Tilgang</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('market_analysis') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Branchepræstation</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('climate_data') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Klimadata</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('political_landscape') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Politisk Landskab</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint in ['okologi', 'okologi_hvad_er', 'okologi_regulering', 'okologi_fordele', 'okologi_kantinen', 'okologi_esg', 'okologi_nuanceret'] %}active{% endif %}"
+                           href="#" id="okologiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
+                            Økologi
+                        </a>
+                        <ul class="dropdown-menu" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 0.5rem 0; margin-top: 0.25rem; min-width: 220px;">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('okologi') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #212529; font-weight: bold; font-size: 0.9rem; padding: 0.35rem 1rem;">
+                                    Oversigt
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_hvad_er') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Hvad er Økologi?</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_regulering') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Regulering & Mærker</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_fordele') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Fordele & Overvejelser</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_kantinen') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Økologi i Kantinen</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_esg') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">ESG & Bæredygtighed</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('okologi_nuanceret') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">Nuanceret Perspektiv</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint in ['calculator', 'calculator_advanced'] %}active{% endif %}"
+                           href="#" id="calculatorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
+                            Klimaberegnere
+                        </a>
+                        <ul class="dropdown-menu" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 0.5rem 0; margin-top: 0.25rem; min-width: 260px;">
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('calculator') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">
+                                    <i class="bi bi-calculator me-2" style="color: #2E8B57;"></i>Basis Beregner
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for('calculator_advanced') }}"
+                                   style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem; border-radius: 0.25rem;">
+                                    <i class="bi bi-building me-2" style="color: #2E8B57;"></i>Avanceret Kantineberegner
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li class="px-3 py-2" style="font-size: 0.8rem; color: #6c757d;">
+                                <small><strong>Basis:</strong> Hurtigt CO2-aftryk<br>
+                                <strong>Avanceret:</strong> 70+ kantiner med detaljeret analyse</small>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item" style="margin: 0 0.25rem;">
+                        <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}"
+                           style="color: #333333; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 0.25rem; transition: all 0.2s ease;">
+                            Kontakt
+                        </a>
+                    </li>
+
+                    <!-- Search Icon -->
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a id="search" class="nav-link" href="#" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-label="Søg"
+                           style="color: #6c757d; padding: 0.5rem 0.6rem; border-radius: 0.25rem; font-size: 0.9rem;">
+                            <i class="bi bi-search"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-search" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 1rem; margin-top: 0.25rem; right: 0; left: auto; min-width: 250px;">
+                            <form action="{{ url_for('search') }}" method="get" class="d-flex">
+                                <input type="search" name="q" class="form-control form-control-sm" placeholder="Søg..." aria-label="Søg" value="{{ request.args.get('q', '') }}">
+                                <button class="btn btn-success btn-sm ms-2" type="submit">Søg</button>
+                            </form>
+                        </div>
+                    </li>
+
+                    <!-- User Profile / Login -->
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item dropdown" style="margin: 0 0.25rem;">
+                        <a href="#" class="nav-link dropdown-toggle" title="{{ current_user.username }}" data-bs-toggle="dropdown" role="button" aria-expanded="false"
+                           style="color: #495057; font-size: 0.9rem; padding: 0.5rem 0.6rem; border-radius: 0.25rem;">
+                            <i class="bi bi-person-circle" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu" style="background: white; border: 1px solid #e9ecef; box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); border-radius: 0.375rem; padding: 0.5rem 0; margin-top: 0.25rem; right: 0; left: auto;">
+                            <li style="padding: 0.35rem 1rem; font-weight: bold; font-size: 0.9rem; color: #212529; font-family: 'Theinhardt', Arial, sans-serif;">{{ current_user.username }}</li>
+                            <li class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('dashboard') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem;">Dashboard</a></li>
+                            {% if current_user.role == 'admin' %}
+                            <li><a class="dropdown-item" href="{{ url_for('admin') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #495057; font-size: 0.9rem; padding: 0.35rem 1rem;">Admin</a></li>
+                            {% endif %}
+                            <li class="dropdown-divider" style="margin: 0.5rem 0;"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}" style="font-family: 'Theinhardt', Arial, sans-serif; color: #dc3545; font-size: 0.9rem; padding: 0.35rem 1rem;">Log ud</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item" style="margin-left: 0.5rem;">
+                        <a class="nav-link" href="{{ url_for('login') }}" style="color: #333333; background: #A0D7A5; font-family: 'Theinhardt', Arial, sans-serif; font-weight: 700; font-size: 0.85rem; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem;">
+                            Log ind
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Modern Clean CSS -->
+<style>
+.nav-link:hover, .dropdown-item:hover {
+    background: #f4f2f1 !important;
+    color: #212529 !important;
+}
+.navbar-toggler:hover {
+    background: #f4f2f1 !important;
+}
+.dropdown-menu {
+    animation: fadeIn 0.15s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.nav-link.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.3rem;
+}
+/* Mobile Styles */
+@media (max-width: 1199.98px) {
+    .navbar-collapse {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 0.375rem;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+    .weblinks {
+        flex-direction: column !important;
+        white-space: normal !important;
+    }
+    .nav-item {
+        margin: 0.25rem 0 !important;
+        width: 100%;
+    }
+    .nav-link {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}
+</style>
+
+<script type="text/javascript">
+    function setHeight() {
+        var windowHeight = window.innerHeight - 80;
+        var navbar = document.getElementById("navbarNav");
+        if (navbar) {
+            navbar.style.maxHeight = windowHeight + "px";
+            navbar.style.overflowY = "auto";
+        }
+    }
+    window.addEventListener('resize', setHeight);
+</script>

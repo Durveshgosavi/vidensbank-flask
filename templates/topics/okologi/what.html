@@ -2,58 +2,493 @@
 
 {% block title %}Hvad er økologi? - Vidensbank{% endblock %}
 
+{% block extra_css %}
+<style>
+  /* Økologi What Page Styles */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+  }
+
+  .principle-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-top: 5px solid var(--dark-gron);
+  }
+
+  .principle-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  .principle-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .principle-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .principle-desc {
+    font-size: 1rem;
+    color: #333333;
+    line-height: 1.7;
+  }
+
+  /* Comparison Grid */
+  .comparison-container {
+    background: linear-gradient(135deg, #a7c957, #dce8c3);
+    border-radius: 32px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 3rem 0;
+  }
+
+  .comparison-column {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .comparison-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .comparison-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comparison-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border-left: 4px solid;
+    transition: all 0.3s ease;
+  }
+
+  .comparison-column:nth-child(1) .comparison-item {
+    border-left-color: #e67e22;
+  }
+
+  .comparison-column:nth-child(2) .comparison-item {
+    border-left-color: var(--dark-gron);
+  }
+
+  .comparison-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .comparison-item-text {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* Standards Section */
+  .standards-container {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    margin: 4rem 0;
+  }
+
+  .standards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin: 3rem 0;
+  }
+
+  .standard-item {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--light-gron), #f0f8f0);
+    border-radius: 16px;
+    border-left: 5px solid var(--dark-gron);
+    transition: all 0.3s ease;
+  }
+
+  .standard-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .standard-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-gron);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .standard-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .standard-desc {
+    color: #333333;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* Stats Section */
+  .stats-showcase {
+    background: linear-gradient(135deg, var(--dark-gron), #2c5f2d);
+    color: white;
+    border-radius: 32px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+  }
+
+  .stat-value {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.95;
+    line-height: 1.4;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .comparison-container {
+      padding: 2rem;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399');">
+<!-- Hero Section -->
+<header class="hero-video-container animate-on-scroll"
+  style="background-image: url('{{ url_for('static', filename='images/vegetables_closeup.jpg') }}');">
   <div class="bg-overlay-dark"></div>
   <div class="hero-content">
     <h1 class="hero-title">Hvad er økologi?</h1>
-    <p class="hero-subtitle">Certificering, produktion og principper</p>
+    <p class="hero-subtitle">En certificeret produktionsmetode for bæredygtige fødevarer</p>
   </div>
 </header>
 
 <section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Økologi er en produktionsmetode, hvor fødevarer dyrkes og forarbejdes uden brug af kunstige pesticider,
-      kunstgødning eller GMO. Det er en certificeret standard med klare krav til dyrevelfærd, biodiversitet og bæredygtighed.
+  <header class="section-header animate-on-scroll">
+    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
+      Økologi er en dokumenteret og certificeret produktionsmetode, hvor fødevarer dyrkes og forarbejdes uden kunstige
+      pesticider,
+      kunstgødning eller genetisk modificering (GMO). Det er en global standard med klare krav til miljø, dyrevelfærd og
+      bæredygtighed.
     </p>
   </header>
 
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
     <a href="{{ url_for('topic_okologi_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_okologi_what') }}" class="filter-pill is-active">Hvad er det?</a>
     <a href="{{ url_for('topic_okologi_why') }}" class="filter-pill">Hvorfor vigtigt? →</a>
   </nav>
 
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>De centrale principper</h2>
-    <p>Økologisk produktion bygger på fire grundprincipper: sundhed, økologi, retfærdighed og omhu.
-    I Danmark reguleres økologi af EU-lovgivning og det danske Ø-mærke.</p>
+  <article style="max-width: 1200px; margin: 0 auto;">
 
-    <h2>Hvad betyder det i praksis?</h2>
-    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
-      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
-        ▸ Ingen syntetiske pesticider eller kunstgødning
-      </li>
-      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
-        ▸ Højere krav til dyrevelfærd og udendørs adgang
-      </li>
-      <li style="padding: 1rem; background-color: var(--cheval-taube); margin-bottom: 0.5rem; border-radius: 4px;">
-        ▸ Fokus på sædskifte og jordfrugtbarhed
-      </li>
-    </ul>
+    <!-- Three Main Principles -->
+    <div class="animate-on-scroll" style="margin: 5rem 0;">
+      <header class="section-header">
+        <h2 class="section-title">Tre centrale principper for økologi</h2>
+        <p class="section-lead">Økologisk produktion bygger på tre grundprincipper som differentierer det fra
+          konventionelt landbrug</p>
+      </header>
 
-    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
-      <strong>For kantiner:</strong> Økologi kan være en vigtig del af bæredygtighedsprofilen, men kræver ofte
-      strategisk planlægning af indkøb og menu for at holde budgettet.
-    </p>
+      <div class="principles-grid">
+        <div class="principle-card animate-on-scroll">
+          <div class="principle-icon">🌱</div>
+          <h3 class="principle-title">Jordsundhed</h3>
+          <p class="principle-desc">
+            Fokus på naturlige processer gennem sædskifte, kompostering og organisk stofindhold.
+            Økologisk jord binder 25% mere kulstof og har højere biodiversitet.
+          </p>
+        </div>
+
+        <div class="principle-card animate-on-scroll">
+          <div class="principle-icon">🐝</div>
+          <h3 class="principle-title">Biodiversitet</h3>
+          <p class="principle-desc">
+            Økologiske marker har 30% flere arter af bestøvere, fugle og nyttige insekter.
+            Ingen giftige sprøjtmidler betyder et fungerende økosystem.
+          </p>
+        </div>
+
+        <div class="principle-card animate-on-scroll">
+          <div class="principle-icon">✋</div>
+          <h3 class="principle-title">Ingen kemikalier</h3>
+          <p class="principle-desc">
+            Fuldstændigt forbud mod syntetiske pesticider, kunstgødning og GMO.
+            Beskyttelse af både miljø og menneskers helbred.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Organic vs Conventional Comparison -->
+    <div class="comparison-container animate-on-scroll">
+      <header class="section-header">
+        <h2 class="section-title" style="color: var(--text-dark);">Økologisk vs. Konventionelt</h2>
+        <p class="section-lead" style="color: #333333;">Se de vigtigste forskelle mellem de to produktionsmetoder</p>
+      </header>
+
+      <div class="comparison-grid">
+        <div class="comparison-column">
+          <div class="comparison-header">
+            <span>❌</span>
+            <span>Konventionelt Landbrug</span>
+          </div>
+          <ul class="comparison-list">
+            <li class="comparison-item">
+              <span class="comparison-item-text">Kunstgødning for at øge udbyttet</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Syntetiske pesticider til skadedyrsbekæmpelse</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Antibiotika til dyrkelse af husdyr</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">GMO-afgrøder (især majs og soja til foder)</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Minimale krav til dyrevelfærd</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Monokultur – samme afgrøde år efter år</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Lavere omkostninger, højere miljøbelastning</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="comparison-column">
+          <div class="comparison-header">
+            <span>✅</span>
+            <span>Økologisk Landbrug</span>
+          </div>
+          <ul class="comparison-list">
+            <li class="comparison-item">
+              <span class="comparison-item-text">Naturlig gødning (kompost og husdyrgødning)</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Naturlige bekæmpelsesmidler og prædatorer</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Begrænset antibiotikabrug – kun ved sygdom</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Ingen GMO – kun naturlig genetik</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Høje dyrevelfærdsstandarder med udendørs adgang</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Sædskifte sikrer jordfrugtbarhed og biodiversitet</span>
+            </li>
+            <li class="comparison-item">
+              <span class="comparison-item-text">Højere omkostninger, men lavere miljøbelastning</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standards & Certification -->
+    <div class="standards-container animate-on-scroll">
+      <header class="section-header">
+        <h2 class="section-title">Certificering & Standarder</h2>
+        <p class="section-lead">Hvad betyder det når en vare er mærket som økologisk?</p>
+      </header>
+
+      <div class="standards-grid">
+        <div class="standard-item animate-on-scroll">
+          <div class="standard-label">🇪🇺 EU-Standard</div>
+          <h3 class="standard-title">EU Økologi Forordning</h3>
+          <p class="standard-desc">
+            Den mest omfattende standard for økologisk produktion i Danmark. Regulerer både produktion, transport,
+            lagring og mærkning. Kontrolleres årligt af certificeringsorganer.
+          </p>
+        </div>
+
+        <div class="standard-item animate-on-scroll">
+          <div class="standard-label">🇩🇰 Dansk Standard</div>
+          <h3 class="standard-title">Det Økologiske Spisemærke</h3>
+          <p class="standard-desc">
+            Statens kontrolmærke for spisesteder. Viser økologiandelen i procent:
+            <br><strong>Bronze:</strong> 30-60%
+            <br><strong>Sølv:</strong> 60-90%
+            <br><strong>Guld:</strong> 90-100%
+          </p>
+        </div>
+
+        <div class="standard-item animate-on-scroll">
+          <div class="standard-label">🌍 International</div>
+          <h3 class="standard-title">Øvrige Certificeringer</h3>
+          <p class="standard-desc">
+            IFOAM (International Federation of Organic Agriculture Movements) er verdensstandarden.
+            Nogle producenter bruger også Demeter-certificering for biodynamisk produktion – endnu strengere end
+            økologi.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Stats -->
+    <div class="stats-showcase animate-on-scroll">
+      <header class="section-header" style="text-align: center;">
+        <h2 class="section-title" style="color: white;">Fakta om Økologi</h2>
+        <p class="section-lead" style="color: rgba(255,255,255,0.9);">Hvad tal og forskning viser om økologisk
+          produktion</p>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-value" data-counter="30" data-suffix="%">0%</div>
+          <div class="stat-label">Flere bestøvere på økologiske marker</div>
+        </div>
+
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-value" data-counter="50" data-suffix="%">0%</div>
+          <div class="stat-label">Mindre pesticider i miljøet</div>
+        </div>
+
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-value" data-counter="25" data-suffix="%">0%</div>
+          <div class="stat-label">Højere jordsundhed (kulstof)</div>
+        </div>
+
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-value" data-counter="12" data-suffix="%">0%</div>
+          <div class="stat-label">Økologi i dansk fødevaresalg</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaway -->
+    <div class="impact-highlight animate-on-scroll">
+      <strong>📌 For kantiner betyder det:</strong>
+      <p style="margin: 0.75rem 0 0; font-size: 1.05rem; line-height: 1.7;">
+        Økologi er en certificeret standard, ikke bare et mærke. Når du vælger økologi, vælger du dokumenteret at støtte
+        beter miljø, mindre pesticider og højere dyrevelfærd. For kantiner kan økologi være en vigtig del af
+        bæredygtighedsprofilen, især hvis den kombineres med andre tiltag som lokal sourcing og plantebaseret mad.
+      </p>
+    </div>
+
   </article>
 </section>
 
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Hvorfor er økologi vigtigt?</h2>
-    <a href="{{ url_for('topic_okologi_why') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+<!-- Navigation to next topic -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Hvorfor er det vigtigt?</h2>
+  <p class="section-lead">
+    Forstå miljømæssige fordele, dyrevelfærd og marked for økologiske fødevarer.
+  </p>
+  <div class="cta-row">
+    <a href="{{ url_for('topic_okologi_why') }}" class="btn-primary">Læs mere →</a>
+    <a href="{{ url_for('topic_okologi_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
   </div>
 </section>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+<script>
+  // Initialize animated counters on scroll
+  document.addEventListener('DOMContentLoaded', function () {
+    // Counter animation
+    const counters = document.querySelectorAll('[data-counter]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          const target = parseInt(entry.target.getAttribute('data-counter'));
+          const suffix = entry.target.getAttribute('data-suffix') || '';
+          let current = 0;
+          const increment = target / 30;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+              entry.target.classList.add('counted');
+            }
+            entry.target.textContent = Math.floor(current) + suffix;
+          }, 50);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+  });
+</script>
 {% endblock %}

@@ -137,8 +137,39 @@ def topic_emissions_impact():
 
 @app.route('/vidensbank/emissioner/tips-og-tricks')
 def topic_emissions_tips():
-    """Tips and tricks"""
+    """Emissions - Tips & Tricks"""
     return render_template('topics/emissions/tips.html')
+
+# --- Organic Topic Routes ---
+@app.route('/vidensbank/okologi')
+def topic_organic_landing():
+    """Organic topic landing page"""
+    return render_template('topics/organic/landing.html')
+
+@app.route('/vidensbank/okologi/hvad-er-det')
+def topic_organic_what():
+    """Organic - What is it?"""
+    return render_template('topics/organic/what.html')
+
+@app.route('/vidensbank/okologi/hvorfor-er-det-vigtigt')
+def topic_organic_why():
+    """Organic - Why is it important?"""
+    return render_template('topics/organic/why.html')
+
+@app.route('/vidensbank/okologi/maal-og-ambition')
+def topic_organic_goal():
+    """Organic - Goal & Ambition"""
+    return render_template('topics/organic/goal.html')
+
+@app.route('/vidensbank/okologi/mit-aftryk')
+def topic_organic_impact():
+    """Organic - My Impact / Calculator"""
+    return render_template('topics/organic/impact.html')
+
+@app.route('/vidensbank/okologi/tips-og-tricks')
+def topic_organic_tips():
+    """Organic - Tips & Tricks"""
+    return render_template('topics/organic/tips.html')
 
 # ============================================================================
 # ERNÆRING TOPIC ROUTES
@@ -174,39 +205,8 @@ def topic_ernaering_tips():
     """Tips and tricks for Ernæring"""
     return render_template('topics/ernaering/tips.html')
 
-# ============================================================================
-# ØKOLOGI TOPIC ROUTES
-# ============================================================================
-
-@app.route('/vidensbank/okologi')
-def topic_okologi_landing():
-    """Økologi topic landing page"""
-    return render_template('topics/okologi/landing.html')
-
-@app.route('/vidensbank/okologi/hvad-er-det')
-def topic_okologi_what():
-    """What is Økologi?"""
-    return render_template('topics/okologi/what.html')
-
-@app.route('/vidensbank/okologi/hvorfor-vigtigt')
-def topic_okologi_why():
-    """Why Økologi matters"""
-    return render_template('topics/okologi/why.html')
-
-@app.route('/vidensbank/okologi/maal-og-ambition')
-def topic_okologi_goal():
-    """Goals and ambitions for Økologi"""
-    return render_template('topics/okologi/goal.html')
-
-@app.route('/vidensbank/okologi/mit-aftryk')
-def topic_okologi_impact():
-    """Impact for Økologi"""
-    return render_template('topics/okologi/impact.html')
-
-@app.route('/vidensbank/okologi/tips-og-tricks')
-def topic_okologi_tips():
-    """Tips and tricks for Økologi"""
-    return render_template('topics/okologi/tips.html')
+# Legacy Økologi routes removed in favor of new Organic topic structure
+# See lines 140-170 for active routes
 
 # ============================================================================
 # VANDFORBRUG TOPIC ROUTES
@@ -348,78 +348,119 @@ def topic_madspild_cases():
     return render_template('topics/madspild/cases.html')
 
 # ============================================================================
-# RÅVARER (PRODUCTS) SECTION ROUTES
+# RÅVARER (RAW MATERIALS) SECTION ROUTES
 # ============================================================================
 
 @app.route('/vidensbank/raavarer')
-def products_overview():
-    """Products database overview"""
-    return render_template('products/overview.html')
+def raavarer_landing():
+    """Raw materials landing page"""
+    return render_template('raavarer/landing.html')
 
 # Meat Products
 @app.route('/vidensbank/raavarer/oksekoed')
-def product_oksekoed():
+def raavare_oksekoed():
     """Beef product page"""
-    return render_template('products/oksekoed.html')
+    return render_template('raavarer/oksekoed.html')
 
 @app.route('/vidensbank/raavarer/svinekoed')
-def product_svinekoed():
+def raavare_svinekoed():
     """Pork product page"""
-    return render_template('products/svinekoed.html')
+    return render_template('raavarer/svinekoed.html')
 
-@app.route('/vidensbank/raavarer/fjerkreae')
-def product_fjerkreae():
-    """Poultry product page"""
-    return render_template('products/fjerkreae.html')
+@app.route('/vidensbank/raavarer/kylling')
+def raavare_kylling():
+    """Chicken product page"""
+    return render_template('raavarer/kylling.html')
 
-@app.route('/vidensbank/raavarer/lam')
-def product_lam():
+@app.route('/vidensbank/raavarer/lammekoed')
+def raavare_lammekoed():
     """Lamb product page"""
-    return render_template('products/lam.html')
+    return render_template('raavarer/lammekoed.html')
 
 # Fish and Seafood
-@app.route('/vidensbank/raavarer/fisk-skalddyr')
-def product_fisk():
-    """Fish and seafood overview"""
-    return render_template('products/fisk-skalddyr.html')
+@app.route('/vidensbank/raavarer/laks')
+def raavare_laks():
+    """Salmon product page"""
+    return render_template('raavarer/laks.html')
+
+@app.route('/vidensbank/raavarer/hvid-fisk')
+def raavare_hvid_fisk():
+    """White fish product page"""
+    return render_template('raavarer/hvid-fisk.html')
+
+@app.route('/vidensbank/raavarer/skaldyr')
+def raavare_skaldyr():
+    """Shellfish product page"""
+    return render_template('raavarer/skaldyr.html')
 
 # Dairy and Eggs
-@app.route('/vidensbank/raavarer/mejeriprodukter')
-def product_dairy():
-    """Dairy products page"""
-    return render_template('products/mejeriprodukter.html')
+@app.route('/vidensbank/raavarer/maelk')
+def raavare_maelk():
+    """Milk and yogurt product page"""
+    return render_template('raavarer/maelk.html')
+
+@app.route('/vidensbank/raavarer/ost')
+def raavare_ost():
+    """Cheese product page"""
+    return render_template('raavarer/ost.html')
 
 @app.route('/vidensbank/raavarer/aeg')
-def product_eggs():
+def raavare_aeg():
     """Eggs product page"""
-    return render_template('products/aeg.html')
+    return render_template('raavarer/aeg.html')
 
-# Plant-Based
-@app.route('/vidensbank/raavarer/korn-pasta')
-def product_grains():
-    """Grains and pasta page"""
-    return render_template('products/korn-pasta.html')
+# Grains and Starch
+@app.route('/vidensbank/raavarer/broed')
+def raavare_broed():
+    """Bread and flour product page"""
+    return render_template('raavarer/broed.html')
 
-@app.route('/vidensbank/raavarer/groentstager')
-def product_vegetables():
-    """Vegetables page"""
-    return render_template('products/groentstager.html')
+@app.route('/vidensbank/raavarer/ris')
+def raavare_ris():
+    """Rice product page"""
+    return render_template('raavarer/ris.html')
 
-@app.route('/vidensbank/raavarer/frugt-baer')
-def product_fruits():
-    """Fruits and berries page"""
-    return render_template('products/frugt-baer.html')
+@app.route('/vidensbank/raavarer/kartofler')
+def raavare_kartofler():
+    """Potatoes product page"""
+    return render_template('raavarer/kartofler.html')
 
-# Commodities
-@app.route('/vidensbank/raavarer/kaffe-te-kakao')
-def product_beverages():
-    """Coffee, tea, cocoa page"""
-    return render_template('products/kaffe-te-kakao.html')
+# Vegetables and Legumes
+@app.route('/vidensbank/raavarer/baelgfrugter')
+def raavare_baelgfrugter():
+    """Legumes product page"""
+    return render_template('raavarer/baelgfrugter.html')
 
-@app.route('/vidensbank/raavarer/olier-fedt')
-def product_oils():
-    """Oils and fats page"""
-    return render_template('products/olier-fedt.html')
+@app.route('/vidensbank/raavarer/rodfrugter')
+def raavare_rodfrugter():
+    """Root vegetables product page"""
+    return render_template('raavarer/rodfrugter.html')
+
+@app.route('/vidensbank/raavarer/bladgroent')
+def raavare_bladgroent():
+    """Leafy greens product page"""
+    return render_template('raavarer/bladgroent.html')
+
+# Specialty Items
+@app.route('/vidensbank/raavarer/kaffe')
+def raavare_kaffe():
+    """Coffee product page"""
+    return render_template('raavarer/kaffe.html')
+
+@app.route('/vidensbank/raavarer/te')
+def raavare_te():
+    """Tea product page"""
+    return render_template('raavarer/te.html')
+
+@app.route('/vidensbank/raavarer/kakao')
+def raavare_kakao():
+    """Cocoa and chocolate product page"""
+    return render_template('raavarer/kakao.html')
+
+@app.route('/vidensbank/raavarer/olier')
+def raavare_olier():
+    """Oils and fats product page"""
+    return render_template('raavarer/olier.html')
 
 # ============================================================================
 # ØKOLOGI ROUTES
@@ -453,6 +494,74 @@ def okologi_esg():
 def okologi_nuanceret():
     return render_template('okologi/okologi_nuanceret.html')
 
+# ============================================================================
+# BIODIVERSITET TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/biodiversitet')
+def topic_biodiversity_landing():
+    """Biodiversity topic landing page"""
+    return render_template('topics/biodiversity/landing.html')
+
+@app.route('/vidensbank/biodiversitet/hvad-er-det')
+def topic_biodiversity_what():
+    """Biodiversity - What is it?"""
+    return render_template('topics/biodiversity/what.html')
+
+@app.route('/vidensbank/biodiversitet/hvorfor-er-det-vigtigt')
+def topic_biodiversity_why():
+    """Biodiversity - Why is it important?"""
+    return render_template('topics/biodiversity/why.html')
+
+@app.route('/vidensbank/biodiversitet/maal-og-ambition')
+def topic_biodiversity_goal():
+    """Biodiversity - Goal & Ambition"""
+    return render_template('topics/biodiversity/goal.html')
+
+@app.route('/vidensbank/biodiversitet/mit-aftryk')
+def topic_biodiversity_impact():
+    """Biodiversity - My Impact"""
+    return render_template('topics/biodiversity/impact.html')
+
+@app.route('/vidensbank/biodiversitet/tips-og-tricks')
+def topic_biodiversity_tips():
+    """Biodiversity - Tips & Tricks"""
+    return render_template('topics/biodiversity/tips.html')
+
+# ============================================================================
+# SÆSON TOPIC ROUTES
+# ============================================================================
+
+@app.route('/vidensbank/saeson')
+def topic_saeson_landing():
+    """Seasonality topic landing page"""
+    return render_template('topics/saeson/landing.html')
+
+@app.route('/vidensbank/saeson/hvad-er-det')
+def topic_saeson_what():
+    """Seasonality - What is it?"""
+    return render_template('topics/saeson/what.html')
+
+@app.route('/vidensbank/saeson/hvorfor-vigtigt')
+def topic_saeson_why():
+    """Seasonality - Why is it important?"""
+    return render_template('topics/saeson/why.html')
+
+@app.route('/vidensbank/saeson/maal-og-ambition')
+def topic_saeson_goal():
+    """Seasonality - Goal & Ambition"""
+    return render_template('topics/saeson/goal.html')
+
+@app.route('/vidensbank/saeson/mit-aftryk')
+def topic_saeson_impact():
+    """Seasonality - My Impact"""
+    return render_template('topics/saeson/impact.html')
+
+@app.route('/vidensbank/saeson/tips-og-tricks')
+def topic_saeson_tips():
+    """Seasonality - Tips & Tricks"""
+    return render_template('topics/saeson/tips.html')
+
 # Add more routes for your other pages here
 
 # ============================================================================
@@ -470,8 +579,62 @@ def get_climate_db():
 
 @app.route('/calculator')
 def calculator():
-    """Basic climate calculator page"""
-    return render_template('calculator.html')
+    """
+    Main Climate Calculator
+    Replaces the old basic calculator with the new comprehensive engine.
+    """
+    return render_template('calculators/comprehensive.html')
+
+@app.route('/calculator/comprehensive')
+def calculator_comprehensive():
+    """Render the comprehensive calculator page."""
+    return render_template('calculators/comprehensive.html')
+
+@app.route('/api/canteens')
+def api_canteens():
+    """Get all canteens for dropdown."""
+    canteens = mock_data_service.get_all_canteens()
+    return jsonify(canteens)
+
+@app.route('/api/canteen/<int:canteen_id>')
+def api_canteen_details(canteen_id):
+    """Get detailed data for a specific canteen."""
+    details = mock_data_service.get_canteen_details(canteen_id)
+    waste = mock_data_service.get_waste_metrics(canteen_id)
+    
+    if not details:
+        return jsonify({'error': 'Canteen not found'}), 404
+        
+    return jsonify({
+        'details': details,
+        'waste': waste
+    })
+
+@app.route('/api/calculate', methods=['POST'])
+def api_calculate():
+    """Run the climate calculation engine."""
+    data = request.json
+    
+    # Transform frontend data to engine params structure if needed
+    # For now assuming frontend sends correct structure matching ClimateCalculatorEngine.calculate_canteen_impact
+    
+    try:
+        result = calculator_engine.calculate_canteen_impact(data)
+        
+        # Convert dataclass to dict for JSON serialization
+        return jsonify({
+            'total_co2_kg': result.total_co2_kg,
+            'per_meal_kg': result.per_meal_kg,
+            'annual_tons': result.annual_tons,
+            'breakdown': result.breakdown,
+            'recommendations': result.recommendations,
+            'organic_impact': result.organic_impact,
+            'waste_impact': result.waste_impact,
+            'seasonal_benefit': result.seasonal_benefit,
+            'cost_savings': result.cost_savings
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 @app.route('/calculator-advanced')
 def calculator_advanced():
@@ -861,9 +1024,6 @@ def create_admin():
     db.session.commit()
     print('Admin user created! Username: admin, Password: admin123')
 
-# ============================================================================
-# RUN APPLICATION
-# ============================================================================
 
 if __name__ == '__main__':
     with app.app_context():

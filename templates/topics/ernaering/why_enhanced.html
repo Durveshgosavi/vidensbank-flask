@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er ernæring vigtigt? - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Impact Statistics Styles */
+.impact-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.impact-stat-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.impact-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #2d6a4f, #1f4332);
+}
+
+.impact-stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.impact-stat-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #1f4332;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.impact-stat-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.impact-stat-desc {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.health-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.health-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-top: 4px solid #2d6a4f;
+}
+
+.health-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.health-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.health-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.health-desc {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    text-align: center;
+}
+
+.benefit-section {
+    background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+    padding: 4rem 2rem;
+    border-radius: 32px;
+    margin: 4rem 0;
+}
+
+.benefit-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.benefit-item {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    border-left: 5px solid #2d6a4f;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section-dark {
+    background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+    padding: 5rem 2rem;
+    border-radius: 40px;
+    margin: 4rem 0;
+    color: white;
+}
+
+.chart-container-white {
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    margin: 3rem 0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container animate-on-scroll" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvorfor er ernæring vigtigt?</h1>
+    <p class="hero-subtitle">Sundhed, produktivitet og livskvalitet</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
+      Ernæring har direkte indflydelse på både fysisk og mental sundhed, arbejdsevne og livskvalitet.
+      For kantiner betyder det et ansvar for at understøtte gæsternes sundhed gennem madvalg hver eneste dag.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_ernaering_what') }}" class="filter-pill">← Hvad er det?</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="filter-pill">Mål & ambition →</a>
+  </nav>
+
+  <!-- Impact Statistics -->
+  <div class="impact-stats-grid">
+    <div class="impact-stat-card animate-on-scroll">
+      <div class="impact-stat-number" data-counter="80" data-suffix="%">0%</div>
+      <div class="impact-stat-label">Forebyggelig effekt</div>
+      <p class="impact-stat-desc">
+        Op til 80% af type 2-diabetes og hjertesygdomme kan forebygges med sundere kost.
+      </p>
+    </div>
+
+    <div class="impact-stat-card animate-on-scroll">
+      <div class="impact-stat-number" data-counter="30" data-suffix="%">0%</div>
+      <div class="impact-stat-label">Produktivitetsforskel</div>
+      <p class="impact-stat-desc">
+        Sund ernæring kan øge arbejdsproduktiviteten med op til 30% gennem bedre koncentration.
+      </p>
+    </div>
+
+    <div class="impact-stat-card animate-on-scroll">
+      <div class="impact-stat-number" data-counter="25" data-suffix="%">0%</div>
+      <div class="impact-stat-label">Lavere sygefravær</div>
+      <p class="impact-stat-desc">
+        Medarbejdere med sunde kostvaner har markant lavere sygefravær.
+      </p>
+    </div>
+  </div>
+
+  <article style="max-width: 1200px; margin: 0 auto;">
+
+    <!-- Health Impact Section -->
+    <div style="margin: 5rem 0;">
+      <header class="section-header animate-on-scroll">
+        <h2 class="section-title">Ernæring og arbejdsevne</h2>
+        <p class="section-lead">
+          Hvad vi spiser påvirker direkte vores energiniveau, koncentration og produktivitet
+        </p>
+      </header>
+
+      <div class="health-impact-grid">
+        <div class="health-card animate-on-scroll">
+          <div class="health-icon">⚡</div>
+          <h3 class="health-title">Stabil energi</h3>
+          <p class="health-desc">
+            Fuldkorn og grøntsager giver langsom frigivelse af energi, mens hurtige kulhydrater giver energidyk efter få timer.
+          </p>
+        </div>
+
+        <div class="health-card animate-on-scroll">
+          <div class="health-icon">🧠</div>
+          <h3 class="health-title">Mental skarphed</h3>
+          <p class="health-desc">
+            Omega-3-fedtsyrer fra fisk, nødder og frø understøtter hjernefunktion og koncentration betydeligt.
+          </p>
+        </div>
+
+        <div class="health-card animate-on-scroll">
+          <div class="health-icon">💪</div>
+          <h3 class="health-title">Fysisk velvære</h3>
+          <p class="health-desc">
+            Tilstrækkeligt protein, vitaminer og mineraler holder immunforsvaret stærkt og reducerer sygdomsfravær.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canteen Benefits -->
+    <div class="benefit-section animate-on-scroll">
+      <header class="section-header">
+        <h2 class="section-title" style="color: var(--text-dark);">Kantiner som sundhedsfremmende miljøer</h2>
+        <p class="section-lead" style="color: var(--text-light);">
+          Kantiner har en unik mulighed for at påvirke gæsternes sundhed positivt
+        </p>
+      </header>
+
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <strong style="font-size: 1.2rem; color: var(--text-dark);">✓ Nudge mod sundere valg</strong>
+          <p style="margin: 0.5rem 0 0; color: var(--text-light); line-height: 1.6;">
+            Gennem strategisk præsentation, tilgængelighed og visuel kommunikation.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <strong style="font-size: 1.2rem; color: var(--text-dark);">✓ Transparent information</strong>
+          <p style="margin: 0.5rem 0 0; color: var(--text-light); line-height: 1.6;">
+            Synliggør næringsværdi og ingredienser, så gæster kan træffe oplyste valg.
+          </p>
+        </div>
+
+        <div class="benefit-item">
+          <strong style="font-size: 1.2rem; color: var(--text-dark);">✓ Varieret og velsmagende kost</strong>
+          <p style="margin: 0.5rem 0 0; color: var(--text-light); line-height: 1.6;">
+            Kombinér sundhed med madglæde gennem kreativ menuudvikling.
+          </p>
+        </div>
+      </div>
+
+      <div class="impact-highlight animate-on-scroll" style="background-color: white; padding: 2rem; border-left: 5px solid #1f4332; border-radius: 12px; margin: 3rem 0;">
+        <strong style="font-size: 1.3rem; display: block; margin-bottom: 1rem;">🎯 Skaleringseffekt</strong>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin: 0; color: var(--text-dark);">
+          Når kantiner prioriterer ernæring, bidrager de ikke kun til bedre sundhed, men også til højere
+          medarbejdertrivsel, lavere sygefravær og øget produktivitet. En kantine med 500 daglige gæster
+          påvirker 125,000 måltider årligt – en enorm mulighed for positiv sundhedspåvirkning.
+        </p>
+      </div>
+    </div>
+
+    <!-- Lifestyle Diseases Section -->
+    <div style="margin: 5rem 0;">
+      <header class="section-header animate-on-scroll">
+        <h2 class="section-title">Folkesundhed og livsstilssygdomme</h2>
+        <p class="section-lead">
+          Danmark står overfor stigende udfordringer med livsstilssygdomme tæt forbundet med kostvaner
+        </p>
+      </header>
+
+      <div style="background: white; padding: 3rem 2rem; border-radius: 24px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin: 2rem 0;">
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          Type 2-diabetes, hjerte-kar-sygdomme og fedme er tæt forbundet med kostvaner. Forskning viser,
+          at en sundere kost kan forebygge op mod <strong style="color: #1f4332;">80% af disse sygdomme</strong>.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.8; margin: 0;">
+          Kantiner spiller en central rolle i denne forebyggelse, fordi de når tusindvis af mennesker hver dag
+          og kan gøre det sunde valg til det nemme valg.
+        </p>
+      </div>
+    </div>
+
+    <p class="animate-on-scroll" style="font-size: 1.15rem; line-height: 1.8; text-align: center; max-width: 800px; margin: 4rem auto; padding: 2rem; background: var(--cheval-taube); border-radius: 16px;">
+      <strong>Vidensbanken gør denne viden tilgængelig</strong>, så kantiner kan træffe oplyste,
+      strategiske valg og være en aktiv del af Danmarks sundhedsfremmende indsats.
+    </p>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Næste: Mål & Ambition</h2>
+  <p class="section-lead">
+    Hvad er målene for ernæring i Vidensbanken og danske kantiner?
+  </p>
+  <div class="cta-row">
+    <a href="{{ url_for('topic_ernaering_goal') }}" class="btn-primary">Læs mere →</a>
+    <a href="{{ url_for('topic_ernaering_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- Custom Charts Script -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

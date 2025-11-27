@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er Sæson? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/salad_fresh.jpg') }}" alt="Seasonal Definition"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+            Hvad er<br>Sæson?
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-left">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Tid og sted."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            At spise i sæson betyder at vælge råvarer, der er høstet på det tidspunkt, hvor de naturligt er modne i
+            vores klima. Et "Sæsonhjul" er kokkens vigtigste værktøj til at navigere i årets gang.
+        </p>
+    </div>
+</section>
+
+<!-- Split Section: Definition -->
+<section class="w-full border-t border-stone-200">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="flex flex-col justify-center bg-cb-taupe-light px-8 py-20 lg:px-24">
+            <span
+                class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Definition</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Friland vs.
+                Drivhus
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                Der er stor forskel på den "naturlige sæson" (friland) og "handelssæsonen" (opvarmede drivhuse eller
+                import).
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                En tomat dyrket i et dansk, opvarmet drivhus om vinteren har et langt højere klimaaftryk end en tomat
+                importeret fra Sydeuropa, hvor solen varmer.
+            </p>
+        </div>
+        <div class="flex items-center justify-center bg-stone-900 px-8 py-20 text-white lg:px-24">
+            <div class="space-y-12 w-full max-w-md">
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-orange-dark">Forår</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Spæde Skud</div>
+                    <div class="text-stone-400 font-sans">Asparges, rabarber, stenbiderrogn</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-yellow-dark">Sommer</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Overflod</div>
+                    <div class="text-stone-400 font-sans">Bær, ærter, nye kartofler, makrel</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-orange-medium">Efterår</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Høst</div>
+                    <div class="text-stone-400 font-sans">Æbler, græskar, svampe, vildt</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-blue-dark">Vinter</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Rødder</div>
+                    <div class="text-stone-400 font-sans">Kål, rodfrugter, muslinger, torsk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Takeaway -->
+<section class="bg-cb-orange-light py-32 text-left">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-stone-900">
+            "Ventetidens glæde"
+        </h2>
+        <p class="max-w-2xl text-xl font-sans font-light text-stone-800">
+            Når vi spiser alt året rundt, mister vi glæden ved årets første jordbær eller den første sprøde asparges.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_saeson_why') }}"
+                class="inline-block border-b-2 border-stone-900 pb-1 text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:text-cb-orange-dark hover:border-cb-orange-dark">
+                Hvorfor er det vigtigt? →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

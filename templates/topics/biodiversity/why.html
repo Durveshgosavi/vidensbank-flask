@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er Biodiversitet Vigtigt? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/sustainable_canteen_hero_1763550140162.png') }}"
+            alt="Biodiversity Importance" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-blue-light">
+            Hvorfor er det<br>Vigtigt?
+        </h1>
+    </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-left">
+        <p
+            class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+            "Ingen natur, ingen mad."
+        </p>
+        <p class="mt-6 font-sans text-lg text-stone-600">
+            Tabet af biodiversitet er en af de største trusler mod vores eksistensgrundlag. Fødevareproduktion er både
+            den største årsag til tabet og den sektor, der er mest afhængig af naturen.
+        </p>
+    </div>
+</section>
+
+<!-- Split Section: The Crisis -->
+<section class="w-full border-t border-stone-200">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="flex flex-col justify-center bg-cb-taupe-light px-8 py-20 lg:px-24">
+            <span
+                class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Udfordringen</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">En Global
+                Krise</h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                Vi befinder os i den sjette masseuddøen. Arter forsvinder 100-1.000 gange hurtigere end den naturlige
+                baggrundsrate.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                Intensivt landbrug, skovrydning og forurening presser naturen. I Danmark har vi set en dramatisk
+                tilbagegang
+                i bestanden af agerlandsfugle og insekter over de seneste årtier.
+            </p>
+        </div>
+        <div class="flex items-center justify-center bg-stone-900 px-8 py-20 text-white lg:px-24">
+            <div class="space-y-12 w-full max-w-md">
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-blue-dark">1.844</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Truede Arter</div>
+                    <div class="text-stone-400 font-sans">På den danske Rødliste</div>
+                </div>
+                <div class="h-px w-full bg-stone-700"></div>
+                <div>
+                    <div class="text-6xl font-display font-bold text-cb-blue-dark">33%</div>
+                    <div class="text-xl font-bold uppercase tracking-widest font-sans">Jordbund</div>
+                    <div class="text-stone-400 font-sans">Er moderat til stærkt forringet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Split Section: The Solution -->
+<section class="w-full">
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2">
+        <div class="order-2 flex items-center justify-center bg-white px-8 py-20 lg:order-1 lg:px-24">
+            <ul class="w-full max-w-md space-y-8">
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-blue-dark">01</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Økologi</h4>
+                        <p class="text-stone-500 font-sans">Økologiske marker har i gennemsnit 30% flere vilde arter.
+                        </p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-blue-dark">02</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Variation
+                        </h4>
+                        <p class="text-stone-500 font-sans">Brug af mange forskellige råvarer støtter varieret landbrug.
+                        </p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6 border-b border-stone-100 pb-6">
+                    <span class="font-display text-4xl font-bold text-cb-blue-dark">03</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Sæson</h4>
+                        <p class="text-stone-500 font-sans">Frilandsgrønt i sæson kræver mindre energi og kemi.</p>
+                    </div>
+                </li>
+                <li class="flex items-baseline gap-6">
+                    <span class="font-display text-4xl font-bold text-cb-blue-dark">04</span>
+                    <div>
+                        <h4 class="mb-2 text-lg font-bold uppercase tracking-wide text-stone-900 font-sans">Planter</h4>
+                        <p class="text-stone-500 font-sans">Plantebaseret kost kræver mindre areal, hvilket giver plads
+                            til natur.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order-1 flex flex-col justify-center bg-cb-blue-light px-8 py-20 lg:order-2 lg:px-24">
+            <span class="mb-4 font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Løsninger</span>
+            <h2 class="mb-6 font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide">Køkkenets
+                Rolle
+            </h2>
+            <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                Professionelle køkkener kan gøre en forskel gennem deres indkøb. Efterspørgsel på økologi og varierede
+                afgrøder skubber landbruget i en mere naturvenlig retning.
+            </p>
+            <p class="font-sans text-lg leading-relaxed text-stone-600">
+                <strong>Effekt:</strong> Ved at vælge bæredygtigt, beskytter vi ikke kun naturen her og nu, men sikrer
+                også, at vi kan dyrke mad i fremtiden.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Key Takeaway -->
+<section class="bg-stone-900 py-32 text-left text-white">
+    <div class="mx-auto max-w-4xl px-6">
+        <h2
+            class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-blue-dark">
+            "Vi låner jorden"
+        </h2>
+        <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
+            Af vores børn. At beskytte biodiversiteten er at tage ansvar for de kommende generationer.
+        </p>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_biodiversity_goal') }}"
+                class="inline-block border-b-2 border-cb-blue-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-blue-dark">
+                Næste: Mål & Ambition →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

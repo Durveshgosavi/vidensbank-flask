@@ -2,129 +2,182 @@
 
 {% block title %}Hvad Er Økologi? | Vidensbank{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
 {% block content %}
-<header style="position: relative; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; background-image: url('https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg'), linear-gradient(135deg, #4a7c59 0%, #5f9ea0 100%); background-size: cover; background-position: center;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3); opacity: 0.7;"></div>
-    <div style="position: relative; z-index: 1; padding: 2rem;">
-        <h1 style="font-family: 'AWConqueror Std Inline', serif; font-size: 3.5rem; font-weight: normal; line-height: 1.1; text-transform: uppercase; color: #ffffff; letter-spacing: 2px;">HVAD ER ØKOLOGI?</h1>
-        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.2rem; max-width: 600px; margin: 1rem auto 0; line-height: 1.4; color: #ffffff;">En dybdegående guide til principperne, mærkerne og den globale bevægelse, der former fremtidens mad.</p>
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="https://images.pexels.com/photos/264537/pexels-photo-264537.jpeg" alt="Organic Farming"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
     </div>
-</header>
 
-<main>
-    <section style="padding: 5rem 1rem; background-color: #ffffff;">
-        <div style="max-width: 800px; margin: auto; text-align: left;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px; text-align: center;">ØKOLOGIENS KERNE</h2>
-            <div style="width: 80px; height: 8px; background-image: url('data:image/svg+xml;utf8,<svg width=\'80\' height=\'8\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 4 Q 20 0, 40 4 T 80 4\' stroke=\'%23a0d7a5\' stroke-width=\'3\' fill=\'none\'/></svg>'); margin: 1rem auto 3rem;"></div>
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-24 text-white text-center">
+        <h1
+            class="mb-6 font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-white">
+            Hvad er Økologi?
+        </h1>
+        <p class="mx-auto max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            En dybdegående guide til principperne, mærkerne og den globale bevægelse, der former fremtidens mad.
+        </p>
+    </div>
+</div>
 
-            <div>
-                <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; text-align: center;">En filosofi om balance</h3>
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.7; font-size: 1.1rem; text-align: center;">Teoretisk set er økologi en tilgang til fødevareproduktion, der respekterer naturens egne systemer. Det er en filosofi, der bygger på at skabe balance mellem jord, planter, dyr og mennesker. Målet er ikke kun at producere mad, men at gøre det på en måde, der er bæredygtig for planeten og fremtidige generationer. Økologi er afledt af et holistisk verdenssyn, hvor man ser landbruget som en levende organisme, der trives bedst uden kunstige indgreb.</p>
-            </div>
+<!-- Core Philosophy -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+        <span
+            class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Filosofi</span>
+        <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Økologiens Kerne
+        </h2>
 
-            <div style="margin-top: 2rem;">
-                <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; text-align: center;">Hvad betyder det i praksis?</h3>
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.7; font-size: 1.1rem; text-align: center;">I praksis betyder økologi, at landmanden arbejder aktivt med at forbedre jordens frugtbarhed gennem naturlige metoder som sædskifte og organisk gødning. Det betyder et fuldstændigt forbud mod syntetiske sprøjtemidler, kunstgødning og GMO'er. For dyrene betyder det markant højere krav til plads, adgang til udearealer og økologisk foder. I forarbejdningen er der strenge begrænsninger på tilsætningsstoffer, hvilket resulterer i renere og mere naturlige produkter.</p>
-            </div>
+        <p class="mb-8 font-sans text-lg leading-relaxed text-stone-600">
+            Teoretisk set er økologi en tilgang til fødevareproduktion, der respekterer naturens egne systemer. Det er
+            en filosofi, der bygger på at skabe balance mellem jord, planter, dyr og mennesker.
+        </p>
+
+        <div class="citation-box text-left mx-auto max-w-2xl">
+            <span class="citation-label">Kilde</span>
+            <p class="citation-text">
+                Landbrug & Fødevarer. (2024). Økologiens grundprincipper.
+                <a href="https://lf.dk/viden-om/okologi" target="_blank">Læs mere</a>
+            </p>
         </div>
-    </section>
 
-    <section style="padding: 5rem 1rem; background-color: #f4f2f1;">
-        <div style="max-width: 1100px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">ØKOLOGISK VS. KONVENTIONEL</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; color: #000000; font-size: 1.1rem; max-width: 800px; margin: 1rem auto 4rem;">Forskellene mellem økologisk og konventionel produktion er defineret i lovgivningen og dækker hele rejsen fra jord til bord.</p>
-
-            <div style="display: flex; flex-wrap: wrap; text-align: left; background-color: #ffffff; border-radius: 12px; padding: 3rem; box-shadow: 0 8px 25px rgba(0,0,0,0.05);">
-                <div style="flex: 1; min-width: 300px; padding-right: 2rem; box-sizing: border-box;">
-                    <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.5rem; font-weight: bold; color: #4CAF50; margin-top: 0; border-bottom: 2px solid #a0d7a5; padding-bottom: 1rem;">ØKOLOGISK</h3>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Jordbrug & Planter</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">✓ Naturlig gødning og kompost<br />✓ Varieret sædskifte for at opbygge jordens sundhed<br />✓ Forbud mod syntetiske pesticider & kunstgødning<br />✓ Forbud mod GMO</p>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Dyrevelfærd</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">✓ Krav om adgang til udearealer<br />✓ Strenge krav til mere plads pr. dyr<br />✓ 100% økologisk og GMO-frit foder</p>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Forarbejdning</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">✓ Kun ca. 50 specifikt godkendte tilsætningsstoffer er tilladt<br />✓ Fokus på skånsom forarbejdning</p>
-                    </div>
-                </div>
-
-                <div style="flex: 1; min-width: 300px; padding-left: 2rem; box-sizing: border-box; border-left: 1px solid #e0e0e0;">
-                    <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.5rem; font-weight: bold; color: #757575; margin-top: 0; border-bottom: 2px solid #e0e0e0; padding-bottom: 1rem;">KONVENTIONEL</h3>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Jordbrug & Planter</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">• Brug af kunstgødning er udbredt<br />• Mindre krav til varieret sædskifte<br />• Tilladt at bruge hundredvis af godkendte pesticider<br />• GMO kan være tilladt</p>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Dyrevelfærd</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">• Ingen generelle krav om adgang til udearealer<br />• Lavere pladskrav pr. dyr<br />• Konventionelt foder (kan indeholde GMO)</p>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold; font-size: 1.1rem;">Forarbejdning</p>
-                        <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6;">• Over 300 forskellige tilsætningsstoffer er tilladt<br />• Større brug af industrielle processer</p>
-                    </div>
-                </div>
+        <div class="did-you-know mt-12 text-left">
+            <div class="dyk-title">Vidste du?</div>
+            <div class="dyk-content">
+                På økologiske gårde er der i gennemsnit 30% flere vilde plante- og dyrearter sammenlignet med
+                konventionelle gårde. Det skyldes fraværet af sprøjtegifte og kravet om mere natur.
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section style="padding: 5rem 1rem; background-color: #f4f2f1;">
-        <div style="max-width: 1100px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">DANMARK I VERDENSELITEN</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; color: #000000; font-size: 1.1rem; max-width: 800px; margin: 1rem auto 4rem;">Danmark er det land i verden, hvor økologi udgør den største andel af det samlede fødevaresalg. Sammen med lande som Schweiz og Østrig er vi globale frontløbere.</p>
+<!-- Organic vs Conventional -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="mb-16 text-center">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Økologisk vs.
+                Konventionel</h2>
+            <p class="mt-4 font-sans text-lg text-stone-600">Forskellene er defineret i lovgivningen og dækker hele
+                rejsen fra jord til bord.</p>
+        </div>
 
-            <div style="background-color: #ffffff; border-radius: 8px; padding: 2rem; text-align: left;">
-                <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; font-weight: bold; margin: 0 0 2rem 0;">Økologisk Markedsandel i Detailhandlen (2023)</h3>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <!-- Organic Column -->
+            <div class="bg-white p-8 shadow-sm border-t-4 border-cb-green-dark">
+                <h3 class="mb-6 font-display text-2xl font-bold text-cb-green-dark uppercase">Økologisk</h3>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="margin: 0 0 0.5rem 0; font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold;">Danmark</p>
-                    <div style="height: 35px; background-color: #a0d7a5; width: 13%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: #000000; font-weight: bold; min-width: 50px;">13,0%</div>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-sans font-bold text-stone-900">Jordbrug & Planter</h4>
+                        <ul class="mt-2 space-y-2 font-sans text-sm text-stone-600">
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> Naturlig
+                                gødning og kompost</li>
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> Varieret
+                                sædskifte</li>
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> Forbud mod
+                                syntetiske pesticider</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-sans font-bold text-stone-900">Dyrevelfærd</h4>
+                        <ul class="mt-2 space-y-2 font-sans text-sm text-stone-600">
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> Krav om adgang
+                                til udearealer</li>
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> Mere plads pr.
+                                dyr</li>
+                            <li class="flex items-start gap-2"><span class="text-cb-green-dark">✓</span> 100% økologisk
+                                foder</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="margin: 0 0 0.5rem 0; font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold;">Østrig</p>
-                    <div style="height: 35px; background-color: #e4edf6; width: 11.6%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: #000000; font-weight: bold; min-width: 50px;">11,6%</div>
+            <!-- Conventional Column -->
+            <div class="bg-white p-8 shadow-sm border-t-4 border-stone-400">
+                <h3 class="mb-6 font-display text-2xl font-bold text-stone-500 uppercase">Konventionel</h3>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-sans font-bold text-stone-900">Jordbrug & Planter</h4>
+                        <ul class="mt-2 space-y-2 font-sans text-sm text-stone-600">
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Brug af
+                                kunstgødning</li>
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Mindre krav til
+                                sædskifte</li>
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Pesticider tilladt
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-sans font-bold text-stone-900">Dyrevelfærd</h4>
+                        <ul class="mt-2 space-y-2 font-sans text-sm text-stone-600">
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Ingen generelle
+                                krav om udearealer</li>
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Lavere pladskrav
+                            </li>
+                            <li class="flex items-start gap-2"><span class="text-stone-400">•</span> Konventionelt foder
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <p style="margin: 0 0 0.5rem 0; font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold;">Schweiz</p>
-                    <div style="height: 35px; background-color: #e4edf6; width: 11.2%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: #000000; font-weight: bold; min-width: 50px;">11,2%</div>
-                </div>
-
-                <div>
-                    <p style="margin: 0 0 0.5rem 0; font-family: 'Theinhardt', Arial, sans-serif; font-weight: bold;">Sverige</p>
-                    <div style="height: 35px; background-color: #e4edf6; width: 8.7%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: #000000; font-weight: bold; min-width: 50px;">8,7%</div>
-                </div>
-
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 0.9rem; color: #666; margin-top: 1.5rem;">Kilde: FiBL-AMI Survey 2024 (data for 2022-2023).</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section style="background-color: #a0d7a5; padding: 5rem 1rem;">
-        <div style="max-width: 800px; margin: auto; text-align: center;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 2.5rem; font-weight: normal; text-transform: uppercase; color: #000000; letter-spacing: 1px;">TAG DEL I DEN GRØNNE BEVÆGELSE</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.6; color: #000000; font-size: 1.1rem; max-width: 600px; margin: 1rem auto 2rem;">At vælge økologisk i din kantine er et stærkt signal. Vi stræber efter at omsætte værdier til velsmagende og bæredygtige måltider, der gør en forskel.</p>
+<!-- Market Share Chart -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Danmark i
+                Verdenseliten</h2>
+            <p class="mt-4 font-sans text-lg text-stone-600">Danmark har verdens højeste økologiske markedsandel i
+                detailhandlen.</p>
         </div>
-    </section>
-</main>
 
-<style>
-@media (max-width: 992px) {
-    header h1 {
-        font-size: 2.5rem !important;
-    }
-    section h2 {
-        font-size: 2rem !important;
-    }
-}
-</style>
+        <div class="comparison-chart">
+            <div class="chart-title">Økologisk Markedsandel (2023)</div>
+
+            <div class="chart-item">
+                <div class="chart-label">
+                    <span>Danmark</span>
+                    <span><strong>13,0%</strong></span>
+                </div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar emissions-very-low" style="width: 100%;">Nr. 1</div>
+                </div>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-label">
+                    <span>Østrig</span>
+                    <span><strong>11,6%</strong></span>
+                </div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar emissions-medium" style="width: 89%;">Nr. 2</div>
+                </div>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-label">
+                    <span>Schweiz</span>
+                    <span><strong>11,2%</strong></span>
+                </div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar emissions-medium" style="width: 86%;">Nr. 3</div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-xs text-stone-400 mt-4">Kilde: FiBL-AMI Survey 2024</p>
+    </div>
+</section>
 {% endblock %}

@@ -1,95 +1,101 @@
 {% extends "base.html" %}
 
-{% block title %}Mål & Ambition - Ernæring | Vidensbank{% endblock %}
+{% block title %}Mål for Ernæring - Vidensbank{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1547592166-23ac45744acd');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Mål & Ambition for Ernæring</h1>
-    <p class="hero-subtitle">Sundere kost i danske kantiner</p>
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_breakfast.jpg') }}" alt="Nutrition Goals"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Målet er at gøre ernæringsrigtig mad til standarden i danske kantiner – uden at gå på kompromis
-      med smag, madglæde eller gæstetilfredshed.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-orange-light">
+      Mål &<br>Ambitioner
+    </h1>
+  </div>
+</div>
+
+<!-- The Manifesto -->
+<section class="bg-cb-taupe-light py-32">
+  <div class="mx-auto max-w-4xl px-6 text-left">
+    <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Vores
+      Løfte</span>
+    <h2 class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+      "Det sunde valg."
+    </h2>
+    <div class="mt-12 h-1 w-24 bg-cb-green-dark"></div>
+    <p class="mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+      Vi arbejder for, at det sundeste valg også altid er det mest fristende. Gennem smag, anretning og variation.
     </p>
-  </header>
+  </div>
+</section>
 
-  <!-- Navigation -->
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_ernaering_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">Mit aftryk →</a>
-  </nav>
-
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>Vision for ernæring i Vidensbanken</h2>
-    <p>
-      Vores ambition er at samle viden om ernæring, så den er:
-    </p>
-
-    <div class="metrics-grid" style="margin: 2rem 0;">
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">📚</div>
-        <h3 class="metric-label">Praktisk anvendelig</h3>
-        <p class="metric-text">
-          Direkte brugbar i menuudvikling, indkøb og gæstedialogen.
+<!-- The Roadmap -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="relative border-l border-stone-200 pl-12 md:pl-20">
+      <!-- Item 1 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cb-orange-dark ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-cb-orange-dark">Nu</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase">Officielle Kostråd</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-600">
+          Vi følger Fødevarestyrelsens officielle kostråd som rettesnor for vores menuplanlægning.
         </p>
       </div>
 
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🔬</div>
-        <h3 class="metric-label">Evidensbaseret</h3>
-        <p class="metric-text">
-          Baseret på de officielle kostråd og ny forskningsviden.
+      <!-- Item 2 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Mål</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Mere Fuldkorn</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          Vi følger Fuldkornspartnerskabets anbefalinger og sikrer, at vores brød og retter lever op til kravene for
+          Fuldkornslogoet.
         </p>
       </div>
 
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🍽️</div>
-        <h3 class="metric-label">Madglæde først</h3>
-        <p class="metric-text">
-          Sundhed skal ikke opleves som afsavn, men som en naturlig del af god mad.
+      <!-- Item 3 -->
+      <div class="relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">Vision</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Ernæring i Balance</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          En kantine hvor alle måltider automatisk sikrer den rette ernæringsmæssige balance for gæsten.
         </p>
       </div>
     </div>
-
-    <h2>Konkrete mål for kantiner</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ Øge andelen af grøntsager, fuldkorn og bælgfrugter i menuen.
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ Reducere salt, tilsat sukker og mættede fedtstoffer uden at miste smag.
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ Synliggøre næringsindhold og gøre det nemt at vælge sundt.
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ Tilbyde retter, der både er sunde, klimavenlige og velsmagende.
-      </li>
-    </ul>
-
-    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
-      "Ernæring handler ikke om perfektion – men om at gøre det bedre, måltid for måltid."
-    </p>
-  </article>
-</section>
-
-<!-- Next Section CTA -->
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Mit Aftryk</h2>
-    <p class="section-lead">
-      Forstå hvordan dine beslutninger påvirker gæsternes ernæring.
-    </p>
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
   </div>
 </section>
 
+<!-- Vision Image Stack -->
+<section class="w-full">
+  <div class="grid w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-[500px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Nutrition Vision"
+        class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+    </div>
+    <div class="flex flex-col justify-center bg-stone-900 px-8 py-20 text-white md:px-20">
+      <h2 class="mb-6 font-display text-4xl font-bold uppercase tracking-brand-wide text-cb-orange-light">Perspektivet
+      </h2>
+      <p class="font-sans text-lg leading-relaxed text-stone-300">
+        Ved at fokusere på ernæring løfter vi kvaliteten af vores mad og bidrager aktivt til vores gæsters sundhed og
+        arbejdsglæde.
+      </p>
+      <div class="mt-12">
+        <a href="{{ url_for('topic_ernaering_tips') }}"
+          class="inline-block border-b border-cb-orange-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-orange-dark">
+          Få tips til sund mad →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

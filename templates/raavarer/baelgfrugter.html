@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}Bælgfrugter - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="{{ url_for('static', filename='images/raw_legumes.png') }}" alt="Bælgfrugter"
+            class="w-full h-full object-cover opacity-90">
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <div class="relative z-10 text-center text-white px-6">
+        <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+        <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Bælgfrugter</h1>
+        <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+            Fremtidens protein. En nøgle til det grønne køkken.
+        </p>
+    </div>
+</header>
+
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">Jordens Superhelte</h2>
+            <span class="font-mono text-stone-400 text-sm">01</span>
+        </div>
+
+        <div class="prose prose-lg prose-stone font-serif leading-loose text-stone-600">
+            <p>
+                Linser, bønner og ærter er ikke bare ingredienser; de er små mirakler.
+                Botanisk set er de unikke ved deres evne til at fiksere kvælstof fra luften og føre det ned i jorden.
+                Det betyder, at de gøder sig selv og efterlader marken sundere, end de fandt den.
+            </p>
+            <p>
+                I køkkenet har de længe været undervurderet som "fattigmandskost" eller kedeligt tilbehør.
+                Men sandheden er, at bælgfrugter er rygraden i nogle af verdens mest velsmagende køkkener –
+                fra Indiens krydrede dhal til Mellemøstens cremede hummus og Toscanas rustikke bønnesupper.
+            </p>
+            <p>
+                Med et klimaaftryk, der er forsvindende lille sammenlignet med kød, og en ernæringsprofil spækket med
+                proteiner og fibre,
+                er bælgfrugter det mest effektive værktøj, vi har, til at skabe en bæredygtig madkultur.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Minimalist Data Section -->
+<section class="py-24 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Stat 1 -->
+            <div class="text-center md:text-left">
+                <div class="text-6xl font-display text-stone-900 mb-2">2.0</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Det ultimative klimavalg. Et aftryk så lavt, at det næsten ikke kan måles i forhold til oksekød.
+                </p>
+            </div>
+
+            <!-- Stat 2 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">-97%</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">ift. Oksekød</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Ved at erstatte oksekød med linser eller bønner fjerner du stort set hele klimabelastningen fra
+                    retten.
+                </p>
+            </div>
+
+            <!-- Stat 3 -->
+            <div
+                class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+                <div class="text-6xl font-display text-stone-900 mb-2">70%</div>
+                <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Billigere protein</div>
+                <p class="text-stone-600 font-serif text-sm leading-relaxed">
+                    Bælgfrugter er ikke kun gode for klimaet, men også for bundlinjen. Proteinprisen er en brøkdel af
+                    kødets.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+            <h2 class="font-display text-4xl text-stone-900">I Køkkenet</h2>
+            <span class="font-mono text-stone-400 text-sm">02</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Sorter</h3>
+                <ul class="space-y-4 text-stone-600 font-serif">
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">01</span>
+                        <span><strong>Linser:</strong> Beluga, puy og røde linser. Kræver ingen iblødsætning og er klar
+                            på 20 minutter.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">02</span>
+                        <span><strong>Bønner:</strong> Sorte, hvide, kidney og hestebønner. Faste i biddet og mættende.
+                            Husk iblødsætning!</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-stone-300 mr-4">03</span>
+                        <span><strong>Kikærter:</strong> Nøddeagtige og alsidige. Kan bruges i alt fra salater til
+                            bagværk (aquafaba).</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Tilberedning & Tips</h3>
+                <p class="text-stone-600 font-serif leading-relaxed mb-6">
+                    Kog altid bønner med aromater – løg, hvidløg, laurbærblade. Salt først vandet til sidst for at undgå
+                    seje skaller.
+                    Og husk: Bælgfrugter elsker syre (citron, eddike) og fedt (olie, tahin) for at løfte smagen.
+                </p>
+                <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+                    <p class="text-sm font-bold text-stone-900 mb-2">PRO TIP</p>
+                    <p class="text-stone-600 text-sm italic">
+                        "Brug marinerede belugalinser som 'kaviar' på smørrebrød eller i salater. De giver bid, smag og
+                        et eksklusivt look."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Minimalist Calculator -->
+<section class="py-24 bg-stone-900 text-white">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-3xl md:text-4xl mb-4">Beregn Gevinsten</h2>
+            <p class="text-stone-400 font-light">Se hvor meget du sparer ved at bytte kød ud med bælgfrugter.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Erstat kød
+                        (g/uge)</label>
+                    <input type="number" id="meatAmount" value="500"
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-3xl font-display focus:outline-none focus:border-white transition-colors text-white placeholder-stone-700">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Kødtype</label>
+                    <select id="meatType"
+                        class="w-full bg-transparent border-b border-stone-700 py-4 text-xl font-sans focus:outline-none focus:border-white transition-colors text-white appearance-none cursor-pointer">
+                        <option value="60" class="text-stone-900">Oksekød (60 kg CO₂e)</option>
+                        <option value="12" class="text-stone-900">Svinekød (12 kg CO₂e)</option>
+                        <option value="24" class="text-stone-900">Lammekød (24 kg CO₂e)</option>
+                        <option value="6.9" class="text-stone-900">Kylling (6.9 kg CO₂e)</option>
+                    </select>
+                </div>
+
+                <button onclick="calculateLegumesSavings()"
+                    class="group flex items-center gap-4 text-white hover:text-stone-300 transition-colors">
+                    <span class="text-sm font-bold uppercase tracking-widest">Beregn nu</span>
+                    <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+                </button>
+            </div>
+
+            <div id="legumesSavingsResult" class="hidden opacity-0 transition-opacity duration-700">
+                <div class="border-l border-stone-700 pl-12">
+                    <div class="mb-8">
+                        <div class="text-6xl font-display text-white mb-2" id="legumesSavingsValue">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">kg CO₂e sparet / uge</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-display text-stone-300 mb-2" id="legumesMoneySaved">0</div>
+                        <div class="text-stone-500 text-sm uppercase tracking-widest">kr sparet / år (est.)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function calculateLegumesSavings() {
+        const meatAmount = parseFloat(document.getElementById('meatAmount').value) || 0;
+        const meatCO2 = parseFloat(document.getElementById('meatType').value);
+        const legumesCO2 = 2;
+
+        const amountKg = meatAmount / 1000;
+        const meatEmissions = amountKg * meatCO2;
+        const legumesEmissions = amountKg * legumesCO2;
+
+        const weeklySavings = meatEmissions - legumesEmissions;
+
+        // Money savings estimation
+        let meatPrice = 80;
+        if (meatCO2 == 60) meatPrice = 120;
+        else if (meatCO2 == 24) meatPrice = 100;
+        else if (meatCO2 == 6.9) meatPrice = 60;
+
+        const legumesPrice = 25;
+        const weeklyMoneySaved = (amountKg * meatPrice) - (amountKg * legumesPrice);
+        const annualMoneySaved = Math.round(weeklyMoneySaved * 52);
+
+        // Animate numbers
+        animateValue("legumesSavingsValue", 0, weeklySavings.toFixed(1), 1000);
+        animateValue("legumesMoneySaved", 0, annualMoneySaved, 1000);
+
+        const resultDiv = document.getElementById('legumesSavingsResult');
+        resultDiv.classList.remove('hidden');
+        void resultDiv.offsetWidth;
+        resultDiv.classList.remove('opacity-0');
+    }
+
+    function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const val = (progress * (end - start) + start);
+            obj.innerHTML = id === 'legumesMoneySaved' ? Math.round(val).toLocaleString() : val.toFixed(1);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,528 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er madspild vigtigt? - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Madspild Theme Colors */
+:root {
+    --madspild-primary: #bc4b51;
+    --madspild-dark: #8b2635;
+    --madspild-light: #e8d4d6;
+}
+
+/* Impact Statistics */
+.impact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.impact-card-item {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.impact-card-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--madspild-primary), var(--madspild-dark));
+}
+
+.impact-card-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.impact-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--madspild-dark);
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.impact-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.impact-desc {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Three Pillar Section */
+.three-pillars {
+    background: linear-gradient(135deg, var(--cheval-taube), var(--madspild-light));
+    padding: 4rem 2rem;
+    border-radius: 32px;
+    margin: 4rem 0;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.pillar-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-top: 6px solid var(--madspild-primary);
+    position: relative;
+}
+
+.pillar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.pillar-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.pillar-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.pillar-content {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.pillar-content strong {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    display: block;
+    margin: 1rem 0 0.5rem;
+}
+
+/* Economic Impact */
+.economic-impact-section {
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 4rem 0;
+}
+
+.economic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.economic-item {
+    background: var(--cheval-taube);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border-left: 4px solid var(--madspild-primary);
+    transition: all 0.3s ease;
+}
+
+.economic-item:hover {
+    transform: translateX(8px);
+}
+
+.economic-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--madspild-dark);
+    margin-bottom: 0.5rem;
+}
+
+.economic-label {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* Key Insight */
+.key-insight {
+    background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    margin: 3rem 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.key-insight strong {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.key-insight p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Comparison Section */
+.comparison-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.comparison-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-item.negative {
+    border-left: 5px solid #e74c3c;
+    background: linear-gradient(135deg, #fdecea 0%, #f8d7da 100%);
+}
+
+.comparison-item.positive {
+    border-left: 5px solid var(--madspild-primary);
+    background: linear-gradient(135deg, var(--madspild-light) 0%, #f5e6e7 100%);
+}
+
+.comparison-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.comparison-item.negative .comparison-title {
+    color: #c0392b;
+}
+
+.comparison-item.positive .comparison-title {
+    color: var(--madspild-dark);
+}
+
+.comparison-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comparison-list li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.comparison-list li::before {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+.comparison-item.negative .comparison-list li::before {
+    content: '⚠️';
+}
+
+.comparison-item.positive .comparison-list li::before {
+    content: '✓';
+    color: var(--madspild-dark);
+}
+
+@media (max-width: 768px) {
+    .comparison-container {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-number {
+        font-size: 2.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvorfor er madspild vigtigt?</h1>
+    <p class="hero-subtitle">Klima, økonomi, ressourcer og etik</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header animate-on-scroll">
+    <p class="section-lead" style="max-width: 800px; margin: 0 auto;">
+      Madspild påvirker ikke kun miljøet og klimaet – det koster kantiner meget penge og spiller bort værdifulde ressourcer.
+      Det er et af de områder, hvor kantiner kan opnå den mest synlige og omkostningseffektive forbedring.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav animate-on-scroll" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_madspild_what') }}" class="filter-pill">← Forrige</a>
+    <a href="{{ url_for('topic_madspild_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_madspild_goal') }}" class="filter-pill">Næste →</a>
+  </nav>
+
+  <article style="max-width: 1200px; margin: 0 auto;">
+
+    <!-- Key Statistics -->
+    <div class="impact-cards-grid animate-on-scroll">
+      <div class="impact-card-item">
+        <div class="impact-number">20-30%</div>
+        <div class="impact-label">Af alt leveret mad</div>
+        <p class="impact-desc">
+          Danske kantiner smider i gennemsnit mellem 20-30% af den mad væk, de køber ind.
+          Det betyder, at hver tredje tallerken aldrig spises.
+        </p>
+      </div>
+
+      <div class="impact-card-item">
+        <div class="impact-number">10-20K kr</div>
+        <div class="impact-label">Årligt tab pr. kantine</div>
+        <p class="impact-desc">
+          En kantine med 500 måltider dagligt kan tabe 10.000-20.000 kr. årligt på madspild.
+          Det er penge, der direkte forsvinder på bundlinjen.
+        </p>
+      </div>
+
+      <div class="impact-card-item">
+        <div class="impact-number">100+ kg</div>
+        <div class="impact-label">CO₂e pr. dansker årligt</div>
+        <p class="impact-desc">
+          Det madspild, hver dansker er direkte eller indirekt årsag til, producerer over 100 kg CO₂e årligt.
+          Det er som at køre en bil 500 km.
+        </p>
+      </div>
+    </div>
+
+    <!-- The Three Pillars -->
+    <div class="three-pillars animate-on-scroll">
+      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="section-title" style="color: var(--text-dark);">Det Tredobbelte Tab</h2>
+        <p class="section-lead" style="color: var(--text-light);">
+          Madspild påvirker tre kritiske områder samtidigt
+        </p>
+      </header>
+
+      <div class="pillars-grid">
+        <!-- Climate Impact -->
+        <div class="pillar-card animate-on-scroll">
+          <div class="pillar-icon">🌍</div>
+          <h3 class="pillar-title">Klimaaftryk</h3>
+          <p class="pillar-content">
+            Når mad smides væk, smides alle ressourcer brugt på at producere den også væk.
+            <strong>Gødning:</strong> Udledning af lattergas og metan
+            <strong>Produktion:</strong> Energi til landbrug, transport og forarbejdning
+            <strong>Det hele:</strong> CO₂-ækvivalent fra hele værdikæden
+          </p>
+        </div>
+
+        <!-- Economic Impact -->
+        <div class="pillar-card animate-on-scroll">
+          <div class="pillar-icon">💰</div>
+          <h3 class="pillar-title">Økonomisk Tab</h3>
+          <p class="pillar-content">
+            Madspild betyder penge, der bliver kastet væk uden at skabe værdi.
+            <strong>Indkøb:</strong> Råvarer købt og ikke solgt
+            <strong>Arbejdskraft:</strong> Tilberedning af mad der ikke spises
+            <strong>Affaldsgebyrer:</strong> Omkostninger til at få væk hvad man har købt
+          </p>
+        </div>
+
+        <!-- Resource Waste -->
+        <div class="pillar-card animate-on-scroll">
+          <div class="pillar-icon">💧</div>
+          <h3 class="pillar-title">Ressourcespild</h3>
+          <p class="pillar-content">
+            Jorden har endelige ressourcer, og madspild betyder dobbelt spild.
+            <strong>Vand:</strong> Tusinder af liter brugt på producere mad der ikke spises
+            <strong>Jord:</strong> Værdifuld jordkvalitet brugt ineffektivt
+            <strong>Gødning & kemikalier:</strong> Miljøbelastning uden resultat
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Economic Impact Details -->
+    <div class="economic-impact-section animate-on-scroll">
+      <header class="section-header" style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="section-title">Hvor Kommer Økonomitabet Fra?</h2>
+        <p class="section-lead">
+          Madspild påvirker kantinen økonomisk gennem flere kanaler
+        </p>
+      </header>
+
+      <div class="economic-grid">
+        <div class="economic-item animate-on-scroll">
+          <div class="economic-number">40%</div>
+          <div class="economic-label">af spildet fra overprodution</div>
+          <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.9rem;">
+            Mængde købt > mængde solgt
+          </p>
+        </div>
+
+        <div class="economic-item animate-on-scroll">
+          <div class="economic-number">35%</div>
+          <div class="economic-label">fra buffet-rester</div>
+          <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.9rem;">
+            Retter der ikke blev populære
+          </p>
+        </div>
+
+        <div class="economic-item animate-on-scroll">
+          <div class="economic-number">25%</div>
+          <div class="economic-label">fra tallerken-spild</div>
+          <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.9rem;">
+            Gæst tager mere end de spiser
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opportunity Section -->
+    <div class="key-insight animate-on-scroll">
+      <strong>💡 Nøgleindsigt for Kantiner</strong>
+      <p>
+        Madspildsreduktion er oftalmålet det <strong>mest omkostningseffektive bæredygtighedstiltag</strong>,
+        som en kantine kan implementere. I modsætning til mange andre klimatiltag, som koster penge,
+        kan madspildsreduktion både spare penge <strong>og</strong> reducere klimaaftrykket samtidigt.
+        Typisk opnår kantiner 20-30% på omkostninger indenfor 6 måneder.
+      </p>
+    </div>
+
+    <!-- Climate Impact Details -->
+    <div style="margin: 5rem 0;">
+      <header class="section-header animate-on-scroll">
+        <h2 class="section-title">Madspild og Klimaet</h2>
+        <p class="section-lead">
+          Hvordan madspild påvirker Danmarks klimamål
+        </p>
+      </header>
+
+      <p style="max-width: 900px; margin: 2rem auto; line-height: 1.8; color: var(--text-light); font-size: 1.05rem;">
+        Danmark har sat sig for at reducere drivhusgasudledninger med 70% inden 2030.
+        Fødevarerelaterede emissioner (inklusive madspild) udgør omkring 25% af det samlede danske klimaaftryk.
+        Det betyder, at <strong>madspildsreduktion er en kritisk del af Danmark strategi for at nå klimamålet</strong>.
+      </p>
+
+      <!-- Before and After Comparison -->
+      <div class="comparison-container animate-on-scroll" style="margin-top: 3rem;">
+        <div class="comparison-item negative">
+          <h3 class="comparison-title">Scenario A: Uden Handling</h3>
+          <ul class="comparison-list">
+            <li>25-30% madspild fortsætter</li>
+            <li>Omkostninger stiger med inflation</li>
+            <li>Klimaaftryk stagnerer eller øges</li>
+            <li>Konkurrencefordel mistes</li>
+            <li>Begrænset mulighed for dialog med kunder om bæredygtighed</li>
+          </ul>
+        </div>
+
+        <div class="comparison-item positive">
+          <h3 class="comparison-title">Scenario B: Med Handling</h3>
+          <ul class="comparison-list">
+            <li>Reduceres til 10-15% madspild</li>
+            <li>Årlige besparelser på 5.000-10.000 kr.</li>
+            <li>Klimaaftryk reduceres med 30-40%</li>
+            <li>Stærk konkurrencefavør</li>
+            <li>Tydelig bæredygtighedshistorie at dele</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Systemic Issues -->
+    <div style="margin: 5rem 0;">
+      <header class="section-header animate-on-scroll">
+        <h2 class="section-title">Hvorfor Er Det Så Svært at se Problemet?</h2>
+      </header>
+
+      <div style="background: var(--cheval-taube); padding: 3rem 2rem; border-radius: 20px; margin: 2rem 0;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+          <div class="animate-on-scroll">
+            <h3 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem;">
+              🔍 Spredt og usynligt
+            </h3>
+            <p style="color: var(--text-light); line-height: 1.6;">
+              Madspild sker hele tiden i små bidder. En smule rester her, en usolgt ret der.
+              Uden systematisk måling ser man det aldrig samlet.
+            </p>
+          </div>
+
+          <div class="animate-on-scroll">
+            <h3 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem;">
+              📊 Ingen baseline
+            </h3>
+            <p style="color: var(--text-light); line-height: 1.6;">
+              Hvis du ikke måler, har du intet at sammenligne med.
+              "Vi har altid gjort det sådan" er ikke et argument mod forbedring.
+            </p>
+          </div>
+
+          <div class="animate-on-scroll">
+            <h3 style="font-size: 1.2rem; color: var(--text-dark); margin-bottom: 1rem;">
+              ⏰ Pressede ressourcer
+            </h3>
+            <p style="color: var(--text-light); line-height: 1.6;">
+              Kantiner er ofte presserede med at få maden ud. Fokus på madspild kan virke som
+              endnu en opgave.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Insight -->
+    <div class="key-insight animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-dark) 0%, #6b1c29 100%);">
+      <strong>🎯 Kernepunktet</strong>
+      <p>
+        Madspild er vigtig, fordi det påvirker <strong>flere områder samtidigt:</strong> klimaet,
+        økonomi, ressourcer og etik. Men det vigtigste er, at det er et område, hvor kantiner kan
+        handle <strong>nu</strong> – uden at vente på store investeringer eller komplekse løsninger.
+        Målinger og justering kan starte i morgen og give resultater inden for uger.
+      </p>
+    </div>
+
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="page-section callout-dark animate-on-scroll" style="background: linear-gradient(135deg, var(--madspild-primary) 0%, var(--madspild-dark) 100%);">
+  <h2>Næste: Mål & Ambition</h2>
+  <p class="section-lead">
+    Se hvad målet er for madspildsreduktion og hvilke strategier der virker.
+  </p>
+  <div class="cta-row">
+    <a href="{{ url_for('topic_madspild_goal') }}" class="btn-primary">Læs mere →</a>
+    <a href="{{ url_for('topic_madspild_landing') }}" class="btn-secondary is-light">← Tilbage til emnet</a>
+  </div>
+</section>
+
+{% endblock %}

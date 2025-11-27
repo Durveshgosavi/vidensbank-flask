@@ -1,110 +1,140 @@
 {% extends "base.html" %}
 
-{% block title %}Mål & Ambition - Vidensbank{% endblock %}
+{% block title %}Nationale Mål - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Hvad er målet og vores ambition?</h1>
-    <p class="hero-subtitle">Fra viden til handling</p>
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/kitchen_chef.jpg') }}" alt="Chef Plating Food"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Målet er ikke blot at forstå tal og grafer, men at omsætte viden til konkrete ændringer i kantinedriften,
-      der både reducerer klimaaftryk og opleves som en gevinst for gæsterne.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-yellow-light">
+      Nationale<br>Mål
+    </h1>
+  </div>
+</div>
+
+<!-- The Manifesto -->
+<section class="bg-cb-taupe-light py-32">
+  <div class="mx-auto max-w-4xl px-6 text-left">
+    <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Danmarks
+      Klimamål</span>
+    <h2 class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+      "Danmark skal reducere drivhusgasudledningen med 70% i 2030."
+    </h2>
+    <div class="mt-12 h-1 w-24 bg-cb-yellow-dark"></div>
+    <p class="mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+      Dette mål er fastsat i Klimaloven. Fødevaresektoren spiller en afgørende rolle i at nå dette mål, da den står for
+      en betydelig del af de samlede udledninger.
     </p>
-  </header>
 
-  <!-- Navigation -->
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_emissions_why') }}" class="filter-pill">← Hvorfor vigtigt?</a>
-    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
-    <a href="{{ url_for('topic_emissions_impact') }}" class="filter-pill">Mit aftryk →</a>
-  </nav>
+    <div class="citation-box text-left mx-auto max-w-2xl mt-8">
+      <span class="citation-label">Kilde</span>
+      <p class="citation-text">
+        Klima-, Energi- og Forsyningsministeriet. (2020). Klimaloven.
+        <a href="https://kefm.dk/klima-og-vejr/regeringens-klimapolitik/klimaloven" target="_blank">Læs om loven</a>
+      </p>
+    </div>
 
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>Fra viden til handling</h2>
-    <p>
-      Vores ambition med Vidensbanken er at samle den vigtigste viden om fødevarerelaterede emissioner
-      ét sted, så den er:
-    </p>
+    <div class="comparison-chart text-left mx-auto max-w-2xl mt-12">
+      <div class="chart-title">Reduktionsmål (Mio. ton CO₂e)</div>
 
-    <div class="metrics-grid" style="margin: 2rem 0;">
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">🔍</div>
-        <h3 class="metric-label">Let at finde</h3>
-        <p class="metric-text">
-          Emnerne er organiseret efter spørgsmål, kunderne faktisk stiller.
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>1990 (Basisår)</span>
+          <span><strong>~78 mio. ton</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-high" style="width: 100%;">100%</div>
+        </div>
+      </div>
+
+      <div class="chart-item">
+        <div class="chart-label">
+          <span>2030 (Mål)</span>
+          <span><strong>~23 mio. ton</strong></span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar emissions-very-low" style="width: 30%;">30% (70% reduktion)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Roadmap (Editorial Timeline) -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="relative border-l border-stone-200 pl-12 md:pl-20">
+      <!-- Item 1 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-cb-yellow-dark ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-cb-yellow-dark">2020</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase">Klimaloven</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-600">
+          Folketinget vedtager Klimaloven, der juridisk forpligter Danmark til at reducere udledningen af drivhusgasser
+          med 70% i 2030 i forhold til 1990-niveauet.
         </p>
       </div>
 
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">📖</div>
-        <h3 class="metric-label">Let at forstå</h3>
-        <p class="metric-text">
-          Ingen unødig fagjargon, men stadig fagligt korrekt.
+      <!-- Item 2 -->
+      <div class="mb-20 relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">2021</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Nye Kostråd</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          Fødevarestyrelsen lancerer "De officielle Kostråd – godt for sundhed og klima", der anbefaler en mere
+          plantebaseret kost med mindre kød.
         </p>
       </div>
 
-      <div class="metric-tile">
-        <div class="metric-value" style="font-size: 2.5rem; color: var(--dark-gron);">⚡</div>
-        <h3 class="metric-label">Let at bruge</h3>
-        <p class="metric-text">
-          Direkte anvendelig i kundemøder, menudialoger og driftsbeslutninger.
+      <!-- Item 3 -->
+      <div class="relative">
+        <span
+          class="absolute -left-[53px] md:-left-[85px] top-2 flex h-4 w-4 items-center justify-center rounded-full bg-stone-300 ring-4 ring-white"></span>
+        <span class="mb-2 block font-sans text-sm font-bold tracking-widest text-stone-400">2030</span>
+        <h3 class="mb-4 font-display text-3xl font-bold text-stone-400 uppercase">Målopfyldelse</h3>
+        <p class="font-sans text-lg leading-relaxed text-stone-400">
+          Deadline for 70% reduktionsmålet. Det forventes, at alle sektorer, herunder fødevarebranchen, har bidraget
+          markant til reduktionen.
         </p>
       </div>
     </div>
-
-    <h2>Ambition for danske kantiner</h2>
-    <p>For kantiner og storkøkkener er ambitionen:</p>
-
-    <ul style="list-style: none; padding: 0;">
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ At reducere klimaaftrykket pr. gæst uden at gå på kompromis med madglæde og kvalitet.
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ At gøre plantebaserede og klimaoptimerede retter til det naturlige valg – ikke kun "alternativet".
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ At bruge data aktivt, f.eks. gennem klimaberegnere og menu-analyser.
-      </li>
-      <li style="padding: 1rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        ✓ At understøtte kundernes egne ESG- og bæredygtighedsmål med dokumenterede resultater.
-      </li>
-    </ul>
-
-    <h2>Vidensbanken som fundament for dialog</h2>
-    <p>
-      Internt skal Vidensbanken fungere som et fælles fundament:
-      Alle medarbejdere skal kunne slå op, finde forklaringer og hente tal eller eksempler til kundedialoger.
-      Eksternt skal den være udgangspunktet for materialer som white papers, præsentationer og kundespecifikke analyser.
-    </p>
-
-    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
-      "Hjælper denne side en kunde eller medarbejder med at tage det næste skridt mod en mere klimavenlig kantine?"
-    </p>
-
-    <p>
-      I praksis betyder det, at vi hele tiden spørger os selv om vores indhold lever op til dette mål.
-      Hver side, hvert tal og hvert eksempel skal kunne bruges aktivt til at skabe forandring.
-    </p>
-  </article>
-</section>
-
-<!-- Next Section CTA -->
-<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Næste: Mit Aftryk</h2>
-    <p class="section-lead">
-      Forstå hvordan dine beslutninger påvirker klimaaftrykket.
-    </p>
-    <a href="{{ url_for('topic_emissions_impact') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
   </div>
 </section>
 
+<!-- Vision Image Stack -->
+<section class="w-full">
+  <div class="grid w-full grid-cols-1 md:grid-cols-2">
+    <div class="relative h-[500px] w-full overflow-hidden">
+      <img src="{{ url_for('static', filename='images/emissions_hero.jpg') }}" alt="Future Canteen"
+        class="h-full w-full object-cover grayscale transition-all duration-700 hover:grayscale-0">
+    </div>
+    <div class="flex flex-col justify-center bg-stone-900 px-8 py-20 text-white md:px-20">
+      <h2 class="mb-6 font-display text-4xl font-bold uppercase tracking-brand-wide text-cb-yellow-light">Perspektivet
+      </h2>
+      <p class="font-sans text-lg leading-relaxed text-stone-300">
+        Fremtidens professionelle køkken forventes at være datadrevet og bæredygtigt. Fokus flyttes fra mængde til
+        kvalitet og ressourceudnyttelse.
+      </p>
+      <div class="mt-12">
+        <a href="{{ url_for('topic_emissions_impact') }}"
+          class="inline-block border-b border-cb-yellow-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-yellow-dark">
+          Prøv Beregneren →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

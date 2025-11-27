@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Tools - Biodiversitet | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container text-left items-start justify-start pl-20"
+    style="background-image: url('{{ url_for('static', filename='images/sustainable_canteen_hero_1763550140162.png') }}');">
+    <div class="bg-overlay-dark"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Tools & Værktøjer</h1>
+        <p class="hero-subtitle">Biodiversitet & Økosystemer</p>
+    </div>
+</header>
+
+<section class="page-section">
+    <header class="section-header text-left pl-6">
+        <p class="section-lead">
+            Her finder du praktiske værktøjer til at arbejde med biodiversitet i din kantine.
+        </p>
+    </header>
+
+    <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+        <a href="{{ url_for('topic_biodiversity_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    </nav>
+
+    <article style="max-width: 900px; margin: 0 auto;">
+        <div class="card-grid">
+            <div class="metric-tile text-left">
+                <h3 class="metric-label">Værktøjer kommer snart</h3>
+                <p class="metric-text">Vi arbejder på at udvikle værktøjer til at måle og forbedre biodiversitet.</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+{% endblock %}

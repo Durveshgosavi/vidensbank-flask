@@ -1,57 +1,116 @@
 {% extends "base.html" %}
 
-{% block title %}Tips & Tricks - Ernæring | Vidensbank{% endblock %}
+{% block title %}Tips til Ernæring - Vidensbank{% endblock %}
 
 {% block content %}
-<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd');">
-  <div class="bg-overlay-dark"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">Tips og Tricks til Bedre Ernæring</h1>
-    <p class="hero-subtitle">Praktiske greb til din kantine</p>
+<!-- Hero Section -->
+<div class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='images/nutrition_salad.jpg') }}" alt="Nutrition Tips"
+      class="h-full w-full object-cover">
+    <div class="absolute inset-0 brand-overlay"></div>
   </div>
-</header>
 
-<section class="page-section">
-  <header class="section-header">
-    <p class="section-lead">
-      Her finder du konkrete, praksistestede metoder til at forbedre ernæringen i kantinen –
-      uden at miste madglæde eller gæstetilfredshed.
+  <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+    <h1
+      class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+      Sundhed i<br>Køkkenet
+    </h1>
+  </div>
+</div>
+
+<!-- Intro Text -->
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-6 text-left">
+    <p class="font-display text-3xl font-bold leading-tight text-stone-900 md:text-4xl uppercase tracking-brand-wide">
+      "Smagen er afgørende."
     </p>
-  </header>
-
-  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
-    <a href="{{ url_for('topic_ernaering_impact') }}" class="filter-pill">← Mit aftryk</a>
-    <a href="{{ url_for('topic_ernaering_landing') }}" class="filter-pill">Tilbage til emnet</a>
-  </nav>
-
-  <article style="max-width: 900px; margin: 0 auto;">
-    <h2>Menuudvikling og opskrifter</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        <strong>Følg tallerkenmodellen:</strong><br>½ grøntsager, ¼ protein og ¼ kulhydrater som udgangspunkt.
-      </li>
-      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        <strong>Skift til fuldkorn:</strong><br>Brug fuldkornsris, -pasta, -brød og -mel hvor det giver mening.
-      </li>
-      <li style="padding: 1.25rem; background-color: var(--light-gron); margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
-        <strong>Byg smag uden salt:</strong><br>Brug urter, krydderier, fermentering og syrlighed til at skabe dybde.
-      </li>
-    </ul>
-
-    <h2>Buffet og præsentation</h2>
-    <ul style="list-style: none; padding: 0;">
-      <li style="padding: 1.25rem; background-color: var(--cheval-taube); margin-bottom: 1rem; border-radius: 8px;">
-        <strong>Placer de sunde valg først:</strong><br>Start buffeten med grøntsager og salater.
-      </li>
-      <li style="padding: 1.25rem; background-color: var(--cheval-taube); margin-bottom: 1rem; border-radius: 8px;">
-        <strong>Kommuniker positivt:</strong><br>Fremhæv smag, farver og friskhed.
-      </li>
-    </ul>
-
-    <p style="background-color: var(--cheval-taube); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-style: italic;">
-      "Små forbedringer hver dag skaber store resultater over tid."
+    <p class="mt-6 font-sans text-lg text-stone-600">
+      Vi kan lave verdens sundeste mad, men hvis den ikke bliver spist, gør den ingen gavn. Her er vores tips til sund
+      velsmag.
     </p>
-  </article>
+  </div>
 </section>
 
+<!-- Tips Grid -->
+<section class="bg-cb-taupe-light py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Tip 1 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">01</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Mere Smag</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug masser af friske krydderurter, citrus, hvidløg og ingefær. Det giver smag uden at tilføje salt eller
+          fedt.
+        </p>
+      </div>
+
+      <!-- Tip 2 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">02</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Tekstur</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Sørg for knas og bid i salaterne. Ristede kerner, nødder eller sprøde grøntsager gør det sjovere at spise.
+        </p>
+      </div>
+
+      <!-- Tip 3 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">03</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Farver</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Vi spiser med øjnene. En farverig tallerken signalerer sundhed og variation. Brug hele paletten.
+        </p>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">04</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Bælgfrugter</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Linser, bønner og ærter er klimavenlige proteinkilder. Brug dem i gryderetter, salater eller som puré – de
+          mætter og smager fantastisk.
+        </p>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">05</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Fuldkorn</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Brug fuldkornsmel, perlespelt eller brune ris. Det mætter bedre og smager af mere.
+        </p>
+      </div>
+
+      <!-- Tip 6 -->
+      <div class="bg-white p-12 transition-transform duration-300 hover:-translate-y-2">
+        <span class="mb-6 block font-display text-6xl font-bold text-cb-green-dark">06</span>
+        <h3 class="mb-4 font-display text-2xl font-bold uppercase tracking-wide text-stone-900">Anretning</h3>
+        <p class="font-sans text-stone-600 leading-relaxed">
+          Placer det grønne først på buffeten. Det får gæsterne til at tage mere af det sunde.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-stone-900 py-32 text-left text-white">
+  <div class="mx-auto max-w-4xl px-6">
+    <h2
+      class="mb-8 font-display text-5xl font-bold leading-tight md:text-6xl uppercase tracking-brand-wide text-cb-green-dark">
+      "Gør det nemt"
+    </h2>
+    <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
+      Når det sunde valg er det lækreste valg, behøver vi ikke løfte pegefingeren.
+    </p>
+    <div class="mt-12">
+      <a href="{{ url_for('topic_ernaering_impact') }}"
+        class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-green-dark">
+        Se Aftrykket →
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

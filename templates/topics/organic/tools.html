@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Tools - Økologi | Vidensbank{% endblock %}
+
+{% block content %}
+<header class="hero-video-container text-left items-start justify-start pl-20"
+    style="background-image: url('{{ url_for('static', filename='images/vegetables_closeup.jpg') }}');">
+    <div class="bg-overlay-dark"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Tools & Værktøjer</h1>
+        <p class="hero-subtitle">Økologi & Råvarer</p>
+    </div>
+</header>
+
+<section class="page-section">
+    <header class="section-header text-left pl-6">
+        <p class="section-lead">
+            Her finder du praktiske værktøjer til at arbejde med økologi og Det Økologiske Spisemærke.
+        </p>
+    </header>
+
+    <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+        <a href="{{ url_for('topic_organic_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    </nav>
+
+    <article style="max-width: 900px; margin: 0 auto;">
+        <div class="card-grid">
+            <div class="aww-card">
+                <div class="card-content-body">
+                    <h3 class="card-title">Økologiberegner</h3>
+                    <p class="card-teaser">Beregn din økologiprocent</p>
+                    <a href="#" class="btn-primary" style="margin-top: 1rem;">Start Beregner →</a>
+                </div>
+            </div>
+
+            <div class="metric-tile text-left">
+                <h3 class="metric-label">Flere værktøjer kommer snart</h3>
+                <p class="metric-text">Vi arbejder på at tilføje flere praktiske værktøjer og beregninger.</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+{% endblock %}

@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}Økologi og Certificering - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+.topic-hero {position: relative;min-height: 500px;background: linear-gradient(135deg, #6a994e, #386641);color: white;display: flex;align-items: center;justify-content: center;text-align: center;padding: 5rem 2rem;overflow: hidden;}
+.topic-hero::before {content: '';position: absolute;inset: 0;background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1600');background-size: cover;background-position: center;opacity: 0.2;z-index: 0;}
+.topic-hero-content {position: relative;z-index: 1;max-width: 900px;}
+.topic-hero h1 {font-size: clamp(2.5rem, 5vw, 4rem);font-family: var(--ff-display);text-transform: uppercase;margin-bottom: 1.5rem;letter-spacing: 0.05em;}
+.topic-hero-subtitle {font-size: 1.3rem;opacity: 0.9;margin-bottom: 2rem;line-height: 1.6;}
+.topic-stats-banner {display: grid;grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));gap: 2rem;margin: -4rem auto 4rem;max-width: 1100px;padding: 0 2rem;position: relative;z-index: 10;}
+.topic-stat-card {background: white;padding: 2rem;border-radius: 20px;box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);text-align: center;transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);}
+.topic-stat-card:hover {transform: translateY(-8px);box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);}
+.topic-stat-value {font-size: 3rem;font-weight: 700;color: #6a994e;margin-bottom: 0.5rem;}
+.topic-stat-label {font-size: 0.95rem;color: var(--text-light);font-weight: 600;text-transform: uppercase;letter-spacing: 0.5px;}
+.topic-intro-section {max-width: 800px;margin: 4rem auto;padding: 0 2rem;text-align: center;}
+.topic-intro-section h2 {font-size: 2.5rem;margin-bottom: 1.5rem;}
+.topic-intro-section p {font-size: 1.2rem;line-height: 1.8;color: var(--text-light);}
+.data-viz-section {background: var(--cheval-taube);padding: 5rem 2rem;margin: 4rem 0;border-radius: 40px;}
+.organic-benefits-grid {display: grid;grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));gap: 2rem;margin: 3rem 0;}
+.benefit-item {background: white;padding: 2.5rem;border-radius: 20px;box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);text-align: center;transition: all 0.3s ease;border-top: 5px solid #6a994e;}
+.benefit-item:hover {transform: scale(1.05);box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);}
+.benefit-icon {font-size: 4rem;margin-bottom: 1.5rem;}
+.benefit-title {font-size: 1.2rem;font-weight: 700;margin-bottom: 1rem;color: var(--text-dark);}
+.benefit-description {font-size: 0.95rem;color: var(--text-light);line-height: 1.6;}
+.chart-showcase {background: white;padding: 3rem;border-radius: 24px;box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);margin: 3rem 0;}
+.chart-showcase canvas {max-height: 500px;}
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="topic-hero animate-on-scroll">
+  <div class="topic-hero-content">
+    <h1>Økologi og Certificering</h1>
+    <p class="topic-hero-subtitle">Navigér i certificeringer, forsyning og driftsmodeller for økologiske køkkener – med fokus på dansk kontekst.</p>
+    <div class="hero-actions">
+      <a href="#explore" class="btn-primary">Udforsk Emnet</a>
+      <a href="{{ url_for('calculator') }}" class="btn-secondary is-light">Økologiandel</a>
+    </div>
+  </div>
+</header>
+
+<div class="topic-stats-banner">
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="60" data-suffix="%">0%</div>
+    <div class="topic-stat-label">Målsætning offentlige køkkener 2030</div>
+  </div>
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="11.6" data-suffix="%">0%</div>
+    <div class="topic-stat-label">Nuværende økologiandel i Danmark</div>
+  </div>
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="200">0</div>
+    <div class="topic-stat-label">Antal certificerede storkøkkener</div>
+  </div>
+</div>
+
+<section class="topic-intro-section animate-on-scroll">
+  <h2>Hvorfor Fokusere på Økologi?</h2>
+  <p>Økologisk produktion beskytter biodiversitet, jordsundhed og grundvand. For danske kantiner er økologi både et politisk mål og et kvalitetstegn, der signalerer omsorg for miljø og dyrevelfærd. Danmark er førende i verden på økologisk storkøkkendrift.</p>
+</section>
+
+<section class="data-viz-section animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header">
+      <p class="eyebrow">FORDELE VED ØKOLOGI</p>
+      <h2 class="section-title">Hvorfor Vælge Økologisk?</h2>
+      <p class="section-lead">Dokumenterede miljø- og sundhedsfordele ved økologisk produktion</p>
+    </header>
+
+    <div class="organic-benefits-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">🌱</div>
+        <h3 class="benefit-title">Ingen Pesticider</h3>
+        <p class="benefit-description">Økologiske råvarer er dyrket uden syntetiske pesticider, hvilket beskytter både biodiversitet, jordsundhed og grundvand.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🐝</div>
+        <h3 class="benefit-title">Biodiversitet</h3>
+        <p class="benefit-description">Økologisk landbrug fremmer biodiversitet med 50% flere arter af planter, insekter og fugle sammenlignet med konventionel drift.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🐄</div>
+        <h3 class="benefit-title">Dyrevelfærd</h3>
+        <p class="benefit-description">Strengere krav til dyrevelfærd med mere plads, udendørs adgang og forbud mod forebyggende antibiotika.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">💧</div>
+        <h3 class="benefit-title">Rent Grundvand</h3>
+        <p class="benefit-description">Økologisk landbrug bruger ingen syntetisk gødning, hvilket reducerer udvaskning af nitrat til grundvandet markant.</p>
+      </div>
+    </div>
+
+    <div class="chart-showcase">
+      <canvas id="organicTrendChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<section id="explore" class="page-section">
+  <header class="section-header animate-on-scroll">
+    <h2 class="section-title">Udforsk Emnet i Dybden</h2>
+    <p class="section-lead">Vælg et område nedenfor for at dykke ned i specifik viden om økologi, certificering og driftsmodeller.</p>
+  </header>
+
+  <nav class="filter-nav animate-on-scroll" aria-label="Underemner om økologi">
+    <a href="{{ url_for('topic_okologi_what') }}" class="filter-pill">Hvad er det?</a>
+    <a href="{{ url_for('topic_okologi_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
+    <a href="{{ url_for('topic_okologi_goal') }}" class="filter-pill">Mål & ambition</a>
+    <a href="{{ url_for('topic_okologi_impact') }}" class="filter-pill">Mit aftryk</a>
+    <a href="{{ url_for('topic_okologi_tips') }}" class="filter-pill">Tips & tricks</a>
+  </nav>
+
+  <div class="card-grid">
+    <a href="{{ url_for('topic_okologi_what') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200" alt="Økologisk landbrug" loading="lazy">
+        <span class="card-category-tag">Overblik</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER ØKOLOGI?</h3>
+        <p class="card-teaser">En introduktion til økologiske principper, certificeringer og lovkrav i Danmark.</p>
+        <div class="card-metadata"><span>Grundlæggende viden</span><span>•</span><span>5–7 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_okologi_why') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200" alt="Økologisk marked" loading="lazy">
+        <span class="card-category-tag">Danmark</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVORFOR ER DET VIGTIGT?</h3>
+        <p class="card-teaser">Økologi er central i dansk landbrugspolitik og offentlige indkøbsmål.</p>
+        <div class="card-metadata"><span>National kontekst</span><span>•</span><span>5–8 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_okologi_goal') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1595855759920-86582396756a?q=80&w=1200" alt="Økologisk certificering" loading="lazy">
+        <span class="card-category-tag">Strategi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">MÅL & AMBITION</h3>
+        <p class="card-teaser">Hvordan kantiner kan arbejde strategisk med økologiomstilling og certificering.</p>
+        <div class="card-metadata"><span>Ambition</span><span>•</span><span>4–6 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_okologi_impact') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1200" alt="Økologisk køkken" loading="lazy">
+        <span class="card-category-tag">Mit aftryk</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER MIT AFTRYK?</h3>
+        <p class="card-teaser">Hvordan kantiner kan øge økologiandelen og dokumentere omstillingen.</p>
+        <div class="card-metadata"><span>Praksisnært</span><span>•</span><span>5–7 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_okologi_tips') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200" alt="Økologiske råvarer" loading="lazy">
+        <span class="card-category-tag">Handling</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">TIPS & TRICKS</h3>
+        <p class="card-teaser">Konkrete greb til økologisk indkøb, menuudvikling og certificeringsprocessen.</p>
+        <div class="card-metadata"><span>Værktøjer</span><span>•</span><span>3–6 min læsning</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Klar til at Øge Jeres Økologiandel?</h2>
+  <p class="section-lead">Brug vores værktøjer til at beregne økologiandel og planlægge omstillingen.</p>
+  <div class="cta-row">
+    <a href="{{ url_for('calculator') }}" class="btn-primary">Økologiberegner</a>
+    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Data</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chartCanvas = document.getElementById('organicTrendChart');
+    if (chartCanvas) {
+        new Chart(chartCanvas.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2017', '2019', '2021', '2023', '2025', '2030'],
+                datasets: [{
+                    label: 'Økologiandel i offentlige køkkener (%)',
+                    data: [7, 10, 13, 18, 24, 35, 60],
+                    borderColor: '#6a994e',
+                    backgroundColor: 'rgba(106, 153, 78, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {display: true, text: 'Økologiudvikling i Danske Offentlige Køkkener', font: {size: 18, weight: 'bold'}, padding: 20},
+                    legend: {display: false}
+                },
+                scales: {
+                    y: {beginAtZero: true, max: 70, ticks: {callback: function(value) {return value + '%';}}}
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

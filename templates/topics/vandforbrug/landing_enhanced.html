@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}Vandforbrug og Ressourceeffektivitet - Vidensbank{% endblock %}
+
+{% block extra_css %}
+<style>
+.topic-hero {position: relative;min-height: 500px;background: linear-gradient(135deg, #0077b6, #023e8a);color: white;display: flex;align-items: center;justify-content: center;text-align: center;padding: 5rem 2rem;overflow: hidden;}
+.topic-hero::before {content: '';position: absolute;inset: 0;background-image: url('https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=1600');background-size: cover;background-position: center;opacity: 0.2;z-index: 0;}
+.topic-hero-content {position: relative;z-index: 1;max-width: 900px;}
+.topic-hero h1 {font-size: clamp(2.5rem, 5vw, 4rem);font-family: var(--ff-display);text-transform: uppercase;margin-bottom: 1.5rem;letter-spacing: 0.05em;}
+.topic-hero-subtitle {font-size: 1.3rem;opacity: 0.9;margin-bottom: 2rem;line-height: 1.6;}
+.topic-stats-banner {display: grid;grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));gap: 2rem;margin: -4rem auto 4rem;max-width: 1100px;padding: 0 2rem;position: relative;z-index: 10;}
+.topic-stat-card {background: white;padding: 2rem;border-radius: 20px;box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);text-align: center;transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);}
+.topic-stat-card:hover {transform: translateY(-8px);box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);}
+.topic-stat-value {font-size: 3rem;font-weight: 700;color: #0077b6;margin-bottom: 0.5rem;}
+.topic-stat-label {font-size: 0.95rem;color: var(--text-light);font-weight: 600;text-transform: uppercase;letter-spacing: 0.5px;}
+.topic-intro-section {max-width: 800px;margin: 4rem auto;padding: 0 2rem;text-align: center;}
+.topic-intro-section h2 {font-size: 2.5rem;margin-bottom: 1.5rem;}
+.topic-intro-section p {font-size: 1.2rem;line-height: 1.8;color: var(--text-light);}
+.data-viz-section {background: var(--cheval-taube);padding: 5rem 2rem;margin: 4rem 0;border-radius: 40px;}
+.water-usage-grid {display: grid;grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));gap: 2rem;margin: 3rem 0;}
+.water-item {background: white;padding: 2.5rem;border-radius: 20px;box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);text-align: center;transition: all 0.3s ease;border-top: 5px solid #0077b6;}
+.water-item:hover {transform: scale(1.05);box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);}
+.water-icon {font-size: 4rem;margin-bottom: 1.5rem;}
+.water-value {font-size: 2.5rem;font-weight: 700;margin-bottom: 1rem;color: #0077b6;}
+.water-label {font-size: 1.1rem;font-weight: 600;color: var(--text-dark);margin-bottom: 0.5rem;}
+.water-description {font-size: 0.95rem;color: var(--text-light);line-height: 1.6;}
+.chart-showcase {background: white;padding: 3rem;border-radius: 24px;box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);margin: 3rem 0;}
+.chart-showcase canvas {max-height: 500px;}
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="topic-hero animate-on-scroll">
+  <div class="topic-hero-content">
+    <h1>Vandforbrug og Ressourceeffektivitet</h1>
+    <p class="topic-hero-subtitle">Reducer vandforbruget i kantinen med data, teknologi og adfærdsdesign – hvert drop tæller.</p>
+    <div class="hero-actions">
+      <a href="#explore" class="btn-primary">Udforsk Emnet</a>
+      <a href="{{ url_for('calculator') }}" class="btn-secondary is-light">Vandberegner</a>
+    </div>
+  </div>
+</header>
+
+<div class="topic-stats-banner">
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="15000">0</div>
+    <div class="topic-stat-label">L vand / dag typisk kantine</div>
+  </div>
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="40" data-suffix="%">0%</div>
+    <div class="topic-stat-label">Besparelse med optimering</div>
+  </div>
+  <div class="topic-stat-card animate-on-scroll">
+    <div class="topic-stat-value" data-counter="20">0</div>
+    <div class="topic-stat-label">L vand / måltid gennemsnit</div>
+  </div>
+</div>
+
+<section class="topic-intro-section animate-on-scroll">
+  <h2>Hvorfor Fokusere på Vandforbrug?</h2>
+  <p>Vand er en begrænset ressource, også i Danmark. Storkøkkener bruger store mængder vand til tilberedning, opvask og rengøring. Med smart teknologi, bedre rutiner og medarbejder-awareness kan kantiner reducere vandforbruget med op til 40% uden at gå på kompromis med hygiejne eller kvalitet.</p>
+</section>
+
+<section class="data-viz-section animate-on-scroll">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <header class="section-header">
+      <p class="eyebrow">HVOR BRUGES VANDET?</p>
+      <h2 class="section-title">Vandforbrug i Danske Kantiner</h2>
+      <p class="section-lead">Fordeling af vandforbrug i et typisk storkøkken – hvor kan du spare mest?</p>
+    </header>
+
+    <div class="water-usage-grid">
+      <div class="water-item">
+        <div class="water-icon">🍽️</div>
+        <div class="water-value" data-counter="45" data-suffix="%">0%</div>
+        <h3 class="water-label">Opvask</h3>
+        <p class="water-description">Den største vandpost i køkkenet. Maskiner, manuel opvask, skylning af service og gryder.</p>
+      </div>
+      <div class="water-item">
+        <div class="water-icon">🥘</div>
+        <div class="water-value" data-counter="30" data-suffix="%">0%</div>
+        <h3 class="water-label">Tilberedning</h3>
+        <p class="water-description">Kogning, grøntvarevask, optøning og andre produktionsprocesser der kræver vand.</p>
+      </div>
+      <div class="water-item">
+        <div class="water-icon">🧹</div>
+        <div class="water-value" data-counter="20" data-suffix="%">0%</div>
+        <h3 class="water-label">Rengøring</h3>
+        <p class="water-description">Gulvvask, rengøring af overflader, maskiner og køkkenudsyr. Ofte med højtryk.</p>
+      </div>
+      <div class="water-item">
+        <div class="water-icon">🚿</div>
+        <div class="water-value" data-counter="5" data-suffix="%">0%</div>
+        <h3 class="water-label">Sanitet</h3>
+        <p class="water-description">Håndvask, personaletoiletter og andre sanitære faciliteter.</p>
+      </div>
+    </div>
+
+    <div class="chart-showcase">
+      <canvas id="waterUsageChart"></canvas>
+    </div>
+
+    <div style="background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); margin: 3rem 0; text-align: center;">
+      <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-dark);">Besparelsespotentiale</h3>
+      <p style="font-size: 1.2rem; color: var(--text-light); line-height: 1.8; max-width: 700px; margin: 0 auto 2rem;">Ved at optimere vandforbrug kan en kantine med 500 måltider/dag spare:</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: #0077b6; margin-bottom: 0.5rem;" data-counter="6000">0</div>
+          <div style="font-size: 1rem; color: var(--text-light); font-weight: 600;">L vand / dag</div>
+        </div>
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: #0077b6; margin-bottom: 0.5rem;" data-counter="2190000">0</div>
+          <div style="font-size: 1rem; color: var(--text-light); font-weight: 600;">L vand / år</div>
+        </div>
+        <div>
+          <div style="font-size: 3rem; font-weight: 700; color: #0077b6; margin-bottom: 0.5rem;" data-counter="87000">0</div>
+          <div style="font-size: 1rem; color: var(--text-light); font-weight: 600;">kr. / år</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="explore" class="page-section">
+  <header class="section-header animate-on-scroll">
+    <h2 class="section-title">Udforsk Emnet i Dybden</h2>
+    <p class="section-lead">Vælg et område nedenfor for at dykke ned i specifik viden om vandforbrug, måling og besparelsesstrategier.</p>
+  </header>
+
+  <nav class="filter-nav animate-on-scroll" aria-label="Underemner om vandforbrug">
+    <a href="{{ url_for('topic_vandforbrug_what') }}" class="filter-pill">Hvad er det?</a>
+    <a href="{{ url_for('topic_vandforbrug_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
+    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">Mål & ambition</a>
+    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="filter-pill">Mit aftryk</a>
+    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="filter-pill">Tips & tricks</a>
+  </nav>
+
+  <div class="card-grid">
+    <a href="{{ url_for('topic_vandforbrug_what') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=1200" alt="Vandforbrug i køkkener" loading="lazy">
+        <span class="card-category-tag">Overblik</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER VANDFORBRUG?</h3>
+        <p class="card-teaser">En introduktion til vandforbrug i storkøkkener, måleenheder og forbrugsmønstre.</p>
+        <div class="card-metadata"><span>Grundlæggende viden</span><span>•</span><span>5–7 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_vandforbrug_why') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1591126544009-c4e1a78af20d?q=80&w=1200" alt="Vandressourcer og bæredygtighed" loading="lazy">
+        <span class="card-category-tag">Danmark</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVORFOR ER DET VIGTIGT?</h3>
+        <p class="card-teaser">Vand er en begrænset ressource, og effektivitet er afgørende for både økonomi og miljø.</p>
+        <div class="card-metadata"><span>National kontekst</span><span>•</span><span>5–8 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_vandforbrug_goal') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1582794543462-1ff75c70f0c8?q=80&w=1200" alt="Vandbesparende teknologi" loading="lazy">
+        <span class="card-category-tag">Strategi</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">MÅL & AMBITION</h3>
+        <p class="card-teaser">Hvordan kantiner kan arbejde strategisk med vandreduktion gennem målsætninger og teknologi.</p>
+        <div class="card-metadata"><span>Ambition</span><span>•</span><span>4–6 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_vandforbrug_impact') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1527576539890-dfa815648363?q=80&w=1200" alt="Vandmåling i køkken" loading="lazy">
+        <span class="card-category-tag">Mit aftryk</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">HVAD ER MIT AFTRYK?</h3>
+        <p class="card-teaser">Hvordan kantiner kan måle vandforbrug og identificere besparelsesmuligheder.</p>
+        <div class="card-metadata"><span>Praksisnært</span><span>•</span><span>5–7 min læsning</span></div>
+      </div>
+    </a>
+
+    <a href="{{ url_for('topic_vandforbrug_tips') }}" class="aww-card animate-on-scroll">
+      <div class="card-image-container">
+        <img src="https://images.unsplash.com/photo-1587556930796-1c0be4e4fef7?q=80&w=1200" alt="Effektiv vandanvendelse" loading="lazy">
+        <span class="card-category-tag">Handling</span>
+      </div>
+      <div class="card-content-body">
+        <h3 class="card-title">TIPS & TRICKS</h3>
+        <p class="card-teaser">Konkrete greb til vandbesparelse, teknologioptimering og adfærdsændringer.</p>
+        <div class="card-metadata"><span>Værktøjer</span><span>•</span><span>3–6 min læsning</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="page-section callout-dark animate-on-scroll">
+  <h2>Klar til at Reducere Jeres Vandforbrug?</h2>
+  <p class="section-lead">Brug vores værktøjer til at måle vandforbrug og identificere de største besparelsesmuligheder.</p>
+  <div class="cta-row">
+    <a href="{{ url_for('calculator') }}" class="btn-primary">Vandberegner</a>
+    <a href="{{ url_for('climate_data') }}" class="btn-secondary is-light">Se Data</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chartCanvas = document.getElementById('waterUsageChart');
+    if (chartCanvas) {
+        new Chart(chartCanvas.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Opvask', 'Tilberedning', 'Rengøring', 'Sanitet'],
+                datasets: [{
+                    label: 'Vandforbrug (%)',
+                    data: [45, 30, 20, 5],
+                    backgroundColor: ['#0077b6', '#0096c7', '#00b4d8', '#48cae4'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {display: true, text: 'Fordeling af Vandforbrug i Kantiner', font: {size: 18, weight: 'bold'}, padding: 20},
+                    legend: {position: 'bottom', labels: {padding: 20, font: {size: 14}}},
+                    tooltip: {callbacks: {label: function(context) {return context.label + ': ' + context.parsed + '%';}}}
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

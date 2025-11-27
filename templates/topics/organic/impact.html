@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Beregn Økologi - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/Cheval21226.jpeg') }}" alt="Organic Ingredients"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-green-light">
+            Beregn<br>Procent
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            Få et hurtigt overblik over jeres økologiprocent baseret på jeres indkøb. Husk at alle fødevarer og
+            drikkevarer tæller med.
+        </p>
+    </div>
+</div>
+
+<!-- Calculator Section -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="overflow-hidden rounded-none bg-white shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Form -->
+                <div class="p-8 md:p-16">
+                    <h2 class="mb-8 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">
+                        Indtast Tal</h2>
+                    <p class="mb-8 text-sm text-stone-500">I kan beregne enten i kg eller kr. Vælg den metode, der giver
+                        det bedste resultat for jer.</p>
+
+                    <form id="organicForm" class="space-y-8">
+                        <div>
+                            <label
+                                class="mb-2 block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Total
+                                Indkøb</label>
+                            <input type="number" id="totalInput" value="1000"
+                                class="w-full border-b border-stone-300 bg-transparent py-2 font-display text-3xl font-bold text-stone-900 focus:border-cb-green-dark focus:outline-none transition-colors">
+                            <p class="mt-1 text-xs text-stone-400">Kg eller Kr.</p>
+                        </div>
+
+                        <div>
+                            <label
+                                class="mb-2 block font-sans text-xs font-bold uppercase tracking-widest text-stone-500">Heraf
+                                Økologisk</label>
+                            <input type="number" id="organicInput" value="450"
+                                class="w-full border-b border-stone-300 bg-transparent py-2 font-display text-3xl font-bold text-stone-900 focus:border-cb-green-dark focus:outline-none transition-colors">
+                            <p class="mt-1 text-xs text-stone-400">Kg eller Kr.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Result -->
+                <div class="flex flex-col justify-center bg-cb-green-dark p-8 text-white md:p-16 transition-colors duration-500"
+                    id="resultContainer">
+                    <span
+                        class="mb-2 block font-sans text-xs font-bold uppercase tracking-widest text-cb-green-light">Jeres
+                        Økologiprocent</span>
+                    <div class="mb-2 font-display text-8xl font-bold" id="resultValue">0%</div>
+                    <div class="mb-12 font-sans text-xl text-cb-green-light" id="labelStatus">Ingen Mærke</div>
+
+                    <div class="space-y-6 border-t border-cb-green-medium/30 pt-8">
+                        <div class="flex justify-between font-sans text-sm">
+                            <span class="text-cb-green-light">Næste Mål</span>
+                            <span class="font-bold text-white" id="nextGoal">Bronze (30%)</span>
+                        </div>
+                        <div class="flex justify-between font-sans text-sm">
+                            <span class="text-cb-green-light">Mangler</span>
+                            <span class="font-bold text-white" id="missingValue">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Context Section -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-3xl px-6 text-left">
+        <h2 class="mb-8 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">Hvad betyder det?
+        </h2>
+        <div class="grid grid-cols-3 gap-8">
+            <div>
+                <div class="mb-4 h-16 w-16 rounded-full border-4 border-amber-700 bg-white"></div>
+                <h3 class="font-bold uppercase text-stone-900">Bronze</h3>
+                <p class="text-sm text-stone-500">30-60%</p>
+            </div>
+            <div>
+                <div class="mb-4 h-16 w-16 rounded-full border-4 border-stone-400 bg-white"></div>
+                <h3 class="font-bold uppercase text-stone-900">Sølv</h3>
+                <p class="text-sm text-stone-500">60-90%</p>
+            </div>
+            <div>
+                <div class="mb-4 h-16 w-16 rounded-full border-4 border-yellow-500 bg-white"></div>
+                <h3 class="font-bold uppercase text-stone-900">Guld</h3>
+                <p class="text-sm text-stone-500">90-100%</p>
+            </div>
+        </div>
+        <div class="mt-12">
+            <a href="{{ url_for('topic_organic_tips') }}"
+                class="inline-block border-b-2 border-cb-green-dark pb-1 text-sm font-bold uppercase tracking-widest text-cb-green-dark transition-colors hover:text-cb-green-medium">
+                Få tips til at øge procenten →
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const totalInput = document.getElementById('totalInput');
+        const organicInput = document.getElementById('organicInput');
+        const resultValue = document.getElementById('resultValue');
+        const labelStatus = document.getElementById('labelStatus');
+        const resultContainer = document.getElementById('resultContainer');
+        const nextGoal = document.getElementById('nextGoal');
+        const missingValue = document.getElementById('missingValue');
+
+        function calculate() {
+            const total = parseFloat(totalInput.value) || 0;
+            const organic = parseFloat(organicInput.value) || 0;
+
+            if (total === 0) {
+                resultValue.textContent = '0%';
+                return;
+            }
+
+            const percentage = (organic / total) * 100;
+            resultValue.textContent = Math.round(percentage) + '%';
+
+            // Update UI based on percentage
+            if (percentage >= 90) {
+                labelStatus.textContent = 'Guld Mærke';
+                resultContainer.className = 'flex flex-col justify-center bg-yellow-600 p-8 text-white md:p-16 transition-colors duration-500';
+                nextGoal.textContent = 'Mål Nået!';
+                missingValue.textContent = '0';
+            } else if (percentage >= 60) {
+                labelStatus.textContent = 'Sølv Mærke';
+                resultContainer.className = 'flex flex-col justify-center bg-stone-500 p-8 text-white md:p-16 transition-colors duration-500';
+                nextGoal.textContent = 'Guld (90%)';
+                const needed = (0.9 * total) - organic;
+                missingValue.textContent = Math.round(needed);
+            } else if (percentage >= 30) {
+                labelStatus.textContent = 'Bronze Mærke';
+                resultContainer.className = 'flex flex-col justify-center bg-amber-700 p-8 text-white md:p-16 transition-colors duration-500';
+                nextGoal.textContent = 'Sølv (60%)';
+                const needed = (0.6 * total) - organic;
+                missingValue.textContent = Math.round(needed);
+            } else {
+                labelStatus.textContent = 'Ingen Mærke';
+                resultContainer.className = 'flex flex-col justify-center bg-cb-green-dark p-8 text-white md:p-16 transition-colors duration-500';
+                nextGoal.textContent = 'Bronze (30%)';
+                const needed = (0.3 * total) - organic;
+                missingValue.textContent = Math.round(needed);
+            }
+        }
+
+        totalInput.addEventListener('input', calculate);
+        organicInput.addEventListener('input', calculate);
+
+        calculate();
+    });
+</script>
+{% endblock %}

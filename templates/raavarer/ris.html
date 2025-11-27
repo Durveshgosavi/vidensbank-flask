@@ -1,0 +1,774 @@
+{% extends "base.html" %}
+
+{% block title %}Ris – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
+
+{% block content %}
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .initial-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+</style>
+
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-amber-50 via-white to-orange-50 pt-32 pb-20 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="text-center mb-12">
+      <div class="inline-block mb-6 px-6 py-2 bg-amber-100 border-2 border-amber-300 rounded-full">
+        <span class="font-sans text-xs font-bold tracking-widest uppercase text-amber-800">Kulhydratkilde</span>
+      </div>
+      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
+        Ris
+      </h1>
+      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+        Verdens vigtigste basisfødevare. Med moderat klimaaftryk og betydelige metanemissioner
+        kræver ris strategisk håndtering i den klimabevidste kantine.
+      </p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
+      <img src="{{ url_for('static', filename='images/seasonal_salad.jpg') }}"
+           alt="Ris i professionelt køkken"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 text-white">
+        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
+        <p class="text-4xl font-display font-bold">4.0 kg CO₂e pr. kg ris</p>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-500 text-center initial-hidden animate-fade-in-up stagger-1">
+        <div class="text-3xl mb-2">🌾</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">4.0 kg</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500 text-center initial-hidden animate-fade-in-up stagger-2">
+        <div class="text-3xl mb-2">🔥</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">~50%</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Fra Metan</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-3">
+        <div class="text-3xl mb-2">💧</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">2,497L</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Vand pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-4">
+        <div class="text-3xl mb-2">🌍</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">3.5 mia</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Mennesker spiser ris</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-orange-dark">Klimadata</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimaaftryk i Kontekst
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Med <strong class="text-orange-600">4.0 kg CO₂e pr. kg</strong> ligger ris mellem æg (4.8 kg) og bælgfrugter (2 kg).
+        Metanemissioner fra rismarker udgør ca. 50% af det samlede klimaaftryk.
+      </p>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
+      <canvas id="riceComparisonChart" class="w-full" style="max-height: 400px;"></canvas>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">⚠️ Metanproblem</h3>
+        <p class="text-sm text-stone-700">
+          Oversvømmede rismarker skaber anaerobe forhold hvor mikroorganismer producerer metan (CH₄) –
+          en drivhusgas 28x stærkere end CO₂ over 100 år. Dette udgør ~50% af ris' klimaaftryk.
+        </p>
+      </div>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">✅ Bedre end kød</h3>
+        <p class="text-sm text-stone-700">
+          Selvom ris har højere klimaaftryk end andre kornprodukter (pasta: 0.9 kg, brød: 0.9 kg),
+          er det stadig 3-15x lavere end animalske proteiner.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Miljøpåvirkning
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Water -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
+        <div class="text-5xl mb-4">💧</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
+        <div class="text-4xl font-bold text-blue-600 mb-4">2,497 L/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Våd-ris (oversvømmet mark) kræver enorme mængder vand – 2-5x mere end hvede eller majs.
+          Tør-dyrket ris reducerer vandforbrug med 30-50%, men er mindre almindelig.
+        </p>
+        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
+          ℹ️ 12x mere end kartofler (214 L/kg)
+        </div>
+      </div>
+
+      <!-- Methane Emissions -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
+        <div class="text-5xl mb-4">🔥</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Metan-Emissioner</h3>
+        <div class="text-4xl font-bold text-red-600 mb-4">~2 kg CH₄</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Oversvømmede rismarker producerer ca. 2 kg metan pr. kg ris (CO₂-ækvivalent: ~56 kg over 20 år).
+          Moderne dyrkningsmetoder kan reducere dette med 30-50%.
+        </p>
+        <div class="text-sm text-stone-500 bg-red-50 p-3 rounded">
+          ℹ️ SRI (System of Rice Intensification) reducerer metan betydeligt
+        </div>
+      </div>
+
+      <!-- Land Use -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
+        <div class="text-5xl mb-4">🌾</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Arealforbrug</h3>
+        <div class="text-4xl font-bold text-green-600 mb-4">~2.5 m²/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Ris har moderat arealforbrug sammenlignet med kød, men højere end hvede.
+          Intensive dyrkningsmetoder giver høje udbytter (5-7 tons/hektar).
+        </p>
+        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
+          ℹ️ Areal-effektivt energikielde (kalorie pr. m²)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rice Types Comparison -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Ristyper & Klimavariation
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Ikke al ris har samme klimaaftryk – dyrkningsmetode og ristype påvirker emissioner betydeligt.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <!-- White Rice -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🍚</div>
+          <div>
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Hvid Ris</h3>
+            <p class="text-sm text-stone-500">4.0 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Længere holdbarhed</strong>
+              <p class="text-sm text-stone-600">Poleret ris holder 4-5 år – minimerer madspild</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Hurtigere tilberedning</strong>
+              <p class="text-sm text-stone-600">15-20 min kogetid = lavere energiforbrug</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Lavere næringsværdi</strong>
+              <p class="text-sm text-stone-600">Polering fjerner vitaminer, mineraler og fiber</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 p-4 rounded">
+          <p class="text-xs font-bold text-amber-700 uppercase mb-2">Brug:</p>
+          <p class="text-sm text-stone-600">Standard til de fleste retter – balancér med grøntsager for næring</p>
+        </div>
+      </div>
+
+      <!-- Brown Rice -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-brown-600">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🌰</div>
+          <div>
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Fuldkornsris</h3>
+            <p class="text-sm text-stone-500">4.2 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Højere næringsværdi</strong>
+              <p class="text-sm text-stone-600">3x mere fiber, B-vitaminer, magnesium og antioxidanter</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Bedre blodsukkerbalance</strong>
+              <p class="text-sm text-stone-600">Lavere glykæmisk indeks = mere mættende</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Længere tilberedning</strong>
+              <p class="text-sm text-stone-600">40-45 min kogetid = 2x energiforbrug</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-stone-100 p-4 rounded">
+          <p class="text-xs font-bold text-stone-700 uppercase mb-2">Anbefaling:</p>
+          <p class="text-sm text-stone-600">Bedre ernæring opvejer marginal klimaforskel (0.2 kg CO₂e)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Low-Methane Rice -->
+    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl shadow-lg border-2 border-green-300">
+      <div class="flex items-start gap-6">
+        <span class="text-7xl">🌱</span>
+        <div class="flex-1">
+          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Lav-Metan Ris (SRI & Tør-Dyrkning)</h3>
+          <div class="grid md:grid-cols-2 gap-6 mb-4">
+            <div>
+              <strong class="text-stone-900">Klimaaftryk: 2.5-3.0 kg CO₂e/kg</strong>
+              <p class="text-sm text-stone-600 mt-2">
+                System of Rice Intensification (SRI) og tør-dyrkning reducerer metan-emissioner med 30-50%
+                ved at minimere perioder hvor marken er oversvømmet.
+              </p>
+            </div>
+            <div>
+              <strong class="text-stone-900">Fordele:</strong>
+              <ul class="text-sm text-stone-600 mt-2 space-y-1">
+                <li>✓ 30-50% mindre vandforbrug</li>
+                <li>✓ 25-40% lavere klimaaftryk</li>
+                <li>✓ Ofte højere udbytte</li>
+                <li>✓ Reduceret pesticid-behov</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-white p-4 rounded border-2 border-green-200">
+            <p class="text-sm text-stone-700">
+              <strong class="text-green-700">Kantineanbefaling:</strong> Spørg leverandører om SRI-certificeret eller
+              tør-dyrket ris. Disse metoder bliver mere tilgængelige og kan reducere klimaaftryk betydeligt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alternatives Section -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimavenlige Alternativer
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Reducer kantinens klimaaftryk ved at variere kulhydratkilder og erstatte ris med lavere-emissions alternativer.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Pasta -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-yellow-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🍝</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Pasta</h3>
+              <p class="text-xs text-stone-500 uppercase">0.9 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓78%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Hvede-baseret pasta har 78% lavere klimaaftryk end ris. Perfekt substitut i bowls,
+          salater og som tilbehør. Variér med fuldkorns- og bælgfrugt-pasta.
+        </p>
+        <div class="text-xs text-green-600 font-bold">✓ Hurtig tilberedning, alsidig</div>
+      </div>
+
+      <!-- Potatoes -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-brown-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🥔</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Kartofler</h3>
+              <p class="text-xs text-stone-500 uppercase">0.2 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓95%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Kartofler har laveste klimaaftryk blandt kulhydrater. Rig på kalium, C-vitamin og fiber (med skræl).
+          Lokal produktion i Danmark = minimal transport.
+        </p>
+        <div class="text-xs text-green-600 font-bold">✓ Lokalt tilgængeligt, næringsholdigt</div>
+      </div>
+
+      <!-- Quinoa -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-orange-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🌾</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Quinoa</h3>
+              <p class="text-xs text-stone-500 uppercase">1.5 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓62%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Komplet protein (alle 9 essentielle aminosyrer) med lavere klimaaftryk end ris.
+          Perfekt til salater og bowls. Bemærk: Lang transport fra Sydamerika øger CO₂e.
+        </p>
+        <div class="text-xs text-orange-600 font-bold">⚠️ Vælg Fair Trade for etisk produktion</div>
+      </div>
+
+      <!-- Bulgur/Couscous -->
+      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-l-4 border-amber-600">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🌰</div>
+            <div>
+              <h3 class="font-sans text-lg font-bold text-stone-900">Bulgur / Couscous</h3>
+              <p class="text-xs text-stone-500 uppercase">0.8 kg CO₂e/kg</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-green-100 rounded-full">
+            <span class="text-green-700 font-bold text-sm">↓80%</span>
+          </div>
+        </div>
+        <p class="text-sm text-stone-600 mb-4">
+          Hvede-baseret med minimal forarbejdning. Bulgur er fuldkorn (højere fiber).
+          Hurtig tilberedning = lavere energiforbrug. Velegnet til mellemøstlige retter.
+        </p>
+        <div class="text-xs text-amber-600 font-bold">✓ Ekstremt hurtig tilberedning (5-10 min)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Købeguide for Kantinen
+      </h2>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Tip 1 -->
+      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">1️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Reducer Ris-Portioner</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Servér 75-100g kogt ris per portion i stedet for 150-200g. Kompensér med ekstra grøntsager,
+              bælgfrugter eller salat. Samme mæthed, lavere klimaaftryk.
+            </p>
+            <div class="bg-green-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-green-800 uppercase">30-50% reduktion i ris-forbrug</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 2 -->
+      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">2️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Variér Kulhydratkilder</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Tilbyd pasta, kartofler, bulgur og quinoa på rotation med ris.
+              2-3 ris-dage om ugen i stedet for dagligt reducerer klimaaftryk betydeligt.
+            </p>
+            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-blue-800 uppercase">Variation = lavere samlet CO₂e</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 3 -->
+      <div class="bg-gradient-to-r from-amber-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-amber-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">3️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Vælg Fuldkornsris Når Muligt</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Marginal klimaforskel (0.2 kg CO₂e/kg), men betydelig ernæringsmæssig fordel.
+              Øget fiber og mineraler giver bedre mæthed – kan reducere samlet forbrug.
+            </p>
+            <div class="bg-amber-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-amber-800 uppercase">Bedre ernæring = mindre madspild</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">4️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Optimér Tilberedning</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Brug risnorm: 1 del ris til 1.5 del vand (absorption-metode). Minimerer energi og vandspild.
+              Lad ris hvile 10 min efter kogning med låg på = bedre tekstur, ingen ekstra energi.
+            </p>
+            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-purple-800 uppercase">Lavere energi- og vandforbrug</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-gradient-to-r from-orange-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-orange-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">5️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Spørg Om Lav-Metan Ris</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Kontakt leverandører om SRI-certificeret eller tør-dyrket ris. Disse metoder reducerer
+              klimaaftryk med 25-40% og bliver mere tilgængelige globalt.
+            </p>
+            <div class="bg-orange-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-orange-800 uppercase">Potentiel 1-1.5 kg CO₂e besparelse per kg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-amber-50 to-orange-50">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Beregn Klimabesparelsen
+      </h2>
+      <p class="font-sans text-lg text-stone-600">
+        Se hvor meget CO₂ kantinen kan spare ved at reducere ris-forbrug eller skifte til alternativer.
+      </p>
+    </div>
+
+    <div class="bg-white p-10 rounded-2xl shadow-2xl">
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Månedligt risforbrug (kg):</label>
+        <input type="range" id="riceAmount" min="20" max="500" value="150" step="10"
+               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-amber-600">
+        <div class="text-center mt-3">
+          <span id="riceAmountDisplay" class="text-4xl font-display font-bold text-stone-900">150</span>
+          <span class="text-xl text-stone-500 ml-2">kg/måned</span>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Reduktionsstrategi:</label>
+        <select id="riceReductionType" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-amber-500">
+          <option value="portion25">25% mindre portioner (kompensér med grønt)</option>
+          <option value="portion50">50% mindre portioner (kompensér med grønt)</option>
+          <option value="pasta50">50% af ris-dage skiftes til pasta</option>
+          <option value="potato50">50% af ris-dage skiftes til kartofler</option>
+          <option value="mix">30% pasta + 30% kartofler + 20% mindre portioner</option>
+          <option value="sri">Skift til SRI-certificeret lav-metan ris</option>
+        </select>
+      </div>
+
+      <div class="h-px bg-stone-200 my-8"></div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Nuværende Udledning</div>
+          <div id="currentRiceEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">600</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
+          <div id="savedRiceEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">300</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border-2 border-amber-200">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-3xl">🌍</span>
+          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
+        </div>
+        <p id="yearlyRiceImpact" class="text-stone-700 font-sans text-lg">
+          På et år sparer kantinen <strong class="text-amber-700">3,600 kg CO₂e</strong> –
+          svarende til <strong class="text-amber-700">750</strong> måltider med oksekød.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+  <div class="mx-auto max-w-5xl px-6">
+    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
+      Datakilder & Referencer
+    </h3>
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
+          <li>• Poore & Nemecek, Science (2018)</li>
+          <li>• Our World in Data (2024)</li>
+          <li>• IRRI – Rice Knowledge Bank (2024)</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Bæredygtighed</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• FAO – Rice Market Monitor (2024)</li>
+          <li>• Sustainable Rice Platform</li>
+          <li>• Water Footprint Network (2023)</li>
+          <li>• Danmarks Fødevareinstitut</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script>
+  // Comparison Chart
+  const ctx = document.getElementById('riceComparisonChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Kartofler', 'Bulgur', 'Pasta', 'Quinoa', 'Bælgfrugter', 'Ris', 'Æg', 'Hvid Fisk', 'Kylling'],
+      datasets: [{
+        label: 'kg CO₂e pr. kg produkt',
+        data: [0.2, 0.8, 0.9, 1.5, 2, 4, 4.8, 6, 6.9],
+        backgroundColor: [
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(168, 85, 247, 0.8)',
+          'rgba(234, 179, 8, 0.8)',
+          'rgba(249, 115, 22, 0.8)',
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(251, 146, 60, 0.8)',
+          'rgba(251, 191, 36, 0.8)',
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(234, 179, 8, 0.8)'
+        ],
+        borderColor: [
+          'rgb(34, 197, 94)',
+          'rgb(168, 85, 247)',
+          'rgb(234, 179, 8)',
+          'rgb(249, 115, 22)',
+          'rgb(34, 197, 94)',
+          'rgb(251, 146, 60)',
+          'rgb(251, 191, 36)',
+          'rgb(59, 130, 246)',
+          'rgb(234, 179, 8)'
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.x + ' kg CO₂e pr. kg';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'kg CO₂e pr. kg produkt',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          grid: {
+            color: 'rgba(0, 0, 0, 0.05)'
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          }
+        }
+      }
+    }
+  });
+
+  // Scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('initial-hidden');
+        entry.target.classList.add('animate-fade-in-up');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
+
+  // Calculator Logic
+  const riceAmountSlider = document.getElementById('riceAmount');
+  const riceAmountDisplay = document.getElementById('riceAmountDisplay');
+  const riceReductionTypeSelect = document.getElementById('riceReductionType');
+  const currentRiceEmissionsDisplay = document.getElementById('currentRiceEmissions');
+  const savedRiceEmissionsDisplay = document.getElementById('savedRiceEmissions');
+  const yearlyRiceImpactDisplay = document.getElementById('yearlyRiceImpact');
+
+  const RICE_CO2_PER_KG = 4.0;
+  const PASTA_CO2_PER_KG = 0.9;
+  const POTATO_CO2_PER_KG = 0.2;
+  const SRI_RICE_CO2_PER_KG = 2.8; // Low-methane rice
+
+  function calculateRiceSavings() {
+    const riceAmount = parseInt(riceAmountSlider.value);
+    const reductionType = riceReductionTypeSelect.value;
+
+    riceAmountDisplay.textContent = riceAmount;
+
+    const currentEmissions = riceAmount * RICE_CO2_PER_KG;
+    currentRiceEmissionsDisplay.textContent = currentEmissions.toLocaleString();
+
+    let savedEmissions = 0;
+
+    if (reductionType === 'portion25') {
+      savedEmissions = (riceAmount * 0.25) * RICE_CO2_PER_KG;
+    } else if (reductionType === 'portion50') {
+      savedEmissions = (riceAmount * 0.50) * RICE_CO2_PER_KG;
+    } else if (reductionType === 'pasta50') {
+      savedEmissions = (riceAmount * 0.50) * (RICE_CO2_PER_KG - PASTA_CO2_PER_KG);
+    } else if (reductionType === 'potato50') {
+      savedEmissions = (riceAmount * 0.50) * (RICE_CO2_PER_KG - POTATO_CO2_PER_KG);
+    } else if (reductionType === 'mix') {
+      const pastaSavings = (riceAmount * 0.30) * (RICE_CO2_PER_KG - PASTA_CO2_PER_KG);
+      const potatoSavings = (riceAmount * 0.30) * (RICE_CO2_PER_KG - POTATO_CO2_PER_KG);
+      const portionSavings = (riceAmount * 0.20) * RICE_CO2_PER_KG;
+      savedEmissions = pastaSavings + potatoSavings + portionSavings;
+    } else if (reductionType === 'sri') {
+      savedEmissions = riceAmount * (RICE_CO2_PER_KG - SRI_RICE_CO2_PER_KG);
+    }
+
+    savedRiceEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+
+    const yearlySavings = savedEmissions * 12;
+    const beefMealsEquivalent = Math.round(yearlySavings / 4.8);
+
+    yearlyRiceImpactDisplay.innerHTML = `
+      På et år sparer kantinen <strong class="text-amber-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
+      svarende til <strong class="text-amber-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
+    `;
+  }
+
+  riceAmountSlider.addEventListener('input', calculateRiceSavings);
+  riceReductionTypeSelect.addEventListener('change', calculateRiceSavings);
+
+  // Initialize
+  calculateRiceSavings();
+</script>
+
+{% endblock %}

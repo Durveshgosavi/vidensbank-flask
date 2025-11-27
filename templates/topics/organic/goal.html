@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Mål for Økologi - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/chef_plating_food_1763550153863.png') }}" alt="Chef Plating"
+            class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-yellow-light">
+            Nationale<br>Mål
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            Danmark er verdensførende inden for økologi. Ambitionen er at fordoble det økologiske areal frem mod 2030.
+        </p>
+    </div>
+</div>
+
+<!-- National Ambition -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-4xl px-6 text-left">
+        <span class="mb-6 block font-sans text-xs font-bold tracking-widest uppercase text-cb-yellow-dark">Regeringens
+            Mål</span>
+        <h2
+            class="font-display text-4xl font-bold leading-tight text-stone-900 md:text-6xl uppercase tracking-brand-wide">
+            "Det økologiske areal skal fordobles inden 2030."
+        </h2>
+        <div class="mt-12 h-1 w-24 bg-cb-yellow-dark"></div>
+        <p class="mt-12 max-w-2xl font-sans text-xl font-light leading-relaxed text-stone-600">
+            For at nå dette mål spiller de offentlige og private storkøkkener en afgørende rolle som drivkraft for
+            efterspørgslen.
+        </p>
+    </div>
+</section>
+
+<!-- The Role of Kitchens -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <div class="flex flex-col justify-center">
+                <h3 class="mb-6 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">Køkkener
+                    som Motor</h3>
+                <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                    Når storkøkkener omlægger til økologi, skaber det en stabil og stor efterspørgsel, der giver
+                    landmændene mod på at omlægge deres produktion.
+                </p>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    Det Økologiske Spisemærke er værktøjet, der synliggør denne indsats over for gæster og omverdenen.
+                </p>
+            </div>
+            <div class="bg-stone-50 p-8 border border-stone-200">
+                <h4 class="mb-6 font-display text-2xl font-bold text-stone-900 uppercase">Status i Danmark</h4>
+                <ul class="space-y-6">
+                    <li class="flex items-center justify-between border-b border-stone-200 pb-4">
+                        <span class="font-sans text-stone-600">Økologisk Markedsandel</span>
+                        <span class="font-display text-2xl font-bold text-cb-yellow-dark">~13%</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-stone-200 pb-4">
+                        <span class="font-sans text-stone-600">Spisemærker Uddelt</span>
+                        <span class="font-display text-2xl font-bold text-cb-yellow-dark">3.500+</span>
+                    </li>
+                    <li class="flex items-center justify-between pb-4">
+                        <span class="font-sans text-stone-600">Global Placering</span>
+                        <span class="font-display text-2xl font-bold text-cb-yellow-dark">#1</span>
+                    </li>
+                </ul>
+                <p class="mt-6 text-xs text-stone-400 text-right">Kilde: Økologisk Landsforening</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-stone-900 py-24 text-center text-white">
+    <div class="mx-auto max-w-3xl px-6">
+        <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide">Sæt jeres eget mål</h2>
+        <p class="mb-12 font-sans text-lg text-stone-400">
+            Er I klar til at gå efter Bronze (30%), Sølv (60%) eller Guld (90%)?
+        </p>
+        <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="{{ url_for('topic_organic_impact') }}"
+                class="rounded-none bg-cb-yellow-dark px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-900 transition-transform hover:-translate-y-1 hover:bg-cb-yellow-medium">
+                Beregn Potentiale
+            </a>
+            <a href="{{ url_for('topic_organic_tips') }}"
+                class="rounded-none border border-stone-300 px-8 py-3 font-sans text-sm font-bold uppercase tracking-widest text-stone-400 transition-colors hover:bg-stone-800 hover:text-white">
+                Få Tips til Omlægning
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

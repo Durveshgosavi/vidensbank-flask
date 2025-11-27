@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+    {% block title %}Vandforbrug - Vidensbank{% endblock %}
+
+    {% block content %}
+    <header class="page-header">
+      <p class="eyebrow">VIDENSBANK</p>
+      <h1>Vandforbrug</h1>
+      <p>Reducer vandforbruget i kantinen med data, teknologi og adfærdsdesign.</p>
+      <nav class="filter-nav" aria-label="Underemner">
+      <a href="{{ url_for('topic_vandforbrug_what') }}" class="filter-pill">Hvad er det?</a>
+      <a href="{{ url_for('topic_vandforbrug_why') }}" class="filter-pill">Hvorfor er det vigtigt?</a>
+      <a href="{{ url_for('topic_vandforbrug_goal') }}" class="filter-pill">Mål & ambition</a>
+      <a href="{{ url_for('topic_vandforbrug_impact') }}" class="filter-pill">Mit aftryk</a>
+      <a href="{{ url_for('topic_vandforbrug_tips') }}" class="filter-pill">Tips & tricks</a>
+      </nav>
+    </header>
+
+    <section class="page-section">
+      <header class="section-header">
+        <h2 class="section-title">Start her</h2>
+        <p class="section-lead">Kortlæg hvor vand bruges i køkkenet, og hvilke digitale greb der virker.</p>
+      </header>
+      <div class="card-grid">
+
+<a href="{{ url_for('topic_vandforbrug_what') }}" class="aww-card">
+  <div class="card-image-container">
+    <img src="https://source.unsplash.com/featured/?vandforbrug,what" alt="Hvad er det? for Vandforbrug" loading="lazy">
+    <span class="card-category-tag">Hvad er det?</span>
+  </div>
+  <div class="card-content-body">
+    <h3 class="card-title">Hvad er det?</h3>
+    <p class="card-teaser">Forstå de grundlæggende koncepter og definitioner.</p>
+    <div class="card-metadata">
+      <span>Vidensbank</span>
+      <span>•</span>
+      <span>Vandforbrug</span>
+    </div>
+  </div>
+</a>
+
+<a href="{{ url_for('topic_vandforbrug_why') }}" class="aww-card">
+  <div class="card-image-container">
+    <img src="https://source.unsplash.com/featured/?vandforbrug,why" alt="Hvorfor er det vigtigt? for Vandforbrug" loading="lazy">
+    <span class="card-category-tag">Hvorfor er det vigtigt?</span>
+  </div>
+  <div class="card-content-body">
+    <h3 class="card-title">Hvorfor er det vigtigt?</h3>
+    <p class="card-teaser">Sæt arbejdet ind i national kontekst og virksomhedsstrategi.</p>
+    <div class="card-metadata">
+      <span>Vidensbank</span>
+      <span>•</span>
+      <span>Vandforbrug</span>
+    </div>
+  </div>
+</a>
+
+<a href="{{ url_for('topic_vandforbrug_goal') }}" class="aww-card">
+  <div class="card-image-container">
+    <img src="https://source.unsplash.com/featured/?vandforbrug,goal" alt="Mål & ambition for Vandforbrug" loading="lazy">
+    <span class="card-category-tag">Mål & ambition</span>
+  </div>
+  <div class="card-content-body">
+    <h3 class="card-title">Mål & ambition</h3>
+    <p class="card-teaser">Formuler målbare ambitioner, KPI’er og governance.</p>
+    <div class="card-metadata">
+      <span>Vidensbank</span>
+      <span>•</span>
+      <span>Vandforbrug</span>
+    </div>
+  </div>
+</a>
+
+<a href="{{ url_for('topic_vandforbrug_impact') }}" class="aww-card">
+  <div class="card-image-container">
+    <img src="https://source.unsplash.com/featured/?vandforbrug,impact" alt="Mit aftryk for Vandforbrug" loading="lazy">
+    <span class="card-category-tag">Mit aftryk</span>
+  </div>
+  <div class="card-content-body">
+    <h3 class="card-title">Mit aftryk</h3>
+    <p class="card-teaser">Omsæt data til handlinger i køkkenet og blandt gæster.</p>
+    <div class="card-metadata">
+      <span>Vidensbank</span>
+      <span>•</span>
+      <span>Vandforbrug</span>
+    </div>
+  </div>
+</a>
+
+<a href="{{ url_for('topic_vandforbrug_tips') }}" class="aww-card">
+  <div class="card-image-container">
+    <img src="https://source.unsplash.com/featured/?vandforbrug,tips" alt="Tips & tricks for Vandforbrug" loading="lazy">
+    <span class="card-category-tag">Tips & tricks</span>
+  </div>
+  <div class="card-content-body">
+    <h3 class="card-title">Tips & tricks</h3>
+    <p class="card-teaser">Få konkrete værktøjer til drift, indkøb og adfærd.</p>
+    <div class="card-metadata">
+      <span>Vidensbank</span>
+      <span>•</span>
+      <span>Vandforbrug</span>
+    </div>
+  </div>
+</a>
+
+      </div>
+    </section>
+    {% endblock %}

@@ -1,0 +1,844 @@
+{% extends "base.html" %}
+
+{% block title %}Kartofler – Klimaaftryk, Alternativer & Købestrategi | Canteen Buddy{% endblock %}
+
+{% block content %}
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  .initial-hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+</style>
+
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-br from-yellow-50 via-white to-amber-50 pt-32 pb-20 overflow-hidden">
+  <div class="mx-auto max-w-7xl px-6 relative z-10">
+    <div class="text-center mb-12">
+      <div class="inline-block mb-6 px-6 py-2 bg-green-100 border-2 border-green-300 rounded-full">
+        <span class="font-sans text-xs font-bold tracking-widest uppercase text-green-800">Klimavinder</span>
+      </div>
+      <h1 class="font-display text-7xl md:text-8xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 animate-fade-in-up">
+        Kartofler
+      </h1>
+      <p class="font-sans text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto leading-relaxed animate-fade-in-up stagger-1">
+        Danmarks mest klimavenlige kulhydratkilde. Med minimalt klimaaftryk, lokal produktion
+        og høj næringsværdi er kartofler en strategisk nøgleingrediens.
+      </p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden mb-16 shadow-2xl animate-scale-in stagger-2">
+      <img src="{{ url_for('static', filename='images/water_kitchen.jpg') }}"
+           alt="Friske kartofler i professionelt køkken"
+           class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 text-white">
+        <p class="text-sm font-sans uppercase tracking-wider mb-2 opacity-90">Klimadata fra CONCITO 2024</p>
+        <p class="text-4xl font-display font-bold">0.2 kg CO₂e pr. kg kartofler</p>
+      </div>
+      <div class="absolute top-8 right-8 bg-green-500 text-white px-6 py-3 rounded-full font-display font-bold text-xl">
+        🥔 95% LAVERE END RIS
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 text-center initial-hidden animate-fade-in-up stagger-1">
+        <div class="text-3xl mb-2">🥔</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">0.2 kg</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">CO₂e pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500 text-center initial-hidden animate-fade-in-up stagger-2">
+        <div class="text-3xl mb-2">💧</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">214L</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Vand pr. kg</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-500 text-center initial-hidden animate-fade-in-up stagger-3">
+        <div class="text-3xl mb-2">🇩🇰</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">Lokal</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">Dansk produktion</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500 text-center initial-hidden animate-fade-in-up stagger-4">
+        <div class="text-3xl mb-2">⚡</div>
+        <div class="text-3xl font-display font-bold text-stone-900 mb-2">77 kcal</div>
+        <div class="text-xs uppercase tracking-wider text-stone-500">pr. 100g (kogt)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Climate Impact Section -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <span class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-green-dark">Klimadata</span>
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Klimaaftryk i Kontekst
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Med <strong class="text-green-600">0.2 kg CO₂e pr. kg</strong> er kartofler den absolutte klimavinder blandt kulhydrater.
+        95% lavere end ris, 97% lavere end oksekød.
+      </p>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="bg-gradient-to-br from-stone-50 to-white p-8 rounded-xl shadow-lg mb-12">
+      <canvas id="potatoComparisonChart" class="w-full" style="max-height: 500px;"></canvas>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">✅ Ekstremt lavt CO₂e</h3>
+        <p class="text-sm text-stone-700">
+          Kartofler producerer minimal CO₂e: Ingen metanemissioner, lavt energiforbrug,
+          effektiv dyrkning.
+        </p>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">💧 Lavt vandforbrug</h3>
+        <p class="text-sm text-stone-700">
+          214 L/kg er 12x lavere end ris (2,497 L/kg) og 25x lavere end oksekød (5,520 L/kg).
+        </p>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+        <h3 class="font-sans font-bold text-stone-900 mb-2">🇩🇰 Lokal produktion</h3>
+        <p class="text-sm text-stone-700">
+          Danmark producerer 1.5 mio. tons årligt – minimal transport, friske kartofler året rundt.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl border-2 border-green-300">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-6xl">🏆</span>
+        <div>
+          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase">Klimachampion</h3>
+          <p class="text-sm text-stone-500">Blandt de laveste klimaaftryk af alle fødevarer</p>
+        </div>
+      </div>
+      <p class="text-stone-700 font-sans">
+        En 200g kartoffelportion producerer kun <strong class="text-green-700">0.04 kg CO₂e</strong> –
+        sammenlignet med 200g oksekød ved 12 kg CO₂e. Det er en <strong class="text-green-700">300x forskel</strong>.
+        Kartofler er et perfekt substitut for højemissions-fødevarer.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Miljøpåvirkning
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Water -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-500">
+        <div class="text-5xl mb-4">💧</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Vandforbrug</h3>
+        <div class="text-4xl font-bold text-blue-600 mb-4">214 L/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Kartofler dyrkes primært med regnvand i Danmark. Minimal kunstig vanding nødvendig
+          i de fleste år. Ekstrem vandeffektivitet sammenlignet med andre afgrøder.
+        </p>
+        <div class="text-sm text-stone-500 bg-blue-50 p-3 rounded">
+          ℹ️ 25x mindre end oksekød, 12x mindre end ris
+        </div>
+      </div>
+
+      <!-- Land Use -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-600">
+        <div class="text-5xl mb-4">🌾</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Arealforbrug</h3>
+        <div class="text-4xl font-bold text-green-600 mb-4">~0.6 m²/kg</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Høje udbytter (45-50 tons/hektar) giver ekstremt areal-effektiv fødevareproduktion.
+          Én m² kan producere 4.5-5 kg kartofler – langt mere end korn.
+        </p>
+        <div class="text-sm text-stone-500 bg-green-50 p-3 rounded">
+          ℹ️ 600x mere effektivt end oksekød (370 m²/kg)
+        </div>
+      </div>
+
+      <!-- Soil Health -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500">
+        <div class="text-5xl mb-4">🌱</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Jordsundhed</h3>
+        <div class="text-4xl font-bold text-amber-600 mb-4">Blandet</div>
+        <p class="text-stone-700 font-sans mb-4">
+          Kartofler kan udtømme jord hvis monokultur anvendes. Sædskifte (rotation med korn/bælgfrugter)
+          er essentielt for jordkvalitet og reduceret pesticid-behov.
+        </p>
+        <div class="text-sm text-stone-500 bg-amber-50 p-3 rounded">
+          ℹ️ Økologisk kartoffelavl bruger sædskifte og ingen syntetiske pesticider
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Potato Varieties & Preparation -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Kartoffeltyper & Tilberedning
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Forskellig tilberedning påvirker både næringsværdi og klimaaftryk – vælg klogt for optimal balance.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      <!-- Boiled -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🍲</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Kogte</h3>
+            <p class="text-sm text-stone-500">0.2 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Laveste klimaaftryk</strong>
+              <p class="text-sm text-stone-600">Minimal energi til kogning (15-20 min)</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Bevarer næring</strong>
+              <p class="text-sm text-stone-600">C-vitamin og mineraler intakte (især med skræl)</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Lavt fedtindhold</strong>
+              <p class="text-sm text-stone-600">0.1g fedt pr. 100g</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded border-2 border-green-200">
+          <p class="text-xs font-bold text-green-700 uppercase mb-2">Anbefaling:</p>
+          <p class="text-sm text-stone-600">Standardvalg – bedste balance mellem klima, næring og pris</p>
+        </div>
+      </div>
+
+      <!-- Baked -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🥔</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Bagte</h3>
+            <p class="text-sm text-stone-500">0.25 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">God næringsværdi</strong>
+              <p class="text-sm text-stone-600">Bevarer vitaminer og mineraler med skræl</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-amber-500 text-xl">⚠️</span>
+            <div>
+              <strong class="text-stone-900">Moderat energiforbrug</strong>
+              <p class="text-sm text-stone-600">45-60 min i ovn ved 200°C</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-green-500 text-xl">✅</span>
+            <div>
+              <strong class="text-stone-900">Alsidig</strong>
+              <p class="text-sm text-stone-600">Perfekt til toppings og fyldte kartofler</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 p-4 rounded border-2 border-amber-200">
+          <p class="text-xs font-bold text-amber-700 uppercase mb-2">Tip:</p>
+          <p class="text-sm text-stone-600">Bag flere ad gangen – udnyt ovnens fulde kapacitet</p>
+        </div>
+      </div>
+
+      <!-- Fried -->
+      <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="text-6xl">🍟</div>
+          <div>
+            <h3 class="font-display text-xl font-bold text-stone-900 uppercase">Fritter/Pommes</h3>
+            <p class="text-sm text-stone-500">0.6-1.2 kg CO₂e/kg</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Højt klimaaftryk</strong>
+              <p class="text-sm text-stone-600">Olie-produktion + høj varme = 3-6x mere CO₂e</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Højt fedtindhold</strong>
+              <p class="text-sm text-stone-600">Absorberer 8-15% olie (10-15g fedt/100g)</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-red-500 text-xl">❌</span>
+            <div>
+              <strong class="text-stone-900">Tabt næringsværdi</strong>
+              <p class="text-sm text-stone-600">Højvarme destruerer C-vitamin</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-red-50 p-4 rounded border-2 border-red-200">
+          <p class="text-xs font-bold text-red-700 uppercase mb-2">Undgå ofte:</p>
+          <p class="text-sm text-stone-600">Reserve til sjældne anledninger – både klima og sundhed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roasted Alternative -->
+    <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-xl shadow-lg border-2 border-blue-300">
+      <div class="flex items-start gap-6">
+        <span class="text-7xl">🔥</span>
+        <div class="flex-1">
+          <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-4">Ovnbagte Kartofler (Best Alternative)</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <strong class="text-stone-900">Klimaaftryk: 0.3 kg CO₂e/kg</strong>
+              <p class="text-sm text-stone-600 mt-2">
+                Skær i stykker, bland med minimal olie (1-2 tsk/kg), bag ved 220°C i 25-30 min.
+                Crispy ydre, blødt indre – <strong>50-75% lavere CO₂e end fritter</strong>.
+              </p>
+            </div>
+            <div>
+              <strong class="text-stone-900">Fordele:</strong>
+              <ul class="text-sm text-stone-600 mt-2 space-y-1">
+                <li>✓ 80% mindre fedt end pommes frites</li>
+                <li>✓ Bevarer C-vitamin og fiber (med skræl)</li>
+                <li>✓ Kan krydres varieret (rosmarin, hvidløg, paprika)</li>
+                <li>✓ Batch-tilberedning = effektiv energibrug</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nutritional Benefits -->
+<section class="py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Næringsværdi
+      </h2>
+      <p class="font-sans text-lg text-stone-600 max-w-3xl mx-auto">
+        Kartofler er langt mere næringsrige end deres ry – især med skræl.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Vitamin C -->
+      <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-lg border-2 border-orange-200">
+        <div class="text-5xl mb-4">🍊</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">C-Vitamin</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-orange-600">20mg pr. 100g (kogt)</strong> – ca. 22% af dagsbehovet.
+          Især højt i nyopgravede kartofler. Vigtig for immunforsvar og collagendannelse.
+        </p>
+        <div class="text-xs bg-orange-100 p-3 rounded">
+          <strong class="text-orange-800">Bevar C-vitamin:</strong> Kog med skræl, minimér kogetid
+        </div>
+      </div>
+
+      <!-- Potassium -->
+      <div class="bg-gradient-to-br from-purple-50 to-white p-8 rounded-lg border-2 border-purple-200">
+        <div class="text-5xl mb-4">⚡</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Kalium</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-purple-600">421mg pr. 100g</strong> – højere end bananer (358mg).
+          Essentielt for blodtryk, væskebalance og muskelfunktion.
+        </p>
+        <div class="text-xs bg-purple-100 p-3 rounded">
+          <strong class="text-purple-800">Fordel:</strong> Modvirker natriums blodtryksøgende effekt
+        </div>
+      </div>
+
+      <!-- Fiber & Complex Carbs -->
+      <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-lg border-2 border-green-200">
+        <div class="text-5xl mb-4">🌾</div>
+        <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Fiber & Kulhydrat</h3>
+        <p class="text-stone-700 font-sans mb-4">
+          <strong class="text-green-600">2.2g fiber pr. 100g (med skræl)</strong> + komplekse kulhydrater
+          giver langsommere blodsukkerrespons end hvidt brød. Mættende og stabil energi.
+        </p>
+        <div class="text-xs bg-green-100 p-3 rounded">
+          <strong class="text-green-800">GI-værdi:</strong> 58 (medium) – lavere end hvidt ris (73)
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-white p-8 rounded-xl shadow-lg border-2 border-stone-200">
+      <h4 class="font-display text-xl font-bold text-stone-900 uppercase mb-6 text-center">Næringssammenligning (pr. 100g kogt)</h4>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-stone-100">
+            <tr>
+              <th class="px-4 py-3 text-left font-sans font-bold text-stone-900">Næringsstof</th>
+              <th class="px-4 py-3 text-center font-sans font-bold text-stone-900">Kartofler</th>
+              <th class="px-4 py-3 text-center font-sans font-bold text-stone-900">Hvid Ris</th>
+              <th class="px-4 py-3 text-center font-sans font-bold text-stone-900">Pasta</th>
+            </tr>
+          </thead>
+          <tbody class="text-stone-700">
+            <tr class="border-t">
+              <td class="px-4 py-3 font-bold">Kalorier</td>
+              <td class="px-4 py-3 text-center">77 kcal</td>
+              <td class="px-4 py-3 text-center">130 kcal</td>
+              <td class="px-4 py-3 text-center">131 kcal</td>
+            </tr>
+            <tr class="border-t bg-stone-50">
+              <td class="px-4 py-3 font-bold">C-vitamin</td>
+              <td class="px-4 py-3 text-center text-green-600 font-bold">20mg ✓</td>
+              <td class="px-4 py-3 text-center">0mg</td>
+              <td class="px-4 py-3 text-center">0mg</td>
+            </tr>
+            <tr class="border-t">
+              <td class="px-4 py-3 font-bold">Kalium</td>
+              <td class="px-4 py-3 text-center text-green-600 font-bold">421mg ✓</td>
+              <td class="px-4 py-3 text-center">35mg</td>
+              <td class="px-4 py-3 text-center">44mg</td>
+            </tr>
+            <tr class="border-t bg-stone-50">
+              <td class="px-4 py-3 font-bold">Fiber (med skræl)</td>
+              <td class="px-4 py-3 text-center">2.2g</td>
+              <td class="px-4 py-3 text-center">0.4g</td>
+              <td class="px-4 py-3 text-center">1.8g</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buying Guide -->
+<section class="py-24 bg-white">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Købeguide for Kantinen
+      </h2>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Tip 1 -->
+      <div class="bg-gradient-to-r from-green-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">1️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Prioritér Danske Kartofler</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Danmark producerer fremragende kartofler året rundt (opbevaring) med minimal transport.
+              Vælg danske over importerede fra Egypten, Israel eller Frankrig – reducerer transport-CO₂e med 60-80%.
+            </p>
+            <div class="bg-green-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-green-800 uppercase">Lokal = Friskere + Lavere CO₂e</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 2 -->
+      <div class="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">2️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Brug Kartofler Som Kød-Substitut</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Erstatter en 200g oksekødsportion med 300g kartofler (fyldte eller med bønner/svampe)
+              sparer 11.94 kg CO₂e pr. portion. Organisér "Kartoffeldag" 1-2 gange om ugen.
+            </p>
+            <div class="bg-blue-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-blue-800 uppercase">300x lavere klimaaftryk end oksekød</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 3 -->
+      <div class="bg-gradient-to-r from-purple-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-purple-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">3️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Minimér Madspild</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Kartofler holder 2-4 uger ved 7-10°C (mørkt, køligt rum – IKKE køleskab, det omdanner stivelse til sukker).
+              Brug "grimme" kartofler til mos, supper og gratin – ingen kvalitetsforskel.
+            </p>
+            <div class="bg-purple-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-purple-800 uppercase">15-20% kartoffelspild kan undgås</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 4 -->
+      <div class="bg-gradient-to-r from-amber-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-amber-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">4️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Variér Tilberedning Strategisk</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Kogte og maste kartofler som standard (laveste CO₂e). Ovnbagte som alternativ til pommes frites.
+              Reserve fritter til max 1 gang/måned – både klima og sundhed.
+            </p>
+            <div class="bg-amber-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-amber-800 uppercase">Tilberedning kan 5-doble klimaaftryk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tip 5 -->
+      <div class="bg-gradient-to-r from-orange-50 to-white p-8 rounded-xl shadow-lg border-l-4 border-orange-600">
+        <div class="flex items-start gap-6">
+          <div class="text-5xl">5️⃣</div>
+          <div class="flex-1">
+            <h3 class="font-display text-2xl font-bold text-stone-900 uppercase mb-3">Økologisk Når Muligt</h3>
+            <p class="text-stone-700 font-sans mb-4">
+              Økologiske kartofler har marginal klimaforskel (~0.22 kg CO₂e/kg), men ingen pesticider
+              og bedre jordsundhed. Danmarks økologiske kartoffer er høj kvalitet.
+            </p>
+            <div class="bg-orange-100 px-4 py-2 rounded inline-block">
+              <span class="text-xs font-bold text-orange-800 uppercase">Minimal klimaforskel, stor miljøgevinst</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Calculator -->
+<section class="py-24 bg-gradient-to-br from-green-50 to-emerald-50">
+  <div class="mx-auto max-w-4xl px-6">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-5xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6">
+        Beregn Klimabesparelsen
+      </h2>
+      <p class="font-sans text-lg text-stone-600">
+        Se hvor meget CO₂ kantinen sparer ved at bruge kartofler som substitut for højemissions-fødevarer.
+      </p>
+    </div>
+
+    <div class="bg-white p-10 rounded-2xl shadow-2xl">
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Månedlige portioner erstattet med kartofler:</label>
+        <input type="range" id="potatoMeals" min="50" max="1000" value="300" step="50"
+               class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-green-600">
+        <div class="text-center mt-3">
+          <span id="potatoMealsDisplay" class="text-4xl font-display font-bold text-stone-900">300</span>
+          <span class="text-xl text-stone-500 ml-2">portioner/måned</span>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <label class="block font-sans font-bold text-stone-900 mb-3">Hvad erstattes:</label>
+        <select id="replacementFood" class="w-full px-4 py-3 border-2 border-stone-300 rounded-lg font-sans focus:outline-none focus:border-green-500">
+          <option value="beef">Oksekød (60 kg CO₂e/kg)</option>
+          <option value="lamb">Lammekød (24 kg CO₂e/kg)</option>
+          <option value="pork">Svinekød (12 kg CO₂e/kg)</option>
+          <option value="rice">Ris (4 kg CO₂e/kg)</option>
+          <option value="pasta">Pasta (0.9 kg CO₂e/kg)</option>
+          <option value="fries">Pommes Frites (1.0 kg CO₂e/kg)</option>
+        </select>
+      </div>
+
+      <div class="h-px bg-stone-200 my-8"></div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-red-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-red-600 mb-2 font-bold">Hvis Fortsat Med Original</div>
+          <div id="currentFoodEmissions" class="text-4xl font-display font-bold text-red-600 mb-2">3,600</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <div class="text-sm uppercase tracking-wider text-green-600 mb-2 font-bold">Månedlig Besparelse</div>
+          <div id="savedPotatoEmissions" class="text-4xl font-display font-bold text-green-600 mb-2">3,540</div>
+          <div class="text-sm text-stone-500">kg CO₂e/måned</div>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-2 border-green-200">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-3xl">🌍</span>
+          <span class="font-sans font-bold text-stone-900">Årlig Påvirkning</span>
+        </div>
+        <p id="yearlyPotatoImpact" class="text-stone-700 font-sans text-lg">
+          På et år sparer kantinen <strong class="text-green-700">42,480 kg CO₂e</strong> –
+          svarende til <strong class="text-green-700">8,850</strong> måltider med oksekød.
+        </p>
+      </div>
+
+      <div class="mt-6 bg-blue-50 p-6 rounded-lg">
+        <h4 class="font-sans font-bold text-stone-900 mb-3">🏆 Klimachampion-Status:</h4>
+        <p class="text-sm text-stone-600" id="championMessage">
+          Ved at erstatte oksekød med kartofler 300 gange om måneden reducerer kantinen klimaaftryk
+          med 98.3% pr. portion. Dette er blandt de mest effektive klimahandlinger kantinen kan tage.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Sources -->
+<section class="py-16 bg-stone-100">
+  <div class="mx-auto max-w-5xl px-6">
+    <h3 class="font-display text-2xl font-bold text-stone-900 uppercase tracking-brand-wide mb-6 text-center">
+      Datakilder & Referencer
+    </h3>
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Klimadata</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• CONCITO Klimadatabase v2.0 (2024)</li>
+          <li>• Poore & Nemecek, Science (2018)</li>
+          <li>• Our World in Data (2024)</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-bold text-stone-900 mb-2">Ernæring & Landbrug</h4>
+        <ul class="space-y-2 text-stone-600">
+          <li>• Danmarks Fødevareinstitut</li>
+          <li>• Water Footprint Network (2023)</li>
+          <li>• Landbrug & Fødevarer (Danmark)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script>
+  // Comparison Chart
+  const ctx = document.getElementById('potatoComparisonChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Kartofler', 'Pasta', 'Brød', 'Bælgfrugter', 'Ris', 'Æg', 'Hvid Fisk', 'Kylling', 'Svinekød', 'Oksekød'],
+      datasets: [{
+        label: 'kg CO₂e pr. kg produkt',
+        data: [0.2, 0.9, 0.9, 2, 4, 4.8, 6, 6.9, 12, 60],
+        backgroundColor: [
+          'rgba(34, 197, 94, 0.9)',
+          'rgba(234, 179, 8, 0.8)',
+          'rgba(251, 191, 36, 0.8)',
+          'rgba(34, 197, 94, 0.8)',
+          'rgba(251, 146, 60, 0.8)',
+          'rgba(251, 191, 36, 0.8)',
+          'rgba(59, 130, 246, 0.8)',
+          'rgba(234, 179, 8, 0.8)',
+          'rgba(249, 115, 22, 0.8)',
+          'rgba(127, 29, 29, 0.8)'
+        ],
+        borderColor: [
+          'rgb(34, 197, 94)',
+          'rgb(234, 179, 8)',
+          'rgb(251, 191, 36)',
+          'rgb(34, 197, 94)',
+          'rgb(251, 146, 60)',
+          'rgb(251, 191, 36)',
+          'rgb(59, 130, 246)',
+          'rgb(234, 179, 8)',
+          'rgb(249, 115, 22)',
+          'rgb(127, 29, 29)'
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.x + ' kg CO₂e pr. kg';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'kg CO₂e pr. kg produkt',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          },
+          grid: {
+            color: 'rgba(0, 0, 0, 0.05)'
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          }
+        }
+      }
+    }
+  });
+
+  // Scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('initial-hidden');
+        entry.target.classList.add('animate-fade-in-up');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.initial-hidden').forEach(el => observer.observe(el));
+
+  // Calculator Logic
+  const potatoMealsSlider = document.getElementById('potatoMeals');
+  const potatoMealsDisplay = document.getElementById('potatoMealsDisplay');
+  const replacementFoodSelect = document.getElementById('replacementFood');
+  const currentFoodEmissionsDisplay = document.getElementById('currentFoodEmissions');
+  const savedPotatoEmissionsDisplay = document.getElementById('savedPotatoEmissions');
+  const yearlyPotatoImpactDisplay = document.getElementById('yearlyPotatoImpact');
+  const championMessageDisplay = document.getElementById('championMessage');
+
+  const POTATO_CO2_PER_KG = 0.2;
+  const PORTION_SIZE = 0.2; // 200g per portion
+
+  const FOOD_CO2 = {
+    beef: 60,
+    lamb: 24,
+    pork: 12,
+    rice: 4,
+    pasta: 0.9,
+    fries: 1.0
+  };
+
+  function calculatePotatoSavings() {
+    const potatoMeals = parseInt(potatoMealsSlider.value);
+    const replacementFood = replacementFoodSelect.value;
+
+    potatoMealsDisplay.textContent = potatoMeals;
+
+    const foodCO2PerKg = FOOD_CO2[replacementFood];
+    const currentEmissions = potatoMeals * PORTION_SIZE * foodCO2PerKg;
+    const potatoEmissions = potatoMeals * PORTION_SIZE * POTATO_CO2_PER_KG;
+    const savedEmissions = currentEmissions - potatoEmissions;
+
+    currentFoodEmissionsDisplay.textContent = Math.round(currentEmissions).toLocaleString();
+    savedPotatoEmissionsDisplay.textContent = Math.round(savedEmissions).toLocaleString();
+
+    const yearlySavings = savedEmissions * 12;
+    const beefMealsEquivalent = Math.round(yearlySavings / 4.8);
+    const reductionPercent = ((savedEmissions / currentEmissions) * 100).toFixed(1);
+
+    yearlyPotatoImpactDisplay.innerHTML = `
+      På et år sparer kantinen <strong class="text-green-700">${yearlySavings.toLocaleString()} kg CO₂e</strong> –
+      svarende til <strong class="text-green-700">${beefMealsEquivalent.toLocaleString()}</strong> måltider med oksekød.
+    `;
+
+    const foodNames = {
+      beef: 'oksekød',
+      lamb: 'lammekød',
+      pork: 'svinekød',
+      rice: 'ris',
+      pasta: 'pasta',
+      fries: 'pommes frites'
+    };
+
+    championMessageDisplay.innerHTML = `
+      Ved at erstatte ${foodNames[replacementFood]} med kartofler ${potatoMeals} gange om måneden reducerer kantinen klimaaftryk
+      med <strong class="text-green-700">${reductionPercent}%</strong> pr. portion. Dette er blandt de mest effektive klimahandlinger kantinen kan tage.
+    `;
+  }
+
+  potatoMealsSlider.addEventListener('input', calculatePotatoSavings);
+  replacementFoodSelect.addEventListener('change', calculatePotatoSavings);
+
+  // Initialize
+  calculatePotatoSavings();
+</script>
+
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Oksekød - Råvarer - Vidensbank{% endblock %}
+
+{% block content %}
+
+<!-- Minimalist Hero -->
+<header class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img src="{{ url_for('static', filename='images/raw_beef.png') }}" alt="Oksekød"
+      class="w-full h-full object-cover opacity-90">
+    <div class="absolute inset-0 bg-black/30"></div>
+  </div>
+
+  <div class="relative z-10 text-center text-white px-6">
+    <p class="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-white/80">Råvareleksikon</p>
+    <h1 class="font-display text-7xl md:text-9xl font-light tracking-tight mb-6">Oksekød</h1>
+    <p class="font-sans text-xl font-light text-white/90 max-w-xl mx-auto">
+      Køkkenets konge og klimaets tunge dreng. En guide til ansvarligt forbrug.
+    </p>
+  </div>
+</header>
+
+<!-- The Story: Elaborative Content -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+      <h2 class="font-display text-4xl text-stone-900">Smag & Konsekvens</h2>
+      <span class="font-mono text-stone-400 text-sm">01</span>
+    </div>
+
+    <div class="prose prose-lg prose-stone font-serif leading-loose text-stone-600">
+      <p>
+        Oksekød har i århundreder været symbolet på velstand og gastronomisk overskud.
+        Dets dybe umami, komplekse fedtmarmorering og evne til at mætte sanserne er ubestridelig.
+        I det professionelle køkken er en perfekt stegt bøf eller en simreret, der har trukket kraft i dagevis,
+        ofte kronen på værket.
+      </p>
+      <p>
+        Men medaljen har en bagside. Kvægproduktion er den absolut tungeste post i klimaregnskabet.
+        Køernes fordøjelse frigiver metan, og produktionen kræver enorme arealer til græsning og foder.
+        Dette dilemma stiller det moderne køkken over for et valg: Hvordan bevarer vi kvaliteten uden at gå på kompromis
+        med fremtiden?
+      </p>
+      <p>
+        Svaret ligger ikke nødvendigvis i total afholdenhed, men i <em>respekt</em>.
+        At bruge oksekød som en luksusvare, en smagsgiver, snarere end en hovedingrediens.
+        At vælge fritgående kvæg, der plejer naturen, og at udnytte hele dyret til sidste trevl.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Minimalist Data Section -->
+<section class="py-24 bg-stone-50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <!-- Stat 1 -->
+      <div class="text-center md:text-left">
+        <div class="text-6xl font-display text-stone-900 mb-2">60</div>
+        <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">kg CO₂e pr. kg</div>
+        <p class="text-stone-600 font-serif text-sm leading-relaxed">
+          Det højeste aftryk blandt almindelige fødevarer. Til sammenligning udleder kylling kun ca. 6.9 kg.
+        </p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+        <div class="text-6xl font-display text-stone-900 mb-2">15k</div>
+        <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">Liter vand pr. kg</div>
+        <p class="text-stone-600 font-serif text-sm leading-relaxed">
+          Vandforbruget til produktion af oksekød er enormt, primært bundet i produktionen af foder.
+        </p>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="text-center md:text-left border-t md:border-t-0 md:border-l border-stone-200 pt-8 md:pt-0 md:pl-12">
+        <div class="text-6xl font-display text-stone-900 mb-2">326</div>
+        <div class="text-xs font-bold tracking-widest uppercase text-stone-500 mb-4">m² areal pr. år</div>
+        <p class="text-stone-600 font-serif text-sm leading-relaxed">
+          Kvæg kræver store landarealer, hvilket ofte sker på bekostning af skov og biodiversitet.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Culinary Profile -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="flex items-baseline justify-between mb-12 border-b border-stone-200 pb-6">
+      <h2 class="font-display text-4xl text-stone-900">I Køkkenet</h2>
+      <span class="font-mono text-stone-400 text-sm">02</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Udskæringer</h3>
+        <ul class="space-y-4 text-stone-600 font-serif">
+          <li class="flex items-start">
+            <span class="text-stone-300 mr-4">01</span>
+            <span><strong>Mørbrad & Filet:</strong> De dyreste og møreste stykker. Kræver kort tilberedning ved høj
+              varme.</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-stone-300 mr-4">02</span>
+            <span><strong>Bryst & Bov:</strong> Rige på bindevæv og smag. Ideelle til braisering og simreretter.</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-stone-300 mr-4">03</span>
+            <span><strong>Indmad:</strong> Hjerte, lever og tunge er oversete delikatesser med højt
+              næringsindhold.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-sans font-bold text-lg mb-4 text-stone-800">Tilberedning & Tips</h3>
+        <p class="text-stone-600 font-serif leading-relaxed mb-6">
+          For at maksimere smagen og minimere spildet, bør man altid lade kødet hvile efter stegning.
+          Brug kraftben og afpuds til fond – intet bør gå til spilde, når klimaprisen er så høj.
+        </p>
+        <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+          <p class="text-sm font-bold text-stone-900 mb-2">PRO TIP</p>
+          <p class="text-stone-600 text-sm italic">
+            "Erstat 30-50% af kødet i en bolognese med finthakkede svampe eller linser.
+            Det løfter umamismagen og sænker klimaaftrykket markant."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Minimalist Calculator -->
+<section class="py-24 bg-stone-900 text-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-3xl md:text-4xl mb-4">Beregn Din Effekt</h2>
+      <p class="text-stone-400 font-light">Se hvad en reduktion i oksekød betyder for dit regnskab.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Forbrug (kg/uge)</label>
+          <input type="number" id="beefAmount" value="10"
+            class="w-full bg-transparent border-b border-stone-700 py-4 text-3xl font-display focus:outline-none focus:border-white transition-colors text-white placeholder-stone-700">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">Erstatning</label>
+          <select id="replacement"
+            class="w-full bg-transparent border-b border-stone-700 py-4 text-xl font-sans focus:outline-none focus:border-white transition-colors text-white appearance-none cursor-pointer">
+            <option value="2" class="text-stone-900">Bælgfrugter (2 kg CO₂e)</option>
+            <option value="6.9" class="text-stone-900">Kylling (6.9 kg CO₂e)</option>
+            <option value="12" class="text-stone-900">Svinekød (12 kg CO₂e)</option>
+          </select>
+        </div>
+
+        <button onclick="calculateSavings()"
+          class="group flex items-center gap-4 text-white hover:text-stone-300 transition-colors">
+          <span class="text-sm font-bold uppercase tracking-widest">Beregn nu</span>
+          <span class="text-2xl group-hover:translate-x-2 transition-transform">→</span>
+        </button>
+      </div>
+
+      <div id="savingsResult" class="hidden opacity-0 transition-opacity duration-700">
+        <div class="border-l border-stone-700 pl-12">
+          <div class="mb-8">
+            <div class="text-6xl font-display text-white mb-2" id="savingsValue">0</div>
+            <div class="text-stone-500 text-sm uppercase tracking-widest">kg CO₂e sparet / uge</div>
+          </div>
+          <div>
+            <div class="text-4xl font-display text-stone-300 mb-2" id="annualSavings">0</div>
+            <div class="text-stone-500 text-sm uppercase tracking-widest">tons CO₂e / år</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function calculateSavings() {
+    const beefAmount = parseFloat(document.getElementById('beefAmount').value) || 0;
+    const replacementCO2 = parseFloat(document.getElementById('replacement').value);
+
+    const beefCO2 = 60;
+    const currentEmissions = beefAmount * beefCO2;
+    const newEmissions = beefAmount * replacementCO2;
+    const weeklySavings = currentEmissions - newEmissions;
+    const annualSavings = (weeklySavings * 52) / 1000;
+
+    // Animate numbers
+    animateValue("savingsValue", 0, weeklySavings.toFixed(1), 1000);
+    animateValue("annualSavings", 0, annualSavings.toFixed(2), 1000);
+
+    const resultDiv = document.getElementById('savingsResult');
+    resultDiv.classList.remove('hidden');
+    // Trigger reflow
+    void resultDiv.offsetWidth;
+    resultDiv.classList.remove('opacity-0');
+  }
+
+  function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = (progress * (end - start) + start).toFixed(id === 'annualSavings' ? 2 : 1);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+</script>
+
+{% endblock %}

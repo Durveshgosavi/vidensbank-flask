@@ -3,93 +3,154 @@
 {% block content %}
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Økologi: En Nuanceret Virkelighed | Cheval Blanc</title>
+<title>Økologi: En Nuanceret Virkelighed</title>
 
-<header style="position: relative; height: 85vh; min-height: 600px; display: flex; align-items: center; justify-content: center; text-align: center; color: #ffffff; background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg'); background-size: cover; background-position: center;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-        <h1 style="font-family: 'AWConqueror Std Inline', serif; font-size: 4.5rem; font-weight: normal; line-height: 1.1; text-transform: uppercase; color: #ffffff; letter-spacing: 3px; margin-bottom: 2.5rem; text-shadow: 0 4px 8px rgba(0,0,0,0.3);">ØKOLOGI: EN NUANCERET VIRKELIGHED</h1>
-        <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.5rem; max-width: 900px; margin: 0 auto; line-height: 1.6; text-shadow: 0 2px 4px rgba(0,0,0,0.3); color: #ffffff;">Bag de ideelle principper gemmer sig komplekse udfordringer for landmænd, miljøet og den globale fødevareforsyning. En kritisk analyse af videnskabelige studier og feltrealiteter.</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/infographics.css') }}?v=1.0">
+{% endblock %}
+
+<header
+    class="relative h-[85vh] min-h-[600px] flex items-center justify-center text-center text-white bg-cover bg-center"
+    style="background-image: url('https://images.pexels.com/photos/164504/pexels-photo-164504.jpeg');">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="container mx-auto max-w-6xl px-8 relative z-10">
+        <h1
+            class="font-display text-6xl font-normal leading-tight uppercase text-white tracking-brand-wide mb-10 drop-shadow-md">
+            ØKOLOGI: EN NUANCERET VIRKELIGHED</h1>
+        <p class="mx-auto max-w-4xl font-sans text-2xl leading-relaxed text-white drop-shadow-md">
+            Bag de ideelle principper gemmer sig komplekse udfordringer for landmænd, miljøet og den globale
+            fødevareforsyning. En kritisk analyse af videnskabelige studier og feltrealiteter.</p>
     </div>
 </header>
 
 <main>
-    <section style="padding: 6rem 0; background: #ffffff;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <h2 style="font-family: 'Theinhardt', serif; font-size: 3.5rem; font-weight: normal; text-transform: uppercase; color: #2c3e50; letter-spacing: 2px; text-align: center; margin-bottom: 1.5rem;">KRITISKE TAL</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; text-align: center; max-width: 900px; margin: 0 auto 5rem; color: #7f8c8d; line-height: 1.6;">Videnskabelige studier afslører de reelle omkostninger ved økologisk landbrug</p>
+    <section class="py-24 bg-white">
+        <div class="container mx-auto max-w-6xl px-8">
+            <h2 class="font-display text-5xl font-normal uppercase text-stone-800 tracking-brand-wide text-center mb-6">
+                KRITISKE TAL</h2>
+            <p class="font-sans text-xl text-center max-w-4xl mx-auto mb-20 text-stone-500 leading-relaxed">
+                Videnskabelige studier afslører de reelle omkostninger ved økologisk landbrug</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;">
-                <div style="background-color: #ffffff; border: 1px solid #e8f5e8; border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 0 8px 32px rgba(39,174,96,0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
-                    <div style="font-size: 3.5rem; font-weight: 300; color: #a0d7a5; margin-bottom: 0.5rem; font-family: 'Theinhardt', serif; letter-spacing: -1px;">-26%</div>
-                    <div style="font-size: 1.1rem; color: #34495e; font-weight: 500; margin-bottom: 1rem;">Gennemsnitligt udbytte for korn</div>
-                    <div style="font-size: 0.85rem; color: #7f8c8d; font-style: italic;">Nature (2012) - 115 studier</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div
+                    class="bg-white border border-green-50 rounded-2xl p-10 text-center shadow-lg transition-all hover:shadow-xl">
+                    <div class="font-display text-6xl font-light text-cb-green-medium mb-2 tracking-tighter">
+                        -26%</div>
+                    <div class="font-sans text-lg font-medium text-stone-700 mb-4">
+                        Gennemsnitligt udbytte for korn</div>
+                    <div class="font-sans text-sm text-stone-400 italic">Nature (2012) - 115 studier
+                    </div>
                 </div>
 
-                <div style="background-color: #ffffff; border: 1px solid #e8f5e8; border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 0 8px 32px rgba(39,174,96,0.08);">
-                    <div style="font-size: 3.5rem; font-weight: 300; color: #a0d7a5; margin-bottom: 0.5rem; font-family: 'Theinhardt', serif;">-33%</div>
-                    <div style="font-size: 1.1rem; color: #34495e; font-weight: 500; margin-bottom: 1rem;">Udbytte for grøntsager</div>
-                    <div style="font-size: 0.85rem; color: #7f8c8d; font-style: italic;">Stanford University (2012)</div>
+                <div class="bg-white border border-green-50 rounded-2xl p-10 text-center shadow-lg">
+                    <div class="font-display text-6xl font-light text-cb-green-medium mb-2 tracking-tighter">
+                        -33%</div>
+                    <div class="font-sans text-lg font-medium text-stone-700 mb-4">Udbytte for
+                        grøntsager</div>
+                    <div class="font-sans text-sm text-stone-400 italic">Stanford University (2012)
+                    </div>
                 </div>
 
-                <div style="background-color: #ffffff; border: 1px solid #e8f5e8; border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 0 8px 32px rgba(39,174,96,0.08);">
-                    <div style="font-size: 3.5rem; font-weight: 300; color: #a0d7a5; margin-bottom: 0.5rem; font-family: 'Theinhardt', serif;">+40%</div>
-                    <div style="font-size: 1.1rem; color: #34495e; font-weight: 500; margin-bottom: 1rem;">Højere produktionsomkostninger</div>
-                    <div style="font-size: 0.85rem; color: #7f8c8d; font-style: italic;">EU Commission (2020)</div>
+                <div class="bg-white border border-green-50 rounded-2xl p-10 text-center shadow-lg">
+                    <div class="font-display text-6xl font-light text-cb-green-medium mb-2 tracking-tighter">
+                        +40%</div>
+                    <div class="font-sans text-lg font-medium text-stone-700 mb-4">Højere
+                        produktionsomkostninger</div>
+                    <div class="font-sans text-sm text-stone-400 italic">EU Commission (2020)</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 6rem 0; background: #f8f9fa;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <div style="background-color: #ffffff; border: 1px solid #f0f0f0; padding: 3.5rem; border-radius: 20px; margin: 4rem 0; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);">
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.4rem; line-height: 1.7; margin: 0; padding-left: 4rem; color: #2c3e50;">"Økologisk landbrug kan ikke føde verden alene. Med en stigende verdensbefolkning og klimaforandringer har vi brug for alle tilgængelige værktøjer - både økologiske principper og moderne teknologi."</p>
-                <div style="margin-top: 2.5rem; padding-left: 4rem;">
-                    <p style="font-weight: 600; margin: 0; color: #2c3e50; font-size: 1.1rem;">Dr. Sarah Johnson</p>
-                    <p style="margin: 0; opacity: 0.7; color: #7f8c8d;">Senior Researcher, International Food Policy Research Institute</p>
+    <section class="py-24 bg-stone-50">
+        <div class="container mx-auto max-w-6xl px-8">
+            <div class="bg-white border border-stone-100 p-14 rounded-3xl my-16 shadow-sm">
+                <p class="font-sans text-2xl leading-relaxed m-0 pl-16 text-stone-800 relative">
+                    <span class="absolute left-0 top-0 text-6xl text-stone-200 font-serif">"</span>
+                    Økologisk landbrug kan ikke føde verden alene. Med en stigende verdensbefolkning og
+                    klimaforandringer har vi brug for alle tilgængelige værktøjer - både økologiske principper og
+                    moderne teknologi.
+                </p>
+                <div class="mt-10 pl-16">
+                    <p class="font-bold m-0 text-stone-800 text-lg">Dr. Sarah Johnson</p>
+                    <p class="m-0 opacity-70 text-stone-500">Senior Researcher, International Food Policy
+                        Research Institute</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 6rem 0; background: #f8f9fa;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 3.5rem; font-weight: normal; text-transform: uppercase; color: #2c3e50; letter-spacing: 2px; text-align: center; margin-bottom: 1.5rem;">UDBYTTE-DILEMMAET</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; text-align: center; max-width: 1000px; margin: 0 auto 5rem; line-height: 1.6; color: #7f8c8d;">Den mest veldokumenterede realitet ved økologisk landbrug er et systematisk lavere udbytte. Dette "yield gap" har betydelige konsekvenser for global fødevaresikkerhed og miljøpåvirkning.</p>
+    <section class="py-24 bg-stone-50">
+        <div class="container mx-auto max-w-6xl px-8">
+            <h2 class="font-display text-5xl font-normal uppercase text-stone-800 tracking-brand-wide text-center mb-6">
+                UDBYTTE-DILEMMAET</h2>
+            <p class="font-sans text-xl text-center max-w-4xl mx-auto mb-20 leading-relaxed text-stone-500">
+                Den mest veldokumenterede realitet ved økologisk landbrug er et systematisk lavere udbytte. Dette "yield
+                gap" har betydelige konsekvenser for global fødevaresikkerhed og miljøpåvirkning.</p>
 
-            <div style="background: linear-gradient(135deg, #f8faf8 0%, #f1f8f1 100%); border-left: 4px solid #a0d7a5; padding: 2.5rem; margin: 3rem 0; border-radius: 0 16px 16px 0; box-shadow: 0 8px 24px rgba(39,174,96,0.06);">
-                <h3 style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.5rem; margin: 0 0 1.5rem 0; color: #a0d7a5;">Meta-analyse af 115 studier (Nature, 2012)</h3>
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; line-height: 1.7; margin: 0 0 1.5rem 0; color: #2c3e50;">Forskere fra University of British Columbia gennemgik 115 studier fra 38 lande og fandt, at økologiske afgrøder i gennemsnit giver 25% lavere udbytte end konventionelle metoder. Forskellen var størst for korn (-26%) og grøntsager (-33%).</p>
-                <p style="font-family: 'Theinhardt', Arial, sans-serif; font-style: italic; margin: 0; color: #7f8c8d; font-size: 1.1rem;">"Hvis alle landmænd i verden gik over til økologi, ville vi skulle bruge 25-40% mere land til at producere den samme mængde mad."</p>
+            <div
+                class="bg-gradient-to-br from-stone-50 to-green-50 border-l-4 border-cb-green-medium p-10 my-12 rounded-r-2xl shadow-sm">
+                <h3 class="font-sans text-2xl mb-6 text-cb-green-medium font-bold">
+                    Meta-analyse af 115 studier (Nature, 2012)</h3>
+                <p class="font-sans text-lg leading-relaxed mb-6 text-stone-800">
+                    Forskere fra University of British Columbia gennemgik 115 studier fra 38 lande og fandt, at
+                    økologiske afgrøder i gennemsnit giver 25% lavere udbytte end konventionelle metoder. Forskellen var
+                    størst for korn (-26%) og grøntsager (-33%).</p>
+                <p class="font-sans italic m-0 text-stone-500 text-lg">
+                    "Hvis alle landmænd i verden gik over til økologi, ville vi skulle bruge 25-40% mere land til at
+                    producere den samme mængde mad."</p>
+            </div>
+
+            <div class="did-you-know mt-12 text-left">
+                <div class="dyk-title">Vidste du?</div>
+                <div class="dyk-content">
+                    Selvom økologisk landbrug ofte har lavere udbytte pr. hektar, kan det være mere modstandsdygtigt
+                    over for klimaforandringer som tørke, da den organiske jord holder bedre på vandet.
+                </div>
             </div>
         </div>
     </section>
 
-    <section style="padding: 6rem 0; background: #ffffff;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <h2 style="font-family: 'AWConqueror Std Inline', serif; font-size: 3.5rem; font-weight: normal; text-transform: uppercase; color: #2c3e50; letter-spacing: 2px; text-align: center; margin-bottom: 1.5rem;">MILJØPARADOKSET</h2>
-            <p style="font-family: 'Theinhardt', Arial, sans-serif; font-size: 1.3rem; text-align: center; max-width: 1000px; margin: 0 auto 5rem; line-height: 1.6; color: #7f8c8d;">Økologiens miljøpåvirkning er kompleks og ofte modstridende. Mens visse praksisser er positive, kan andre faktorer opveje fordelene.</p>
+    <section class="py-24 bg-white">
+        <div class="container mx-auto max-w-6xl px-8">
+            <h2 class="font-display text-5xl font-normal uppercase text-stone-800 tracking-brand-wide text-center mb-6">
+                MILJØPARADOKSET</h2>
+            <p class="font-sans text-xl text-center max-w-4xl mx-auto mb-20 leading-relaxed text-stone-500">
+                Økologiens miljøpåvirkning er kompleks og ofte modstridende. Mens visse praksisser er positive, kan
+                andre faktorer opveje fordelene.</p>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 4rem 0;">
-                <div style="background-color: #ffffff; border: 1px solid #e8f5e8; border-radius: 16px; padding: 3rem; box-shadow: 0 12px 40px rgba(39,174,96,0.06); transition: all 0.4s ease;">
-                    <h3 style="font-size: 1.4rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; color: #a0d7a5;">✓ Miljøfordele</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1; position: relative;">Højere biodiversitet på marker</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Bedre jordkvalitet og kulstofbinding</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Ingen syntetiske pesticider</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Mindre vandforurening</li>
-                        <li style="padding: 0.8rem 0 0 2rem;">Færre drivhusgasser fra gødning</li>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 my-16">
+                <div class="bg-white border border-green-50 rounded-2xl p-12 shadow-lg transition-all hover:shadow-xl">
+                    <h3 class="text-2xl mb-8 flex items-center gap-4 text-cb-green-medium font-bold">
+                        ✓ Miljøfordele</h3>
+                    <ul class="list-none p-0 m-0 space-y-4">
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">
+                            Højere biodiversitet på marker</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Bedre
+                            jordkvalitet
+                            og kulstofbinding</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Ingen syntetiske
+                            pesticider</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Mindre
+                            vandforurening</li>
+                        <li class="pl-8 relative text-stone-600 text-lg">Færre drivhusgasser fra gødning</li>
                     </ul>
                 </div>
 
-                <div style="background-color: #ffffff; border: 1px solid #e8f5e8; border-radius: 16px; padding: 3rem; box-shadow: 0 12px 40px rgba(39,174,96,0.06);">
-                    <h3 style="font-size: 1.4rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; color: #e74c3c;">✗ Miljøudfordringer</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Større arealkrav (afskovning)</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Højere CO₂-udledning pr. produkt</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Kobberophobning i jorden</li>
-                        <li style="padding: 0.8rem 0 0.8rem 2rem; border-bottom: 1px solid #f1f8f1;">Mindre effektiv ressourceudnyttelse</li>
-                        <li style="padding: 0.8rem 0 0 2rem;">Øget risiko for jorderosion</li>
+                <div class="bg-white border border-green-50 rounded-2xl p-12 shadow-lg">
+                    <h3 class="text-2xl mb-8 flex items-center gap-4 text-red-500 font-bold">
+                        ✗ Miljøudfordringer</h3>
+                    <ul class="list-none p-0 m-0 space-y-4">
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Større arealkrav
+                            (afskovning)</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Højere
+                            CO₂-udledning pr. produkt</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Kobberophobning
+                            i
+                            jorden</li>
+                        <li class="pb-4 border-b border-stone-100 pl-8 relative text-stone-600 text-lg">Mindre effektiv
+                            ressourceudnyttelse</li>
+                        <li class="pl-8 relative text-stone-600 text-lg">Øget risiko for jorderosion</li>
                     </ul>
                 </div>
             </div>

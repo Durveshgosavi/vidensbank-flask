@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor Økologi? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='images/waste_reduction_aesthetic_1763550161182.png') }}"
+            alt="Clean Water Aesthetic" class="h-full w-full object-cover">
+        <div class="absolute inset-0 brand-overlay"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 text-white">
+        <h1
+            class="mb-6 max-w-4xl font-display text-6xl font-bold leading-none tracking-brand-wide md:text-8xl uppercase text-cb-blue-light">
+            Hvorfor<br>Økologi?
+        </h1>
+        <p class="max-w-2xl font-sans text-lg font-normal leading-relaxed text-white">
+            Økologi handler om mere end bare fravær af sprøjtegifte. Det handler om rent drikkevand, rigere natur og
+            dyrevelfærd.
+        </p>
+    </div>
+</div>
+
+<!-- Key Benefits Grid -->
+<section class="bg-white py-24">
+    <div class="mx-auto max-w-6xl px-6">
+        <div class="grid grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Benefit 1: Groundwater -->
+            <div class="group">
+                <div class="mb-6 h-1 w-16 bg-cb-blue-dark transition-all group-hover:w-full"></div>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">Rent
+                    Grundvand</h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    Økologiske landmænd bruger ikke syntetiske pesticider. Det beskytter grundvandet mod nedsivning af
+                    giftrester.
+                </p>
+                <div class="mt-6 bg-cb-blue-light p-4">
+                    <p class="font-sans text-sm font-bold text-cb-blue-dark">
+                        Fakta: 1 liter økologisk mælk beskytter 193 liter grundvand.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Benefit 2: Biodiversity -->
+            <div class="group">
+                <div class="mb-6 h-1 w-16 bg-cb-green-dark transition-all group-hover:w-full"></div>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">Mere Natur
+                </h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    På økologiske marker er der i gennemsnit 30% flere vilde plante- og dyrearter sammenlignet med
+                    konventionelle marker.
+                </p>
+                <div class="mt-6 bg-cb-green-light p-4">
+                    <p class="font-sans text-sm font-bold text-cb-green-dark">
+                        Fakta: Økologi skaber bedre levevilkår for bier og insekter.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Benefit 3: Animal Welfare -->
+            <div class="group">
+                <div class="mb-6 h-1 w-16 bg-cb-yellow-dark transition-all group-hover:w-full"></div>
+                <h3 class="mb-4 font-display text-3xl font-bold text-stone-900 uppercase tracking-brand-wide">
+                    Dyrevelfærd</h3>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    Økologiske dyr skal have adgang til det fri, grovfoder og plads til naturlig adfærd.
+                </p>
+                <div class="mt-6 bg-cb-yellow-light p-4">
+                    <p class="font-sans text-sm font-bold text-cb-yellow-dark">
+                        Fakta: Alle økologiske køer kommer på græs i sommerhalvåret.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deep Dive: Groundwater -->
+<section class="bg-cb-taupe-light py-24">
+    <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+            <div>
+                <span
+                    class="mb-4 block font-sans text-xs font-bold tracking-widest uppercase text-cb-blue-dark">Fremtidens
+                    Drikkevand</span>
+                <h2 class="mb-6 font-display text-4xl font-bold text-stone-900 uppercase tracking-brand-wide">En
+                    Investering i Fremtiden</h2>
+                <p class="mb-6 font-sans text-lg leading-relaxed text-stone-600">
+                    I Danmark indvinder vi vores drikkevand direkte fra grundvandet. Fund af pesticidrester i
+                    drikkevandsboringer er et stigende problem.
+                </p>
+                <p class="font-sans text-lg leading-relaxed text-stone-600">
+                    Ved at vælge økologi i storkøkkener er I med til at sikre, at store landbrugsarealer dyrkes uden
+                    brug af syntetiske sprøjtegifte, hvilket direkte beskytter de magasiner, vi henter vand fra.
+                </p>
+            </div>
+            <div class="relative h-[400px] w-full overflow-hidden bg-white p-8 shadow-lg">
+                <div class="flex h-full flex-col justify-center text-center">
+                    <span class="font-display text-8xl font-bold text-cb-blue-dark">79%</span>
+                    <p class="mt-4 font-sans text-sm font-bold uppercase tracking-widest text-stone-500">Af Vandprøver
+                    </p>
+                    <p class="mt-2 text-stone-600">Indeholdt pesticidrester i 2020-2022 (øvre grundvand)</p>
+                    <p class="mt-8 text-xs text-stone-400">Kilde: GEUS / Økologisk Landsforening</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-stone-900 py-32 text-left text-white">
+    <div class="mx-auto max-w-3xl px-6 text-left">
+        <h2 class="mb-8 font-display text-4xl font-bold uppercase tracking-brand-wide">Gør en forskel</h2>
+        <p class="max-w-2xl text-xl font-sans font-light text-stone-300">
+            Hver gang I vælger en økologisk råvare, stemmer I for rent vand og mere natur.
+        </p>
+        <a href="{{ url_for('topic_organic_tips') }}"
+            class="inline-block border-b border-cb-blue-dark pb-1 font-sans text-sm font-bold uppercase tracking-widest text-white transition-colors hover:text-cb-blue-dark">
+            Se hvordan I kommer i gang →
+        </a>
+    </div>
+</section>
+{% endblock %}

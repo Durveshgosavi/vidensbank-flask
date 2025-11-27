@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Hvad er fødevarerelaterede emissioner? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvad er fødevarerelaterede emissioner?</h1>
+    <p class="hero-subtitle">Fra jord til tallerken</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      Fødevarerelaterede emissioner er det samlede klimaaftryk, der opstår, når mad produceres, forarbejdes,
+      transporteres, tilberedes og smides ud. For danske kantiner er det et nøgleområde, fordi mad ofte udgør
+      en væsentlig del af både virksomhedens og gæsternes klimaaftryk.
+    </p>
+  </header>
+
+  <!-- Navigation back to topic -->
+  <nav class="filter-nav" aria-label="Tilbage til emne" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">← Tilbage til emnet</a>
+    <a href="{{ url_for('topic_emissions_why') }}" class="filter-pill">Hvorfor vigtigt? →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>CO₂e – en fælles måleenhed</h2>
+    <p>
+      Når vi taler om klimaaftryk, bruger vi ofte måleenheden CO₂e (kuldioxidækvivalenter).
+      Det er en fælles "valuta" for drivhusgasser, der gør det muligt at sammenligne effekten af f.eks.
+      kuldioxid (CO₂), metan (CH₄) og lattergas (N₂O) i ét tal.
+      Det betyder, at vi kan se hele den samlede påvirkning fra et måltid eller en råvare.
+    </p>
+
+    <h2>Fra jord til tallerken: Madens livscyklus</h2>
+    <p>
+      For at forstå, hvor emissionerne opstår, ser vi på madens livscyklus.
+      Forenklet kan vi opdele den i fem centrale faser, som alle er relevante for kantiner:
+    </p>
+
+    <div class="metrics-grid" style="margin: 2rem 0;">
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem;">1</div>
+        <h3 class="metric-label">Landbrug og arealanvendelse</h3>
+        <p class="metric-text">
+          Her kommer størstedelen af udledningen. Husdyrproduktion skaber metan, gødning giver udledning
+          af lattergas, og ændringer i arealanvendelse – f.eks. skovrydning til foderproduktion – frigiver
+          lagret kulstof.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem;">2</div>
+        <h3 class="metric-label">Forarbejdning og pakning</h3>
+        <p class="metric-text">
+          Råvarer bliver til produkter. Det kræver energi til maskiner, nedkøling og transportbånd, og valg
+          af emballage har både klima- og affaldsmæssig betydning.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem;">3</div>
+        <h3 class="metric-label">Transport</h3>
+        <p class="metric-text">
+          "Food miles" fylder meget i debatten, men transport udgør ofte en mindre del af det samlede aftryk.
+          En vigtig undtagelse er flytransport, hvor enkelte råvarer kan få et markant højere klimaaftryk.
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem;">4</div>
+        <h3 class="metric-label">Detail, storkøkken og gæst</h3>
+        <p class="metric-text">
+          Køl, frys og tilberedning i køkkenet bruger energi. I kantiner handler det f.eks. om ovne,
+          gryder, buffeter og varmeskabe. Madspild i denne fase betyder, at hele ressourceforbruget
+          "går tabt".
+        </p>
+      </article>
+
+      <article class="metric-tile">
+        <div class="metric-value" style="font-size: 2.5rem;">5</div>
+        <h3 class="metric-label">Produktion af hjælpemidler</h3>
+        <p class="metric-text">
+          Gødning, pesticider, foder, maskiner og irrigationssystemer har også et klimaaftryk,
+          før de overhovedet når ud på marken.
+        </p>
+      </article>
+    </div>
+
+    <h2>Høj-, mellem- og lav-udledende fødevarer</h2>
+    <p>
+      Data fra bl.a. danske klimadatabaser viser tydelige forskelle mellem fødevaretyper:
+    </p>
+
+    <div style="background-color: var(--cheval-taube); padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="margin-bottom: 1.5rem;">
+          <strong style="color: #c0392b; font-size: 1.1rem;">🔴 Høj udledning:</strong>
+          <p style="margin: 0.5rem 0 0 0;">
+            Oksekød og lam ligger typisk højest. Det skyldes især metan fra drøvtyggere og et stort arealforbrug.
+          </p>
+        </li>
+        <li style="margin-bottom: 1.5rem;">
+          <strong style="color: #e67e22; font-size: 1.1rem;">🟠 Mellem udledning:</strong>
+          <p style="margin: 0.5rem 0 0 0;">
+            Svinekød, fjerkræ og ost har et betydeligt aftryk, primært drevet af foderproduktion og energi til stalde.
+          </p>
+        </li>
+        <li>
+          <strong style="color: #27ae60; font-size: 1.1rem;">🟢 Lav udledning:</strong>
+          <p style="margin: 0.5rem 0 0 0;">
+            Grøntsager, bælgfrugter og mange plantebaserede produkter har generelt et lavere klimaaftryk pr. kg mad.
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>For kantiner betyder det:</strong> Valg af råvarer har ofte større betydning for klimaaftrykket
+      end selve transporten. Et skift i menuens sammensætning kan derfor gøre en markant forskel.
+    </p>
+  </article>
+</section>
+
+<!-- Navigation to next topic -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Hvorfor er det vigtigt?</h2>
+    <p class="section-lead">
+      Forstå hvorfor fødevarerelaterede emissioner er centrale i Danmarks klimamål.
+    </p>
+    <a href="{{ url_for('topic_emissions_why') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}

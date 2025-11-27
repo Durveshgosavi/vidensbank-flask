@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Hvorfor er fødevarerelaterede emissioner vigtige? - Vidensbank{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-video-container" style="background-image: url('https://images.unsplash.com/photo-1473186578172-c141e6798cf4');">
+  <div class="bg-overlay-dark"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hvorfor er fødevarerelaterede emissioner vigtige?</h1>
+    <p class="hero-subtitle">Madens rolle i Danmarks klimamål</p>
+  </div>
+</header>
+
+<section class="page-section">
+  <header class="section-header">
+    <p class="section-lead">
+      I Danmark fylder mad en væsentlig del af både den enkeltes og samfundets klimaaftryk.
+      Derfor er fødevarerelaterede emissioner et centralt indsatsområde i den grønne omstilling.
+    </p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="filter-nav" aria-label="Navigation" style="margin-bottom: 3rem;">
+    <a href="{{ url_for('topic_emissions_what') }}" class="filter-pill">← Hvad er det?</a>
+    <a href="{{ url_for('topic_emissions_landing') }}" class="filter-pill">Tilbage til emnet</a>
+    <a href="{{ url_for('topic_emissions_goal') }}" class="filter-pill">Mål & ambition →</a>
+  </nav>
+
+  <article style="max-width: 900px; margin: 0 auto;">
+    <h2>Madens rolle i Danmarks klimaaftryk</h2>
+    <p>
+      Danskere har et relativt højt klimaaftryk pr. person, og en betydelig del stammer fra vores madforbrug.
+      Når vi samler alle led fra produktion til madspild, udgør fødevarer en stor andel af den samlede udledning.
+      Maden er samtidig et område, hvor ændringer kan gennemføres relativt hurtigt – især i professionelle køkkener.
+    </p>
+
+    <h2>Politiske mål og rammer</h2>
+    <p>
+      Danmark har vedtaget ambitiøse klimamål og lovgivning, som sætter retningen for hele fødevaresystemet.
+      Klimalovgivning, lovinitiativer om beskatning af landbrugsudledning, og udvikling af nationale klimamærker
+      for fødevarer er alle eksempler på, at mad ikke længere kun er et sundhedsemne – det er også klimapolitik.
+    </p>
+    <p>
+      De officielle kostråd er opdateret, så de både adresserer sundhed og klima, og der arbejdes løbende med
+      at gøre klimainformation mere synlig for både forbrugere og professionelle køkkener.
+    </p>
+
+    <h2>Kantiner som nøglespiller</h2>
+    <p>
+      Kantiner, personalerestauranter og andre storkøkkener har en helt særlig rolle:
+    </p>
+
+    <div class="card-grid" style="margin: 2rem 0;">
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 3rem; color: var(--dark-gron);">1000+</div>
+        <h3 class="metric-label">Måltider dagligt</h3>
+        <p class="metric-text">
+          Store kantiner serverer dagligt måltider til tusindvis af gæster.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 3rem; color: var(--dark-gron);">↓</div>
+        <h3 class="metric-label">Påvirkning gennem nudging</h3>
+        <p class="metric-text">
+          Kantiner kan påvirke gæsternes vaner gennem udbud, synlighed og nudging.
+        </p>
+      </div>
+
+      <div class="metric-tile">
+        <div class="metric-value" style="font-size: 3rem; color: var(--dark-gron);">📊</div>
+        <h3 class="metric-label">Datadrevet arbejde</h3>
+        <p class="metric-text">
+          Mulighed for at arbejde systematisk med data, indkøb og madspild i stor skala.
+        </p>
+      </div>
+    </div>
+
+    <p style="background-color: var(--light-gron); padding: 1.5rem; border-left: 4px solid var(--dark-gron); border-radius: 4px; margin: 2rem 0;">
+      <strong>Skalerings-effekten:</strong> Hvor den enkelte forbruger kan ændre én tallerken ad gangen,
+      kan en større kantine ændre flere hundrede eller tusinde måltider på én dag. Det gør kantiner til en
+      central del af løsningen på både klima- og madspildsudfordringen.
+    </p>
+
+    <h2>Fra risiko til mulighed</h2>
+    <p>
+      For foodservice-branchen er fødevarerelaterede emissioner både en <strong>risiko</strong> og en
+      <strong>mulighed</strong>:
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+      <div style="background-color: #fdecea; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #c0392b;">
+        <h3 style="color: #c0392b; margin-top: 0;">⚠️ Risiko</h3>
+        <p style="margin-bottom: 0;">
+          Hvis man ikke følger med regulering, kundekrav og forventninger til dokumentation.
+        </p>
+      </div>
+
+      <div style="background-color: var(--light-gron); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--dark-gron);">
+        <h3 style="color: var(--dark-gron); margin-top: 0;">✅ Mulighed</h3>
+        <p style="margin-bottom: 0;">
+          Hvis man kan dokumentere reduktioner, arbejde databaseret og tilbyde gæsterne attraktive, grønnere måltider.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Vidensbanken er designet til at gøre denne viden tilgængelig, så kantiner kan træffe oplyste, strategiske valg.
+    </p>
+  </article>
+</section>
+
+<!-- Next Section CTA -->
+<section class="section padding-y-4" style="background-color: var(--cheval-taube);">
+  <div class="container" style="text-align: center;">
+    <h2 class="section-title">Næste: Mål & Ambition</h2>
+    <p class="section-lead">
+      Hvad ønsker Vidensbanken og Cheval Blanc at opnå på emissionsområdet?
+    </p>
+    <a href="{{ url_for('topic_emissions_goal') }}" class="btn-primary" style="margin-top: 1.5rem;">Læs mere →</a>
+  </div>
+</section>
+
+{% endblock %}
