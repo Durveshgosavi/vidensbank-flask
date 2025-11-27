@@ -26,19 +26,23 @@ class SourcingEngine:
                 continue
 
             month_data = item_data['months'][month_key]
+            co2_base = item_data.get('co2_base', 0.5) # Default fallback
             
             # Calculate Scores for DK and Import
+            dk_co2 = self._calculate_co2(co2_base, 'DK')
             dk_score = self._calculate_score(
                 price=month_data.get('dk_price', 0),
                 quality=month_data.get('dk_quality', 0),
-                climate=1, # DK is baseline climate (1)
+                co2=dk_co2,
                 is_local=True
             )
             
+            import_origin = month_data.get('import_origin', 'World')
+            import_co2 = self._calculate_co2(co2_base, import_origin)
             import_score = self._calculate_score(
                 price=month_data.get('import_price', 0),
                 quality=month_data.get('import_quality', 0),
-                climate=2 if month_data.get('import_origin') == 'EU' else 3,
+                co2=import_co2,
                 is_local=False
             )
 
@@ -48,15 +52,15 @@ class SourcingEngine:
                 rec_status = month_data.get('dk_status')
                 rec_price = month_data.get('dk_price')
                 rec_quality = month_data.get('dk_quality')
-                rec_climate = 1
+                rec_co2 = dk_co2
                 score = dk_score
                 is_import = False
             else:
-                rec_origin = month_data.get('import_origin', 'World')
+                rec_origin = import_origin
                 rec_status = 'Import'
                 rec_price = month_data.get('import_price')
                 rec_quality = month_data.get('import_quality')
-                rec_climate = 2 if rec_origin == 'EU' else 3
+                rec_co2 = import_co2
                 score = import_score
                 is_import = True
 
@@ -67,7 +71,7 @@ class SourcingEngine:
                 'origin': rec_origin,
                 'status': rec_status,
                 'price': rec_price,
-                'climate': rec_climate,
+                'co2': round(rec_co2, 2),
                 'quality': rec_quality,
                 'score': round(score * 100),
                 'is_import': is_import
@@ -76,30 +80,44 @@ class SourcingEngine:
         # Sort by score descending
         return sorted(recommendations, key=lambda x: x['score'], reverse=True)
 
-    def _calculate_score(self, price, quality, climate, is_local):
+    def _calculate_co2(self, base_co2, origin):
+        """
+        Calculate total CO2 based on origin transport multipliers.
+        """
+        multipliers = {
+            'DK': 1.0,
+            'EU': 1.2,     # Truck transport
+            'World': 1.5,  # Ship transport (avg)
+            'N/A': 1.0
+        }
+        # Special case for air freight could be handled here if data supported it
+        return base_co2 * multipliers.get(origin, 1.5)
+
+    def _calculate_score(self, price, quality, co2, is_local):
         """
         Calculates a score from 0 to 1 based on weighted factors.
         """
         if price == 0 or quality == 0: return 0 # Unavailable
 
-        # Normalize inputs (assuming 1-3 scale)
+        # Normalize inputs
         # Price: 1 is best (1.0), 3 is worst (0.0)
         norm_price = (3 - price) / 2
         
         # Quality: 3 is best (1.0), 1 is worst (0.0)
         norm_quality = (quality - 1) / 2
         
-        # Climate: 1 is best (1.0), 3 is worst (0.0)
-        norm_climate = (3 - climate) / 2
+        # CO2: Normalize against a reasonable max (e.g., 5.0 kg CO2e)
+        # Lower is better. 0.1 -> 1.0, 5.0 -> 0.0
+        norm_co2 = max(0, (5.0 - co2) / 5.0)
 
         # Weights
-        w_price = 0.4
-        w_quality = 0.4
-        w_climate = 0.2
+        w_price = 0.35
+        w_quality = 0.45
+        w_co2 = 0.20
 
         # Bonus for local if quality is comparable
         local_bonus = 0.1 if is_local else 0
 
-        total_score = (norm_price * w_price) + (norm_quality * w_quality) + (norm_climate * w_climate) + local_bonus
+        total_score = (norm_price * w_price) + (norm_quality * w_quality) + (norm_co2 * w_co2) + local_bonus
         
         return min(total_score, 1.0) # Cap at 1.0

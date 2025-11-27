@@ -27,10 +27,10 @@
 
         <!-- Controls Toolbar -->
         <div
-            class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12 sticky top-4 z-30 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-sm border border-stone-200">
+            class="flex flex-col xl:flex-row items-center justify-between gap-6 mb-12 sticky top-4 z-30 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-sm border border-stone-200">
 
             <!-- Month Selector -->
-            <div class="flex flex-wrap justify-center gap-1">
+            <div class="flex flex-wrap justify-center gap-1 order-2 xl:order-1">
                 {% for month in ['JAN', 'FEB', 'MAR', 'APR', 'MAJ', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEC'] %}
                 <button onclick="setMonth({{ loop.index0 }})" id="btn-{{ loop.index0 }}"
                     class="px-3 py-2 rounded-lg text-xs font-bold transition-all duration-200 focus:outline-none border border-transparent
@@ -40,16 +40,37 @@
                 {% endfor %}
             </div>
 
-            <!-- View Toggle -->
-            <div class="flex items-center bg-stone-100 rounded-lg p-1 border border-stone-200">
-                <button onclick="setViewMode('simple')" id="btn-simple"
-                    class="px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all bg-white shadow-sm text-stone-900 border border-stone-200">
-                    Oversigt
-                </button>
-                <button onclick="setViewMode('pro')" id="btn-pro"
-                    class="px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900">
-                    Analyse
-                </button>
+            <div class="flex items-center gap-4 order-1 xl:order-2 w-full xl:w-auto">
+                <!-- Search -->
+                <div class="relative flex-grow xl:flex-grow-0">
+                    <input type="text" id="search-input" placeholder="Søg råvare..." oninput="updateFilters()"
+                        class="w-full xl:w-48 pl-9 pr-4 py-2 rounded-lg text-sm border border-stone-200 focus:border-stone-900 focus:ring-0 transition-colors bg-stone-50 focus:bg-white">
+                    <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+
+                <!-- Sort -->
+                <select id="sort-select" onchange="updateFilters()"
+                    class="pl-3 pr-8 py-2 rounded-lg text-sm border border-stone-200 focus:border-stone-900 focus:ring-0 transition-colors bg-stone-50 focus:bg-white cursor-pointer">
+                    <option value="score">Bedste Match</option>
+                    <option value="co2">Laveste CO2</option>
+                    <option value="price">Laveste Pris</option>
+                </select>
+
+                <!-- View Toggle -->
+                <div class="flex items-center bg-stone-100 rounded-lg p-1 border border-stone-200 shrink-0">
+                    <button onclick="setViewMode('simple')" id="btn-simple"
+                        class="px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all bg-white shadow-sm text-stone-900 border border-stone-200">
+                        Oversigt
+                    </button>
+                    <button onclick="setViewMode('pro')" id="btn-pro"
+                        class="px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all text-stone-500 hover:text-stone-900">
+                        Analyse
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -89,9 +110,9 @@
                                 <th class="px-6 py-4">Oprindelse</th>
                                 <th class="px-6 py-4">Status</th>
                                 <th class="px-6 py-4 text-center">Pris</th>
-                                <th class="px-6 py-4 text-center">Klima</th>
+                                <th class="px-6 py-4 text-right">CO2e / kg</th>
                                 <th class="px-6 py-4 text-center">Kvalitet</th>
-                                <th class="px-6 py-4 text-right">Anbefaling</th>
+                                <th class="px-6 py-4 text-right">Score</th>
                             </tr>
                         </thead>
                         <tbody id="pro-table-body" class="divide-y divide-stone-100">
@@ -111,6 +132,8 @@
 
     let currentViewMode = 'simple';
     let currentMonthIndex = new Date().getMonth();
+    let filterText = '';
+    let sortMethod = 'score';
 
     function setMonth(monthIndex) {
         currentMonthIndex = monthIndex;
@@ -124,6 +147,12 @@
             }
         });
 
+        renderContent();
+    }
+
+    function updateFilters() {
+        filterText = document.getElementById('search-input').value.toLowerCase();
+        sortMethod = document.getElementById('sort-select').value;
         renderContent();
     }
 
@@ -183,8 +212,19 @@
         const data = seasonData[currentMonthIndex];
         document.getElementById('strategy-text').textContent = data.strategy;
 
-        // Items are already sorted by score from backend
-        const items = data.items;
+        // Filter
+        let items = data.items.filter(item =>
+            item.name.toLowerCase().includes(filterText) ||
+            item.category.toLowerCase().includes(filterText)
+        );
+
+        // Sort
+        items.sort((a, b) => {
+            if (sortMethod === 'score') return b.score - a.score;
+            if (sortMethod === 'co2') return a.co2 - b.co2;
+            if (sortMethod === 'price') return a.price - b.price;
+            return 0;
+        });
 
         if (currentViewMode === 'simple') {
             renderSimpleView(items);
@@ -225,8 +265,13 @@
     function renderProView(items) {
         const tbody = document.getElementById('pro-table-body');
 
+        if (items.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="px-6 py-8 text-center text-stone-400 italic">Ingen resultater fundet</td></tr>';
+            return;
+        }
+
         tbody.innerHTML = items.map((item, index) => {
-            const isBestBuy = index === 0; // Top item is best buy
+            const isBestBuy = index === 0 && sortMethod === 'score'; // Only highlight best buy if sorting by score
 
             return `
             <tr class="hover:bg-stone-50 transition-colors ${isBestBuy ? 'bg-green-50/50' : ''}">
@@ -246,10 +291,8 @@
                         ${getText('price', item.price)}
                     </span>
                 </td>
-                <td class="px-6 py-4 text-center">
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getBadgeColor('climate', item.climate)}">
-                        ${getText('climate', item.climate)}
-                    </span>
+                <td class="px-6 py-4 text-right font-mono text-xs text-stone-600">
+                    ${item.co2.toFixed(2)}
                 </td>
                 <td class="px-6 py-4 text-center">
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getBadgeColor('quality', item.quality)}">

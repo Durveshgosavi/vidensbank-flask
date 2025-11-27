@@ -4,25 +4,45 @@ Generates PDF reports from HTML templates using WeasyPrint
 """
 
 from flask import render_template, make_response
-from weasyprint import HTML, CSS
-from weasyprint.text.fonts import FontConfiguration
 from datetime import datetime
 import io
+import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
+
+try:
+    from weasyprint import HTML, CSS
+    from weasyprint.text.fonts import FontConfiguration
+    WEASYPRINT_AVAILABLE = True
+except (ImportError, OSError) as e:
+    # OSError can happen if system dependencies (like Pango/Cairo) are missing
+    logger.warning(f"WeasyPrint not available: {e}")
+    WEASYPRINT_AVAILABLE = False
 
 
 class PDFGenerator:
     """Handles PDF generation for various report types"""
 
     def __init__(self):
-        self.font_config = FontConfiguration()
+        if WEASYPRINT_AVAILABLE:
+            try:
+                self.font_config = FontConfiguration()
+            except Exception as e:
+                logger.error(f"Failed to initialize FontConfiguration: {e}")
+                self.font_config = None
+        else:
+            self.font_config = None
 
-    def generate_emissions_report(self):
         """
         Generate a comprehensive PDF report for the Emissions topic
 
         Returns:
             Flask Response object with PDF content
         """
+        if not WEASYPRINT_AVAILABLE:
+            raise ImportError("WeasyPrint is not available on this system.")
+
         # Get current date for the report
         current_date = datetime.now().strftime('%d. %B %Y')
 
@@ -56,6 +76,9 @@ class PDFGenerator:
         Returns:
             Flask Response object with PDF content
         """
+        if not WEASYPRINT_AVAILABLE:
+            raise ImportError("WeasyPrint is not available on this system.")
+
         # Add current date to template variables
         template_vars['current_date'] = datetime.now().strftime('%d. %B %Y')
 

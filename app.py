@@ -462,24 +462,13 @@ def raavare_olier():
     """Oils and fats product page"""
     return render_template('raavarer/olier.html')
 
-@app.route('/vidensbank/raavarer/frugt')
-def raavare_frugt():
-    """Fruit product page"""
-    return render_template('raavarer/frugt.html')
 
-@app.route('/vidensbank/raavarer/planteprotein')
-def raavare_planteprotein():
-    """Plant protein product page"""
-    return render_template('raavarer/planteprotein.html')
 
 # ============================================================================
 # TOOLS ROUTES
 # ============================================================================
 
-@app.route('/vidensbank/tools/saesonhjulet')
-def tool_saesonhjulet():
-    """Seasonal Wheel tool"""
-    return render_template('tools/saesonhjulet.html')
+
 
 # ============================================================================
 # ØKOLOGI ROUTES
